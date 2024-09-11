@@ -65,7 +65,7 @@
   }
 
   .bubble__perma & {
-    --bubble-size: 40vh !important;
+    --bubble-size: 65vh !important;
   }
 }
 
