@@ -3,6 +3,7 @@
     <%= render "filters/tags", filter: filter %>
     <%= render "filters/assignees", filter: filter %>
     <%= render "filters/creators", filter: filter %>
+    <%= render "filters/stages", filter: filter %>
 
     <% filter.terms.each do |term| %>
       <%= filter_chip_tag %Q("#{term}"), filter.as_params_without(:terms, term) %>

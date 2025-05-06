@@ -1,6 +1,6 @@
-<% if Workflow.any? %>
+<% if filter.stages.any? %>
   <div class="quick-filter position-relative" data-controller="dialog" data-action="keydown.esc->dialog#close click@document->dialog#closeOnClickOutside">
-    <button class="btn input input--select flex-inline txt-small" data-action="click->dialog#open:stop">
+    <button class="btn input input--select flex-inline txt-x-small" data-action="click->dialog#open:stop">
       <span class="overflow-ellipsis">
         <% if filter.stages.any? %>
           <%= filter.stages.map(&:name).to_sentence %>
@@ -13,14 +13,14 @@
     <dialog class="events__popup popup panel flex-column align-start gap-half fill-white shadow"
         aria-label="In stage…" aria-description="In stage…"
         data-dialog-target="dialog" data-action="turbo:before-cache@document->dialog#close">
-      <strong class="popup__title margin-block-start-half pad-inline-half">In stage…</strong>
+      <strong class="popup__title margin-block-start-half pad-inline-half overflow-ellipsis">In stage…</strong>
       <%= form_with url: cards_path, method: :get, class: "flex flex-column full-width popup__list",
             data: { controller: "form" } do |form| %>
         <% filter.as_params.except(:stage_ids).each do |key, value| %>
           <%= filter_hidden_field_tag key, value %>
         <% end %>
 
-        <% Workflow.first.stages.each do |stage| %>
+        <% filter.stages.first.workflow.stages.each do |stage| %>
           <div class="btn popup__item">
             <%= form.check_box :stage_ids, {
               multiple: true,
