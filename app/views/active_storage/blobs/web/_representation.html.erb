@@ -14,8 +14,10 @@
   <audio controls="true" width="100%" preload="metadata">
     <source src="<%= rails_blob_url(blob) %>" type="<%= blob.content_type %>">
   </audio>
-<% elsif blob.variable? || blob.previewable? %>
+<% elsif blob.variable? %>
   <%= image_tag url_for(blob.variant(variant)), width: width, height: height %>
+<% elsif blob.previewable? %>
+  <%= image_tag url_for(blob.preview(variant)), width: width, height: height %>
 <% else %>
   <span class="attachment__icon"><%= blob.filename.extension&.downcase.presence || "unknown" %></span>
 <% end %>
