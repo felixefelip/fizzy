@@ -22,8 +22,11 @@
 
     :where(p, ul, ol, dl, blockquote, figure, .attachment) {
       margin-block: var(--block-margin);
-      overflow-wrap: break-word;
-      text-wrap: pretty;
+
+      &:not(lexical-editor &) {
+        overflow-wrap: break-word;
+        text-wrap: pretty;
+      }
     }
 
     :where(b, strong) {
