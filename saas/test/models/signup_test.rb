@@ -4,8 +4,8 @@ class SignupTest < ActiveSupport::TestCase
   test "#create_identity" do
     signup = Signup.new(email_address: "brian@example.com")
 
-    assert_difference -> { Identity.count }, 1 do
-      assert_difference -> { MagicLink.count }, 1 do
+    assert_difference -> { ::Identity.count }, 1 do
+      assert_difference -> { ::MagicLink.count }, 1 do
         assert signup.create_identity
       end
     end
@@ -16,8 +16,8 @@ class SignupTest < ActiveSupport::TestCase
 
     signup_existing = Signup.new(email_address: "brian@example.com")
 
-    assert_no_difference -> { Identity.count } do
-      assert_difference -> { MagicLink.count }, 1 do
+    assert_no_difference -> { ::Identity.count } do
+      assert_difference -> { ::MagicLink.count }, 1 do
         assert signup_existing.create_identity, "Should send magic link for existing identity"
       end
     end
@@ -29,8 +29,8 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "#complete" do
-    Account.any_instance.expects(:setup_customer_template).once
-    Current.without_account do
+    ::Account.any_instance.expects(:setup_customer_template).once
+    ::Current.without_account do
       signup = Signup.new(
         full_name: "Kevin",
         identity: identities(:kevin)
