@@ -8,11 +8,7 @@ module Account::Limited
   NEAR_CARD_LIMIT_THRESHOLD = 100
 
   def override_limits(card_count:)
-    if overridden_limits
-      overridden_limits.update(card_count: card_count)
-    else
-      create_overridden_limits(card_count: card_count)
-    end
+    (overridden_limits || build_overridden_limits).update!(card_count:)
   end
 
   def billed_cards_count
