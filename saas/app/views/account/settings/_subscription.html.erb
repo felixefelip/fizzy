@@ -1,15 +1,17 @@
-<p hidden>Status: <strong><%= subscription.status.titleize %></strong></p>
-
 <% if subscription.current_period_end %>
   <p class="txt-medium margin-none-block-start"><%= subscription_period_end_action(subscription) %> <strong><%= subscription.current_period_end.to_date.to_fs(:long) %></strong></p>
 <% end %>
 
-<div class="flex gap-half justify-center">
-  <%= link_to "Manage Billing", account_billing_portal_path, class: "btn", data: { turbo_prefetch: false } %>
-
-  <% if subscription.plan == Plan.paid %>
-    <%= button_to "Upgrade to Extra Storage", account_subscription_upgrade_path, class: "btn", form: { data: { turbo: false } } %>
-  <% elsif subscription.plan == Plan.paid_with_extra_storage %>
+<p>
+  <% if subscription.plan == Plan.paid && (Current.account.nearing_plan_storage_limit? || Current.account.exceeding_storage_limit?) %>
+    <%= button_to "Upgrade to #{Plan.paid_with_extra_storage.name } for #{ number_to_currency(Plan.paid_with_extra_storage.price, strip_insignificant_zeros: true) }/month", account_subscription_upgrade_path, class: "btn settings-subscription__button", form: { data: { turbo: false } } %>
+  <% elsif subscription.plan == Plan.paid_with_extra_storage && !Current.account.exceeding_storage_limit? %>
     <%= button_to "Downgrade to Regular", account_subscription_downgrade_path, class: "btn", form: { data: { turbo: false } } %>
   <% end %>
-</div>
+</p>
+
+<p>
+  <%= link_to "Manage your subscription", account_billing_portal_path, class: "btn btn--plain settings-subscription__link txt-link", data: { turbo_prefetch: false } %>
+</p>
+
+

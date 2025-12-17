@@ -31,6 +31,10 @@
     }
   }
 
+  .settings-subscription__link {
+    color: var(--settings-subscription-text-color);
+  }
+
   .settings-subscription__notch {
     animation: wiggle 500ms ease;
     background: var(--settings-subscription-background);
