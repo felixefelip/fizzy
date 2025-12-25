@@ -9,14 +9,19 @@ module Board::Accessible
 
   def revoke_from: (untyped users) -> untyped
 
-  def accessed_by: (untyped user) -> untyped
+  # : (User) -> void
+  def accessed_by: (User) -> void
 
-  def access_for: (untyped user) -> untyped
+  # : (User) -> Access?
+  def access_for: (User) -> Access?
 
-  def accessible_to?: (untyped user) -> untyped
+  # : (User) -> bool
+  def accessible_to?: (User) -> bool
 
-  def clean_inaccessible_data_for: (untyped user) -> untyped
+  # : (User) -> void
+  def clean_inaccessible_data_for: (User) -> void
 
+  # : User::ActiveRecord_Relation
   def watchers: () -> untyped
 
   private

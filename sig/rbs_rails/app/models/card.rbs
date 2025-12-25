@@ -10,7 +10,7 @@ class ::Card < ::ApplicationRecord
 
     def id?: () -> bool
 
-    def id_changed?: (?from: untyped, ?to: untyped) -> bool
+    def id_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def id_change: () -> [ ::String?, ::String? ]
 
@@ -18,7 +18,7 @@ class ::Card < ::ApplicationRecord
 
     def id_was: () -> ::String?
 
-    def id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def id_previous_change: () -> ::Array[::String?]?
 
@@ -50,7 +50,7 @@ class ::Card < ::ApplicationRecord
 
     def account_id?: () -> bool
 
-    def account_id_changed?: (?from: untyped, ?to: untyped) -> bool
+    def account_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def account_id_change: () -> [ ::String?, ::String? ]
 
@@ -58,7 +58,7 @@ class ::Card < ::ApplicationRecord
 
     def account_id_was: () -> ::String?
 
-    def account_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def account_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def account_id_previous_change: () -> ::Array[::String?]?
 
@@ -90,7 +90,7 @@ class ::Card < ::ApplicationRecord
 
     def board_id?: () -> bool
 
-    def board_id_changed?: (?from: untyped, ?to: untyped) -> bool
+    def board_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def board_id_change: () -> [ ::String?, ::String? ]
 
@@ -98,7 +98,7 @@ class ::Card < ::ApplicationRecord
 
     def board_id_was: () -> ::String?
 
-    def board_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def board_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def board_id_previous_change: () -> ::Array[::String?]?
 
@@ -130,7 +130,7 @@ class ::Card < ::ApplicationRecord
 
     def column_id?: () -> bool
 
-    def column_id_changed?: (?from: untyped, ?to: untyped) -> bool
+    def column_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def column_id_change: () -> [ ::String?, ::String? ]
 
@@ -138,7 +138,7 @@ class ::Card < ::ApplicationRecord
 
     def column_id_was: () -> ::String?
 
-    def column_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def column_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def column_id_previous_change: () -> ::Array[::String?]?
 
@@ -170,7 +170,7 @@ class ::Card < ::ApplicationRecord
 
     def created_at?: () -> bool
 
-    def created_at_changed?: (?from: untyped, ?to: untyped) -> bool
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
 
@@ -178,7 +178,7 @@ class ::Card < ::ApplicationRecord
 
     def created_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -210,7 +210,7 @@ class ::Card < ::ApplicationRecord
 
     def creator_id?: () -> bool
 
-    def creator_id_changed?: (?from: untyped, ?to: untyped) -> bool
+    def creator_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def creator_id_change: () -> [ ::String?, ::String? ]
 
@@ -218,7 +218,7 @@ class ::Card < ::ApplicationRecord
 
     def creator_id_was: () -> ::String?
 
-    def creator_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def creator_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def creator_id_previous_change: () -> ::Array[::String?]?
 
@@ -250,7 +250,7 @@ class ::Card < ::ApplicationRecord
 
     def due_on?: () -> bool
 
-    def due_on_changed?: (?from: untyped, ?to: untyped) -> bool
+    def due_on_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
 
     def due_on_change: () -> [ ::Date?, ::Date? ]
 
@@ -258,7 +258,7 @@ class ::Card < ::ApplicationRecord
 
     def due_on_was: () -> ::Date?
 
-    def due_on_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def due_on_previously_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
 
     def due_on_previous_change: () -> ::Array[::Date?]?
 
@@ -290,7 +290,7 @@ class ::Card < ::ApplicationRecord
 
     def last_active_at?: () -> bool
 
-    def last_active_at_changed?: (?from: untyped, ?to: untyped) -> bool
+    def last_active_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def last_active_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
 
@@ -298,7 +298,7 @@ class ::Card < ::ApplicationRecord
 
     def last_active_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def last_active_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def last_active_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def last_active_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -330,7 +330,7 @@ class ::Card < ::ApplicationRecord
 
     def status?: () -> bool
 
-    def status_changed?: (?from: untyped, ?to: untyped) -> bool
+    def status_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def status_change: () -> [ ::String?, ::String? ]
 
@@ -338,7 +338,7 @@ class ::Card < ::ApplicationRecord
 
     def status_was: () -> ::String?
 
-    def status_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def status_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def status_previous_change: () -> ::Array[::String?]?
 
@@ -370,7 +370,7 @@ class ::Card < ::ApplicationRecord
 
     def title?: () -> bool
 
-    def title_changed?: (?from: untyped, ?to: untyped) -> bool
+    def title_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def title_change: () -> [ ::String?, ::String? ]
 
@@ -378,7 +378,7 @@ class ::Card < ::ApplicationRecord
 
     def title_was: () -> ::String?
 
-    def title_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def title_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def title_previous_change: () -> ::Array[::String?]?
 
@@ -410,7 +410,7 @@ class ::Card < ::ApplicationRecord
 
     def updated_at?: () -> bool
 
-    def updated_at_changed?: (?from: untyped, ?to: untyped) -> bool
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
 
@@ -418,7 +418,7 @@ class ::Card < ::ApplicationRecord
 
     def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -450,7 +450,7 @@ class ::Card < ::ApplicationRecord
 
     def number?: () -> bool
 
-    def number_changed?: (?from: untyped, ?to: untyped) -> bool
+    def number_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def number_change: () -> [ ::Integer?, ::Integer? ]
 
@@ -458,7 +458,7 @@ class ::Card < ::ApplicationRecord
 
     def number_was: () -> ::Integer?
 
-    def number_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    def number_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def number_previous_change: () -> ::Array[::Integer?]?
 
