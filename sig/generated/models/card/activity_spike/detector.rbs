@@ -17,8 +17,8 @@ class Card::ActivitySpike::Detector
   # : -> void
   def register_activity_spike: () -> void
 
-  # : (minimum_comments: Integer, minimum_participants: Integer) -> bool
-  def multiple_people_commented?: (minimum_comments: Integer, minimum_participants: Integer) -> bool
+  # : (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
+  def multiple_people_commented?: (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
 
   def recent_period: () -> untyped
 
@@ -28,8 +28,8 @@ class Card::ActivitySpike::Detector
   # : -> bool
   def card_was_just_reopened?: () -> bool
 
-  # : (String) -> bool
-  def card_was_just?: (String) -> bool
+  # : (Symbol) -> bool
+  def card_was_just?: (Symbol) -> bool
 
   # : -> Event?
   def last_event: () -> Event?

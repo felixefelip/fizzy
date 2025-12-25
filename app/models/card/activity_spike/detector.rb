@@ -31,7 +31,7 @@ class Card::ActivitySpike::Detector
       end
     end
 
-    #: (minimum_comments: Integer, minimum_participants: Integer) -> bool
+    #: (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
     def multiple_people_commented?(minimum_comments: 3, minimum_participants: 2)
       card.comments
         .where("created_at >= ?", recent_period.seconds.ago)
@@ -55,9 +55,11 @@ class Card::ActivitySpike::Detector
       card.open? && card_was_just?(:reopened)
     end
 
-    #: (String) -> bool
+    #: (Symbol) -> bool
     def card_was_just?(action)
-      last_event&.action&.to_s == "card_#{action}" && last_event.created_at > 1.minute.ago
+      return false unless (last_event = self.last_event)
+
+      last_event.action.to_s == "card_#{action}" && last_event.created_at > 1.minute.ago
     end
 
     #: -> Event?

@@ -33,6 +33,7 @@ class Event < ApplicationRecord
 
   delegate :card, to: :eventable
 
+  #: -> ActiveSupport::StringInquirer
   def action
     super.inquiry
   end
