@@ -1,9 +1,15 @@
+# rbs_inline: enabled
+
 class Card < ApplicationRecord
   include Assignable, Attachments, Broadcastable, Closeable, Colored, Entropic, Eventable,
     Exportable, Golden, Mentions, Multistep, Pinnable, Postponable, Promptable,
     Readable, Searchable, Stallable, Statuses, Taggable, Triageable, Watchable
 
-  belongs_to :account, default: -> { board.account }
+  belongs_to :account, default: -> do
+    # @type self: Card
+    board.account
+  end
+
   belongs_to :board
   belongs_to :creator, class_name: "User", default: -> { Current.user }
 
@@ -11,6 +17,9 @@ class Card < ApplicationRecord
   has_one_attached :image, dependent: :purge_later
 
   has_rich_text :description
+  # @rbs!
+  #   def description: () -> ActionText::RichText
+  #   def description=: (ActionText::RichText) -> ActionText::RichText
 
   before_save :set_default_title, if: :published?
   before_create :assign_number
@@ -48,14 +57,17 @@ class Card < ApplicationRecord
 
   delegate :accessible_to?, to: :board
 
+  #: -> Card
   def card
     self
   end
 
+  #: -> String
   def to_param
     number.to_s
   end
 
+  #: (Board) -> void
   def move_to(new_board)
     transaction do
       card.update!(board: new_board)
@@ -63,15 +75,18 @@ class Card < ApplicationRecord
     end
   end
 
+  #: -> bool
   def filled?
     title.present? || description.present?
   end
 
   private
+    #: -> void
     def set_default_title
       self.title = "Untitled" if title.blank?
     end
 
+    #: -> void
     def handle_board_change
       old_board = account.boards.find_by(id: board_id_before_last_save)
 
@@ -84,14 +99,17 @@ class Card < ApplicationRecord
       remove_inaccessible_notifications_later
     end
 
+    #: (String) -> void
     def track_board_change_event(old_board_name)
       track_event "board_changed", particulars: { old_board: old_board_name, new_board: board.name }
     end
 
+    #: -> void
     def grant_access_to_assignees
       board.accesses.grant_to(assignees)
     end
 
+    #: -> void
     def assign_number
       self.number ||= account.increment!(:cards_count).cards_count
     end

@@ -1,0 +1,36 @@
+# Generated from app/models/card.rb with RBS::Inline
+
+class Card < ApplicationRecord
+  def description: () -> ActionText::RichText
+
+  def description=: (ActionText::RichText) -> ActionText::RichText
+
+  # : -> Card
+  def card: () -> Card
+
+  # : -> String
+  def to_param: () -> String
+
+  # : (Board) -> void
+  def move_to: (Board) -> void
+
+  # : -> bool
+  def filled?: () -> bool
+
+  private
+
+  # : -> void
+  def set_default_title: () -> void
+
+  # : -> void
+  def handle_board_change: () -> void
+
+  # : (String) -> void
+  def track_board_change_event: (String) -> void
+
+  # : -> void
+  def grant_access_to_assignees: () -> void
+
+  # : -> void
+  def assign_number: () -> void
+end

@@ -307,7 +307,7 @@ interface _ActiveRecord_Relation[Model, PrimaryKey] # rubocop:disable RBS/Lint/T
   def find_each: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Model) -> void } -> nil
                | (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) -> Enumerator[Model, nil]
   def find_in_batches: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Array[Model]) -> void } -> nil
-  def in_batches: (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) { (self) -> void } -> nil
+  def in_batches: (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) ?{ (self) -> void } -> self
   def sum: (?untyped? column_name) -> untyped
          | [T] (?T initial_value) { (Model) -> T } -> T
   def destroy_all: () -> untyped
