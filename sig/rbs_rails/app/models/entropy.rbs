@@ -1,7 +1,9 @@
-class Entropy < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Entropy, ::Entropy::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Entropy < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Entropy, ::Entropy::ActiveRecord_Relation, ::String]
+
+  module ::Entropy::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Entropy < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def auto_postpone_period: () -> ::Integer
 
@@ -74,6 +80,10 @@ class Entropy < ::ApplicationRecord
 
     def clear_auto_postpone_period_change: () -> void
 
+    def auto_postpone_period_before_type_cast: () -> ::Integer
+
+    def auto_postpone_period_for_database: () -> ::Integer
+
     def container_id: () -> ::String
 
     def container_id=: (::String) -> ::String
@@ -109,6 +119,10 @@ class Entropy < ::ApplicationRecord
     def restore_container_id!: () -> void
 
     def clear_container_id_change: () -> void
+
+    def container_id_before_type_cast: () -> ::String
+
+    def container_id_for_database: () -> ::String
 
     def container_type: () -> ::String
 
@@ -146,6 +160,10 @@ class Entropy < ::ApplicationRecord
 
     def clear_container_type_change: () -> void
 
+    def container_type_before_type_cast: () -> ::String
+
+    def container_type_for_database: () -> ::String
+
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -181,6 +199,10 @@ class Entropy < ::ApplicationRecord
     def restore_created_at!: () -> void
 
     def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
 
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -218,6 +240,10 @@ class Entropy < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def account_id: () -> ::String
 
     def account_id=: (::String) -> ::String
@@ -253,8 +279,56 @@ class Entropy < ::ApplicationRecord
     def restore_account_id!: () -> void
 
     def clear_account_id_change: () -> void
+
+    def account_id_before_type_cast: () -> ::String
+
+    def account_id_for_database: () -> ::String
   end
-  include GeneratedAttributeMethods
+  include ::Entropy::GeneratedAttributeMethods
+  module ::Entropy::GeneratedAliasAttributeMethods
+    include ::Entropy::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Entropy::GeneratedAliasAttributeMethods
 
   def account: () -> ::Account
   def account=: (::Account?) -> ::Account?
@@ -265,21 +339,36 @@ class Entropy < ::ApplicationRecord
   def container: () -> untyped
   def container=: (untyped?) -> untyped?
   def reload_container: () -> untyped?
-  module GeneratedAssociationMethods
+  module ::Entropy::GeneratedAssociationMethods
   end
-  include GeneratedAssociationMethods
+  include ::Entropy::GeneratedAssociationMethods
 
-  module GeneratedRelationMethods
+  module ::Entropy::GeneratedRelationMethods
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Entropy::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Entropy, ::String]
+  class ::Entropy::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Entropy]
+    include ::Entropy::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Entropy, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Entropy::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Entropy]
     include ::Entropy::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Entropy, ::String]
+    include ::ActiveRecord::Relation::Methods[::Entropy, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Entropy
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Entropy]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Entropy
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Entropy]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Entropy
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Entropy]
+    def reload: () -> ::Array[::Entropy]
+
+    def replace: (::Array[::Entropy]) -> void
+    def delete: (*::Entropy | ::String) -> ::Array[::Entropy]
+    def destroy: (*::Entropy | ::String) -> ::Array[::Entropy]
+    def <<: (*::Entropy | ::Array[::Entropy]) -> self
+    def prepend: (*::Entropy | ::Array[::Entropy]) -> self
   end
 end

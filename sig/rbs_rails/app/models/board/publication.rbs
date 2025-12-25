@@ -1,8 +1,10 @@
-class Board < ::ApplicationRecord
-  class Publication < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::Board::Publication, ::Board::Publication::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Board < ::ApplicationRecord
+  class ::Board::Publication < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Board::Publication, ::Board::Publication::ActiveRecord_Relation, ::String]
+
+    module ::Board::Publication::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -38,6 +40,10 @@ class Board < ::ApplicationRecord
       def restore_id!: () -> void
 
       def clear_id_change: () -> void
+
+      def id_before_type_cast: () -> ::String
+
+      def id_for_database: () -> ::String
 
       def board_id: () -> ::String
 
@@ -75,6 +81,10 @@ class Board < ::ApplicationRecord
 
       def clear_board_id_change: () -> void
 
+      def board_id_before_type_cast: () -> ::String
+
+      def board_id_for_database: () -> ::String
+
       def created_at: () -> ::ActiveSupport::TimeWithZone
 
       def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -110,6 +120,10 @@ class Board < ::ApplicationRecord
       def restore_created_at!: () -> void
 
       def clear_created_at_change: () -> void
+
+      def created_at_before_type_cast: () -> ::Time
+
+      def created_at_for_database: () -> ::Time
 
       def key: () -> ::String?
 
@@ -147,6 +161,10 @@ class Board < ::ApplicationRecord
 
       def clear_key_change: () -> void
 
+      def key_before_type_cast: () -> ::String?
+
+      def key_for_database: () -> ::String?
+
       def updated_at: () -> ::ActiveSupport::TimeWithZone
 
       def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -183,6 +201,10 @@ class Board < ::ApplicationRecord
 
       def clear_updated_at_change: () -> void
 
+      def updated_at_before_type_cast: () -> ::Time
+
+      def updated_at_for_database: () -> ::Time
+
       def account_id: () -> ::String
 
       def account_id=: (::String) -> ::String
@@ -218,8 +240,56 @@ class Board < ::ApplicationRecord
       def restore_account_id!: () -> void
 
       def clear_account_id_change: () -> void
+
+      def account_id_before_type_cast: () -> ::String
+
+      def account_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Board::Publication::GeneratedAttributeMethods
+    module ::Board::Publication::GeneratedAliasAttributeMethods
+      include ::Board::Publication::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::Board::Publication::GeneratedAliasAttributeMethods
 
     def account: () -> ::Account
     def account=: (::Account?) -> ::Account?
@@ -233,22 +303,37 @@ class Board < ::ApplicationRecord
     def build_board: (untyped) -> ::Board
     def create_board: (untyped) -> ::Board
     def create_board!: (untyped) -> ::Board
-    module GeneratedAssociationMethods
+    module ::Board::Publication::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Board::Publication::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Board::Publication::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Board::Publication::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Board::Publication, ::String]
+    class ::Board::Publication::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Board::Publication]
+      include ::Board::Publication::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Board::Publication, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Board::Publication::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Board::Publication]
       include ::Board::Publication::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Board::Publication, ::String]
+      include ::ActiveRecord::Relation::Methods[::Board::Publication, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::Publication
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::Publication]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::Publication
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::Publication]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::Publication
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::Publication]
+      def reload: () -> ::Array[::Board::Publication]
+
+      def replace: (::Array[::Board::Publication]) -> void
+      def delete: (*::Board::Publication | ::String) -> ::Array[::Board::Publication]
+      def destroy: (*::Board::Publication | ::String) -> ::Array[::Board::Publication]
+      def <<: (*::Board::Publication | ::Array[::Board::Publication]) -> self
+      def prepend: (*::Board::Publication | ::Array[::Board::Publication]) -> self
     end
   end
 end

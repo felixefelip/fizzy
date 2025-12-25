@@ -3,6 +3,12 @@
 module Card::Readable
   extend ActiveSupport::Concern
 
+  # @rbs!
+  #    def events: -> Event::ActiveRecord_Associations_CollectionProxy
+  #    def comments: -> Comment::ActiveRecord_Associations_CollectionProxy
+  #    def mentions: -> Mention::ActiveRecord_Associations_CollectionProxy
+  #    def board: -> Board
+
   #: (User) -> void
   def read_by(user)
     notifications_for(user).tap do |notifications|
@@ -45,7 +51,7 @@ module Card::Readable
         .or(scope.where(source: mention_notification_sources))
     end
 
-    #: -> Event::ActiveRecord_Relation
+    #: -> Event::ActiveRecord_Associations_CollectionProxy
     def event_notification_sources
       events.or(comment_creation_events)
     end

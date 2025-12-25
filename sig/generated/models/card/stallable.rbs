@@ -1,0 +1,40 @@
+# Generated from app/models/card/stallable.rb with RBS::Inline
+
+module Card::Stallable
+  extend ActiveSupport::Concern
+
+  extend _ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+
+  extend ::ActiveRecord::Associations::ClassMethods
+
+  def activity_spike: () -> Card::ActivitySpike
+
+  def updated_at: () -> ActiveSupport::TimeWithZone
+
+  def published?: () -> bool
+
+  def last_active_at_changed?: () -> bool
+
+  def open?: () -> bool
+
+  STALLED_AFTER_LAST_SPIKE_PERIOD: untyped
+
+  # : -> bool?
+  def stalled?: () -> bool?
+
+  # : -> ActiveSupport::TimeWithZone?
+  def last_activity_spike_at: () -> ActiveSupport::TimeWithZone?
+
+  def detect_activity_spikes: () -> untyped
+
+  private
+
+  # : -> void
+  def remember_to_detect_activity_spikes: () -> void
+
+  # : -> bool
+  def should_detect_activity_spikes?: () -> bool
+
+  # : -> void
+  def detect_activity_spikes_later: () -> void
+end

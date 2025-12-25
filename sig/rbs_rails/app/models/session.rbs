@@ -1,7 +1,9 @@
-class Session < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Session, ::Session::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Session < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Session, ::Session::ActiveRecord_Relation, ::String]
+
+  module ::Session::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Session < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -74,6 +80,10 @@ class Session < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
     def identity_id: () -> ::String
 
     def identity_id=: (::String) -> ::String
@@ -109,6 +119,10 @@ class Session < ::ApplicationRecord
     def restore_identity_id!: () -> void
 
     def clear_identity_id_change: () -> void
+
+    def identity_id_before_type_cast: () -> ::String
+
+    def identity_id_for_database: () -> ::String
 
     def ip_address: () -> ::String?
 
@@ -146,6 +160,10 @@ class Session < ::ApplicationRecord
 
     def clear_ip_address_change: () -> void
 
+    def ip_address_before_type_cast: () -> ::String?
+
+    def ip_address_for_database: () -> ::String?
+
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -182,6 +200,10 @@ class Session < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def user_agent: () -> ::String?
 
     def user_agent=: (::String?) -> ::String?
@@ -217,8 +239,56 @@ class Session < ::ApplicationRecord
     def restore_user_agent!: () -> void
 
     def clear_user_agent_change: () -> void
+
+    def user_agent_before_type_cast: () -> ::String?
+
+    def user_agent_for_database: () -> ::String?
   end
-  include GeneratedAttributeMethods
+  include ::Session::GeneratedAttributeMethods
+  module ::Session::GeneratedAliasAttributeMethods
+    include ::Session::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Session::GeneratedAliasAttributeMethods
 
   def identity: () -> ::Identity
   def identity=: (::Identity?) -> ::Identity?
@@ -226,21 +296,36 @@ class Session < ::ApplicationRecord
   def build_identity: (untyped) -> ::Identity
   def create_identity: (untyped) -> ::Identity
   def create_identity!: (untyped) -> ::Identity
-  module GeneratedAssociationMethods
+  module ::Session::GeneratedAssociationMethods
   end
-  include GeneratedAssociationMethods
+  include ::Session::GeneratedAssociationMethods
 
-  module GeneratedRelationMethods
+  module ::Session::GeneratedRelationMethods
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Session::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Session, ::String]
+  class ::Session::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Session]
+    include ::Session::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Session, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Session::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Session]
     include ::Session::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Session, ::String]
+    include ::ActiveRecord::Relation::Methods[::Session, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Session
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Session]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Session
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Session]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Session
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Session]
+    def reload: () -> ::Array[::Session]
+
+    def replace: (::Array[::Session]) -> void
+    def delete: (*::Session | ::String) -> ::Array[::Session]
+    def destroy: (*::Session | ::String) -> ::Array[::Session]
+    def <<: (*::Session | ::Array[::Session]) -> self
+    def prepend: (*::Session | ::Array[::Session]) -> self
   end
 end

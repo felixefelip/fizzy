@@ -1,7 +1,24 @@
+# rbs_inline: enabled
+
 module Board::Accessible
   extend ActiveSupport::Concern
 
+  # @rbs!
+  #    extend _ActiveRecord_Relation_ClassMethods[::Board, ::Board::ActiveRecord_Relation, ::String]
+  #    extend ::ActiveRecord::Associations::ClassMethods
+  #
+  #    def accesses: -> Access::ActiveRecord_Associations_CollectionProxy
+  #    def users: -> User::ActiveRecord_Associations_CollectionProxy
+  #
+  #    def cards: -> Card::ActiveRecord_Associations_CollectionProxy
+  #
+  #    def creator: -> User
+  #
+  #    def id: -> String
+  #    def all_access_previously_changed?: -> bool
+
   included do
+    # @type self: singleton(Board)
     has_many :accesses, dependent: :delete_all do
       def revise(granted: [], revoked: [])
         transaction do

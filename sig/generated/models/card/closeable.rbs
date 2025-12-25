@@ -1,0 +1,19 @@
+# Generated from app/models/card/closeable.rb with RBS::Inline
+
+module Card::Closeable
+  extend ActiveSupport::Concern
+
+  extend _ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+
+  def closed?: () -> untyped
+
+  def open?: () -> untyped
+
+  def closed_by: () -> untyped
+
+  def closed_at: () -> untyped
+
+  def close: (?user: untyped) -> untyped
+
+  def reopen: (?user: untyped) -> untyped
+end

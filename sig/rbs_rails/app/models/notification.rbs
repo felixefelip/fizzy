@@ -1,7 +1,9 @@
-class Notification < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Notification, ::Notification::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Notification < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Notification, ::Notification::ActiveRecord_Relation, ::String]
+
+  module ::Notification::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Notification < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def account_id: () -> ::String
 
@@ -74,6 +80,10 @@ class Notification < ::ApplicationRecord
 
     def clear_account_id_change: () -> void
 
+    def account_id_before_type_cast: () -> ::String
+
+    def account_id_for_database: () -> ::String
+
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -109,6 +119,10 @@ class Notification < ::ApplicationRecord
     def restore_created_at!: () -> void
 
     def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
 
     def creator_id: () -> ::String?
 
@@ -146,6 +160,10 @@ class Notification < ::ApplicationRecord
 
     def clear_creator_id_change: () -> void
 
+    def creator_id_before_type_cast: () -> ::String?
+
+    def creator_id_for_database: () -> ::String?
+
     def read_at: () -> ::ActiveSupport::TimeWithZone?
 
     def read_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
@@ -181,6 +199,10 @@ class Notification < ::ApplicationRecord
     def restore_read_at!: () -> void
 
     def clear_read_at_change: () -> void
+
+    def read_at_before_type_cast: () -> ::Time?
+
+    def read_at_for_database: () -> ::Time?
 
     def source_id: () -> ::String
 
@@ -218,6 +240,10 @@ class Notification < ::ApplicationRecord
 
     def clear_source_id_change: () -> void
 
+    def source_id_before_type_cast: () -> ::String
+
+    def source_id_for_database: () -> ::String
+
     def source_type: () -> ::String
 
     def source_type=: (::String) -> ::String
@@ -253,6 +279,10 @@ class Notification < ::ApplicationRecord
     def restore_source_type!: () -> void
 
     def clear_source_type_change: () -> void
+
+    def source_type_before_type_cast: () -> ::String
+
+    def source_type_for_database: () -> ::String
 
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -290,6 +320,10 @@ class Notification < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def user_id: () -> ::String
 
     def user_id=: (::String) -> ::String
@@ -325,8 +359,56 @@ class Notification < ::ApplicationRecord
     def restore_user_id!: () -> void
 
     def clear_user_id_change: () -> void
+
+    def user_id_before_type_cast: () -> ::String
+
+    def user_id_for_database: () -> ::String
   end
-  include GeneratedAttributeMethods
+  include ::Notification::GeneratedAttributeMethods
+  module ::Notification::GeneratedAliasAttributeMethods
+    include ::Notification::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Notification::GeneratedAliasAttributeMethods
 
   def account: () -> ::Account
   def account=: (::Account?) -> ::Account?
@@ -349,16 +431,16 @@ class Notification < ::ApplicationRecord
   def source: () -> untyped
   def source=: (untyped?) -> untyped?
   def reload_source: () -> untyped?
-  module GeneratedAssociationMethods
+  module ::Notification::GeneratedAssociationMethods
   end
-  include GeneratedAssociationMethods
+  include ::Notification::GeneratedAssociationMethods
 
   def self.unread: () -> ::Notification::ActiveRecord_Relation
   def self.read: () -> ::Notification::ActiveRecord_Relation
   def self.ordered: () -> ::Notification::ActiveRecord_Relation
   def self.preloaded: () -> ::Notification::ActiveRecord_Relation
 
-  module GeneratedRelationMethods
+  module ::Notification::GeneratedRelationMethods
     def unread: () -> ::Notification::ActiveRecord_Relation
 
     def read: () -> ::Notification::ActiveRecord_Relation
@@ -368,14 +450,29 @@ class Notification < ::ApplicationRecord
     def preloaded: () -> ::Notification::ActiveRecord_Relation
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Notification::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Notification, ::String]
+  class ::Notification::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Notification]
+    include ::Notification::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Notification, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Notification]
     include ::Notification::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Notification, ::String]
+    include ::ActiveRecord::Relation::Methods[::Notification, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Notification
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Notification]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Notification
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Notification]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Notification
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Notification]
+    def reload: () -> ::Array[::Notification]
+
+    def replace: (::Array[::Notification]) -> void
+    def delete: (*::Notification | ::String) -> ::Array[::Notification]
+    def destroy: (*::Notification | ::String) -> ::Array[::Notification]
+    def <<: (*::Notification | ::Array[::Notification]) -> self
+    def prepend: (*::Notification | ::Array[::Notification]) -> self
   end
 end

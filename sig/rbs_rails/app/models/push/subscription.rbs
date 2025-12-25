@@ -1,8 +1,10 @@
-module Push
-  class Subscription < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::Push::Subscription, ::Push::Subscription::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+module ::Push
+  class ::Push::Subscription < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Push::Subscription, ::Push::Subscription::ActiveRecord_Relation, ::String]
+
+    module ::Push::Subscription::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -38,6 +40,10 @@ module Push
       def restore_id!: () -> void
 
       def clear_id_change: () -> void
+
+      def id_before_type_cast: () -> ::String
+
+      def id_for_database: () -> ::String
 
       def account_id: () -> ::String
 
@@ -75,6 +81,10 @@ module Push
 
       def clear_account_id_change: () -> void
 
+      def account_id_before_type_cast: () -> ::String
+
+      def account_id_for_database: () -> ::String
+
       def auth_key: () -> ::String?
 
       def auth_key=: (::String?) -> ::String?
@@ -110,6 +120,10 @@ module Push
       def restore_auth_key!: () -> void
 
       def clear_auth_key_change: () -> void
+
+      def auth_key_before_type_cast: () -> ::String?
+
+      def auth_key_for_database: () -> ::String?
 
       def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -147,6 +161,10 @@ module Push
 
       def clear_created_at_change: () -> void
 
+      def created_at_before_type_cast: () -> ::Time
+
+      def created_at_for_database: () -> ::Time
+
       def endpoint: () -> ::String?
 
       def endpoint=: (::String?) -> ::String?
@@ -182,6 +200,10 @@ module Push
       def restore_endpoint!: () -> void
 
       def clear_endpoint_change: () -> void
+
+      def endpoint_before_type_cast: () -> ::String?
+
+      def endpoint_for_database: () -> ::String?
 
       def p256dh_key: () -> ::String?
 
@@ -219,6 +241,10 @@ module Push
 
       def clear_p256dh_key_change: () -> void
 
+      def p256dh_key_before_type_cast: () -> ::String?
+
+      def p256dh_key_for_database: () -> ::String?
+
       def updated_at: () -> ::ActiveSupport::TimeWithZone
 
       def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -254,6 +280,10 @@ module Push
       def restore_updated_at!: () -> void
 
       def clear_updated_at_change: () -> void
+
+      def updated_at_before_type_cast: () -> ::Time
+
+      def updated_at_for_database: () -> ::Time
 
       def user_agent: () -> ::String?
 
@@ -291,6 +321,10 @@ module Push
 
       def clear_user_agent_change: () -> void
 
+      def user_agent_before_type_cast: () -> ::String?
+
+      def user_agent_for_database: () -> ::String?
+
       def user_id: () -> ::String
 
       def user_id=: (::String) -> ::String
@@ -326,8 +360,56 @@ module Push
       def restore_user_id!: () -> void
 
       def clear_user_id_change: () -> void
+
+      def user_id_before_type_cast: () -> ::String
+
+      def user_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Push::Subscription::GeneratedAttributeMethods
+    module ::Push::Subscription::GeneratedAliasAttributeMethods
+      include ::Push::Subscription::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::Push::Subscription::GeneratedAliasAttributeMethods
 
     def account: () -> ::Account
     def account=: (::Account?) -> ::Account?
@@ -341,22 +423,37 @@ module Push
     def build_user: (untyped) -> ::User
     def create_user: (untyped) -> ::User
     def create_user!: (untyped) -> ::User
-    module GeneratedAssociationMethods
+    module ::Push::Subscription::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Push::Subscription::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Push::Subscription::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Push::Subscription::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Push::Subscription, ::String]
+    class ::Push::Subscription::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Push::Subscription]
+      include ::Push::Subscription::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Push::Subscription, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Push::Subscription::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Push::Subscription]
       include ::Push::Subscription::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Push::Subscription, ::String]
+      include ::ActiveRecord::Relation::Methods[::Push::Subscription, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Push::Subscription
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Push::Subscription]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Push::Subscription
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Push::Subscription]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Push::Subscription
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Push::Subscription]
+      def reload: () -> ::Array[::Push::Subscription]
+
+      def replace: (::Array[::Push::Subscription]) -> void
+      def delete: (*::Push::Subscription | ::String) -> ::Array[::Push::Subscription]
+      def destroy: (*::Push::Subscription | ::String) -> ::Array[::Push::Subscription]
+      def <<: (*::Push::Subscription | ::Array[::Push::Subscription]) -> self
+      def prepend: (*::Push::Subscription | ::Array[::Push::Subscription]) -> self
     end
   end
 end

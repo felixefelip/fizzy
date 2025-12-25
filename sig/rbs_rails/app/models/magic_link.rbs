@@ -1,7 +1,9 @@
-class MagicLink < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::MagicLink, ::MagicLink::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::MagicLink < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::MagicLink, ::MagicLink::ActiveRecord_Relation, ::String]
+
+  module ::MagicLink::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class MagicLink < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def code: () -> ::String
 
@@ -74,6 +80,10 @@ class MagicLink < ::ApplicationRecord
 
     def clear_code_change: () -> void
 
+    def code_before_type_cast: () -> ::String
+
+    def code_for_database: () -> ::String
+
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -109,6 +119,10 @@ class MagicLink < ::ApplicationRecord
     def restore_created_at!: () -> void
 
     def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
 
     def expires_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -146,6 +160,10 @@ class MagicLink < ::ApplicationRecord
 
     def clear_expires_at_change: () -> void
 
+    def expires_at_before_type_cast: () -> ::Time
+
+    def expires_at_for_database: () -> ::Time
+
     def identity_id: () -> ::String?
 
     def identity_id=: (::String?) -> ::String?
@@ -181,6 +199,10 @@ class MagicLink < ::ApplicationRecord
     def restore_identity_id!: () -> void
 
     def clear_identity_id_change: () -> void
+
+    def identity_id_before_type_cast: () -> ::String?
+
+    def identity_id_for_database: () -> ::String?
 
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -218,33 +240,37 @@ class MagicLink < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def purpose: () -> ::Integer
+    def updated_at_before_type_cast: () -> ::Time
 
-    def purpose=: (::Integer) -> ::Integer
+    def updated_at_for_database: () -> ::Time
+
+    def purpose: () -> ::String
+
+    def purpose=: (::String) -> ::String
 
     def purpose?: () -> bool
 
     def purpose_changed?: () -> bool
 
-    def purpose_change: () -> [ ::Integer?, ::Integer? ]
+    def purpose_change: () -> [ ::String?, ::String? ]
 
     def purpose_will_change!: () -> void
 
-    def purpose_was: () -> ::Integer?
+    def purpose_was: () -> ::String?
 
     def purpose_previously_changed?: () -> bool
 
-    def purpose_previous_change: () -> ::Array[::Integer?]?
+    def purpose_previous_change: () -> ::Array[::String?]?
 
-    def purpose_previously_was: () -> ::Integer?
+    def purpose_previously_was: () -> ::String?
 
-    def purpose_before_last_save: () -> ::Integer?
+    def purpose_before_last_save: () -> ::String?
 
-    def purpose_change_to_be_saved: () -> ::Array[::Integer?]?
+    def purpose_change_to_be_saved: () -> ::Array[::String?]?
 
-    def purpose_in_database: () -> ::Integer?
+    def purpose_in_database: () -> ::String?
 
-    def saved_change_to_purpose: () -> ::Array[::Integer?]?
+    def saved_change_to_purpose: () -> ::Array[::String?]?
 
     def saved_change_to_purpose?: () -> bool
 
@@ -253,8 +279,56 @@ class MagicLink < ::ApplicationRecord
     def restore_purpose!: () -> void
 
     def clear_purpose_change: () -> void
+
+    def purpose_before_type_cast: () -> ::Integer
+
+    def purpose_for_database: () -> ::Integer
   end
-  include GeneratedAttributeMethods
+  include ::MagicLink::GeneratedAttributeMethods
+  module ::MagicLink::GeneratedAliasAttributeMethods
+    include ::MagicLink::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::MagicLink::GeneratedAliasAttributeMethods
 
   def identity: () -> ::Identity
   def identity=: (::Identity?) -> ::Identity?
@@ -262,27 +336,61 @@ class MagicLink < ::ApplicationRecord
   def build_identity: (untyped) -> ::Identity
   def create_identity: (untyped) -> ::Identity
   def create_identity!: (untyped) -> ::Identity
-  module GeneratedAssociationMethods
+  module ::MagicLink::GeneratedAssociationMethods
   end
-  include GeneratedAssociationMethods
+  include ::MagicLink::GeneratedAssociationMethods
 
+  def for_sign_in!: () -> bool
+  def for_sign_in?: () -> bool
+  def for_sign_up!: () -> bool
+  def for_sign_up?: () -> bool
+  def self.purposes: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
+  def self.for_sign_in: () -> ::MagicLink::ActiveRecord_Relation
+  def self.not_for_sign_in: () -> ::MagicLink::ActiveRecord_Relation
+  def self.for_sign_up: () -> ::MagicLink::ActiveRecord_Relation
+  def self.not_for_sign_up: () -> ::MagicLink::ActiveRecord_Relation
   def self.active: () -> ::MagicLink::ActiveRecord_Relation
   def self.stale: () -> ::MagicLink::ActiveRecord_Relation
 
-  module GeneratedRelationMethods
+  module ::MagicLink::GeneratedRelationMethods
+    def purposes: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
+
+    def for_sign_in: () -> ::MagicLink::ActiveRecord_Relation
+
+    def not_for_sign_in: () -> ::MagicLink::ActiveRecord_Relation
+
+    def for_sign_up: () -> ::MagicLink::ActiveRecord_Relation
+
+    def not_for_sign_up: () -> ::MagicLink::ActiveRecord_Relation
+
     def active: () -> ::MagicLink::ActiveRecord_Relation
 
     def stale: () -> ::MagicLink::ActiveRecord_Relation
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::MagicLink::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::MagicLink, ::String]
+  class ::MagicLink::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::MagicLink]
+    include ::MagicLink::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::MagicLink, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::MagicLink::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::MagicLink]
     include ::MagicLink::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::MagicLink, ::String]
+    include ::ActiveRecord::Relation::Methods[::MagicLink, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::MagicLink
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::MagicLink]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::MagicLink
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::MagicLink]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::MagicLink
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::MagicLink]
+    def reload: () -> ::Array[::MagicLink]
+
+    def replace: (::Array[::MagicLink]) -> void
+    def delete: (*::MagicLink | ::String) -> ::Array[::MagicLink]
+    def destroy: (*::MagicLink | ::String) -> ::Array[::MagicLink]
+    def <<: (*::MagicLink | ::Array[::MagicLink]) -> self
+    def prepend: (*::MagicLink | ::Array[::MagicLink]) -> self
   end
 end

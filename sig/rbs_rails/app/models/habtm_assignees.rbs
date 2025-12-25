@@ -1,8 +1,10 @@
-class Filter < ::ApplicationRecord
-  class HABTM_Assignees < ::ActiveRecord::Base
-    extend ::_ActiveRecord_Relation_ClassMethods[::Filter::HABTM_Assignees, ::Filter::HABTM_Assignees::ActiveRecord_Relation, top]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Filter < ::ApplicationRecord
+  class ::Filter::HABTM_Assignees < ::ActiveRecord::Base
+    extend ::ActiveRecord::Base::ClassMethods[::Filter::HABTM_Assignees, ::Filter::HABTM_Assignees::ActiveRecord_Relation, top]
+
+    module ::Filter::HABTM_Assignees::GeneratedAttributeMethods
       def assignee_id: () -> ::String
 
       def assignee_id=: (::String) -> ::String
@@ -39,6 +41,10 @@ class Filter < ::ApplicationRecord
 
       def clear_assignee_id_change: () -> void
 
+      def assignee_id_before_type_cast: () -> ::String
+
+      def assignee_id_for_database: () -> ::String
+
       def filter_id: () -> ::String
 
       def filter_id=: (::String) -> ::String
@@ -74,8 +80,16 @@ class Filter < ::ApplicationRecord
       def restore_filter_id!: () -> void
 
       def clear_filter_id_change: () -> void
+
+      def filter_id_before_type_cast: () -> ::String
+
+      def filter_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Filter::HABTM_Assignees::GeneratedAttributeMethods
+    module ::Filter::HABTM_Assignees::GeneratedAliasAttributeMethods
+      include ::Filter::HABTM_Assignees::GeneratedAttributeMethods
+    end
+    include ::Filter::HABTM_Assignees::GeneratedAliasAttributeMethods
 
     def left_side: () -> ::Filter?
     def left_side=: (::Filter?) -> ::Filter?
@@ -89,22 +103,37 @@ class Filter < ::ApplicationRecord
     def build_assignee: (untyped) -> ::User
     def create_assignee: (untyped) -> ::User
     def create_assignee!: (untyped) -> ::User
-    module GeneratedAssociationMethods
+    module ::Filter::HABTM_Assignees::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Filter::HABTM_Assignees::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Filter::HABTM_Assignees::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Filter::HABTM_Assignees::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Filter::HABTM_Assignees, top]
+    class ::Filter::HABTM_Assignees::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Filter::HABTM_Assignees]
+      include ::Filter::HABTM_Assignees::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Assignees, top]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Filter::HABTM_Assignees::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Filter::HABTM_Assignees]
       include ::Filter::HABTM_Assignees::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Filter::HABTM_Assignees, top]
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Assignees, top]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Assignees
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Assignees]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Assignees
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Assignees]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Assignees
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Assignees]
+      def reload: () -> ::Array[::Filter::HABTM_Assignees]
+
+      def replace: (::Array[::Filter::HABTM_Assignees]) -> void
+      def delete: (*::Filter::HABTM_Assignees | top) -> ::Array[::Filter::HABTM_Assignees]
+      def destroy: (*::Filter::HABTM_Assignees | top) -> ::Array[::Filter::HABTM_Assignees]
+      def <<: (*::Filter::HABTM_Assignees | ::Array[::Filter::HABTM_Assignees]) -> self
+      def prepend: (*::Filter::HABTM_Assignees | ::Array[::Filter::HABTM_Assignees]) -> self
     end
   end
 end

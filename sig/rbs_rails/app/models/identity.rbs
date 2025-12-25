@@ -1,7 +1,9 @@
-class Identity < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Identity, ::Identity::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Identity < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Identity, ::Identity::ActiveRecord_Relation, ::String]
+
+  module ::Identity::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Identity < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -74,6 +80,10 @@ class Identity < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
     def email_address: () -> ::String
 
     def email_address=: (::String) -> ::String
@@ -109,6 +119,10 @@ class Identity < ::ApplicationRecord
     def restore_email_address!: () -> void
 
     def clear_email_address_change: () -> void
+
+    def email_address_before_type_cast: () -> ::String
+
+    def email_address_for_database: () -> ::String
 
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -146,6 +160,10 @@ class Identity < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def staff: () -> bool
 
     def staff=: (bool) -> bool
@@ -181,8 +199,56 @@ class Identity < ::ApplicationRecord
     def restore_staff!: () -> void
 
     def clear_staff_change: () -> void
+
+    def staff_before_type_cast: () -> bool
+
+    def staff_for_database: () -> bool
   end
-  include GeneratedAttributeMethods
+  include ::Identity::GeneratedAttributeMethods
+  module ::Identity::GeneratedAliasAttributeMethods
+    include ::Identity::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Identity::GeneratedAliasAttributeMethods
   def magic_links: () -> ::MagicLink::ActiveRecord_Associations_CollectionProxy
   def magic_links=: (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink]) -> (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink])
   def magic_link_ids: () -> ::Array[::Integer]
@@ -199,20 +265,21 @@ class Identity < ::ApplicationRecord
   def accounts=: (::Account::ActiveRecord_Associations_CollectionProxy | ::Array[::Account]) -> (::Account::ActiveRecord_Associations_CollectionProxy | ::Array[::Account])
   def account_ids: () -> ::Array[::Integer]
   def account_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
   def avatar_attachment: () -> ::ActiveStorage::Attachment?
   def avatar_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
   def build_avatar_attachment: (?untyped) -> ::ActiveStorage::Attachment
-  def create_avatar_attachment: (untyped) -> ::ActiveStorage::Attachment
-  def create_avatar_attachment!: (untyped) -> ::ActiveStorage::Attachment
+  def create_avatar_attachment: (?untyped) -> ::ActiveStorage::Attachment
+  def create_avatar_attachment!: (?untyped) -> ::ActiveStorage::Attachment
   def reload_avatar_attachment: () -> ::ActiveStorage::Attachment?
   def avatar_blob: () -> ::ActiveStorage::Blob?
   def avatar_blob=: (::ActiveStorage::Blob?) -> ::ActiveStorage::Blob?
   def build_avatar_blob: (?untyped) -> ::ActiveStorage::Blob
-  def create_avatar_blob: (untyped) -> ::ActiveStorage::Blob
-  def create_avatar_blob!: (untyped) -> ::ActiveStorage::Blob
+  def create_avatar_blob: (?untyped) -> ::ActiveStorage::Blob
+  def create_avatar_blob!: (?untyped) -> ::ActiveStorage::Blob
   def reload_avatar_blob: () -> ::ActiveStorage::Blob?
 
-  module GeneratedAssociationMethods
+  module ::Identity::GeneratedAssociationMethods
     def avatar: () -> ::ActiveStorage::Attached::One
 
     def avatar=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
@@ -222,22 +289,37 @@ class Identity < ::ApplicationRecord
                | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
                | (nil) -> nil
   end
-  include GeneratedAssociationMethods
+  include ::Identity::GeneratedAssociationMethods
 
   def self.with_attached_avatar: () -> ::Identity::ActiveRecord_Relation
 
-  module GeneratedRelationMethods
+  module ::Identity::GeneratedRelationMethods
     def with_attached_avatar: () -> ::Identity::ActiveRecord_Relation
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Identity::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Identity, ::String]
+  class ::Identity::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Identity]
+    include ::Identity::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Identity, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Identity::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Identity]
     include ::Identity::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Identity, ::String]
+    include ::ActiveRecord::Relation::Methods[::Identity, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Identity
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Identity]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Identity
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Identity]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Identity
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Identity]
+    def reload: () -> ::Array[::Identity]
+
+    def replace: (::Array[::Identity]) -> void
+    def delete: (*::Identity | ::String) -> ::Array[::Identity]
+    def destroy: (*::Identity | ::String) -> ::Array[::Identity]
+    def <<: (*::Identity | ::Array[::Identity]) -> self
+    def prepend: (*::Identity | ::Array[::Identity]) -> self
   end
 end

@@ -3,6 +3,14 @@
 module Card::Readable
   extend ActiveSupport::Concern
 
+  def events: () -> Event::ActiveRecord_Associations_CollectionProxy
+
+  def comments: () -> Comment::ActiveRecord_Associations_CollectionProxy
+
+  def mentions: () -> Mention::ActiveRecord_Associations_CollectionProxy
+
+  def board: () -> Board
+
   # : (User) -> void
   def read_by: (User) -> void
 
@@ -23,8 +31,8 @@ module Card::Readable
   # : (User) -> Notification::ActiveRecord_Associations_CollectionProxy
   def all_notifications_for: (User) -> Notification::ActiveRecord_Associations_CollectionProxy
 
-  # : -> Event::ActiveRecord_Relation
-  def event_notification_sources: () -> Event::ActiveRecord_Relation
+  # : -> Event::ActiveRecord_Associations_CollectionProxy
+  def event_notification_sources: () -> Event::ActiveRecord_Associations_CollectionProxy
 
   # : -> Event::ActiveRecord_Relation
   def comment_creation_events: () -> Event::ActiveRecord_Relation

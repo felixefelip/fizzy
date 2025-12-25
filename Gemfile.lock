@@ -5,6 +5,15 @@ GIT
     useragent (0.16.11)
 
 GIT
+  remote: https://github.com/pocke/rbs_rails
+  revision: cd3d692b0f1c17cfc1dc8569629b94eb9ad7307c
+  branch: master
+  specs:
+    rbs_rails (0.12.1)
+      parser
+      rbs (>= 1)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 3c3f6c8a253c8a0f346695374f927c9ab32fbefb
   branch: main
@@ -366,9 +375,6 @@ GEM
     rbs-inline (0.12.0)
       prism (>= 0.29)
       rbs (>= 3.8.0)
-    rbs_rails (0.12.1)
-      parser
-      rbs (>= 1)
     rdoc (6.16.1)
       erb
       psych (>= 4.0.0)
@@ -572,7 +578,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails!
   rbs-inline
-  rbs_rails
+  rbs_rails!
   redcarpet
   rouge
   rqrcode

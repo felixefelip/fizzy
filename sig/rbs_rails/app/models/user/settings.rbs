@@ -1,8 +1,10 @@
-class User < ::ApplicationRecord
-  class Settings < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::User::Settings, ::User::Settings::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::User < ::ApplicationRecord
+  class ::User::Settings < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::User::Settings, ::User::Settings::ActiveRecord_Relation, ::String]
+
+    module ::User::Settings::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -39,33 +41,37 @@ class User < ::ApplicationRecord
 
       def clear_id_change: () -> void
 
-      def bundle_email_frequency: () -> ::Integer
+      def id_before_type_cast: () -> ::String
 
-      def bundle_email_frequency=: (::Integer) -> ::Integer
+      def id_for_database: () -> ::String
+
+      def bundle_email_frequency: () -> ::String
+
+      def bundle_email_frequency=: (::String) -> ::String
 
       def bundle_email_frequency?: () -> bool
 
       def bundle_email_frequency_changed?: () -> bool
 
-      def bundle_email_frequency_change: () -> [ ::Integer?, ::Integer? ]
+      def bundle_email_frequency_change: () -> [ ::String?, ::String? ]
 
       def bundle_email_frequency_will_change!: () -> void
 
-      def bundle_email_frequency_was: () -> ::Integer?
+      def bundle_email_frequency_was: () -> ::String?
 
       def bundle_email_frequency_previously_changed?: () -> bool
 
-      def bundle_email_frequency_previous_change: () -> ::Array[::Integer?]?
+      def bundle_email_frequency_previous_change: () -> ::Array[::String?]?
 
-      def bundle_email_frequency_previously_was: () -> ::Integer?
+      def bundle_email_frequency_previously_was: () -> ::String?
 
-      def bundle_email_frequency_before_last_save: () -> ::Integer?
+      def bundle_email_frequency_before_last_save: () -> ::String?
 
-      def bundle_email_frequency_change_to_be_saved: () -> ::Array[::Integer?]?
+      def bundle_email_frequency_change_to_be_saved: () -> ::Array[::String?]?
 
-      def bundle_email_frequency_in_database: () -> ::Integer?
+      def bundle_email_frequency_in_database: () -> ::String?
 
-      def saved_change_to_bundle_email_frequency: () -> ::Array[::Integer?]?
+      def saved_change_to_bundle_email_frequency: () -> ::Array[::String?]?
 
       def saved_change_to_bundle_email_frequency?: () -> bool
 
@@ -74,6 +80,10 @@ class User < ::ApplicationRecord
       def restore_bundle_email_frequency!: () -> void
 
       def clear_bundle_email_frequency_change: () -> void
+
+      def bundle_email_frequency_before_type_cast: () -> ::Integer
+
+      def bundle_email_frequency_for_database: () -> ::Integer
 
       def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -111,6 +121,10 @@ class User < ::ApplicationRecord
 
       def clear_created_at_change: () -> void
 
+      def created_at_before_type_cast: () -> ::Time
+
+      def created_at_for_database: () -> ::Time
+
       def timezone_name: () -> ::String?
 
       def timezone_name=: (::String?) -> ::String?
@@ -146,6 +160,10 @@ class User < ::ApplicationRecord
       def restore_timezone_name!: () -> void
 
       def clear_timezone_name_change: () -> void
+
+      def timezone_name_before_type_cast: () -> ::String?
+
+      def timezone_name_for_database: () -> ::String?
 
       def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -183,6 +201,10 @@ class User < ::ApplicationRecord
 
       def clear_updated_at_change: () -> void
 
+      def updated_at_before_type_cast: () -> ::Time
+
+      def updated_at_for_database: () -> ::Time
+
       def user_id: () -> ::String
 
       def user_id=: (::String) -> ::String
@@ -219,6 +241,10 @@ class User < ::ApplicationRecord
 
       def clear_user_id_change: () -> void
 
+      def user_id_before_type_cast: () -> ::String
+
+      def user_id_for_database: () -> ::String
+
       def account_id: () -> ::String
 
       def account_id=: (::String) -> ::String
@@ -254,8 +280,56 @@ class User < ::ApplicationRecord
       def restore_account_id!: () -> void
 
       def clear_account_id_change: () -> void
+
+      def account_id_before_type_cast: () -> ::String
+
+      def account_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::User::Settings::GeneratedAttributeMethods
+    module ::User::Settings::GeneratedAliasAttributeMethods
+      include ::User::Settings::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::User::Settings::GeneratedAliasAttributeMethods
 
     def account: () -> ::Account
     def account=: (::Account?) -> ::Account?
@@ -269,22 +343,72 @@ class User < ::ApplicationRecord
     def build_user: (untyped) -> ::User
     def create_user: (untyped) -> ::User
     def create_user!: (untyped) -> ::User
-    module GeneratedAssociationMethods
+    module ::User::Settings::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::User::Settings::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    def bundle_email_never!: () -> bool
+    def bundle_email_never?: () -> bool
+    def bundle_email_every_few_hours!: () -> bool
+    def bundle_email_every_few_hours?: () -> bool
+    def bundle_email_daily!: () -> bool
+    def bundle_email_daily?: () -> bool
+    def bundle_email_weekly!: () -> bool
+    def bundle_email_weekly?: () -> bool
+    def self.bundle_email_frequencies: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
+    def self.bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation
+    def self.not_bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation
+    def self.bundle_email_every_few_hours: () -> ::User::Settings::ActiveRecord_Relation
+    def self.not_bundle_email_every_few_hours: () -> ::User::Settings::ActiveRecord_Relation
+    def self.bundle_email_daily: () -> ::User::Settings::ActiveRecord_Relation
+    def self.not_bundle_email_daily: () -> ::User::Settings::ActiveRecord_Relation
+    def self.bundle_email_weekly: () -> ::User::Settings::ActiveRecord_Relation
+    def self.not_bundle_email_weekly: () -> ::User::Settings::ActiveRecord_Relation
+
+    module ::User::Settings::GeneratedRelationMethods
+      def bundle_email_frequencies: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
+
+      def bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation
+
+      def not_bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation
+
+      def bundle_email_every_few_hours: () -> ::User::Settings::ActiveRecord_Relation
+
+      def not_bundle_email_every_few_hours: () -> ::User::Settings::ActiveRecord_Relation
+
+      def bundle_email_daily: () -> ::User::Settings::ActiveRecord_Relation
+
+      def not_bundle_email_daily: () -> ::User::Settings::ActiveRecord_Relation
+
+      def bundle_email_weekly: () -> ::User::Settings::ActiveRecord_Relation
+
+      def not_bundle_email_weekly: () -> ::User::Settings::ActiveRecord_Relation
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::User::Settings::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::User::Settings, ::String]
+    class ::User::Settings::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::User::Settings]
+      include ::User::Settings::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::User::Settings, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::User::Settings::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::User::Settings]
       include ::User::Settings::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::User::Settings, ::String]
+      include ::ActiveRecord::Relation::Methods[::User::Settings, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::Settings
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::Settings]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::Settings
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::Settings]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::Settings
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::Settings]
+      def reload: () -> ::Array[::User::Settings]
+
+      def replace: (::Array[::User::Settings]) -> void
+      def delete: (*::User::Settings | ::String) -> ::Array[::User::Settings]
+      def destroy: (*::User::Settings | ::String) -> ::Array[::User::Settings]
+      def <<: (*::User::Settings | ::Array[::User::Settings]) -> self
+      def prepend: (*::User::Settings | ::Array[::User::Settings]) -> self
     end
   end
 end

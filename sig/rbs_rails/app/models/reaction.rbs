@@ -1,7 +1,9 @@
-class Reaction < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Reaction, ::Reaction::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Reaction < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Reaction, ::Reaction::ActiveRecord_Relation, ::String]
+
+  module ::Reaction::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Reaction < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def comment_id: () -> ::String
 
@@ -74,6 +80,10 @@ class Reaction < ::ApplicationRecord
 
     def clear_comment_id_change: () -> void
 
+    def comment_id_before_type_cast: () -> ::String
+
+    def comment_id_for_database: () -> ::String
+
     def content: () -> ::String
 
     def content=: (::String) -> ::String
@@ -109,6 +119,10 @@ class Reaction < ::ApplicationRecord
     def restore_content!: () -> void
 
     def clear_content_change: () -> void
+
+    def content_before_type_cast: () -> ::String
+
+    def content_for_database: () -> ::String
 
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -146,6 +160,10 @@ class Reaction < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
     def reacter_id: () -> ::String
 
     def reacter_id=: (::String) -> ::String
@@ -181,6 +199,10 @@ class Reaction < ::ApplicationRecord
     def restore_reacter_id!: () -> void
 
     def clear_reacter_id_change: () -> void
+
+    def reacter_id_before_type_cast: () -> ::String
+
+    def reacter_id_for_database: () -> ::String
 
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -218,6 +240,10 @@ class Reaction < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def account_id: () -> ::String
 
     def account_id=: (::String) -> ::String
@@ -253,8 +279,56 @@ class Reaction < ::ApplicationRecord
     def restore_account_id!: () -> void
 
     def clear_account_id_change: () -> void
+
+    def account_id_before_type_cast: () -> ::String
+
+    def account_id_for_database: () -> ::String
   end
-  include GeneratedAttributeMethods
+  include ::Reaction::GeneratedAttributeMethods
+  module ::Reaction::GeneratedAliasAttributeMethods
+    include ::Reaction::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Reaction::GeneratedAliasAttributeMethods
 
   def account: () -> ::Account
   def account=: (::Account?) -> ::Account?
@@ -274,24 +348,39 @@ class Reaction < ::ApplicationRecord
   def build_reacter: (untyped) -> ::User
   def create_reacter: (untyped) -> ::User
   def create_reacter!: (untyped) -> ::User
-  module GeneratedAssociationMethods
+  module ::Reaction::GeneratedAssociationMethods
   end
-  include GeneratedAssociationMethods
+  include ::Reaction::GeneratedAssociationMethods
 
   def self.ordered: () -> ::Reaction::ActiveRecord_Relation
 
-  module GeneratedRelationMethods
+  module ::Reaction::GeneratedRelationMethods
     def ordered: () -> ::Reaction::ActiveRecord_Relation
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Reaction::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Reaction, ::String]
+  class ::Reaction::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Reaction]
+    include ::Reaction::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Reaction, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Reaction::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Reaction]
     include ::Reaction::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Reaction, ::String]
+    include ::ActiveRecord::Relation::Methods[::Reaction, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Reaction
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Reaction]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Reaction
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Reaction]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Reaction
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Reaction]
+    def reload: () -> ::Array[::Reaction]
+
+    def replace: (::Array[::Reaction]) -> void
+    def delete: (*::Reaction | ::String) -> ::Array[::Reaction]
+    def destroy: (*::Reaction | ::String) -> ::Array[::Reaction]
+    def <<: (*::Reaction | ::Array[::Reaction]) -> self
+    def prepend: (*::Reaction | ::Array[::Reaction]) -> self
   end
 end

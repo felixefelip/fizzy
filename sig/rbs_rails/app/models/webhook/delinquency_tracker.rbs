@@ -1,8 +1,10 @@
-class Webhook < ::ApplicationRecord
-  class DelinquencyTracker < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::Webhook::DelinquencyTracker, ::Webhook::DelinquencyTracker::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Webhook < ::ApplicationRecord
+  class ::Webhook::DelinquencyTracker < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Webhook::DelinquencyTracker, ::Webhook::DelinquencyTracker::ActiveRecord_Relation, ::String]
+
+    module ::Webhook::DelinquencyTracker::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -38,6 +40,10 @@ class Webhook < ::ApplicationRecord
       def restore_id!: () -> void
 
       def clear_id_change: () -> void
+
+      def id_before_type_cast: () -> ::String
+
+      def id_for_database: () -> ::String
 
       def consecutive_failures_count: () -> ::Integer?
 
@@ -75,6 +81,10 @@ class Webhook < ::ApplicationRecord
 
       def clear_consecutive_failures_count_change: () -> void
 
+      def consecutive_failures_count_before_type_cast: () -> ::Integer?
+
+      def consecutive_failures_count_for_database: () -> ::Integer?
+
       def created_at: () -> ::ActiveSupport::TimeWithZone
 
       def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -110,6 +120,10 @@ class Webhook < ::ApplicationRecord
       def restore_created_at!: () -> void
 
       def clear_created_at_change: () -> void
+
+      def created_at_before_type_cast: () -> ::Time
+
+      def created_at_for_database: () -> ::Time
 
       def first_failure_at: () -> ::ActiveSupport::TimeWithZone?
 
@@ -147,6 +161,10 @@ class Webhook < ::ApplicationRecord
 
       def clear_first_failure_at_change: () -> void
 
+      def first_failure_at_before_type_cast: () -> ::Time?
+
+      def first_failure_at_for_database: () -> ::Time?
+
       def updated_at: () -> ::ActiveSupport::TimeWithZone
 
       def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -182,6 +200,10 @@ class Webhook < ::ApplicationRecord
       def restore_updated_at!: () -> void
 
       def clear_updated_at_change: () -> void
+
+      def updated_at_before_type_cast: () -> ::Time
+
+      def updated_at_for_database: () -> ::Time
 
       def webhook_id: () -> ::String
 
@@ -219,6 +241,10 @@ class Webhook < ::ApplicationRecord
 
       def clear_webhook_id_change: () -> void
 
+      def webhook_id_before_type_cast: () -> ::String
+
+      def webhook_id_for_database: () -> ::String
+
       def account_id: () -> ::String
 
       def account_id=: (::String) -> ::String
@@ -254,8 +280,56 @@ class Webhook < ::ApplicationRecord
       def restore_account_id!: () -> void
 
       def clear_account_id_change: () -> void
+
+      def account_id_before_type_cast: () -> ::String
+
+      def account_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Webhook::DelinquencyTracker::GeneratedAttributeMethods
+    module ::Webhook::DelinquencyTracker::GeneratedAliasAttributeMethods
+      include ::Webhook::DelinquencyTracker::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::Webhook::DelinquencyTracker::GeneratedAliasAttributeMethods
 
     def account: () -> ::Account
     def account=: (::Account?) -> ::Account?
@@ -269,22 +343,37 @@ class Webhook < ::ApplicationRecord
     def build_webhook: (untyped) -> ::Webhook
     def create_webhook: (untyped) -> ::Webhook
     def create_webhook!: (untyped) -> ::Webhook
-    module GeneratedAssociationMethods
+    module ::Webhook::DelinquencyTracker::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Webhook::DelinquencyTracker::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Webhook::DelinquencyTracker::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Webhook::DelinquencyTracker::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Webhook::DelinquencyTracker, ::String]
+    class ::Webhook::DelinquencyTracker::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Webhook::DelinquencyTracker]
+      include ::Webhook::DelinquencyTracker::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Webhook::DelinquencyTracker, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Webhook::DelinquencyTracker::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Webhook::DelinquencyTracker]
       include ::Webhook::DelinquencyTracker::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Webhook::DelinquencyTracker, ::String]
+      include ::ActiveRecord::Relation::Methods[::Webhook::DelinquencyTracker, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Webhook::DelinquencyTracker
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Webhook::DelinquencyTracker]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Webhook::DelinquencyTracker
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Webhook::DelinquencyTracker]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Webhook::DelinquencyTracker
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Webhook::DelinquencyTracker]
+      def reload: () -> ::Array[::Webhook::DelinquencyTracker]
+
+      def replace: (::Array[::Webhook::DelinquencyTracker]) -> void
+      def delete: (*::Webhook::DelinquencyTracker | ::String) -> ::Array[::Webhook::DelinquencyTracker]
+      def destroy: (*::Webhook::DelinquencyTracker | ::String) -> ::Array[::Webhook::DelinquencyTracker]
+      def <<: (*::Webhook::DelinquencyTracker | ::Array[::Webhook::DelinquencyTracker]) -> self
+      def prepend: (*::Webhook::DelinquencyTracker | ::Array[::Webhook::DelinquencyTracker]) -> self
     end
   end
 end

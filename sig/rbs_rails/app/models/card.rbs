@@ -1,7 +1,9 @@
-class Card < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Card < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+
+  module ::Card::GeneratedAttributeMethods
     def id: () -> ::String
 
     def id=: (::String) -> ::String
@@ -37,6 +39,10 @@ class Card < ::ApplicationRecord
     def restore_id!: () -> void
 
     def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::String
+
+    def id_for_database: () -> ::String
 
     def account_id: () -> ::String
 
@@ -74,6 +80,10 @@ class Card < ::ApplicationRecord
 
     def clear_account_id_change: () -> void
 
+    def account_id_before_type_cast: () -> ::String
+
+    def account_id_for_database: () -> ::String
+
     def board_id: () -> ::String
 
     def board_id=: (::String) -> ::String
@@ -109,6 +119,10 @@ class Card < ::ApplicationRecord
     def restore_board_id!: () -> void
 
     def clear_board_id_change: () -> void
+
+    def board_id_before_type_cast: () -> ::String
+
+    def board_id_for_database: () -> ::String
 
     def column_id: () -> ::String?
 
@@ -146,6 +160,10 @@ class Card < ::ApplicationRecord
 
     def clear_column_id_change: () -> void
 
+    def column_id_before_type_cast: () -> ::String?
+
+    def column_id_for_database: () -> ::String?
+
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -181,6 +199,10 @@ class Card < ::ApplicationRecord
     def restore_created_at!: () -> void
 
     def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
 
     def creator_id: () -> ::String
 
@@ -218,6 +240,10 @@ class Card < ::ApplicationRecord
 
     def clear_creator_id_change: () -> void
 
+    def creator_id_before_type_cast: () -> ::String
+
+    def creator_id_for_database: () -> ::String
+
     def due_on: () -> ::Date?
 
     def due_on=: (::Date?) -> ::Date?
@@ -253,6 +279,10 @@ class Card < ::ApplicationRecord
     def restore_due_on!: () -> void
 
     def clear_due_on_change: () -> void
+
+    def due_on_before_type_cast: () -> ::Date?
+
+    def due_on_for_database: () -> ::Date?
 
     def last_active_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -290,6 +320,10 @@ class Card < ::ApplicationRecord
 
     def clear_last_active_at_change: () -> void
 
+    def last_active_at_before_type_cast: () -> ::Time
+
+    def last_active_at_for_database: () -> ::Time
+
     def status: () -> ::String
 
     def status=: (::String) -> ::String
@@ -325,6 +359,10 @@ class Card < ::ApplicationRecord
     def restore_status!: () -> void
 
     def clear_status_change: () -> void
+
+    def status_before_type_cast: () -> ::String
+
+    def status_for_database: () -> ::String
 
     def title: () -> ::String?
 
@@ -362,6 +400,10 @@ class Card < ::ApplicationRecord
 
     def clear_title_change: () -> void
 
+    def title_before_type_cast: () -> ::String?
+
+    def title_for_database: () -> ::String?
+
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
@@ -398,6 +440,10 @@ class Card < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
     def number: () -> ::Integer
 
     def number=: (::Integer) -> ::Integer
@@ -433,8 +479,56 @@ class Card < ::ApplicationRecord
     def restore_number!: () -> void
 
     def clear_number_change: () -> void
+
+    def number_before_type_cast: () -> ::Integer
+
+    def number_for_database: () -> ::Integer
   end
-  include GeneratedAttributeMethods
+  include ::Card::GeneratedAttributeMethods
+  module ::Card::GeneratedAliasAttributeMethods
+    include ::Card::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Card::GeneratedAliasAttributeMethods
   def watches: () -> ::Watch::ActiveRecord_Associations_CollectionProxy
   def watches=: (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch]) -> (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch])
   def watch_ids: () -> ::Array[::Integer]
@@ -483,47 +577,48 @@ class Card < ::ApplicationRecord
   def comments=: (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment]) -> (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment])
   def comment_ids: () -> ::Array[::Integer]
   def comment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def activity_spike: () -> ::Card::ActivitySpike?
-  def activity_spike=: (::Card::ActivitySpike?) -> ::Card::ActivitySpike?
-  def build_activity_spike: (?untyped) -> ::Card::ActivitySpike
-  def create_activity_spike: (untyped) -> ::Card::ActivitySpike
-  def create_activity_spike!: (untyped) -> ::Card::ActivitySpike
-  def reload_activity_spike: () -> ::Card::ActivitySpike?
+
   def not_now: () -> ::Card::NotNow?
   def not_now=: (::Card::NotNow?) -> ::Card::NotNow?
   def build_not_now: (?untyped) -> ::Card::NotNow
-  def create_not_now: (untyped) -> ::Card::NotNow
-  def create_not_now!: (untyped) -> ::Card::NotNow
+  def create_not_now: (?untyped) -> ::Card::NotNow
+  def create_not_now!: (?untyped) -> ::Card::NotNow
   def reload_not_now: () -> ::Card::NotNow?
   def goldness: () -> ::Card::Goldness?
   def goldness=: (::Card::Goldness?) -> ::Card::Goldness?
   def build_goldness: (?untyped) -> ::Card::Goldness
-  def create_goldness: (untyped) -> ::Card::Goldness
-  def create_goldness!: (untyped) -> ::Card::Goldness
+  def create_goldness: (?untyped) -> ::Card::Goldness
+  def create_goldness!: (?untyped) -> ::Card::Goldness
   def reload_goldness: () -> ::Card::Goldness?
   def closure: () -> ::Closure?
   def closure=: (::Closure?) -> ::Closure?
   def build_closure: (?untyped) -> ::Closure
-  def create_closure: (untyped) -> ::Closure
-  def create_closure!: (untyped) -> ::Closure
+  def create_closure: (?untyped) -> ::Closure
+  def create_closure!: (?untyped) -> ::Closure
   def reload_closure: () -> ::Closure?
+  def activity_spike: () -> ::Card::ActivitySpike?
+  def activity_spike=: (::Card::ActivitySpike?) -> ::Card::ActivitySpike?
+  def build_activity_spike: (?untyped) -> ::Card::ActivitySpike
+  def create_activity_spike: (?untyped) -> ::Card::ActivitySpike
+  def create_activity_spike!: (?untyped) -> ::Card::ActivitySpike
+  def reload_activity_spike: () -> ::Card::ActivitySpike?
   def image_attachment: () -> ::ActiveStorage::Attachment?
   def image_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
   def build_image_attachment: (?untyped) -> ::ActiveStorage::Attachment
-  def create_image_attachment: (untyped) -> ::ActiveStorage::Attachment
-  def create_image_attachment!: (untyped) -> ::ActiveStorage::Attachment
+  def create_image_attachment: (?untyped) -> ::ActiveStorage::Attachment
+  def create_image_attachment!: (?untyped) -> ::ActiveStorage::Attachment
   def reload_image_attachment: () -> ::ActiveStorage::Attachment?
   def image_blob: () -> ::ActiveStorage::Blob?
   def image_blob=: (::ActiveStorage::Blob?) -> ::ActiveStorage::Blob?
   def build_image_blob: (?untyped) -> ::ActiveStorage::Blob
-  def create_image_blob: (untyped) -> ::ActiveStorage::Blob
-  def create_image_blob!: (untyped) -> ::ActiveStorage::Blob
+  def create_image_blob: (?untyped) -> ::ActiveStorage::Blob
+  def create_image_blob!: (?untyped) -> ::ActiveStorage::Blob
   def reload_image_blob: () -> ::ActiveStorage::Blob?
   def rich_text_description: () -> ::ActionText::RichText?
   def rich_text_description=: (::ActionText::RichText?) -> ::ActionText::RichText?
   def build_rich_text_description: (?untyped) -> ::ActionText::RichText
-  def create_rich_text_description: (untyped) -> ::ActionText::RichText
-  def create_rich_text_description!: (untyped) -> ::ActionText::RichText
+  def create_rich_text_description: (?untyped) -> ::ActionText::RichText
+  def create_rich_text_description!: (?untyped) -> ::ActionText::RichText
   def reload_rich_text_description: () -> ::ActionText::RichText?
   def column: () -> ::Column?
   def column=: (::Column?) -> ::Column?
@@ -549,7 +644,7 @@ class Card < ::ApplicationRecord
   def build_creator: (untyped) -> ::User
   def create_creator: (untyped) -> ::User
   def create_creator!: (untyped) -> ::User
-  module GeneratedAssociationMethods
+  module ::Card::GeneratedAssociationMethods
     def image: () -> ::ActiveStorage::Attached::One
 
     def image=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
@@ -559,8 +654,17 @@ class Card < ::ApplicationRecord
               | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
               | (nil) -> nil
   end
-  include GeneratedAssociationMethods
+  include ::Card::GeneratedAssociationMethods
 
+  def drafted!: () -> bool
+  def drafted?: () -> bool
+  def published!: () -> bool
+  def published?: () -> bool
+  def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+  def self.drafted: () -> ::Card::ActiveRecord_Relation
+  def self.not_drafted: () -> ::Card::ActiveRecord_Relation
+  def self.published: () -> ::Card::ActiveRecord_Relation
+  def self.not_published: () -> ::Card::ActiveRecord_Relation
   def self.reverse_chronologically: () -> ::Card::ActiveRecord_Relation
   def self.chronologically: () -> ::Card::ActiveRecord_Relation
   def self.latest: () -> ::Card::ActiveRecord_Relation
@@ -570,7 +674,17 @@ class Card < ::ApplicationRecord
   def self.sorted_by: (untyped sort) -> ::Card::ActiveRecord_Relation
   def self.with_attached_image: () -> ::Card::ActiveRecord_Relation
 
-  module GeneratedRelationMethods
+  module ::Card::GeneratedRelationMethods
+    def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+
+    def drafted: () -> ::Card::ActiveRecord_Relation
+
+    def not_drafted: () -> ::Card::ActiveRecord_Relation
+
+    def published: () -> ::Card::ActiveRecord_Relation
+
+    def not_published: () -> ::Card::ActiveRecord_Relation
+
     def reverse_chronologically: () -> ::Card::ActiveRecord_Relation
 
     def chronologically: () -> ::Card::ActiveRecord_Relation
@@ -588,14 +702,29 @@ class Card < ::ApplicationRecord
     def with_attached_image: () -> ::Card::ActiveRecord_Relation
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Card::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Card, ::String]
+  class ::Card::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Card]
+    include ::Card::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Card, ::String]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Card]
     include ::Card::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Card, ::String]
+    include ::ActiveRecord::Relation::Methods[::Card, ::String]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Card
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Card]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Card
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Card]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Card
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Card]
+    def reload: () -> ::Array[::Card]
+
+    def replace: (::Array[::Card]) -> void
+    def delete: (*::Card | ::String) -> ::Array[::Card]
+    def destroy: (*::Card | ::String) -> ::Array[::Card]
+    def <<: (*::Card | ::Array[::Card]) -> self
+    def prepend: (*::Card | ::Array[::Card]) -> self
   end
 end

@@ -1,8 +1,10 @@
-class Board < ::ApplicationRecord
-  class HABTM_Filters < ::ActiveRecord::Base
-    extend ::_ActiveRecord_Relation_ClassMethods[::Board::HABTM_Filters, ::Board::HABTM_Filters::ActiveRecord_Relation, top]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Board < ::ApplicationRecord
+  class ::Board::HABTM_Filters < ::ActiveRecord::Base
+    extend ::ActiveRecord::Base::ClassMethods[::Board::HABTM_Filters, ::Board::HABTM_Filters::ActiveRecord_Relation, top]
+
+    module ::Board::HABTM_Filters::GeneratedAttributeMethods
       def board_id: () -> ::String
 
       def board_id=: (::String) -> ::String
@@ -39,6 +41,10 @@ class Board < ::ApplicationRecord
 
       def clear_board_id_change: () -> void
 
+      def board_id_before_type_cast: () -> ::String
+
+      def board_id_for_database: () -> ::String
+
       def filter_id: () -> ::String
 
       def filter_id=: (::String) -> ::String
@@ -74,8 +80,16 @@ class Board < ::ApplicationRecord
       def restore_filter_id!: () -> void
 
       def clear_filter_id_change: () -> void
+
+      def filter_id_before_type_cast: () -> ::String
+
+      def filter_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Board::HABTM_Filters::GeneratedAttributeMethods
+    module ::Board::HABTM_Filters::GeneratedAliasAttributeMethods
+      include ::Board::HABTM_Filters::GeneratedAttributeMethods
+    end
+    include ::Board::HABTM_Filters::GeneratedAliasAttributeMethods
 
     def left_side: () -> ::Board?
     def left_side=: (::Board?) -> ::Board?
@@ -89,22 +103,37 @@ class Board < ::ApplicationRecord
     def build_filter: (untyped) -> ::Filter
     def create_filter: (untyped) -> ::Filter
     def create_filter!: (untyped) -> ::Filter
-    module GeneratedAssociationMethods
+    module ::Board::HABTM_Filters::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Board::HABTM_Filters::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Board::HABTM_Filters::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Board::HABTM_Filters::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Board::HABTM_Filters, top]
+    class ::Board::HABTM_Filters::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Board::HABTM_Filters]
+      include ::Board::HABTM_Filters::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Board::HABTM_Filters, top]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Board::HABTM_Filters::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Board::HABTM_Filters]
       include ::Board::HABTM_Filters::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Board::HABTM_Filters, top]
+      include ::ActiveRecord::Relation::Methods[::Board::HABTM_Filters, top]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::HABTM_Filters
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::HABTM_Filters]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::HABTM_Filters
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::HABTM_Filters]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Board::HABTM_Filters
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Board::HABTM_Filters]
+      def reload: () -> ::Array[::Board::HABTM_Filters]
+
+      def replace: (::Array[::Board::HABTM_Filters]) -> void
+      def delete: (*::Board::HABTM_Filters | top) -> ::Array[::Board::HABTM_Filters]
+      def destroy: (*::Board::HABTM_Filters | top) -> ::Array[::Board::HABTM_Filters]
+      def <<: (*::Board::HABTM_Filters | ::Array[::Board::HABTM_Filters]) -> self
+      def prepend: (*::Board::HABTM_Filters | ::Array[::Board::HABTM_Filters]) -> self
     end
   end
 end

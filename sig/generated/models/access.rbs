@@ -1,0 +1,14 @@
+# Generated from app/models/access.rb with RBS::Inline
+
+class Access < ApplicationRecord
+  # : -> void
+  def accessed: () -> void
+
+  private
+
+  # : -> bool
+  def recently_accessed?: () -> bool
+
+  # : -> void
+  def clean_inaccessible_data_later: () -> void
+end

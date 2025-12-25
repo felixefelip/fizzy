@@ -1,7 +1,14 @@
+# rbs_inline: enabled
+
 module Card::Closeable
   extend ActiveSupport::Concern
 
+  # @rbs!
+  #    extend _ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+
   included do
+    # @type self: singleton(Card)
+
     has_one :closure, dependent: :destroy
 
     scope :closed, -> { joins(:closure) }

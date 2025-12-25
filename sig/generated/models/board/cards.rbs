@@ -1,0 +1,5 @@
+# Generated from app/models/board/cards.rb with RBS::Inline
+
+module Board::Cards
+  extend ActiveSupport::Concern
+end

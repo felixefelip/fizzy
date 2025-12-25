@@ -1,6 +1,12 @@
 # Generated from app/models/card.rb with RBS::Inline
 
 class Card < ApplicationRecord
+  include Closeable
+
+  include Readable
+
+  include Stallable
+
   def description: () -> ActionText::RichText
 
   def description=: (ActionText::RichText) -> ActionText::RichText

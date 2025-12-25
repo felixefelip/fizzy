@@ -1,8 +1,10 @@
-class Account < ::ApplicationRecord
-  class ExternalIdSequence < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::Account::ExternalIdSequence, ::Account::ExternalIdSequence::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Account < ::ApplicationRecord
+  class ::Account::ExternalIdSequence < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Account::ExternalIdSequence, ::Account::ExternalIdSequence::ActiveRecord_Relation, ::String]
+
+    module ::Account::ExternalIdSequence::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -39,6 +41,10 @@ class Account < ::ApplicationRecord
 
       def clear_id_change: () -> void
 
+      def id_before_type_cast: () -> ::String
+
+      def id_for_database: () -> ::String
+
       def value: () -> ::Integer
 
       def value=: (::Integer) -> ::Integer
@@ -74,25 +80,88 @@ class Account < ::ApplicationRecord
       def restore_value!: () -> void
 
       def clear_value_change: () -> void
-    end
-    include GeneratedAttributeMethods
 
-    module GeneratedAssociationMethods
-    end
-    include GeneratedAssociationMethods
+      def value_before_type_cast: () -> ::Integer
 
-    module GeneratedRelationMethods
+      def value_for_database: () -> ::Integer
+    end
+    include ::Account::ExternalIdSequence::GeneratedAttributeMethods
+    module ::Account::ExternalIdSequence::GeneratedAliasAttributeMethods
+      include ::Account::ExternalIdSequence::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::Account::ExternalIdSequence::GeneratedAliasAttributeMethods
+
+    module ::Account::ExternalIdSequence::GeneratedAssociationMethods
+    end
+    include ::Account::ExternalIdSequence::GeneratedAssociationMethods
+
+    module ::Account::ExternalIdSequence::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Account::ExternalIdSequence::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Account::ExternalIdSequence, ::String]
+    class ::Account::ExternalIdSequence::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Account::ExternalIdSequence]
+      include ::Account::ExternalIdSequence::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Account::ExternalIdSequence, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Account::ExternalIdSequence::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Account::ExternalIdSequence]
       include ::Account::ExternalIdSequence::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Account::ExternalIdSequence, ::String]
+      include ::ActiveRecord::Relation::Methods[::Account::ExternalIdSequence, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::ExternalIdSequence
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::ExternalIdSequence]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::ExternalIdSequence
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::ExternalIdSequence]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::ExternalIdSequence
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::ExternalIdSequence]
+      def reload: () -> ::Array[::Account::ExternalIdSequence]
+
+      def replace: (::Array[::Account::ExternalIdSequence]) -> void
+      def delete: (*::Account::ExternalIdSequence | ::String) -> ::Array[::Account::ExternalIdSequence]
+      def destroy: (*::Account::ExternalIdSequence | ::String) -> ::Array[::Account::ExternalIdSequence]
+      def <<: (*::Account::ExternalIdSequence | ::Array[::Account::ExternalIdSequence]) -> self
+      def prepend: (*::Account::ExternalIdSequence | ::Array[::Account::ExternalIdSequence]) -> self
     end
   end
 end

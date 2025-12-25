@@ -1,8 +1,10 @@
-module Search
-  class Query < ::ApplicationRecord
-    extend ::_ActiveRecord_Relation_ClassMethods[::Search::Query, ::Search::Query::ActiveRecord_Relation, ::String]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+module ::Search
+  class ::Search::Query < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Search::Query, ::Search::Query::ActiveRecord_Relation, ::String]
+
+    module ::Search::Query::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -38,6 +40,10 @@ module Search
       def restore_id!: () -> void
 
       def clear_id_change: () -> void
+
+      def id_before_type_cast: () -> ::String
+
+      def id_for_database: () -> ::String
 
       def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -75,6 +81,10 @@ module Search
 
       def clear_created_at_change: () -> void
 
+      def created_at_before_type_cast: () -> ::Time
+
+      def created_at_for_database: () -> ::Time
+
       def terms: () -> ::String
 
       def terms=: (::String) -> ::String
@@ -110,6 +120,10 @@ module Search
       def restore_terms!: () -> void
 
       def clear_terms_change: () -> void
+
+      def terms_before_type_cast: () -> ::String
+
+      def terms_for_database: () -> ::String
 
       def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -147,6 +161,10 @@ module Search
 
       def clear_updated_at_change: () -> void
 
+      def updated_at_before_type_cast: () -> ::Time
+
+      def updated_at_for_database: () -> ::Time
+
       def user_id: () -> ::String
 
       def user_id=: (::String) -> ::String
@@ -183,6 +201,10 @@ module Search
 
       def clear_user_id_change: () -> void
 
+      def user_id_before_type_cast: () -> ::String
+
+      def user_id_for_database: () -> ::String
+
       def account_id: () -> ::String
 
       def account_id=: (::String) -> ::String
@@ -218,8 +240,56 @@ module Search
       def restore_account_id!: () -> void
 
       def clear_account_id_change: () -> void
+
+      def account_id_before_type_cast: () -> ::String
+
+      def account_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Search::Query::GeneratedAttributeMethods
+    module ::Search::Query::GeneratedAliasAttributeMethods
+      include ::Search::Query::GeneratedAttributeMethods
+
+      alias id_value id
+
+      alias id_value= id=
+
+      alias id_value? id?
+
+      alias id_value_changed? id_changed?
+
+      alias id_value_change id_change
+
+      alias id_value_will_change! id_will_change!
+
+      alias id_value_was id_was
+
+      alias id_value_previously_changed? id_previously_changed?
+
+      alias id_value_previous_change id_previous_change
+
+      alias id_value_previously_was id_previously_was
+
+      alias id_value_before_last_save id_before_last_save
+
+      alias id_value_change_to_be_saved id_change_to_be_saved
+
+      alias id_value_in_database id_in_database
+
+      alias saved_change_to_id_value saved_change_to_id
+
+      alias saved_change_to_id_value? saved_change_to_id?
+
+      alias will_save_change_to_id_value? will_save_change_to_id?
+
+      alias restore_id_value! restore_id!
+
+      alias clear_id_value_change clear_id_change
+
+      alias id_value_before_type_cast id_before_type_cast
+
+      alias id_value_for_database id_for_database
+    end
+    include ::Search::Query::GeneratedAliasAttributeMethods
 
     def account: () -> ::Account
     def account=: (::Account?) -> ::Account?
@@ -233,22 +303,37 @@ module Search
     def build_user: (untyped) -> ::User
     def create_user: (untyped) -> ::User
     def create_user!: (untyped) -> ::User
-    module GeneratedAssociationMethods
+    module ::Search::Query::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Search::Query::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Search::Query::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Search::Query::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Search::Query, ::String]
+    class ::Search::Query::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Search::Query]
+      include ::Search::Query::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Search::Query, ::String]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Search::Query::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Search::Query]
       include ::Search::Query::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Search::Query, ::String]
+      include ::ActiveRecord::Relation::Methods[::Search::Query, ::String]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Search::Query
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Search::Query]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Search::Query
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Search::Query]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Search::Query
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Search::Query]
+      def reload: () -> ::Array[::Search::Query]
+
+      def replace: (::Array[::Search::Query]) -> void
+      def delete: (*::Search::Query | ::String) -> ::Array[::Search::Query]
+      def destroy: (*::Search::Query | ::String) -> ::Array[::Search::Query]
+      def <<: (*::Search::Query | ::Array[::Search::Query]) -> self
+      def prepend: (*::Search::Query | ::Array[::Search::Query]) -> self
     end
   end
 end

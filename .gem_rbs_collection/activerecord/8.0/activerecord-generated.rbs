@@ -18204,7 +18204,7 @@ module ActiveRecord
 
       def with_cast_value: (untyped value) -> QueryAttribute
 
-      def nil?: () -> untyped
+      def nil?: () -> bool
 
       def infinite?: () -> untyped
 
@@ -22343,7 +22343,7 @@ module Arel
 
       alias == eql?
 
-      def nil?: () -> untyped
+      def nil?: () -> bool
 
       def infinite?: () -> untyped
 
@@ -22399,7 +22399,7 @@ module Arel
 
       def initialize: (untyped val, untyped attribute) -> untyped
 
-      def nil?: () -> untyped
+      def nil?: () -> bool
 
       def hash: () -> untyped
 
@@ -22412,7 +22412,7 @@ module Arel
       # :nodoc:
       alias val value
 
-      def nil?: () -> untyped
+      def nil?: () -> bool
 
       def infinite?: () -> untyped
     end

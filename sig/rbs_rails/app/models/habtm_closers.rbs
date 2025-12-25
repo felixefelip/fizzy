@@ -1,8 +1,10 @@
-class Filter < ::ApplicationRecord
-  class HABTM_Closers < ::ActiveRecord::Base
-    extend ::_ActiveRecord_Relation_ClassMethods[::Filter::HABTM_Closers, ::Filter::HABTM_Closers::ActiveRecord_Relation, top]
+# resolve-type-names: false
 
-    module GeneratedAttributeMethods
+class ::Filter < ::ApplicationRecord
+  class ::Filter::HABTM_Closers < ::ActiveRecord::Base
+    extend ::ActiveRecord::Base::ClassMethods[::Filter::HABTM_Closers, ::Filter::HABTM_Closers::ActiveRecord_Relation, top]
+
+    module ::Filter::HABTM_Closers::GeneratedAttributeMethods
       def closer_id: () -> ::String
 
       def closer_id=: (::String) -> ::String
@@ -39,6 +41,10 @@ class Filter < ::ApplicationRecord
 
       def clear_closer_id_change: () -> void
 
+      def closer_id_before_type_cast: () -> ::String
+
+      def closer_id_for_database: () -> ::String
+
       def filter_id: () -> ::String
 
       def filter_id=: (::String) -> ::String
@@ -74,8 +80,16 @@ class Filter < ::ApplicationRecord
       def restore_filter_id!: () -> void
 
       def clear_filter_id_change: () -> void
+
+      def filter_id_before_type_cast: () -> ::String
+
+      def filter_id_for_database: () -> ::String
     end
-    include GeneratedAttributeMethods
+    include ::Filter::HABTM_Closers::GeneratedAttributeMethods
+    module ::Filter::HABTM_Closers::GeneratedAliasAttributeMethods
+      include ::Filter::HABTM_Closers::GeneratedAttributeMethods
+    end
+    include ::Filter::HABTM_Closers::GeneratedAliasAttributeMethods
 
     def left_side: () -> ::Filter?
     def left_side=: (::Filter?) -> ::Filter?
@@ -89,22 +103,37 @@ class Filter < ::ApplicationRecord
     def build_closer: (untyped) -> ::User
     def create_closer: (untyped) -> ::User
     def create_closer!: (untyped) -> ::User
-    module GeneratedAssociationMethods
+    module ::Filter::HABTM_Closers::GeneratedAssociationMethods
     end
-    include GeneratedAssociationMethods
+    include ::Filter::HABTM_Closers::GeneratedAssociationMethods
 
-    module GeneratedRelationMethods
+    module ::Filter::HABTM_Closers::GeneratedRelationMethods
     end
 
-    class ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Filter::HABTM_Closers::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Filter::HABTM_Closers, top]
+    class ::Filter::HABTM_Closers::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Filter::HABTM_Closers]
+      include ::Filter::HABTM_Closers::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Closers, top]
     end
 
-    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    class ::Filter::HABTM_Closers::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Filter::HABTM_Closers]
       include ::Filter::HABTM_Closers::GeneratedRelationMethods
-      include ::_ActiveRecord_Relation[::Filter::HABTM_Closers, top]
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Closers, top]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Closers
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Closers]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Closers
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Closers]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Closers
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Closers]
+      def reload: () -> ::Array[::Filter::HABTM_Closers]
+
+      def replace: (::Array[::Filter::HABTM_Closers]) -> void
+      def delete: (*::Filter::HABTM_Closers | top) -> ::Array[::Filter::HABTM_Closers]
+      def destroy: (*::Filter::HABTM_Closers | top) -> ::Array[::Filter::HABTM_Closers]
+      def <<: (*::Filter::HABTM_Closers | ::Array[::Filter::HABTM_Closers]) -> self
+      def prepend: (*::Filter::HABTM_Closers | ::Array[::Filter::HABTM_Closers]) -> self
     end
   end
 end
