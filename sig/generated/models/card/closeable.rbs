@@ -5,6 +5,12 @@ module Card::Closeable
 
   extend _ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
 
+  def closure: () -> Closure?
+
+  def self.closed: () -> Card::ActiveRecord_Relation
+
+  def self.open: () -> Card::ActiveRecord_Relation
+
   def closed?: () -> untyped
 
   def open?: () -> untyped

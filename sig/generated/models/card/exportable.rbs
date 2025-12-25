@@ -1,0 +1,25 @@
+# Generated from app/models/card/exportable.rb with RBS::Inline
+
+module Card::Exportable
+  extend ActiveSupport::Concern
+
+  include ActionView::Helpers::TagHelper
+
+  def export_json: () -> untyped
+
+  def export_attachments: () -> untyped
+
+  private
+
+  def export_html: (untyped rich_text) -> untyped
+
+  def attachment_representation: (untyped attachment) -> untyped
+
+  def export_user: (untyped user) -> untyped
+
+  def export_attachment_path: (untyped blob) -> untyped
+
+  def collect_attachments: () -> untyped
+
+  def export_status: () -> untyped
+end

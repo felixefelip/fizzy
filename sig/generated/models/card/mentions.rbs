@@ -1,0 +1,17 @@
+# Generated from app/models/card/mentions.rb with RBS::Inline
+
+module Card::Mentions
+  extend ActiveSupport::Concern
+
+  def published?: () -> bool
+
+  def was_just_published?: () -> bool
+
+  include ::Mentions
+
+  # : -> bool
+  def mentionable?: () -> bool
+
+  # : -> bool
+  def should_check_mentions?: () -> bool
+end

@@ -1,0 +1,18 @@
+# Generated from app/models/card/eventable/system_commenter.rb with RBS::Inline
+
+class Card::Eventable::SystemCommenter
+  attr_reader card: Card
+
+  attr_reader event: Event::Eventable
+
+  # : (Card::Eventable, Event) -> void
+  def initialize: (Card::Eventable, Event) -> void
+
+  # : -> Comment?
+  def comment: () -> Comment?
+
+  private
+
+  # : -> String
+  def comment_body: () -> String
+end

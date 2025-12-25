@@ -1,7 +1,11 @@
+# rbs_inline: enabled
+
 module Card::Entropic
   extend ActiveSupport::Concern
 
   included do
+    # @type self: singleton(Card)
+
     scope :due_to_be_postponed, -> do
       active
         .joins(board: :account)

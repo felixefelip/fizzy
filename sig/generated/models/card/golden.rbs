@@ -1,0 +1,16 @@
+# Generated from app/models/card/golden.rb with RBS::Inline
+
+module Card::Golden
+  extend ActiveSupport::Concern
+
+  def goldness: () -> Card::Goldness?
+
+  # : -> bool
+  def golden?: () -> bool
+
+  # : -> Card::Goldness?
+  def gild: () -> Card::Goldness?
+
+  # : -> bool?
+  def ungild: () -> bool?
+end

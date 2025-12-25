@@ -1,7 +1,15 @@
-class Event < ApplicationRecord
-  include Notifiable, Particulars, Promptable
+# rbs_inline: enabled
 
-  belongs_to :account, default: -> { board.account }
+class Event < ApplicationRecord
+  include Notifiable
+  include Particulars
+  include Promptable
+
+  belongs_to :account, default: -> do
+    # @type self: Event
+    board.account
+  end
+
   belongs_to :board
   belongs_to :creator, class_name: "User"
   belongs_to :eventable, polymorphic: true
@@ -33,11 +41,13 @@ class Event < ApplicationRecord
     eventable
   end
 
+  #: (User) -> Event::Description
   def description_for(user)
     Event::Description.new(self, user)
   end
 
   private
+    #: -> void
     def dispatch_webhooks
       Event::WebhookDispatchJob.perform_later(self)
     end

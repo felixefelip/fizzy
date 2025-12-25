@@ -83,6 +83,11 @@ class Card < ApplicationRecord
     title.present? || description.present?
   end
 
+  #: -> String
+  def title!
+    title.presence || raise
+  end
+
   private
     #: -> void
     def set_default_title

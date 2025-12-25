@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module Card::Exportable
   extend ActiveSupport::Concern
   include ActionView::Helpers::TagHelper

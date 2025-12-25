@@ -1,23 +1,31 @@
+# rbs_inline: enabled
+
 class Event::Description
   include ActionView::Helpers::TagHelper
   include ERB::Util
 
-  attr_reader :event, :user
+  attr_reader :event #: Event
+  attr_reader :user #: User
 
+  #: (Event, User) -> void
   def initialize(event, user)
     @event = event
     @user = user
   end
 
+  #: -> String
   def to_html
     to_sentence(creator_tag, card_title_tag).html_safe
   end
 
+  #: -> String
   def to_plain_text
-    to_sentence(creator_name, card.title)
+    # verificar se buga com title nil
+    to_sentence(creator_name, card.title!)
   end
 
   private
+    #: (String, String) -> String
     def to_sentence(creator, card_title)
       if event.action.comment_created?
         comment_sentence(creator, card_title)
@@ -26,6 +34,7 @@ class Event::Description
       end
     end
 
+    #: -> String
     def creator_tag
       tag.span data: { creator_id: event.creator.id } do
         tag.span("You", data: { only_visible_to_you: true }) +
@@ -33,22 +42,27 @@ class Event::Description
       end
     end
 
+    #: -> String
     def card_title_tag
       tag.span card.title, class: "txt-underline"
     end
 
+    #: -> String
     def creator_name
       h(event.creator.name)
     end
 
+    #: -> Card
     def card
       @card ||= event.action.comment_created? ? event.eventable.card : event.eventable
     end
 
+    #: (String, String) -> String
     def comment_sentence(creator, card_title)
       "#{creator} commented on #{card_title}"
     end
 
+    #: (String, String) -> String
     def action_sentence(creator, card_title)
       case event.action
       when "card_assigned"
@@ -75,6 +89,8 @@ class Event::Description
         triaged_sentence(creator, card_title)
       when "card_sent_back_to_triage"
         %(#{creator} moved #{card_title} back to "Maybe?")
+      else
+        raise "Unsupported event action for description: #{event.action}"
       end
     end
 
@@ -86,21 +102,25 @@ class Event::Description
       end
     end
 
+    #: (String, String) -> String
     def unassigned_sentence(creator, card_title)
       assignees_text = event.assignees.include?(user) ? "yourself" : event.assignees.pluck(:name).to_sentence
       "#{creator} unassigned #{h(assignees_text)} from #{card_title}"
     end
 
+    #: (String, String) -> String
     def renamed_sentence(creator, card_title)
       old_title = event.particulars.dig("particulars", "old_title")
       %(#{creator} renamed #{card_title} (was: "#{h old_title}"))
     end
 
+    #: (String, String) -> String
     def moved_sentence(creator, card_title)
       new_location = event.particulars.dig("particulars", "new_board") || event.particulars.dig("particulars", "new_collection")
       %(#{creator} moved #{card_title} to "#{h new_location}")
     end
 
+    #: (String, String) -> String
     def triaged_sentence(creator, card_title)
       column = event.particulars.dig("particulars", "column")
       %(#{creator} moved #{card_title} to "#{h column}")

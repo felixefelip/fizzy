@@ -1,0 +1,15 @@
+# Generated from app/models/concerns/eventable.rb with RBS::Inline
+
+module Eventable
+  extend ActiveSupport::Concern
+
+  def track_event: (untyped action, ?creator: untyped, ?board: untyped, **untyped particulars) -> untyped
+
+  def event_was_created: (untyped event) -> untyped
+
+  private
+
+  def should_track_event?: () -> untyped
+
+  def eventable_prefix: () -> untyped
+end

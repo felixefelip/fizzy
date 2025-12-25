@@ -1,9 +1,13 @@
+# rbs_inline: enabled
+
 module Card::Eventable
   extend ActiveSupport::Concern
 
   include ::Eventable
 
   included do
+    # @type self: singleton(Card)
+
     before_create { self.last_active_at = Time.current }
 
     after_save :track_title_change, if: :saved_change_to_title?

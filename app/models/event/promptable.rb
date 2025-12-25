@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module Event::Promptable
   extend ActiveSupport::Concern
 

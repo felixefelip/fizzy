@@ -1,7 +1,15 @@
+# rbs_inline: enabled
+
 module Card::Assignable
   extend ActiveSupport::Concern
 
+  # @rbs!
+  #   def assignments: -> Assignment::ActiveRecord_Associations_CollectionProxy
+  #   def assignees: -> User::ActiveRecord_Associations_CollectionProxy
+
   included do
+    # @type self: singleton(Card)
+
     has_many :assignments, dependent: :delete_all
     has_many :assignees, through: :assignments
 

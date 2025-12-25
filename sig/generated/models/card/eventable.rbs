@@ -1,0 +1,19 @@
+# Generated from app/models/card/eventable.rb with RBS::Inline
+
+module Card::Eventable
+  extend ActiveSupport::Concern
+
+  include ::Eventable
+
+  def event_was_created: (untyped event) -> untyped
+
+  def touch_last_active_at: () -> untyped
+
+  private
+
+  def should_track_event?: () -> untyped
+
+  def track_title_change: () -> untyped
+
+  def create_system_comment_for: (untyped event) -> untyped
+end

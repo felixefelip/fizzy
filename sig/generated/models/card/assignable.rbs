@@ -1,0 +1,21 @@
+# Generated from app/models/card/assignable.rb with RBS::Inline
+
+module Card::Assignable
+  extend ActiveSupport::Concern
+
+  def assignments: () -> Assignment::ActiveRecord_Associations_CollectionProxy
+
+  def assignees: () -> User::ActiveRecord_Associations_CollectionProxy
+
+  def toggle_assignment: (untyped user) -> untyped
+
+  def assigned_to?: (untyped user) -> untyped
+
+  def assigned?: () -> untyped
+
+  private
+
+  def assign: (untyped user) -> untyped
+
+  def unassign: (untyped user) -> untyped
+end

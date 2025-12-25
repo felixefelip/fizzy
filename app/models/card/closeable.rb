@@ -5,6 +5,11 @@ module Card::Closeable
 
   # @rbs!
   #    extend _ActiveRecord_Relation_ClassMethods[::Card, ::Card::ActiveRecord_Relation, ::String]
+  #
+  #    def closure: -> Closure?
+  #
+  #    def self.closed: -> Card::ActiveRecord_Relation
+  #    def self.open: -> Card::ActiveRecord_Relation
 
   included do
     # @type self: singleton(Card)

@@ -23,6 +23,9 @@ class Card < ApplicationRecord
   # : -> bool
   def filled?: () -> bool
 
+  # : -> String
+  def title!: () -> String
+
   private
 
   # : -> void

@@ -1,10 +1,15 @@
-class Card::Eventable::SystemCommenter
-  attr_reader :card, :event
+# rbs_inline: enabled
 
+class Card::Eventable::SystemCommenter
+  attr_reader :card #: Card
+  attr_reader :event #: Event::Eventable
+
+  #: (Card::Eventable, Event) -> void
   def initialize(card, event)
     @card, @event = card, event
   end
 
+  #: -> Comment?
   def comment
     return unless comment_body.present?
 
@@ -12,6 +17,7 @@ class Card::Eventable::SystemCommenter
   end
 
   private
+    #: -> String
     def comment_body
       case event.action
       when "card_assigned"
@@ -34,6 +40,8 @@ class Card::Eventable::SystemCommenter
         "#{event.creator.name} <strong>moved</strong> this to “#{event.particulars.dig('particulars', 'column')}”"
       when "card_sent_back_to_triage"
         "#{event.creator.name} <strong>moved</strong> this back to “Maybe?”"
+      else
+        raise "Unsupported event action for system commenter: #{event.action}"
       end
     end
 end

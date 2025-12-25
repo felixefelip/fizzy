@@ -1,0 +1,8 @@
+# Generated from app/models/event/particulars.rb with RBS::Inline
+
+module Event::Particulars
+  extend ActiveSupport::Concern
+
+  # : -> User::ActiveRecord_Relation
+  def assignees: () -> User::ActiveRecord_Relation
+end

@@ -1,0 +1,30 @@
+# Generated from app/models/concerns/mentions.rb with RBS::Inline
+
+module Mentions
+  extend ActiveSupport::Concern
+
+  def create_mentions: (?mentioner: untyped) -> untyped
+
+  def mentionable_content: () -> untyped
+
+  private
+
+  def scan_mentionees: () -> untyped
+
+  def mentionees_from_attachments: () -> untyped
+
+  def mentionable_users: () -> untyped
+
+  def rich_text_associations: () -> untyped
+
+  def should_create_mentions?: () -> untyped
+
+  def mentionable_content_changed?: () -> untyped
+
+  def create_mentions_later: () -> untyped
+
+  # Template method
+  def mentionable?: () -> untyped
+
+  def should_check_mentions?: () -> untyped
+end
