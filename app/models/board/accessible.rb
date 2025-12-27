@@ -14,11 +14,14 @@ module Board::Accessible
         end
       end
 
+      #: (User::ActiveRecord_Relation) -> void
       def grant_to(users)
+        # @type self: Access::ActiveRecord_Associations_CollectionProxy
         Access.insert_all Array(users).collect { |user| { id: ActiveRecord::Type::Uuid.generate, board_id: proxy_association.owner.id, user_id: user.id, account_id: proxy_association.owner.account.id } }
       end
 
       def revoke_from(users)
+        # @type self: Access::ActiveRecord_Associations_CollectionProxy
         destroy_by user: users unless proxy_association.owner.all_access?
       end
     end
@@ -35,13 +38,19 @@ module Board::Accessible
   #: (User) -> void
   def accessed_by(user)
     # @type self: Board & Board::Accessible
-    access_for(user).accessed
+    access_for!(user).accessed
   end
 
   #: (User) -> Access?
   def access_for(user)
     # @type self: Board & Board::Accessible
     accesses.find_by(user: user)
+  end
+
+  #: (User) -> Access
+  def access_for!(user)
+    # @type self: Board & Board::Accessible
+    access_for(user) or raise
   end
 
   #: (User) -> bool

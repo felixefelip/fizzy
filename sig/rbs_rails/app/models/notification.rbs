@@ -476,3 +476,10 @@ class ::Notification < ::ApplicationRecord
     def prepend: (*::Notification | ::Array[::Notification]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

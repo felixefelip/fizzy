@@ -390,7 +390,10 @@ class ::Column < ::ApplicationRecord
   end
   include ::Column::GeneratedAssociationMethods
 
+  def self.sorted: () -> ::Column::ActiveRecord_Relation
+
   module ::Column::GeneratedRelationMethods
+    def sorted: () -> ::Column::ActiveRecord_Relation
   end
 
   class ::Column::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -418,4 +421,15 @@ class ::Column < ::ApplicationRecord
     def <<: (*::Column | ::Array[::Column]) -> self
     def prepend: (*::Column | ::Array[::Column]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Card < ::ApplicationRecord
+end
+class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
 end

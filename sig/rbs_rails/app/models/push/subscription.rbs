@@ -457,3 +457,12 @@ module ::Push
     end
   end
 end
+
+module ::Push
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

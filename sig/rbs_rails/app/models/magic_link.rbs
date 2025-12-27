@@ -394,3 +394,8 @@ class ::MagicLink < ::ApplicationRecord
     def prepend: (*::MagicLink | ::Array[::MagicLink]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Identity < ::ApplicationRecord
+end

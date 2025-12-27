@@ -280,3 +280,8 @@ module ::ActiveStorage
     end
   end
 end
+
+class ::Account < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end

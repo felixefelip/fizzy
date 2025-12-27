@@ -333,10 +333,6 @@ class ::Board < ::ApplicationRecord
   def columns=: (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column]) -> (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column])
   def column_ids: () -> ::Array[::Integer]
   def column_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def accesses: () -> ::Access::ActiveRecord_Associations_CollectionProxy
-  def accesses=: (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access]) -> (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access])
-  def access_ids: () -> ::Array[::Integer]
-  def access_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def user_ids: () -> ::Array[::Integer]
@@ -361,6 +357,10 @@ class ::Board < ::ApplicationRecord
   def webhooks=: (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook]) -> (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook])
   def webhook_ids: () -> ::Array[::Integer]
   def webhook_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def accesses: () -> ::Access::ActiveRecord_Associations_CollectionProxy
+  def accesses=: (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access]) -> (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access])
+  def access_ids: () -> ::Array[::Integer]
+  def access_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def filters: () -> ::Filter::ActiveRecord_Associations_CollectionProxy
   def filters=: (::Filter::ActiveRecord_Associations_CollectionProxy | ::Array[::Filter]) -> (::Filter::ActiveRecord_Associations_CollectionProxy | ::Array[::Filter])
   def filter_ids: () -> ::Array[::Integer]
@@ -399,10 +399,22 @@ class ::Board < ::ApplicationRecord
   end
   include ::Board::GeneratedAssociationMethods
 
+  def self.published: () -> ::Board::ActiveRecord_Relation
+  def self.all_access: () -> ::Board::ActiveRecord_Relation
+  def self.with_rich_text_public_description: () -> ::Board::ActiveRecord_Relation
+  def self.with_rich_text_public_description_and_embeds: () -> ::Board::ActiveRecord_Relation
   def self.alphabetically: () -> ::Board::ActiveRecord_Relation
   def self.ordered_by_recently_accessed: () -> ::Board::ActiveRecord_Relation
 
   module ::Board::GeneratedRelationMethods
+    def published: () -> ::Board::ActiveRecord_Relation
+
+    def all_access: () -> ::Board::ActiveRecord_Relation
+
+    def with_rich_text_public_description: () -> ::Board::ActiveRecord_Relation
+
+    def with_rich_text_public_description_and_embeds: () -> ::Board::ActiveRecord_Relation
+
     def alphabetically: () -> ::Board::ActiveRecord_Relation
 
     def ordered_by_recently_accessed: () -> ::Board::ActiveRecord_Relation
@@ -433,4 +445,53 @@ class ::Board < ::ApplicationRecord
     def <<: (*::Board | ::Array[::Board]) -> self
     def prepend: (*::Board | ::Array[::Board]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Column < ::ApplicationRecord
+end
+class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::User < ::ApplicationRecord
+end
+class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Card < ::ApplicationRecord
+end
+class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Tag < ::ApplicationRecord
+end
+class ::Tag::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Event < ::ApplicationRecord
+end
+class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Webhook < ::ApplicationRecord
+end
+class ::Webhook::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Access < ::ApplicationRecord
+end
+class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Filter < ::ApplicationRecord
+end
+class ::Filter::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Board::Publication < ::ApplicationRecord
+end
+class ::Entropy < ::ApplicationRecord
+end
+class ::ActionText::RichText < ::ActionText::Record
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
+end
+class ::ActionText::Record < ::ActiveRecord::Base
+end
+module ::ActionText
 end

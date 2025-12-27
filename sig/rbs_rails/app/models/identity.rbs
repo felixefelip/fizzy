@@ -323,3 +323,22 @@ class ::Identity < ::ApplicationRecord
     def prepend: (*::Identity | ::Array[::Identity]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::MagicLink < ::ApplicationRecord
+end
+class ::MagicLink::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Session < ::ApplicationRecord
+end
+class ::Session::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::User < ::ApplicationRecord
+end
+class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Account::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end

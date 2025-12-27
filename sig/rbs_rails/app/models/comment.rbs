@@ -334,12 +334,18 @@ class ::Comment < ::ApplicationRecord
   end
   include ::Comment::GeneratedAssociationMethods
 
+  def self.with_rich_text_body: () -> ::Comment::ActiveRecord_Relation
+  def self.with_rich_text_body_and_embeds: () -> ::Comment::ActiveRecord_Relation
   def self.chronologically: () -> ::Comment::ActiveRecord_Relation
   def self.preloaded: () -> ::Comment::ActiveRecord_Relation
   def self.by_system: () -> ::Comment::ActiveRecord_Relation
   def self.by_user: () -> ::Comment::ActiveRecord_Relation
 
   module ::Comment::GeneratedRelationMethods
+    def with_rich_text_body: () -> ::Comment::ActiveRecord_Relation
+
+    def with_rich_text_body_and_embeds: () -> ::Comment::ActiveRecord_Relation
+
     def chronologically: () -> ::Comment::ActiveRecord_Relation
 
     def preloaded: () -> ::Comment::ActiveRecord_Relation
@@ -374,4 +380,33 @@ class ::Comment < ::ApplicationRecord
     def <<: (*::Comment | ::Array[::Comment]) -> self
     def prepend: (*::Comment | ::Array[::Comment]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Mention < ::ApplicationRecord
+end
+class ::Mention::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::User < ::ApplicationRecord
+end
+class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Event < ::ApplicationRecord
+end
+class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Reaction < ::ApplicationRecord
+end
+class ::Reaction::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::ActionText::RichText < ::ActionText::Record
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end
+class ::ActionText::Record < ::ActiveRecord::Base
+end
+module ::ActionText
 end

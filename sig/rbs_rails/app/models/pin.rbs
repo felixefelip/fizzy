@@ -344,3 +344,12 @@ class ::Pin < ::ApplicationRecord
     def prepend: (*::Pin | ::Array[::Pin]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

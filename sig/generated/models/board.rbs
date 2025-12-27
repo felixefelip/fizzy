@@ -4,4 +4,10 @@ class Board < ApplicationRecord
   include Accessible
 
   include Cards
+
+  class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    def grant_to: (User::ActiveRecord_Relation) -> void
+
+    def revoke_from: (User::ActiveRecord_Relation) -> void
+  end
 end

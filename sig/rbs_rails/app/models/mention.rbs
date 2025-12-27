@@ -428,3 +428,14 @@ class ::Mention < ::ApplicationRecord
     def prepend: (*::Mention | ::Array[::Mention]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Notification < ::ApplicationRecord
+end
+class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

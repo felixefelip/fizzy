@@ -337,3 +337,10 @@ class ::Board < ::ApplicationRecord
     end
   end
 end
+
+class ::Board < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end

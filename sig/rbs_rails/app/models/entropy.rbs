@@ -372,3 +372,8 @@ class ::Entropy < ::ApplicationRecord
     def prepend: (*::Entropy | ::Array[::Entropy]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end

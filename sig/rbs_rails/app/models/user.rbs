@@ -553,8 +553,10 @@ class ::User < ::ApplicationRecord
   def self.not_member: () -> ::User::ActiveRecord_Relation
   def self.system: () -> ::User::ActiveRecord_Relation
   def self.not_system: () -> ::User::ActiveRecord_Relation
-  def self.with_avatars: () -> ::User::ActiveRecord_Relation
+  def self.active: () -> ::User::ActiveRecord_Relation
+  def self.alphabetically: () -> ::User::ActiveRecord_Relation
   def self.with_attached_avatar: () -> ::User::ActiveRecord_Relation
+  def self.with_avatars: () -> ::User::ActiveRecord_Relation
 
   module ::User::GeneratedRelationMethods
     def roles: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
@@ -575,9 +577,13 @@ class ::User < ::ApplicationRecord
 
     def not_system: () -> ::User::ActiveRecord_Relation
 
-    def with_avatars: () -> ::User::ActiveRecord_Relation
+    def active: () -> ::User::ActiveRecord_Relation
+
+    def alphabetically: () -> ::User::ActiveRecord_Relation
 
     def with_attached_avatar: () -> ::User::ActiveRecord_Relation
+
+    def with_avatars: () -> ::User::ActiveRecord_Relation
   end
 
   class ::User::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -605,4 +611,87 @@ class ::User < ::ApplicationRecord
     def <<: (*::User | ::Array[::User]) -> self
     def prepend: (*::User | ::Array[::User]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Watch < ::ApplicationRecord
+end
+class ::Watch::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Search::Query < ::ApplicationRecord
+end
+class ::Search::Query::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Notification < ::ApplicationRecord
+end
+class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Notification::Bundle < ::ApplicationRecord
+end
+class ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Mention < ::ApplicationRecord
+end
+class ::Mention::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Push::Subscription < ::ApplicationRecord
+end
+class ::Push::Subscription::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Assignment < ::ApplicationRecord
+end
+class ::Assignment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Card < ::ApplicationRecord
+end
+class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Access < ::ApplicationRecord
+end
+class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Board < ::ApplicationRecord
+end
+class ::Board::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Column < ::ApplicationRecord
+end
+class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Comment < ::ApplicationRecord
+end
+class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Event < ::ApplicationRecord
+end
+class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Filter < ::ApplicationRecord
+end
+class ::Filter::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Closure < ::ApplicationRecord
+end
+class ::Closure::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Pin < ::ApplicationRecord
+end
+class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account::Export < ::ApplicationRecord
+end
+class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::User::Settings < ::ApplicationRecord
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Identity < ::ApplicationRecord
+end
+module ::Search
+end
+module ::Push
+end
+class ::User < ::ApplicationRecord
 end

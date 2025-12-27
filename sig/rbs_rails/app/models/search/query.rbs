@@ -337,3 +337,12 @@ module ::Search
     end
   end
 end
+
+module ::Search
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

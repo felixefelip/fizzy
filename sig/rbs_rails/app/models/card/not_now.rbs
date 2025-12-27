@@ -343,3 +343,12 @@ class ::Card < ::ApplicationRecord
     end
   end
 end
+
+class ::Card < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

@@ -384,9 +384,9 @@ class ::Account < ::ApplicationRecord
     def self.not_completed: () -> ::Account::Export::ActiveRecord_Relation
     def self.failed: () -> ::Account::Export::ActiveRecord_Relation
     def self.not_failed: () -> ::Account::Export::ActiveRecord_Relation
+    def self.with_attached_file: () -> ::Account::Export::ActiveRecord_Relation
     def self.current: () -> ::Account::Export::ActiveRecord_Relation
     def self.expired: () -> ::Account::Export::ActiveRecord_Relation
-    def self.with_attached_file: () -> ::Account::Export::ActiveRecord_Relation
 
     module ::Account::Export::GeneratedRelationMethods
       def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
@@ -407,11 +407,11 @@ class ::Account < ::ApplicationRecord
 
       def not_failed: () -> ::Account::Export::ActiveRecord_Relation
 
+      def with_attached_file: () -> ::Account::Export::ActiveRecord_Relation
+
       def current: () -> ::Account::Export::ActiveRecord_Relation
 
       def expired: () -> ::Account::Export::ActiveRecord_Relation
-
-      def with_attached_file: () -> ::Account::Export::ActiveRecord_Relation
     end
 
     class ::Account::Export::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -440,4 +440,11 @@ class ::Account < ::ApplicationRecord
       def prepend: (*::Account::Export | ::Array[::Account::Export]) -> self
     end
   end
+end
+
+class ::Account < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::User < ::ApplicationRecord
 end

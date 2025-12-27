@@ -341,3 +341,12 @@ class ::Tagging < ::ApplicationRecord
     def prepend: (*::Tagging | ::Array[::Tagging]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Tag < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end

@@ -665,6 +665,30 @@ class ::Card < ::ApplicationRecord
   def self.not_drafted: () -> ::Card::ActiveRecord_Relation
   def self.published: () -> ::Card::ActiveRecord_Relation
   def self.not_published: () -> ::Card::ActiveRecord_Relation
+  def self.tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
+  def self.published_or_drafted_by: (untyped user) -> ::Card::ActiveRecord_Relation
+  def self.mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
+  def self.unassigned: () -> ::Card::ActiveRecord_Relation
+  def self.assigned_to: (untyped users) -> ::Card::ActiveRecord_Relation
+  def self.assigned_by: (untyped users) -> ::Card::ActiveRecord_Relation
+  def self.closed: () -> ::Card::ActiveRecord_Relation
+  def self.open: () -> ::Card::ActiveRecord_Relation
+  def self.recently_closed_first: () -> ::Card::ActiveRecord_Relation
+  def self.closed_at_window: (untyped window) -> ::Card::ActiveRecord_Relation
+  def self.closed_by: (untyped users) -> ::Card::ActiveRecord_Relation
+  def self.due_to_be_postponed: () -> ::Card::ActiveRecord_Relation
+  def self.postponing_soon: () -> ::Card::ActiveRecord_Relation
+  def self.golden: () -> ::Card::ActiveRecord_Relation
+  def self.with_golden_first: () -> ::Card::ActiveRecord_Relation
+  def self.postponed: () -> ::Card::ActiveRecord_Relation
+  def self.active: () -> ::Card::ActiveRecord_Relation
+  def self.with_activity_spikes: () -> ::Card::ActiveRecord_Relation
+  def self.stalled: () -> ::Card::ActiveRecord_Relation
+  def self.awaiting_triage: () -> ::Card::ActiveRecord_Relation
+  def self.triaged: () -> ::Card::ActiveRecord_Relation
+  def self.with_attached_image: () -> ::Card::ActiveRecord_Relation
+  def self.with_rich_text_description: () -> ::Card::ActiveRecord_Relation
+  def self.with_rich_text_description_and_embeds: () -> ::Card::ActiveRecord_Relation
   def self.reverse_chronologically: () -> ::Card::ActiveRecord_Relation
   def self.chronologically: () -> ::Card::ActiveRecord_Relation
   def self.latest: () -> ::Card::ActiveRecord_Relation
@@ -672,7 +696,6 @@ class ::Card < ::ApplicationRecord
   def self.preloaded: () -> ::Card::ActiveRecord_Relation
   def self.indexed_by: (untyped index) -> ::Card::ActiveRecord_Relation
   def self.sorted_by: (untyped sort) -> ::Card::ActiveRecord_Relation
-  def self.with_attached_image: () -> ::Card::ActiveRecord_Relation
 
   module ::Card::GeneratedRelationMethods
     def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
@@ -684,6 +707,54 @@ class ::Card < ::ApplicationRecord
     def published: () -> ::Card::ActiveRecord_Relation
 
     def not_published: () -> ::Card::ActiveRecord_Relation
+
+    def tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
+
+    def published_or_drafted_by: (untyped user) -> ::Card::ActiveRecord_Relation
+
+    def mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
+
+    def unassigned: () -> ::Card::ActiveRecord_Relation
+
+    def assigned_to: (untyped users) -> ::Card::ActiveRecord_Relation
+
+    def assigned_by: (untyped users) -> ::Card::ActiveRecord_Relation
+
+    def closed: () -> ::Card::ActiveRecord_Relation
+
+    def open: () -> ::Card::ActiveRecord_Relation
+
+    def recently_closed_first: () -> ::Card::ActiveRecord_Relation
+
+    def closed_at_window: (untyped window) -> ::Card::ActiveRecord_Relation
+
+    def closed_by: (untyped users) -> ::Card::ActiveRecord_Relation
+
+    def due_to_be_postponed: () -> ::Card::ActiveRecord_Relation
+
+    def postponing_soon: () -> ::Card::ActiveRecord_Relation
+
+    def golden: () -> ::Card::ActiveRecord_Relation
+
+    def with_golden_first: () -> ::Card::ActiveRecord_Relation
+
+    def postponed: () -> ::Card::ActiveRecord_Relation
+
+    def active: () -> ::Card::ActiveRecord_Relation
+
+    def with_activity_spikes: () -> ::Card::ActiveRecord_Relation
+
+    def stalled: () -> ::Card::ActiveRecord_Relation
+
+    def awaiting_triage: () -> ::Card::ActiveRecord_Relation
+
+    def triaged: () -> ::Card::ActiveRecord_Relation
+
+    def with_attached_image: () -> ::Card::ActiveRecord_Relation
+
+    def with_rich_text_description: () -> ::Card::ActiveRecord_Relation
+
+    def with_rich_text_description_and_embeds: () -> ::Card::ActiveRecord_Relation
 
     def reverse_chronologically: () -> ::Card::ActiveRecord_Relation
 
@@ -698,8 +769,6 @@ class ::Card < ::ApplicationRecord
     def indexed_by: (untyped index) -> ::Card::ActiveRecord_Relation
 
     def sorted_by: (untyped sort) -> ::Card::ActiveRecord_Relation
-
-    def with_attached_image: () -> ::Card::ActiveRecord_Relation
   end
 
   class ::Card::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -727,4 +796,69 @@ class ::Card < ::ApplicationRecord
     def <<: (*::Card | ::Array[::Card]) -> self
     def prepend: (*::Card | ::Array[::Card]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Tagging < ::ApplicationRecord
+end
+class ::Tagging::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Tag < ::ApplicationRecord
+end
+class ::Tag::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Pin < ::ApplicationRecord
+end
+class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Assignment < ::ApplicationRecord
+end
+class ::Assignment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::User < ::ApplicationRecord
+end
+class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Event < ::ApplicationRecord
+end
+class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Mention < ::ApplicationRecord
+end
+class ::Mention::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Step < ::ApplicationRecord
+end
+class ::Step::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Watch < ::ApplicationRecord
+end
+class ::Watch::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Comment < ::ApplicationRecord
+end
+class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Closure < ::ApplicationRecord
+end
+class ::Card::Goldness < ::ApplicationRecord
+end
+class ::Card::NotNow < ::ApplicationRecord
+end
+class ::Card::ActivitySpike < ::ApplicationRecord
+end
+class ::ActionText::RichText < ::ActionText::Record
+end
+class ::Column < ::ApplicationRecord
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end
+class ::ActionText::Record < ::ActiveRecord::Base
+end
+module ::ActionText
 end

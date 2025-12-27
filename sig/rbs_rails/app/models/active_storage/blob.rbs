@@ -525,3 +525,14 @@ module ::ActiveStorage
     end
   end
 end
+
+class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::ActiveStorage::VariantRecord < ::ActiveStorage::Record
+end
+class ::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end

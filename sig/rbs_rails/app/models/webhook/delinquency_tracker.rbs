@@ -377,3 +377,10 @@ class ::Webhook < ::ApplicationRecord
     end
   end
 end
+
+class ::Webhook < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end

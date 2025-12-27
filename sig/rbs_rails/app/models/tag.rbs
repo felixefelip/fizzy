@@ -307,3 +307,20 @@ class ::Tag < ::ApplicationRecord
     def prepend: (*::Tag | ::Array[::Tag]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Tagging < ::ApplicationRecord
+end
+class ::Tagging::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Card < ::ApplicationRecord
+end
+class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Filter < ::ApplicationRecord
+end
+class ::Filter::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end

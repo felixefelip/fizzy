@@ -378,3 +378,10 @@ class ::Step < ::ApplicationRecord
     def prepend: (*::Step | ::Array[::Step]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end

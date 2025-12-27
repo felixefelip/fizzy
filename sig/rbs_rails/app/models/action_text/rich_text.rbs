@@ -428,3 +428,16 @@ module ::ActionText
     end
   end
 end
+
+module ::ActionText
+end
+class ::ActionText::Record < ::ActiveRecord::Base
+end
+class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end

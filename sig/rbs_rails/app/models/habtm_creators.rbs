@@ -137,3 +137,10 @@ class ::Filter < ::ApplicationRecord
     end
   end
 end
+
+class ::Filter < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::User < ::ApplicationRecord
+end

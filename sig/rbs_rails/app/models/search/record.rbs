@@ -430,10 +430,13 @@ module ::Search
     end
     include ::Search::Record::GeneratedAssociationMethods
 
+    def self.matching: (untyped query, untyped account_id) -> ::Search::Record::ActiveRecord_Relation
     def self.for_query: (untyped query, user: untyped) -> ::Search::Record::ActiveRecord_Relation
     def self.search: (untyped query, user: untyped) -> ::Search::Record::ActiveRecord_Relation
 
     module ::Search::Record::GeneratedRelationMethods
+      def matching: (untyped query, untyped account_id) -> ::Search::Record::ActiveRecord_Relation
+
       def for_query: (untyped query, user: untyped) -> ::Search::Record::ActiveRecord_Relation
 
       def search: (untyped query, user: untyped) -> ::Search::Record::ActiveRecord_Relation
@@ -465,4 +468,17 @@ module ::Search
       def prepend: (*::Search::Record | ::Array[::Search::Record]) -> self
     end
   end
+end
+
+module ::Search
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Search::Record::SQLite::Fts < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end
+class ::Search::Record < ::ApplicationRecord
+end
+module ::Search::Record::SQLite
 end

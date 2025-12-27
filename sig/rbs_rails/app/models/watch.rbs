@@ -387,3 +387,12 @@ class ::Watch < ::ApplicationRecord
     def prepend: (*::Watch | ::Array[::Watch]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end

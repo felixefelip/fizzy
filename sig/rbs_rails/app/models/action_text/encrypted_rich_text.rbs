@@ -395,10 +395,7 @@ module ::ActionText
     end
     include ::ActionText::EncryptedRichText::GeneratedAssociationMethods
 
-    def self.with_attached_embeds: () -> ::ActionText::EncryptedRichText::ActiveRecord_Relation
-
     module ::ActionText::EncryptedRichText::GeneratedRelationMethods
-      def with_attached_embeds: () -> ::ActionText::EncryptedRichText::ActiveRecord_Relation
     end
 
     class ::ActionText::EncryptedRichText::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -427,4 +424,19 @@ module ::ActionText
       def prepend: (*::ActionText::EncryptedRichText | ::Array[::ActionText::EncryptedRichText]) -> self
     end
   end
+end
+
+module ::ActionText
+end
+class ::ActionText::RichText < ::ActionText::Record
+end
+class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::ActionText::Record < ::ActiveRecord::Base
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
 end

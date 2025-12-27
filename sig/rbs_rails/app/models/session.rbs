@@ -329,3 +329,8 @@ class ::Session < ::ApplicationRecord
     def prepend: (*::Session | ::Array[::Session]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Identity < ::ApplicationRecord
+end

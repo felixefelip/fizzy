@@ -443,3 +443,12 @@ class ::Access < ::ApplicationRecord
     def prepend: (*::Access | ::Array[::Access]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

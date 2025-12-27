@@ -5,6 +5,14 @@ class Board < ApplicationRecord
   include Accessible
   include Cards
 
+  # @rbs!
+  #   class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  #     def grant_to: (User::ActiveRecord_Relation) -> void
+  #
+  #     def revoke_from: (User::ActiveRecord_Relation) -> void
+  #   end
+  #
+
   belongs_to :creator, class_name: "User", default: -> { Current.user }
   belongs_to :account, default: -> do
     # @type self: Board

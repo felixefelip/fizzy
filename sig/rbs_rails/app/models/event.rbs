@@ -518,3 +518,22 @@ class ::Event < ::ApplicationRecord
     def prepend: (*::Event | ::Array[::Event]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Notification < ::ApplicationRecord
+end
+class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Webhook::Delivery < ::ApplicationRecord
+end
+class ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end
+class ::Webhook < ::ApplicationRecord
+end

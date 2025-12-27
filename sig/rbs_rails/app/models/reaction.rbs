@@ -384,3 +384,12 @@ class ::Reaction < ::ApplicationRecord
     def prepend: (*::Reaction | ::Array[::Reaction]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Comment < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

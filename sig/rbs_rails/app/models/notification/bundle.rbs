@@ -453,3 +453,12 @@ class ::Notification < ::ApplicationRecord
     end
   end
 end
+
+class ::Notification < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end

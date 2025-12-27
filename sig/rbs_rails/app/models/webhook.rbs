@@ -476,10 +476,16 @@ class ::Webhook < ::ApplicationRecord
   end
   include ::Webhook::GeneratedAssociationMethods
 
+  def self.triggered_by: (untyped event) -> ::Webhook::ActiveRecord_Relation
+  def self.triggered_by_action: (untyped action) -> ::Webhook::ActiveRecord_Relation
   def self.ordered: () -> ::Webhook::ActiveRecord_Relation
   def self.active: () -> ::Webhook::ActiveRecord_Relation
 
   module ::Webhook::GeneratedRelationMethods
+    def triggered_by: (untyped event) -> ::Webhook::ActiveRecord_Relation
+
+    def triggered_by_action: (untyped action) -> ::Webhook::ActiveRecord_Relation
+
     def ordered: () -> ::Webhook::ActiveRecord_Relation
 
     def active: () -> ::Webhook::ActiveRecord_Relation
@@ -510,4 +516,19 @@ class ::Webhook < ::ApplicationRecord
     def <<: (*::Webhook | ::Array[::Webhook]) -> self
     def prepend: (*::Webhook | ::Array[::Webhook]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Webhook::Delivery < ::ApplicationRecord
+end
+class ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Webhook::DelinquencyTracker < ::ApplicationRecord
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Board < ::ApplicationRecord
+end
+class ::Webhook < ::ApplicationRecord
 end

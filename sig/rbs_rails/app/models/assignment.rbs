@@ -387,3 +387,12 @@ class ::Assignment < ::ApplicationRecord
     def prepend: (*::Assignment | ::Array[::Assignment]) -> self
   end
 end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Account < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
+end
