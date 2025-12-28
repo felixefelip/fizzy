@@ -1,0 +1,15 @@
+# Generated from app/models/card/broadcastable.rb with RBS::Inline
+
+module Card::Broadcastable
+  extend ActiveSupport::Concern
+
+  @preview_changed: bool
+
+  private
+
+  # : -> void
+  def remember_if_preview_changed: () -> void
+
+  # : -> bool
+  def preview_changed?: () -> bool
+end

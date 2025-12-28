@@ -4,6 +4,7 @@ module Card::Closeable
   extend ActiveSupport::Concern
 
   # @type self: singleton(Card) & singleton(Card::Closeable)
+  # @type instance: Card & Card::Closeable
 
   included do
     has_one :closure, dependent: :destroy
@@ -18,7 +19,6 @@ module Card::Closeable
 
   #: -> bool
   def closed?
-    # @type self: Card & Card::Closeable
     closure.present?
   end
 
@@ -29,20 +29,16 @@ module Card::Closeable
 
   #: -> User?
   def closed_by
-    # @type self: Card & Card::Closeable
     closure&.user
   end
 
   #: -> ActiveSupport::TimeWithZone?
   def closed_at
-    # @type self: Card & Card::Closeable
     closure&.created_at
   end
 
   #: (?user: User) -> void
   def close(user: Current.user)
-    # @type self: Card & Card::Closeable
-
     unless closed?
       transaction do
         create_closure! user: user
@@ -53,8 +49,6 @@ module Card::Closeable
 
   #: (?user: User) -> void
   def reopen(user: Current.user)
-    # @type self: Card & Card::Closeable
-
     if closed?
       transaction do
         closure&.destroy
