@@ -1,0 +1,13 @@
+# Generated from app/models/notifier/mention_notifier.rb with RBS::Inline
+
+class Notifier::MentionNotifier < Notifier
+  alias mention source
+
+  private
+
+  # : -> Array[::Notifier::_Recipient]
+  def recipients: () -> Array[::Notifier::_Recipient]
+
+  # : -> User
+  def creator: () -> User
+end

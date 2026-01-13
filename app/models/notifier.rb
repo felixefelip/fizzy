@@ -33,4 +33,14 @@ class Notifier
     def should_notify?
       !creator.system?
     end
+
+    #: -> Array[::Notifier::_Recipient]
+    def recipients
+      raise NotImplementedError
+    end
+
+    #: -> User
+    def creator
+      raise NotImplementedError
+    end
 end

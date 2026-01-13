@@ -1,10 +1,9 @@
+# rbs_inline: enabled
+
 class Comment < ApplicationRecord
   include Attachments, Eventable, Mentions, Promptable, Searchable
 
-  belongs_to :account, default: -> do
-    # @type self: Comment
-    card.account
-  end
+  belongs_to :account, default: -> { card.account }
   belongs_to :card, touch: true
   belongs_to :creator, class_name: "User", default: -> { Current.user }
   has_many :reactions, -> { order(:created_at) }, dependent: :delete_all
@@ -20,11 +19,13 @@ class Comment < ApplicationRecord
 
   delegate :board, :watch_by, to: :card
 
+  #: -> String
   def to_partial_path
     "cards/#{super}"
   end
 
   private
+    #: -> void
     def watch_card_by_creator
       card.watch_by creator
     end

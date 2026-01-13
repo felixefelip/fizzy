@@ -1,0 +1,8 @@
+# Generated from app/models/reaction.rb with RBS::Inline
+
+class Reaction < ApplicationRecord
+  private
+
+  # : -> void
+  def register_card_activity: () -> void
+end

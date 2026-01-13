@@ -3,6 +3,8 @@
 module SsrfProtection
   extend self
 
+  # @type instance: SsrfProtection
+
   DNS_RESOLUTION_TIMEOUT = 2
 
   DNS_NAMESERVERS = %w[

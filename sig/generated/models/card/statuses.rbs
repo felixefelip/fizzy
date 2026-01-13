@@ -5,14 +5,18 @@ module Card::Statuses
 
   attr_reader initial_status: untyped
 
-  def publish: () -> untyped
+  # : -> void
+  def publish: () -> void
 
-  def was_just_published?: () -> untyped
+  # : -> bool
+  def was_just_published?: () -> bool
 
   private
 
-  def update_created_at_on_publication: () -> untyped
+  # : -> void
+  def update_created_at_on_publication: () -> void
 
   # So that we can check it in callbacks when other operations in the transaction clean the changes.
-  def remember_initial_status: () -> untyped
+  # : -> void
+  def remember_initial_status: () -> void
 end

@@ -14,4 +14,10 @@ class Notifier
 
   # : -> bool
   def should_notify?: () -> bool
+
+  # : -> Array[::Notifier::_Recipient]
+  def recipients: () -> Array[::Notifier::_Recipient]
+
+  # : -> User
+  def creator: () -> User
 end

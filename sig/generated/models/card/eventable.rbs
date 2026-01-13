@@ -5,15 +5,20 @@ module Card::Eventable
 
   include ::Eventable
 
-  def event_was_created: (untyped event) -> untyped
+  # : (Event) -> void
+  def event_was_created: (Event) -> void
 
-  def touch_last_active_at: () -> untyped
+  # : -> void
+  def touch_last_active_at: () -> void
 
   private
 
-  def should_track_event?: () -> untyped
+  # : -> bool
+  def should_track_event?: () -> bool
 
-  def track_title_change: () -> untyped
+  # : -> void
+  def track_title_change: () -> void
 
-  def create_system_comment_for: (untyped event) -> untyped
+  # : (Event) -> void
+  def create_system_comment_for: (Event) -> void
 end

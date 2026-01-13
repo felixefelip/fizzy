@@ -1,0 +1,30 @@
+# Generated from app/models/concerns/attachments.rb with RBS::Inline
+
+module Attachments
+  extend ActiveSupport::Concern
+
+  # The variants we use must all declared here so that we can preprocess them.
+  #
+  # If they are not preprocessed, then Rails will attempt to transform the image on-the-fly when
+  # they are first viewed, which may be on the read replica where writing to the database is not
+  # allowed. Chaos will ensue if that happens.
+  #
+  # These variants are patched into ActionText::RichText in config/initializers/action_text.rb
+  VARIANTS: ::Hash[untyped, untyped]
+
+  def attachments: () -> untyped
+
+  def has_attachments?: () -> untyped
+
+  def remote_images: () -> untyped
+
+  def has_remote_images?: () -> untyped
+
+  def remote_videos: () -> untyped
+
+  def has_remote_videos?: () -> untyped
+
+  private
+
+  def rich_text_record: () -> untyped
+end

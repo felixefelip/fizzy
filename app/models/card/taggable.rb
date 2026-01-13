@@ -1,4 +1,4 @@
-#rbs_inline: enabled
+# rbs_inline: enabled
 
 module Card::Taggable
   extend ActiveSupport::Concern
@@ -13,6 +13,7 @@ module Card::Taggable
     scope :tagged_with, ->(tags) { joins(:taggings).where(taggings: { tag: tags }) }
   end
 
+  #: (String) -> void
   def toggle_tag_with(title)
     tag = account.tags.find_or_create_by!(title: title)
 
@@ -25,6 +26,7 @@ module Card::Taggable
     end
   end
 
+  #: (Tag) -> bool
   def tagged_with?(tag)
     tags.include? tag
   end

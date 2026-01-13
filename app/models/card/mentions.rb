@@ -3,9 +3,8 @@
 module Card::Mentions
   extend ActiveSupport::Concern
 
-  # @rbs!
-  #   def published?: -> bool
-  #   def was_just_published?: -> bool
+  # @type self: singleton(Card) & singleton(Card::Mentions)
+  # @type instance: Card & Card::Mentions
 
   included do
     include ::Mentions

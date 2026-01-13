@@ -33,6 +33,8 @@ class Card < ApplicationRecord
 
   include Statuses
 
+  include Taggable
+
   include Triageable
 
   include Watchable

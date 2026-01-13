@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Attachments
   extend ActiveSupport::Concern
+
+  # @type module: singleton(ApplicationRecord) & singleton(Attachments)
+  # @type instance: ApplicationRecord & Attachments
 
   # The variants we use must all declared here so that we can preprocess them.
   #

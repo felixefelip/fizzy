@@ -3,13 +3,16 @@
 module Eventable
   extend ActiveSupport::Concern
 
-  def track_event: (untyped action, ?creator: untyped, ?board: untyped, **untyped particulars) -> untyped
+  # : (Symbol | String, ?creator: User, ?board: Board, **untyped) -> void
+  def track_event: (Symbol | String, ?creator: User, ?board: Board, **untyped) -> void
 
   def event_was_created: (untyped event) -> untyped
 
   private
 
-  def should_track_event?: () -> untyped
+  # : -> bool
+  def should_track_event?: () -> bool
 
-  def eventable_prefix: () -> untyped
+  # : -> String
+  def eventable_prefix: () -> String
 end
