@@ -3,11 +3,15 @@
 module Card::Triageable
   extend ActiveSupport::Concern
 
-  def triaged?: () -> untyped
+  # : -> bool
+  def triaged?: () -> bool
 
-  def awaiting_triage?: () -> untyped
+  # : -> bool
+  def awaiting_triage?: () -> bool
 
-  def triage_into: (untyped column) -> untyped
+  # : (Column) -> void
+  def triage_into: (Column) -> void
 
-  def send_back_to_triage: (?skip_event: untyped) -> untyped
+  # : (?skip_event: bool) -> void
+  def send_back_to_triage: (?skip_event: bool) -> void
 end
