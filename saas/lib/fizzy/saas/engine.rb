@@ -17,6 +17,11 @@ module Fizzy
         app.config.assets.paths << root.join("app/assets/stylesheets")
       end
 
+      initializer "fizzy_saas.public_files" do |app|
+        app.middleware.insert_after ActionDispatch::Static, ActionDispatch::Static, root.join("public").to_s,
+          headers: app.config.public_file_server.headers
+      end
+
       initializer "fizzy.saas.routes", after: :add_routing_paths do |app|
         # Routes that rely on the implicit account tenant should go here instead of in +routes.rb+.
         app.routes.prepend do
