@@ -33,10 +33,12 @@ module Card::Assignable
   private
     #: (User) -> void
     def assign(user)
-      assignments.create! assignee: user, assigner: Current.user
-      watch_by user
+      assignment = assignments.create assignee: user, assigner: Current.user
 
-      track_event :assigned, assignee_ids: [ user.id ]
+      if assignment.persisted?
+        watch_by user
+        track_event :assigned, assignee_ids: [ user.id ]
+      end
     rescue ActiveRecord::RecordNotUnique
       # Already assigned
     end

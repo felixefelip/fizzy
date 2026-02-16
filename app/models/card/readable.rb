@@ -8,16 +8,12 @@ module Card::Readable
 
   #: (User) -> void
   def read_by(user)
-    notifications_for(user).tap do |notifications|
-      notifications.each(&:read)
-    end
+    user.notifications.find_by(card: self)&.read
   end
 
   #: (User) -> void
   def unread_by(user)
-    all_notifications_for(user).tap do |notifications|
-      notifications.each(&:unread)
-    end
+    user.notifications.find_by(card: self)&.unread
   end
 
   #: -> void
@@ -34,21 +30,7 @@ module Card::Readable
       Card::RemoveInaccessibleNotificationsJob.perform_later(self)
     end
 
-    #: (User) -> Notification::ActiveRecord_Relation
-    def notifications_for(user)
-      scope = user.notifications.unread
-      scope.where(source: event_notification_sources)
-        .or(scope.where(source: mention_notification_sources))
-    end
-
-    #: (User) -> Notification::ActiveRecord_Associations_CollectionProxy
-    def all_notifications_for(user)
-      scope = user.notifications
-      scope.where(source: event_notification_sources)
-        .or(scope.where(source: mention_notification_sources))
-    end
-
-    #: -> Event::ActiveRecord_Associations_CollectionProxy
+    #: -> ::Event::ActiveRecord_Relation
     def event_notification_sources
       events.or(comment_creation_events)
     end

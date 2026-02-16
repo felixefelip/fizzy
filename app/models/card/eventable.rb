@@ -9,7 +9,7 @@ module Card::Eventable
   # @type instance: Card & Card::Eventable
 
   included do
-    before_create { self.last_active_at = Time.current }
+    before_create { self.last_active_at ||= created_at || Time.current }
 
     after_save :track_title_change, if: :saved_change_to_title?
   end
@@ -18,7 +18,7 @@ module Card::Eventable
   def event_was_created(event)
     transaction do
       create_system_comment_for(event)
-      touch_last_active_at
+      touch_last_active_at unless was_just_published?
     end
   end
 

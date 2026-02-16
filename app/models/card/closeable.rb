@@ -12,9 +12,9 @@ module Card::Closeable
     scope :closed, -> { joins(:closure) }
     scope :open, -> { where.missing(:closure) }
 
-    scope :recently_closed_first, -> { closed.order("closures.created_at": :desc) }
-    scope :closed_at_window, ->(window) { closed.where("closures.created_at": window) }
-    scope :closed_by, ->(users) { closed.where("closures.user_id": Array(users)) }
+    scope :recently_closed_first, -> { closed.order(closures: { created_at: :desc }) }
+    scope :closed_at_window, ->(window) { closed.where(closures: { created_at: window }) }
+    scope :closed_by, ->(users) { closed.where(closures: { user_id: Array(users) }) }
   end
 
   #: -> bool
@@ -41,6 +41,7 @@ module Card::Closeable
   def close(user: Current.user)
     unless closed?
       transaction do
+        not_now&.destroy
         create_closure! user: user
         track_event :closed, creator: user
       end

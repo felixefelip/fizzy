@@ -8,6 +8,8 @@ class Board < ApplicationRecord
   include Entropic
   include Filterable
   include Publishable
+  include Storage
+  include ::Storage::Tracked
   include Triageable
 
   # @rbs!

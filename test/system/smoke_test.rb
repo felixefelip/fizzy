@@ -54,18 +54,26 @@ class SmokeTest < ApplicationSystemTestCase
       assert_selector "a img[src*='/rails/active_storage']"
       assert_selector "figcaption span.attachment__name", text: "moon.jpg"
     end
+
+    # Click the image to open the lightbox
+    find("action-text-attachment figure.attachment a:has(img)").click
+
+    assert_selector "dialog.lightbox[open]"
+    within("dialog.lightbox") do
+      assert_selector "img.lightbox__image[src*='/rails/active_storage']"
+    end
   end
 
   test "dismissing notifications" do
     sign_in_as(users(:david))
 
-    notif = notifications(:logo_card_david_mention_by_jz)
+    notification = notifications(:logo_mentioned_david)
 
-    assert_selector "div##{dom_id(notif)}"
+    assert_selector "div##{dom_id(notification)}"
 
-    within_window(open_new_window) { visit card_url(notif.card) }
+    within_window(open_new_window) { visit card_url(notification.card) }
 
-    assert_no_selector "div##{dom_id(notif)}"
+    assert_no_selector "div##{dom_id(notification)}"
   end
 
   test "dragging card to a new column" do

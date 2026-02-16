@@ -34,7 +34,7 @@ class Card::ActivitySpike::Detector
     #: (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
     def multiple_people_commented?(minimum_comments: 3, minimum_participants: 2)
       card.comments
-        .where("created_at >= ?", recent_period.seconds.ago)
+        .where(created_at: recent_period.seconds.ago..)
         .group(:card_id)
         .having("COUNT(*) >= ?", minimum_comments)
         .having("COUNT(DISTINCT creator_id) >= ?", minimum_participants)
@@ -64,6 +64,6 @@ class Card::ActivitySpike::Detector
 
     #: -> Event?
     def last_event
-      card.events.order(created_at: :desc).first
+      card.events.order(:created_at).last
     end
 end

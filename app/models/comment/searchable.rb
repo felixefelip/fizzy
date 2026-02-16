@@ -28,4 +28,8 @@ module Comment::Searchable
     # @type self: Comment & Comment::Searchable
     card.board_id
   end
+
+  def searchable?
+    card.published?
+  end
 end

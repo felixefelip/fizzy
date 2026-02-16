@@ -25,7 +25,8 @@ class NotificationPusher
     def should_push?
       notification.user.push_subscriptions.any? &&
         !notification.creator.system? &&
-        notification.user.active?
+        notification.user.active? &&
+        notification.account.active?
     end
 
     #: -> Hash

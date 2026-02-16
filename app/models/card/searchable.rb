@@ -30,4 +30,8 @@ module Card::Searchable
   def search_board_id
     board_id
   end
+
+  def searchable?
+    published?
+  end
 end

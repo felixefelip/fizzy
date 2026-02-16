@@ -7,6 +7,7 @@ module PushNotifiable
 
   included do
     after_create_commit :push_notification_later
+    after_update_commit :push_notification_later, if: :source_id_previously_changed?
   end
 
   private

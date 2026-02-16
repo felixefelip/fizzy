@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
-gem "rails", github: "rails/rails", branch: "main"
 git_source(:bc) { |repo| "https://github.com/basecamp/#{repo}" }
+
+gem "rails", github: "rails/rails", branch: "main"
 
 # Assets & front end
 gem "importmap-rails"
@@ -24,22 +25,22 @@ gem "trilogy", "~> 2.9"
 gem "bcrypt", "~> 3.1.7"
 gem "geared_pagination", "~> 1.2"
 gem "rqrcode"
-gem "redcarpet"
 gem "rouge"
 gem "jbuilder"
-gem "lexxy"
+gem "lexxy", bc: "lexxy"
 gem "image_processing", "~> 1.14"
 gem "platform_agent"
 gem "aws-sdk-s3", require: false
 gem "web-push"
 gem "net-http-persistent"
-gem "rubyzip", require: "zip"
+gem "zip_kit"
 gem "mittens"
 gem "useragent", bc: "useragent"
 
 # Operations
 gem "autotuner"
 gem "mission_control-jobs"
+gem "stackprof"
 gem "benchmark" # indirect dependency, being removed from Ruby 3.5 stdlib so here to quash warnings
 
 gem "rbs-inline", require: false

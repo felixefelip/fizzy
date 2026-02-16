@@ -1,10 +1,8 @@
 # rbs_inline: enabled
 
 class Current < ActiveSupport::CurrentAttributes
-  attribute :session, :user, :account
+  attribute :session, :user, :identity, :account
   attribute :http_method, :request_id, :user_agent, :ip_address, :referrer
-
-  delegate :identity, to: :session, allow_nil: true
 
   # @rbs!
   #   attr_reader session: (Session?)
@@ -23,7 +21,15 @@ class Current < ActiveSupport::CurrentAttributes
   def session=(value)
     super(value)
 
-    if value.present? && account.present?
+    if value.present?
+      self.identity = session.identity
+    end
+  end
+
+  def identity=(identity)
+    super(identity)
+
+    if identity.present?
       self.user = identity.users.find_by(account: account)
     end
   end
