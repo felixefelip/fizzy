@@ -1,0 +1,19 @@
+# Generated from app/models/filter/summarized.rb with RBS::Inline
+
+module Filter::Summarized
+  def summary: () -> untyped
+
+  private
+
+  def index_summary: () -> untyped
+
+  def sort_summary: () -> untyped
+
+  def tag_summary: () -> untyped
+
+  def assignee_summary: () -> untyped
+
+  def terms_summary: () -> untyped
+
+  def creator_summary: () -> untyped
+end

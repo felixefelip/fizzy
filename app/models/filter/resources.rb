@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module Filter::Resources
   extend ActiveSupport::Concern
 

@@ -1,7 +1,9 @@
 # rbs_inline: enabled
 
 class Filter < ApplicationRecord
-  include Fields, Resources, Summarized
+  include Fields
+  include Resources
+  include Summarized
 
   include Params
   extend Params
@@ -10,12 +12,13 @@ class Filter < ApplicationRecord
   belongs_to :account, default: -> { creator.account }
 
   class << self
+    #: (Hash[Symbol, untyped]) -> Filter
     def from_params(params)
-      find_by_params(params) || build(params)
+      find_by_params(params) || build("foo" => "bar", "baz" => "qux")
     end
 
     def remember(attrs)
-      create!(attrs)
+      create!(**attrs)
     rescue ActiveRecord::RecordNotUnique
       find_by_params(attrs).tap(&:touch)
     end

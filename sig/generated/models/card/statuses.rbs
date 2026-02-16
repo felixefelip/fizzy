@@ -3,7 +3,7 @@
 module Card::Statuses
   extend ActiveSupport::Concern
 
-  attr_reader initial_status: untyped
+  attr_reader initial_status: ::ActiveSupport::StringInquirer?
 
   # : -> void
   def publish: () -> void

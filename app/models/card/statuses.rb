@@ -9,7 +9,7 @@ module Card::Statuses
   included do
     enum :status, %w[ drafted published ].index_by(&:itself)
 
-    attr_reader :initial_status
+    attr_reader :initial_status #: ::ActiveSupport::StringInquirer?
 
     before_save :update_created_at_on_publication
     before_save :remember_initial_status
@@ -28,6 +28,7 @@ module Card::Statuses
 
   #: -> bool
   def was_just_published?
+    # status_in_database deveria não ser nilable, pois tem valor default no banco de dados e o Rails atribui esse valor mesmo para new records.
     initial_status&.drafted? && status_in_database.inquiry.published?
   end
 
