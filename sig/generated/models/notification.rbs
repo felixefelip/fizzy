@@ -7,6 +7,9 @@ class Notification < ApplicationRecord
   def self.read_all: () -> void
 
   # : -> void
+  def self.unread_all: () -> void
+
+  # : -> void
   def read: () -> void
 
   # : -> void
@@ -18,11 +21,11 @@ class Notification < ApplicationRecord
   private
 
   # : -> void
-  def broadcast_unread: () -> void
-
-  # : -> void
-  def broadcast_read: () -> void
+  def set_card: () -> void
 
   # : -> void
   def bundle: () -> void
+
+  # : -> void
+  def broadcast_update: () -> void
 end

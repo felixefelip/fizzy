@@ -39,4 +39,6 @@ module Board::Accessible
   def notifications_for_user: (untyped user) -> untyped
 
   def watches_for: (untyped user) -> untyped
+
+  def pins_for: (untyped user) -> untyped
 end

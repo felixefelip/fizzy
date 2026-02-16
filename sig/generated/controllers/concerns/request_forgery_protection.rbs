@@ -5,13 +5,9 @@ module RequestForgeryProtection
 
   private
 
-  def append_sec_fetch_site_to_vary_header: () -> untyped
+  def verified_via_header_only?: () -> untyped
 
-  def verified_request?: () -> untyped
+  def allowed_api_request?: () -> untyped
 
-  SAFE_FETCH_SITES: ::Array[untyped]
-
-  def safe_fetch_site?: () -> untyped
-
-  def sec_fetch_site_value: () -> untyped
+  def allowed_insecure_context_request?: () -> untyped
 end

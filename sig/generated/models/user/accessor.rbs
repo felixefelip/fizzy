@@ -3,6 +3,8 @@
 module User::Accessor
   extend ActiveSupport::Concern
 
+  def draft_new_card_in: (untyped board) -> untyped
+
   private
 
   def grant_access_to_boards: () -> untyped

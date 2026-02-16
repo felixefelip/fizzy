@@ -3,6 +3,8 @@
 module Searchable
   extend ActiveSupport::Concern
 
+  SEARCH_CONTENT_LIMIT: untyped
+
   def reindex: () -> untyped
 
   private
@@ -14,6 +16,8 @@ module Searchable
   def remove_from_search_index: () -> untyped
 
   def search_record_attributes: () -> untyped
+
+  def search_record_content: () -> untyped
 
   def search_record_class: () -> untyped
 

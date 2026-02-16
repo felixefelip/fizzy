@@ -15,6 +15,10 @@ class Board < ApplicationRecord
 
   include Publishable
 
+  include Storage
+
+  include ::Storage::Tracked
+
   include Triageable
 
   class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy

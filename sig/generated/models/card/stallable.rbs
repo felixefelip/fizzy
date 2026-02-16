@@ -5,6 +5,7 @@ module Card::Stallable
 
   STALLED_AFTER_LAST_SPIKE_PERIOD: untyped
 
+  # Keep in sync with #isStalled in app/javascript/controllers/bubble_controller.js
   # : -> bool?
   def stalled?: () -> bool?
 

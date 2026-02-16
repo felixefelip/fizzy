@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module Card::Commentable
   extend ActiveSupport::Concern
 

@@ -1,0 +1,30 @@
+# Generated from app/models/concerns/storage/tracked.rb with RBS::Inline
+
+# Storage tracking is a business abstraction - we count what users upload.
+# Original upload bytes only; variants/previews/derivatives excluded.
+# Physical storage optimizations (deduplication, compression) don't affect quotas.
+module Storage::Tracked
+  extend ActiveSupport::Concern
+
+  # Return self as the trackable record for storage entries
+  def storage_tracked_record: () -> untyped
+
+  # Override in models where board is determined differently (e.g., Board itself)
+  def board_for_storage_tracking: () -> untyped
+
+  # Total bytes for all attachments on this record
+  def storage_bytes: () -> untyped
+
+  private
+
+  def board_transfer?: () -> untyped
+
+  def track_board_transfer: () -> untyped
+
+  def storage_transfer_records: () -> untyped
+
+  # Override if needed. Default = all direct attachments
+  def attachments_for_storage: (?untyped recordable) -> untyped
+
+  def storage_attachments_for_records: (untyped recordables) -> untyped
+end

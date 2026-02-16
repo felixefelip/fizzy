@@ -10,6 +10,10 @@ class Account < ApplicationRecord
   # :  -> User
   def system_user: () -> User
 
+  def active?: () -> untyped
+
+  def importing?: () -> untyped
+
   private
 
   def assign_external_account_id: () -> untyped

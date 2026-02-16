@@ -1,6 +1,9 @@
+# rbs_inline: enabled
+
 module Board::Storage
   extend ActiveSupport::Concern
-  include Storage::Totaled
+
+  include ::Storage::Totaled
 
   # Board's own embeds (public_description) count toward itself
   def board_for_storage_tracking

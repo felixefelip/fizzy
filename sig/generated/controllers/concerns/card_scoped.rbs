@@ -14,4 +14,8 @@ module CardScoped
   def set_board: () -> untyped
 
   def render_card_replacement: () -> untyped
+
+  def capture_card_location: () -> untyped
+
+  def refresh_stream_if_needed: () -> untyped
 end

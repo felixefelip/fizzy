@@ -25,6 +25,8 @@ class CardsController < ApplicationController
 
   def set_card: () -> untyped
 
+  def redirect_if_drafted: () -> untyped
+
   def ensure_permission_to_administer_card: () -> untyped
 
   def card_params: () -> untyped

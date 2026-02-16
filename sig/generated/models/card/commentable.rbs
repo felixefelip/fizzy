@@ -1,0 +1,18 @@
+# Generated from app/models/card/commentable.rb with RBS::Inline
+
+module Card::Commentable
+  extend ActiveSupport::Concern
+
+  def commentable?: () -> untyped
+
+  private
+
+  STORAGE_BATCH_SIZE: ::Integer
+
+  # Override to include comments, but only load comments that have attachments.
+  # Cards can have thousands of comments; most won't have attachments.
+  # Streams in batches to avoid loading all IDs into memory at once.
+  def storage_transfer_records: () -> untyped
+
+  def storage_comment_ids_with_attachments: () -> untyped
+end

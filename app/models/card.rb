@@ -21,7 +21,7 @@ class Card < ApplicationRecord
   include Searchable
   include Stallable
   include Statuses
-  include Storage::Tracked
+  include ::Storage::Tracked
   include Taggable
   include Triageable
   include Watchable

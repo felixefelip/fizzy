@@ -12,4 +12,6 @@ module Card::Searchable
   def search_card_id: () -> untyped
 
   def search_board_id: () -> untyped
+
+  def searchable?: () -> untyped
 end

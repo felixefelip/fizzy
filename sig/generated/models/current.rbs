@@ -19,6 +19,8 @@ class Current < ActiveSupport::CurrentAttributes
 
   def session=: (untyped value) -> untyped
 
+  def identity=: (untyped identity) -> untyped
+
   # : (untyped) ?{ () -> untyped } -> self
   def with_account: (untyped) ?{ () -> untyped } -> self
 

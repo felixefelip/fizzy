@@ -1,0 +1,34 @@
+# Generated from app/models/concerns/storage/totaled.rb with RBS::Inline
+
+module Storage::Totaled
+  extend ActiveSupport::Concern
+
+  def foreign_key_for_storage: () -> untyped
+
+  # Fast: materialized snapshot (may be slightly stale)
+  def bytes_used: () -> untyped
+
+  # Exact: snapshot + pending entries
+  def bytes_used_exact: () -> untyped
+
+  def materialize_storage_later: () -> untyped
+
+  # Materialize all pending entries into snapshot
+  def materialize_storage: () -> untyped
+
+  # Reconcile ledger against actual attachment storage.
+  #
+  # Uses two-cursor approach for consistency: capture cursor before AND after the
+  # scan. If they differ, entries were added during the scan and we can't get an
+  # accurate diff without risking double-counting or undercounting.
+  #
+  # Returns true if reconciled successfully, false if aborted due to concurrent
+  # writes. Caller (ReconcileJob) handles retries to avoid amplification.
+  def reconcile_storage: () -> untyped
+
+  private
+
+  def create_or_find_storage_total: () -> untyped
+
+  def calculate_real_storage_bytes: () -> untyped
+end

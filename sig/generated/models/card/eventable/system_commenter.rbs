@@ -1,6 +1,9 @@
 # Generated from app/models/card/eventable/system_commenter.rb with RBS::Inline
 
+# rbs_inline: enabled
 class Card::Eventable::SystemCommenter
+  include ERB::Util
+
   attr_reader card: Card
 
   attr_reader event: ::Event
@@ -15,4 +18,18 @@ class Card::Eventable::SystemCommenter
 
   # : -> String?
   def comment_body: () -> String?
+
+  def creator_name: () -> untyped
+
+  def assignee_names: () -> untyped
+
+  def old_title: () -> untyped
+
+  def new_title: () -> untyped
+
+  def old_board: () -> untyped
+
+  def new_board: () -> untyped
+
+  def column: () -> untyped
 end

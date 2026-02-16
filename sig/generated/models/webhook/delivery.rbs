@@ -1,11 +1,16 @@
 # Generated from app/models/webhook/delivery.rb with RBS::Inline
 
 class Webhook::Delivery < ApplicationRecord
+  class ResponseTooLarge < StandardError
+  end
+
   STALE_TRESHOLD: untyped
 
   USER_AGENT: ::String
 
   ENDPOINT_TIMEOUT: untyped
+
+  MAX_RESPONSE_SIZE: untyped
 
   def self.cleanup: () -> untyped
 
@@ -20,6 +25,8 @@ class Webhook::Delivery < ApplicationRecord
   private
 
   def perform_request: () -> untyped
+
+  def stream_body_with_limit: (untyped response) -> untyped
 
   def resolved_ip: () -> untyped
 
@@ -38,4 +45,8 @@ class Webhook::Delivery < ApplicationRecord
   def render_payload: (**untyped options) -> untyped
 
   def convert_html_to_mrkdwn: (untyped html) -> untyped
+
+  def slack_payload: () -> untyped
+
+  def base_url_options: () -> untyped
 end

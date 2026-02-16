@@ -20,7 +20,11 @@ class ApplicationPlatform < PlatformAgent
 
   def desktop?: () -> untyped
 
+  def native?: () -> untyped
+
   def windows?: () -> untyped
+
+  def type: () -> untyped
 
   def operating_system: () -> untyped
 end

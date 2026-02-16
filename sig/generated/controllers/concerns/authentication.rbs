@@ -3,8 +3,6 @@
 module Authentication
   extend ActiveSupport::Concern
 
-  include LoginHelper
-
   def require_unauthenticated_access: (**untyped options) -> untyped
 
   def allow_unauthenticated_access: (**untyped options) -> untyped
@@ -23,6 +21,8 @@ module Authentication
 
   def find_session_by_cookie: () -> untyped
 
+  def authenticate_by_bearer_token: () -> untyped
+
   def request_authentication: () -> untyped
 
   def after_authentication_url: () -> untyped
@@ -37,9 +37,5 @@ module Authentication
 
   def terminate_session: () -> untyped
 
-  def ensure_development_magic_link_not_leaked: () -> untyped
-
-  def redirect_to_session_magic_link: (untyped magic_link, ?return_to: untyped) -> untyped
-
-  def serve_development_magic_link: (untyped magic_link) -> untyped
+  def session_token: () -> untyped
 end

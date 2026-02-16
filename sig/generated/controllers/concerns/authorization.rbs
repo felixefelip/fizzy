@@ -13,9 +13,9 @@ module Authorization
 
   def ensure_staff: () -> untyped
 
-  def ensure_can_access_account: () -> untyped
+  def authenticated_account_access?: () -> untyped
 
-  def ensure_only_staff_can_access_non_production_remote_environments: () -> untyped
+  def ensure_can_access_account: () -> untyped
 
   def redirect_existing_user: () -> untyped
 end

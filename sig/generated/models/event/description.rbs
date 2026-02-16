@@ -32,6 +32,8 @@ class Event::Description
   # : -> String
   def creator_name: () -> String
 
+  def quoted: (untyped text) -> untyped
+
   # : -> Card
   def card: () -> Card
 
@@ -54,4 +56,14 @@ class Event::Description
 
   # : (String, String) -> String
   def triaged_sentence: (String, String) -> String
+
+  def assignee_names: () -> untyped
+
+  def unassigned_names: () -> untyped
+
+  def old_title: () -> untyped
+
+  def new_location: () -> untyped
+
+  def column: () -> untyped
 end
