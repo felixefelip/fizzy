@@ -1,7 +1,12 @@
+# rbs_inline: enabled
+
 module Search::Record::Trilogy
   extend ActiveSupport::Concern
 
   SHARD_COUNT = 16
+
+  # @type self: singleton(Search::Record) & singleton(Search::Record::Trilogy)
+  # @type instance: Search::Record & Search::Record::Trilogy
 
   included do
     self.abstract_class = true
