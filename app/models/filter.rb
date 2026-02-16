@@ -14,7 +14,7 @@ class Filter < ApplicationRecord
   class << self
     #: (Hash[Symbol, untyped]) -> Filter
     def from_params(params)
-      find_by_params(params) || build("foo" => "bar", "baz" => "qux")
+      find_by_params(params) || build(params)
     end
 
     def remember(attrs)

@@ -44,10 +44,6 @@ class Card < ApplicationRecord
   #     def connection: () -> untyped
   #   end
 
-  validates :title, length: { maximum: 255 }
-  validates :number, presence: true, uniqueness: { scope: :account_id }
-  validates :board, presence: true
-
   before_save :set_default_title, if: :published?
   before_create :assign_number
 
