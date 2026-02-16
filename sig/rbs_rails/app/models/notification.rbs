@@ -363,6 +363,86 @@ class ::Notification < ::ApplicationRecord
     def user_id_before_type_cast: () -> ::String
 
     def user_id_for_database: () -> ::String
+
+    def card_id: () -> ::String
+
+    def card_id=: (::String) -> ::String
+
+    def card_id?: () -> bool
+
+    def card_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def card_id_change: () -> [ ::String?, ::String? ]
+
+    def card_id_will_change!: () -> void
+
+    def card_id_was: () -> ::String?
+
+    def card_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def card_id_previous_change: () -> ::Array[::String?]?
+
+    def card_id_previously_was: () -> ::String?
+
+    def card_id_before_last_save: () -> ::String?
+
+    def card_id_change_to_be_saved: () -> ::Array[::String?]?
+
+    def card_id_in_database: () -> ::String?
+
+    def saved_change_to_card_id: () -> ::Array[::String?]?
+
+    def saved_change_to_card_id?: () -> bool
+
+    def will_save_change_to_card_id?: () -> bool
+
+    def restore_card_id!: () -> void
+
+    def clear_card_id_change: () -> void
+
+    def card_id_before_type_cast: () -> ::String
+
+    def card_id_for_database: () -> ::String
+
+    def unread_count: () -> ::Integer
+
+    def unread_count=: (::Integer) -> ::Integer
+
+    def unread_count?: () -> bool
+
+    def unread_count_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def unread_count_change: () -> [ ::Integer?, ::Integer? ]
+
+    def unread_count_will_change!: () -> void
+
+    def unread_count_was: () -> ::Integer?
+
+    def unread_count_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def unread_count_previous_change: () -> ::Array[::Integer?]?
+
+    def unread_count_previously_was: () -> ::Integer?
+
+    def unread_count_before_last_save: () -> ::Integer?
+
+    def unread_count_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def unread_count_in_database: () -> ::Integer?
+
+    def saved_change_to_unread_count: () -> ::Array[::Integer?]?
+
+    def saved_change_to_unread_count?: () -> bool
+
+    def will_save_change_to_unread_count?: () -> bool
+
+    def restore_unread_count!: () -> void
+
+    def clear_unread_count_change: () -> void
+
+    def unread_count_before_type_cast: () -> ::Integer
+
+    def unread_count_for_database: () -> ::Integer
   end
   include ::Notification::GeneratedAttributeMethods
   module ::Notification::GeneratedAliasAttributeMethods
@@ -431,6 +511,12 @@ class ::Notification < ::ApplicationRecord
   def source: () -> untyped
   def source=: (untyped?) -> untyped?
   def reload_source: () -> untyped?
+  def card: () -> ::Card
+  def card=: (::Card?) -> ::Card?
+  def reload_card: () -> ::Card?
+  def build_card: (untyped) -> ::Card
+  def create_card: (untyped) -> ::Card
+  def create_card!: (untyped) -> ::Card
   module ::Notification::GeneratedAssociationMethods
   end
   include ::Notification::GeneratedAssociationMethods
@@ -482,4 +568,6 @@ end
 class ::Account < ::ApplicationRecord
 end
 class ::User < ::ApplicationRecord
+end
+class ::Card < ::ApplicationRecord
 end

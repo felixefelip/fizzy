@@ -417,14 +417,6 @@ class ::User < ::ApplicationRecord
   def search_queries=: (::Search::Query::ActiveRecord_Associations_CollectionProxy | ::Array[::Search::Query]) -> (::Search::Query::ActiveRecord_Associations_CollectionProxy | ::Array[::Search::Query])
   def search_query_ids: () -> ::Array[::Integer]
   def search_query_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def notifications: () -> ::Notification::ActiveRecord_Associations_CollectionProxy
-  def notifications=: (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification]) -> (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification])
-  def notification_ids: () -> ::Array[::Integer]
-  def notification_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def notification_bundles: () -> ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy
-  def notification_bundles=: (::Notification::Bundle::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification::Bundle]) -> (::Notification::Bundle::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification::Bundle])
-  def notification_bundle_ids: () -> ::Array[::Integer]
-  def notification_bundle_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def mentions: () -> ::Mention::ActiveRecord_Associations_CollectionProxy
   def mentions=: (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention]) -> (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention])
   def mention_ids: () -> ::Array[::Integer]
@@ -465,6 +457,14 @@ class ::User < ::ApplicationRecord
   def accessible_comments=: (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment]) -> (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment])
   def accessible_comment_ids: () -> ::Array[::Integer]
   def accessible_comment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def notifications: () -> ::Notification::ActiveRecord_Associations_CollectionProxy
+  def notifications=: (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification]) -> (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification])
+  def notification_ids: () -> ::Array[::Integer]
+  def notification_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def notification_bundles: () -> ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy
+  def notification_bundles=: (::Notification::Bundle::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification::Bundle]) -> (::Notification::Bundle::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification::Bundle])
+  def notification_bundle_ids: () -> ::Array[::Integer]
+  def notification_bundle_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def accessible_events: () -> ::Event::ActiveRecord_Associations_CollectionProxy
   def accessible_events=: (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event]) -> (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event])
   def accessible_event_ids: () -> ::Array[::Integer]
@@ -489,10 +489,10 @@ class ::User < ::ApplicationRecord
   def pinned_cards=: (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card]) -> (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card])
   def pinned_card_ids: () -> ::Array[::Integer]
   def pinned_card_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def exports: () -> ::Account::Export::ActiveRecord_Associations_CollectionProxy
-  def exports=: (::Account::Export::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Export]) -> (::Account::Export::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Export])
-  def export_ids: () -> ::Array[::Integer]
-  def export_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def data_exports: () -> ::User::DataExport::ActiveRecord_Associations_CollectionProxy
+  def data_exports=: (::User::DataExport::ActiveRecord_Associations_CollectionProxy | ::Array[::User::DataExport]) -> (::User::DataExport::ActiveRecord_Associations_CollectionProxy | ::Array[::User::DataExport])
+  def data_export_ids: () -> ::Array[::Integer]
+  def data_export_ids=: (::Array[::Integer]) -> ::Array[::Integer]
 
   def settings: () -> ::User::Settings?
   def settings=: (::User::Settings?) -> ::User::Settings?
@@ -623,14 +623,6 @@ class ::Search::Query < ::ApplicationRecord
 end
 class ::Search::Query::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Notification < ::ApplicationRecord
-end
-class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
-class ::Notification::Bundle < ::ApplicationRecord
-end
-class ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
 class ::Mention < ::ApplicationRecord
 end
 class ::Mention::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -663,6 +655,14 @@ class ::Comment < ::ApplicationRecord
 end
 class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
+class ::Notification < ::ApplicationRecord
+end
+class ::Notification::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Notification::Bundle < ::ApplicationRecord
+end
+class ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
 class ::Event < ::ApplicationRecord
 end
 class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -679,9 +679,9 @@ class ::Pin < ::ApplicationRecord
 end
 class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Account::Export < ::ApplicationRecord
+class ::User::DataExport < ::Export
 end
-class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+class ::User::DataExport::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::User::Settings < ::ApplicationRecord
 end
@@ -692,6 +692,8 @@ end
 module ::Search
 end
 module ::Push
+end
+class ::Export < ::ApplicationRecord
 end
 class ::User < ::ApplicationRecord
 end

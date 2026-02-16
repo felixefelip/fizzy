@@ -17,8 +17,8 @@ module Card::Readable
   # : -> void
   def remove_inaccessible_notifications_later: () -> void
 
-  # : -> ::Event::ActiveRecord_Relation
-  def event_notification_sources: () -> ::Event::ActiveRecord_Relation
+  # : -> ::Event::ActiveRecord_Associations_CollectionProxy
+  def event_notification_sources: () -> ::Event::ActiveRecord_Associations_CollectionProxy
 
   # : -> Event::ActiveRecord_Relation
   def comment_creation_events: () -> Event::ActiveRecord_Relation

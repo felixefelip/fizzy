@@ -7,17 +7,21 @@ interface ::_RbsRailsPathHelpers
   def rails_info_notes_path: (*untyped) -> ::String
   def rails_info_path: (*untyped) -> ::String
   def root_path: (*untyped) -> ::String
+  def account_cancellation_path: (*untyped) -> ::String
+  def new_account_entropy_path: (*untyped) -> ::String
+  def edit_account_entropy_path: (*untyped) -> ::String
+  def account_entropy_path: (*untyped) -> ::String
   def new_account_join_code_path: (*untyped) -> ::String
   def edit_account_join_code_path: (*untyped) -> ::String
   def account_join_code_path: (*untyped) -> ::String
   def new_account_settings_path: (*untyped) -> ::String
   def edit_account_settings_path: (*untyped) -> ::String
   def account_settings_path: (*untyped) -> ::String
-  def new_account_entropy_path: (*untyped) -> ::String
-  def edit_account_entropy_path: (*untyped) -> ::String
-  def account_entropy_path: (*untyped) -> ::String
   def account_exports_path: (*untyped) -> ::String
   def account_export_path: (*untyped) -> ::String
+  def account_imports_path: (*untyped) -> ::String
+  def new_account_import_path: (*untyped) -> ::String
+  def account_import_path: (*untyped) -> ::String
   def new_user_avatar_path: (*untyped) -> ::String
   def edit_user_avatar_path: (*untyped) -> ::String
   def user_avatar_path: (*untyped) -> ::String
@@ -38,6 +42,8 @@ interface ::_RbsRailsPathHelpers
   def new_user_email_address_path: (*untyped) -> ::String
   def edit_user_email_address_path: (*untyped) -> ::String
   def user_email_address_path: (*untyped) -> ::String
+  def user_data_exports_path: (*untyped) -> ::String
+  def user_data_export_path: (*untyped) -> ::String
   def users_path: (*untyped) -> ::String
   def new_user_path: (*untyped) -> ::String
   def edit_user_path: (*untyped) -> ::String
@@ -103,6 +109,7 @@ interface ::_RbsRailsPathHelpers
   def new_cards_preview_path: (*untyped) -> ::String
   def edit_cards_preview_path: (*untyped) -> ::String
   def cards_preview_path: (*untyped) -> ::String
+  def card_draft_path: (*untyped) -> ::String
   def new_card_board_path: (*untyped) -> ::String
   def edit_card_board_path: (*untyped) -> ::String
   def card_board_path: (*untyped) -> ::String
@@ -136,10 +143,15 @@ interface ::_RbsRailsPathHelpers
   def new_card_watch_path: (*untyped) -> ::String
   def edit_card_watch_path: (*untyped) -> ::String
   def card_watch_path: (*untyped) -> ::String
+  def card_reactions_path: (*untyped) -> ::String
+  def new_card_reaction_path: (*untyped) -> ::String
+  def edit_card_reaction_path: (*untyped) -> ::String
+  def card_reaction_path: (*untyped) -> ::String
   def card_assignments_path: (*untyped) -> ::String
   def new_card_assignment_path: (*untyped) -> ::String
   def edit_card_assignment_path: (*untyped) -> ::String
   def card_assignment_path: (*untyped) -> ::String
+  def card_self_assignment_path: (*untyped) -> ::String
   def card_steps_path: (*untyped) -> ::String
   def new_card_step_path: (*untyped) -> ::String
   def edit_card_step_path: (*untyped) -> ::String
@@ -160,6 +172,7 @@ interface ::_RbsRailsPathHelpers
   def new_card_path: (*untyped) -> ::String
   def edit_card_path: (*untyped) -> ::String
   def card_path: (*untyped) -> ::String
+  def tags_path: (*untyped) -> ::String
   def new_notifications_settings_path: (*untyped) -> ::String
   def edit_notifications_settings_path: (*untyped) -> ::String
   def notifications_settings_path: (*untyped) -> ::String
@@ -224,6 +237,11 @@ interface ::_RbsRailsPathHelpers
   def new_landing_path: (*untyped) -> ::String
   def edit_landing_path: (*untyped) -> ::String
   def landing_path: (*untyped) -> ::String
+  def my_identity_path: (*untyped) -> ::String
+  def my_access_tokens_path: (*untyped) -> ::String
+  def new_my_access_token_path: (*untyped) -> ::String
+  def edit_my_access_token_path: (*untyped) -> ::String
+  def my_access_token_path: (*untyped) -> ::String
   def my_pins_path: (*untyped) -> ::String
   def new_my_pin_path: (*untyped) -> ::String
   def edit_my_pin_path: (*untyped) -> ::String
@@ -269,7 +287,6 @@ interface ::_RbsRailsPathHelpers
   def pwa_manifest_path: (*untyped) -> ::String
   def service_worker_path: (*untyped) -> ::String
   def admin_mission_control_jobs_path: (*untyped) -> ::String
-  def admin_stats_path: (*untyped) -> ::String
   def turbo_recede_historical_location_path: (*untyped) -> ::String
   def turbo_resume_historical_location_path: (*untyped) -> ::String
   def turbo_refresh_historical_location_path: (*untyped) -> ::String
@@ -303,17 +320,21 @@ interface ::_RbsRailsPathHelpers
   def rails_info_notes_url: (*untyped) -> ::String
   def rails_info_url: (*untyped) -> ::String
   def root_url: (*untyped) -> ::String
+  def account_cancellation_url: (*untyped) -> ::String
+  def new_account_entropy_url: (*untyped) -> ::String
+  def edit_account_entropy_url: (*untyped) -> ::String
+  def account_entropy_url: (*untyped) -> ::String
   def new_account_join_code_url: (*untyped) -> ::String
   def edit_account_join_code_url: (*untyped) -> ::String
   def account_join_code_url: (*untyped) -> ::String
   def new_account_settings_url: (*untyped) -> ::String
   def edit_account_settings_url: (*untyped) -> ::String
   def account_settings_url: (*untyped) -> ::String
-  def new_account_entropy_url: (*untyped) -> ::String
-  def edit_account_entropy_url: (*untyped) -> ::String
-  def account_entropy_url: (*untyped) -> ::String
   def account_exports_url: (*untyped) -> ::String
   def account_export_url: (*untyped) -> ::String
+  def account_imports_url: (*untyped) -> ::String
+  def new_account_import_url: (*untyped) -> ::String
+  def account_import_url: (*untyped) -> ::String
   def new_user_avatar_url: (*untyped) -> ::String
   def edit_user_avatar_url: (*untyped) -> ::String
   def user_avatar_url: (*untyped) -> ::String
@@ -334,6 +355,8 @@ interface ::_RbsRailsPathHelpers
   def new_user_email_address_url: (*untyped) -> ::String
   def edit_user_email_address_url: (*untyped) -> ::String
   def user_email_address_url: (*untyped) -> ::String
+  def user_data_exports_url: (*untyped) -> ::String
+  def user_data_export_url: (*untyped) -> ::String
   def users_url: (*untyped) -> ::String
   def new_user_url: (*untyped) -> ::String
   def edit_user_url: (*untyped) -> ::String
@@ -399,6 +422,7 @@ interface ::_RbsRailsPathHelpers
   def new_cards_preview_url: (*untyped) -> ::String
   def edit_cards_preview_url: (*untyped) -> ::String
   def cards_preview_url: (*untyped) -> ::String
+  def card_draft_url: (*untyped) -> ::String
   def new_card_board_url: (*untyped) -> ::String
   def edit_card_board_url: (*untyped) -> ::String
   def card_board_url: (*untyped) -> ::String
@@ -432,10 +456,15 @@ interface ::_RbsRailsPathHelpers
   def new_card_watch_url: (*untyped) -> ::String
   def edit_card_watch_url: (*untyped) -> ::String
   def card_watch_url: (*untyped) -> ::String
+  def card_reactions_url: (*untyped) -> ::String
+  def new_card_reaction_url: (*untyped) -> ::String
+  def edit_card_reaction_url: (*untyped) -> ::String
+  def card_reaction_url: (*untyped) -> ::String
   def card_assignments_url: (*untyped) -> ::String
   def new_card_assignment_url: (*untyped) -> ::String
   def edit_card_assignment_url: (*untyped) -> ::String
   def card_assignment_url: (*untyped) -> ::String
+  def card_self_assignment_url: (*untyped) -> ::String
   def card_steps_url: (*untyped) -> ::String
   def new_card_step_url: (*untyped) -> ::String
   def edit_card_step_url: (*untyped) -> ::String
@@ -456,6 +485,7 @@ interface ::_RbsRailsPathHelpers
   def new_card_url: (*untyped) -> ::String
   def edit_card_url: (*untyped) -> ::String
   def card_url: (*untyped) -> ::String
+  def tags_url: (*untyped) -> ::String
   def new_notifications_settings_url: (*untyped) -> ::String
   def edit_notifications_settings_url: (*untyped) -> ::String
   def notifications_settings_url: (*untyped) -> ::String
@@ -520,6 +550,11 @@ interface ::_RbsRailsPathHelpers
   def new_landing_url: (*untyped) -> ::String
   def edit_landing_url: (*untyped) -> ::String
   def landing_url: (*untyped) -> ::String
+  def my_identity_url: (*untyped) -> ::String
+  def my_access_tokens_url: (*untyped) -> ::String
+  def new_my_access_token_url: (*untyped) -> ::String
+  def edit_my_access_token_url: (*untyped) -> ::String
+  def my_access_token_url: (*untyped) -> ::String
   def my_pins_url: (*untyped) -> ::String
   def new_my_pin_url: (*untyped) -> ::String
   def edit_my_pin_url: (*untyped) -> ::String
@@ -565,7 +600,6 @@ interface ::_RbsRailsPathHelpers
   def pwa_manifest_url: (*untyped) -> ::String
   def service_worker_url: (*untyped) -> ::String
   def admin_mission_control_jobs_url: (*untyped) -> ::String
-  def admin_stats_url: (*untyped) -> ::String
   def turbo_recede_historical_location_url: (*untyped) -> ::String
   def turbo_resume_historical_location_url: (*untyped) -> ::String
   def turbo_refresh_historical_location_url: (*untyped) -> ::String

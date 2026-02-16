@@ -1,10 +1,10 @@
 # resolve-type-names: false
 
-class ::Account < ::ApplicationRecord
-  class ::Account::Export < ::Export
-    extend ::ActiveRecord::Base::ClassMethods[::Account::Export, ::Account::Export::ActiveRecord_Relation, ::String]
+class ::User < ::ApplicationRecord
+  class ::User::DataExport < ::Export
+    extend ::ActiveRecord::Base::ClassMethods[::User::DataExport, ::User::DataExport::ActiveRecord_Relation, ::String]
 
-    module ::Account::Export::GeneratedAttributeMethods
+    module ::User::DataExport::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -325,9 +325,9 @@ class ::Account < ::ApplicationRecord
 
       def type_for_database: () -> ::String?
     end
-    include ::Account::Export::GeneratedAttributeMethods
-    module ::Account::Export::GeneratedAliasAttributeMethods
-      include ::Account::Export::GeneratedAttributeMethods
+    include ::User::DataExport::GeneratedAttributeMethods
+    module ::User::DataExport::GeneratedAliasAttributeMethods
+      include ::User::DataExport::GeneratedAttributeMethods
 
       alias id_value id
 
@@ -369,7 +369,7 @@ class ::Account < ::ApplicationRecord
 
       alias id_value_for_database id_for_database
     end
-    include ::Account::Export::GeneratedAliasAttributeMethods
+    include ::User::DataExport::GeneratedAliasAttributeMethods
 
     def file_attachment: () -> ::ActiveStorage::Attachment?
     def file_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
@@ -395,7 +395,7 @@ class ::Account < ::ApplicationRecord
     def build_user: (untyped) -> ::User
     def create_user: (untyped) -> ::User
     def create_user!: (untyped) -> ::User
-    module ::Account::Export::GeneratedAssociationMethods
+    module ::User::DataExport::GeneratedAssociationMethods
       def file: () -> ::ActiveStorage::Attached::One
 
       def file=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
@@ -405,44 +405,44 @@ class ::Account < ::ApplicationRecord
                | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
                | (nil) -> nil
     end
-    include ::Account::Export::GeneratedAssociationMethods
+    include ::User::DataExport::GeneratedAssociationMethods
 
-    module ::Account::Export::GeneratedRelationMethods
+    module ::User::DataExport::GeneratedRelationMethods
     end
 
-    class ::Account::Export::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::Export]
-      include ::Account::Export::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Account::Export, ::String]
+    class ::User::DataExport::ActiveRecord_Relation < ::ActiveRecord::Relation
+      include ::Enumerable[::User::DataExport]
+      include ::User::DataExport::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::User::DataExport, ::String]
     end
 
-    class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::Export]
-      include ::Account::Export::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Account::Export, ::String]
+    class ::User::DataExport::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::User::DataExport]
+      include ::User::DataExport::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::User::DataExport, ::String]
 
-      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def reload: () -> ::Array[::Account::Export]
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::DataExport
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::DataExport]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::DataExport
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::DataExport]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User::DataExport
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User::DataExport]
+      def reload: () -> ::Array[::User::DataExport]
 
-      def replace: (::Array[::Account::Export]) -> void
-      def delete: (*::Account::Export | ::String) -> ::Array[::Account::Export]
-      def destroy: (*::Account::Export | ::String) -> ::Array[::Account::Export]
-      def <<: (*::Account::Export | ::Array[::Account::Export]) -> self
-      def prepend: (*::Account::Export | ::Array[::Account::Export]) -> self
+      def replace: (::Array[::User::DataExport]) -> void
+      def delete: (*::User::DataExport | ::String) -> ::Array[::User::DataExport]
+      def destroy: (*::User::DataExport | ::String) -> ::Array[::User::DataExport]
+      def <<: (*::User::DataExport | ::Array[::User::DataExport]) -> self
+      def prepend: (*::User::DataExport | ::Array[::User::DataExport]) -> self
     end
   end
 end
 
-class ::Account < ::ApplicationRecord
+class ::User < ::ApplicationRecord
 end
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
 class ::Export < ::ApplicationRecord
 end
-class ::User < ::ApplicationRecord
+class ::Account < ::ApplicationRecord
 end

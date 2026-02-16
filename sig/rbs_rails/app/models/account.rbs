@@ -289,6 +289,10 @@ class ::Account < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Account::GeneratedAliasAttributeMethods
+  def storage_entries: () -> ::Storage::Entry::ActiveRecord_Associations_CollectionProxy
+  def storage_entries=: (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry]) -> (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry])
+  def storage_entry_ids: () -> ::Array[::Integer]
+  def storage_entry_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def user_ids: () -> ::Array[::Integer]
@@ -313,18 +317,18 @@ class ::Account < ::ApplicationRecord
   def columns=: (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column]) -> (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column])
   def column_ids: () -> ::Array[::Integer]
   def column_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def entropies: () -> ::Entropy::ActiveRecord_Associations_CollectionProxy
+  def entropies=: (::Entropy::ActiveRecord_Associations_CollectionProxy | ::Array[::Entropy]) -> (::Entropy::ActiveRecord_Associations_CollectionProxy | ::Array[::Entropy])
+  def entropy_ids: () -> ::Array[::Integer]
+  def entropy_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def exports: () -> ::Account::Export::ActiveRecord_Associations_CollectionProxy
   def exports=: (::Account::Export::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Export]) -> (::Account::Export::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Export])
   def export_ids: () -> ::Array[::Integer]
   def export_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def uploads_attachments: () -> ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
-  def uploads_attachments=: (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment]) -> (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment])
-  def uploads_attachment_ids: () -> ::Array[::Integer]
-  def uploads_attachment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def uploads_blobs: () -> ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy
-  def uploads_blobs=: (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob]) -> (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob])
-  def uploads_blob_ids: () -> ::Array[::Integer]
-  def uploads_blob_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def imports: () -> ::Account::Import::ActiveRecord_Associations_CollectionProxy
+  def imports=: (::Account::Import::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Import]) -> (::Account::Import::ActiveRecord_Associations_CollectionProxy | ::Array[::Account::Import])
+  def import_ids: () -> ::Array[::Integer]
+  def import_ids=: (::Array[::Integer]) -> ::Array[::Integer]
 
   def entropy: () -> ::Entropy?
   def entropy=: (::Entropy?) -> ::Entropy?
@@ -332,6 +336,18 @@ class ::Account < ::ApplicationRecord
   def create_entropy: (?untyped) -> ::Entropy
   def create_entropy!: (?untyped) -> ::Entropy
   def reload_entropy: () -> ::Entropy?
+  def cancellation: () -> ::Account::Cancellation?
+  def cancellation=: (::Account::Cancellation?) -> ::Account::Cancellation?
+  def build_cancellation: (?untyped) -> ::Account::Cancellation
+  def create_cancellation: (?untyped) -> ::Account::Cancellation
+  def create_cancellation!: (?untyped) -> ::Account::Cancellation
+  def reload_cancellation: () -> ::Account::Cancellation?
+  def storage_total: () -> ::Storage::Total?
+  def storage_total=: (::Storage::Total?) -> ::Storage::Total?
+  def build_storage_total: (?untyped) -> ::Storage::Total
+  def create_storage_total: (?untyped) -> ::Storage::Total
+  def create_storage_total!: (?untyped) -> ::Storage::Total
+  def reload_storage_total: () -> ::Storage::Total?
   def join_code: () -> ::Account::JoinCode?
   def join_code=: (::Account::JoinCode?) -> ::Account::JoinCode?
   def build_join_code: (?untyped) -> ::Account::JoinCode
@@ -340,16 +356,19 @@ class ::Account < ::ApplicationRecord
   def reload_join_code: () -> ::Account::JoinCode?
 
   module ::Account::GeneratedAssociationMethods
-    def uploads: () -> ::ActiveStorage::Attached::Many
-
-    def uploads=: (untyped) -> untyped
   end
   include ::Account::GeneratedAssociationMethods
 
-  def self.with_attached_uploads: () -> ::Account::ActiveRecord_Relation
+  def self.due_for_incineration: () -> ::Account::ActiveRecord_Relation
+  def self.importing: () -> ::Account::ActiveRecord_Relation
+  def self.active: () -> ::Account::ActiveRecord_Relation
 
   module ::Account::GeneratedRelationMethods
-    def with_attached_uploads: () -> ::Account::ActiveRecord_Relation
+    def due_for_incineration: () -> ::Account::ActiveRecord_Relation
+
+    def importing: () -> ::Account::ActiveRecord_Relation
+
+    def active: () -> ::Account::ActiveRecord_Relation
   end
 
   class ::Account::ActiveRecord_Relation < ::ActiveRecord::Relation
@@ -381,6 +400,10 @@ end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
+class ::Storage::Entry < ::ApplicationRecord
+end
+class ::Storage::Entry::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
 class ::User < ::ApplicationRecord
 end
 class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -405,17 +428,27 @@ class ::Column < ::ApplicationRecord
 end
 class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Account::Export < ::ApplicationRecord
+class ::Entropy < ::ApplicationRecord
+end
+class ::Entropy::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Account::Export < ::Export
 end
 class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+class ::Account::Import < ::ApplicationRecord
 end
-class ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+class ::Account::Import::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Entropy < ::ApplicationRecord
+class ::Account::Cancellation < ::ApplicationRecord
+end
+class ::Storage::Total < ::ApplicationRecord
 end
 class ::Account::JoinCode < ::ApplicationRecord
+end
+module ::Storage
+end
+class ::Export < ::ApplicationRecord
 end
 class ::Account < ::ApplicationRecord
 end

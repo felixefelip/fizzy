@@ -249,6 +249,10 @@ class ::Identity < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Identity::GeneratedAliasAttributeMethods
+  def access_tokens: () -> ::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy
+  def access_tokens=: (::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy | ::Array[::Identity::AccessToken]) -> (::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy | ::Array[::Identity::AccessToken])
+  def access_token_ids: () -> ::Array[::Integer]
+  def access_token_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def magic_links: () -> ::MagicLink::ActiveRecord_Associations_CollectionProxy
   def magic_links=: (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink]) -> (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink])
   def magic_link_ids: () -> ::Array[::Integer]
@@ -326,6 +330,10 @@ end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
+class ::Identity::AccessToken < ::ApplicationRecord
+end
+class ::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
 class ::MagicLink < ::ApplicationRecord
 end
 class ::MagicLink::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -341,4 +349,6 @@ end
 class ::Account < ::ApplicationRecord
 end
 class ::Account::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Identity < ::ApplicationRecord
 end

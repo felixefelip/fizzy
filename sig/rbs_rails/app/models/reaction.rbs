@@ -44,46 +44,6 @@ class ::Reaction < ::ApplicationRecord
 
     def id_for_database: () -> ::String
 
-    def comment_id: () -> ::String
-
-    def comment_id=: (::String) -> ::String
-
-    def comment_id?: () -> bool
-
-    def comment_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
-
-    def comment_id_change: () -> [ ::String?, ::String? ]
-
-    def comment_id_will_change!: () -> void
-
-    def comment_id_was: () -> ::String?
-
-    def comment_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
-
-    def comment_id_previous_change: () -> ::Array[::String?]?
-
-    def comment_id_previously_was: () -> ::String?
-
-    def comment_id_before_last_save: () -> ::String?
-
-    def comment_id_change_to_be_saved: () -> ::Array[::String?]?
-
-    def comment_id_in_database: () -> ::String?
-
-    def saved_change_to_comment_id: () -> ::Array[::String?]?
-
-    def saved_change_to_comment_id?: () -> bool
-
-    def will_save_change_to_comment_id?: () -> bool
-
-    def restore_comment_id!: () -> void
-
-    def clear_comment_id_change: () -> void
-
-    def comment_id_before_type_cast: () -> ::String
-
-    def comment_id_for_database: () -> ::String
-
     def content: () -> ::String
 
     def content=: (::String) -> ::String
@@ -283,6 +243,86 @@ class ::Reaction < ::ApplicationRecord
     def account_id_before_type_cast: () -> ::String
 
     def account_id_for_database: () -> ::String
+
+    def reactable_type: () -> ::String
+
+    def reactable_type=: (::String) -> ::String
+
+    def reactable_type?: () -> bool
+
+    def reactable_type_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def reactable_type_change: () -> [ ::String?, ::String? ]
+
+    def reactable_type_will_change!: () -> void
+
+    def reactable_type_was: () -> ::String?
+
+    def reactable_type_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def reactable_type_previous_change: () -> ::Array[::String?]?
+
+    def reactable_type_previously_was: () -> ::String?
+
+    def reactable_type_before_last_save: () -> ::String?
+
+    def reactable_type_change_to_be_saved: () -> ::Array[::String?]?
+
+    def reactable_type_in_database: () -> ::String?
+
+    def saved_change_to_reactable_type: () -> ::Array[::String?]?
+
+    def saved_change_to_reactable_type?: () -> bool
+
+    def will_save_change_to_reactable_type?: () -> bool
+
+    def restore_reactable_type!: () -> void
+
+    def clear_reactable_type_change: () -> void
+
+    def reactable_type_before_type_cast: () -> ::String
+
+    def reactable_type_for_database: () -> ::String
+
+    def reactable_id: () -> ::String
+
+    def reactable_id=: (::String) -> ::String
+
+    def reactable_id?: () -> bool
+
+    def reactable_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def reactable_id_change: () -> [ ::String?, ::String? ]
+
+    def reactable_id_will_change!: () -> void
+
+    def reactable_id_was: () -> ::String?
+
+    def reactable_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def reactable_id_previous_change: () -> ::Array[::String?]?
+
+    def reactable_id_previously_was: () -> ::String?
+
+    def reactable_id_before_last_save: () -> ::String?
+
+    def reactable_id_change_to_be_saved: () -> ::Array[::String?]?
+
+    def reactable_id_in_database: () -> ::String?
+
+    def saved_change_to_reactable_id: () -> ::Array[::String?]?
+
+    def saved_change_to_reactable_id?: () -> bool
+
+    def will_save_change_to_reactable_id?: () -> bool
+
+    def restore_reactable_id!: () -> void
+
+    def clear_reactable_id_change: () -> void
+
+    def reactable_id_before_type_cast: () -> ::String
+
+    def reactable_id_for_database: () -> ::String
   end
   include ::Reaction::GeneratedAttributeMethods
   module ::Reaction::GeneratedAliasAttributeMethods
@@ -336,12 +376,9 @@ class ::Reaction < ::ApplicationRecord
   def build_account: (untyped) -> ::Account
   def create_account: (untyped) -> ::Account
   def create_account!: (untyped) -> ::Account
-  def comment: () -> ::Comment
-  def comment=: (::Comment?) -> ::Comment?
-  def reload_comment: () -> ::Comment?
-  def build_comment: (untyped) -> ::Comment
-  def create_comment: (untyped) -> ::Comment
-  def create_comment!: (untyped) -> ::Comment
+  def reactable: () -> untyped
+  def reactable=: (untyped?) -> untyped?
+  def reload_reactable: () -> untyped?
   def reacter: () -> ::User
   def reacter=: (::User?) -> ::User?
   def reload_reacter: () -> ::User?
@@ -388,8 +425,6 @@ end
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
 class ::Account < ::ApplicationRecord
-end
-class ::Comment < ::ApplicationRecord
 end
 class ::User < ::ApplicationRecord
 end

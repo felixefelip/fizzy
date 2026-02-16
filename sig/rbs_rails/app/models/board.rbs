@@ -329,10 +329,10 @@ class ::Board < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Board::GeneratedAliasAttributeMethods
-  def columns: () -> ::Column::ActiveRecord_Associations_CollectionProxy
-  def columns=: (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column]) -> (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column])
-  def column_ids: () -> ::Array[::Integer]
-  def column_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def accesses: () -> ::Access::ActiveRecord_Associations_CollectionProxy
+  def accesses=: (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access]) -> (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access])
+  def access_ids: () -> ::Array[::Integer]
+  def access_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def user_ids: () -> ::Array[::Integer]
@@ -345,6 +345,14 @@ class ::Board < ::ApplicationRecord
   def cards=: (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card]) -> (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card])
   def card_ids: () -> ::Array[::Integer]
   def card_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def storage_entries: () -> ::Storage::Entry::ActiveRecord_Associations_CollectionProxy
+  def storage_entries=: (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry]) -> (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry])
+  def storage_entry_ids: () -> ::Array[::Integer]
+  def storage_entry_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def columns: () -> ::Column::ActiveRecord_Associations_CollectionProxy
+  def columns=: (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column]) -> (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column])
+  def column_ids: () -> ::Array[::Integer]
+  def column_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def tags: () -> ::Tag::ActiveRecord_Associations_CollectionProxy
   def tags=: (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag]) -> (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag])
   def tag_ids: () -> ::Array[::Integer]
@@ -357,26 +365,28 @@ class ::Board < ::ApplicationRecord
   def webhooks=: (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook]) -> (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook])
   def webhook_ids: () -> ::Array[::Integer]
   def webhook_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def accesses: () -> ::Access::ActiveRecord_Associations_CollectionProxy
-  def accesses=: (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access]) -> (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access])
-  def access_ids: () -> ::Array[::Integer]
-  def access_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def filters: () -> ::Filter::ActiveRecord_Associations_CollectionProxy
   def filters=: (::Filter::ActiveRecord_Associations_CollectionProxy | ::Array[::Filter]) -> (::Filter::ActiveRecord_Associations_CollectionProxy | ::Array[::Filter])
   def filter_ids: () -> ::Array[::Integer]
   def filter_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def publication: () -> ::Board::Publication?
-  def publication=: (::Board::Publication?) -> ::Board::Publication?
-  def build_publication: (?untyped) -> ::Board::Publication
-  def create_publication: (?untyped) -> ::Board::Publication
-  def create_publication!: (?untyped) -> ::Board::Publication
-  def reload_publication: () -> ::Board::Publication?
   def entropy: () -> ::Entropy?
   def entropy=: (::Entropy?) -> ::Entropy?
   def build_entropy: (?untyped) -> ::Entropy
   def create_entropy: (?untyped) -> ::Entropy
   def create_entropy!: (?untyped) -> ::Entropy
   def reload_entropy: () -> ::Entropy?
+  def publication: () -> ::Board::Publication?
+  def publication=: (::Board::Publication?) -> ::Board::Publication?
+  def build_publication: (?untyped) -> ::Board::Publication
+  def create_publication: (?untyped) -> ::Board::Publication
+  def create_publication!: (?untyped) -> ::Board::Publication
+  def reload_publication: () -> ::Board::Publication?
+  def storage_total: () -> ::Storage::Total?
+  def storage_total=: (::Storage::Total?) -> ::Storage::Total?
+  def build_storage_total: (?untyped) -> ::Storage::Total
+  def create_storage_total: (?untyped) -> ::Storage::Total
+  def create_storage_total!: (?untyped) -> ::Storage::Total
+  def reload_storage_total: () -> ::Storage::Total?
   def rich_text_public_description: () -> ::ActionText::RichText?
   def rich_text_public_description=: (::ActionText::RichText?) -> ::ActionText::RichText?
   def build_rich_text_public_description: (?untyped) -> ::ActionText::RichText
@@ -399,17 +409,17 @@ class ::Board < ::ApplicationRecord
   end
   include ::Board::GeneratedAssociationMethods
 
-  def self.published: () -> ::Board::ActiveRecord_Relation
   def self.all_access: () -> ::Board::ActiveRecord_Relation
+  def self.published: () -> ::Board::ActiveRecord_Relation
   def self.with_rich_text_public_description: () -> ::Board::ActiveRecord_Relation
   def self.with_rich_text_public_description_and_embeds: () -> ::Board::ActiveRecord_Relation
   def self.alphabetically: () -> ::Board::ActiveRecord_Relation
   def self.ordered_by_recently_accessed: () -> ::Board::ActiveRecord_Relation
 
   module ::Board::GeneratedRelationMethods
-    def published: () -> ::Board::ActiveRecord_Relation
-
     def all_access: () -> ::Board::ActiveRecord_Relation
+
+    def published: () -> ::Board::ActiveRecord_Relation
 
     def with_rich_text_public_description: () -> ::Board::ActiveRecord_Relation
 
@@ -449,9 +459,9 @@ end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::Column < ::ApplicationRecord
+class ::Access < ::ApplicationRecord
 end
-class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::User < ::ApplicationRecord
 end
@@ -460,6 +470,14 @@ end
 class ::Card < ::ApplicationRecord
 end
 class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Storage::Entry < ::ApplicationRecord
+end
+class ::Storage::Entry::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Column < ::ApplicationRecord
+end
+class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::Tag < ::ApplicationRecord
 end
@@ -473,21 +491,21 @@ class ::Webhook < ::ApplicationRecord
 end
 class ::Webhook::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Access < ::ApplicationRecord
-end
-class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
 class ::Filter < ::ApplicationRecord
 end
 class ::Filter::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
+class ::Entropy < ::ApplicationRecord
+end
 class ::Board::Publication < ::ApplicationRecord
 end
-class ::Entropy < ::ApplicationRecord
+class ::Storage::Total < ::ApplicationRecord
 end
 class ::ActionText::RichText < ::ActionText::Record
 end
 class ::Account < ::ApplicationRecord
+end
+module ::Storage
 end
 class ::Board < ::ApplicationRecord
 end

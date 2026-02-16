@@ -1,10 +1,10 @@
 # resolve-type-names: false
 
 class ::Account < ::ApplicationRecord
-  class ::Account::Export < ::Export
-    extend ::ActiveRecord::Base::ClassMethods[::Account::Export, ::Account::Export::ActiveRecord_Relation, ::String]
+  class ::Account::Import < ::ApplicationRecord
+    extend ::ActiveRecord::Base::ClassMethods[::Account::Import, ::Account::Import::ActiveRecord_Relation, ::String]
 
-    module ::Account::Export::GeneratedAttributeMethods
+    module ::Account::Import::GeneratedAttributeMethods
       def id: () -> ::String
 
       def id=: (::String) -> ::String
@@ -45,9 +45,49 @@ class ::Account < ::ApplicationRecord
 
       def id_for_database: () -> ::String
 
-      def account_id: () -> ::String
+      def identity_id: () -> ::String
 
-      def account_id=: (::String) -> ::String
+      def identity_id=: (::String) -> ::String
+
+      def identity_id?: () -> bool
+
+      def identity_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def identity_id_change: () -> [ ::String?, ::String? ]
+
+      def identity_id_will_change!: () -> void
+
+      def identity_id_was: () -> ::String?
+
+      def identity_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def identity_id_previous_change: () -> ::Array[::String?]?
+
+      def identity_id_previously_was: () -> ::String?
+
+      def identity_id_before_last_save: () -> ::String?
+
+      def identity_id_change_to_be_saved: () -> ::Array[::String?]?
+
+      def identity_id_in_database: () -> ::String?
+
+      def saved_change_to_identity_id: () -> ::Array[::String?]?
+
+      def saved_change_to_identity_id?: () -> bool
+
+      def will_save_change_to_identity_id?: () -> bool
+
+      def restore_identity_id!: () -> void
+
+      def clear_identity_id_change: () -> void
+
+      def identity_id_before_type_cast: () -> ::String
+
+      def identity_id_for_database: () -> ::String
+
+      def account_id: () -> ::String?
+
+      def account_id=: (::String?) -> ::String?
 
       def account_id?: () -> bool
 
@@ -81,49 +121,9 @@ class ::Account < ::ApplicationRecord
 
       def clear_account_id_change: () -> void
 
-      def account_id_before_type_cast: () -> ::String
+      def account_id_before_type_cast: () -> ::String?
 
-      def account_id_for_database: () -> ::String
-
-      def user_id: () -> ::String
-
-      def user_id=: (::String) -> ::String
-
-      def user_id?: () -> bool
-
-      def user_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
-
-      def user_id_change: () -> [ ::String?, ::String? ]
-
-      def user_id_will_change!: () -> void
-
-      def user_id_was: () -> ::String?
-
-      def user_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
-
-      def user_id_previous_change: () -> ::Array[::String?]?
-
-      def user_id_previously_was: () -> ::String?
-
-      def user_id_before_last_save: () -> ::String?
-
-      def user_id_change_to_be_saved: () -> ::Array[::String?]?
-
-      def user_id_in_database: () -> ::String?
-
-      def saved_change_to_user_id: () -> ::Array[::String?]?
-
-      def saved_change_to_user_id?: () -> bool
-
-      def will_save_change_to_user_id?: () -> bool
-
-      def restore_user_id!: () -> void
-
-      def clear_user_id_change: () -> void
-
-      def user_id_before_type_cast: () -> ::String
-
-      def user_id_for_database: () -> ::String
+      def account_id_for_database: () -> ::String?
 
       def status: () -> ::String
 
@@ -285,49 +285,49 @@ class ::Account < ::ApplicationRecord
 
       def updated_at_for_database: () -> ::Time
 
-      def type: () -> ::String?
+      def failure_reason: () -> ::String?
 
-      def type=: (::String?) -> ::String?
+      def failure_reason=: (::String?) -> ::String?
 
-      def type?: () -> bool
+      def failure_reason?: () -> bool
 
-      def type_changed?: (?from: ::String?, ?to: ::String?) -> bool
+      def failure_reason_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
-      def type_change: () -> [ ::String?, ::String? ]
+      def failure_reason_change: () -> [ ::String?, ::String? ]
 
-      def type_will_change!: () -> void
+      def failure_reason_will_change!: () -> void
 
-      def type_was: () -> ::String?
+      def failure_reason_was: () -> ::String?
 
-      def type_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+      def failure_reason_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
-      def type_previous_change: () -> ::Array[::String?]?
+      def failure_reason_previous_change: () -> ::Array[::String?]?
 
-      def type_previously_was: () -> ::String?
+      def failure_reason_previously_was: () -> ::String?
 
-      def type_before_last_save: () -> ::String?
+      def failure_reason_before_last_save: () -> ::String?
 
-      def type_change_to_be_saved: () -> ::Array[::String?]?
+      def failure_reason_change_to_be_saved: () -> ::Array[::String?]?
 
-      def type_in_database: () -> ::String?
+      def failure_reason_in_database: () -> ::String?
 
-      def saved_change_to_type: () -> ::Array[::String?]?
+      def saved_change_to_failure_reason: () -> ::Array[::String?]?
 
-      def saved_change_to_type?: () -> bool
+      def saved_change_to_failure_reason?: () -> bool
 
-      def will_save_change_to_type?: () -> bool
+      def will_save_change_to_failure_reason?: () -> bool
 
-      def restore_type!: () -> void
+      def restore_failure_reason!: () -> void
 
-      def clear_type_change: () -> void
+      def clear_failure_reason_change: () -> void
 
-      def type_before_type_cast: () -> ::String?
+      def failure_reason_before_type_cast: () -> ::String?
 
-      def type_for_database: () -> ::String?
+      def failure_reason_for_database: () -> ::String?
     end
-    include ::Account::Export::GeneratedAttributeMethods
-    module ::Account::Export::GeneratedAliasAttributeMethods
-      include ::Account::Export::GeneratedAttributeMethods
+    include ::Account::Import::GeneratedAttributeMethods
+    module ::Account::Import::GeneratedAliasAttributeMethods
+      include ::Account::Import::GeneratedAttributeMethods
 
       alias id_value id
 
@@ -369,7 +369,7 @@ class ::Account < ::ApplicationRecord
 
       alias id_value_for_database id_for_database
     end
-    include ::Account::Export::GeneratedAliasAttributeMethods
+    include ::Account::Import::GeneratedAliasAttributeMethods
 
     def file_attachment: () -> ::ActiveStorage::Attachment?
     def file_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
@@ -389,13 +389,13 @@ class ::Account < ::ApplicationRecord
     def build_account: (untyped) -> ::Account
     def create_account: (untyped) -> ::Account
     def create_account!: (untyped) -> ::Account
-    def user: () -> ::User
-    def user=: (::User?) -> ::User?
-    def reload_user: () -> ::User?
-    def build_user: (untyped) -> ::User
-    def create_user: (untyped) -> ::User
-    def create_user!: (untyped) -> ::User
-    module ::Account::Export::GeneratedAssociationMethods
+    def identity: () -> ::Identity
+    def identity=: (::Identity?) -> ::Identity?
+    def reload_identity: () -> ::Identity?
+    def build_identity: (untyped) -> ::Identity
+    def create_identity: (untyped) -> ::Identity
+    def create_identity!: (untyped) -> ::Identity
+    module ::Account::Import::GeneratedAssociationMethods
       def file: () -> ::ActiveStorage::Attached::One
 
       def file=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
@@ -405,35 +405,95 @@ class ::Account < ::ApplicationRecord
                | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
                | (nil) -> nil
     end
-    include ::Account::Export::GeneratedAssociationMethods
+    include ::Account::Import::GeneratedAssociationMethods
 
-    module ::Account::Export::GeneratedRelationMethods
+    def pending!: () -> bool
+    def pending?: () -> bool
+    def processing!: () -> bool
+    def processing?: () -> bool
+    def completed!: () -> bool
+    def completed?: () -> bool
+    def failed!: () -> bool
+    def failed?: () -> bool
+    def failed_due_to_conflict!: () -> bool
+    def failed_due_to_conflict?: () -> bool
+    def failed_due_to_invalid_export!: () -> bool
+    def failed_due_to_invalid_export?: () -> bool
+    def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+    def self.failure_reasons: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+    def self.pending: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_pending: () -> ::Account::Import::ActiveRecord_Relation
+    def self.processing: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_processing: () -> ::Account::Import::ActiveRecord_Relation
+    def self.completed: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_completed: () -> ::Account::Import::ActiveRecord_Relation
+    def self.failed: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_failed: () -> ::Account::Import::ActiveRecord_Relation
+    def self.failed_due_to_conflict: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_failed_due_to_conflict: () -> ::Account::Import::ActiveRecord_Relation
+    def self.failed_due_to_invalid_export: () -> ::Account::Import::ActiveRecord_Relation
+    def self.not_failed_due_to_invalid_export: () -> ::Account::Import::ActiveRecord_Relation
+    def self.with_attached_file: () -> ::Account::Import::ActiveRecord_Relation
+    def self.expired: () -> ::Account::Import::ActiveRecord_Relation
+
+    module ::Account::Import::GeneratedRelationMethods
+      def statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+
+      def failure_reasons: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
+
+      def pending: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_pending: () -> ::Account::Import::ActiveRecord_Relation
+
+      def processing: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_processing: () -> ::Account::Import::ActiveRecord_Relation
+
+      def completed: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_completed: () -> ::Account::Import::ActiveRecord_Relation
+
+      def failed: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_failed: () -> ::Account::Import::ActiveRecord_Relation
+
+      def failed_due_to_conflict: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_failed_due_to_conflict: () -> ::Account::Import::ActiveRecord_Relation
+
+      def failed_due_to_invalid_export: () -> ::Account::Import::ActiveRecord_Relation
+
+      def not_failed_due_to_invalid_export: () -> ::Account::Import::ActiveRecord_Relation
+
+      def with_attached_file: () -> ::Account::Import::ActiveRecord_Relation
+
+      def expired: () -> ::Account::Import::ActiveRecord_Relation
     end
 
-    class ::Account::Export::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::Export]
-      include ::Account::Export::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Account::Export, ::String]
+    class ::Account::Import::ActiveRecord_Relation < ::ActiveRecord::Relation
+      include ::Enumerable[::Account::Import]
+      include ::Account::Import::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Account::Import, ::String]
     end
 
-    class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::Export]
-      include ::Account::Export::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Account::Export, ::String]
+    class ::Account::Import::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Account::Import]
+      include ::Account::Import::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Account::Import, ::String]
 
-      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Export
-                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Export]
-      def reload: () -> ::Array[::Account::Export]
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Import
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Import]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Import
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Import]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Account::Import
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Account::Import]
+      def reload: () -> ::Array[::Account::Import]
 
-      def replace: (::Array[::Account::Export]) -> void
-      def delete: (*::Account::Export | ::String) -> ::Array[::Account::Export]
-      def destroy: (*::Account::Export | ::String) -> ::Array[::Account::Export]
-      def <<: (*::Account::Export | ::Array[::Account::Export]) -> self
-      def prepend: (*::Account::Export | ::Array[::Account::Export]) -> self
+      def replace: (::Array[::Account::Import]) -> void
+      def delete: (*::Account::Import | ::String) -> ::Array[::Account::Import]
+      def destroy: (*::Account::Import | ::String) -> ::Array[::Account::Import]
+      def <<: (*::Account::Import | ::Array[::Account::Import]) -> self
+      def prepend: (*::Account::Import | ::Array[::Account::Import]) -> self
     end
   end
 end
@@ -442,7 +502,5 @@ class ::Account < ::ApplicationRecord
 end
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::Export < ::ApplicationRecord
-end
-class ::User < ::ApplicationRecord
+class ::Identity < ::ApplicationRecord
 end

@@ -30,7 +30,7 @@ module Card::Readable
       Card::RemoveInaccessibleNotificationsJob.perform_later(self)
     end
 
-    #: -> ::Event::ActiveRecord_Relation
+    #: -> ::Event::ActiveRecord_Associations_CollectionProxy
     def event_notification_sources
       events.or(comment_creation_events)
     end

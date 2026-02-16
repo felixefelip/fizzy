@@ -529,18 +529,6 @@ class ::Card < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Card::GeneratedAliasAttributeMethods
-  def taggings: () -> ::Tagging::ActiveRecord_Associations_CollectionProxy
-  def taggings=: (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging]) -> (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging])
-  def tagging_ids: () -> ::Array[::Integer]
-  def tagging_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def tags: () -> ::Tag::ActiveRecord_Associations_CollectionProxy
-  def tags=: (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag]) -> (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag])
-  def tag_ids: () -> ::Array[::Integer]
-  def tag_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def pins: () -> ::Pin::ActiveRecord_Associations_CollectionProxy
-  def pins=: (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin]) -> (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin])
-  def pin_ids: () -> ::Array[::Integer]
-  def pin_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def assignments: () -> ::Assignment::ActiveRecord_Associations_CollectionProxy
   def assignments=: (::Assignment::ActiveRecord_Associations_CollectionProxy | ::Array[::Assignment]) -> (::Assignment::ActiveRecord_Associations_CollectionProxy | ::Array[::Assignment])
   def assignment_ids: () -> ::Array[::Integer]
@@ -549,6 +537,10 @@ class ::Card < ::ApplicationRecord
   def assignees=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def assignee_ids: () -> ::Array[::Integer]
   def assignee_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def comments: () -> ::Comment::ActiveRecord_Associations_CollectionProxy
+  def comments=: (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment]) -> (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment])
+  def comment_ids: () -> ::Array[::Integer]
+  def comment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def events: () -> ::Event::ActiveRecord_Associations_CollectionProxy
   def events=: (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event]) -> (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event])
   def event_ids: () -> ::Array[::Integer]
@@ -565,6 +557,18 @@ class ::Card < ::ApplicationRecord
   def steps=: (::Step::ActiveRecord_Associations_CollectionProxy | ::Array[::Step]) -> (::Step::ActiveRecord_Associations_CollectionProxy | ::Array[::Step])
   def step_ids: () -> ::Array[::Integer]
   def step_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def pins: () -> ::Pin::ActiveRecord_Associations_CollectionProxy
+  def pins=: (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin]) -> (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin])
+  def pin_ids: () -> ::Array[::Integer]
+  def pin_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def taggings: () -> ::Tagging::ActiveRecord_Associations_CollectionProxy
+  def taggings=: (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging]) -> (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging])
+  def tagging_ids: () -> ::Array[::Integer]
+  def tagging_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def tags: () -> ::Tag::ActiveRecord_Associations_CollectionProxy
+  def tags=: (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag]) -> (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag])
+  def tag_ids: () -> ::Array[::Integer]
+  def tag_ids=: (::Array[::Integer]) -> ::Array[::Integer]
   def watches: () -> ::Watch::ActiveRecord_Associations_CollectionProxy
   def watches=: (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch]) -> (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch])
   def watch_ids: () -> ::Array[::Integer]
@@ -573,10 +577,10 @@ class ::Card < ::ApplicationRecord
   def watchers=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def watcher_ids: () -> ::Array[::Integer]
   def watcher_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def comments: () -> ::Comment::ActiveRecord_Associations_CollectionProxy
-  def comments=: (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment]) -> (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment])
-  def comment_ids: () -> ::Array[::Integer]
-  def comment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def reactions: () -> ::Reaction::ActiveRecord_Associations_CollectionProxy
+  def reactions=: (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction]) -> (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction])
+  def reaction_ids: () -> ::Array[::Integer]
+  def reaction_ids=: (::Array[::Integer]) -> ::Array[::Integer]
 
   def closure: () -> ::Closure?
   def closure=: (::Closure?) -> ::Closure?
@@ -665,9 +669,6 @@ class ::Card < ::ApplicationRecord
   def self.not_drafted: () -> ::Card::ActiveRecord_Relation
   def self.published: () -> ::Card::ActiveRecord_Relation
   def self.not_published: () -> ::Card::ActiveRecord_Relation
-  def self.tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
-  def self.published_or_drafted_by: (untyped user) -> ::Card::ActiveRecord_Relation
-  def self.mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
   def self.unassigned: () -> ::Card::ActiveRecord_Relation
   def self.assigned_to: (untyped users) -> ::Card::ActiveRecord_Relation
   def self.assigned_by: (untyped users) -> ::Card::ActiveRecord_Relation
@@ -682,8 +683,10 @@ class ::Card < ::ApplicationRecord
   def self.with_golden_first: () -> ::Card::ActiveRecord_Relation
   def self.postponed: () -> ::Card::ActiveRecord_Relation
   def self.active: () -> ::Card::ActiveRecord_Relation
+  def self.mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
   def self.with_activity_spikes: () -> ::Card::ActiveRecord_Relation
   def self.stalled: () -> ::Card::ActiveRecord_Relation
+  def self.tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
   def self.awaiting_triage: () -> ::Card::ActiveRecord_Relation
   def self.triaged: () -> ::Card::ActiveRecord_Relation
   def self.with_attached_image: () -> ::Card::ActiveRecord_Relation
@@ -707,12 +710,6 @@ class ::Card < ::ApplicationRecord
     def published: () -> ::Card::ActiveRecord_Relation
 
     def not_published: () -> ::Card::ActiveRecord_Relation
-
-    def tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
-
-    def published_or_drafted_by: (untyped user) -> ::Card::ActiveRecord_Relation
-
-    def mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
 
     def unassigned: () -> ::Card::ActiveRecord_Relation
 
@@ -742,9 +739,13 @@ class ::Card < ::ApplicationRecord
 
     def active: () -> ::Card::ActiveRecord_Relation
 
+    def mentioning: (untyped query, user: untyped) -> ::Card::ActiveRecord_Relation
+
     def with_activity_spikes: () -> ::Card::ActiveRecord_Relation
 
     def stalled: () -> ::Card::ActiveRecord_Relation
+
+    def tagged_with: (untyped tags) -> ::Card::ActiveRecord_Relation
 
     def awaiting_triage: () -> ::Card::ActiveRecord_Relation
 
@@ -800,18 +801,6 @@ end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::Tagging < ::ApplicationRecord
-end
-class ::Tagging::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
-class ::Tag < ::ApplicationRecord
-end
-class ::Tag::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
-class ::Pin < ::ApplicationRecord
-end
-class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-end
 class ::Assignment < ::ApplicationRecord
 end
 class ::Assignment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
@@ -819,6 +808,10 @@ end
 class ::User < ::ApplicationRecord
 end
 class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Comment < ::ApplicationRecord
+end
+class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::Event < ::ApplicationRecord
 end
@@ -832,13 +825,25 @@ class ::Step < ::ApplicationRecord
 end
 class ::Step::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
+class ::Pin < ::ApplicationRecord
+end
+class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Tagging < ::ApplicationRecord
+end
+class ::Tagging::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Tag < ::ApplicationRecord
+end
+class ::Tag::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
 class ::Watch < ::ApplicationRecord
 end
 class ::Watch::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
-class ::Comment < ::ApplicationRecord
+class ::Reaction < ::ApplicationRecord
 end
-class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+class ::Reaction::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::Closure < ::ApplicationRecord
 end
