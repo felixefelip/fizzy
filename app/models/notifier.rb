@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Notifier
   attr_reader :source
 
@@ -12,6 +14,7 @@ class Notifier
     end
   end
 
+  #: -> Array[ApplicationRecord]?
   def notify
     if should_notify?
       # Processing recipients in order avoids deadlocks if notifications overlap.
@@ -42,7 +45,18 @@ class Notifier
       @source = source
     end
 
+    #: -> bool
     def should_notify?
       !creator.system?
+    end
+
+    #: -> Array[::Notifier::_Recipient]
+    def recipients
+      raise NotImplementedError
+    end
+
+    #: -> User
+    def creator
+      raise NotImplementedError
     end
 end

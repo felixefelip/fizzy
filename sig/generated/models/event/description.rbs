@@ -1,0 +1,69 @@
+# Generated from app/models/event/description.rb with RBS::Inline
+
+class Event::Description
+  include ActionView::Helpers::TagHelper
+
+  include ERB::Util
+
+  attr_reader event: Event
+
+  attr_reader user: User
+
+  # : (Event, User) -> void
+  def initialize: (Event, User) -> void
+
+  # : -> String
+  def to_html: () -> String
+
+  # : -> String
+  def to_plain_text: () -> String
+
+  private
+
+  # : (String, String) -> String
+  def to_sentence: (String, String) -> String
+
+  # : -> String
+  def creator_tag: () -> String
+
+  # : -> String
+  def card_title_tag: () -> String
+
+  # : -> String
+  def creator_name: () -> String
+
+  def quoted: (untyped text) -> untyped
+
+  # : -> Card
+  def card: () -> Card
+
+  # : (String, String) -> String
+  def comment_sentence: (String, String) -> String
+
+  # : (String, String) -> String
+  def action_sentence: (String, String) -> String
+
+  def assigned_sentence: (untyped creator, untyped card_title) -> untyped
+
+  # : (String, String) -> String
+  def unassigned_sentence: (String, String) -> String
+
+  # : (String, String) -> String
+  def renamed_sentence: (String, String) -> String
+
+  # : (String, String) -> String
+  def moved_sentence: (String, String) -> String
+
+  # : (String, String) -> String
+  def triaged_sentence: (String, String) -> String
+
+  def assignee_names: () -> untyped
+
+  def unassigned_names: () -> untyped
+
+  def old_title: () -> untyped
+
+  def new_location: () -> untyped
+
+  def column: () -> untyped
+end

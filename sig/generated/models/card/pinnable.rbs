@@ -1,0 +1,22 @@
+# Generated from app/models/card/pinnable.rb with RBS::Inline
+
+module Card::Pinnable
+  extend ActiveSupport::Concern
+
+  # : (User) -> bool
+  def pinned_by?: (User) -> bool
+
+  # : (User) -> Pin?
+  def pin_for: (User) -> Pin?
+
+  # : (User) -> Pin
+  def pin_by: (User) -> Pin
+
+  # : (User) -> Pin
+  def unpin_by: (User) -> Pin
+
+  private
+
+  # : -> void
+  def broadcast_pin_updates: () -> void
+end

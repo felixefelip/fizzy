@@ -1,0 +1,13 @@
+# Generated from app/controllers/concerns/request_forgery_protection.rb with RBS::Inline
+
+module RequestForgeryProtection
+  extend ActiveSupport::Concern
+
+  private
+
+  def verified_via_header_only?: () -> untyped
+
+  def allowed_api_request?: () -> untyped
+
+  def allowed_insecure_context_request?: () -> untyped
+end

@@ -1,0 +1,29 @@
+# Generated from app/models/search/record/trilogy.rb with RBS::Inline
+
+module Search::Record::Trilogy
+  extend ActiveSupport::Concern
+
+  SHARD_COUNT: ::Integer
+
+  SHARD_CLASSES: untyped
+
+  def shard_id_for_account: (untyped account_id) -> untyped
+
+  def search_fields: (untyped query) -> untyped
+
+  def for: (untyped account_id) -> untyped
+
+  def card_title: () -> untyped
+
+  def card_description: () -> untyped
+
+  def comment_body: () -> untyped
+
+  private
+
+  def stem_content: () -> untyped
+
+  def set_account_key: () -> untyped
+
+  def highlight: (untyped text, show: untyped) -> untyped
+end

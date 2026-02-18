@@ -1,0 +1,22 @@
+# Generated from app/models/card/assignable.rb with RBS::Inline
+
+module Card::Assignable
+  extend ActiveSupport::Concern
+
+  # : (User) -> void
+  def toggle_assignment: (User) -> void
+
+  # : (User) -> bool
+  def assigned_to?: (User) -> bool
+
+  # : -> bool
+  def assigned?: () -> bool
+
+  private
+
+  # : (User) -> void
+  def assign: (User) -> void
+
+  # : (User) -> void
+  def unassign: (User) -> void
+end

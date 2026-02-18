@@ -1,0 +1,36 @@
+# Generated from app/models/card/activity_spike/detector.rb with RBS::Inline
+
+class Card::ActivitySpike::Detector
+  attr_reader card: Card
+
+  # : (Card) -> void
+  def initialize: (Card) -> void
+
+  # : -> bool
+  def detect: () -> bool
+
+  private
+
+  # : -> bool
+  def has_activity_spike?: () -> bool
+
+  # : -> void
+  def register_activity_spike: () -> void
+
+  # : (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
+  def multiple_people_commented?: (?minimum_comments: Integer, ?minimum_participants: Integer) -> bool
+
+  def recent_period: () -> untyped
+
+  # : -> bool
+  def card_was_just_assigned?: () -> bool
+
+  # : -> bool
+  def card_was_just_reopened?: () -> bool
+
+  # : (Symbol) -> bool
+  def card_was_just?: (Symbol) -> bool
+
+  # : -> Event?
+  def last_event: () -> Event?
+end

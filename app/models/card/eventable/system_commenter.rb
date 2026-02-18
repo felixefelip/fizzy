@@ -1,12 +1,16 @@
+# rbs_inline: enabled
 class Card::Eventable::SystemCommenter
   include ERB::Util
 
-  attr_reader :card, :event
+  attr_reader :card #: Card
+  attr_reader :event #: ::Event
 
+  #: (Card::Eventable, Event) -> void
   def initialize(card, event)
     @card, @event = card, event
   end
 
+  #: -> Comment?
   def comment
     return unless comment_body.present?
 
@@ -14,6 +18,7 @@ class Card::Eventable::SystemCommenter
   end
 
   private
+    #: -> String?
     def comment_body
       case event.action
       when "card_assigned"

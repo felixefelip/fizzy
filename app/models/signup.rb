@@ -1,7 +1,12 @@
+# rbs_inline: enabled
+
 class Signup
   include ActiveModel::Model
   include ActiveModel::Attributes
   include ActiveModel::Validations
+
+  # @rbs!
+  #   extend ActiveModel::Validations::ClassMethods
 
   attr_accessor :full_name, :email_address, :identity, :skip_account_seeding
   attr_reader :account, :user
@@ -21,6 +26,7 @@ class Signup
     @identity.send_magic_link for: :sign_up
   end
 
+  #: -> bool
   def complete
     if valid?(:completion)
       begin
@@ -53,6 +59,7 @@ class Signup
     def handle_account_creation_error(error)
     end
 
+    #: -> void
     def create_account
       @account = Account.create_with_owner(
         account: {
@@ -68,6 +75,7 @@ class Signup
       @account.setup_customer_template unless skip_account_seeding
     end
 
+    #: -> String
     def generate_account_name
       AccountNameGenerator.new(identity: identity, name: full_name).generate
     end
@@ -81,6 +89,7 @@ class Signup
       @tenant = nil
     end
 
+    # parece não ser utilizado
     def subscription_attributes
       subscription = FreeV1Subscription
 

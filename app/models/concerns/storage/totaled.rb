@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Storage::Totaled
   extend ActiveSupport::Concern
+
+  # @type self: singleton(ApplicationRecord) & singleton(::Storage::Totaled)
+  # @type instance: ApplicationRecord & ::Storage::Totaled
 
   included do
     has_one :storage_total, as: :owner, class_name: "Storage::Total", dependent: :destroy

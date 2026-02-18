@@ -1,9 +1,33 @@
+# rbs_inline: enabled
+
 class Card < ApplicationRecord
-  include Accessible, Assignable, Attachments, Broadcastable, Closeable, Colored, Commentable,
-    Entropic, Eventable, Exportable, Golden, Mentions, Multistep, Pinnable, Postponable, Promptable,
-    Readable, Searchable, Stallable, Statuses, Storage::Tracked, Taggable, Triageable, Watchable
+  include Attachments, Promptable
+
+  include Assignable
+  include Accessible
+  include Broadcastable
+  include Closeable
+  include Colored
+  include Commentable
+  include Entropic
+  include Eventable
+  include Exportable
+  include Golden
+  include Mentions
+  include Multistep
+  include Pinnable
+  include Postponable
+  include Readable
+  include Searchable
+  include Stallable
+  include Statuses
+  include ::Storage::Tracked
+  include Taggable
+  include Triageable
+  include Watchable
 
   belongs_to :account, default: -> { board.account }
+
   belongs_to :board
   belongs_to :creator, class_name: "User", default: -> { Current.user }
 
@@ -12,10 +36,19 @@ class Card < ApplicationRecord
 
   has_rich_text :description
 
+  # @rbs!
+  #   def description: () -> ActionText::RichText
+  #   def description=: (ActionText::RichText) -> ActionText::RichText
+  #
+  #   class ::Card::ActiveRecord_Relation < ActiveRecord::Relation
+  #     def connection: () -> untyped
+  #   end
+
   before_save :set_default_title, if: :published?
   before_create :assign_number
 
-  after_save   -> { board.touch }, if: :published?
+  after_save   -> { board.touch }, if: -> { published? }
+
   after_touch  -> { board.touch }, if: :published?
   after_update :handle_board_change, if: :saved_change_to_board_id?
 
@@ -46,14 +79,17 @@ class Card < ApplicationRecord
     end
   end
 
+  #: -> Card
   def card
     self
   end
 
+  #: -> String
   def to_param
     number.to_s
   end
 
+  #: (Board) -> void
   def move_to(new_board)
     transaction do
       card.update!(board: new_board)
@@ -62,17 +98,25 @@ class Card < ApplicationRecord
     end
   end
 
+  #: -> bool
   def filled?
     title.present? || description.present?
   end
 
+  #: -> String
+  def title!
+    title.presence || raise
+  end
+
   private
+    #: -> void
     def set_default_title
       self.title = "Untitled" if title.blank?
     end
 
+    #: -> void
     def handle_board_change
-      old_board = account.boards.find_by(id: board_id_before_last_save)
+      old_board = account.boards.find_by!(id: board_id_before_last_save)
 
       transaction do
         update! column: nil
@@ -84,6 +128,7 @@ class Card < ApplicationRecord
       clean_inaccessible_data_later
     end
 
+    #: (String) -> void
     def track_board_change_event(old_board_name)
       track_event "board_changed", particulars: { old_board: old_board_name, new_board: board.name }
     end

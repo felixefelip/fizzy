@@ -1,0 +1,23 @@
+# Generated from app/models/card/closeable.rb with RBS::Inline
+
+module Card::Closeable
+  extend ActiveSupport::Concern
+
+  # : -> bool
+  def closed?: () -> bool
+
+  # : -> bool
+  def open?: () -> bool
+
+  # : -> User?
+  def closed_by: () -> User?
+
+  # : -> ActiveSupport::TimeWithZone?
+  def closed_at: () -> ActiveSupport::TimeWithZone?
+
+  # : (?user: User) -> void
+  def close: (?user: User) -> void
+
+  # : (?user: User) -> void
+  def reopen: (?user: User) -> void
+end

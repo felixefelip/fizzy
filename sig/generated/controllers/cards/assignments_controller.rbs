@@ -1,0 +1,7 @@
+# Generated from app/controllers/cards/assignments_controller.rb with RBS::Inline
+
+class Cards::AssignmentsController < ApplicationController
+  include CardScoped
+
+  def create: () -> untyped
+end

@@ -1,0 +1,21 @@
+# Generated from app/controllers/concerns/card_scoped.rb with RBS::Inline
+
+module CardScoped
+  extend ActiveSupport::Concern
+
+  @board: Board
+
+  @card: Card
+
+  private
+
+  def set_card: () -> untyped
+
+  def set_board: () -> untyped
+
+  def render_card_replacement: () -> untyped
+
+  def capture_card_location: () -> untyped
+
+  def refresh_stream_if_needed: () -> untyped
+end

@@ -1,0 +1,22 @@
+# Generated from app/models/event.rb with RBS::Inline
+
+class Event < ApplicationRecord
+  include Notifiable
+
+  include Particulars
+
+  include Promptable
+
+  # : -> ActiveSupport::StringInquirer
+  def action: () -> ActiveSupport::StringInquirer
+
+  def notifiable_target: () -> untyped
+
+  # : (User) -> Event::Description
+  def description_for: (User) -> Event::Description
+
+  private
+
+  # : -> void
+  def dispatch_webhooks: () -> void
+end

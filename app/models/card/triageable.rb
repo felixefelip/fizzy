@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Triageable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Triageable)
+  # @type instance: Card & Card::Triageable
 
   included do
     belongs_to :column, optional: true, touch: true
@@ -8,14 +13,17 @@ module Card::Triageable
     scope :triaged, -> { active.joins(:column) }
   end
 
+  #: -> bool
   def triaged?
     active? && column.present?
   end
 
+  #: -> bool
   def awaiting_triage?
     active? && !triaged?
   end
 
+  #: (Column) -> void
   def triage_into(column)
     raise "The column must belong to the card board" unless board == column.board
 
@@ -26,6 +34,7 @@ module Card::Triageable
     end
   end
 
+  #: (?skip_event: bool) -> void
   def send_back_to_triage(skip_event: false)
     transaction do
       resume

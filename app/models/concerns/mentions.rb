@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module Mentions
   extend ActiveSupport::Concern
 

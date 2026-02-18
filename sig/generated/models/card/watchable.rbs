@@ -1,0 +1,22 @@
+# Generated from app/models/card/watchable.rb with RBS::Inline
+
+module Card::Watchable
+  extend ActiveSupport::Concern
+
+  # : (User) -> bool?
+  def watched_by?: (User) -> bool?
+
+  # : (User) -> Watch?
+  def watch_for: (User) -> Watch?
+
+  # : (User) -> void
+  def watch_by: (User) -> void
+
+  # : (User) -> void
+  def unwatch_by: (User) -> void
+
+  private
+
+  # : -> void
+  def subscribe_creator: () -> void
+end

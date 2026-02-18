@@ -1,5 +1,9 @@
+#rbs_inline: enabled
+
 module SsrfProtection
   extend self
+
+  # @type instance: SsrfProtection
 
   DNS_RESOLUTION_TIMEOUT = 2
 

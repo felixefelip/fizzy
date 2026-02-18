@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 module LoginHelper
   def login_url
     main_app.new_session_path(script_name: nil)

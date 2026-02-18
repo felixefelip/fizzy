@@ -1,0 +1,21 @@
+# Generated from app/models/search/record/sqlite.rb with RBS::Inline
+
+module Search::Record::SQLite
+  extend ActiveSupport::Concern
+
+  def search_fields: (untyped query) -> untyped
+
+  def for: (untyped account_id) -> untyped
+
+  def card_title: () -> untyped
+
+  def card_description: () -> untyped
+
+  def comment_body: () -> untyped
+
+  private
+
+  def escape_fts_highlight: (untyped html) -> untyped
+
+  def upsert_to_fts5_table: () -> untyped
+end

@@ -1,0 +1,40 @@
+# Generated from app/models/webhook.rb with RBS::Inline
+
+class Webhook < ApplicationRecord
+  include Triggerable
+
+  SLACK_WEBHOOK_URL_REGEX: ::Regexp
+
+  CAMPFIRE_WEBHOOK_URL_REGEX: ::Regexp
+
+  BASECAMP_CAMPFIRE_WEBHOOK_URL_REGEX: ::Regexp
+
+  PERMITTED_SCHEMES: untyped
+
+  PERMITTED_ACTIONS: untyped
+
+  # : -> void
+  def activate: () -> void
+
+  # : -> void
+  def deactivate: () -> void
+
+  def renderer: () -> untyped
+
+  # : -> bool
+  def for_basecamp?: () -> bool
+
+  # : -> bool
+  def for_campfire?: () -> bool
+
+  # : -> bool
+  def for_slack?: () -> bool
+
+  private
+
+  # : -> void
+  def validate_url: () -> void
+
+  # : -> void
+  def add_error_not_a_url: () -> void
+end

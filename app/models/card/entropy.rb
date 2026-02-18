@@ -1,7 +1,11 @@
+# rbs_inline: enabled
+
 class Card::Entropy
-  attr_reader :card, :auto_clean_period
+  attr_reader :card #: Card
+  attr_reader :auto_clean_period #: Integer
 
   class << self
+    #: (Card) -> Card::Entropy?
     def for(card)
       return unless card.last_active_at
 
@@ -9,6 +13,7 @@ class Card::Entropy
     end
   end
 
+  #: (Card, Integer) -> void
   def initialize(card, auto_clean_period)
     @card = card
     @auto_clean_period = auto_clean_period

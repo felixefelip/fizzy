@@ -1,0 +1,23 @@
+# Generated from app/models/notifier.rb with RBS::Inline
+
+class Notifier
+  attr_reader source: untyped
+
+  def self.for: (untyped source) -> untyped
+
+  # : -> Array[ApplicationRecord]?
+  def notify: () -> Array[ApplicationRecord]?
+
+  private
+
+  def initialize: (untyped source) -> untyped
+
+  # : -> bool
+  def should_notify?: () -> bool
+
+  # : -> Array[::Notifier::_Recipient]
+  def recipients: () -> Array[::Notifier::_Recipient]
+
+  # : -> User
+  def creator: () -> User
+end

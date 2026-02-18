@@ -1,0 +1,35 @@
+# Generated from app/models/card/readable.rb with RBS::Inline
+
+module Card::Readable
+  extend ActiveSupport::Concern
+
+  # : (User) -> void
+  def read_by: (User) -> void
+
+  # : (User) -> void
+  def unread_by: (User) -> void
+
+  # : -> void
+  def remove_inaccessible_notifications: () -> void
+
+  private
+
+  # : -> void
+  def remove_inaccessible_notifications_later: () -> void
+
+  # : -> ::Event::ActiveRecord_Associations_CollectionProxy
+  def event_notification_sources: () -> ::Event::ActiveRecord_Associations_CollectionProxy
+
+  # : -> Event::ActiveRecord_Relation
+  def comment_creation_events: () -> Event::ActiveRecord_Relation
+
+  # : (Event::ActiveRecord_Relation, Array[Integer]) -> Notification::ActiveRecord_Relation
+  def inaccessible_notifications_from: (Event::ActiveRecord_Relation, Array[Integer]) -> Notification::ActiveRecord_Relation
+
+  def notification_sources: () -> untyped
+
+  def mention_notification_sources: () -> untyped
+
+  # : -> Mention::ActiveRecord_Relation
+  def comment_mentions: () -> Mention::ActiveRecord_Relation
+end

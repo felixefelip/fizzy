@@ -1,9 +1,17 @@
+# rbs_inline: enabled
+
 module Board::Entropic
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Board) & singleton(Board::Entropic)
+  # @type instance: Board & Board::Entropic
 
   included do
     delegate :auto_postpone_period, to: :entropy
     has_one :entropy, as: :container, dependent: :destroy
+
+    # @rbs!
+    #   def auto_postpone_period: () -> ActiveSupport::Duration
   end
 
   def entropy

@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Searchable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Searchable)
+  # @type instance: Card & Card::Searchable
 
   included do
     include ::Searchable

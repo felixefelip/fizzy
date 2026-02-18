@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Comment < ApplicationRecord
   include Attachments, Eventable, Mentions, Promptable, Searchable, Storage::Tracked
 
@@ -19,15 +21,18 @@ class Comment < ApplicationRecord
 
   delegate :publicly_accessible?, :accessible_to?, :board, :watch_by, to: :card
 
+  #: -> String
   def to_partial_path
     "cards/#{super}"
   end
 
   private
+    #: -> void
     def card_is_commentable
       errors.add(:card, "does not allow comments") unless card.commentable?
     end
 
+    #: -> void
     def watch_card_by_creator
       card.watch_by creator
     end

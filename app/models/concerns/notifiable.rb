@@ -1,5 +1,9 @@
+# rbs_inline: enabled
+
 module Notifiable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(ActiveRecord::Base) & singleton(Notifiable)
 
   included do
     has_many :notifications, as: :source, dependent: :destroy

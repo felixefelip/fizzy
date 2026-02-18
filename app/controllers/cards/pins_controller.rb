@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 class Cards::PinsController < ApplicationController
   include CardScoped
+
+  # @rbs!
+  #   @pin: Pin
 
   def show
     fresh_when etag: @card.pin_for(Current.user) || "none"

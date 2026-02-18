@@ -1,6 +1,11 @@
+# rbs_inline: enabled
+
 module Card::Exportable
   extend ActiveSupport::Concern
   include ActionView::Helpers::TagHelper
+
+  # @type module: singleton(Card) & singleton(Card::Exportable)
+  # @type instance: Card & Card::Exportable
 
   def export_json
     JSON.pretty_generate({

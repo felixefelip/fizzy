@@ -1,5 +1,9 @@
+# rbs_inline: enabled
+
 class Event < ApplicationRecord
-  include Notifiable, Particulars, Promptable
+  include Notifiable
+  include Particulars
+  include Promptable
 
   belongs_to :account, default: -> { board.account }
   belongs_to :board
@@ -25,6 +29,7 @@ class Event < ApplicationRecord
 
   delegate :card, to: :eventable
 
+  #: -> ActiveSupport::StringInquirer
   def action
     super.inquiry
   end
@@ -33,11 +38,13 @@ class Event < ApplicationRecord
     eventable
   end
 
+  #: (User) -> Event::Description
   def description_for(user)
     Event::Description.new(self, user)
   end
 
   private
+    #: -> void
     def dispatch_webhooks
       Event::WebhookDispatchJob.perform_later(self)
     end

@@ -1,0 +1,83 @@
+# Generated from app/models/card.rb with RBS::Inline
+
+class Card < ApplicationRecord
+  include Assignable
+
+  include Accessible
+
+  include Broadcastable
+
+  include Closeable
+
+  include Colored
+
+  include Commentable
+
+  include Entropic
+
+  include Eventable
+
+  include Exportable
+
+  include Golden
+
+  include Mentions
+
+  include Multistep
+
+  include Pinnable
+
+  include Postponable
+
+  include Readable
+
+  include Searchable
+
+  include Stallable
+
+  include Statuses
+
+  include ::Storage::Tracked
+
+  include Taggable
+
+  include Triageable
+
+  include Watchable
+
+  def description: () -> ActionText::RichText
+
+  def description=: (ActionText::RichText) -> ActionText::RichText
+
+  class ::Card::ActiveRecord_Relation < ActiveRecord::Relation
+    def connection: () -> untyped
+  end
+
+  # : -> Card
+  def card: () -> Card
+
+  # : -> String
+  def to_param: () -> String
+
+  # : (Board) -> void
+  def move_to: (Board) -> void
+
+  # : -> bool
+  def filled?: () -> bool
+
+  # : -> String
+  def title!: () -> String
+
+  private
+
+  # : -> void
+  def set_default_title: () -> void
+
+  # : -> void
+  def handle_board_change: () -> void
+
+  # : (String) -> void
+  def track_board_change_event: (String) -> void
+
+  def assign_number: () -> untyped
+end

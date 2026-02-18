@@ -8,6 +8,12 @@ require "vcr"
 require "mocha/minitest"
 require "turbo/broadcastable/test_helper"
 
+ENV["RAILS_ENV"] ||= "test"
+
+# SimpleCov must be loaded before application code
+require "simplecov"
+SimpleCov.start "rails"
+
 WebMock.allow_net_connect!
 
 VCR.configure do |config|
@@ -40,6 +46,15 @@ end
 module ActiveSupport
   class TestCase
     parallelize workers: :number_of_processors, work_stealing: ENV["WORK_STEALING"] != "false"
+
+    # Ensure SimpleCov merges results from parallel test workers
+    parallelize_setup do |worker|
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    end
+
+    parallelize_teardown do |worker|
+      SimpleCov.result
+    end
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

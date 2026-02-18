@@ -1,16 +1,24 @@
+# rbs_inline: enabled
+
 class Filter < ApplicationRecord
-  include Fields, Params, Resources, Summarized
+  include Fields
+  include Resources
+  include Summarized
+
+  include Params
+  extend Params
 
   belongs_to :creator, class_name: "User", default: -> { Current.user }
   belongs_to :account, default: -> { creator.account }
 
   class << self
+    #: (Hash[Symbol, untyped]) -> Filter
     def from_params(params)
       find_by_params(params) || build(params)
     end
 
     def remember(attrs)
-      create!(attrs)
+      create!(**attrs)
     rescue ActiveRecord::RecordNotUnique
       find_by_params(attrs).tap(&:touch)
     end
@@ -48,6 +56,7 @@ class Filter < ApplicationRecord
     boards.first if boards.one?
   end
 
+  # esse método parece não ser usado
   def single_workflow
     boards.first.workflow if boards.pluck(:workflow_id).uniq.one?
   end

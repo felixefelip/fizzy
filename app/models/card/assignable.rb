@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Assignable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Assignable)
+  # @type instance: Card & Card::Assignable
 
   included do
     has_many :assignments, dependent: :delete_all
@@ -10,19 +15,23 @@ module Card::Assignable
     scope :assigned_by, ->(users) { joins(:assignments).where(assignments: { assigner: users }).distinct }
   end
 
+  #: (User) -> void
   def toggle_assignment(user)
     assigned_to?(user) ? unassign(user) : assign(user)
   end
 
+  #: (User) -> bool
   def assigned_to?(user)
     assignments.any? { |a| a.assignee_id == user.id }
   end
 
+  #: -> bool
   def assigned?
     assignments.any?
   end
 
   private
+    #: (User) -> void
     def assign(user)
       assignment = assignments.create assignee: user, assigner: Current.user
 
@@ -34,6 +43,7 @@ module Card::Assignable
       # Already assigned
     end
 
+    #: (User) -> void
     def unassign(user)
       destructions = assignments.destroy_by assignee: user
       track_event :unassigned, assignee_ids: [ user.id ] if destructions.any?

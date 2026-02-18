@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Signup::AccountNameGenerator
   SUFFIX = "Fizzy".freeze
 
@@ -8,6 +10,7 @@ class Signup::AccountNameGenerator
     @name = name
   end
 
+  #: -> String
   def generate
     next_index = current_index + 1
 

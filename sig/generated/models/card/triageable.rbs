@@ -1,0 +1,17 @@
+# Generated from app/models/card/triageable.rb with RBS::Inline
+
+module Card::Triageable
+  extend ActiveSupport::Concern
+
+  # : -> bool
+  def triaged?: () -> bool
+
+  # : -> bool
+  def awaiting_triage?: () -> bool
+
+  # : (Column) -> void
+  def triage_into: (Column) -> void
+
+  # : (?skip_event: bool) -> void
+  def send_back_to_triage: (?skip_event: bool) -> void
+end

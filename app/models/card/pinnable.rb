@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Pinnable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Pinnable)
+  # @type instance: Card & Card::Pinnable
 
   included do
     has_many :pins, dependent: :destroy
@@ -7,23 +12,30 @@ module Card::Pinnable
     after_update_commit :broadcast_pin_updates, if: :preview_changed?
   end
 
+  #: (User) -> bool
   def pinned_by?(user)
     pins.exists?(user: user)
   end
 
+  #: (User) -> Pin?
   def pin_for(user)
     pins.find_by(user: user)
   end
 
+  #: (User) -> Pin
   def pin_by(user)
     pins.find_or_create_by!(user: user)
   end
 
+  #: (User) -> Pin
   def unpin_by(user)
-    pins.find_by(user: user).tap { it.destroy }
+    pins.find_by!(user: user).tap do |it|
+      it.destroy
+    end
   end
 
   private
+    #: -> void
     def broadcast_pin_updates
       pins.find_each do |pin|
         pin.broadcast_replace_later_to [ pin.user, :pins_tray ], partial: "my/pins/pin"

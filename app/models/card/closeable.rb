@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Closeable
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Closeable)
+  # @type instance: Card & Card::Closeable
 
   included do
     has_one :closure, dependent: :destroy
@@ -12,22 +17,27 @@ module Card::Closeable
     scope :closed_by, ->(users) { closed.where(closures: { user_id: Array(users) }) }
   end
 
+  #: -> bool
   def closed?
     closure.present?
   end
 
+  #: -> bool
   def open?
     !closed?
   end
 
+  #: -> User?
   def closed_by
     closure&.user
   end
 
+  #: -> ActiveSupport::TimeWithZone?
   def closed_at
     closure&.created_at
   end
 
+  #: (?user: User) -> void
   def close(user: Current.user)
     unless closed?
       transaction do
@@ -38,6 +48,7 @@ module Card::Closeable
     end
   end
 
+  #: (?user: User) -> void
   def reopen(user: Current.user)
     if closed?
       transaction do

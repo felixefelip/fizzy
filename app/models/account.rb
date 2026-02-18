@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Account < ApplicationRecord
   include Account::Storage, Cancellable, Entropic, Incineratable, MultiTenantable, Seedeable
 
@@ -37,6 +39,7 @@ class Account < ApplicationRecord
     self
   end
 
+  #:  -> User
   def system_user
     users.find_by!(role: :system)
   end

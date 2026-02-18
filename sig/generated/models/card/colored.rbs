@@ -1,0 +1,8 @@
+# Generated from app/models/card/colored.rb with RBS::Inline
+
+module Card::Colored
+  extend ActiveSupport::Concern
+
+  # : -> Color
+  def color: () -> Color
+end

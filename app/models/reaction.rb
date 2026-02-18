@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Reaction < ApplicationRecord
   belongs_to :account, default: -> { reactable.account }
   belongs_to :reactable, polymorphic: true, touch: true
@@ -10,6 +12,7 @@ class Reaction < ApplicationRecord
   delegate :all_emoji?, to: :content
 
   private
+    #: -> void
     def register_card_activity
       reactable.card.touch_last_active_at
     end

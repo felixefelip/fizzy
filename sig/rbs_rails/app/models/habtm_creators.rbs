@@ -1,0 +1,146 @@
+# resolve-type-names: false
+
+class ::Filter < ::ApplicationRecord
+  class ::Filter::HABTM_Creators < ::ActiveRecord::Base
+    extend ::ActiveRecord::Base::ClassMethods[::Filter::HABTM_Creators, ::Filter::HABTM_Creators::ActiveRecord_Relation, top]
+
+    module ::Filter::HABTM_Creators::GeneratedAttributeMethods
+      def creator_id: () -> ::String
+
+      def creator_id=: (::String) -> ::String
+
+      def creator_id?: () -> bool
+
+      def creator_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def creator_id_change: () -> [ ::String?, ::String? ]
+
+      def creator_id_will_change!: () -> void
+
+      def creator_id_was: () -> ::String?
+
+      def creator_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def creator_id_previous_change: () -> ::Array[::String?]?
+
+      def creator_id_previously_was: () -> ::String?
+
+      def creator_id_before_last_save: () -> ::String?
+
+      def creator_id_change_to_be_saved: () -> ::Array[::String?]?
+
+      def creator_id_in_database: () -> ::String?
+
+      def saved_change_to_creator_id: () -> ::Array[::String?]?
+
+      def saved_change_to_creator_id?: () -> bool
+
+      def will_save_change_to_creator_id?: () -> bool
+
+      def restore_creator_id!: () -> void
+
+      def clear_creator_id_change: () -> void
+
+      def creator_id_before_type_cast: () -> ::String
+
+      def creator_id_for_database: () -> ::String
+
+      def filter_id: () -> ::String
+
+      def filter_id=: (::String) -> ::String
+
+      def filter_id?: () -> bool
+
+      def filter_id_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def filter_id_change: () -> [ ::String?, ::String? ]
+
+      def filter_id_will_change!: () -> void
+
+      def filter_id_was: () -> ::String?
+
+      def filter_id_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+      def filter_id_previous_change: () -> ::Array[::String?]?
+
+      def filter_id_previously_was: () -> ::String?
+
+      def filter_id_before_last_save: () -> ::String?
+
+      def filter_id_change_to_be_saved: () -> ::Array[::String?]?
+
+      def filter_id_in_database: () -> ::String?
+
+      def saved_change_to_filter_id: () -> ::Array[::String?]?
+
+      def saved_change_to_filter_id?: () -> bool
+
+      def will_save_change_to_filter_id?: () -> bool
+
+      def restore_filter_id!: () -> void
+
+      def clear_filter_id_change: () -> void
+
+      def filter_id_before_type_cast: () -> ::String
+
+      def filter_id_for_database: () -> ::String
+    end
+    include ::Filter::HABTM_Creators::GeneratedAttributeMethods
+    module ::Filter::HABTM_Creators::GeneratedAliasAttributeMethods
+      include ::Filter::HABTM_Creators::GeneratedAttributeMethods
+    end
+    include ::Filter::HABTM_Creators::GeneratedAliasAttributeMethods
+
+    def left_side: () -> ::Filter?
+    def left_side=: (::Filter?) -> ::Filter?
+    def reload_left_side: () -> ::Filter?
+    def build_left_side: (untyped) -> ::Filter
+    def create_left_side: (untyped) -> ::Filter
+    def create_left_side!: (untyped) -> ::Filter
+    def creator: () -> ::User?
+    def creator=: (::User?) -> ::User?
+    def reload_creator: () -> ::User?
+    def build_creator: (untyped) -> ::User
+    def create_creator: (untyped) -> ::User
+    def create_creator!: (untyped) -> ::User
+    module ::Filter::HABTM_Creators::GeneratedAssociationMethods
+    end
+    include ::Filter::HABTM_Creators::GeneratedAssociationMethods
+
+    module ::Filter::HABTM_Creators::GeneratedRelationMethods
+    end
+
+    class ::Filter::HABTM_Creators::ActiveRecord_Relation < ::ActiveRecord::Relation
+      include ::Enumerable[::Filter::HABTM_Creators]
+      include ::Filter::HABTM_Creators::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Creators, top]
+    end
+
+    class ::Filter::HABTM_Creators::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include ::Enumerable[::Filter::HABTM_Creators]
+      include ::Filter::HABTM_Creators::GeneratedRelationMethods
+      include ::ActiveRecord::Relation::Methods[::Filter::HABTM_Creators, top]
+
+      def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Creators
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Creators]
+      def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Creators
+                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Creators]
+      def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Filter::HABTM_Creators
+                 | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Filter::HABTM_Creators]
+      def reload: () -> ::Array[::Filter::HABTM_Creators]
+
+      def replace: (::Array[::Filter::HABTM_Creators]) -> void
+      def delete: (*::Filter::HABTM_Creators | top) -> ::Array[::Filter::HABTM_Creators]
+      def destroy: (*::Filter::HABTM_Creators | top) -> ::Array[::Filter::HABTM_Creators]
+      def <<: (*::Filter::HABTM_Creators | ::Array[::Filter::HABTM_Creators]) -> self
+      def prepend: (*::Filter::HABTM_Creators | ::Array[::Filter::HABTM_Creators]) -> self
+    end
+  end
+end
+
+class ::Filter < ::ApplicationRecord
+end
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::User < ::ApplicationRecord
+end

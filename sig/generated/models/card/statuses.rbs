@@ -1,0 +1,15 @@
+# Generated from app/models/card/statuses.rb with RBS::Inline
+
+module Card::Statuses
+  extend ActiveSupport::Concern
+
+  attr_accessor was_just_published: untyped
+
+  # : -> void
+  def publish: () -> void
+
+  private
+
+  # : -> void
+  def mark_if_just_published: () -> void
+end

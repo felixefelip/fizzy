@@ -1,0 +1,28 @@
+# Generated from app/models/signup/account_name_generator.rb with RBS::Inline
+
+class Signup::AccountNameGenerator
+  SUFFIX: untyped
+
+  attr_reader identity: untyped
+
+  attr_reader name: untyped
+
+  def initialize: (identity: untyped, name: untyped) -> untyped
+
+  # : -> String
+  def generate: () -> String
+
+  private
+
+  def current_index: () -> untyped
+
+  def existing_indices: () -> untyped
+
+  def first_account_name_regex: () -> untyped
+
+  def nth_account_name_regex: () -> untyped
+
+  def prefix: () -> untyped
+
+  def first_name: () -> untyped
+end

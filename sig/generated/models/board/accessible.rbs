@@ -1,0 +1,44 @@
+# Generated from app/models/board/accessible.rb with RBS::Inline
+
+module Board::Accessible
+  extend ActiveSupport::Concern
+
+  def revise: (?granted: untyped, ?revoked: untyped) -> untyped
+
+  # : (User::ActiveRecord_Relation | ::User::ActiveRecord_Associations_CollectionProxy) -> void
+  def grant_to: (User::ActiveRecord_Relation | ::User::ActiveRecord_Associations_CollectionProxy) -> void
+
+  def revoke_from: (untyped users) -> untyped
+
+  # : (User) -> void
+  def accessed_by: (User) -> void
+
+  # : (User) -> Access?
+  def access_for: (User) -> Access?
+
+  # : (User) -> Access
+  def access_for!: (User) -> Access
+
+  # : (User) -> bool
+  def accessible_to?: (User) -> bool
+
+  # : (User) -> void
+  def clean_inaccessible_data_for: (User) -> void
+
+  # : User::ActiveRecord_Relation
+  def watchers: () -> untyped
+
+  private
+
+  def grant_access_to_creator: () -> untyped
+
+  def grant_access_to_everyone: () -> untyped
+
+  def mentions_for_user: (untyped user) -> untyped
+
+  def notifications_for_user: (untyped user) -> untyped
+
+  def watches_for: (untyped user) -> untyped
+
+  def pins_for: (untyped user) -> untyped
+end

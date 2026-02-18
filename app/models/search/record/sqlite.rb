@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Search::Record::SQLite
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Search::Record) & singleton(Search::Record::SQLite)
+  # @type instance: Search::Record & Search::Record::SQLite
 
   included do
     attribute :result_title, :string

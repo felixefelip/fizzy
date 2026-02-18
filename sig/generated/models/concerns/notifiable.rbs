@@ -1,0 +1,13 @@
+# Generated from app/models/concerns/notifiable.rb with RBS::Inline
+
+module Notifiable
+  extend ActiveSupport::Concern
+
+  def notify_recipients: () -> untyped
+
+  def notifiable_target: () -> untyped
+
+  private
+
+  def notify_recipients_later: () -> untyped
+end

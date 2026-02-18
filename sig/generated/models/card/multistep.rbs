@@ -1,0 +1,5 @@
+# Generated from app/models/card/multistep.rb with RBS::Inline
+
+module Card::Multistep
+  extend ActiveSupport::Concern
+end

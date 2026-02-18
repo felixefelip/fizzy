@@ -1,6 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Entropic
   extend ActiveSupport::Concern
 
+  # @type self: singleton(Card) & singleton(Card::Entropic)
+  # @type instance: Card & Card::Entropic
   included do
     scope :due_to_be_postponed, -> do
       active
@@ -23,18 +27,24 @@ module Card::Entropic
     delegate :auto_postpone_period, to: :board
   end
 
+  # @rbs!
+  #   def auto_postpone_period: () -> Integer
+
   class_methods do
     def auto_postpone_all_due
+      # @type self: singleton(Card) & singleton(Card::Entropic)
       due_to_be_postponed.find_each do |card|
         card.auto_postpone(user: card.account.system_user)
       end
     end
   end
 
+  #: -> Card::Entropy?
   def entropy
     Card::Entropy.for(self)
   end
 
+  #: -> void
   def entropic?
     entropy.present?
   end

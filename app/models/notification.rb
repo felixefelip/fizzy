@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Notification < ApplicationRecord
   include PushNotifiable
 
@@ -23,36 +25,45 @@ class Notification < ApplicationRecord
   delegate :notifiable_target, to: :source
 
   class << self
+    #: -> void
     def read_all
       all.each(&:read)
     end
 
+    #: -> void
     def unread_all
       all.each(&:unread)
     end
   end
 
+  #: -> void
   def read
     update!(read_at: Time.current, unread_count: 0)
   end
 
+  #: -> void
   def unread
     update!(read_at: nil, unread_count: 1)
   end
 
+  #: -> bool
   def read?
     read_at.present?
   end
 
   private
+    #: -> void
     def set_card
       self.card = source.card
     end
 
+    #: -> void
     def bundle
+      # problema do design de tipos do activerecord para pensarmos aqui
       user.bundle(self) if user.settings.bundling_emails?
     end
 
+    #: -> void
     def broadcast_update
       if read?
         broadcast_remove_to(user, :notifications)

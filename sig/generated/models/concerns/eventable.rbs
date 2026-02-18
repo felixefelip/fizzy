@@ -1,0 +1,18 @@
+# Generated from app/models/concerns/eventable.rb with RBS::Inline
+
+module Eventable
+  extend ActiveSupport::Concern
+
+  # : (Symbol | String, ?creator: User, ?board: Board, **untyped) -> void
+  def track_event: (Symbol | String, ?creator: User, ?board: Board, **untyped) -> void
+
+  def event_was_created: (untyped event) -> untyped
+
+  private
+
+  # : -> bool
+  def should_track_event?: () -> bool
+
+  # : -> String
+  def eventable_prefix: () -> String
+end

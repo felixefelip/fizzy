@@ -1,0 +1,15 @@
+# Generated from app/models/card/accessible.rb with RBS::Inline
+
+module Card::Accessible
+  extend ActiveSupport::Concern
+
+  def publicly_accessible?: () -> untyped
+
+  def clean_inaccessible_data: () -> untyped
+
+  private
+
+  def grant_access_to_assignees: () -> untyped
+
+  def clean_inaccessible_data_later: () -> untyped
+end

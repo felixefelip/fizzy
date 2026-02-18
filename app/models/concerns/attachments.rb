@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Attachments
   extend ActiveSupport::Concern
+
+  # @type module: singleton(ApplicationRecord) & singleton(Attachments)
+  # @type instance: ApplicationRecord & Attachments
 
   # Variants used by ActionText embeds. Processed immediately on attachment to avoid
   # read replica issues (lazy variants would attempt writes on read replicas).

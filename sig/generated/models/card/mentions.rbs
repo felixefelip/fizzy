@@ -1,0 +1,13 @@
+# Generated from app/models/card/mentions.rb with RBS::Inline
+
+module Card::Mentions
+  extend ActiveSupport::Concern
+
+  include ::Mentions
+
+  # : -> bool
+  def mentionable?: () -> bool
+
+  # : -> bool
+  def should_check_mentions?: () -> bool
+end

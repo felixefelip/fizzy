@@ -1,0 +1,11 @@
+# Generated from app/models/card/taggable.rb with RBS::Inline
+
+module Card::Taggable
+  extend ActiveSupport::Concern
+
+  # : (String) -> void
+  def toggle_tag_with: (String) -> void
+
+  # : (Tag) -> bool
+  def tagged_with?: (Tag) -> bool
+end

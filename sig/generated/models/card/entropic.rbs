@@ -1,0 +1,15 @@
+# Generated from app/models/card/entropic.rb with RBS::Inline
+
+module Card::Entropic
+  extend ActiveSupport::Concern
+
+  def auto_postpone_period: () -> Integer
+
+  def auto_postpone_all_due: () -> untyped
+
+  # : -> Card::Entropy?
+  def entropy: () -> Card::Entropy?
+
+  # : -> void
+  def entropic?: () -> void
+end

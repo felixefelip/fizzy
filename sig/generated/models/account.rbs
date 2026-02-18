@@ -1,0 +1,20 @@
+# Generated from app/models/account.rb with RBS::Inline
+
+class Account < ApplicationRecord
+  def self.create_with_owner: (account: untyped, owner: untyped) -> untyped
+
+  def slug: () -> untyped
+
+  def account: () -> untyped
+
+  # :  -> User
+  def system_user: () -> User
+
+  def active?: () -> untyped
+
+  def importing?: () -> untyped
+
+  private
+
+  def assign_external_account_id: () -> untyped
+end

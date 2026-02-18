@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class CardsController < ApplicationController
   include FilterScoped
 
@@ -5,6 +7,10 @@ class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
   before_action :redirect_if_drafted, only: :show
   before_action :ensure_permission_to_administer_card, only: %i[ destroy ]
+
+  # @rbs!
+  #   @board: Board
+  #   @card: Card
 
   def index
     set_page_and_extract_portion_from @filter.cards

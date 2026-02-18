@@ -1,0 +1,13 @@
+# Generated from app/models/filter/resources.rb with RBS::Inline
+
+module Filter::Resources
+  extend ActiveSupport::Concern
+
+  def resource_removed: (untyped resource) -> untyped
+
+  def boards: () -> untyped
+
+  def board_titles: () -> untyped
+
+  def boards_label: () -> untyped
+end

@@ -1,0 +1,14 @@
+# Generated from app/models/comment.rb with RBS::Inline
+
+class Comment < ApplicationRecord
+  # : -> String
+  def to_partial_path: () -> String
+
+  private
+
+  # : -> void
+  def card_is_commentable: () -> void
+
+  # : -> void
+  def watch_card_by_creator: () -> void
+end

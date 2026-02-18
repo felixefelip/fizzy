@@ -1,5 +1,10 @@
+# rbs_inline: enabled
+
 module Card::Statuses
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Card) & singleton(Card::Statuses)
+  # @type instance: Card & Card::Statuses
 
   included do
     enum :status, %w[ drafted published ].index_by(&:itself)
@@ -11,6 +16,7 @@ module Card::Statuses
   attr_accessor :was_just_published
   alias_method :was_just_published?, :was_just_published
 
+  #: -> void
   def publish
     transaction do
       self.created_at = Time.current
@@ -20,6 +26,7 @@ module Card::Statuses
   end
 
   private
+    #: -> void
     def mark_if_just_published
       self.was_just_published = true if published? && status_changed?
     end

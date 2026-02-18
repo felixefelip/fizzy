@@ -1,5 +1,9 @@
+# rbs_inline: enabled
+
 module User::Accessor
   extend ActiveSupport::Concern
+
+  # @type self: singleton(User) & singleton(User::Accessor)
 
   included do
     has_many :accesses, dependent: :destroy

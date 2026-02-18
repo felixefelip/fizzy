@@ -1,0 +1,7 @@
+# Generated from app/models/event/promptable.rb with RBS::Inline
+
+module Event::Promptable
+  extend ActiveSupport::Concern
+
+  def to_prompt: () -> untyped
+end

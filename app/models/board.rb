@@ -1,5 +1,24 @@
+# rbs_inline: enabled
+
 class Board < ApplicationRecord
-  include Accessible, AutoPostponing, Board::Storage, Broadcastable, Cards, Entropic, Filterable, Publishable, ::Storage::Tracked, Triageable
+  include AutoPostponing
+  include Accessible
+  include Broadcastable
+  include Cards
+  include Entropic
+  include Filterable
+  include Publishable
+  include Storage
+  include ::Storage::Tracked
+  include Triageable
+
+  # @rbs!
+  #   class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  #     def grant_to: (User::ActiveRecord_Relation | User::ActiveRecord_Associations_CollectionProxy) -> void
+  #
+  #     def revoke_from: (User::ActiveRecord_Relation | User::ActiveRecord_Associations_CollectionProxy) -> void
+  #   end
+  #
 
   belongs_to :creator, class_name: "User", default: -> { Current.user }
   belongs_to :account, default: -> { creator.account }

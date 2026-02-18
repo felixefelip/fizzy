@@ -1,0 +1,9 @@
+---
+name: stackprof
+version: '0.2'
+source:
+  type: git
+  name: ruby/gem_rbs_collection
+  revision: f17b218ad76ff3800d651e9bc42a15ba311095b4
+  remote: https://github.com/ruby/gem_rbs_collection.git
+  repo_dir: gems

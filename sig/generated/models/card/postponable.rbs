@@ -1,0 +1,26 @@
+# Generated from app/models/card/postponable.rb with RBS::Inline
+
+module Card::Postponable
+  extend ActiveSupport::Concern
+
+  # : -> bool
+  def postponed?: () -> bool
+
+  # : -> ActiveSupport::TimeWithZone?
+  def postponed_at: () -> ActiveSupport::TimeWithZone?
+
+  # : -> User?
+  def postponed_by: () -> User?
+
+  # : -> bool
+  def active?: () -> bool
+
+  # : (**untyped) -> void
+  def auto_postpone: (**untyped) -> void
+
+  # : (?user: User, ?event_name: Symbol) -> void
+  def postpone: (?user: User, ?event_name: Symbol) -> void
+
+  # : -> void
+  def resume: () -> void
+end

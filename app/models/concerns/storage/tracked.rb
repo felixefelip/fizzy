@@ -1,8 +1,13 @@
+# rbs_inline: enabled
+
 # Storage tracking is a business abstraction - we count what users upload.
 # Original upload bytes only; variants/previews/derivatives excluded.
 # Physical storage optimizations (deduplication, compression) don't affect quotas.
 module Storage::Tracked
   extend ActiveSupport::Concern
+
+  # @type self: singleton(ApplicationRecord) & singleton(::Storage::Tracked)
+  # @type instance: ApplicationRecord & ::Storage::Tracked
 
   included do
     before_update :track_board_transfer, if: :board_transfer?

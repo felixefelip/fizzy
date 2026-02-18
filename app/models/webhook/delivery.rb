@@ -1,3 +1,5 @@
+# rbs_inline: enabled
+
 class Webhook::Delivery < ApplicationRecord
   include Rails.application.routes.url_helpers
 

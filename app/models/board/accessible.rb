@@ -1,20 +1,28 @@
+# rbs_inline: enabled
+
 module Board::Accessible
   extend ActiveSupport::Concern
+
+  # @type self: singleton(Board) & singleton(Board::Accessible)
 
   included do
     has_many :accesses, dependent: :delete_all do
       def revise(granted: [], revoked: [])
+        # @type self: Access::ActiveRecord_Associations_CollectionProxy & singleton(Board)
         transaction do
           grant_to granted
           revoke_from revoked
         end
       end
 
+      #: (User::ActiveRecord_Relation | ::User::ActiveRecord_Associations_CollectionProxy) -> void
       def grant_to(users)
+        # @type self: Access::ActiveRecord_Associations_CollectionProxy
         Access.insert_all Array(users).collect { |user| { id: ActiveRecord::Type::Uuid.generate, board_id: proxy_association.owner.id, user_id: user.id, account_id: proxy_association.owner.account.id } }
       end
 
       def revoke_from(users)
+        # @type self: Access::ActiveRecord_Associations_CollectionProxy
         destroy_by user: users unless proxy_association.owner.all_access?
       end
     end
@@ -28,18 +36,30 @@ module Board::Accessible
     after_save_commit :grant_access_to_everyone
   end
 
+  #: (User) -> void
   def accessed_by(user)
-    access_for(user).accessed
+    # @type self: Board & Board::Accessible
+    access_for!(user).accessed
   end
 
+  #: (User) -> Access?
   def access_for(user)
+    # @type self: Board & Board::Accessible
     accesses.find_by(user: user)
   end
 
+  #: (User) -> Access
+  def access_for!(user)
+    # @type self: Board & Board::Accessible
+    access_for(user) or raise
+  end
+
+  #: (User) -> bool
   def accessible_to?(user)
     access_for(user).present?
   end
 
+  #: (User) -> void
   def clean_inaccessible_data_for(user)
     return if accessible_to?(user)
 
@@ -49,20 +69,26 @@ module Board::Accessible
     pins_for(user).destroy_all
   end
 
+  #: User::ActiveRecord_Relation
   def watchers
+    # @type self: Board & Board::Accessible
     users.active.where(accesses: { involvement: :watching })
   end
 
   private
     def grant_access_to_creator
+      # @type self: Board & Board::Accessible
       accesses.create(user: creator, involvement: :watching)
     end
 
     def grant_access_to_everyone
+      # @type self: Board & Board::Accessible
       accesses.grant_to(account.users.active) if all_access_previously_changed?(to: true)
     end
 
     def mentions_for_user(user)
+      # @type self: Board & Board::Accessible
+
       # Query handles 2 paths:
       #
       # 1. Mention->Card
@@ -77,6 +103,8 @@ module Board::Accessible
     end
 
     def notifications_for_user(user)
+      # @type self: Board & Board::Accessible
+
       # Query handles 2 paths:
       #
       # 1. Notification->Event->Card
@@ -98,6 +126,7 @@ module Board::Accessible
     end
 
     def watches_for(user)
+      # @type self: Board & Board::Accessible
       Watch.where(card: cards, user: user)
     end
 
