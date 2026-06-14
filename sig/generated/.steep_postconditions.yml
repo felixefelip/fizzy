@@ -1,36 +1,18 @@
 ---
 version: 1
 postconditions:
-- class: Account::DataTransfer::Manifest
-  method: initialize
-  unconditional:
-    ivars:
-      "@account": untyped
-    self: "::Account::DataTransfer::Manifest & ::Account::DataTransfer::Manifest::AfterInitialize"
-- class: Account::DataTransfer::RecordSet
-  method: initialize
-  unconditional:
-    ivars:
-      "@account": untyped
-    self: "::Account::DataTransfer::RecordSet & ::Account::DataTransfer::RecordSet::AfterInitialize"
-- class: Account::Seeder
-  method: initialize
-  unconditional:
-    ivars:
-      "@account": untyped
-    self: "::Account::Seeder & ::Account::Seeder::AfterInitialize"
-- class: AccountTenanted
-  method: initialize
-  unconditional:
-    ivars:
-      "@account": untyped
-    self: "::AccountTenanted & ::AccountTenanted::AfterInitialize"
 - class: AccountTenanted
   method: resolve_account!
   unconditional:
     ivars:
       "@account": untyped
     self: "::AccountTenanted & ::AccountTenanted::AfterResolveAccount"
+- class: ActionPack::WebAuthn::Authenticator::AssertionResponse
+  method: initialize
+  unconditional:
+    ivars:
+      "@authenticator_data": untyped
+    self: "::ActionPack::WebAuthn::Authenticator::AssertionResponse & ::ActionPack::WebAuthn::Authenticator::AssertionResponse::AfterInitialize"
 - class: ActionPack::WebAuthn::PublicKeyCredential
   method: authenticate
   unconditional:
@@ -42,31 +24,97 @@ postconditions:
   unconditional:
     ivars:
       "@aaguid": "(::String | nil)"
-      "@public_key": untyped
     self: "::ActionPack::WebAuthn::PublicKeyCredential & ::ActionPack::WebAuthn::PublicKeyCredential::AfterInitialize"
-- class: Card::ActivitySpike::Detector
-  method: initialize
+- class: BoardsController
+  method: create
   unconditional:
     ivars:
-      "@card": untyped
-    self: "::Card::ActivitySpike::Detector & ::Card::ActivitySpike::Detector::AfterInitialize"
+      "@board": "::Board"
+    self: "::BoardsController & ::BoardsController::AfterCreate"
+- class: BoardsController
+  method: new
+  unconditional:
+    ivars:
+      "@board": "::Board"
+    self: "::BoardsController & ::BoardsController::AfterNew"
+- class: BoardsController
+  method: set_board
+  unconditional:
+    ivars:
+      "@board": untyped
+    self: "::BoardsController & ::BoardsController::AfterSetBoard"
 - class: FilterScoped
   method: set_user_filtering
   unconditional:
     ivars:
-      "@user_filtering": untyped
+      "@user_filtering": "::User::Filtering"
     self: "::FilterScoped & ::FilterScoped::AfterSetUserFiltering"
-- class: Signup::AccountNameGenerator
+- class: My::PasskeysController
+  method: index
+  unconditional:
+    ivars:
+      "@registration_options": untyped
+    self: "::My::PasskeysController & ::My::PasskeysController::AfterIndex"
+- class: My::PinsController
+  method: index
+  unconditional:
+    ivars:
+      "@pins": untyped
+    self: "::My::PinsController & ::My::PinsController::AfterIndex"
+- class: Notifications::TraysController
+  method: show
+  unconditional:
+    ivars:
+      "@notifications": untyped
+    self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
+- class: SessionsController
+  method: new
+  unconditional:
+    ivars:
+      "@authentication_options": untyped
+    self: "::SessionsController & ::SessionsController::AfterNew"
+- class: Signup
+  method: create_account
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::Signup & ::Signup::AfterCreateAccount"
+- class: Signup
+  method: create_identity
+  unconditional:
+    ivars:
+      "@identity": "(::Identity & ::Identity::Validated)"
+    self: "::Signup & ::Signup::AfterCreateIdentity"
+- class: Signup
   method: initialize
   unconditional:
     ivars:
-      "@identity": untyped
-    self: "::Signup::AccountNameGenerator & ::Signup::AccountNameGenerator::AfterInitialize"
+      "@email_address": "(::String | nil)"
+    self: "::Signup & ::Signup::AfterInitialize"
+- class: Signups::CompletionsController
+  method: create
+  unconditional:
+    ivars:
+      "@signup": "::Signup"
+    self: "::Signups::CompletionsController & ::Signups::CompletionsController::AfterCreate"
+- class: Signups::CompletionsController
+  method: new
+  unconditional:
+    ivars:
+      "@signup": "::Signup"
+    self: "::Signups::CompletionsController & ::Signups::CompletionsController::AfterNew"
+- class: SignupsController
+  method: new
+  unconditional:
+    ivars:
+      "@signup": "::Signup"
+    self: "::SignupsController & ::SignupsController::AfterNew"
 - class: Storage::AttachmentTracking
   method: snapshot_storage_context
   unconditional:
     ivars:
-      "@storage_snapshot": untyped
+      "@storage_snapshot": "{ :account => untyped, :board => untyped, :recordable
+        => untyped }"
     self: "::Storage::AttachmentTracking & ::Storage::AttachmentTracking::AfterSnapshotStorageContext"
 - class: ViewTransitions
   method: disable_view_transitions
@@ -74,9 +122,3 @@ postconditions:
     ivars:
       "@disable_view_transition": 'true'
     self: "::ViewTransitions & ::ViewTransitions::AfterDisableViewTransitions"
-- class: ZipFile::Writer
-  method: initialize
-  unconditional:
-    ivars:
-      "@digest": untyped
-    self: "::ZipFile::Writer & ::ZipFile::Writer::AfterInitialize"

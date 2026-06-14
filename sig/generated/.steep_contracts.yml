@@ -1,6 +1,235 @@
 ---
 version: 1
 methods:
+  Access#clean_inaccessible_data_later:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Account::Cancellable#reactivate:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cancellation
+    enforced: false
+  Account::DataTransfer::AccountRecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::ActionText::RichTextRecordSet#convert_gids_to_sgids:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::ActionText::RichTextRecordSet#convert_sgids_to_gids:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::ActionText::RichTextRecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::ActionText::RichTextRecordSet#replace_account_slugs:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::ActiveStorage::BlobRecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::EntropyRecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::RecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::RecordSet#records:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::DataTransfer::UserRecordSet#import_batch:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::ExternalIdSequence#next:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: with_lock
+    enforced: false
+  Account::Import#add_importer_to_all_access_boards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::Import#cleanup:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::Import#reconcile_account_storage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::Import#reconcile_cards_count:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::JoinCode#active?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: usage_count
+    enforced: false
+  Account::Seeder#delete_everything:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Account::Seeder#populate:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::AssertionResponse#sign_count_increased?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: credential
+        chain:
+        - sign_count
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::AssertionResponse#signature_must_be_valid:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: credential
+        chain:
+        - public_key
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::Response#relying_party_id_must_match:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: authenticator_data
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::Response#user_must_be_present:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: authenticator_data
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::Response#user_must_be_verified_when_required:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: authenticator_data
+    enforced: false
   ActionPack::WebAuthn::PublicKeyCredential#to_h:
     requires:
     - kind: not_nil
@@ -9,4 +238,875 @@ methods:
         receiver:
           kind: self
         method: public_key
+    enforced: false
+  Assignment#within_limit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Attachments#rich_text_record:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Board::Accessible#grant_access_to_everyone:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: accesses
+    enforced: false
+  Board::Entropic#entropy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Card#handle_board_change:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card#track_board_change_event:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card::Accessible#clean_inaccessible_data:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card::Accessible#grant_access_to_assignees:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card::Accessible#publicly_accessible?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card::ActivitySpike::Detector#card_was_just_assigned?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike::Detector#card_was_just_reopened?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike::Detector#has_activity_spike?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike::Detector#last_event:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike::Detector#multiple_people_commented?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike::Detector#recent_period:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::Exportable#export_json:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: created_at
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: updated_at
+    enforced: false
+  Card::Promptable#to_prompt:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: title
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Card::Readable#remove_inaccessible_notifications:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card::Stallable#stalled?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: updated_at
+    enforced: false
+  Card::Taggable#toggle_tag_with:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Column::Positioned#adjacent_columns:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column::Positioned#left_column:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column::Positioned#right_column:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column::Positioned#set_position:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Comment#card_is_commentable:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#watch_card_by_creator:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment::Eventable#event_was_created:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment::Eventable#should_track_event?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Comment::Eventable#track_creation:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment::Mentions#mentionable?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment::Promptable#to_prompt:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Comment::Searchable#search_board_id:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment::Searchable#searchable?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Entropy#auto_postpone_period_in_days:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: auto_postpone_period
+    enforced: false
+  Entropy#default_auto_postpone_period_in_days:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: container
+        chain:
+        - account
+    enforced: false
+  Event::Description#creator_name:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+        chain:
+        - creator
+    enforced: false
+  Event::Description#creator_tag:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+        chain:
+        - creator
+    enforced: false
+  Event::Promptable#to_prompt:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Mentions#rich_text_associations:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Notification#bundle:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - settings
+    enforced: false
+  Notification::Bundle#deliver:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - in_time_zone
+    enforced: false
+  Notification::Bundle#deliverable?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Notification::Bundle#notifications:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification::Bundle#overlapping_bundles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification::Bundle#set_default_window:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: starts_at
+    enforced: false
+  Notification::EventPayload#body:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Notification::EventPayload#card_title:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Notification::Pushable#push:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Notification::Pushable#pushable?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Push::Subscription#notification:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  QrCodeLink#signed:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Search::Record::Trilogy#card_description:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Search::Record::Trilogy#card_title:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Storage::Total#current_usage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: bytes_stored
+    enforced: false
+  User#setup?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
+    enforced: false
+  User::Accessor#grant_access_to_boards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  User::DataExport#exportable_cards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::EmailAddressChangeable#change_email_address_using_token:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
+    enforced: false
+  User::EmailAddressChangeable#generate_email_address_change_token:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
+    enforced: false
+  User::Filtering#tags:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  User::Filtering#users:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  User::Named#familiar_name:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
+  User::Named#first_name:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
+  User::Named#initials:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
+  User::Named#last_name:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
+  User::Settings#bundling_emails?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Settings#cancel_pending_bundles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Settings#flush_pending_bundles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Webhook#for_basecamp?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: url
+    enforced: false
+  Webhook#for_campfire?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: url
+    enforced: false
+  Webhook#for_slack?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: url
+    enforced: false
+  Webhook#renderer:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Webhook::DelinquencyTracker#record_delivery_of:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: consecutive_failures_count
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::DelinquencyTracker#too_many_consecutive_failures?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: consecutive_failures_count
+    enforced: false
+  Webhook::Delivery#content_type:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#deliver:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#headers:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+    enforced: false
+  Webhook::Delivery#payload:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#render_payload:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#sanitized_request:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+    enforced: false
+  Webhook::Delivery#signature:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#slack_payload:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  Webhook::Delivery#succeeded?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: response
+    enforced: false
+  Webhook::Delivery#uri:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Triggerable#trigger:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
     enforced: false
