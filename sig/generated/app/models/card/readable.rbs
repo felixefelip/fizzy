@@ -1,0 +1,18 @@
+class Card
+  module Readable
+    extend ActiveSupport::Concern
+    def read_by: (untyped user) -> untyped
+    def unread_by: (untyped user) -> untyped
+    def remove_inaccessible_notifications: () -> untyped
+
+    private
+
+    def remove_inaccessible_notifications_later: () -> untyped
+    def event_notification_sources: () -> untyped
+    def comment_creation_events: () -> untyped
+    def inaccessible_notifications_from: (untyped sources, untyped accessible_user_ids) -> untyped
+    def notification_sources: () -> Array[untyped]
+    def mention_notification_sources: () -> untyped
+    def comment_mentions: () -> untyped
+  end
+end

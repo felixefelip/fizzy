@@ -1,0 +1,11 @@
+class Notification
+  class PushTarget
+    class Web < ::Notification::PushTarget
+      def process: () -> untyped
+
+      private
+
+      def subscriptions: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,13 @@
+class Webhook < ApplicationRecord
+  include Triggerable
+  def activate: () -> untyped
+  def deactivate: () -> untyped
+  def renderer: () -> untyped
+  def for_basecamp?: () -> untyped
+  def for_campfire?: () -> untyped
+  def for_slack?: () -> untyped
+
+  private
+
+  def validate_url: () -> untyped
+end

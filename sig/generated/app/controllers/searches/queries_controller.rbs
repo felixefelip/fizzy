@@ -1,0 +1,5 @@
+module Searches
+  class QueriesController < ApplicationController
+    def create: () -> void
+  end
+end

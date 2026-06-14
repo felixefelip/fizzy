@@ -1,0 +1,9 @@
+module Notifiable
+  extend ActiveSupport::Concern
+  def notify_recipients: () -> untyped?
+  def notifiable_target: () -> Notifiable
+
+  private
+
+  def notify_recipients_later: () -> untyped
+end

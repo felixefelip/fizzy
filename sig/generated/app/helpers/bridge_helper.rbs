@@ -1,0 +1,7 @@
+module BridgeHelper
+  def bridge_icon: (String name) -> untyped
+  def bridged_button_to_board: (untyped board) -> untyped
+  def bridged_share_url_button: (?nil description) -> untyped
+  def bridge_share_card_description: (untyped card) -> String
+  def bridge_share_board_description: (untyped board) -> String
+end

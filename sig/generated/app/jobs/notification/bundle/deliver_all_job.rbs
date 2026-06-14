@@ -1,0 +1,7 @@
+class Notification
+  class Bundle
+    class DeliverAllJob < ApplicationJob
+      def perform: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,12 @@
+class Account
+  class ExportsController < ApplicationController
+    def show: () -> void
+    def create: () -> void
+
+    private
+
+    def ensure_admin_or_owner: () -> untyped
+    def ensure_export_limit_not_exceeded: () -> untyped
+    def set_export: () -> untyped
+  end
+end

@@ -1,0 +1,3 @@
+module UsersHelper
+  def role_display_name: (untyped user) -> String
+end

@@ -1,0 +1,48 @@
+class Current < ActiveSupport::CurrentAttributes
+  @account: (Account::Seedeable | Account)?
+  module GeneratedAttributeMethods
+    def session: () -> untyped
+    def session=: (untyped value) -> untyped
+    def user: () -> untyped
+    def user=: (untyped value) -> untyped
+    def identity: () -> untyped
+    def identity=: (untyped value) -> untyped
+    def account: () -> (Account::Seedeable | Account)?
+    def account=: ((Account::Seedeable | Account)? value) -> (Account::Seedeable | Account)?
+    def http_method: () -> untyped
+    def http_method=: (untyped value) -> untyped
+    def request_id: () -> untyped
+    def request_id=: (untyped value) -> untyped
+    def user_agent: () -> untyped
+    def user_agent=: (untyped value) -> untyped
+    def ip_address: () -> untyped
+    def ip_address=: (untyped value) -> untyped
+    def referrer: () -> untyped
+    def referrer=: (untyped value) -> untyped
+  end
+  include GeneratedAttributeMethods
+  def self.session: () -> untyped
+  def self.session=: (untyped value) -> untyped
+  def self.user: () -> untyped
+  def self.user=: (untyped value) -> untyped
+  def self.identity: () -> untyped
+  def self.identity=: (untyped value) -> untyped
+  def self.account: () -> (Account::Seedeable | Account)?
+  def self.account=: ((Account::Seedeable | Account)? value) -> (Account::Seedeable | Account)?
+  def self.http_method: () -> untyped
+  def self.http_method=: (untyped value) -> untyped
+  def self.request_id: () -> untyped
+  def self.request_id=: (untyped value) -> untyped
+  def self.user_agent: () -> untyped
+  def self.user_agent=: (untyped value) -> untyped
+  def self.ip_address: () -> untyped
+  def self.ip_address=: (untyped value) -> untyped
+  def self.referrer: () -> untyped
+  def self.referrer=: (untyped value) -> untyped
+  def self.set: (?session: untyped, ?user: untyped, ?identity: untyped, ?account: (Account::Seedeable | Account?), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
+  def self.with: (?session: untyped, ?user: untyped, ?identity: untyped, ?account: nil, ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
+  def session=: (untyped value) -> untyped
+  def identity=: (untyped identity) -> untyped
+  def with_account: (Current value) ?{ (untyped) -> untyped } -> untyped
+  def without_account: () ?{ (untyped) -> untyped } -> untyped
+end

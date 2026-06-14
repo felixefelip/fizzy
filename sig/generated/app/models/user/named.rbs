@@ -1,0 +1,9 @@
+class User
+  module Named
+    extend ActiveSupport::Concern
+    def first_name: () -> untyped
+    def last_name: () -> untyped
+    def initials: () -> untyped
+    def familiar_name: () -> String
+  end
+end

@@ -1,0 +1,4 @@
+module EventsHelper
+  def event_action_icon: (untyped event) -> String
+  def events_at_hour_container: (untyped column, untyped hour) ?{ (untyped) -> untyped } -> untyped
+end

@@ -1,0 +1,18 @@
+module WebPush
+  class Pool
+    attr_reader delivery_pool: Concurrent::ThreadPoolExecutor
+    attr_reader invalidation_pool: Concurrent::FixedThreadPool
+    attr_reader connection: Net::HTTP::Persistent
+    attr_reader invalid_subscription_handler: untyped
+    def initialize: (invalid_subscription_handler: untyped) -> void
+    def queue: (untyped payload, untyped subscriptions) -> untyped
+    def shutdown: () -> untyped
+
+    private
+
+    def deliver_later: (untyped payload, untyped subscription) -> untyped
+    def deliver: (untyped notification, untyped id) -> untyped
+    def invalidate_subscription_later: (untyped id) -> untyped
+    def shutdown_pool: (Concurrent::ThreadPoolExecutor pool) -> untyped
+  end
+end

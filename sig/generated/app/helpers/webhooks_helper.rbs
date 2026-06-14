@@ -1,0 +1,5 @@
+module WebhooksHelper
+  def webhook_action_options: (?Webhook::PERMITTED_ACTIONS actions) -> untyped
+  def webhook_action_label: (untyped action) -> untyped
+  def link_to_webhooks: (untyped board) ?{ (untyped) -> untyped } -> untyped
+end

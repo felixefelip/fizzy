@@ -1,0 +1,3 @@
+module QrCodesHelper
+  def qr_code_image: (untyped url) -> untyped
+end

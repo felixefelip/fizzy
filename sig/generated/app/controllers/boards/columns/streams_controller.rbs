@@ -1,0 +1,8 @@
+module Boards
+  module Columns
+    class StreamsController < ApplicationController
+      include BoardScoped
+      def show: () -> void
+    end
+  end
+end

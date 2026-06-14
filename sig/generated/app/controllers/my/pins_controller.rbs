@@ -1,0 +1,11 @@
+module My
+  class PinsController < ApplicationController
+    @pins: nil
+    def index: () -> void
+
+    private
+
+    def user_pins: () -> untyped
+    def pins_limit: () -> untyped
+  end
+end

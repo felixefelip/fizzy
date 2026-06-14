@@ -1,0 +1,16 @@
+module Storage
+  module Tracked
+    extend ActiveSupport::Concern
+    def storage_tracked_record: () -> Storage::Tracked
+    def board_for_storage_tracking: () -> untyped
+    def storage_bytes: () -> untyped
+
+    private
+
+    def board_transfer?: () -> untyped
+    def track_board_transfer: () -> untyped
+    def storage_transfer_records: () -> Array[untyped]
+    def attachments_for_storage: (?untyped recordable) -> untyped
+    def storage_attachments_for_records: (Array[untyped] recordables) -> untyped
+  end
+end

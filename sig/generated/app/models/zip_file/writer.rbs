@@ -1,0 +1,20 @@
+class ZipFile
+  class Writer
+    @entries: Array[untyped]
+    @streamer: nil
+    @digest: Digest::MD5
+    attr_reader byte_size: Integer
+    def initialize: (?nil io) -> Digest::MD5
+    def stream_to: (untyped io) -> untyped
+    def write: (untyped data) -> untyped
+    def add_file: (untyped path, ?nil content, ?compress: untyped) -> untyped
+    def glob: (untyped pattern) -> Array[untyped]
+    def exists?: (untyped path) -> bool
+    def close: () -> untyped
+    def checksum: () -> untyped
+
+    private
+
+    def streamer: () -> untyped
+  end
+end

@@ -1,0 +1,13 @@
+class Export < ApplicationRecord
+  def self.cleanup: () -> untyped
+  def build_later: () -> untyped
+  def build: () -> untyped
+  def mark_completed: () -> untyped
+  def accessible_to?: (untyped accessor) -> untyped
+
+  private
+
+  def filename: () -> String
+  def with_context: () -> untyped
+  def populate_zip: (untyped zip) -> untyped
+end

@@ -1,0 +1,7 @@
+class Comment
+  module Mentions
+    extend ActiveSupport::Concern
+    include ::Mentions
+    def mentionable?: () -> untyped
+  end
+end

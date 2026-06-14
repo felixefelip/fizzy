@@ -1,0 +1,11 @@
+class Notifier
+  class CardEventNotifier < ::Notifier
+    def creator: () -> untyped
+    def board: () -> untyped
+
+    private
+
+    def recipients: () -> untyped
+    def card: () -> untyped
+  end
+end

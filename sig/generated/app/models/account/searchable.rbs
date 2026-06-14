@@ -1,0 +1,9 @@
+class Account
+  module Searchable
+    extend ActiveSupport::Concern
+
+    private
+
+    def clear_search_records: () -> untyped
+  end
+end

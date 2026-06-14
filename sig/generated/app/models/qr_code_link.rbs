@@ -1,0 +1,11 @@
+class QrCodeLink
+  attr_reader url: untyped
+  def from_signed: (untyped signed) -> untyped
+  def verifier: () -> ActiveSupport::MessageVerifier
+
+  private
+
+  def secret: () -> untyped
+  def initialize: (untyped url) -> void
+  def signed: () -> untyped
+end

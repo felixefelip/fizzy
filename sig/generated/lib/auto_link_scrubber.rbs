@@ -1,0 +1,11 @@
+class AutoLinkScrubber < Loofah::Scrubber
+  @direction: Symbol
+  def initialize: () -> Symbol
+  def scrub: (untyped node) -> Loofah::Scrubber::CONTINUE
+
+  private
+
+  def autolink_text_node: (untyped node) -> untyped
+  def find_links: (untyped text) -> untyped
+  def clean_url: (untyped url) -> untyped
+end

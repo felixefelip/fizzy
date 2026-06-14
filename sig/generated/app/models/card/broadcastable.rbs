@@ -1,0 +1,10 @@
+class Card
+  module Broadcastable
+    extend ActiveSupport::Concern
+
+    private
+
+    def remember_if_preview_changed: () -> untyped
+    def preview_changed?: () -> untyped
+  end
+end

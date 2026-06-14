@@ -1,0 +1,7 @@
+module Passkey
+  class Authenticator
+    def find_by_aaguid: (untyped aaguid) -> untyped
+    def registry: () -> Hash[untyped, untyped]
+    def all: () -> Array[Passkey::Authenticator]
+  end
+end

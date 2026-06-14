@@ -1,0 +1,17 @@
+class CardsController < ApplicationController
+  include FilterScoped
+  def index: () -> void
+  def create: () -> void
+  def show: () -> void
+  def edit: () -> void
+  def update: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_board: () -> untyped
+  def set_card: () -> untyped
+  def redirect_if_drafted: () -> untyped
+  def ensure_permission_to_administer_card: () -> untyped
+  def card_params: () -> untyped
+end

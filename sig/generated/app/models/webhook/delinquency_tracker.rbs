@@ -1,0 +1,13 @@
+class Webhook
+  class DelinquencyTracker < ApplicationRecord
+    def record_delivery_of: (untyped delivery) -> untyped
+
+    private
+
+    def reset: () -> untyped
+    def mark_first_failure_time: () -> untyped
+    def delinquent?: () -> untyped
+    def failing_for_too_long?: () -> untyped
+    def too_many_consecutive_failures?: () -> bool
+  end
+end

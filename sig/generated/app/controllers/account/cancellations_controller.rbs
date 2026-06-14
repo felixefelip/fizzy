@@ -1,0 +1,9 @@
+class Account
+  class CancellationsController < ApplicationController
+    def create: () -> void
+
+    private
+
+    def ensure_owner: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+class Card
+  module Commentable
+    extend ActiveSupport::Concern
+    def commentable?: () -> untyped
+
+    private
+
+    def storage_transfer_records: () -> untyped
+    def storage_comment_ids_with_attachments: () -> untyped
+  end
+end

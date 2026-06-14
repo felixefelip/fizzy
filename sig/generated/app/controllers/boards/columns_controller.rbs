@@ -1,0 +1,15 @@
+module Boards
+  class ColumnsController < ApplicationController
+    include BoardScoped
+    def index: () -> void
+    def show: () -> void
+    def create: () -> void
+    def update: () -> void
+    def destroy: () -> void
+
+    private
+
+    def set_column: () -> untyped
+    def column_params: () -> untyped
+  end
+end

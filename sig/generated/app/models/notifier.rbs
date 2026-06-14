@@ -1,0 +1,10 @@
+class Notifier
+  attr_reader source: untyped
+  def for: (Notifiable source) -> Notifier::MentionNotifier?
+  def notify: () -> untyped
+
+  private
+
+  def initialize: (untyped source) -> untyped
+  def should_notify?: () -> untyped
+end

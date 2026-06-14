@@ -1,0 +1,12 @@
+---
+version: 1
+methods:
+  ActionPack::WebAuthn::PublicKeyCredential#to_h:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: public_key
+    enforced: false

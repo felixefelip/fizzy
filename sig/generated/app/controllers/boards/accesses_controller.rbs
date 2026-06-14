@@ -1,0 +1,10 @@
+module Boards
+  class AccessesController < ApplicationController
+    include BoardScoped
+    def index: () -> void
+
+    private
+
+    def involvement_by_user: () -> untyped
+  end
+end

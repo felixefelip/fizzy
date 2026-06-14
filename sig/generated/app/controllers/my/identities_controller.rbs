@@ -1,0 +1,5 @@
+module My
+  class IdentitiesController < ApplicationController
+    def show: () -> void
+  end
+end

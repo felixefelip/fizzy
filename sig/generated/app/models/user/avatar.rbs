@@ -1,0 +1,14 @@
+class User
+  module Avatar
+    extend ActiveSupport::Concern
+    def avatar_attached?: () -> untyped
+    def avatar_thumbnail: () -> untyped
+    def avatar_background_color: () -> untyped
+    def publicly_accessible?: () -> bool
+
+    private
+
+    def avatar_content_type_allowed: () -> untyped
+    def avatar_dimensions_allowed: () -> untyped
+  end
+end

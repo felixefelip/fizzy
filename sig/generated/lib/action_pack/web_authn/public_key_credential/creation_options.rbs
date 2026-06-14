@@ -1,0 +1,14 @@
+module ActionPack
+  module WebAuthn
+    class PublicKeyCredential
+      class CreationOptions < ::ActionPack::WebAuthn::PublicKeyCredential::Options
+        def initialize: (?Hash[untyped, untyped] attributes) -> untyped
+        def as_json: (?Hash[untyped, untyped] options) -> untyped
+
+        private
+
+        def exclude_credential_json: (untyped credential) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,12 @@
+module Users
+  class EmailAddressesController < ApplicationController
+    def new: () -> void
+    def create: () -> void
+
+    private
+
+    def set_user: () -> untyped
+    def ensure_valid_email_address: () -> untyped
+    def new_email_address: () -> untyped
+  end
+end

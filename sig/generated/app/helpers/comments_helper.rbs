@@ -1,0 +1,3 @@
+module CommentsHelper
+  def new_comment_placeholder: (untyped card) -> String
+end

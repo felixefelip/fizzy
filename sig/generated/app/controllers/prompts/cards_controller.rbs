@@ -1,0 +1,12 @@
+module Prompts
+  class CardsController < ApplicationController
+    def index: () -> void
+
+    private
+
+    def filter_param: () -> untyped
+    def search_cards: () -> untyped
+    def published_cards: () -> untyped
+    def prepending_exact_matches_by_id: (untyped cards) -> untyped
+  end
+end

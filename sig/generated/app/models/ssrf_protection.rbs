@@ -1,0 +1,9 @@
+module SsrfProtection
+  def resolve_public_ip: (untyped hostname) -> untyped
+  def blocked_address?: (untyped ip) -> untyped
+
+  private
+
+  def resolve_dns: (untyped hostname) -> Array[untyped]
+  def in_disallowed_range?: (untyped ip) -> untyped
+end

@@ -1,0 +1,23 @@
+class User < ApplicationRecord
+  include Accessor
+  include Assignee
+  include Attachable
+  include Avatar
+  include Configurable
+  include EmailAddressChangeable
+  include Mentionable
+  include Named
+  include Notifiable
+  include Role
+  include Searcher
+  include Watcher
+  include Timelined
+  def deactivate: () -> untyped
+  def setup?: () -> untyped
+  def verified?: () -> untyped
+  def verify: () -> untyped
+
+  private
+
+  def close_remote_connections: () -> untyped
+end

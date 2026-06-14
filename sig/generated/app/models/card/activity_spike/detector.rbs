@@ -1,0 +1,20 @@
+class Card
+  class ActivitySpike
+    class Detector
+      attr_reader card: Card::Stallable
+      def initialize: (Card::Stallable card) -> void
+      def detect: () -> bool
+
+      private
+
+      def has_activity_spike?: () -> untyped
+      def register_activity_spike: () -> untyped
+      def multiple_people_commented?: (?minimum_comments: untyped, ?minimum_participants: untyped) -> untyped
+      def recent_period: () -> untyped
+      def card_was_just_assigned?: () -> untyped
+      def card_was_just_reopened?: () -> untyped
+      def card_was_just?: (Symbol action) -> untyped
+      def last_event: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,3 @@
+class QrCodesController < ApplicationController
+  def show: () -> void
+end

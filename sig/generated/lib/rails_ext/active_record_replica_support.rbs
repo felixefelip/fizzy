@@ -1,0 +1,7 @@
+module ActiveRecordReplicaSupport
+  extend ActiveSupport::Concern
+  include ::ActiveRecordReplicaSupport
+  def configure_replica_connections: () -> untyped
+  def replica_configured?: () -> untyped
+  def with_reading_role: () ?{ (untyped) -> untyped } -> untyped
+end

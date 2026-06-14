@@ -1,0 +1,10 @@
+class User
+  module Role
+    extend ActiveSupport::Concern
+    def admin?: () -> untyped
+    def can_change?: (untyped other) -> untyped
+    def can_administer?: (untyped other) -> untyped
+    def can_administer_board?: (untyped board) -> untyped
+    def can_administer_card?: (untyped card) -> untyped
+  end
+end

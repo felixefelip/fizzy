@@ -1,0 +1,32 @@
+class User
+  class Filtering
+    attr_reader user: untyped
+    attr_reader filter: untyped
+    attr_reader expanded: untyped
+    def initialize: (untyped user, untyped filter, ?expanded: untyped) -> void
+    def boards: () -> untyped
+    def selected_board_titles: () -> untyped
+    def selected_boards_label: () -> untyped
+    def tags: () -> untyped
+    def users: () -> untyped
+    def filters: () -> untyped
+    def expanded?: () -> untyped
+    def any?: () -> untyped
+    def show_indexed_by?: () -> untyped
+    def show_sorted_by?: () -> untyped
+    def show_tags?: () -> untyped
+    def show_assignees?: () -> untyped
+    def show_creators?: () -> untyped
+    def show_closers?: () -> untyped
+    def show_boards?: () -> untyped
+    def single_board_or_first: () -> untyped
+    def cache_key: () -> untyped
+    def as_params: () -> untyped
+    def single_board: () -> untyped
+    def only_closed?: () -> untyped
+
+    private
+
+    def account: () -> untyped
+  end
+end

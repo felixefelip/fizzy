@@ -1,0 +1,5 @@
+class Card
+  class RemoveInaccessibleNotificationsJob < ApplicationJob
+    def perform: (untyped card) -> untyped
+  end
+end

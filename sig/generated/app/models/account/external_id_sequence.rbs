@@ -1,0 +1,11 @@
+class Account
+  class ExternalIdSequence < ApplicationRecord
+    def next: () -> untyped
+    def value: () -> untyped
+
+    private
+
+    def with_lock: () -> untyped
+    def initial_value: () -> untyped
+  end
+end

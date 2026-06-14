@@ -1,0 +1,3 @@
+module SmtpDeliveryErrorHandling
+  extend ActiveSupport::Concern
+end

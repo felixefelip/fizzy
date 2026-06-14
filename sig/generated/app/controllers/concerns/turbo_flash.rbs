@@ -1,0 +1,7 @@
+module TurboFlash
+  extend ActiveSupport::Concern
+
+  private
+
+  def turbo_stream_flash: (**untyped) -> untyped
+end

@@ -1,0 +1,6 @@
+class Account
+  module Seedeable
+    extend ActiveSupport::Concern
+    def setup_customer_template: () -> untyped
+  end
+end

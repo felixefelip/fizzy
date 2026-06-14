@@ -1,0 +1,3 @@
+module ReactionsHelper
+  def reaction_path_prefix_for: (untyped reactable) -> Array[untyped]
+end

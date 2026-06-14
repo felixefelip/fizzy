@@ -1,0 +1,22 @@
+class Account
+  module DataTransfer
+    module ActiveStorage
+      class FileRecordSet < ::Account::DataTransfer::RecordSet
+        @old_key_to_blob_id: nil
+        def initialize: (Account? account) -> void
+
+        private
+
+        def records: () -> untyped
+        def excluded_blob_ids: () -> untyped
+        def export_record: (untyped blob) -> untyped
+        def files: () -> untyped
+        def import_batch: (untyped files) -> untyped
+        def old_key_to_blob_id: () -> untyped
+        def build_old_key_to_blob_id: () -> untyped
+        def with_zip: (untyped zip) -> untyped
+        def check_record: (untyped file_path) -> untyped
+      end
+    end
+  end
+end

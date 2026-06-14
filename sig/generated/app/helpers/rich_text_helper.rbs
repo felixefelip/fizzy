@@ -1,0 +1,6 @@
+module RichTextHelper
+  def mentions_prompt: (untyped board) -> untyped
+  def global_mentions_prompt: () -> untyped
+  def cards_prompt: () -> untyped
+  def general_prompts: (untyped board) -> untyped
+end

@@ -1,0 +1,12 @@
+module Boards
+  module Columns
+    class CardsController < ApplicationController
+      include BoardScoped
+      def index: () -> void
+
+      private
+
+      def set_column: () -> untyped
+    end
+  end
+end

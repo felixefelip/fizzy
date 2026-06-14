@@ -1,0 +1,15 @@
+module My
+  class AccessTokensController < ApplicationController
+    def index: () -> void
+    def show: () -> void
+    def new: () -> void
+    def create: () -> void
+    def destroy: () -> void
+
+    private
+
+    def my_access_tokens: () -> untyped
+    def access_token_params: () -> untyped
+    def verifier: () -> untyped
+  end
+end

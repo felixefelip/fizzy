@@ -1,0 +1,16 @@
+class Notification < ApplicationRecord
+  include ::Notification::Pushable
+  def read_all: () -> untyped
+  def unread_all: () -> untyped
+  def read: () -> untyped
+  def unread: () -> untyped
+  def read?: () -> untyped
+  def notifiable_target: () -> untyped
+  def identity: () -> untyped
+
+  private
+
+  def set_card: () -> untyped
+  def bundle: () -> untyped
+  def broadcast_update: () -> untyped
+end

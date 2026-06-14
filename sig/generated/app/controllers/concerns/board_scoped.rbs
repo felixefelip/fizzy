@@ -1,0 +1,8 @@
+module BoardScoped
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_board: () -> untyped
+  def ensure_permission_to_admin_board: () -> untyped
+end

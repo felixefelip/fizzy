@@ -1,0 +1,16 @@
+module Cards
+  class StepsController < ApplicationController
+    include CardScoped
+    def index: () -> void
+    def create: () -> void
+    def show: () -> void
+    def edit: () -> void
+    def update: () -> void
+    def destroy: () -> void
+
+    private
+
+    def set_step: () -> untyped
+    def step_params: () -> untyped
+  end
+end

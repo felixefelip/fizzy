@@ -1,0 +1,10 @@
+module Deployment
+  class DatabaseResolver < ActiveRecord::Middleware::DatabaseSelector::Resolver
+    def self.in_primary_datacenter?: () -> untyped
+    def reading_request?: (untyped request) -> untyped
+
+    private
+
+    def read_from_primary?: () -> untyped
+  end
+end

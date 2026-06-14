@@ -1,0 +1,13 @@
+module Search
+  class Highlighter
+    attr_reader query: untyped
+    def initialize: (untyped query) -> void
+    def highlight: (String text) -> untyped
+    def snippet: (untyped text, ?max_words: untyped) -> untyped
+
+    private
+
+    def terms: () -> Array[untyped]
+    def escape_highlight_marks: (String html) -> untyped
+  end
+end

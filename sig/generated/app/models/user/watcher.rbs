@@ -1,0 +1,5 @@
+class User
+  module Watcher
+    extend ActiveSupport::Concern
+  end
+end

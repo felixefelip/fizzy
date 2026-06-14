@@ -1,0 +1,6 @@
+module Filters
+  class SettingsRefreshesController < ApplicationController
+    include FilterScoped
+    def create: () -> void
+  end
+end

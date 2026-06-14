@@ -1,0 +1,11 @@
+module CardScoped
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_card: () -> untyped
+  def set_board: () -> untyped
+  def render_card_replacement: () -> untyped
+  def capture_card_location: () -> untyped
+  def refresh_stream_if_needed: () -> untyped
+end

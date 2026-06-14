@@ -1,0 +1,5 @@
+class Board
+  module Broadcastable
+    extend ActiveSupport::Concern
+  end
+end

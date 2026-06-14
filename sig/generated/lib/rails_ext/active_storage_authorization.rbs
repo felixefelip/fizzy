@@ -1,0 +1,21 @@
+module ActiveStorage
+  module Authorize
+    extend ActiveSupport::Concern
+    include Authentication
+    include ::ActiveStorage::Authorize
+    include ::ActiveStorage::Authorize
+    include ::ActiveStorage::Authorize
+    include ::ActiveStorage::Authorize
+    def accessible_to?: (untyped user) -> untyped
+    def publicly_accessible?: () -> untyped
+    def accessible_to?: (untyped user) -> untyped
+    def publicly_accessible?: () -> untyped
+
+    private
+
+    def bearer_token_authenticatable_request?: () -> bool
+    def publicly_accessible_blob?: () -> untyped
+    def ensure_accessible: () -> untyped
+    def http_cache_forever: (?public: untyped) ?{ (untyped) -> untyped } -> untyped
+  end
+end

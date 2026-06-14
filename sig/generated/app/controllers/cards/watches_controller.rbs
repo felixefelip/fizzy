@@ -1,0 +1,8 @@
+module Cards
+  class WatchesController < ApplicationController
+    include CardScoped
+    def show: () -> void
+    def create: () -> void
+    def destroy: () -> void
+  end
+end

@@ -1,0 +1,6 @@
+class Assignment < ApplicationRecord
+
+  private
+
+  def within_limit: () -> untyped
+end

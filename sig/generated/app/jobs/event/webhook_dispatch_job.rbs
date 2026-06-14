@@ -1,0 +1,6 @@
+class Event
+  class WebhookDispatchJob < ApplicationJob
+    include ActiveJob::Continuable
+    def perform: (untyped event) -> untyped
+  end
+end

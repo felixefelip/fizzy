@@ -1,0 +1,5 @@
+class Card
+  module Multistep
+    extend ActiveSupport::Concern
+  end
+end

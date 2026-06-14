@@ -1,0 +1,3 @@
+class DataExportJob < ApplicationJob
+  def perform: (untyped export) -> untyped
+end

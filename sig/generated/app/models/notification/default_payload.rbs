@@ -1,0 +1,21 @@
+class Notification
+  class DefaultPayload
+    attr_reader notification: untyped
+    def initialize: (untyped notification) -> untyped
+    def to_h: () -> { title: untyped, body: untyped, url: untyped }
+    def title: () -> String
+    def body: () -> String
+    def url: () -> untyped
+    def category: () -> String
+    def high_priority?: () -> bool
+    def base_url: () -> untyped
+    def avatar_url: () -> untyped
+    def card: () -> ::Card?
+
+    private
+
+    def card_url: (untyped card) -> untyped
+    def notifications_url: () -> untyped
+    def url_options: () -> untyped
+  end
+end

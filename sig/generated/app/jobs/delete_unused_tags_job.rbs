@@ -1,0 +1,3 @@
+class DeleteUnusedTagsJob < ApplicationJob
+  def perform: () -> untyped
+end

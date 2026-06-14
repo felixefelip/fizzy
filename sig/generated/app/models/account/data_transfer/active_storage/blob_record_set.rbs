@@ -1,0 +1,15 @@
+class Account
+  module DataTransfer
+    module ActiveStorage
+      class BlobRecordSet < ::Account::DataTransfer::RecordSet
+        def initialize: (Account? account) -> void
+
+        private
+
+        def records: () -> untyped
+        def excluded_blob_ids: () -> untyped
+        def import_batch: (untyped files) -> untyped
+      end
+    end
+  end
+end

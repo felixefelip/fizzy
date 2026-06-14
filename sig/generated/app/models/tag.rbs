@@ -1,0 +1,5 @@
+class Tag < ApplicationRecord
+  include Filterable
+  def hashtag: () -> untyped
+  def cards_count: () -> untyped
+end

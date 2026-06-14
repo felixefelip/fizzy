@@ -1,0 +1,9 @@
+class Account
+  class Export < ::Export
+
+    private
+
+    def filename: () -> String
+    def populate_zip: (untyped zip) -> untyped
+  end
+end

@@ -1,0 +1,4 @@
+class Card
+  class NotNow < ApplicationRecord
+  end
+end

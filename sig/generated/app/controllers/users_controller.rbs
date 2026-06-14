@@ -1,0 +1,13 @@
+class UsersController < ApplicationController
+  def index: () -> void
+  def show: () -> void
+  def edit: () -> void
+  def update: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_user: () -> untyped
+  def ensure_permission_to_change_user: () -> untyped
+  def user_params: () -> untyped
+end

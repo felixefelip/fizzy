@@ -1,0 +1,8 @@
+class Card
+  module Golden
+    extend ActiveSupport::Concern
+    def golden?: () -> untyped
+    def gild: () -> untyped
+    def ungild: () -> untyped
+  end
+end

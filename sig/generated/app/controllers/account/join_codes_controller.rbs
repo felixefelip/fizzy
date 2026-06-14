@@ -1,0 +1,13 @@
+class Account
+  class JoinCodesController < ApplicationController
+    def show: () -> void
+    def edit: () -> void
+    def update: () -> void
+    def destroy: () -> void
+
+    private
+
+    def set_join_code: () -> untyped
+    def join_code_params: () -> untyped
+  end
+end

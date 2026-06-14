@@ -1,0 +1,12 @@
+class ApplicationController < ActionController::Base
+  include Authentication
+  include Authorization
+  include BlockSearchEngineIndexing
+  include CurrentRequest
+  include CurrentTimezone
+  include SetPlatform
+  include RequestForgeryProtection
+  include TurboFlash
+  include ViewTransitions
+  include RoutingHeaders
+end

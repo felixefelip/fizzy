@@ -1,0 +1,6 @@
+module LoginHelper
+  def login_url: () -> untyped
+  def logout_url: () -> untyped
+  def redirect_to_login_url: () -> untyped
+  def redirect_to_logout_url: () -> untyped
+end

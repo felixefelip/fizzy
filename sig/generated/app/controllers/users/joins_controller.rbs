@@ -1,0 +1,10 @@
+module Users
+  class JoinsController < ApplicationController
+    def new: () -> void
+    def create: () -> void
+
+    private
+
+    def user_params: () -> untyped
+  end
+end

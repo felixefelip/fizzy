@@ -1,0 +1,12 @@
+module Push
+  class Subscription < ApplicationRecord
+    def notification: (**untyped) -> WebPush::Notification
+    def resolved_endpoint_ip: () -> untyped
+
+    private
+
+    def endpoint_uri: () -> untyped
+    def validate_endpoint_url: () -> untyped
+    def permitted_endpoint_host?: () -> untyped
+  end
+end

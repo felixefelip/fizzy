@@ -1,0 +1,13 @@
+module Search
+  class Query < ApplicationRecord
+    def wrap: (untyped query) -> untyped
+    def to_s: () -> untyped
+
+    private
+
+    def sanitize_terms: () -> untyped
+    def sanitize: (untyped terms) -> untyped
+    def remove_invalid_search_characters: (untyped terms) -> String
+    def remove_unbalanced_quotes: (untyped terms) -> untyped
+  end
+end

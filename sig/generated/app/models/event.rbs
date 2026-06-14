@@ -1,0 +1,13 @@
+class Event < ApplicationRecord
+  include Notifiable
+  include Particulars
+  include Promptable
+  def action: () -> untyped
+  def notifiable_target: () -> untyped?
+  def description_for: (untyped user) -> Event::Description
+  def card: () -> untyped
+
+  private
+
+  def dispatch_webhooks: () -> untyped
+end

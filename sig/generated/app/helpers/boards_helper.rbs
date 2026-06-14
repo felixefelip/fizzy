@@ -1,0 +1,4 @@
+module BoardsHelper
+  def link_back_to_board: (Board board, ?prefer_referrer: untyped) -> untyped
+  def link_to_edit_board: (Board board) -> untyped
+end

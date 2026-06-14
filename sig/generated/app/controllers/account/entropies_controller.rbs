@@ -1,0 +1,9 @@
+class Account
+  class EntropiesController < ApplicationController
+    def update: () -> void
+
+    private
+
+    def entropy_params: () -> untyped
+  end
+end

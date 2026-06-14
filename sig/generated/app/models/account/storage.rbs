@@ -1,0 +1,11 @@
+class Account
+  module Storage
+    extend ActiveSupport::Concern
+    include ::Storage::Totaled
+
+    private
+
+    def clear_storage_entries: () -> untyped
+    def calculate_real_storage_bytes: () -> untyped
+  end
+end

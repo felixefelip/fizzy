@@ -1,0 +1,7 @@
+module Boards
+  class PublicationsController < ApplicationController
+    include BoardScoped
+    def create: () -> void
+    def destroy: () -> void
+  end
+end

@@ -1,0 +1,7 @@
+class User
+  module Configurable
+    extend ActiveSupport::Concern
+    def in_time_zone: () ?{ (untyped) -> untyped } -> untyped
+    def timezone: () -> untyped?
+  end
+end

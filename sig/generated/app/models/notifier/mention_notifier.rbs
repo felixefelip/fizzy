@@ -1,0 +1,9 @@
+class Notifier
+  class MentionNotifier < ::Notifier
+
+    private
+
+    def recipients: () -> Array[untyped]
+    def creator: () -> untyped
+  end
+end

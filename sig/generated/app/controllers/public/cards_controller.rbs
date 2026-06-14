@@ -1,0 +1,5 @@
+module Public
+  class CardsController < ::Public::BaseController
+    def show: () -> untyped
+  end
+end

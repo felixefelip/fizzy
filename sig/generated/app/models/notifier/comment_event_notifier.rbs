@@ -1,0 +1,10 @@
+class Notifier
+  class CommentEventNotifier < ::Notifier
+    def creator: () -> untyped
+
+    private
+
+    def recipients: () -> untyped
+    def card: () -> untyped
+  end
+end

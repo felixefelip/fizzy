@@ -1,0 +1,9 @@
+class Board
+  module AutoPostponing
+    extend ActiveSupport::Concern
+
+    private
+
+    def set_default_auto_postpone_period: () -> untyped
+  end
+end

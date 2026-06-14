@@ -1,0 +1,10 @@
+module Webhooks
+  class DeliveriesController < ApplicationController
+    include BoardScoped
+    def index: () -> void
+
+    private
+
+    def set_webhook: () -> untyped
+  end
+end

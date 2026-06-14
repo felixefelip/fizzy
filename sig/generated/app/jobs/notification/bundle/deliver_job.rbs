@@ -1,0 +1,8 @@
+class Notification
+  class Bundle
+    class DeliverJob < ApplicationJob
+      include SmtpDeliveryErrorHandling
+      def perform: (untyped bundle) -> untyped
+    end
+  end
+end

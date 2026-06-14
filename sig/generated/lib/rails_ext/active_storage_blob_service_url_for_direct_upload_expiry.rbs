@@ -1,0 +1,3 @@
+module ActiveStorageBlobServiceUrlForDirectUploadExpiry
+  def service_url_for_direct_upload: (?expires_in: untyped) -> untyped
+end

@@ -1,0 +1,5 @@
+module Storage
+  class ReconcileJob < ApplicationJob
+    def perform: (untyped owner) -> untyped
+  end
+end

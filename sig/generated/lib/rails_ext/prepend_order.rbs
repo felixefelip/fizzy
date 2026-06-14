@@ -1,0 +1,6 @@
+module ActiveRecordRelationPrependOrder
+  extend ActiveSupport::Concern
+  include ::ActiveRecordRelationPrependOrder
+  include ::ActiveRecordRelationPrependOrder
+  def prepend_order: (*untyped) -> untyped
+end

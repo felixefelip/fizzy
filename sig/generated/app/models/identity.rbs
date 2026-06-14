@@ -1,0 +1,11 @@
+class Identity < ApplicationRecord
+  include Joinable
+  include Transferable
+  def self.find_by_permissable_access_token: (untyped token, method: untyped) -> untyped
+  def send_magic_link: (**untyped) -> untyped
+  def users_with_active_accounts: () -> untyped
+
+  private
+
+  def deactivate_users: () -> untyped
+end

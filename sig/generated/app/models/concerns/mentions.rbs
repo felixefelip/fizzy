@@ -1,0 +1,17 @@
+module Mentions
+  extend ActiveSupport::Concern
+  def create_mentions: (?mentioner: untyped) -> untyped
+  def mentionable_content: () -> untyped
+  def scan_mentionees: () -> untyped
+
+  private
+
+  def mentionees_from_attachments: () -> untyped
+  def mentionable_users: () -> untyped
+  def rich_text_associations: () -> untyped
+  def should_create_mentions?: () -> untyped
+  def mentionable_content_changed?: () -> untyped
+  def create_mentions_later: () -> untyped
+  def mentionable?: () -> bool
+  def should_check_mentions?: () -> bool
+end

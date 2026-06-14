@@ -1,0 +1,10 @@
+module Cards
+  class PublishesController < ApplicationController
+    include CardScoped
+    def create: () -> void
+
+    private
+
+    def add_another_param?: () -> untyped
+  end
+end

@@ -1,0 +1,6 @@
+module Cards
+  class SelfAssignmentsController < ApplicationController
+    include CardScoped
+    def create: () -> void
+  end
+end

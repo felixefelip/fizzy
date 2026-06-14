@@ -1,0 +1,3 @@
+class NotifyRecipientsJob < ApplicationJob
+  def perform: (untyped notifiable) -> untyped
+end

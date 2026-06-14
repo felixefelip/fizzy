@@ -1,0 +1,10 @@
+class Card
+  class Entropy
+    attr_reader card: untyped
+    attr_reader auto_clean_period: untyped
+    def for: (Card::Entropic card) -> untyped
+    def initialize: (untyped card, untyped auto_clean_period) -> untyped
+    def auto_clean_at: () -> untyped
+    def days_before_reminder: () -> untyped
+  end
+end

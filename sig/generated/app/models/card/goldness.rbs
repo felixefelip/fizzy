@@ -1,0 +1,4 @@
+class Card
+  class Goldness < ApplicationRecord
+  end
+end

@@ -1,0 +1,14 @@
+module ActionPack
+  class Passkey
+    class ChallengesController < ActionController::Base
+      include ::ActionPack::Passkey::Request
+      def create: () -> void
+
+      private
+
+      def create_passkey_challenge: () -> untyped
+      def challenge_purpose: () -> untyped
+      def challenge_expiration: () -> untyped
+    end
+  end
+end

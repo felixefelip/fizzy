@@ -1,0 +1,28 @@
+class User
+  class DayTimeline
+    include Serializable
+    attr_reader user: untyped
+    attr_reader day: untyped
+    attr_reader filter: untyped
+    def initialize: (User::Timelined user, untyped day, untyped filter) -> void
+    def has_activity?: () -> untyped
+    def events: () -> untyped
+    def next_day: () -> untyped
+    def earliest_time: () -> untyped
+    def latest_time: () -> untyped
+    def added_column: () -> untyped
+    def updated_column: () -> untyped
+    def closed_column: () -> untyped
+    def cache_key: () -> untyped
+    def today?: () -> untyped
+
+    private
+
+    def filtered_events: () -> untyped
+    def timelineable_events: () -> untyped
+    def boards: () -> untyped
+    def latest_event_before: () -> untyped
+    def build_column: (Symbol id, String base_title, Integer index, untyped events) -> Column
+    def window: () -> untyped
+  end
+end

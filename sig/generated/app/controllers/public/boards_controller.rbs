@@ -1,0 +1,5 @@
+module Public
+  class BoardsController < ::Public::BaseController
+    def show: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module Cards
+  class ReadingsController < ApplicationController
+    include CardScoped
+    def create: () -> void
+    def destroy: () -> void
+
+    private
+
+    def record_board_access: () -> untyped
+  end
+end

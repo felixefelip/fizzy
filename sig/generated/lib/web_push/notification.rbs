@@ -1,0 +1,12 @@
+module WebPush
+  class Notification
+    def initialize: (title: untyped, body: untyped, url: untyped, badge: untyped, endpoint: String?, endpoint_ip: untyped, p256dh_key: String?, auth_key: String?) -> void
+    def deliver: (?connection: untyped) -> untyped
+
+    private
+
+    def vapid_identification: () -> Hash[untyped, untyped]
+    def encoded_message: () -> untyped
+    def icon_path: () -> String
+  end
+end

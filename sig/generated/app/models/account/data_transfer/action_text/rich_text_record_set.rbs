@@ -1,0 +1,23 @@
+class Account
+  module DataTransfer
+    module ActionText
+      class RichTextRecordSet < ::Account::DataTransfer::RecordSet
+        def initialize: (Account? account) -> void
+
+        private
+
+        def records: () -> untyped
+        def export_record: (untyped rich_text) -> untyped
+        def files: () -> untyped
+        def import_batch: (untyped files) -> untyped
+        def check_record: (untyped file_path) -> untyped
+        def transform_body_for_export: (untyped content) -> untyped
+        def convert_sgids_to_gids: (untyped content) -> untyped
+        def relativize_urls: (untyped html) -> untyped
+        def transform_body_for_import: (untyped body) -> untyped
+        def convert_gids_to_sgids: (untyped fragment) -> untyped
+        def replace_account_slugs: (untyped fragment) -> untyped
+      end
+    end
+  end
+end

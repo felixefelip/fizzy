@@ -1,0 +1,6 @@
+module My
+  class PasskeyChallengesController < ActionPack::Passkey::ChallengesController
+    include Authentication
+    include Authorization
+  end
+end

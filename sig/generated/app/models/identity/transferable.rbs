@@ -1,0 +1,7 @@
+class Identity
+  module Transferable
+    extend ActiveSupport::Concern
+    def find_by_transfer_id: (untyped id) -> untyped
+    def transfer_id: () -> untyped
+  end
+end

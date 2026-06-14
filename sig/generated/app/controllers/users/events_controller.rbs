@@ -1,0 +1,11 @@
+module Users
+  class EventsController < ApplicationController
+    include FilterScoped
+    def show: () -> void
+
+    private
+
+    def set_user: () -> untyped
+    def day_param: () -> untyped
+  end
+end

@@ -1,0 +1,11 @@
+module ActionPack
+  module WebAuthn
+    module Authenticator
+      module AttestationVerifiers
+        class None
+          def verify!: (untyped attestation, client_data_json: untyped) -> untyped
+        end
+      end
+    end
+  end
+end

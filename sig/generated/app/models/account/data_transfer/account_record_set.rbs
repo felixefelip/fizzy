@@ -1,0 +1,15 @@
+class Account
+  module DataTransfer
+    class AccountRecordSet < ::Account::DataTransfer::RecordSet
+      def initialize: (Account? account) -> void
+
+      private
+
+      def records: () -> Array[Account?]
+      def export_record: (untyped account) -> untyped
+      def files: () -> Array[String]
+      def import_batch: (untyped files) -> untyped
+      def check_record: (untyped file_path) -> untyped
+    end
+  end
+end

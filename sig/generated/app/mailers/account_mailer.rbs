@@ -1,0 +1,3 @@
+class AccountMailer < ApplicationMailer
+  def cancellation: (untyped cancellation) -> untyped
+end

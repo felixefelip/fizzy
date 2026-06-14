@@ -1,0 +1,11 @@
+module Cards
+  class ClosuresController < ApplicationController
+    include CardScoped
+    def create: () -> void
+    def destroy: () -> void
+
+    private
+
+    def refresh_stream_after_reopen: () -> untyped
+  end
+end

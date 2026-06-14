@@ -1,0 +1,5 @@
+class User
+  module Assignee
+    extend ActiveSupport::Concern
+  end
+end

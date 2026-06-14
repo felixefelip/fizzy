@@ -1,0 +1,4 @@
+module EntropyHelper
+  def entropy_bubble_options_for: (untyped card) -> { action: String, closesAt: untyped, daysBeforeReminder: untyped }
+  def stalled_bubble_options_for: (untyped card) -> Hash[Symbol, String]?
+end

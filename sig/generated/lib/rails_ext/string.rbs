@@ -1,0 +1,3 @@
+class String
+  def all_emoji?: () -> bool
+end

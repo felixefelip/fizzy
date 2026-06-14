@@ -1,0 +1,5 @@
+class Notification
+  class PushJob < ApplicationJob
+    def perform: (untyped notification) -> untyped
+  end
+end

@@ -1,0 +1,7 @@
+class Notification
+  class BundleMailer < ApplicationMailer
+    @bundle: Notification::Bundle?
+    include Mailers::Unsubscribable
+    def notification: (Notification::Bundle? bundle) -> untyped
+  end
+end

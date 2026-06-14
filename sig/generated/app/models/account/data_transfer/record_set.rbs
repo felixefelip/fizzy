@@ -1,0 +1,30 @@
+class Account
+  module DataTransfer
+    class RecordSet
+      attr_accessor importable_model_names: untyped
+      attr_reader account: Account?
+      attr_reader model: untyped
+      attr_reader attributes: untyped
+      def initialize: (account: Account?, model: untyped, ?attributes: untyped, ?importable_model_names: untyped) -> void
+      def export: (to: untyped, ?start: untyped) -> untyped
+      def import: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped
+      def check: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped
+
+      private
+
+      attr_reader zip: untyped
+      def with_zip: (untyped zip) -> untyped
+      def records: () -> untyped
+      def export_record: (untyped record) -> untyped
+      def files: () -> untyped
+      def import_batch: (untyped files) -> untyped
+      def check_record: (untyped file_path) -> untyped
+      def check_associations_dont_exist: (untyped data) -> untyped
+      def check_association_doesnt_exist: (untyped data, untyped association, untyped associated_id) -> untyped
+      def verify_model_type: (untyped type_name) -> untyped
+      def skip_to: (untyped file_list, untyped last_id) -> untyped
+      def load: (untyped file_path) -> untyped
+      def model_dir: () -> untyped
+    end
+  end
+end

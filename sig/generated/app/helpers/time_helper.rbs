@@ -1,0 +1,3 @@
+module TimeHelper
+  def local_datetime_tag: (untyped datetime, ?style: Symbol, **untyped) -> untyped
+end

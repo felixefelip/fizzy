@@ -1,0 +1,11 @@
+module Cards
+  class BoardsController < ApplicationController
+    include BoardScoped
+    def edit: () -> void
+    def update: () -> void
+
+    private
+
+    def set_card: () -> untyped
+  end
+end

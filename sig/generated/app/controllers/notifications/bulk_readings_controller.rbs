@@ -1,0 +1,9 @@
+module Notifications
+  class BulkReadingsController < ApplicationController
+    def create: () -> void
+
+    private
+
+    def from_tray?: () -> untyped
+  end
+end

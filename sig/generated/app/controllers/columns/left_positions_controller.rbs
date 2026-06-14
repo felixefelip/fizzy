@@ -1,0 +1,6 @@
+module Columns
+  class LeftPositionsController < ApplicationController
+    include ColumnScoped
+    def create: () -> void
+  end
+end

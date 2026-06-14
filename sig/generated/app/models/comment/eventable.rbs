@@ -1,0 +1,12 @@
+class Comment
+  module Eventable
+    extend ActiveSupport::Concern
+    include ::Eventable
+    def event_was_created: (untyped event) -> untyped
+
+    private
+
+    def should_track_event?: () -> untyped
+    def track_creation: () -> untyped
+  end
+end

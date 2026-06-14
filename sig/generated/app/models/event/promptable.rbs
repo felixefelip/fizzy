@@ -1,0 +1,6 @@
+class Event
+  module Promptable
+    extend ActiveSupport::Concern
+    def to_prompt: () -> String
+  end
+end

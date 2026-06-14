@@ -1,0 +1,13 @@
+module Attachments
+  extend ActiveSupport::Concern
+  def attachments: () -> untyped
+  def has_attachments?: () -> untyped
+  def remote_images: () -> untyped
+  def has_remote_images?: () -> untyped
+  def remote_videos: () -> untyped
+  def has_remote_videos?: () -> untyped
+
+  private
+
+  def rich_text_record: () -> untyped
+end

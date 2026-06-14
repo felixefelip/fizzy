@@ -1,0 +1,1437 @@
+---
+postconditions:
+- class: Access
+  method: save
+  when_true:
+    self: Access & Access::Validated
+  when_false:
+    drops:
+    - Access::Validated
+- class: Access
+  method: save!
+  when_true:
+    self: Access & Access::Validated
+- class: Access
+  method: update
+  when_true:
+    self: Access & Access::Validated
+  when_false:
+    drops:
+    - Access::Validated
+- class: Access
+  method: update!
+  when_true:
+    self: Access & Access::Validated
+- class: Access
+  method: valid?
+  when_true:
+    self: Access & Access::Validated
+  when_false:
+    drops:
+    - Access::Validated
+- class: Account
+  method: save
+  when_true:
+    self: Account & Account::Validated
+  when_false:
+    drops:
+    - Account::Validated
+- class: Account
+  method: save!
+  when_true:
+    self: Account & Account::Validated
+- class: Account
+  method: update
+  when_true:
+    self: Account & Account::Validated
+  when_false:
+    drops:
+    - Account::Validated
+- class: Account
+  method: update!
+  when_true:
+    self: Account & Account::Validated
+- class: Account
+  method: valid?
+  when_true:
+    self: Account & Account::Validated
+  when_false:
+    drops:
+    - Account::Validated
+- class: Account::Cancellation
+  method: save
+  when_true:
+    self: Account::Cancellation & Account::Cancellation::Validated
+  when_false:
+    drops:
+    - Account::Cancellation::Validated
+- class: Account::Cancellation
+  method: save!
+  when_true:
+    self: Account::Cancellation & Account::Cancellation::Validated
+- class: Account::Cancellation
+  method: update
+  when_true:
+    self: Account::Cancellation & Account::Cancellation::Validated
+  when_false:
+    drops:
+    - Account::Cancellation::Validated
+- class: Account::Cancellation
+  method: update!
+  when_true:
+    self: Account::Cancellation & Account::Cancellation::Validated
+- class: Account::Cancellation
+  method: valid?
+  when_true:
+    self: Account::Cancellation & Account::Cancellation::Validated
+  when_false:
+    drops:
+    - Account::Cancellation::Validated
+- class: Account::Export
+  method: save
+  when_true:
+    self: Account::Export & Account::Export::Validated
+  when_false:
+    drops:
+    - Account::Export::Validated
+- class: Account::Export
+  method: save!
+  when_true:
+    self: Account::Export & Account::Export::Validated
+- class: Account::Export
+  method: update
+  when_true:
+    self: Account::Export & Account::Export::Validated
+  when_false:
+    drops:
+    - Account::Export::Validated
+- class: Account::Export
+  method: update!
+  when_true:
+    self: Account::Export & Account::Export::Validated
+- class: Account::Export
+  method: valid?
+  when_true:
+    self: Account::Export & Account::Export::Validated
+  when_false:
+    drops:
+    - Account::Export::Validated
+- class: Account::Import
+  method: save
+  when_true:
+    self: Account::Import & Account::Import::Validated
+  when_false:
+    drops:
+    - Account::Import::Validated
+- class: Account::Import
+  method: save!
+  when_true:
+    self: Account::Import & Account::Import::Validated
+- class: Account::Import
+  method: update
+  when_true:
+    self: Account::Import & Account::Import::Validated
+  when_false:
+    drops:
+    - Account::Import::Validated
+- class: Account::Import
+  method: update!
+  when_true:
+    self: Account::Import & Account::Import::Validated
+- class: Account::Import
+  method: valid?
+  when_true:
+    self: Account::Import & Account::Import::Validated
+  when_false:
+    drops:
+    - Account::Import::Validated
+- class: Account::JoinCode
+  method: save
+  when_true:
+    self: Account::JoinCode & Account::JoinCode::Validated
+  when_false:
+    drops:
+    - Account::JoinCode::Validated
+- class: Account::JoinCode
+  method: save!
+  when_true:
+    self: Account::JoinCode & Account::JoinCode::Validated
+- class: Account::JoinCode
+  method: update
+  when_true:
+    self: Account::JoinCode & Account::JoinCode::Validated
+  when_false:
+    drops:
+    - Account::JoinCode::Validated
+- class: Account::JoinCode
+  method: update!
+  when_true:
+    self: Account::JoinCode & Account::JoinCode::Validated
+- class: Account::JoinCode
+  method: valid?
+  when_true:
+    self: Account::JoinCode & Account::JoinCode::Validated
+  when_false:
+    drops:
+    - Account::JoinCode::Validated
+- class: ActionText::EncryptedRichText
+  method: save
+  when_true:
+    self: ActionText::EncryptedRichText & ActionText::EncryptedRichText::Validated
+  when_false:
+    drops:
+    - ActionText::EncryptedRichText::Validated
+- class: ActionText::EncryptedRichText
+  method: save!
+  when_true:
+    self: ActionText::EncryptedRichText & ActionText::EncryptedRichText::Validated
+- class: ActionText::EncryptedRichText
+  method: update
+  when_true:
+    self: ActionText::EncryptedRichText & ActionText::EncryptedRichText::Validated
+  when_false:
+    drops:
+    - ActionText::EncryptedRichText::Validated
+- class: ActionText::EncryptedRichText
+  method: update!
+  when_true:
+    self: ActionText::EncryptedRichText & ActionText::EncryptedRichText::Validated
+- class: ActionText::EncryptedRichText
+  method: valid?
+  when_true:
+    self: ActionText::EncryptedRichText & ActionText::EncryptedRichText::Validated
+  when_false:
+    drops:
+    - ActionText::EncryptedRichText::Validated
+- class: ActionText::RichText
+  method: save
+  when_true:
+    self: ActionText::RichText & ActionText::RichText::Validated
+  when_false:
+    drops:
+    - ActionText::RichText::Validated
+- class: ActionText::RichText
+  method: save!
+  when_true:
+    self: ActionText::RichText & ActionText::RichText::Validated
+- class: ActionText::RichText
+  method: update
+  when_true:
+    self: ActionText::RichText & ActionText::RichText::Validated
+  when_false:
+    drops:
+    - ActionText::RichText::Validated
+- class: ActionText::RichText
+  method: update!
+  when_true:
+    self: ActionText::RichText & ActionText::RichText::Validated
+- class: ActionText::RichText
+  method: valid?
+  when_true:
+    self: ActionText::RichText & ActionText::RichText::Validated
+  when_false:
+    drops:
+    - ActionText::RichText::Validated
+- class: ActiveStorage::Attachment
+  method: save
+  when_true:
+    via_receiver:
+    - &1
+      through: Account::Export#file_attachment
+      as: Account::Export & Account::Export::ValidatedViaFileAttachment
+    - &2
+      through: Account::Import#file_attachment
+      as: Account::Import & Account::Import::ValidatedViaFileAttachment
+    - &3
+      through: ActiveStorage::Blob#preview_image_attachment
+      as: ActiveStorage::Blob & ActiveStorage::Blob::ValidatedViaPreviewImageAttachment
+    - &4
+      through: ActiveStorage::VariantRecord#image_attachment
+      as: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::ValidatedViaImageAttachment
+    - &5
+      through: Card#image_attachment
+      as: Card & Card::ValidatedViaImageAttachment
+    - &6
+      through: Export#file_attachment
+      as: Export & Export::ValidatedViaFileAttachment
+    - &7
+      through: Identity#avatar_attachment
+      as: Identity & Identity::ValidatedViaAvatarAttachment
+    - &8
+      through: User#avatar_attachment
+      as: User & User::ValidatedViaAvatarAttachment
+    - &9
+      through: User::DataExport#file_attachment
+      as: User::DataExport & User::DataExport::ValidatedViaFileAttachment
+    self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Attachment::Validated
+- class: ActiveStorage::Attachment
+  method: save!
+  when_true:
+    via_receiver:
+    - *1
+    - *2
+    - *3
+    - *4
+    - *5
+    - *6
+    - *7
+    - *8
+    - *9
+    self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+- class: ActiveStorage::Attachment
+  method: update
+  when_true:
+    via_receiver:
+    - *1
+    - *2
+    - *3
+    - *4
+    - *5
+    - *6
+    - *7
+    - *8
+    - *9
+    self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Attachment::Validated
+- class: ActiveStorage::Attachment
+  method: update!
+  when_true:
+    via_receiver:
+    - *1
+    - *2
+    - *3
+    - *4
+    - *5
+    - *6
+    - *7
+    - *8
+    - *9
+    self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+- class: ActiveStorage::Attachment
+  method: valid?
+  when_true:
+    via_receiver:
+    - *1
+    - *2
+    - *3
+    - *4
+    - *5
+    - *6
+    - *7
+    - *8
+    - *9
+    self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Attachment::Validated
+- class: ActiveStorage::Blob
+  method: composed
+  when_false:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::ValidatedUnlessComposed
+- class: ActiveStorage::Blob
+  method: save
+  when_true:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Blob::Validated
+- class: ActiveStorage::Blob
+  method: save!
+  when_true:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+- class: ActiveStorage::Blob
+  method: update
+  when_true:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Blob::Validated
+- class: ActiveStorage::Blob
+  method: update!
+  when_true:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+- class: ActiveStorage::Blob
+  method: valid?
+  when_true:
+    self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+  when_false:
+    drops:
+    - ActiveStorage::Blob::Validated
+- class: ActiveStorage::VariantRecord
+  method: save
+  when_true:
+    self: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::Validated
+  when_false:
+    drops:
+    - ActiveStorage::VariantRecord::Validated
+- class: ActiveStorage::VariantRecord
+  method: save!
+  when_true:
+    self: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::Validated
+- class: ActiveStorage::VariantRecord
+  method: update
+  when_true:
+    self: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::Validated
+  when_false:
+    drops:
+    - ActiveStorage::VariantRecord::Validated
+- class: ActiveStorage::VariantRecord
+  method: update!
+  when_true:
+    self: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::Validated
+- class: ActiveStorage::VariantRecord
+  method: valid?
+  when_true:
+    self: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::Validated
+  when_false:
+    drops:
+    - ActiveStorage::VariantRecord::Validated
+- class: Assignment
+  method: save
+  when_true:
+    self: Assignment & Assignment::Validated
+  when_false:
+    drops:
+    - Assignment::Validated
+- class: Assignment
+  method: save!
+  when_true:
+    self: Assignment & Assignment::Validated
+- class: Assignment
+  method: update
+  when_true:
+    self: Assignment & Assignment::Validated
+  when_false:
+    drops:
+    - Assignment::Validated
+- class: Assignment
+  method: update!
+  when_true:
+    self: Assignment & Assignment::Validated
+- class: Assignment
+  method: valid?
+  when_true:
+    self: Assignment & Assignment::Validated
+  when_false:
+    drops:
+    - Assignment::Validated
+- class: Board
+  method: save
+  when_true:
+    self: Board & Board::Validated
+  when_false:
+    drops:
+    - Board::Validated
+- class: Board
+  method: save!
+  when_true:
+    self: Board & Board::Validated
+- class: Board
+  method: update
+  when_true:
+    self: Board & Board::Validated
+  when_false:
+    drops:
+    - Board::Validated
+- class: Board
+  method: update!
+  when_true:
+    self: Board & Board::Validated
+- class: Board
+  method: valid?
+  when_true:
+    self: Board & Board::Validated
+  when_false:
+    drops:
+    - Board::Validated
+- class: Board::Publication
+  method: save
+  when_true:
+    self: Board::Publication & Board::Publication::Validated
+  when_false:
+    drops:
+    - Board::Publication::Validated
+- class: Board::Publication
+  method: save!
+  when_true:
+    self: Board::Publication & Board::Publication::Validated
+- class: Board::Publication
+  method: update
+  when_true:
+    self: Board::Publication & Board::Publication::Validated
+  when_false:
+    drops:
+    - Board::Publication::Validated
+- class: Board::Publication
+  method: update!
+  when_true:
+    self: Board::Publication & Board::Publication::Validated
+- class: Board::Publication
+  method: valid?
+  when_true:
+    self: Board::Publication & Board::Publication::Validated
+  when_false:
+    drops:
+    - Board::Publication::Validated
+- class: Card
+  method: save
+  when_true:
+    self: Card & Card::Validated
+  when_false:
+    drops:
+    - Card::Validated
+- class: Card
+  method: save!
+  when_true:
+    self: Card & Card::Validated
+- class: Card
+  method: update
+  when_true:
+    self: Card & Card::Validated
+  when_false:
+    drops:
+    - Card::Validated
+- class: Card
+  method: update!
+  when_true:
+    self: Card & Card::Validated
+- class: Card
+  method: valid?
+  when_true:
+    self: Card & Card::Validated
+  when_false:
+    drops:
+    - Card::Validated
+- class: Card::ActivitySpike
+  method: save
+  when_true:
+    self: Card::ActivitySpike & Card::ActivitySpike::Validated
+  when_false:
+    drops:
+    - Card::ActivitySpike::Validated
+- class: Card::ActivitySpike
+  method: save!
+  when_true:
+    self: Card::ActivitySpike & Card::ActivitySpike::Validated
+- class: Card::ActivitySpike
+  method: update
+  when_true:
+    self: Card::ActivitySpike & Card::ActivitySpike::Validated
+  when_false:
+    drops:
+    - Card::ActivitySpike::Validated
+- class: Card::ActivitySpike
+  method: update!
+  when_true:
+    self: Card::ActivitySpike & Card::ActivitySpike::Validated
+- class: Card::ActivitySpike
+  method: valid?
+  when_true:
+    self: Card::ActivitySpike & Card::ActivitySpike::Validated
+  when_false:
+    drops:
+    - Card::ActivitySpike::Validated
+- class: Card::Goldness
+  method: save
+  when_true:
+    self: Card::Goldness & Card::Goldness::Validated
+  when_false:
+    drops:
+    - Card::Goldness::Validated
+- class: Card::Goldness
+  method: save!
+  when_true:
+    self: Card::Goldness & Card::Goldness::Validated
+- class: Card::Goldness
+  method: update
+  when_true:
+    self: Card::Goldness & Card::Goldness::Validated
+  when_false:
+    drops:
+    - Card::Goldness::Validated
+- class: Card::Goldness
+  method: update!
+  when_true:
+    self: Card::Goldness & Card::Goldness::Validated
+- class: Card::Goldness
+  method: valid?
+  when_true:
+    self: Card::Goldness & Card::Goldness::Validated
+  when_false:
+    drops:
+    - Card::Goldness::Validated
+- class: Card::NotNow
+  method: save
+  when_true:
+    self: Card::NotNow & Card::NotNow::Validated
+  when_false:
+    drops:
+    - Card::NotNow::Validated
+- class: Card::NotNow
+  method: save!
+  when_true:
+    self: Card::NotNow & Card::NotNow::Validated
+- class: Card::NotNow
+  method: update
+  when_true:
+    self: Card::NotNow & Card::NotNow::Validated
+  when_false:
+    drops:
+    - Card::NotNow::Validated
+- class: Card::NotNow
+  method: update!
+  when_true:
+    self: Card::NotNow & Card::NotNow::Validated
+- class: Card::NotNow
+  method: valid?
+  when_true:
+    self: Card::NotNow & Card::NotNow::Validated
+  when_false:
+    drops:
+    - Card::NotNow::Validated
+- class: Closure
+  method: save
+  when_true:
+    self: Closure & Closure::Validated
+  when_false:
+    drops:
+    - Closure::Validated
+- class: Closure
+  method: save!
+  when_true:
+    self: Closure & Closure::Validated
+- class: Closure
+  method: update
+  when_true:
+    self: Closure & Closure::Validated
+  when_false:
+    drops:
+    - Closure::Validated
+- class: Closure
+  method: update!
+  when_true:
+    self: Closure & Closure::Validated
+- class: Closure
+  method: valid?
+  when_true:
+    self: Closure & Closure::Validated
+  when_false:
+    drops:
+    - Closure::Validated
+- class: Column
+  method: save
+  when_true:
+    self: Column & Column::Validated
+  when_false:
+    drops:
+    - Column::Validated
+- class: Column
+  method: save!
+  when_true:
+    self: Column & Column::Validated
+- class: Column
+  method: update
+  when_true:
+    self: Column & Column::Validated
+  when_false:
+    drops:
+    - Column::Validated
+- class: Column
+  method: update!
+  when_true:
+    self: Column & Column::Validated
+- class: Column
+  method: valid?
+  when_true:
+    self: Column & Column::Validated
+  when_false:
+    drops:
+    - Column::Validated
+- class: Comment
+  method: save
+  when_true:
+    self: Comment & Comment::Validated
+  when_false:
+    drops:
+    - Comment::Validated
+- class: Comment
+  method: save!
+  when_true:
+    self: Comment & Comment::Validated
+- class: Comment
+  method: update
+  when_true:
+    self: Comment & Comment::Validated
+  when_false:
+    drops:
+    - Comment::Validated
+- class: Comment
+  method: update!
+  when_true:
+    self: Comment & Comment::Validated
+- class: Comment
+  method: valid?
+  when_true:
+    self: Comment & Comment::Validated
+  when_false:
+    drops:
+    - Comment::Validated
+- class: Entropy
+  method: save
+  when_true:
+    self: Entropy & Entropy::Validated
+  when_false:
+    drops:
+    - Entropy::Validated
+- class: Entropy
+  method: save!
+  when_true:
+    self: Entropy & Entropy::Validated
+- class: Entropy
+  method: update
+  when_true:
+    self: Entropy & Entropy::Validated
+  when_false:
+    drops:
+    - Entropy::Validated
+- class: Entropy
+  method: update!
+  when_true:
+    self: Entropy & Entropy::Validated
+- class: Entropy
+  method: valid?
+  when_true:
+    self: Entropy & Entropy::Validated
+  when_false:
+    drops:
+    - Entropy::Validated
+- class: Event
+  method: save
+  when_true:
+    self: Event & Event::Validated
+  when_false:
+    drops:
+    - Event::Validated
+- class: Event
+  method: save!
+  when_true:
+    self: Event & Event::Validated
+- class: Event
+  method: update
+  when_true:
+    self: Event & Event::Validated
+  when_false:
+    drops:
+    - Event::Validated
+- class: Event
+  method: update!
+  when_true:
+    self: Event & Event::Validated
+- class: Event
+  method: valid?
+  when_true:
+    self: Event & Event::Validated
+  when_false:
+    drops:
+    - Event::Validated
+- class: Export
+  method: save
+  when_true:
+    self: Export & Export::Validated
+  when_false:
+    drops:
+    - Export::Validated
+- class: Export
+  method: save!
+  when_true:
+    self: Export & Export::Validated
+- class: Export
+  method: update
+  when_true:
+    self: Export & Export::Validated
+  when_false:
+    drops:
+    - Export::Validated
+- class: Export
+  method: update!
+  when_true:
+    self: Export & Export::Validated
+- class: Export
+  method: valid?
+  when_true:
+    self: Export & Export::Validated
+  when_false:
+    drops:
+    - Export::Validated
+- class: Filter
+  method: save
+  when_true:
+    self: Filter & Filter::Validated
+  when_false:
+    drops:
+    - Filter::Validated
+- class: Filter
+  method: save!
+  when_true:
+    self: Filter & Filter::Validated
+- class: Filter
+  method: update
+  when_true:
+    self: Filter & Filter::Validated
+  when_false:
+    drops:
+    - Filter::Validated
+- class: Filter
+  method: update!
+  when_true:
+    self: Filter & Filter::Validated
+- class: Filter
+  method: valid?
+  when_true:
+    self: Filter & Filter::Validated
+  when_false:
+    drops:
+    - Filter::Validated
+- class: Identity::AccessToken
+  method: save
+  when_true:
+    self: Identity::AccessToken & Identity::AccessToken::Validated
+  when_false:
+    drops:
+    - Identity::AccessToken::Validated
+- class: Identity::AccessToken
+  method: save!
+  when_true:
+    self: Identity::AccessToken & Identity::AccessToken::Validated
+- class: Identity::AccessToken
+  method: update
+  when_true:
+    self: Identity::AccessToken & Identity::AccessToken::Validated
+  when_false:
+    drops:
+    - Identity::AccessToken::Validated
+- class: Identity::AccessToken
+  method: update!
+  when_true:
+    self: Identity::AccessToken & Identity::AccessToken::Validated
+- class: Identity::AccessToken
+  method: valid?
+  when_true:
+    self: Identity::AccessToken & Identity::AccessToken::Validated
+  when_false:
+    drops:
+    - Identity::AccessToken::Validated
+- class: MagicLink
+  method: save
+  when_true:
+    self: MagicLink & MagicLink::Validated
+  when_false:
+    drops:
+    - MagicLink::Validated
+- class: MagicLink
+  method: save!
+  when_true:
+    self: MagicLink & MagicLink::Validated
+- class: MagicLink
+  method: update
+  when_true:
+    self: MagicLink & MagicLink::Validated
+  when_false:
+    drops:
+    - MagicLink::Validated
+- class: MagicLink
+  method: update!
+  when_true:
+    self: MagicLink & MagicLink::Validated
+- class: MagicLink
+  method: valid?
+  when_true:
+    self: MagicLink & MagicLink::Validated
+  when_false:
+    drops:
+    - MagicLink::Validated
+- class: Mention
+  method: save
+  when_true:
+    self: Mention & Mention::Validated
+  when_false:
+    drops:
+    - Mention::Validated
+- class: Mention
+  method: save!
+  when_true:
+    self: Mention & Mention::Validated
+- class: Mention
+  method: update
+  when_true:
+    self: Mention & Mention::Validated
+  when_false:
+    drops:
+    - Mention::Validated
+- class: Mention
+  method: update!
+  when_true:
+    self: Mention & Mention::Validated
+- class: Mention
+  method: valid?
+  when_true:
+    self: Mention & Mention::Validated
+  when_false:
+    drops:
+    - Mention::Validated
+- class: Notification
+  method: save
+  when_true:
+    self: Notification & Notification::Validated
+  when_false:
+    drops:
+    - Notification::Validated
+- class: Notification
+  method: save!
+  when_true:
+    self: Notification & Notification::Validated
+- class: Notification
+  method: update
+  when_true:
+    self: Notification & Notification::Validated
+  when_false:
+    drops:
+    - Notification::Validated
+- class: Notification
+  method: update!
+  when_true:
+    self: Notification & Notification::Validated
+- class: Notification
+  method: valid?
+  when_true:
+    self: Notification & Notification::Validated
+  when_false:
+    drops:
+    - Notification::Validated
+- class: Notification::Bundle
+  method: save
+  when_true:
+    self: Notification::Bundle & Notification::Bundle::Validated
+  when_false:
+    drops:
+    - Notification::Bundle::Validated
+- class: Notification::Bundle
+  method: save!
+  when_true:
+    self: Notification::Bundle & Notification::Bundle::Validated
+- class: Notification::Bundle
+  method: update
+  when_true:
+    self: Notification::Bundle & Notification::Bundle::Validated
+  when_false:
+    drops:
+    - Notification::Bundle::Validated
+- class: Notification::Bundle
+  method: update!
+  when_true:
+    self: Notification::Bundle & Notification::Bundle::Validated
+- class: Notification::Bundle
+  method: valid?
+  when_true:
+    self: Notification::Bundle & Notification::Bundle::Validated
+  when_false:
+    drops:
+    - Notification::Bundle::Validated
+- class: Pin
+  method: save
+  when_true:
+    self: Pin & Pin::Validated
+  when_false:
+    drops:
+    - Pin::Validated
+- class: Pin
+  method: save!
+  when_true:
+    self: Pin & Pin::Validated
+- class: Pin
+  method: update
+  when_true:
+    self: Pin & Pin::Validated
+  when_false:
+    drops:
+    - Pin::Validated
+- class: Pin
+  method: update!
+  when_true:
+    self: Pin & Pin::Validated
+- class: Pin
+  method: valid?
+  when_true:
+    self: Pin & Pin::Validated
+  when_false:
+    drops:
+    - Pin::Validated
+- class: Push::Subscription
+  method: save
+  when_true:
+    self: Push::Subscription & Push::Subscription::Validated
+  when_false:
+    drops:
+    - Push::Subscription::Validated
+- class: Push::Subscription
+  method: save!
+  when_true:
+    self: Push::Subscription & Push::Subscription::Validated
+- class: Push::Subscription
+  method: update
+  when_true:
+    self: Push::Subscription & Push::Subscription::Validated
+  when_false:
+    drops:
+    - Push::Subscription::Validated
+- class: Push::Subscription
+  method: update!
+  when_true:
+    self: Push::Subscription & Push::Subscription::Validated
+- class: Push::Subscription
+  method: valid?
+  when_true:
+    self: Push::Subscription & Push::Subscription::Validated
+  when_false:
+    drops:
+    - Push::Subscription::Validated
+- class: Reaction
+  method: save
+  when_true:
+    self: Reaction & Reaction::Validated
+  when_false:
+    drops:
+    - Reaction::Validated
+- class: Reaction
+  method: save!
+  when_true:
+    self: Reaction & Reaction::Validated
+- class: Reaction
+  method: update
+  when_true:
+    self: Reaction & Reaction::Validated
+  when_false:
+    drops:
+    - Reaction::Validated
+- class: Reaction
+  method: update!
+  when_true:
+    self: Reaction & Reaction::Validated
+- class: Reaction
+  method: valid?
+  when_true:
+    self: Reaction & Reaction::Validated
+  when_false:
+    drops:
+    - Reaction::Validated
+- class: Search::Query
+  method: save
+  when_true:
+    self: Search::Query & Search::Query::Validated
+  when_false:
+    drops:
+    - Search::Query::Validated
+- class: Search::Query
+  method: save!
+  when_true:
+    self: Search::Query & Search::Query::Validated
+- class: Search::Query
+  method: update
+  when_true:
+    self: Search::Query & Search::Query::Validated
+  when_false:
+    drops:
+    - Search::Query::Validated
+- class: Search::Query
+  method: update!
+  when_true:
+    self: Search::Query & Search::Query::Validated
+- class: Search::Query
+  method: valid?
+  when_true:
+    self: Search::Query & Search::Query::Validated
+  when_false:
+    drops:
+    - Search::Query::Validated
+- class: Search::Record
+  method: save
+  when_true:
+    self: Search::Record & Search::Record::Validated
+  when_false:
+    drops:
+    - Search::Record::Validated
+- class: Search::Record
+  method: save!
+  when_true:
+    self: Search::Record & Search::Record::Validated
+- class: Search::Record
+  method: update
+  when_true:
+    self: Search::Record & Search::Record::Validated
+  when_false:
+    drops:
+    - Search::Record::Validated
+- class: Search::Record
+  method: update!
+  when_true:
+    self: Search::Record & Search::Record::Validated
+- class: Search::Record
+  method: valid?
+  when_true:
+    self: Search::Record & Search::Record::Validated
+  when_false:
+    drops:
+    - Search::Record::Validated
+- class: Session
+  method: save
+  when_true:
+    self: Session & Session::Validated
+  when_false:
+    drops:
+    - Session::Validated
+- class: Session
+  method: save!
+  when_true:
+    self: Session & Session::Validated
+- class: Session
+  method: update
+  when_true:
+    self: Session & Session::Validated
+  when_false:
+    drops:
+    - Session::Validated
+- class: Session
+  method: update!
+  when_true:
+    self: Session & Session::Validated
+- class: Session
+  method: valid?
+  when_true:
+    self: Session & Session::Validated
+  when_false:
+    drops:
+    - Session::Validated
+- class: Step
+  method: save
+  when_true:
+    self: Step & Step::Validated
+  when_false:
+    drops:
+    - Step::Validated
+- class: Step
+  method: save!
+  when_true:
+    self: Step & Step::Validated
+- class: Step
+  method: update
+  when_true:
+    self: Step & Step::Validated
+  when_false:
+    drops:
+    - Step::Validated
+- class: Step
+  method: update!
+  when_true:
+    self: Step & Step::Validated
+- class: Step
+  method: valid?
+  when_true:
+    self: Step & Step::Validated
+  when_false:
+    drops:
+    - Step::Validated
+- class: Storage::Entry
+  method: save
+  when_true:
+    self: Storage::Entry & Storage::Entry::Validated
+  when_false:
+    drops:
+    - Storage::Entry::Validated
+- class: Storage::Entry
+  method: save!
+  when_true:
+    self: Storage::Entry & Storage::Entry::Validated
+- class: Storage::Entry
+  method: update
+  when_true:
+    self: Storage::Entry & Storage::Entry::Validated
+  when_false:
+    drops:
+    - Storage::Entry::Validated
+- class: Storage::Entry
+  method: update!
+  when_true:
+    self: Storage::Entry & Storage::Entry::Validated
+- class: Storage::Entry
+  method: valid?
+  when_true:
+    self: Storage::Entry & Storage::Entry::Validated
+  when_false:
+    drops:
+    - Storage::Entry::Validated
+- class: Tag
+  method: save
+  when_true:
+    self: Tag & Tag::Validated
+  when_false:
+    drops:
+    - Tag::Validated
+- class: Tag
+  method: save!
+  when_true:
+    self: Tag & Tag::Validated
+- class: Tag
+  method: update
+  when_true:
+    self: Tag & Tag::Validated
+  when_false:
+    drops:
+    - Tag::Validated
+- class: Tag
+  method: update!
+  when_true:
+    self: Tag & Tag::Validated
+- class: Tag
+  method: valid?
+  when_true:
+    self: Tag & Tag::Validated
+  when_false:
+    drops:
+    - Tag::Validated
+- class: Tagging
+  method: save
+  when_true:
+    self: Tagging & Tagging::Validated
+  when_false:
+    drops:
+    - Tagging::Validated
+- class: Tagging
+  method: save!
+  when_true:
+    self: Tagging & Tagging::Validated
+- class: Tagging
+  method: update
+  when_true:
+    self: Tagging & Tagging::Validated
+  when_false:
+    drops:
+    - Tagging::Validated
+- class: Tagging
+  method: update!
+  when_true:
+    self: Tagging & Tagging::Validated
+- class: Tagging
+  method: valid?
+  when_true:
+    self: Tagging & Tagging::Validated
+  when_false:
+    drops:
+    - Tagging::Validated
+- class: User
+  method: save
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: User
+  method: save!
+  when_true:
+    self: User & User::Validated
+- class: User
+  method: update
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: User
+  method: update!
+  when_true:
+    self: User & User::Validated
+- class: User
+  method: valid?
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: User::DataExport
+  method: save
+  when_true:
+    self: User::DataExport & User::DataExport::Validated
+  when_false:
+    drops:
+    - User::DataExport::Validated
+- class: User::DataExport
+  method: save!
+  when_true:
+    self: User::DataExport & User::DataExport::Validated
+- class: User::DataExport
+  method: update
+  when_true:
+    self: User::DataExport & User::DataExport::Validated
+  when_false:
+    drops:
+    - User::DataExport::Validated
+- class: User::DataExport
+  method: update!
+  when_true:
+    self: User::DataExport & User::DataExport::Validated
+- class: User::DataExport
+  method: valid?
+  when_true:
+    self: User::DataExport & User::DataExport::Validated
+  when_false:
+    drops:
+    - User::DataExport::Validated
+- class: User::Settings
+  method: save
+  when_true:
+    self: User::Settings & User::Settings::Validated
+  when_false:
+    drops:
+    - User::Settings::Validated
+- class: User::Settings
+  method: save!
+  when_true:
+    self: User::Settings & User::Settings::Validated
+- class: User::Settings
+  method: update
+  when_true:
+    self: User::Settings & User::Settings::Validated
+  when_false:
+    drops:
+    - User::Settings::Validated
+- class: User::Settings
+  method: update!
+  when_true:
+    self: User::Settings & User::Settings::Validated
+- class: User::Settings
+  method: valid?
+  when_true:
+    self: User::Settings & User::Settings::Validated
+  when_false:
+    drops:
+    - User::Settings::Validated
+- class: Watch
+  method: save
+  when_true:
+    self: Watch & Watch::Validated
+  when_false:
+    drops:
+    - Watch::Validated
+- class: Watch
+  method: save!
+  when_true:
+    self: Watch & Watch::Validated
+- class: Watch
+  method: update
+  when_true:
+    self: Watch & Watch::Validated
+  when_false:
+    drops:
+    - Watch::Validated
+- class: Watch
+  method: update!
+  when_true:
+    self: Watch & Watch::Validated
+- class: Watch
+  method: valid?
+  when_true:
+    self: Watch & Watch::Validated
+  when_false:
+    drops:
+    - Watch::Validated
+- class: Webhook
+  method: save
+  when_true:
+    self: Webhook & Webhook::Validated
+  when_false:
+    drops:
+    - Webhook::Validated
+- class: Webhook
+  method: save!
+  when_true:
+    self: Webhook & Webhook::Validated
+- class: Webhook
+  method: update
+  when_true:
+    self: Webhook & Webhook::Validated
+  when_false:
+    drops:
+    - Webhook::Validated
+- class: Webhook
+  method: update!
+  when_true:
+    self: Webhook & Webhook::Validated
+- class: Webhook
+  method: valid?
+  when_true:
+    self: Webhook & Webhook::Validated
+  when_false:
+    drops:
+    - Webhook::Validated
+- class: Webhook::DelinquencyTracker
+  method: save
+  when_true:
+    self: Webhook::DelinquencyTracker & Webhook::DelinquencyTracker::Validated
+  when_false:
+    drops:
+    - Webhook::DelinquencyTracker::Validated
+- class: Webhook::DelinquencyTracker
+  method: save!
+  when_true:
+    self: Webhook::DelinquencyTracker & Webhook::DelinquencyTracker::Validated
+- class: Webhook::DelinquencyTracker
+  method: update
+  when_true:
+    self: Webhook::DelinquencyTracker & Webhook::DelinquencyTracker::Validated
+  when_false:
+    drops:
+    - Webhook::DelinquencyTracker::Validated
+- class: Webhook::DelinquencyTracker
+  method: update!
+  when_true:
+    self: Webhook::DelinquencyTracker & Webhook::DelinquencyTracker::Validated
+- class: Webhook::DelinquencyTracker
+  method: valid?
+  when_true:
+    self: Webhook::DelinquencyTracker & Webhook::DelinquencyTracker::Validated
+  when_false:
+    drops:
+    - Webhook::DelinquencyTracker::Validated
+- class: Webhook::Delivery
+  method: save
+  when_true:
+    self: Webhook::Delivery & Webhook::Delivery::Validated
+  when_false:
+    drops:
+    - Webhook::Delivery::Validated
+- class: Webhook::Delivery
+  method: save!
+  when_true:
+    self: Webhook::Delivery & Webhook::Delivery::Validated
+- class: Webhook::Delivery
+  method: update
+  when_true:
+    self: Webhook::Delivery & Webhook::Delivery::Validated
+  when_false:
+    drops:
+    - Webhook::Delivery::Validated
+- class: Webhook::Delivery
+  method: update!
+  when_true:
+    self: Webhook::Delivery & Webhook::Delivery::Validated
+- class: Webhook::Delivery
+  method: valid?
+  when_true:
+    self: Webhook::Delivery & Webhook::Delivery::Validated
+  when_false:
+    drops:
+    - Webhook::Delivery::Validated

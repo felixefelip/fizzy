@@ -1,0 +1,7 @@
+module CardsHelper
+  def card_article_tag: (untyped card, ?id: untyped, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
+  def card_title_tag: (untyped card) -> String
+  def card_drafted_or_added: (untyped card) -> String
+  def card_social_tags: (untyped card) -> untyped
+  def button_to_remove_card_image: (untyped card) -> untyped
+end

@@ -1,0 +1,5 @@
+class Mention
+  class CreateJob < ApplicationJob
+    def perform: (untyped record, mentioner: untyped) -> untyped
+  end
+end

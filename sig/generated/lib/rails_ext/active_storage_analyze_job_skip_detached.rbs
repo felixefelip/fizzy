@@ -1,0 +1,3 @@
+module ActiveStorageAnalyzeJobSkipDetached
+  def perform: (untyped blob) -> untyped
+end

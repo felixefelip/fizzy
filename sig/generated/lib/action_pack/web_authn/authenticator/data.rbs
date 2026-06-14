@@ -1,0 +1,23 @@
+module ActionPack
+  module WebAuthn
+    module Authenticator
+      class Data
+        attr_reader bytes: untyped
+        attr_reader relying_party_id_hash: untyped
+        attr_reader flags: untyped
+        attr_reader sign_count: untyped
+        attr_reader aaguid: nil
+        attr_reader credential_id: Base64
+        attr_reader public_key_bytes: nil
+        def wrap: (untyped data) -> untyped
+        def decode: (untyped bytes) -> untyped
+        def initialize: (bytes: untyped, relying_party_id_hash: untyped, flags: untyped, sign_count: untyped, ?aaguid: nil?, credential_id: Base64, public_key_bytes: nil) -> void
+        def user_present?: () -> untyped
+        def user_verified?: () -> untyped
+        def backup_eligible?: () -> untyped
+        def backed_up?: () -> untyped
+        def public_key: () -> untyped
+      end
+    end
+  end
+end

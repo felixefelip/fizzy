@@ -1,0 +1,12 @@
+class MagicLink
+  module Code
+    def generate: (CODE_LENGTH length) -> untyped
+    def sanitize: (untyped code) -> untyped
+
+    private
+
+    def normalize_code: (untyped code) -> String
+    def apply_substitutions: (untyped code) -> untyped
+    def remove_invalid_characters: (untyped code) -> String
+  end
+end

@@ -1,0 +1,8 @@
+module RequestForgeryProtection
+  extend ActiveSupport::Concern
+
+  private
+
+  def verified_via_header_only?: () -> untyped
+  def allowed_api_request?: () -> untyped
+end

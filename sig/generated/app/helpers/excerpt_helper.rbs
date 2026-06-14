@@ -1,0 +1,3 @@
+module ExcerptHelper
+  def format_excerpt: (untyped content, ?length: Integer) -> untyped
+end

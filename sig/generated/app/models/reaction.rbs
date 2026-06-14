@@ -1,0 +1,7 @@
+class Reaction < ApplicationRecord
+  def all_emoji?: () -> untyped
+
+  private
+
+  def register_card_activity: () -> untyped
+end

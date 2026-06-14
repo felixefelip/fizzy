@@ -1,0 +1,9 @@
+class SearchReindexJob < ApplicationJob
+  include ActiveJob::Continuable
+  def perform: (?batch_size: untyped, ?log_every: untyped, ?rich_text_limit: untyped) -> untyped
+
+  private
+
+  def safely_reindex: (untyped record) -> untyped
+  def log_progress: (Symbol step_name, untyped count, untyped cursor) -> untyped
+end

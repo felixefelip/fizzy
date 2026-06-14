@@ -1,0 +1,7 @@
+module RoutingHeaders
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_target_header: () -> untyped
+end

@@ -1,0 +1,6 @@
+class ImportMailer < ApplicationMailer
+  @account: Account?
+  @import: Account::Import?
+  def completed: (Identity? identity, Account? account) -> untyped
+  def failed: (Account::Import? import) -> untyped
+end

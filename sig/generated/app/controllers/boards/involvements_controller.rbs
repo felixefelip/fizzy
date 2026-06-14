@@ -1,0 +1,6 @@
+module Boards
+  class InvolvementsController < ApplicationController
+    include BoardScoped
+    def update: () -> void
+  end
+end

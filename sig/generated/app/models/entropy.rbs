@@ -1,0 +1,8 @@
+class Entropy < ApplicationRecord
+  def auto_postpone_period_in_days: () -> untyped
+  def auto_postpone_period_in_days=: (untyped new_value) -> untyped
+
+  private
+
+  def default_auto_postpone_period_in_days: () -> untyped
+end

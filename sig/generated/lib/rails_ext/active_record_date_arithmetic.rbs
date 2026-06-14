@@ -1,0 +1,4 @@
+module MysqlDateArithmetic
+  def date_subtract: (untyped date_column, untyped seconds_expression) -> String
+  def date_subtract: (untyped date_column, untyped seconds_expression) -> String
+end

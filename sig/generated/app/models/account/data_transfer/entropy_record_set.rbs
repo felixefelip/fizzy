@@ -1,0 +1,11 @@
+class Account
+  module DataTransfer
+    class EntropyRecordSet < ::Account::DataTransfer::RecordSet
+      def initialize: (Account? account) -> void
+
+      private
+
+      def import_batch: (untyped files) -> untyped
+    end
+  end
+end

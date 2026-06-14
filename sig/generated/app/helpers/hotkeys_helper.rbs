@@ -1,0 +1,3 @@
+module HotkeysHelper
+  def hotkey_label: (Array[untyped] hotkey) -> String
+end

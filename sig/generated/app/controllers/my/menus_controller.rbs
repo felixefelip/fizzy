@@ -1,0 +1,5 @@
+module My
+  class MenusController < ApplicationController
+    def show: () -> void
+  end
+end

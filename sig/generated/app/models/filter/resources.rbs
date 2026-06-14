@@ -1,0 +1,10 @@
+class Filter
+  module Resources
+    @boards: nil
+    extend ActiveSupport::Concern
+    def resource_removed: (untyped resource) -> untyped
+    def boards: () -> untyped
+    def board_titles: () -> untyped
+    def boards_label: () -> untyped
+  end
+end

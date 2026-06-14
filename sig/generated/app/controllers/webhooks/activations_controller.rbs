@@ -1,0 +1,6 @@
+module Webhooks
+  class ActivationsController < ApplicationController
+    include BoardScoped
+    def create: () -> void
+  end
+end

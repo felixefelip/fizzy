@@ -1,0 +1,12 @@
+module Public
+  module Boards
+    class ColumnsController < ::Public::BaseController
+      def show: () -> untyped
+
+      private
+
+      def set_card: () -> untyped
+      def set_column: () -> untyped
+    end
+  end
+end

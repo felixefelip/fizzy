@@ -1,0 +1,18 @@
+class Comment < ApplicationRecord
+  include Attachments
+  include Eventable
+  include Mentions
+  include Promptable
+  include Searchable
+  include Storage::Tracked
+  def to_partial_path: () -> String
+  def publicly_accessible?: () -> untyped
+  def accessible_to?: () -> untyped
+  def board: () -> untyped
+  def watch_by: () -> untyped
+
+  private
+
+  def card_is_commentable: () -> untyped
+  def watch_card_by_creator: () -> untyped
+end

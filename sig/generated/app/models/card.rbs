@@ -1,0 +1,37 @@
+class Card < ApplicationRecord
+  include Accessible
+  include Assignable
+  include Attachments
+  include Broadcastable
+  include Closeable
+  include Colored
+  include Commentable
+  include Entropic
+  include Eventable
+  include Exportable
+  include Golden
+  include Mentions
+  include Multistep
+  include Pinnable
+  include Postponable
+  include Promptable
+  include Readable
+  include Searchable
+  include Stallable
+  include Statuses
+  include Storage::Tracked
+  include Taggable
+  include Triageable
+  include Watchable
+  def card: () -> Card
+  def to_param: () -> untyped
+  def move_to: (untyped new_board) -> untyped
+  def filled?: () -> untyped
+
+  private
+
+  def set_default_title: () -> untyped
+  def handle_board_change: () -> untyped
+  def track_board_change_event: (untyped old_board_name) -> untyped
+  def assign_number: () -> untyped
+end

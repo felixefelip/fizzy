@@ -1,0 +1,10 @@
+module Sessions
+  class PasskeysController < ApplicationController
+    include ActionPack::Passkey::Request
+    def create: () -> void
+
+    private
+
+    def rate_limit_exceeded: () -> untyped
+  end
+end

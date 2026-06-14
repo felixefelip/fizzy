@@ -1,0 +1,5 @@
+class Board
+  module Triageable
+    extend ActiveSupport::Concern
+  end
+end

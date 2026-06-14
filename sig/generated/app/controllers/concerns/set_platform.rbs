@@ -1,0 +1,7 @@
+module SetPlatform
+  extend ActiveSupport::Concern
+
+  private
+
+  def platform: () -> untyped
+end

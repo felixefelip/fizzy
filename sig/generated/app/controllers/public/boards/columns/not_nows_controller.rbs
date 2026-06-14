@@ -1,0 +1,9 @@
+module Public
+  module Boards
+    module Columns
+      class NotNowsController < ::Public::BaseController
+        def show: () -> untyped
+      end
+    end
+  end
+end

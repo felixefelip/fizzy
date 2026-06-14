@@ -1,0 +1,11 @@
+module FilterScoped
+  @user_filtering: User::Filtering?
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_filter: () -> untyped
+  def filter_params: () -> untyped
+  def set_user_filtering: () -> User::Filtering
+  def expanded_param: () -> untyped
+end

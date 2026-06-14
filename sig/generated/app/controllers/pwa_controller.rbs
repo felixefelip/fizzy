@@ -1,0 +1,3 @@
+class PwaController < ApplicationController
+  def service_worker: () -> void
+end

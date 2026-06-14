@@ -1,0 +1,10 @@
+module Eventable
+  extend ActiveSupport::Concern
+  def track_event: (String action, ?creator: untyped, ?board: untyped, **untyped) -> untyped
+  def event_was_created: (untyped event) -> untyped
+
+  private
+
+  def should_track_event?: () -> bool
+  def eventable_prefix: () -> untyped
+end

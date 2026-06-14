@@ -1,0 +1,8 @@
+class Color
+  def for_value: (untyped value) -> untyped
+
+  private
+
+  def extract_from_legacy_export: (untyped value) -> untyped
+  def to_s: () -> untyped
+end

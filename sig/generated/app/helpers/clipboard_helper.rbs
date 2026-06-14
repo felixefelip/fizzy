@@ -1,0 +1,3 @@
+module ClipboardHelper
+  def button_to_copy_to_clipboard: (untyped url) ?{ (untyped) -> untyped } -> untyped
+end

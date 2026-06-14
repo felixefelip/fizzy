@@ -1,0 +1,16 @@
+module PaginationHelper
+  def pagination_frame_tag: ((Symbol | String) namespace, untyped page, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
+  def link_to_next_page: ((Symbol | String) namespace, untyped page, ?activate_when_observed: bool, ?label: untyped, ?data: untyped, **untyped) -> untyped
+  def pagination_link: ((Symbol | String) namespace, untyped page_number, ?activate_when_observed: untyped, ?label: untyped, ?url_params: untyped, ?data: untyped, **untyped) -> untyped
+  def pagination_frame_id_for: ((Symbol | String) namespace, untyped page_number) -> String
+  def with_manual_pagination: (untyped name, untyped page, **untyped) -> untyped
+  def with_automatic_pagination: ((Symbol | String) name, untyped page, **untyped) -> untyped
+  def day_timeline_pagination_frame_tag: (untyped day_timeline) ?{ (untyped) -> untyped } -> untyped
+  def day_timeline_pagination_frame_id_for: (untyped day) -> String
+  def day_timeline_pagination_link: (untyped day_timeline, untyped filter) -> untyped
+
+  private
+
+  def pagination_list: ((Symbol | String) name, ?tag_element: untyped, ?paginate_on_scroll: bool, **untyped) ?{ (untyped) -> untyped } -> untyped
+  def default_pagination_label: (untyped activate_when_observed) -> String
+end

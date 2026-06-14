@@ -1,0 +1,5 @@
+module ActionPackPasskeyInferNameFromAaguid
+  extend ActiveSupport::Concern
+  def register: (**untyped) -> untyped
+  def authenticator: () -> untyped
+end

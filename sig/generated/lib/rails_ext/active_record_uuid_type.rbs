@@ -1,0 +1,12 @@
+module ActiveRecord
+  module Type
+    class Uuid < Binary
+      def generate: () -> untyped
+      def hex_to_base36: (untyped hex) -> untyped
+      def base36_to_hex: (untyped base36) -> untyped
+      def serialize: (untyped value) -> untyped
+      def deserialize: (untyped value) -> untyped
+      def cast: (untyped value) -> untyped
+    end
+  end
+end

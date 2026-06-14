@@ -1,0 +1,12 @@
+class Board < ApplicationRecord
+  include Accessible
+  include AutoPostponing
+  include ::Board::Storage
+  include Broadcastable
+  include Cards
+  include Entropic
+  include Filterable
+  include Publishable
+  include ::Storage::Tracked
+  include Triageable
+end

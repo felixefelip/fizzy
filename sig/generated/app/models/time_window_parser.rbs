@@ -1,0 +1,11 @@
+class TimeWindowParser
+  attr_reader now: untyped
+  def parse: (untyped string) -> untyped
+  def human_name_for: (untyped value) -> untyped
+  def initialize: (?now: untyped) -> untyped
+  def parse: (untyped string) -> untyped
+
+  private
+
+  def normalize: (untyped string) -> untyped
+end

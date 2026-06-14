@@ -1,0 +1,19 @@
+module ActionPack
+  module WebAuthn
+    class Current < ActiveSupport::CurrentAttributes
+      module GeneratedAttributeMethods
+        def host: () -> untyped
+        def host=: (untyped value) -> untyped
+        def origin: () -> untyped
+        def origin=: (untyped value) -> untyped
+      end
+      include GeneratedAttributeMethods
+      def self.host: () -> untyped
+      def self.host=: (untyped value) -> untyped
+      def self.origin: () -> untyped
+      def self.origin=: (untyped value) -> untyped
+      def self.set: (?host: untyped, ?origin: untyped) ?{ (untyped) -> untyped } -> untyped
+      def self.with: (?host: untyped, ?origin: untyped) ?{ (untyped) -> untyped } -> untyped
+    end
+  end
+end

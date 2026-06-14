@@ -1,0 +1,3 @@
+class MagicLinkMailer < ApplicationMailer
+  def sign_in_instructions: (untyped magic_link) -> untyped
+end

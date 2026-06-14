@@ -1,0 +1,7 @@
+module Cards
+  class GoldnessesController < ApplicationController
+    include CardScoped
+    def create: () -> void
+    def destroy: () -> void
+  end
+end

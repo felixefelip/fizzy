@@ -1,0 +1,26 @@
+module Authentication
+  extend ActiveSupport::Concern
+  include ::Authentication::ViaMagicLink
+  include LoginHelper
+  def require_unauthenticated_access: (**untyped) -> untyped
+  def allow_unauthenticated_access: (**untyped) -> untyped
+  def disallow_account_scope: (**untyped) -> untyped
+
+  private
+
+  def authenticated?: () -> untyped
+  def require_account: () -> untyped
+  def require_authentication: () -> untyped
+  def resume_session: () -> untyped
+  def find_session_by_cookie: () -> untyped
+  def authenticate_by_bearer_token: () -> untyped
+  def bearer_token_authenticatable_request?: () -> untyped
+  def request_authentication: () -> untyped
+  def after_authentication_url: () -> untyped
+  def redirect_authenticated_user: () -> untyped
+  def redirect_tenanted_request: () -> untyped
+  def start_new_session_for: (untyped identity) -> untyped
+  def set_current_session: (untyped session) -> { value: untyped, httponly: bool, same_site: Symbol }
+  def terminate_session: () -> untyped
+  def session_token: () -> untyped
+end

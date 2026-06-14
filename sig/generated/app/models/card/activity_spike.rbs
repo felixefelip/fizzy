@@ -1,0 +1,4 @@
+class Card
+  class ActivitySpike < ApplicationRecord
+  end
+end

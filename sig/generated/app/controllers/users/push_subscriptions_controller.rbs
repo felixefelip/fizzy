@@ -1,0 +1,12 @@
+module Users
+  class PushSubscriptionsController < ApplicationController
+    def index: () -> void
+    def create: () -> void
+    def destroy: () -> void
+
+    private
+
+    def set_push_subscriptions: () -> untyped
+    def push_subscription_params: () -> untyped
+  end
+end

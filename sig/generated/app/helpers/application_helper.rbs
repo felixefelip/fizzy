@@ -1,0 +1,5 @@
+module ApplicationHelper
+  def page_title_tag: () -> untyped
+  def icon_tag: (String name, **untyped) -> untyped
+  def back_link_to: (String label, untyped url, String action, ?prefer_referrer: untyped, **untyped) -> untyped
+end

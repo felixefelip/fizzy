@@ -1,0 +1,11 @@
+module Cards
+  class TaggingsController < ApplicationController
+    include CardScoped
+    def new: () -> void
+    def create: () -> void
+
+    private
+
+    def sanitized_tag_title_param: () -> untyped
+  end
+end

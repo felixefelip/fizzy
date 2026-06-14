@@ -1,0 +1,12 @@
+module AccountTenanted
+  extend ActiveSupport::Concern
+  attr_reader account: (Account::Seedeable | Account)?
+  def initialize: (**untyped) -> void
+  def serialize: () -> untyped
+  def deserialize: (untyped job_data) -> untyped
+
+  private
+
+  def with_account_context: () ?{ (untyped) -> untyped } -> untyped
+  def resolve_account!: () -> untyped
+end

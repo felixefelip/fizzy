@@ -1,0 +1,8 @@
+module CurrentTimezone
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_current_timezone: () ?{ (untyped) -> untyped } -> untyped
+  def timezone_from_cookie: () -> untyped
+end

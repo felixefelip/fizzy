@@ -1,0 +1,6 @@
+module Notifications
+  class ReadingsController < ApplicationController
+    def create: () -> void
+    def destroy: () -> void
+  end
+end

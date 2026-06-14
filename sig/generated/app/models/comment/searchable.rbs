@@ -1,0 +1,11 @@
+class Comment
+  module Searchable
+    extend ActiveSupport::Concern
+    include ::Searchable
+    def search_title: () -> nil
+    def search_content: () -> untyped
+    def search_card_id: () -> ::String?
+    def search_board_id: () -> untyped
+    def searchable?: () -> untyped
+  end
+end

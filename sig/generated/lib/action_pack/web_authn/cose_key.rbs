@@ -1,0 +1,18 @@
+module ActionPack
+  module WebAuthn
+    class CoseKey
+      attr_reader key_type: untyped
+      attr_reader algorithm: untyped
+      attr_reader parameters: untyped
+      def decode: (nil bytes) -> self
+      def initialize: (key_type: untyped, algorithm: untyped, parameters: untyped) -> untyped
+      def to_openssl_key: () -> untyped
+
+      private
+
+      def build_ec2_es256_key: () -> untyped
+      def build_okp_eddsa_key: () -> untyped
+      def build_rsa_rs256_key: () -> untyped
+    end
+  end
+end

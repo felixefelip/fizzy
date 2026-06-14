@@ -1,0 +1,13 @@
+module Signups
+  class CompletionsController < ApplicationController
+    @signup: Signup?
+    def new: () -> void
+    def create: () -> void
+
+    private
+
+    def signup_params: () -> untyped
+    def welcome_to_account: () -> untyped
+    def invalid_signup: () -> untyped
+  end
+end

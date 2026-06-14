@@ -1,0 +1,4 @@
+class Account
+  class Cancellation < ApplicationRecord
+  end
+end

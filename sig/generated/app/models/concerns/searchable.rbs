@@ -1,0 +1,13 @@
+module Searchable
+  extend ActiveSupport::Concern
+  def reindex: () -> untyped
+
+  private
+
+  def create_in_search_index: () -> untyped
+  def update_in_search_index: () -> untyped
+  def remove_from_search_index: () -> untyped
+  def search_record_attributes: () -> { account_id: untyped, searchable_type: untyped, searchable_id: untyped, card_id: untyped, board_id: untyped, title: untyped, content: untyped, created_at: untyped }
+  def search_record_content: () -> untyped
+  def search_record_class: () -> untyped
+end

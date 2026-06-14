@@ -1,0 +1,23 @@
+class BoardsController < ApplicationController
+  @board: Board?
+  include FilterScoped
+  def index: () -> void
+  def show: () -> void
+  def new: () -> void
+  def create: () -> void
+  def edit: () -> void
+  def update: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_board: () -> Board?
+  def ensure_permission_to_admin_board: () -> untyped
+  def grantees_changed?: () -> untyped
+  def show_filtered_cards: () -> untyped
+  def show_columns: () -> untyped
+  def board_params: () -> untyped
+  def grantees: () -> untyped
+  def revokees: () -> untyped
+  def grantee_ids: () -> untyped
+end

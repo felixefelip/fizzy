@@ -1,0 +1,22 @@
+class Card
+  module Eventable
+    class SystemCommenter
+      include ERB::Util
+      attr_reader card: untyped
+      attr_reader event: untyped
+      def initialize: (Card::Eventable card, untyped event) -> void
+      def comment: () -> untyped
+
+      private
+
+      def comment_body: () -> String?
+      def creator_name: () -> untyped
+      def assignee_names: () -> untyped
+      def old_title: () -> untyped
+      def new_title: () -> untyped
+      def old_board: () -> untyped
+      def new_board: () -> untyped
+      def column: () -> untyped
+    end
+  end
+end

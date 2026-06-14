@@ -1,0 +1,6 @@
+module Users
+  class VerificationsController < ApplicationController
+    def new: () -> void
+    def create: () -> void
+  end
+end

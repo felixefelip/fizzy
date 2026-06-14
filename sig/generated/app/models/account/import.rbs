@@ -1,0 +1,17 @@
+class Account
+  class Import < ApplicationRecord
+    def self.cleanup: () -> untyped
+    def process_later: () -> untyped
+    def check: (?start: untyped, ?callback: untyped) -> untyped
+    def process: (?start: untyped, ?callback: untyped) -> untyped
+    def cleanup: () -> untyped
+
+    private
+
+    def mark_completed: () -> untyped
+    def mark_as_failed: (?nil failure_reason) -> untyped
+    def reconcile_cards_count: () -> untyped
+    def add_importer_to_all_access_boards: () -> untyped
+    def reconcile_account_storage: () -> untyped
+  end
+end

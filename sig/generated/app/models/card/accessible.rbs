@@ -1,0 +1,13 @@
+class Card
+  module Accessible
+    extend ActiveSupport::Concern
+    def publicly_accessible?: () -> untyped
+    def clean_inaccessible_data: () -> untyped
+    def accessible_to?: () -> untyped
+
+    private
+
+    def grant_access_to_assignees: () -> untyped
+    def clean_inaccessible_data_later: () -> untyped
+  end
+end

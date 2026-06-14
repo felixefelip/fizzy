@@ -1,0 +1,11 @@
+class User
+  class DayTimeline
+    module Serializable
+      extend ActiveSupport::Concern
+      include GlobalID::Identification
+      def find: (untyped id) -> untyped
+      def tenanted?: () -> bool
+      def as_json: (?Hash[untyped, untyped] options) -> { user_id: untyped, day: untyped, filter_params: untyped }
+    end
+  end
+end

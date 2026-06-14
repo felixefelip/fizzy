@@ -1,0 +1,13 @@
+module Users
+  module EmailAddresses
+    class ConfirmationsController < ApplicationController
+      def show: () -> void
+      def create: () -> void
+
+      private
+
+      def set_user: () -> untyped
+      def token: () -> untyped
+    end
+  end
+end

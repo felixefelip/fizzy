@@ -1,0 +1,7 @@
+module Filterable
+  extend ActiveSupport::Concern
+
+  private
+
+  def remove_from_filters: () -> untyped
+end

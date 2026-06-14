@@ -1,0 +1,7 @@
+class Card
+  class ActivitySpike
+    class DetectionJob < ApplicationJob
+      def perform: (untyped card) -> untyped
+    end
+  end
+end

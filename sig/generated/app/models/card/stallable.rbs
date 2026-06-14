@@ -1,0 +1,14 @@
+class Card
+  module Stallable
+    extend ActiveSupport::Concern
+    def stalled?: () -> untyped
+    def last_activity_spike_at: () -> untyped
+    def detect_activity_spikes: () -> bool
+
+    private
+
+    def remember_to_detect_activity_spikes: () -> untyped
+    def should_detect_activity_spikes?: () -> untyped
+    def detect_activity_spikes_later: () -> untyped
+  end
+end

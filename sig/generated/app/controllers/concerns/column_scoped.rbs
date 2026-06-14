@@ -1,0 +1,7 @@
+module ColumnScoped
+  extend ActiveSupport::Concern
+
+  private
+
+  def set_column: () -> untyped
+end

@@ -1,0 +1,12 @@
+module Notifications
+  class TraysController < ApplicationController
+    @notifications: nil
+    def show: () -> void
+
+    private
+
+    def unread_notifications: () -> untyped
+    def read_notifications: () -> untyped
+    def include_read?: () -> untyped
+  end
+end

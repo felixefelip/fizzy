@@ -1,0 +1,8 @@
+module Boards
+  module Columns
+    class NotNowsController < ApplicationController
+      include BoardScoped
+      def show: () -> void
+    end
+  end
+end

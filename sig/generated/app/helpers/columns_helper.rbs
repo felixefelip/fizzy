@@ -1,0 +1,5 @@
+module ColumnsHelper
+  def button_to_set_column: (untyped card, untyped column) -> untyped
+  def column_tag: (id: String, name: String, drop_url: untyped, ?collapsed: bool, ?selected: String, ?card_color: untyped, ?data: ({ card_hotkeys_disabled: bool, drag_and_strum_target: String, collapsible_columns_target: String, action: String } | { drag_and_strum_target: String, collapsible_columns_target: String, controller: String, action: String } | { card_hotkeys_disabled: bool, collapsible_columns_target: String, drag_and_strum_target: String, action: String } | { drag_and_strum_target: String, collapsible_columns_target: String, action: String }), **untyped) ?{ (untyped) -> untyped } -> untyped
+  def column_frame_tag: (Symbol id, ?src: untyped, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
+end

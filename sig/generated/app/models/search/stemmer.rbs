@@ -1,0 +1,5 @@
+module Search
+  module Stemmer
+    def stem: (untyped value) -> untyped
+  end
+end

@@ -1,0 +1,9 @@
+class FiltersController < ApplicationController
+  def create: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_filters: () -> untyped
+  def filter_params: () -> untyped
+end

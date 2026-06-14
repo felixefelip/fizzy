@@ -1,0 +1,9 @@
+module DayTimelinesScoped
+  extend ActiveSupport::Concern
+  include FilterScoped
+
+  private
+
+  def set_day_timeline: () -> untyped
+  def day: () -> untyped
+end

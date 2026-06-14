@@ -1,0 +1,6 @@
+class Account
+  module Incineratable
+    extend ActiveSupport::Concern
+    def incinerate: () -> untyped
+  end
+end

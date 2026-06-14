@@ -1,0 +1,6 @@
+class Column
+  module Colored
+    extend ActiveSupport::Concern
+    def color: () -> untyped
+  end
+end

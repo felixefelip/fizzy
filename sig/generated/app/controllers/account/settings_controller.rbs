@@ -1,0 +1,11 @@
+class Account
+  class SettingsController < ApplicationController
+    def show: () -> void
+    def update: () -> void
+
+    private
+
+    def set_account: () -> untyped
+    def account_params: () -> untyped
+  end
+end

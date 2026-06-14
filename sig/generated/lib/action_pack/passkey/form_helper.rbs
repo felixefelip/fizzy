@@ -1,0 +1,15 @@
+module ActionPack
+  class Passkey
+    module FormHelper
+      def passkey_registration_button: (?nil name, ?nil url, **untyped) ?{ (untyped) -> untyped } -> untyped
+      def passkey_sign_in_button: (?nil name, ?nil url, **untyped) ?{ (untyped) -> untyped } -> untyped
+
+      private
+
+      def partition_passkey_options: (untyped url, untyped options) -> Array[untyped]
+      def default_passkey_challenge_url: () -> untyped
+      def passkey_error_messages: (?error: untyped, ?cancellation: untyped, ?duplicate: untyped) -> untyped
+      def build_passkey_error_options: (String type, untyped options) -> Array[untyped]
+    end
+  end
+end

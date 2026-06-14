@@ -1,0 +1,5 @@
+class Board
+  module Cards
+    extend ActiveSupport::Concern
+  end
+end

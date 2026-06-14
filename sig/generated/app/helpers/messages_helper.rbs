@@ -1,0 +1,3 @@
+module MessagesHelper
+  def messages_tag: (untyped card) ?{ (untyped) -> untyped } -> untyped
+end

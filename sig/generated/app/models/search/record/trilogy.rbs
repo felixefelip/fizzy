@@ -1,0 +1,20 @@
+module Search
+  class Record
+    module Trilogy
+      extend ActiveSupport::Concern
+      def self.name: () -> String
+      def shard_id_for_account: (untyped account_id) -> untyped
+      def search_fields: (untyped query) -> String
+      def for: (untyped account_id) -> untyped
+      def card_title: () -> untyped
+      def card_description: () -> untyped
+      def comment_body: () -> untyped
+
+      private
+
+      def stem_content: () -> untyped
+      def set_account_key: () -> String
+      def highlight: (untyped text, show: Symbol) -> untyped
+    end
+  end
+end

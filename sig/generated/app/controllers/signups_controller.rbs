@@ -1,0 +1,11 @@
+class SignupsController < ApplicationController
+  @signup: Signup?
+  def new: () -> void
+  def create: () -> void
+
+  private
+
+  def redirect_authenticated_user: () -> untyped
+  def enforce_tenant_limit: () -> untyped
+  def signup_params: () -> untyped
+end

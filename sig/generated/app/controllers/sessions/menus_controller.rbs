@@ -1,0 +1,5 @@
+module Sessions
+  class MenusController < ApplicationController
+    def show: () -> void
+  end
+end

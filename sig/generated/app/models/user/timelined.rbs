@@ -1,0 +1,6 @@
+class User
+  module Timelined
+    extend ActiveSupport::Concern
+    def timeline_for: (untyped day, filter: untyped) -> User::DayTimeline
+  end
+end

@@ -1,0 +1,13 @@
+class Account
+  class ImportsController < ApplicationController
+    def new: () -> void
+    def create: () -> void
+    def show: () -> void
+
+    private
+
+    def set_import: () -> untyped
+    def ensure_accessed_by_owner: () -> untyped
+    def start_import: (Account account) -> untyped
+  end
+end

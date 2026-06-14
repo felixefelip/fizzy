@@ -1,0 +1,10 @@
+module Boards
+  class EntropiesController < ApplicationController
+    include BoardScoped
+    def update: () -> void
+
+    private
+
+    def entropy_params: () -> untyped
+  end
+end

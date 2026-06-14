@@ -1,0 +1,18 @@
+module Cards
+  module Comments
+    class ReactionsController < ApplicationController
+      include CardScoped
+      def index: () -> void
+      def new: () -> void
+      def create: () -> void
+      def destroy: () -> void
+
+      private
+
+      def set_comment: () -> untyped
+      def set_reactable: () -> untyped
+      def set_reaction: () -> untyped
+      def ensure_permission_to_administer_reaction: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,4 @@
+module ChoiceSentenceArrayConversion
+  include ::ChoiceSentenceArrayConversion
+  def to_choice_sentence: () -> untyped
+end

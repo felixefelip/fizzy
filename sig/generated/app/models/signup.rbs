@@ -1,0 +1,29 @@
+class Signup
+  @tenant: nil
+  include ActiveModel::Model
+  include ActiveModel::Attributes
+  include ActiveModel::Validations
+  attr_accessor full_name: untyped
+  attr_accessor email_address: untyped
+  attr_accessor identity: Identity
+  attr_accessor skip_account_seeding: untyped
+  attr_reader account: Account
+  attr_reader user: nil
+  def initialize: (**untyped) -> void
+  def create_identity: () -> untyped
+  def complete: () -> untyped
+
+  private
+
+  def create_tenant: () -> nil
+  def handle_account_creation_error: (untyped error) -> untyped
+  def create_account: () -> untyped
+  def generate_account_name: () -> untyped
+  def destroy_account: () -> nil
+  def subscription_attributes: () -> untyped
+  def request_attributes: () -> untyped
+
+  class AfterDestroyAccount
+    attr_reader account: nil
+  end
+end

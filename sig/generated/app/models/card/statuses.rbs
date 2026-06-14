@@ -1,0 +1,15 @@
+class Card
+  module Statuses
+    extend ActiveSupport::Concern
+    attr_accessor was_just_published: bool
+    def publish: () -> untyped
+
+    private
+
+    def mark_if_just_published: () -> untyped
+
+    class AfterMarkIfJustPublished
+      attr_reader was_just_published: true
+    end
+  end
+end

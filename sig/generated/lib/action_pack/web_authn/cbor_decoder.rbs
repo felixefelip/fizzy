@@ -1,0 +1,31 @@
+module ActionPack
+  module WebAuthn
+    class CborDecoder
+      @position: Integer
+      @depth: Integer
+      def decode: (untyped bytes, **untyped) -> untyped
+      def initialize: (untyped bytes, ?max_depth: MAX_DEPTH, ?max_size: untyped) -> Integer
+      def decode: () -> untyped
+
+      private
+
+      def major_type: () -> untyped
+      def peek: () -> untyped
+      def decode_unsigned_integer: () -> untyped
+      def decode_negative_integer: () -> untyped
+      def decode_byte_string: () -> untyped
+      def decode_text_string: () -> untyped
+      def decode_array: () -> untyped
+      def decode_map: () -> untyped
+      def decode_float_or_simple: () -> untyped
+      def decode_tag: () -> untyped
+      def decode_half_float: () -> untyped
+      def read_argument: () -> untyped
+      def additional_info: (?consume: bool) -> untyped
+      def indefinite_length?: () -> untyped
+      def break_code?: () -> untyped
+      def read_bytes: (Integer length) -> untyped
+      def read_byte: () -> untyped
+    end
+  end
+end

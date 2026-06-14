@@ -1,0 +1,6 @@
+module Mailers
+  module Unsubscribable
+    extend ActiveSupport::Concern
+    def set_unsubscribe_headers: () -> String
+  end
+end

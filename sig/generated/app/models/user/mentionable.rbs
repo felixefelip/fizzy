@@ -1,0 +1,14 @@
+class User
+  module Mentionable
+    extend ActiveSupport::Concern
+    def to_attachable_partial_path: () -> String
+    def to_editor_content_attachment_partial_path: () -> String
+    def mentioned_by: (untyped mentioner, at: untyped) -> untyped
+    def mentionable_handles: () -> untyped
+    def content_type: () -> String
+
+    private
+
+    def first_name_with_last_name_initial: () -> String
+  end
+end

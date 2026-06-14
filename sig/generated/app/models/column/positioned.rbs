@@ -1,0 +1,17 @@
+class Column
+  module Positioned
+    extend ActiveSupport::Concern
+    def move_left: () -> untyped
+    def move_right: () -> untyped
+    def left_column: () -> untyped
+    def right_column: () -> untyped
+    def leftmost?: () -> untyped
+    def rightmost?: () -> untyped
+    def adjacent_columns: () -> untyped
+
+    private
+
+    def set_position: () -> untyped
+    def swap_position_with: (untyped other_column) -> untyped
+  end
+end

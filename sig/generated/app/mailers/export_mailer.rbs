@@ -1,0 +1,8 @@
+class ExportMailer < ApplicationMailer
+  @export: Export?
+  def completed: (Export? export) -> untyped
+
+  private
+
+  def export_download_url: (untyped export) -> untyped
+end

@@ -1,0 +1,5 @@
+module Cards
+  class ColumnsController < ApplicationController
+    def edit: () -> void
+  end
+end

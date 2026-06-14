@@ -1,0 +1,4 @@
+class SearchesController < ApplicationController
+  include Turbo::DriveHelper
+  def show: () -> void
+end

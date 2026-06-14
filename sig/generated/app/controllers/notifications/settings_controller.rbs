@@ -1,0 +1,11 @@
+module Notifications
+  class SettingsController < ApplicationController
+    def show: () -> void
+    def update: () -> void
+
+    private
+
+    def set_settings: () -> untyped
+    def settings_params: () -> untyped
+  end
+end

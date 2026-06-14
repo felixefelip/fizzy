@@ -1,0 +1,10 @@
+module ActionPack
+  class Passkey
+    def registration_options: (holder: untyped, **untyped) -> ActionPack::WebAuthn::PublicKeyCredential::CreationOptions
+    def register: (untyped passkey, **untyped) -> untyped
+    def authentication_options: (?holder: untyped, **untyped) -> ActionPack::WebAuthn::PublicKeyCredential::RequestOptions
+    def authenticate: (untyped passkey) -> untyped
+    def authenticate: (untyped passkey) -> untyped
+    def to_public_key_credential: () -> ActionPack::WebAuthn::PublicKeyCredential
+  end
+end

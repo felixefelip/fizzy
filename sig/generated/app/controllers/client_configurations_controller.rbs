@@ -1,0 +1,7 @@
+class ClientConfigurationsController < ApplicationController
+  def show: () -> void
+
+  private
+
+  def client_configuration_name: () -> String
+end

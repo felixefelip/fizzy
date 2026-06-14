@@ -1,0 +1,10 @@
+module Columns
+  module Cards
+    module Drops
+      class StreamsController < ApplicationController
+        include CardScoped
+        def create: () -> void
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module My
+  class PasskeysController < ApplicationController
+    @registration_options: nil
+    include ActionPack::Passkey::Request
+    def index: () -> void
+    def create: () -> void
+    def edit: () -> void
+    def update: () -> void
+    def destroy: () -> void
+
+    private
+
+    def set_passkey: () -> untyped
+  end
+end

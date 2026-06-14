@@ -1,0 +1,16 @@
+module Storage
+  module Totaled
+    extend ActiveSupport::Concern
+    def foreign_key_for_storage: () -> String
+    def bytes_used: () -> untyped
+    def bytes_used_exact: () -> untyped
+    def materialize_storage_later: () -> untyped
+    def materialize_storage: () -> untyped
+    def reconcile_storage: () -> untyped
+
+    private
+
+    def create_or_find_storage_total: () -> untyped
+    def calculate_real_storage_bytes: () -> bot
+  end
+end

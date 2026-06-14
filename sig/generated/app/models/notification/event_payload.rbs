@@ -1,0 +1,20 @@
+class Notification
+  class EventPayload < ::Notification::DefaultPayload
+    include ExcerptHelper
+    def title: () -> untyped
+    def body: () -> untyped
+    def url: () -> untyped
+    def category: () -> untyped
+    def high_priority?: () -> untyped
+
+    private
+
+    def event: () -> untyped
+    def card_title: () -> untyped
+    def event_particulars: () -> untyped
+    def column_name: () -> untyped
+    def new_location_name: () -> untyped
+    def new_title: () -> untyped
+    def card_url_with_comment_anchor: (untyped comment) -> untyped
+  end
+end

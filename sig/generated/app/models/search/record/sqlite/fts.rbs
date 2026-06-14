@@ -1,0 +1,9 @@
+module Search
+  class Record
+    module SQLite
+      class Fts < ApplicationRecord
+        def self.upsert: (untyped rowid, untyped title, untyped content) -> untyped
+      end
+    end
+  end
+end

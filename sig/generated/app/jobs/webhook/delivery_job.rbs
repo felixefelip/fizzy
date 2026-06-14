@@ -1,0 +1,5 @@
+class Webhook
+  class DeliveryJob < ApplicationJob
+    def perform: (untyped delivery) -> untyped
+  end
+end

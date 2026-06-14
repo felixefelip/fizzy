@@ -1,0 +1,4 @@
+module FormsHelper
+  def auto_submit_form_with: (**untyped) ?{ (untyped) -> untyped } -> untyped
+  def bridged_form_with: (**untyped) ?{ (untyped) -> untyped } -> untyped
+end

@@ -1,0 +1,11 @@
+class Card
+  module Closeable
+    extend ActiveSupport::Concern
+    def closed?: () -> untyped
+    def open?: () -> untyped
+    def closed_by: () -> untyped
+    def closed_at: () -> untyped
+    def close: (?user: untyped) -> untyped
+    def reopen: (?user: untyped) -> untyped
+  end
+end

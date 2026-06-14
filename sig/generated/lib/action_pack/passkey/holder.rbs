@@ -1,0 +1,22 @@
+module ActionPack
+  class Passkey
+    module Holder
+      @registration_options: Proc
+      @authentication_options: Proc
+      extend ActiveSupport::Concern
+      def has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
+      attr_accessor association_name: untyped
+      attr_accessor dependent: untyped
+      def initialize: (**untyped) -> untyped
+      def authentication_options: () ?{ (untyped) -> untyped } -> Proc
+      def registration_options: () ?{ (untyped) -> untyped } -> Proc
+      def evaluate_authentication_options: (untyped record) -> untyped
+      def evaluate_registration_options: (untyped record) -> untyped
+
+      private
+
+      def extract_options_for: (ActionPack::WebAuthn::PublicKeyCredential::CreationOptions klass, untyped options) -> untyped
+      def options_to_proc: (untyped options) -> Proc
+    end
+  end
+end

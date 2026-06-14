@@ -1,0 +1,349 @@
+---
+version: 1
+callbacks:
+- class: Account
+  applies_self: Account & Account::Validated
+  runs_before:
+  - assign_external_account_id
+  - create_join_code
+- class: Account::CancellationsController
+  apply_postcondition_of: ensure_owner
+  runs_before:
+  - create
+- class: Account::EntropiesController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - update
+- class: Account::ExportsController
+  apply_postcondition_of: ensure_admin_or_owner
+  runs_before:
+  - show
+  - create
+- class: Account::ExportsController
+  apply_postcondition_of: ensure_export_limit_not_exceeded
+  runs_before:
+  - create
+- class: Account::ExportsController
+  apply_postcondition_of: set_export
+  runs_before:
+  - show
+- class: Account::ImportsController
+  apply_postcondition_of: ensure_accessed_by_owner
+  runs_before:
+  - show
+- class: Account::ImportsController
+  apply_postcondition_of: set_import
+  runs_before:
+  - show
+- class: Account::JoinCodesController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - update
+  - destroy
+- class: Account::JoinCodesController
+  apply_postcondition_of: set_join_code
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: Account::SettingsController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - update
+- class: Account::SettingsController
+  apply_postcondition_of: set_account
+  runs_before:
+  - show
+  - update
+- class: ActiveStorage::Blob
+  applies_self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+  runs_before:
+  - touch_attachments
+- class: Boards::Columns::CardsController
+  apply_postcondition_of: set_column
+  runs_before:
+  - index
+- class: Boards::ColumnsController
+  apply_postcondition_of: set_column
+  runs_before:
+  - show
+  - update
+  - destroy
+- class: Boards::EntropiesController
+  apply_postcondition_of: ensure_permission_to_admin_board
+  runs_before:
+  - update
+- class: Boards::PublicationsController
+  apply_postcondition_of: ensure_permission_to_admin_board
+  runs_before:
+  - create
+  - destroy
+- class: BoardsController
+  apply_postcondition_of: ensure_permission_to_admin_board
+  runs_before:
+  - update
+  - destroy
+- class: BoardsController
+  apply_postcondition_of: set_board
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: Card
+  applies_self: Card & Card::Validated
+  runs_before:
+  - assign_number
+- class: Cards::BoardsController
+  apply_postcondition_of: set_card
+  runs_before:
+  - edit
+  - update
+- class: Cards::Comments::ReactionsController
+  apply_postcondition_of: set_comment
+  runs_before:
+  - index
+  - new
+  - create
+  - destroy
+- class: Cards::Comments::ReactionsController
+  apply_postcondition_of: set_reactable
+  runs_before:
+  - index
+  - new
+  - create
+  - destroy
+- class: Cards::CommentsController
+  apply_postcondition_of: ensure_card_is_commentable
+  runs_before:
+  - create
+- class: Cards::CommentsController
+  apply_postcondition_of: ensure_creatorship
+  runs_before:
+  - edit
+  - update
+  - destroy
+- class: Cards::CommentsController
+  apply_postcondition_of: set_comment
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: Cards::DraftsController
+  apply_postcondition_of: redirect_if_published
+  runs_before:
+  - show
+- class: Cards::PreviewsController
+  apply_postcondition_of: set_filter
+  runs_before:
+  - index
+- class: Cards::ReactionsController
+  apply_postcondition_of: set_reactable
+  runs_before:
+  - index
+  - new
+  - create
+  - destroy
+- class: Cards::StepsController
+  apply_postcondition_of: set_step
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: CardsController
+  apply_postcondition_of: ensure_permission_to_administer_card
+  runs_before:
+  - destroy
+- class: CardsController
+  apply_postcondition_of: redirect_if_drafted
+  runs_before:
+  - show
+- class: CardsController
+  apply_postcondition_of: set_board
+  runs_before:
+  - create
+- class: CardsController
+  apply_postcondition_of: set_card
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: Events::DayTimeline::ColumnsController
+  apply_postcondition_of: ensure_valid_column
+  runs_before:
+  - show
+- class: Events::DayTimeline::ColumnsController
+  apply_postcondition_of: set_column
+  runs_before:
+  - show
+- class: FiltersController
+  apply_postcondition_of: set_filters
+  runs_before:
+  - create
+  - destroy
+- class: JoinCodesController
+  apply_postcondition_of: ensure_join_code_is_valid
+  runs_before:
+  - new
+  - create
+- class: JoinCodesController
+  apply_postcondition_of: set_identity
+  runs_before:
+  - create
+- class: JoinCodesController
+  apply_postcondition_of: set_join_code
+  runs_before:
+  - new
+  - create
+- class: My::PasskeysController
+  apply_postcondition_of: set_passkey
+  runs_before:
+  - edit
+  - update
+  - destroy
+- class: Notification
+  applies_self: Notification & Notification::Validated
+  runs_before:
+  - bundle
+- class: Notifications::SettingsController
+  apply_postcondition_of: set_settings
+  runs_before:
+  - show
+  - update
+- class: Notifications::UnsubscribesController
+  apply_postcondition_of: set_user
+  runs_before:
+  - new
+  - create
+  - show
+- class: Public::Boards::ColumnsController
+  apply_postcondition_of: set_column
+  runs_before:
+  - show
+- class: Reaction
+  applies_self: Reaction & Reaction::Validated
+  runs_before:
+  - register_card_activity
+- class: Sessions::MagicLinksController
+  apply_postcondition_of: ensure_that_email_address_pending_authentication_exists
+  runs_before:
+  - show
+  - create
+- class: SignupsController
+  apply_postcondition_of: enforce_tenant_limit
+  runs_before:
+  - new
+  - create
+- class: SignupsController
+  apply_postcondition_of: redirect_authenticated_user
+  runs_before:
+  - new
+  - create
+- class: Users::AvatarsController
+  apply_postcondition_of: ensure_permission_to_administer_user
+  runs_before:
+  - destroy
+- class: Users::AvatarsController
+  apply_postcondition_of: set_user
+  runs_before:
+  - show
+  - destroy
+- class: Users::DataExportsController
+  apply_postcondition_of: ensure_current_user
+  runs_before:
+  - show
+  - create
+- class: Users::DataExportsController
+  apply_postcondition_of: ensure_export_limit_not_exceeded
+  runs_before:
+  - create
+- class: Users::DataExportsController
+  apply_postcondition_of: set_export
+  runs_before:
+  - show
+- class: Users::DataExportsController
+  apply_postcondition_of: set_user
+  runs_before:
+  - show
+  - create
+- class: Users::EmailAddresses::ConfirmationsController
+  apply_postcondition_of: set_user
+  runs_before:
+  - show
+  - create
+- class: Users::EmailAddressesController
+  apply_postcondition_of: ensure_valid_email_address
+  runs_before:
+  - create
+- class: Users::EmailAddressesController
+  apply_postcondition_of: set_user
+  runs_before:
+  - new
+  - create
+- class: Users::EventsController
+  apply_postcondition_of: set_user
+  runs_before:
+  - show
+- class: Users::PushSubscriptionsController
+  apply_postcondition_of: set_push_subscriptions
+  runs_before:
+  - index
+  - create
+  - destroy
+- class: Users::RolesController
+  apply_postcondition_of: ensure_permission_to_administer_user
+  runs_before:
+  - update
+- class: Users::RolesController
+  apply_postcondition_of: set_user
+  runs_before:
+  - update
+- class: UsersController
+  apply_postcondition_of: ensure_permission_to_change_user
+  runs_before:
+  - update
+  - destroy
+- class: UsersController
+  apply_postcondition_of: set_user
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy
+- class: Webhook
+  applies_self: Webhook & Webhook::Validated
+  runs_before:
+  - create_delinquency_tracker!
+- class: Webhooks::ActivationsController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - create
+- class: Webhooks::DeliveriesController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - index
+- class: Webhooks::DeliveriesController
+  apply_postcondition_of: set_webhook
+  runs_before:
+  - index
+- class: WebhooksController
+  apply_postcondition_of: ensure_admin
+  runs_before:
+  - index
+  - show
+  - new
+  - create
+  - edit
+  - update
+  - destroy
+- class: WebhooksController
+  apply_postcondition_of: set_webhook
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy

@@ -1,0 +1,9 @@
+module My
+  class TimezonesController < ApplicationController
+    def update: () -> void
+
+    private
+
+    def timezone_param: () -> untyped
+  end
+end

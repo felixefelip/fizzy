@@ -1,0 +1,7 @@
+module BlockSearchEngineIndexing
+  extend ActiveSupport::Concern
+
+  private
+
+  def block_search_engine_indexing: () -> String
+end

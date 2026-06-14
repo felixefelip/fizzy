@@ -1,0 +1,6 @@
+module Cards
+  class PreviewsController < ApplicationController
+    include FilterScoped
+    def index: () -> void
+  end
+end

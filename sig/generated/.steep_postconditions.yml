@@ -1,0 +1,82 @@
+---
+version: 1
+postconditions:
+- class: Account::DataTransfer::Manifest
+  method: initialize
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::Account::DataTransfer::Manifest & ::Account::DataTransfer::Manifest::AfterInitialize"
+- class: Account::DataTransfer::RecordSet
+  method: initialize
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::Account::DataTransfer::RecordSet & ::Account::DataTransfer::RecordSet::AfterInitialize"
+- class: Account::Seeder
+  method: initialize
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::Account::Seeder & ::Account::Seeder::AfterInitialize"
+- class: AccountTenanted
+  method: initialize
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::AccountTenanted & ::AccountTenanted::AfterInitialize"
+- class: AccountTenanted
+  method: resolve_account!
+  unconditional:
+    ivars:
+      "@account": untyped
+    self: "::AccountTenanted & ::AccountTenanted::AfterResolveAccount"
+- class: ActionPack::WebAuthn::PublicKeyCredential
+  method: authenticate
+  unconditional:
+    ivars:
+      "@sign_count": untyped
+    self: "::ActionPack::WebAuthn::PublicKeyCredential & ::ActionPack::WebAuthn::PublicKeyCredential::AfterAuthenticate"
+- class: ActionPack::WebAuthn::PublicKeyCredential
+  method: initialize
+  unconditional:
+    ivars:
+      "@aaguid": "(::String | nil)"
+      "@public_key": untyped
+    self: "::ActionPack::WebAuthn::PublicKeyCredential & ::ActionPack::WebAuthn::PublicKeyCredential::AfterInitialize"
+- class: Card::ActivitySpike::Detector
+  method: initialize
+  unconditional:
+    ivars:
+      "@card": untyped
+    self: "::Card::ActivitySpike::Detector & ::Card::ActivitySpike::Detector::AfterInitialize"
+- class: FilterScoped
+  method: set_user_filtering
+  unconditional:
+    ivars:
+      "@user_filtering": untyped
+    self: "::FilterScoped & ::FilterScoped::AfterSetUserFiltering"
+- class: Signup::AccountNameGenerator
+  method: initialize
+  unconditional:
+    ivars:
+      "@identity": untyped
+    self: "::Signup::AccountNameGenerator & ::Signup::AccountNameGenerator::AfterInitialize"
+- class: Storage::AttachmentTracking
+  method: snapshot_storage_context
+  unconditional:
+    ivars:
+      "@storage_snapshot": untyped
+    self: "::Storage::AttachmentTracking & ::Storage::AttachmentTracking::AfterSnapshotStorageContext"
+- class: ViewTransitions
+  method: disable_view_transitions
+  unconditional:
+    ivars:
+      "@disable_view_transition": 'true'
+    self: "::ViewTransitions & ::ViewTransitions::AfterDisableViewTransitions"
+- class: ZipFile::Writer
+  method: initialize
+  unconditional:
+    ivars:
+      "@digest": untyped
+    self: "::ZipFile::Writer & ::ZipFile::Writer::AfterInitialize"

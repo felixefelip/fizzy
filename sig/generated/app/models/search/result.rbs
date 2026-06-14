@@ -1,0 +1,13 @@
+module Search
+  class Result < ApplicationRecord
+    def card_title: () -> untyped
+    def card_description: () -> untyped
+    def comment_body: () -> untyped
+    def source: () -> untyped
+    def readonly?: () -> bool
+
+    private
+
+    def highlight: (untyped text, show: Symbol) -> untyped
+  end
+end

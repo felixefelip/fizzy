@@ -1,0 +1,6 @@
+class Identity
+  module Joinable
+    extend ActiveSupport::Concern
+    def join: (untyped account, **untyped) -> untyped
+  end
+end

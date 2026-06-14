@@ -1,0 +1,5 @@
+module Prompts
+  class UsersController < ApplicationController
+    def index: () -> void
+  end
+end

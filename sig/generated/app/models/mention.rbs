@@ -1,0 +1,10 @@
+class Mention < ApplicationRecord
+  include Notifiable
+  def self_mention?: () -> untyped
+  def notifiable_target: () -> untyped?
+  def card: () -> untyped
+
+  private
+
+  def watch_source_by_mentionee: () -> untyped
+end

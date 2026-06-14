@@ -1,0 +1,14 @@
+class Account
+  class Seeder
+    attr_reader account: Account::Seedeable
+    attr_reader creator: untyped
+    def initialize: (Account::Seedeable account, untyped creator) -> void
+    def seed: () -> untyped
+    def seed!: () -> untyped
+
+    private
+
+    def populate: () -> untyped
+    def delete_everything: () -> untyped
+  end
+end

@@ -1,0 +1,8 @@
+module Search
+  class Record < ApplicationRecord
+    def upsert!: (untyped attributes) -> untyped
+    def card_join: () -> String
+    def source: () -> untyped
+    def comment: () -> untyped
+  end
+end

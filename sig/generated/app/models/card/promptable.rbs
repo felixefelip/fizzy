@@ -1,0 +1,10 @@
+class Card
+  module Promptable
+    extend ActiveSupport::Concern
+    def to_prompt: () -> String
+
+    private
+
+    def column_prompt_label: () -> untyped
+  end
+end

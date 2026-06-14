@@ -1,0 +1,15 @@
+class WebhooksController < ApplicationController
+  include BoardScoped
+  def index: () -> void
+  def show: () -> void
+  def new: () -> void
+  def create: () -> void
+  def edit: () -> void
+  def update: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_webhook: () -> untyped
+  def webhook_params: () -> untyped
+end

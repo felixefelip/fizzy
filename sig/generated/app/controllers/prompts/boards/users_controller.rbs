@@ -1,0 +1,8 @@
+module Prompts
+  module Boards
+    class UsersController < ApplicationController
+      include BoardScoped
+      def index: () -> void
+    end
+  end
+end

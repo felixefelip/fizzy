@@ -1,0 +1,7 @@
+class Event
+  module Particulars
+    extend ActiveSupport::Concern
+    def assignees: () -> untyped
+    def api_particulars: () -> untyped
+  end
+end

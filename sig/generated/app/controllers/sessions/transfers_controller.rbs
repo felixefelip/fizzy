@@ -1,0 +1,6 @@
+module Sessions
+  class TransfersController < ApplicationController
+    def show: () -> void
+    def update: () -> void
+  end
+end

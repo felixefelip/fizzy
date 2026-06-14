@@ -1,0 +1,10 @@
+module My
+  module MenuHelper
+    def jump_field_tag: () -> untyped
+    def my_menu_board_item: (untyped board) -> untyped
+    def my_menu_tag_item: (untyped the_tag) -> untyped
+    def my_menu_user_item: (untyped user) -> untyped
+    def my_menu_filter_item: (untyped filter) -> untyped
+    def my_menu_item: (String item, untyped record) -> untyped
+  end
+end

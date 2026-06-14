@@ -1,0 +1,9 @@
+class Notification
+  class PushTarget
+    def self.process: (untyped notification) -> bot
+    attr_reader notification: untyped
+    def initialize: (untyped notification) -> untyped
+    def process: () -> bot
+    def card: () -> ::Card?
+  end
+end
