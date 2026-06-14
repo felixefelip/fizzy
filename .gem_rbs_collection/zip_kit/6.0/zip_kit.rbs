@@ -1,0 +1,14 @@
+module ZipKit
+  class RemoteIO
+    def initialize: (String | URI::Generic url) -> void
+    def seek: (Integer offset, ?Integer mode) -> Integer
+    def size: () -> Integer
+    def read: (?Integer? n_bytes) -> String?
+    def tell: () -> Integer
+    def request_range: (Range[Integer] range) -> String
+    def request_object_size: () -> Integer
+
+    private
+      def clamp: (Integer a, Integer b, Integer c) -> Integer
+  end
+end

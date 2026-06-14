@@ -1,0 +1,81 @@
+module ActiveJob
+  # Concern that allows long-running jobs to track their progress and resume
+  # from where they left off if interrupted.
+  #
+  # Mix ActiveJob::Continuable into your job to enable continuations.
+  module Continuable
+    extend ActiveSupport::Concern
+
+    attr_accessor resumptions: Integer
+    attr_accessor continuation: ActiveJob::Continuation
+
+    # Define and execute a continuation step.
+    # Accepts a block receiving a Step object, or a method name on the class.
+    def step: (Symbol step_name, ?start: untyped, ?isolated: bool) { (ActiveJob::Continuation::Step) -> void } -> void
+            | (Symbol step_name, ?start: untyped, ?isolated: bool) -> void
+
+    def serialize: () -> Hash[String, untyped]
+    def deserialize: (Hash[String, untyped] job_data) -> void
+    def checkpoint!: () -> void
+    def interrupt!: (reason: Symbol) -> bot
+  end
+
+  class Continuation
+    # Raised when a job is interrupted, allowing Active Job to requeue it.
+    # Inherits from Exception (not StandardError) so it's not caught by rescue.
+    class Interrupt < ::Exception
+    end
+
+    # Base class for all Continuation errors.
+    class Error < ::StandardError
+    end
+
+    # Raised when a step definition is invalid.
+    class InvalidStepError < Error
+    end
+
+    # Raised when there is an error with a checkpoint (e.g. open DB transactions).
+    class CheckpointError < Error
+    end
+
+    # Raised when attempting to advance a cursor that doesn't implement `succ`.
+    class UnadvanceableCursorError < Error
+    end
+
+    # Raised when a job has reached its maximum number of resumptions.
+    class ResumeLimitError < Error
+    end
+
+    def started?: () -> bool
+    def advanced?: () -> bool
+    def description: () -> String
+    def instrumentation: () -> Hash[Symbol, untyped]
+    def to_h: () -> Hash[String, untyped]
+
+    class Step
+      # The name of the step.
+      attr_reader name: Symbol
+
+      # The current cursor value tracking progress within the step.
+      attr_reader cursor: untyped
+
+      # Check if the job should be interrupted; raises Interrupt if so.
+      def checkpoint!: () -> void
+
+      # Set the cursor to a specific value and checkpoint.
+      def set!: (untyped cursor) -> void
+
+      # Advance the cursor by calling `succ` on the current or supplied value.
+      def advance!: (?from: untyped?) -> void
+
+      # Whether this step was resumed from a previous job execution.
+      def resumed?: () -> bool
+
+      # Whether the cursor was advanced during this job execution.
+      def advanced?: () -> bool
+
+      def to_a: () -> [String, untyped]
+      def description: () -> String
+    end
+  end
+end

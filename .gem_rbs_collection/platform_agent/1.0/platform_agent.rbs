@@ -1,0 +1,36 @@
+class PlatformAgent
+  def initialize: (String? user_agent_string) -> void
+
+  def browser: () -> untyped
+  def version: () -> untyped
+  def product: () -> untyped
+  def os: () -> untyped
+
+  def desktop?: () -> bool
+  def mobile?: () -> bool
+  def phone?: () -> bool
+  def iphone?: () -> bool
+  def android_phone?: () -> bool
+  def other_phones?: () -> bool
+  def tablet?: () -> bool
+  def ipad?: () -> bool
+  def android?: () -> bool
+  def native_app?: () -> bool
+  def mobile_app?: () -> bool
+  def iphone_app?: () -> bool
+  def ipad_app?: () -> bool
+  def ios_app?: () -> bool
+  def android_app?: () -> bool
+  def desktop_app?: () -> bool
+  def mac_app?: () -> bool
+  def windows_app?: () -> bool
+  def missing?: () -> bool
+  def app_version: () -> untyped
+  def to_s: () -> String
+
+  private
+    attr_accessor user_agent_string: String?
+
+    def match?: (Regexp pattern) -> bool
+    def user_agent: () -> untyped
+end

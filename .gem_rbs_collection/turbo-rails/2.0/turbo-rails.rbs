@@ -1,0 +1,13 @@
+module Turbo
+  module DriveHelper
+    def turbo_exempts_page_from_cache: () -> void
+    def turbo_exempts_page_from_cache_tag: () -> untyped
+    def turbo_exempts_page_from_preview: () -> void
+    def turbo_exempts_page_from_preview_tag: () -> untyped
+    def turbo_page_requires_reload: () -> void
+    def turbo_page_requires_reload_tag: () -> untyped
+    def turbo_refreshes_with: (?method: Symbol, ?scroll: Symbol) -> void
+    def turbo_refresh_method_tag: (?Symbol method) -> untyped
+    def turbo_refresh_scroll_tag: (?Symbol scroll) -> untyped
+  end
+end
