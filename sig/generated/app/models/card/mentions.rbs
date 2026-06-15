@@ -2,7 +2,7 @@ class Card
   module Mentions
     extend ActiveSupport::Concern
     include ::Mentions
-    def mentionable?: () -> untyped
+    def mentionable?: () -> bool
     def should_check_mentions?: () -> untyped
   end
 end

@@ -1,6 +1,6 @@
 class ImportMailer < ApplicationMailer
   @account: Account?
   @import: Account::Import?
-  def completed: (Identity? identity, Account? account) -> untyped
-  def failed: (Account::Import? import) -> untyped
+  def completed: (Identity? identity, Account? account) -> Mail::Message
+  def failed: (Account::Import? import) -> Mail::Message
 end

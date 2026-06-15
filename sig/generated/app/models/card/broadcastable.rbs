@@ -4,7 +4,7 @@ class Card
 
     private
 
-    def remember_if_preview_changed: () -> untyped
+    def remember_if_preview_changed: () -> bool
     def preview_changed?: () -> untyped
   end
 end

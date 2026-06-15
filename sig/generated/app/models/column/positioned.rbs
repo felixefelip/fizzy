@@ -3,11 +3,11 @@ class Column
     extend ActiveSupport::Concern
     def move_left: () -> untyped
     def move_right: () -> untyped
-    def left_column: () -> untyped
-    def right_column: () -> untyped
-    def leftmost?: () -> untyped
-    def rightmost?: () -> untyped
-    def adjacent_columns: () -> untyped
+    def left_column: () -> (Column & Column::Validated)?
+    def right_column: () -> (Column & Column::Validated)?
+    def leftmost?: () -> false
+    def rightmost?: () -> false
+    def adjacent_columns: () -> Column::ActiveRecord_Associations_CollectionProxy
 
     private
 

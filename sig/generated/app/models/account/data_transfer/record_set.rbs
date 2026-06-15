@@ -3,9 +3,9 @@ class Account
     class RecordSet
       attr_accessor importable_model_names: untyped
       attr_reader account: Account?
-      attr_reader model: untyped
+      attr_reader model: ActiveStorage::VariantRecord
       attr_reader attributes: untyped
-      def initialize: (account: Account?, model: untyped, ?attributes: untyped, ?importable_model_names: untyped) -> void
+      def initialize: (account: Account?, model: ActiveStorage::VariantRecord, ?attributes: untyped, ?importable_model_names: untyped) -> void
       def export: (to: untyped, ?start: untyped) -> untyped
       def import: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped
       def check: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped

@@ -5,8 +5,8 @@ class Account
 
     private
 
-    def ensure_admin_or_owner: () -> untyped
-    def ensure_export_limit_not_exceeded: () -> untyped
+    def ensure_admin_or_owner: () -> true?
+    def ensure_export_limit_not_exceeded: () -> true?
     def set_export: () -> untyped
   end
 end

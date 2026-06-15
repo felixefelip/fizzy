@@ -24,13 +24,13 @@ class Card < ApplicationRecord
   include Triageable
   include Watchable
   def card: () -> Card
-  def to_param: () -> untyped
+  def to_param: () -> (String | "")
   def move_to: (untyped new_board) -> untyped
   def filled?: () -> untyped
 
   private
 
-  def set_default_title: () -> untyped
+  def set_default_title: () -> String?
   def handle_board_change: () -> untyped
   def track_board_change_event: (untyped old_board_name) -> untyped
   def assign_number: () -> untyped

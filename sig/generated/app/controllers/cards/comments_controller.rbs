@@ -11,8 +11,8 @@ module Cards
     private
 
     def set_comment: () -> untyped
-    def ensure_creatorship: () -> untyped
-    def ensure_card_is_commentable: () -> untyped
+    def ensure_creatorship: () -> true?
+    def ensure_card_is_commentable: () -> true?
     def comment_params: () -> untyped
   end
 end

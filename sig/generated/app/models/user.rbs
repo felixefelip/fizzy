@@ -13,9 +13,9 @@ class User < ApplicationRecord
   include Watcher
   include Timelined
   def deactivate: () -> untyped
-  def setup?: () -> untyped
-  def verified?: () -> untyped
-  def verify: () -> untyped
+  def setup?: () -> bool
+  def verified?: () -> (bool | false)
+  def verify: () -> self?
 
   private
 

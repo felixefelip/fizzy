@@ -1,6 +1,6 @@
 class Account
   class IncinerateDueJob < ApplicationJob
     include ActiveJob::Continuable
-    def perform: () -> untyped
+    def perform: () -> void
   end
 end

@@ -6,8 +6,8 @@ module Users
     private
 
     def set_user: () -> untyped
-    def ensure_current_user: () -> untyped
-    def ensure_export_limit_not_exceeded: () -> untyped
+    def ensure_current_user: () -> true?
+    def ensure_export_limit_not_exceeded: () -> true?
     def set_export: () -> untyped
   end
 end

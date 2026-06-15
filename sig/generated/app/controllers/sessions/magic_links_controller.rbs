@@ -7,12 +7,12 @@ module Sessions
 
     def ensure_that_email_address_pending_authentication_exists: () -> untyped
     def code: () -> untyped
-    def authenticate: (untyped magic_link) -> untyped
-    def sign_in: (untyped magic_link) -> untyped
+    def authenticate: (MagicLink magic_link) -> untyped
+    def sign_in: (MagicLink magic_link) -> untyped
     def email_address_mismatch: () -> untyped
     def invalid_code: () -> untyped
-    def after_sign_in_url: (untyped magic_link) -> untyped
+    def after_sign_in_url: (MagicLink magic_link) -> String
     def rate_limit_exceeded: () -> untyped
-    def requires_signup_completion?: (untyped magic_link) -> untyped
+    def requires_signup_completion?: (MagicLink magic_link) -> bool
   end
 end

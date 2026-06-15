@@ -2,6 +2,6 @@ class User
   module Searcher
     extend ActiveSupport::Concern
     def search: (untyped terms) -> untyped
-    def remember_search: (untyped terms) -> untyped
+    def remember_search: (untyped terms) -> Search::Query
   end
 end

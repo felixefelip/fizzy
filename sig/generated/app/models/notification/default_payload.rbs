@@ -2,7 +2,7 @@ class Notification
   class DefaultPayload
     attr_reader notification: untyped
     def initialize: (untyped notification) -> untyped
-    def to_h: () -> { title: untyped, body: untyped, url: untyped }
+    def to_h: () -> { body: String, title: String, url: untyped }
     def title: () -> String
     def body: () -> String
     def url: () -> untyped
@@ -10,7 +10,7 @@ class Notification
     def high_priority?: () -> bool
     def base_url: () -> untyped
     def avatar_url: () -> untyped
-    def card: () -> ::Card?
+    def card: () -> Card?
 
     private
 

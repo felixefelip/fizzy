@@ -3,7 +3,7 @@ class Account
     extend ActiveSupport::Concern
     def cancel: (?initiated_by: untyped) -> untyped
     def reactivate: () -> untyped
-    def cancelled?: () -> untyped
+    def cancelled?: () -> (true | false)
     def cancellable?: () -> untyped
   end
 end

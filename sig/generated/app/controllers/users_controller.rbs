@@ -8,6 +8,6 @@ class UsersController < ApplicationController
   private
 
   def set_user: () -> untyped
-  def ensure_permission_to_change_user: () -> untyped
+  def ensure_permission_to_change_user: () -> true?
   def user_params: () -> untyped
 end

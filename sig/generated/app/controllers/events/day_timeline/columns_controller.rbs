@@ -6,7 +6,7 @@ module Events
 
       private
 
-      def ensure_valid_column: () -> untyped
+      def ensure_valid_column: () -> true?
       def set_column: () -> untyped
     end
   end

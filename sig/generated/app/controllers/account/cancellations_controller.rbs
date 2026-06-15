@@ -4,6 +4,6 @@ class Account
 
     private
 
-    def ensure_owner: () -> untyped
+    def ensure_owner: () -> true?
   end
 end

@@ -3,5 +3,5 @@ module SetPlatform
 
   private
 
-  def platform: () -> untyped
+  def platform: () -> ApplicationPlatform
 end

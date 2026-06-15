@@ -6,5 +6,5 @@ module Eventable
   private
 
   def should_track_event?: () -> bool
-  def eventable_prefix: () -> untyped
+  def eventable_prefix: () -> String
 end

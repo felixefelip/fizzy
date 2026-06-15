@@ -1,10 +1,10 @@
 class Card
   module Pinnable
     extend ActiveSupport::Concern
-    def pinned_by?: (untyped user) -> untyped
-    def pin_for: (untyped user) -> untyped
-    def pin_by: (untyped user) -> untyped
-    def unpin_by: (untyped user) -> untyped
+    def pinned_by?: (untyped user) -> bool
+    def pin_for: (untyped user) -> (Pin & Pin::Validated)?
+    def pin_by: (untyped user) -> (Pin & Pin::Validated)
+    def unpin_by: (untyped user) -> Pin::Validated?
 
     private
 

@@ -6,6 +6,6 @@ module My
     private
 
     def user_pins: () -> untyped
-    def pins_limit: () -> untyped
+    def pins_limit: () -> Integer
   end
 end

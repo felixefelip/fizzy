@@ -1,9 +1,9 @@
 class Board
   module Publishable
     extend ActiveSupport::Concern
-    def find_by_published_key: (untyped key) -> untyped
-    def published?: () -> untyped
-    def publish: () -> untyped
-    def unpublish: () -> untyped
+    def find_by_published_key: (untyped key) -> (Board & Board::Validated)
+    def published?: () -> (true | false)
+    def publish: () -> Board::Publication?
+    def unpublish: () -> bool?
   end
 end

@@ -3,25 +3,25 @@ class Webhook
     def self.cleanup: (?batch_size: untyped, ?pause: untyped) -> untyped
     def deliver_later: () -> untyped
     def deliver: () -> untyped
-    def sanitized_request: () -> untyped
-    def response_summary: () -> untyped
+    def sanitized_request: () -> Hash[Symbol, untyped]?
+    def response_summary: () -> Hash[Symbol, untyped]?
     def failed?: () -> untyped
     def succeeded?: () -> untyped
 
     private
 
-    def perform_request: () -> untyped
+    def perform_request: () -> (Hash[Symbol, untyped] | Hash[Symbol, Symbol])
     def stream_body_with_limit: (untyped response) -> untyped
     def resolved_ip: () -> untyped
-    def uri: () -> untyped
+    def uri: () -> URI::Generic
     def http: () -> untyped
     def headers: () -> Hash[String, untyped]
-    def signature: () -> untyped
-    def content_type: () -> untyped
-    def payload: () -> untyped
+    def signature: () -> String
+    def content_type: () -> String
+    def payload: () -> String
     def render_payload: (**untyped) -> untyped
     def convert_html_to_mrkdwn: (untyped html) -> untyped
-    def slack_payload: () -> untyped
+    def slack_payload: () -> String
     def base_url_options: () -> untyped
   end
 end

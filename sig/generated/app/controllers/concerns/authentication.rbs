@@ -8,12 +8,12 @@ module Authentication
 
   private
 
-  def authenticated?: () -> untyped
+  def authenticated?: () -> true
   def require_account: () -> untyped
-  def require_authentication: () -> untyped
-  def resume_session: () -> untyped
+  def require_authentication: () -> { httponly: bool, same_site: Symbol, value: untyped }
+  def resume_session: () -> { httponly: bool, same_site: Symbol, value: untyped }?
   def find_session_by_cookie: () -> untyped
-  def authenticate_by_bearer_token: () -> untyped
+  def authenticate_by_bearer_token: () -> void
   def bearer_token_authenticatable_request?: () -> untyped
   def request_authentication: () -> untyped
   def after_authentication_url: () -> untyped

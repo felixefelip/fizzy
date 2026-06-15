@@ -1,8 +1,8 @@
 class Card
   module Golden
     extend ActiveSupport::Concern
-    def golden?: () -> untyped
-    def gild: () -> untyped
-    def ungild: () -> untyped
+    def golden?: () -> (true | false)
+    def gild: () -> Card::Goldness?
+    def ungild: () -> bool?
   end
 end

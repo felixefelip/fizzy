@@ -1,4 +1,4 @@
 module HtmlHelper
   def format_html: (untyped html) -> untyped
-  def card_html_title: (untyped card) -> untyped
+  def card_html_title: (untyped card) -> ActiveSupport::SafeBuffer
 end

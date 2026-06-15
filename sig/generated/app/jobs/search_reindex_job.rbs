@@ -1,9 +1,9 @@
 class SearchReindexJob < ApplicationJob
   include ActiveJob::Continuable
-  def perform: (?batch_size: untyped, ?log_every: untyped, ?rich_text_limit: untyped) -> untyped
+  def perform: (?batch_size: untyped, ?log_every: untyped, ?rich_text_limit: untyped) -> void
 
   private
 
-  def safely_reindex: (untyped record) -> untyped
-  def log_progress: (Symbol step_name, untyped count, untyped cursor) -> untyped
+  def safely_reindex: ((Card & Card::Validated) record) -> untyped
+  def log_progress: (Symbol step_name, Integer count, String cursor) -> untyped
 end

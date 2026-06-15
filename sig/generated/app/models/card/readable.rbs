@@ -3,16 +3,16 @@ class Card
     extend ActiveSupport::Concern
     def read_by: (untyped user) -> untyped
     def unread_by: (untyped user) -> untyped
-    def remove_inaccessible_notifications: () -> untyped
+    def remove_inaccessible_notifications: () -> Array[(Event::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Event::ActiveRecord_Relation] | Mention::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Mention::ActiveRecord_Relation])]
 
     private
 
     def remove_inaccessible_notifications_later: () -> untyped
-    def event_notification_sources: () -> untyped
-    def comment_creation_events: () -> untyped
-    def inaccessible_notifications_from: (untyped sources, untyped accessible_user_ids) -> untyped
-    def notification_sources: () -> Array[untyped]
-    def mention_notification_sources: () -> untyped
-    def comment_mentions: () -> untyped
+    def event_notification_sources: () -> Event::ActiveRecord_Associations_CollectionProxy
+    def comment_creation_events: () -> ActiveRecord::QueryMethods::WhereChain[Event::ActiveRecord_Relation]
+    def inaccessible_notifications_from: ((Event::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Event::ActiveRecord_Relation] | Mention::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Mention::ActiveRecord_Relation]) sources, untyped accessible_user_ids) -> Notification::ActiveRecord_Relation
+    def notification_sources: () -> Array[(Event::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Event::ActiveRecord_Relation] | Mention::ActiveRecord_Associations_CollectionProxy | ActiveRecord::QueryMethods::WhereChain[Mention::ActiveRecord_Relation])]
+    def mention_notification_sources: () -> Mention::ActiveRecord_Associations_CollectionProxy
+    def comment_mentions: () -> ActiveRecord::QueryMethods::WhereChain[Mention::ActiveRecord_Relation]
   end
 end

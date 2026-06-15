@@ -6,7 +6,7 @@ class Account
 
         private
 
-        def records: () -> untyped
+        def records: () -> ActiveStorage::Attachment::ActiveRecord_Relation
       end
     end
   end

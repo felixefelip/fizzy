@@ -1,25 +1,26 @@
 module ActionPack
   module WebAuthn
     class CborDecoder
+      @max_depth: MAX_DEPTH
       @position: Integer
       @depth: Integer
-      def decode: (untyped bytes, **untyped) -> untyped
+      def self.decode: (String bytes, **untyped) -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
       def initialize: (untyped bytes, ?max_depth: MAX_DEPTH, ?max_size: untyped) -> Integer
-      def decode: () -> untyped
+      def decode: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
 
       private
 
       def major_type: () -> untyped
       def peek: () -> untyped
       def decode_unsigned_integer: () -> untyped
-      def decode_negative_integer: () -> untyped
-      def decode_byte_string: () -> untyped
-      def decode_text_string: () -> untyped
-      def decode_array: () -> untyped
-      def decode_map: () -> untyped
-      def decode_float_or_simple: () -> untyped
-      def decode_tag: () -> untyped
-      def decode_half_float: () -> untyped
+      def decode_negative_integer: () -> BigDecimal
+      def decode_byte_string: () -> String
+      def decode_text_string: () -> String
+      def decode_array: () -> Array[untyped]
+      def decode_map: () -> Hash[untyped, untyped]
+      def decode_float_or_simple: () -> (bool | Float | nil)
+      def decode_tag: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
+      def decode_half_float: () -> Float
       def read_argument: () -> untyped
       def additional_info: (?consume: bool) -> untyped
       def indefinite_length?: () -> untyped

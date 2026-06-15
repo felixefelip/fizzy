@@ -7,8 +7,8 @@ module Authentication
     def ensure_development_magic_link_not_leaked: () -> untyped
     def redirect_to_fake_session_magic_link: (untyped email_address, **untyped) -> untyped
     def redirect_to_session_magic_link: (MagicLink magic_link, ?return_to: untyped) -> untyped
-    def serve_development_magic_link: (untyped magic_link) -> untyped
-    def set_pending_authentication_token: (untyped magic_link) -> { value: untyped, httponly: bool, same_site: Symbol, expires: untyped }
+    def serve_development_magic_link: (MagicLink magic_link) -> untyped
+    def set_pending_authentication_token: (MagicLink magic_link) -> { value: untyped, httponly: bool, same_site: Symbol, expires: untyped }
     def email_address_pending_authentication: () -> untyped
     def pending_authentication_token_verifier: () -> untyped
     def pending_authentication_token: () -> untyped

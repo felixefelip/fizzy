@@ -1,9 +1,9 @@
 class Identity < ApplicationRecord
   include Joinable
   include Transferable
-  def self.find_by_permissable_access_token: (untyped token, method: untyped) -> untyped
-  def send_magic_link: (**untyped) -> untyped
-  def users_with_active_accounts: () -> untyped
+  def self.find_by_permissable_access_token: (untyped token, method: untyped) -> Identity?
+  def send_magic_link: (**untyped) -> MagicLink
+  def users_with_active_accounts: () -> User::ActiveRecord_Associations_CollectionProxy
 
   private
 

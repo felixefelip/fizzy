@@ -1,5 +1,6 @@
 class ZipFile
   class RemoteIO < ZipKit::RemoteIO
+    @ssl_verify_peer: bool
     def initialize: (untyped url, ?ssl_verify_peer: bool) -> void
     def request_range: (untyped range) -> untyped
     def request_object_size: () -> untyped

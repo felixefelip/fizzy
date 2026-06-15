@@ -1,4 +1,4 @@
 class UserMailer < ApplicationMailer
   @user: User::EmailAddressChangeable?
-  def email_change_confirmation: (email_address: untyped, token: untyped, user: User::EmailAddressChangeable?) -> untyped
+  def email_change_confirmation: (email_address: untyped, token: untyped, user: User::EmailAddressChangeable?) -> Mail::Message
 end

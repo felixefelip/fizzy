@@ -2,7 +2,7 @@ class Export < ApplicationRecord
   def self.cleanup: () -> untyped
   def build_later: () -> untyped
   def build: () -> untyped
-  def mark_completed: () -> untyped
+  def mark_completed: () -> self
   def accessible_to?: (untyped accessor) -> untyped
 
   private

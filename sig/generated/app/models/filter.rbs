@@ -3,13 +3,13 @@ class Filter < ApplicationRecord
   include Params
   include Resources
   include Summarized
-  def from_params: (untyped params) -> untyped
-  def remember: (untyped attrs) -> untyped
+  def self.from_params: (untyped params) -> untyped
+  def self.remember: (untyped attrs) -> untyped
   def cards: () -> untyped
   def empty?: () -> untyped
   def single_board: () -> untyped
   def single_workflow: () -> untyped
-  def cacheable?: () -> untyped
+  def cacheable?: () -> bool
   def cache_key: () -> untyped
   def only_closed?: () -> untyped
 

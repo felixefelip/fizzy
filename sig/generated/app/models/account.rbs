@@ -6,12 +6,12 @@ class Account < ApplicationRecord
   include MultiTenantable
   include Searchable
   include Seedeable
-  def create_with_owner: (account: { external_account_id: untyped, name: untyped }, owner: { name: untyped, identity: untyped }) -> untyped
+  def self.create_with_owner: (account: { external_account_id: untyped, name: untyped }, owner: { name: untyped, identity: untyped }) -> self
   def slug: () -> String
   def account: () -> Account
-  def system_user: () -> untyped
-  def active?: () -> untyped
-  def importing?: () -> untyped
+  def system_user: () -> (User & User::Validated)
+  def active?: () -> bool
+  def importing?: () -> bool
 
   private
 

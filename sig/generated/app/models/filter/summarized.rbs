@@ -6,9 +6,9 @@ class Filter
 
     def index_summary: () -> untyped
     def sort_summary: () -> untyped
-    def tag_summary: () -> untyped
-    def assignee_summary: () -> untyped
-    def terms_summary: () -> untyped
-    def creator_summary: () -> untyped
+    def tag_summary: () -> String?
+    def assignee_summary: () -> String?
+    def terms_summary: () -> String?
+    def creator_summary: () -> String?
   end
 end

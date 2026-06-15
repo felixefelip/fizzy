@@ -3,15 +3,15 @@ class Card
     extend ActiveSupport::Concern
     include ActionView::Helpers::TagHelper
     def export_json: () -> untyped
-    def export_attachments: () -> untyped
+    def export_attachments: () -> Array[Hash[Symbol, String]]
 
     private
 
     def export_html: (untyped rich_text) -> untyped
     def attachment_representation: (untyped attachment) -> untyped
-    def export_user: (untyped user) -> { id: untyped, name: untyped, email: untyped }
+    def export_user: (User? user) -> { email: untyped, id: untyped, name: untyped }
     def export_attachment_path: (untyped blob) -> String
     def collect_attachments: () -> untyped
-    def export_status: () -> untyped
+    def export_status: () -> String?
   end
 end

@@ -1,7 +1,7 @@
 class Webhook < ApplicationRecord
   include Triggerable
-  def activate: () -> untyped
-  def deactivate: () -> untyped
+  def activate: () -> self?
+  def deactivate: () -> self
   def renderer: () -> untyped
   def for_basecamp?: () -> untyped
   def for_campfire?: () -> untyped
@@ -9,5 +9,5 @@ class Webhook < ApplicationRecord
 
   private
 
-  def validate_url: () -> untyped
+  def validate_url: () -> ActiveModel::Error?
 end

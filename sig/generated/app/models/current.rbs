@@ -1,14 +1,16 @@
 class Current < ActiveSupport::CurrentAttributes
-  @account: (Account::Seedeable | Account)?
+  @user: (User & User::Validated)?
+  @identity: Identity?
+  @account: ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
   module GeneratedAttributeMethods
     def session: () -> untyped
     def session=: (untyped value) -> untyped
-    def user: () -> untyped
-    def user=: (untyped value) -> untyped
-    def identity: () -> untyped
-    def identity=: (untyped value) -> untyped
-    def account: () -> (Account::Seedeable | Account)?
-    def account=: ((Account::Seedeable | Account)? value) -> (Account::Seedeable | Account)?
+    def user: () -> (User & User::Validated)?
+    def user=: ((User & User::Validated)? value) -> (User & User::Validated)?
+    def identity: () -> Identity?
+    def identity=: (Identity? value) -> Identity?
+    def account: () -> ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
+    def account=: ((Account & Account::Validated)? value) -> ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
     def http_method: () -> untyped
     def http_method=: (untyped value) -> untyped
     def request_id: () -> untyped
@@ -23,12 +25,12 @@ class Current < ActiveSupport::CurrentAttributes
   include GeneratedAttributeMethods
   def self.session: () -> untyped
   def self.session=: (untyped value) -> untyped
-  def self.user: () -> untyped
-  def self.user=: (untyped value) -> untyped
-  def self.identity: () -> untyped
-  def self.identity=: (untyped value) -> untyped
-  def self.account: () -> (Account::Seedeable | Account)?
-  def self.account=: ((Account::Seedeable | Account)? value) -> (Account::Seedeable | Account)?
+  def self.user: () -> (User & User::Validated)?
+  def self.user=: ((User & User::Validated)? value) -> (User & User::Validated)?
+  def self.identity: () -> Identity?
+  def self.identity=: (Identity? value) -> Identity?
+  def self.account: () -> ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
+  def self.account=: ((Account & Account::Validated)? value) -> ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
   def self.http_method: () -> untyped
   def self.http_method=: (untyped value) -> untyped
   def self.request_id: () -> untyped
@@ -39,10 +41,10 @@ class Current < ActiveSupport::CurrentAttributes
   def self.ip_address=: (untyped value) -> untyped
   def self.referrer: () -> untyped
   def self.referrer=: (untyped value) -> untyped
-  def self.set: (?session: untyped, ?user: untyped, ?identity: untyped, ?account: (Account::Seedeable | Account?), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
-  def self.with: (?session: untyped, ?user: untyped, ?identity: untyped, ?account: nil, ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
+  def self.set: (?session: untyped, ?user: (User & User::Validated)?, ?identity: Identity?, ?account: (self | Account::Seedeable | Account?), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
+  def self.with: (?session: untyped, ?user: (User & User::Validated)?, ?identity: Identity?, ?account: (Current | Account | nil), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (untyped) -> untyped } -> untyped
   def session=: (untyped value) -> untyped
-  def identity=: (untyped identity) -> untyped
-  def with_account: (Current value) ?{ (untyped) -> untyped } -> untyped
+  def identity=: (Identity? identity) -> untyped
+  def with_account: ((Current | Account?) value) ?{ (untyped) -> untyped } -> untyped
   def without_account: () ?{ (untyped) -> untyped } -> untyped
 end

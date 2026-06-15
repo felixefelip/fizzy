@@ -1,7 +1,7 @@
 class User
   module EmailAddressChangeable
     extend ActiveSupport::Concern
-    def change_email_address_using_token: (untyped token) -> untyped
+    def change_email_address_using_token: (untyped token) -> bool
     def send_email_address_change_confirmation: (untyped new_email_address) -> untyped
     def change_email_address: (untyped new_email_address) -> untyped
 

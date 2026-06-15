@@ -7,7 +7,7 @@ class Account
     private
 
     def set_import: () -> untyped
-    def ensure_accessed_by_owner: () -> untyped
-    def start_import: (Account account) -> untyped
+    def ensure_accessed_by_owner: () -> true?
+    def start_import: (self account) -> untyped
   end
 end

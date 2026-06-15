@@ -4,22 +4,22 @@ class User
       include ActionView::Helpers::TagHelper
       include ActionView::Helpers::OutputSafetyHelper
       include TimeHelper
-      attr_reader index: untyped
-      attr_reader id: untyped
-      attr_reader base_title: untyped
+      attr_reader index: Integer
+      attr_reader id: Symbol
+      attr_reader base_title: String
       attr_reader day_timeline: User::DayTimeline
-      attr_reader events: untyped
-      def initialize: (User::DayTimeline day_timeline, untyped id, untyped base_title, untyped index, untyped events) -> void
+      attr_reader events: Event::ActiveRecord_Relation
+      def initialize: (User::DayTimeline day_timeline, Symbol id, String base_title, Integer index, Event::ActiveRecord_Relation events) -> void
       def title: () -> untyped
       def events_by_hour: () -> untyped
       def has_more_events?: () -> untyped
-      def hidden_events_count: () -> untyped
-      def to_param: () -> untyped
+      def hidden_events_count: () -> BigDecimal
+      def to_param: () -> Symbol
 
       private
 
       def limited_events: () -> untyped
-      def full_events_count: () -> untyped
+      def full_events_count: () -> Integer
     end
   end
 end

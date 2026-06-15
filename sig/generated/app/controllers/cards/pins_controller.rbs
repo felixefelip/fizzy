@@ -9,6 +9,6 @@ module Cards
 
     def broadcast_add_pin_to_tray: () -> untyped
     def broadcast_remove_pin_from_tray: () -> untyped
-    def render_pin_button_replacement: () -> untyped
+    def render_pin_button_replacement: () -> String
   end
 end

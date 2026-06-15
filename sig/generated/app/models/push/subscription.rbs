@@ -5,8 +5,8 @@ module Push
 
     private
 
-    def endpoint_uri: () -> untyped
-    def validate_endpoint_url: () -> untyped
+    def endpoint_uri: () -> (URI::File | URI::FTP | URI::HTTP | URI::HTTPS | URI::LDAP | URI::LDAPS | URI::MailTo | URI::WS | URI::WSS | URI::Generic | nil)
+    def validate_endpoint_url: () -> ActiveModel::Error?
     def permitted_endpoint_host?: () -> untyped
   end
 end

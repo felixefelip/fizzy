@@ -11,6 +11,6 @@ class Notification
     def payload: () -> untyped
     def pushable?: () -> untyped
     def push_to: (untyped target) -> untyped
-    def payload_type: () -> untyped
+    def payload_type: () -> String
   end
 end

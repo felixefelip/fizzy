@@ -7,7 +7,7 @@ module ActionPack
 
         private
 
-        def exclude_credential_json: (untyped credential) -> untyped
+        def exclude_credential_json: (untyped credential) -> Hash[Symbol, String]
       end
     end
   end

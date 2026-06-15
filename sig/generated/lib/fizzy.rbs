@@ -1,8 +1,8 @@
 module Fizzy
   @saas: bool?
-  def saas?: () -> bool
-  def db_adapter: () -> untyped
-  def configure_bundle: () -> String?
+  def self.saas?: () -> bool
+  def self.db_adapter: () -> untyped
+  def self.configure_bundle: () -> String?
   def initialize: (untyped name) -> untyped
   def to_s: () -> untyped
   def sqlite?: () -> untyped

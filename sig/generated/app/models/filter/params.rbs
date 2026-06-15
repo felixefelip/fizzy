@@ -2,10 +2,10 @@ class Filter
   module Params
     extend ActiveSupport::Concern
     def find_by_params: (untyped params) -> untyped
-    def digest_params: (untyped params) -> untyped
+    def digest_params: (untyped params) -> String
     def normalize_params: (untyped params) -> untyped
     def used?: (?ignore_boards: untyped) -> untyped
-    def as_params: () -> untyped
+    def as_params: () -> Enumerator[[untyped, untyped], Hash[untyped, untyped]]
     def as_params_without: (untyped key, untyped value) -> untyped
     def params_digest: () -> untyped
   end

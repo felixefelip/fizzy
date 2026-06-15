@@ -4,7 +4,7 @@ class Filter
     extend ActiveSupport::Concern
     def resource_removed: (untyped resource) -> untyped
     def boards: () -> untyped
-    def board_titles: () -> untyped
+    def board_titles: () -> Array[String]
     def boards_label: () -> untyped
   end
 end

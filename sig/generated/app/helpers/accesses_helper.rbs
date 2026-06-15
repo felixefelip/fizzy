@@ -1,6 +1,6 @@
 module AccessesHelper
   def access_menu_tag: (untyped board, **untyped) ?{ (untyped) -> untyped } -> untyped
-  def access_toggles_for: (untyped users, selected: bool, ?disabled: untyped) -> untyped
+  def access_toggles_for: (untyped users, selected: bool, ?disabled: untyped) -> String
   def access_involvement_advance_button: (untyped board, untyped user, ?show_watchers: bool, ?icon_only: bool) -> untyped
   def board_watchers_list: (untyped board) -> untyped
   def involvement_button: (untyped board, untyped access, untyped show_watchers, untyped icon_only) -> untyped

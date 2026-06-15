@@ -5,7 +5,7 @@ class User
       include GlobalID::Identification
       def find: (untyped id) -> untyped
       def tenanted?: () -> bool
-      def as_json: (?Hash[untyped, untyped] options) -> { user_id: untyped, day: untyped, filter_params: untyped }
+      def as_json: (?Hash[untyped, untyped] options) -> { day: untyped, filter_params: untyped, user_id: untyped }
     end
   end
 end

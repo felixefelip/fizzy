@@ -2,10 +2,10 @@ class Card
   module Searchable
     extend ActiveSupport::Concern
     include ::Searchable
-    def search_title: () -> untyped
+    def search_title: () -> String?
     def search_content: () -> untyped
-    def search_card_id: () -> untyped
-    def search_board_id: () -> untyped
-    def searchable?: () -> untyped
+    def search_card_id: () -> String?
+    def search_board_id: () -> String?
+    def searchable?: () -> bool
   end
 end

@@ -6,7 +6,7 @@ class Account
 
         private
 
-        def records: () -> untyped
+        def records: () -> ActiveRecord::QueryMethods::WhereChain[ActionText::RichText::ActiveRecord_Relation]
         def export_record: (untyped rich_text) -> untyped
         def files: () -> untyped
         def import_batch: (untyped files) -> untyped

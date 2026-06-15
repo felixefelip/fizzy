@@ -6,8 +6,8 @@ class Account
 
         private
 
-        def records: () -> untyped
-        def excluded_blob_ids: () -> untyped
+        def records: () -> ActiveStorage::Blob::ActiveRecord_Relation
+        def excluded_blob_ids: () -> ActiveStorage::Attachment::ActiveRecord_Relation
         def import_batch: (untyped files) -> untyped
       end
     end

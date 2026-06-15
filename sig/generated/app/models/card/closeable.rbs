@@ -1,10 +1,10 @@
 class Card
   module Closeable
     extend ActiveSupport::Concern
-    def closed?: () -> untyped
-    def open?: () -> untyped
-    def closed_by: () -> untyped
-    def closed_at: () -> untyped
+    def closed?: () -> (true | false)
+    def open?: () -> bool
+    def closed_by: () -> User?
+    def closed_at: () -> ActiveSupport::TimeWithZone?
     def close: (?user: untyped) -> untyped
     def reopen: (?user: untyped) -> untyped
   end

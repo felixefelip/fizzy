@@ -1,6 +1,6 @@
 class Notifier
+  def self.for: (Notifiable source) -> Notifier::MentionNotifier?
   attr_reader source: untyped
-  def for: (Notifiable source) -> Notifier::MentionNotifier?
   def notify: () -> untyped
 
   private

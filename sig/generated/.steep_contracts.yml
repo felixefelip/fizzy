@@ -72,6 +72,12 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
     enforced: false
   Account::DataTransfer::EntropyRecordSet#import_batch:
     requires:
@@ -82,6 +88,24 @@ methods:
           kind: self
         method: account
     enforced: false
+  Account::DataTransfer::RecordSet#check_associations_dont_exist:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
+    enforced: false
+  Account::DataTransfer::RecordSet#check_record:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
+    enforced: false
   Account::DataTransfer::RecordSet#import_batch:
     requires:
     - kind: not_nil
@@ -90,6 +114,21 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
+    enforced: false
+  Account::DataTransfer::RecordSet#model_dir:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
     enforced: false
   Account::DataTransfer::RecordSet#records:
     requires:
@@ -99,6 +138,12 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
     enforced: false
   Account::DataTransfer::UserRecordSet#import_batch:
     requires:
@@ -109,15 +154,6 @@ methods:
           kind: self
         method: account
     enforced: false
-  Account::ExternalIdSequence#next:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: with_lock
-    enforced: false
   Account::Import#add_importer_to_all_access_boards:
     requires:
     - kind: not_nil
@@ -127,6 +163,15 @@ methods:
           kind: self
         method: account
     enforced: false
+  Account::Import#check:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: file
+    enforced: false
   Account::Import#cleanup:
     requires:
     - kind: not_nil
@@ -135,6 +180,15 @@ methods:
         receiver:
           kind: self
         method: account
+    enforced: false
+  Account::Import#process:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: file
     enforced: false
   Account::Import#reconcile_account_storage:
     requires:
@@ -202,6 +256,24 @@ methods:
         method: credential
         chain:
         - public_key
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::AttestationResponse#attestation_must_be_valid:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: attestation
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::AttestationResponse#authenticator_data:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: attestation
     enforced: false
   ActionPack::WebAuthn::Authenticator::Response#relying_party_id_must_match:
     requires:
@@ -445,6 +517,12 @@ methods:
     enforced: false
   Card::Stallable#stalled?:
     requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: last_activity_spike_at
     - kind: not_nil
       expr:
         kind: send
@@ -768,6 +846,15 @@ methods:
           kind: self
         method: account
     enforced: false
+  Notifier::CardEventNotifier#recipients:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
   Push::Subscription#notification:
     requires:
     - kind: not_nil
@@ -776,15 +863,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
-  QrCodeLink#signed:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
     enforced: false
   Search::Record::Trilogy#card_description:
     requires:

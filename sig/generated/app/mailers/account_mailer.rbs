@@ -1,3 +1,3 @@
 class AccountMailer < ApplicationMailer
-  def cancellation: (untyped cancellation) -> untyped
+  def cancellation: (untyped cancellation) -> Mail::Message
 end

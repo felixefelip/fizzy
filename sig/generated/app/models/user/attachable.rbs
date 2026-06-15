@@ -2,6 +2,7 @@ class User
   module Attachable
     extend ActiveSupport::Concern
     include ActionText::Attachable
+    extend ActionText::Attachable::ClassMethods
     def attachable_plain_text_representation: (**untyped) -> String
   end
 end

@@ -1,11 +1,8 @@
 class QrCodeLink
+  def self.from_signed: (untyped signed) -> self
+  def self.verifier: () -> ActiveSupport::MessageVerifier
+  def self.secret: () -> untyped
   attr_reader url: untyped
-  def from_signed: (untyped signed) -> untyped
-  def verifier: () -> ActiveSupport::MessageVerifier
-
-  private
-
-  def secret: () -> untyped
   def initialize: (untyped url) -> void
-  def signed: () -> untyped
+  def signed: () -> String
 end

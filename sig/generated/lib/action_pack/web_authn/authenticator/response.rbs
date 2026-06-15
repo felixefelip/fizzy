@@ -3,26 +3,27 @@ module ActionPack
     module Authenticator
       class Response
         include ActiveModel::Validations
+        extend ActiveModel::Validations::ClassMethods
         attr_reader client_data_json: untyped
         attr_accessor origin: untyped
         attr_accessor user_verification: untyped
         def initialize: (client_data_json: untyped, ?origin: untyped, ?user_verification: untyped) -> untyped
-        def validate!: () -> untyped
+        def validate!: () -> true
         def relying_party: () -> ActionPack::WebAuthn::RelyingParty
         def client_data: () -> untyped
         def authenticator_data: () -> nil
 
         private
 
-        def challenge_must_be_present: () -> untyped
-        def challenge_must_not_be_expired: () -> untyped
+        def challenge_must_be_present: () -> ActiveModel::Error?
+        def challenge_must_not_be_expired: () -> ActiveModel::Error?
         def challenge_purpose: () -> nil
-        def origin_must_match: () -> untyped
-        def must_not_be_cross_origin: () -> untyped
-        def must_not_have_token_binding: () -> untyped
-        def relying_party_id_must_match: () -> untyped
-        def user_must_be_present: () -> untyped
-        def user_must_be_verified_when_required: () -> untyped
+        def origin_must_match: () -> ActiveModel::Error?
+        def must_not_be_cross_origin: () -> ActiveModel::Error?
+        def must_not_have_token_binding: () -> ActiveModel::Error?
+        def relying_party_id_must_match: () -> ActiveModel::Error?
+        def user_must_be_present: () -> ActiveModel::Error?
+        def user_must_be_verified_when_required: () -> ActiveModel::Error?
       end
     end
   end

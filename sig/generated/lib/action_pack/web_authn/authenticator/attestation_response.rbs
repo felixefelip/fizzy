@@ -4,14 +4,14 @@ module ActionPack
       class AttestationResponse < ::ActionPack::WebAuthn::Authenticator::Response
         attr_reader attestation_object: untyped
         def initialize: (attestation_object: untyped, **untyped) -> void
-        def attestation: () -> untyped
+        def attestation: () -> singleton(ActionPack::WebAuthn::Authenticator::Attestation)
         def authenticator_data: () -> untyped
 
         private
 
         def challenge_purpose: () -> String
-        def client_data_type_must_be_create: () -> untyped
-        def attestation_must_be_valid: () -> untyped
+        def client_data_type_must_be_create: () -> ActiveModel::Error?
+        def attestation_must_be_valid: () -> ActiveModel::Error
       end
     end
   end

@@ -1,14 +1,14 @@
 class User
   class Settings < ApplicationRecord
-    def bundle_aggregation_period: () -> untyped
+    def bundle_aggregation_period: () -> ActiveSupport::Duration
     def bundling_emails?: () -> untyped
     def timezone: () -> untyped
 
     private
 
     def review_pending_bundles: () -> untyped
-    def cancel_pending_bundles: () -> untyped
-    def flush_pending_bundles: () -> untyped
-    def default_timezone: () -> untyped
+    def cancel_pending_bundles: () -> nil
+    def flush_pending_bundles: () -> nil
+    def default_timezone: () -> instance?
   end
 end

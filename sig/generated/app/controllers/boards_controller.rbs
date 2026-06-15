@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
   private
 
   def set_board: () -> Board?
-  def ensure_permission_to_admin_board: () -> untyped
+  def ensure_permission_to_admin_board: () -> true?
   def grantees_changed?: () -> untyped
   def show_filtered_cards: () -> untyped
   def show_columns: () -> untyped

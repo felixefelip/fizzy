@@ -6,6 +6,6 @@ module Users
     private
 
     def set_user: () -> untyped
-    def day_param: () -> untyped
+    def day_param: () -> ActiveSupport::TimeWithZone
   end
 end

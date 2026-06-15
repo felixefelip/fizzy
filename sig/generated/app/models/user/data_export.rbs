@@ -4,8 +4,8 @@ class User
     private
 
     def filename: () -> String
-    def populate_zip: (untyped zip) -> untyped
-    def exportable_cards: () -> untyped
-    def add_card_to_zip: (untyped zip, untyped card) -> untyped
+    def populate_zip: (untyped zip) -> nil
+    def exportable_cards: () -> Card::ActiveRecord_Associations_CollectionProxy
+    def add_card_to_zip: (untyped zip, (Card & Card::Validated) card) -> Array[Hash[Symbol, String]]
   end
 end

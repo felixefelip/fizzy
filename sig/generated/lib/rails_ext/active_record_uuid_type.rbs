@@ -1,11 +1,11 @@
 module ActiveRecord
   module Type
     class Uuid < Binary
-      def generate: () -> untyped
-      def hex_to_base36: (untyped hex) -> untyped
-      def base36_to_hex: (untyped base36) -> untyped
-      def serialize: (untyped value) -> untyped
-      def deserialize: (untyped value) -> untyped
+      def self.generate: () -> ActiveRecord::Type::String
+      def self.hex_to_base36: (String hex) -> String
+      def self.base36_to_hex: (untyped base36) -> untyped
+      def serialize: (untyped value) -> ActiveModel::Type::Binary::Data?
+      def deserialize: (untyped value) -> ActiveRecord::Type::String?
       def cast: (untyped value) -> untyped
     end
   end

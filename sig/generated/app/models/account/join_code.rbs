@@ -2,7 +2,7 @@ class Account
   class JoinCode < ApplicationRecord
     def redeem_if: () ?{ (untyped) -> untyped } -> untyped
     def active?: () -> bool
-    def reset: () -> untyped
+    def reset: () -> void
 
     private
 

@@ -4,10 +4,11 @@ module ActionPack
       class Options
         include ActiveModel::API
         include ActiveModel::Attributes
+        extend ActiveModel::Attributes::ClassMethods
         def initialize: (?Hash[untyped, untyped] attributes) -> void
-        def validate!: () -> untyped
+        def validate!: () -> true
         def inspect: () -> String
-        def challenge: () -> untyped
+        def challenge: () -> String
       end
     end
   end

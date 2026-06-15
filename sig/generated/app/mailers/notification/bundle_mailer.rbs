@@ -2,6 +2,6 @@ class Notification
   class BundleMailer < ApplicationMailer
     @bundle: Notification::Bundle?
     include Mailers::Unsubscribable
-    def notification: (Notification::Bundle? bundle) -> untyped
+    def notification: (Notification::Bundle? bundle) -> Mail::Message?
   end
 end

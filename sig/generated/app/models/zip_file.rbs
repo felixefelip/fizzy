@@ -1,12 +1,9 @@
 class ZipFile
-  def create_for: (ActiveStorage::Attached::One attachment, filename: String) -> untyped
-  def read_from: (untyped blob) -> untyped
-
-  private
-
-  def s3_service?: (untyped service) -> untyped
-  def create_for_s3: (untyped attachment, filename: untyped, service: untyped) -> untyped
-  def create_for_disk: (untyped attachment, filename: untyped) -> untyped
-  def read_from_s3: (untyped blob) -> untyped
-  def read_from_disk: (untyped blob) -> untyped
+  def self.create_for: (ActiveStorage::Attached::One attachment, filename: String) -> untyped
+  def self.read_from: (untyped blob) -> untyped
+  def self.s3_service?: (untyped service) -> untyped
+  def self.create_for_s3: (ActiveStorage::Attached::One attachment, filename: untyped, service: untyped) -> untyped
+  def self.create_for_disk: (ActiveStorage::Attached::One attachment, filename: untyped) -> untyped
+  def self.read_from_s3: (untyped blob) -> untyped
+  def self.read_from_disk: (untyped blob) -> untyped
 end

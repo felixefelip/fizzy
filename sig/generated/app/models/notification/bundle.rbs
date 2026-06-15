@@ -1,8 +1,8 @@
 class Notification
   class Bundle < ApplicationRecord
-    def deliver_all: () -> untyped
-    def deliver_all_later: () -> untyped
-    def notifications: () -> untyped
+    def self.deliver_all: () -> untyped
+    def self.deliver_all_later: () -> untyped
+    def notifications: () -> Notification::ActiveRecord_Relation
     def deliver: () -> untyped
     def deliver_later: () -> untyped
     def flush: () -> untyped
@@ -10,8 +10,8 @@ class Notification
 
     private
 
-    def window: () -> untyped
-    def validate_no_overlapping: () -> untyped
+    def window: () -> Range[ActiveSupport::TimeWithZone?]
+    def validate_no_overlapping: () -> ActiveModel::Error?
     def deliverable?: () -> untyped
     def overlapping_bundles: () -> untyped
   end

@@ -1,17 +1,17 @@
 class Signup
   class AccountNameGenerator
-    attr_reader identity: Identity
+    attr_reader identity: Identity & Identity::Validated
     attr_reader name: untyped
-    def initialize: (identity: Identity, name: untyped) -> void
-    def generate: () -> untyped
+    def initialize: (identity: Identity & Identity::Validated, name: untyped) -> void
+    def generate: () -> String
 
     private
 
     def current_index: () -> untyped
     def existing_indices: () -> untyped
-    def first_account_name_regex: () -> untyped
-    def nth_account_name_regex: () -> untyped
-    def prefix: () -> untyped
+    def first_account_name_regex: () -> Regexp
+    def nth_account_name_regex: () -> Regexp
+    def prefix: () -> String
     def first_name: () -> untyped
   end
 end

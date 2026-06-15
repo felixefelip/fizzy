@@ -1,6 +1,6 @@
 class Webhook
   module Triggerable
     extend ActiveSupport::Concern
-    def trigger: (untyped event) -> untyped
+    def trigger: (untyped event) -> Webhook::Delivery?
   end
 end

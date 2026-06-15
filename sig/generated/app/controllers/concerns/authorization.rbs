@@ -5,8 +5,8 @@ module Authorization
 
   private
 
-  def ensure_admin: () -> untyped
-  def ensure_staff: () -> untyped
+  def ensure_admin: () -> true?
+  def ensure_staff: () -> true?
   def authenticated_account_access?: () -> untyped
   def ensure_can_access_account: () -> untyped
   def redirect_existing_user: () -> untyped

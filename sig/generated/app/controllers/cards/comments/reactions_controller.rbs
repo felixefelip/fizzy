@@ -12,7 +12,7 @@ module Cards
       def set_comment: () -> untyped
       def set_reactable: () -> untyped
       def set_reaction: () -> untyped
-      def ensure_permission_to_administer_reaction: () -> untyped
+      def ensure_permission_to_administer_reaction: () -> true?
     end
   end
 end

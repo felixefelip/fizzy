@@ -1,10 +1,10 @@
 class Card
   class Entropy
+    def self.for: (Card::Entropic card) -> self?
     attr_reader card: untyped
     attr_reader auto_clean_period: untyped
-    def for: (Card::Entropic card) -> untyped
     def initialize: (untyped card, untyped auto_clean_period) -> untyped
-    def auto_clean_at: () -> untyped
+    def auto_clean_at: () -> ActiveSupport::TimeWithZone
     def days_before_reminder: () -> untyped
   end
 end

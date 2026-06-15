@@ -4,16 +4,20 @@ module ActionPack
       class AssertionResponse < ::ActionPack::WebAuthn::Authenticator::Response
         attr_reader credential: ActionPack::WebAuthn::PublicKeyCredential
         attr_reader authenticator_data: ActionPack::WebAuthn::Authenticator::Data
-        attr_reader signature: Base64
-        def initialize: (credential: ActionPack::WebAuthn::PublicKeyCredential, authenticator_data: ActionPack::WebAuthn::Authenticator::Data, signature: Base64, **untyped) -> void
+        attr_reader signature: String
+        def initialize: (credential: ActionPack::WebAuthn::PublicKeyCredential, authenticator_data: ActionPack::WebAuthn::Authenticator::Data, signature: String, **untyped) -> void
 
         private
 
         def challenge_purpose: () -> String
-        def client_data_type_must_be_get: () -> untyped
-        def signature_must_be_valid: () -> untyped
-        def sign_count_must_increase: () -> untyped
-        def sign_count_increased?: () -> untyped
+        def client_data_type_must_be_get: () -> ActiveModel::Error?
+        def signature_must_be_valid: () -> ActiveModel::Error?
+        def sign_count_must_increase: () -> ActiveModel::Error?
+        def sign_count_increased?: () -> bool
+
+        class AfterInitialize
+          attr_reader authenticator_data: singleton(ActionPack::WebAuthn::Authenticator::Data)
+        end
       end
     end
   end

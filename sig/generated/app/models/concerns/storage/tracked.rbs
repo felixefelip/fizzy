@@ -8,9 +8,9 @@ module Storage
     private
 
     def board_transfer?: () -> untyped
-    def track_board_transfer: () -> untyped
-    def storage_transfer_records: () -> Array[untyped]
-    def attachments_for_storage: (?untyped recordable) -> untyped
-    def storage_attachments_for_records: (Array[untyped] recordables) -> untyped
+    def track_board_transfer: () -> Hash[untyped, Array[untyped]]?
+    def storage_transfer_records: () -> Array[self]
+    def attachments_for_storage: (?untyped recordable) -> Array[untyped]
+    def storage_attachments_for_records: (Array[Storage::Tracked] recordables) -> Hash[untyped, Array[untyped]]
   end
 end

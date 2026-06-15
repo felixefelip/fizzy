@@ -7,12 +7,6 @@ postconditions:
     ivars:
       "@account": untyped
     self: "::AccountTenanted & ::AccountTenanted::AfterResolveAccount"
-- class: ActionPack::WebAuthn::Authenticator::AssertionResponse
-  method: initialize
-  unconditional:
-    ivars:
-      "@authenticator_data": untyped
-    self: "::ActionPack::WebAuthn::Authenticator::AssertionResponse & ::ActionPack::WebAuthn::Authenticator::AssertionResponse::AfterInitialize"
 - class: ActionPack::WebAuthn::PublicKeyCredential
   method: authenticate
   unconditional:
@@ -43,18 +37,24 @@ postconditions:
     ivars:
       "@board": untyped
     self: "::BoardsController & ::BoardsController::AfterSetBoard"
+- class: Card::Stallable
+  method: remember_to_detect_activity_spikes
+  unconditional:
+    ivars:
+      "@should_detect_activity_spikes": bool
+    self: "::Card::Stallable & ::Card::Stallable::AfterRememberToDetectActivitySpikes"
 - class: FilterScoped
   method: set_user_filtering
   unconditional:
     ivars:
       "@user_filtering": "::User::Filtering"
     self: "::FilterScoped & ::FilterScoped::AfterSetUserFiltering"
-- class: My::PasskeysController
-  method: index
+- class: JoinCodesController
+  method: set_identity
   unconditional:
     ivars:
-      "@registration_options": untyped
-    self: "::My::PasskeysController & ::My::PasskeysController::AfterIndex"
+      "@identity": "::Identity"
+    self: "::JoinCodesController & ::JoinCodesController::AfterSetIdentity"
 - class: My::PinsController
   method: index
   unconditional:
@@ -67,24 +67,24 @@ postconditions:
     ivars:
       "@notifications": untyped
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
+- class: Prompts::CardsController
+  method: index
+  unconditional:
+    ivars:
+      "@cards": "::Array[untyped]"
+    self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
 - class: SessionsController
   method: new
   unconditional:
     ivars:
-      "@authentication_options": untyped
+      "@authentication_options": "::ActionPack::WebAuthn::PublicKeyCredential::RequestOptions"
     self: "::SessionsController & ::SessionsController::AfterNew"
 - class: Signup
   method: create_account
   unconditional:
     ivars:
-      "@account": untyped
+      "@user": untyped
     self: "::Signup & ::Signup::AfterCreateAccount"
-- class: Signup
-  method: create_identity
-  unconditional:
-    ivars:
-      "@identity": "(::Identity & ::Identity::Validated)"
-    self: "::Signup & ::Signup::AfterCreateIdentity"
 - class: Signup
   method: initialize
   unconditional:

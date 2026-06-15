@@ -1,5 +1,6 @@
 module Prompts
   class CardsController < ApplicationController
+    @cards: Array[untyped]?
     def index: () -> void
 
     private
@@ -7,6 +8,6 @@ module Prompts
     def filter_param: () -> untyped
     def search_cards: () -> untyped
     def published_cards: () -> untyped
-    def prepending_exact_matches_by_id: (untyped cards) -> untyped
+    def prepending_exact_matches_by_id: (untyped cards) -> Array[untyped]
   end
 end

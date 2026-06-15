@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  @authentication_options: nil
+  @authentication_options: ActionPack::WebAuthn::PublicKeyCredential::RequestOptions?
   include ActionPack::Passkey::Request
   def new: () -> void
   def create: () -> void
@@ -10,6 +10,6 @@ class SessionsController < ApplicationController
   def magic_link_from_sign_in_or_sign_up: () -> untyped
   def email_address: () -> untyped
   def rate_limit_exceeded: () -> untyped
-  def sign_in: (untyped identity) -> untyped
+  def sign_in: ((Identity & Identity::Validated)? identity) -> untyped
   def sign_up: () -> untyped
 end

@@ -1,21 +1,21 @@
 class ApplicationPlatform < PlatformAgent
-  def ios?: () -> untyped
-  def android?: () -> untyped
-  def mac?: () -> untyped
+  def ios?: () -> bool
+  def android?: () -> bool
+  def mac?: () -> bool
   def chrome?: () -> untyped
   def edge?: () -> untyped
   def firefox?: () -> untyped
   def safari?: () -> untyped
-  def mobile?: () -> untyped
-  def desktop?: () -> untyped
-  def native?: () -> untyped
-  def windows?: () -> untyped
-  def bridge_name: () -> untyped
-  def bridge_components: () -> untyped
-  def type: () -> untyped
-  def operating_system: () -> untyped
+  def mobile?: () -> bool
+  def desktop?: () -> bool
+  def native?: () -> bool
+  def windows?: () -> bool
+  def bridge_name: () -> Symbol?
+  def bridge_components: () -> String
+  def type: () -> String
+  def operating_system: () -> String
 
   private
 
-  def extract_list_from_native_user_agent: (String prefix) -> untyped
+  def extract_list_from_native_user_agent: (String prefix) -> String
 end

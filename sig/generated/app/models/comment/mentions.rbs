@@ -2,6 +2,6 @@ class Comment
   module Mentions
     extend ActiveSupport::Concern
     include ::Mentions
-    def mentionable?: () -> untyped
+    def mentionable?: () -> bool
   end
 end

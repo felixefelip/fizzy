@@ -4,6 +4,6 @@ class Notification
     attr_reader notification: untyped
     def initialize: (untyped notification) -> untyped
     def process: () -> bot
-    def card: () -> ::Card?
+    def card: () -> Card?
   end
 end

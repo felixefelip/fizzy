@@ -1,10 +1,10 @@
 class Notification
   class EventPayload < ::Notification::DefaultPayload
     include ExcerptHelper
-    def title: () -> untyped
-    def body: () -> untyped
+    def title: () -> String
+    def body: () -> String
     def url: () -> untyped
-    def category: () -> untyped
+    def category: () -> String
     def high_priority?: () -> untyped
 
     private

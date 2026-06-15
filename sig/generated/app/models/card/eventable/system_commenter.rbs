@@ -10,13 +10,13 @@ class Card
       private
 
       def comment_body: () -> String?
-      def creator_name: () -> untyped
-      def assignee_names: () -> untyped
-      def old_title: () -> untyped
-      def new_title: () -> untyped
-      def old_board: () -> untyped
-      def new_board: () -> untyped
-      def column: () -> untyped
+      def creator_name: () -> String
+      def assignee_names: () -> String
+      def old_title: () -> String
+      def new_title: () -> String
+      def old_board: () -> String
+      def new_board: () -> String
+      def column: () -> String
     end
   end
 end

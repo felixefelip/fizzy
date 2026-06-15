@@ -8,12 +8,12 @@ class Board
     private
 
     def calculate_real_storage_bytes: () -> untyped
-    def card_ids: () -> untyped
+    def card_ids: () -> Array[String]
     def card_image_bytes: () -> untyped
     def card_embed_bytes: () -> untyped
     def comment_embed_bytes: () -> untyped
     def board_embed_bytes: () -> untyped
     def sum_embed_bytes_for: (String record_type, Array[untyped] record_ids) -> untyped
-    def sum_blob_bytes_in_batches: (untyped base_scope, untyped record_ids) -> untyped
+    def sum_blob_bytes_in_batches: (ActiveRecord::QueryMethods::WhereChain[ActiveStorage::Attachment::ActiveRecord_Relation] base_scope, Array[String] record_ids) -> untyped
   end
 end

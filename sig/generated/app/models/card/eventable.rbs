@@ -3,11 +3,11 @@ class Card
     extend ActiveSupport::Concern
     include ::Eventable
     def event_was_created: (untyped event) -> untyped
-    def touch_last_active_at: () -> untyped
+    def touch_last_active_at: () -> self
 
     private
 
-    def should_track_event?: () -> untyped
+    def should_track_event?: () -> bool
     def track_title_change: () -> untyped
     def create_system_comment_for: (untyped event) -> untyped
   end

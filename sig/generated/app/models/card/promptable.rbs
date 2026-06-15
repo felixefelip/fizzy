@@ -5,6 +5,6 @@ class Card
 
     private
 
-    def column_prompt_label: () -> untyped
+    def column_prompt_label: () -> String
   end
 end

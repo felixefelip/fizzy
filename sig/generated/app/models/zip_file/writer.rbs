@@ -1,8 +1,8 @@
 class ZipFile
   class Writer
     @entries: Array[untyped]
-    @streamer: nil
     @digest: Digest::MD5
+    @streamer: nil
     attr_reader byte_size: Integer
     def initialize: (?nil io) -> Digest::MD5
     def stream_to: (untyped io) -> untyped
@@ -11,7 +11,7 @@ class ZipFile
     def glob: (untyped pattern) -> Array[untyped]
     def exists?: (untyped path) -> bool
     def close: () -> untyped
-    def checksum: () -> untyped
+    def checksum: () -> String
 
     private
 
