@@ -1,6 +1,5 @@
 class Account
   class EntropiesController < ApplicationController
-    @account: (Account::Seedeable | Account)?
     def update: () -> void
 
     private

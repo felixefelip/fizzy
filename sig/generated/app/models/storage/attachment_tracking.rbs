@@ -5,8 +5,8 @@ module Storage
 
     private
 
-    def record_storage_attach: () -> untyped
-    def record_storage_detach: () -> untyped
+    def record_storage_attach: () -> self?
+    def record_storage_detach: () -> self?
     def snapshot_storage_context: () -> { account: untyped, board: untyped, recordable: untyped }?
     def storage_tracked_record: () -> untyped
   end

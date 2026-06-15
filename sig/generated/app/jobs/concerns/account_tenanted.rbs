@@ -1,6 +1,6 @@
 module AccountTenanted
   extend ActiveSupport::Concern
-  attr_reader account: (Account::Seedeable | Account)?
+  attr_reader account: ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
   def initialize: (**untyped) -> void
   def serialize: () -> untyped
   def deserialize: (untyped job_data) -> untyped

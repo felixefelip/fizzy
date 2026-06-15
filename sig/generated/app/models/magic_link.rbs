@@ -1,10 +1,10 @@
 class MagicLink < ApplicationRecord
-  def self.consume: (untyped code) -> MagicLink
+  def self.consume: (untyped code) -> MagicLink?
   def self.cleanup: () -> untyped
   def consume: () -> MagicLink
 
   private
 
-  def generate_code: () -> String
+  def generate_code: () -> untyped
   def set_expiration: () -> untyped
 end

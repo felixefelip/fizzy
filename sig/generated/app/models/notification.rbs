@@ -2,9 +2,9 @@ class Notification < ApplicationRecord
   include ::Notification::Pushable
   def self.read_all: () -> Notification::ActiveRecord_Relation
   def self.unread_all: () -> Notification::ActiveRecord_Relation
-  def read: () -> self
-  def unread: () -> self
-  def read?: () -> bool
+  def read: () -> untyped
+  def unread: () -> untyped
+  def read?: () -> untyped
   def notifiable_target: () -> untyped
   def identity: () -> Identity?
 

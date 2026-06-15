@@ -55,6 +55,12 @@ postconditions:
     ivars:
       "@identity": "::Identity"
     self: "::JoinCodesController & ::JoinCodesController::AfterSetIdentity"
+- class: My::PasskeysController
+  method: index
+  unconditional:
+    ivars:
+      "@registration_options": "::ActionPack::WebAuthn::PublicKeyCredential::CreationOptions"
+    self: "::My::PasskeysController & ::My::PasskeysController::AfterIndex"
 - class: My::PinsController
   method: index
   unconditional:
@@ -67,12 +73,6 @@ postconditions:
     ivars:
       "@notifications": untyped
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
-- class: Prompts::CardsController
-  method: index
-  unconditional:
-    ivars:
-      "@cards": "::Array[untyped]"
-    self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
 - class: SessionsController
   method: new
   unconditional:
