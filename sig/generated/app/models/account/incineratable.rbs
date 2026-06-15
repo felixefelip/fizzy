@@ -1,6 +1,7 @@
 class Account
   module Incineratable
-    INCINERATION_GRACE_PERIOD: untyped
+    INCINERATION_GRACE_PERIOD: ActiveSupport::Duration
+
     extend ActiveSupport::Concern
     def incinerate: () -> untyped
   end

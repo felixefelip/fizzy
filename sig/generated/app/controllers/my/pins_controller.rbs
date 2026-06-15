@@ -1,11 +1,11 @@
 module My
   class PinsController < ApplicationController
-    @pins: nil
+    @pins: Pin::ActiveRecord_Relation?
     def index: () -> void
 
     private
 
-    def user_pins: () -> untyped
-    def pins_limit: () -> untyped
+    def user_pins: () -> Pin::ActiveRecord_Relation
+    def pins_limit: () -> Integer
   end
 end

@@ -4,5 +4,5 @@ module AvatarsHelper
   def avatar_tags: (untyped users, **untyped) -> untyped
   def mail_avatar_tag: (untyped user, ?size: untyped, **untyped) -> untyped
   def avatar_preview_tag: (untyped user, ?hidden_for_screen_reader: bool, **untyped) -> untyped
-  def avatar_image_tag: (untyped user, **untyped) -> untyped
+  def avatar_image_tag: ((User & User::Validated)? user, **untyped) -> untyped
 end

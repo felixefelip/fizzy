@@ -4,6 +4,6 @@ class Board
 
     private
 
-    def set_default_auto_postpone_period: () -> untyped
+    def set_default_auto_postpone_period: () -> (nil | Integer | ActiveSupport::Duration)
   end
 end

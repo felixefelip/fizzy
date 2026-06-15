@@ -1,6 +1,7 @@
 class TimeWindowParser
-  HUMAN_NAMES_BY_VALUE: Hash[String, untyped]
-  VALUES: untyped
+  HUMAN_NAMES_BY_VALUE: Hash[String, String]
+  VALUES: Array[String]
+
   def self.parse: (untyped string) -> untyped
   def self.human_name_for: (untyped value) -> untyped
   attr_reader now: untyped

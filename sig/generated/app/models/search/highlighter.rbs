@@ -3,14 +3,15 @@ module Search
     OPENING_MARK: String
     CLOSING_MARK: String
     ELIPSIS: String
+
     attr_reader query: untyped
     def initialize: (untyped query) -> void
-    def highlight: (untyped text) -> untyped
+    def highlight: (String text) -> untyped
     def snippet: (untyped text, ?max_words: untyped) -> untyped
 
     private
 
-    def terms: () -> untyped
+    def terms: () -> Array[untyped]
     def escape_highlight_marks: (untyped html) -> untyped
   end
 end

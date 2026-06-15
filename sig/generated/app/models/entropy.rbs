@@ -1,11 +1,12 @@
 class Entropy < ApplicationRecord
   DEFAULT_AUTO_POSTPONE_PERIOD_IN_DAYS: Integer
-  AUTO_POSTPONE_PERIODS_IN_DAYS: untyped
+  AUTO_POSTPONE_PERIODS_IN_DAYS: Array[Integer]
   AUTO_POSTPONE_PERIODS_IN_SECONDS: untyped
-  def auto_postpone_period_in_days: () -> untyped
+
+  def auto_postpone_period_in_days: () -> Integer
   def auto_postpone_period_in_days=: (untyped new_value) -> untyped
 
   private
 
-  def default_auto_postpone_period_in_days: () -> untyped
+  def default_auto_postpone_period_in_days: () -> Integer
 end

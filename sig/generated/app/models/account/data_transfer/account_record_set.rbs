@@ -1,16 +1,17 @@
 class Account
   module DataTransfer
     class AccountRecordSet < ::Account::DataTransfer::RecordSet
-      ACCOUNT_ATTRIBUTES: Array[untyped]
-      JOIN_CODE_ATTRIBUTES: Array[untyped]
+      ACCOUNT_ATTRIBUTES: Array[String]
+      JOIN_CODE_ATTRIBUTES: Array[String]
+
       def initialize: (Account? account) -> void
 
       private
 
-      def records: () -> Array[untyped]
+      def records: () -> Array[Account?]
       def export_record: (untyped account) -> untyped
-      def files: () -> Array[untyped]
-      def import_batch: (untyped files) -> untyped
+      def files: () -> Array[String]
+      def import_batch: (untyped files) -> bool
       def check_record: (untyped file_path) -> untyped
     end
   end

@@ -21,6 +21,7 @@ module ActionPack
       P256: Integer
       ED25519: Integer
       UNCOMPRESSED_POINT_MARKER: Integer
+
       def self.decode: (nil bytes) -> self
       attr_reader key_type: untyped
       attr_reader algorithm: untyped
@@ -30,9 +31,9 @@ module ActionPack
 
       private
 
-      def build_ec2_es256_key: () -> untyped
-      def build_okp_eddsa_key: () -> untyped
-      def build_rsa_rs256_key: () -> untyped
+      def build_ec2_es256_key: () -> OpenSSL::PKey::EC
+      def build_okp_eddsa_key: () -> OpenSSL::PKey::PKey
+      def build_rsa_rs256_key: () -> OpenSSL::PKey::RSA
     end
   end
 end

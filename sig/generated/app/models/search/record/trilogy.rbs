@@ -3,11 +3,12 @@ module Search
     module Trilogy
       SHARD_COUNT: Integer
       SHARD_CLASSES: Array[Class]
+
       extend ActiveSupport::Concern
       def self.name: () -> String
       def shard_id_for_account: (untyped account_id) -> untyped
       def search_fields: (untyped query) -> String
-      def for: (untyped account_id) -> untyped
+      def for: (untyped account_id) -> Class
       def card_title: () -> untyped
       def card_description: () -> untyped
       def comment_body: () -> untyped

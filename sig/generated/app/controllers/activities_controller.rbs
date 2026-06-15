@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
-  ACTIONS: untyped
+  ACTIONS: Array[String]
+
   def index: () -> void
 
   private
 
-  def activities: () -> untyped
+  def activities: () -> Event::ActiveRecord_Relation
 end

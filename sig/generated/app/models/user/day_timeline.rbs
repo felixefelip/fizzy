@@ -1,6 +1,7 @@
 class User
   class DayTimeline
-    TIMELINEABLE_ACTIONS: Array[untyped]
+    TIMELINEABLE_ACTIONS: Array[String]
+
     include Serializable
     attr_reader user: untyped
     attr_reader day: untyped
@@ -11,16 +12,16 @@ class User
     def next_day: () -> untyped
     def earliest_time: () -> untyped
     def latest_time: () -> untyped
-    def added_column: () -> untyped
-    def updated_column: () -> untyped
-    def closed_column: () -> untyped
+    def added_column: () -> User::DayTimeline::Column
+    def updated_column: () -> User::DayTimeline::Column
+    def closed_column: () -> User::DayTimeline::Column
     def cache_key: () -> untyped
     def today?: () -> untyped
 
     private
 
     def filtered_events: () -> untyped
-    def timelineable_events: () -> untyped
+    def timelineable_events: () -> Event::ActiveRecord_Relation
     def boards: () -> untyped
     def latest_event_before: () -> untyped
     def build_column: (Symbol id, String base_title, Integer index, untyped events) -> Column

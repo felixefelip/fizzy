@@ -1,13 +1,14 @@
 class Account
   class ExportsController < ApplicationController
     CURRENT_EXPORT_LIMIT: Integer
+
     def show: () -> void
     def create: () -> void
 
     private
 
-    def ensure_admin_or_owner: () -> untyped
-    def ensure_export_limit_not_exceeded: () -> untyped
+    def ensure_admin_or_owner: () -> true?
+    def ensure_export_limit_not_exceeded: () -> true?
     def set_export: () -> untyped
   end
 end

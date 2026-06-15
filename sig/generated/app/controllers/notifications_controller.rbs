@@ -1,9 +1,10 @@
 class NotificationsController < ApplicationController
   MAX_UNREAD_NOTIFICATIONS: Integer
   MAX_UNREAD_NOTIFICATIONS_VIA_API: Integer
+
   def index: () -> void
 
   private
 
-  def max_unread_notifications: () -> untyped
+  def max_unread_notifications: () -> Integer
 end

@@ -4,6 +4,7 @@ module ActionPack
       class Options
         CHALLENGE_LENGTH: Integer
         USER_VERIFICATION_OPTIONS: untyped
+
         include ActiveModel::API
         include ActiveModel::Attributes
         extend ActiveModel::Attributes::ClassMethods

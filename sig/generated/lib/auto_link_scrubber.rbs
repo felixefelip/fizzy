@@ -7,6 +7,7 @@ class AutoLinkScrubber < Loofah::Scrubber
   TRAILING_PUNCTUATION: String
   TRAILING_PUNCTUATION_REGEXP: Regexp
   MAX_TEXT_NODE_LENGTH: Integer
+
   def initialize: () -> Symbol
   def scrub: (untyped node) -> Loofah::Scrubber::CONTINUE
 

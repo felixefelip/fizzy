@@ -9,4 +9,8 @@ module AccountTenanted
 
   def with_account_context: () ?{ (untyped) -> untyped } -> untyped
   def resolve_account!: () -> untyped
+
+  class AfterInitialize
+    attr_reader account: ((Account & Account::Validated) | singleton(Current) | Account::Seedeable | Account | Current)?
+  end
 end

@@ -1,7 +1,8 @@
 class Webhook
   class DelinquencyTracker < ApplicationRecord
     DELINQUENCY_THRESHOLD: Integer
-    DELINQUENCY_DURATION: untyped
+    DELINQUENCY_DURATION: ActiveSupport::Duration
+
     def record_delivery_of: (untyped delivery) -> untyped
 
     private
@@ -9,7 +10,7 @@ class Webhook
     def reset: () -> untyped
     def mark_first_failure_time: () -> untyped
     def delinquent?: () -> untyped
-    def failing_for_too_long?: () -> untyped
-    def too_many_consecutive_failures?: () -> untyped
+    def failing_for_too_long?: () -> bool
+    def too_many_consecutive_failures?: () -> bool
   end
 end

@@ -1,7 +1,7 @@
 class Notification
   class Bundle
     class DeliverAllJob < ApplicationJob
-      def perform: () -> nil
+      def perform: () -> (BatchEnumerator | untyped)
     end
   end
 end

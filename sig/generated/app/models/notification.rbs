@@ -2,15 +2,15 @@ class Notification < ApplicationRecord
   include ::Notification::Pushable
   def self.read_all: () -> Notification::ActiveRecord_Relation
   def self.unread_all: () -> Notification::ActiveRecord_Relation
-  def read: () -> untyped
-  def unread: () -> untyped
-  def read?: () -> untyped
+  def read: () -> self
+  def unread: () -> self
+  def read?: () -> bool
   def notifiable_target: () -> untyped
   def identity: () -> Identity?
 
   private
 
   def set_card: () -> untyped
-  def bundle: () -> untyped
+  def bundle: () -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle | nil)
   def broadcast_update: () -> untyped
 end

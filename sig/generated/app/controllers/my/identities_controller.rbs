@@ -1,5 +1,6 @@
 module My
   class IdentitiesController < ApplicationController
+    @identity: Identity?
     def show: () -> void
   end
 end

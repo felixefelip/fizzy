@@ -1,6 +1,7 @@
 class Account
   module Entropic
-    DEFAULT_ENTROPY_PERIOD: untyped
+    DEFAULT_ENTROPY_PERIOD: ActiveSupport::Duration
+
     extend ActiveSupport::Concern
   end
 end

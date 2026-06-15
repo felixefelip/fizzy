@@ -3,5 +3,5 @@ class Assignment < ApplicationRecord
 
   private
 
-  def within_limit: () -> untyped
+  def within_limit: () -> ActiveModel::Error?
 end

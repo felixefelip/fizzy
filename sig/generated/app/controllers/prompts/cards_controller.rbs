@@ -1,13 +1,14 @@
 module Prompts
   class CardsController < ApplicationController
     MAX_RESULTS: Integer
+
     def index: () -> void
 
     private
 
     def filter_param: () -> untyped
-    def search_cards: () -> untyped
-    def published_cards: () -> untyped
-    def prepending_exact_matches_by_id: (untyped cards) -> untyped
+    def search_cards: () -> Card::ActiveRecord_Relation
+    def published_cards: () -> Card::ActiveRecord_Relation
+    def prepending_exact_matches_by_id: (untyped cards) -> Array[untyped]
   end
 end
