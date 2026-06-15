@@ -35,6 +35,10 @@ callbacks:
   apply_postcondition_of: set_import
   runs_before:
   - show
+- class: Account::JoinCode
+  applies_self: Account::JoinCode & Account::JoinCode::Validated
+  runs_before:
+  - generate_code
 - class: Account::JoinCodesController
   apply_postcondition_of: ensure_admin
   runs_before:
@@ -94,7 +98,10 @@ callbacks:
 - class: Card
   applies_self: Card & Card::Validated
   runs_before:
+  - set_default_title
   - assign_number
+  - handle_board_change
+  - track_board_change_event
 - class: Cards::BoardsController
   apply_postcondition_of: set_card
   runs_before:
@@ -243,6 +250,13 @@ callbacks:
   runs_before:
   - new
   - create
+- class: User::Settings
+  applies_self: User::Settings & User::Settings::Validated
+  runs_before:
+  - review_pending_bundles
+  - bundling_emails?
+  - flush_pending_bundles
+  - cancel_pending_bundles
 - class: Users::AvatarsController
   apply_postcondition_of: ensure_permission_to_administer_user
   runs_before:
