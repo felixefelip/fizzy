@@ -1,5 +1,6 @@
 module Prompts
   class CardsController < ApplicationController
+    MAX_RESULTS: Integer
     def index: () -> void
 
     private

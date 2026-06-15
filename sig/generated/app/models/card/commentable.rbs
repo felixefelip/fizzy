@@ -1,11 +1,12 @@
 class Card
   module Commentable
+    STORAGE_BATCH_SIZE: Integer
     extend ActiveSupport::Concern
-    def commentable?: () -> bool
+    def commentable?: () -> untyped
 
     private
 
-    def storage_transfer_records: () -> Array[(self | Comment)]
-    def storage_comment_ids_with_attachments: () -> Array[untyped]
+    def storage_transfer_records: () -> untyped
+    def storage_comment_ids_with_attachments: () -> untyped
   end
 end

@@ -2,11 +2,12 @@ class Account
   module DataTransfer
     module ActionText
       class RichTextRecordSet < ::Account::DataTransfer::RecordSet
+        ATTRIBUTES: untyped
         def initialize: (Account? account) -> void
 
         private
 
-        def records: () -> ActiveRecord::QueryMethods::WhereChain[ActionText::RichText::ActiveRecord_Relation]
+        def records: () -> untyped
         def export_record: (untyped rich_text) -> untyped
         def files: () -> untyped
         def import_batch: (untyped files) -> untyped

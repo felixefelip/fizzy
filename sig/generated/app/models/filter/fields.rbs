@@ -1,5 +1,7 @@
 class Filter
   module Fields
+    INDEXES: Array[untyped]
+    SORTED_BY: Array[untyped]
     extend ActiveSupport::Concern
     def default_values: () -> { indexed_by: String, sorted_by: String }
     def default_value?: (Symbol key, untyped value) -> untyped

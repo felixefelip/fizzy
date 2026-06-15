@@ -1,5 +1,6 @@
 module Search
   module Stemmer
+    STEMMER: Mittens::Stemmer
     def stem: (untyped value) -> untyped
   end
 end

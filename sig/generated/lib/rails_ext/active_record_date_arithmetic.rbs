@@ -1,4 +1,12 @@
 module MysqlDateArithmetic
   def date_subtract: (untyped date_column, untyped seconds_expression) -> String
+end
+
+module SqliteDateArithmetic
   def date_subtract: (untyped date_column, untyped seconds_expression) -> String
+end
+
+module ActiveRecord
+  class Base
+  end
 end

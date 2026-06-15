@@ -1,6 +1,8 @@
 module Search
   class Record
     module Trilogy
+      SHARD_COUNT: Integer
+      SHARD_CLASSES: Array[Class]
       extend ActiveSupport::Concern
       def self.name: () -> String
       def shard_id_for_account: (untyped account_id) -> untyped

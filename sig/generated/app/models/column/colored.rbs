@@ -1,5 +1,6 @@
 class Column
   module Colored
+    DEFAULT_COLOR: untyped
     extend ActiveSupport::Concern
     def color: () -> untyped
   end

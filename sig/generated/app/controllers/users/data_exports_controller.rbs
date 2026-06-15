@@ -1,13 +1,14 @@
 module Users
   class DataExportsController < ApplicationController
+    CURRENT_EXPORT_LIMIT: Integer
     def show: () -> void
     def create: () -> void
 
     private
 
     def set_user: () -> untyped
-    def ensure_current_user: () -> true?
-    def ensure_export_limit_not_exceeded: () -> true?
+    def ensure_current_user: () -> untyped
+    def ensure_export_limit_not_exceeded: () -> untyped
     def set_export: () -> untyped
   end
 end

@@ -1,18 +1,38 @@
 module ActionPack
   module WebAuthn
     class CoseKey
+      P256_COORDINATE_LENGTH: Integer
+      MINIMUM_RSA_KEY_BITS: Integer
+      KEY_TYPE_LABEL: Integer
+      ALGORITHM_LABEL: Integer
+      EC2_CURVE_LABEL: Integer
+      EC2_X_LABEL: Integer
+      EC2_Y_LABEL: Integer
+      RSA_N_LABEL: Integer
+      RSA_E_LABEL: Integer
+      OKP_CURVE_LABEL: Integer
+      OKP_X_LABEL: Integer
+      OKP: Integer
+      EC2: Integer
+      RSA: Integer
+      ES256: Integer
+      EDDSA: Integer
+      RS256: Integer
+      P256: Integer
+      ED25519: Integer
+      UNCOMPRESSED_POINT_MARKER: Integer
       def self.decode: (nil bytes) -> self
       attr_reader key_type: untyped
       attr_reader algorithm: untyped
       attr_reader parameters: untyped
       def initialize: (key_type: untyped, algorithm: untyped, parameters: untyped) -> untyped
-      def to_openssl_key: () -> OpenSSL::PKey::PKey
+      def to_openssl_key: () -> untyped
 
       private
 
-      def build_ec2_es256_key: () -> OpenSSL::PKey::EC
-      def build_okp_eddsa_key: () -> OpenSSL::PKey::PKey
-      def build_rsa_rs256_key: () -> OpenSSL::PKey::RSA
+      def build_ec2_es256_key: () -> untyped
+      def build_okp_eddsa_key: () -> untyped
+      def build_rsa_rs256_key: () -> untyped
     end
   end
 end

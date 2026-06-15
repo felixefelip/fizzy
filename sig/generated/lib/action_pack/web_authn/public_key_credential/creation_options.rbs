@@ -2,12 +2,17 @@ module ActionPack
   module WebAuthn
     class PublicKeyCredential
       class CreationOptions < ::ActionPack::WebAuthn::PublicKeyCredential::Options
+        ES256: untyped
+        EDDSA: untyped
+        RS256: untyped
+        RESIDENT_KEY_OPTIONS: untyped
+        ATTESTATION_PREFERENCES: untyped
         def initialize: (?Hash[untyped, untyped] attributes) -> untyped
         def as_json: (?Hash[untyped, untyped] options) -> untyped
 
         private
 
-        def exclude_credential_json: (untyped credential) -> Hash[Symbol, String]
+        def exclude_credential_json: (untyped credential) -> untyped
       end
     end
   end

@@ -1,9 +1,12 @@
 module SsrfProtection
+  DNS_RESOLUTION_TIMEOUT: Integer
+  DNS_NAMESERVERS: Array[untyped]
+  DISALLOWED_IP_RANGES: untyped
   def resolve_public_ip: (untyped hostname) -> untyped
   def blocked_address?: (untyped ip) -> untyped
 
   private
 
-  def resolve_dns: (untyped hostname) -> Array[untyped]
+  def resolve_dns: (untyped hostname) -> untyped
   def in_disallowed_range?: (untyped ip) -> untyped
 end

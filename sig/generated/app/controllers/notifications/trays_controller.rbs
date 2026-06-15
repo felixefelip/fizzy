@@ -1,6 +1,7 @@
 module Notifications
   class TraysController < ApplicationController
     @notifications: nil
+    MAX_ENTRIES_LIMIT: Integer
     def show: () -> void
 
     private

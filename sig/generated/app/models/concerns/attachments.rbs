@@ -1,4 +1,5 @@
 module Attachments
+  VARIANTS: { small: { loader: { n: Integer }, resize_to_limit: Array[untyped] }, large: { loader: { n: Integer }, resize_to_limit: Array[untyped] } }
   extend ActiveSupport::Concern
   def attachments: () -> untyped
   def has_attachments?: () -> untyped

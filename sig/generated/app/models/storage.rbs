@@ -1,3 +1,5 @@
 module Storage
+  TRACKED_RECORD_TYPES: untyped
+  TEMPLATE_ACCOUNT_ID: nil
   def self.table_name_prefix: () -> String
 end

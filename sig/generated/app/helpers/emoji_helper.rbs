@@ -1,2 +1,3 @@
 module EmojiHelper
+  REACTIONS: Hash[String, untyped]
 end

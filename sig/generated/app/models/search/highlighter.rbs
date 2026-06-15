@@ -1,13 +1,16 @@
 module Search
   class Highlighter
+    OPENING_MARK: String
+    CLOSING_MARK: String
+    ELIPSIS: String
     attr_reader query: untyped
     def initialize: (untyped query) -> void
-    def highlight: (String text) -> untyped
+    def highlight: (untyped text) -> untyped
     def snippet: (untyped text, ?max_words: untyped) -> untyped
 
     private
 
-    def terms: () -> Array[untyped]
-    def escape_highlight_marks: (String html) -> untyped
+    def terms: () -> untyped
+    def escape_highlight_marks: (untyped html) -> untyped
   end
 end

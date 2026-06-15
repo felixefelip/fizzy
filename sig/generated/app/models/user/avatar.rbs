@@ -1,5 +1,8 @@
 class User
   module Avatar
+    ALLOWED_AVATAR_CONTENT_TYPES: untyped
+    MAX_AVATAR_DIMENSIONS: untyped
+    AVATAR_COLORS: untyped
     extend ActiveSupport::Concern
     def avatar_attached?: () -> untyped
     def avatar_thumbnail: () -> untyped

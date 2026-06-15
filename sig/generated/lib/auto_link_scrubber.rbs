@@ -1,5 +1,12 @@
 class AutoLinkScrubber < Loofah::Scrubber
   @direction: Symbol
+  EXCLUDED_ELEMENTS: untyped
+  EMAIL_AUTOLINK_REGEXP: Regexp
+  URL_REGEXP: untyped
+  AUTOLINK_REGEXP: Regexp
+  TRAILING_PUNCTUATION: String
+  TRAILING_PUNCTUATION_REGEXP: Regexp
+  MAX_TEXT_NODE_LENGTH: Integer
   def initialize: () -> Symbol
   def scrub: (untyped node) -> Loofah::Scrubber::CONTINUE
 

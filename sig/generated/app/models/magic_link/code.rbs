@@ -1,5 +1,6 @@
 class MagicLink
   module Code
+    CODE_SUBSTITUTIONS: untyped
     def self.generate: (CODE_LENGTH length) -> untyped
     def self.sanitize: (untyped code) -> untyped
     def self.normalize_code: (untyped code) -> String

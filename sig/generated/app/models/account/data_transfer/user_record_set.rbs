@@ -1,11 +1,12 @@
 class Account
   module DataTransfer
     class UserRecordSet < ::Account::DataTransfer::RecordSet
+      ATTRIBUTES: Array[untyped]
       def initialize: (Account? account) -> void
 
       private
 
-      def records: () -> ActiveRecord::QueryMethods::WhereChain[User::ActiveRecord_Relation]
+      def records: () -> untyped
       def export_record: (untyped user) -> untyped
       def files: () -> untyped
       def import_batch: (untyped files) -> untyped

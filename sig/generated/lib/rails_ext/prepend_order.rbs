@@ -1,6 +1,16 @@
 module ActiveRecordRelationPrependOrder
   extend ActiveSupport::Concern
-  include ::ActiveRecordRelationPrependOrder
-  include ::ActiveRecordRelationPrependOrder
   def prepend_order: (*untyped) -> untyped
+end
+
+module ActiveRecord
+  class Relation
+    include ActiveRecordRelationPrependOrder
+  end
+end
+
+module ActiveRecord
+  class AssociationRelation
+    include ActiveRecordRelationPrependOrder
+  end
 end

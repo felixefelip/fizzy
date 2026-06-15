@@ -1,8 +1,10 @@
 class Account
   class JoinCode < ApplicationRecord
+    CODE_LENGTH: Integer
+    USAGE_LIMIT_MAX: Integer
     def redeem_if: () ?{ (untyped) -> untyped } -> untyped
-    def active?: () -> bool
-    def reset: () -> void
+    def active?: () -> untyped
+    def reset: () -> untyped
 
     private
 

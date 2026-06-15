@@ -1,6 +1,11 @@
 module ActionPack
   class Passkey
     module FormHelper
+      REGISTRATION_ERROR_MESSAGE: String
+      REGISTRATION_CANCELLED_MESSAGE: String
+      REGISTRATION_DUPLICATE_MESSAGE: String
+      SIGN_IN_ERROR_MESSAGE: String
+      SIGN_IN_CANCELLED_MESSAGE: String
       def passkey_registration_button: (?nil name, ?nil url, **untyped) ?{ (untyped) -> untyped } -> untyped
       def passkey_sign_in_button: (?nil name, ?nil url, **untyped) ?{ (untyped) -> untyped } -> untyped
 

@@ -1,4 +1,7 @@
 module ChoiceSentenceArrayConversion
-  include ::ChoiceSentenceArrayConversion
   def to_choice_sentence: () -> untyped
+end
+
+class Array[unchecked out Elem]
+  include ChoiceSentenceArrayConversion
 end
