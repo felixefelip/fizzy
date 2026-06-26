@@ -2,7 +2,7 @@ class Comment
   module Eventable
     extend ActiveSupport::Concern
     include ::Eventable
-    def event_was_created: (untyped event) -> untyped
+    def event_was_created: (untyped event) -> ::Card?
 
     private
 
