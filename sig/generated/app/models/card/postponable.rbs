@@ -1,7 +1,7 @@
 class Card
   module Postponable
     extend ActiveSupport::Concern
-    def postponed?: () -> bool
+    def postponed?: () -> untyped
     def postponed_at: () -> ActiveSupport::TimeWithZone?
     def postponed_by: () -> User?
     def active?: () -> untyped

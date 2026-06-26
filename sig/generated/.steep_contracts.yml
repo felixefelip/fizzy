@@ -217,6 +217,15 @@ methods:
           kind: self
         method: usage_count
     enforced: false
+  Account::JoinCode#generate_code:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
   Account::Seeder#delete_everything:
     requires:
     - kind: not_nil
@@ -352,30 +361,6 @@ methods:
         receiver:
           kind: self
         method: account
-    enforced: false
-  Card#handle_board_change:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    enforced: false
-  Card#track_board_change_event:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
     enforced: false
   Card::Accessible#clean_inaccessible_data:
     requires:
@@ -989,33 +974,6 @@ methods:
         receiver:
           kind: self
         method: name
-    enforced: false
-  User::Settings#bundling_emails?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    enforced: false
-  User::Settings#cancel_pending_bundles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    enforced: false
-  User::Settings#flush_pending_bundles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
     enforced: false
   Webhook#for_basecamp?:
     requires:

@@ -23,7 +23,7 @@ class Webhook
     def headers: () -> Hash[String, untyped]
     def signature: () -> String
     def content_type: () -> String
-    def payload: () -> untyped
+    def payload: () -> String
     def render_payload: (**untyped) -> untyped
     def convert_html_to_mrkdwn: (untyped html) -> untyped
     def slack_payload: () -> String

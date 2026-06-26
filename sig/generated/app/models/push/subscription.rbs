@@ -9,6 +9,6 @@ module Push
 
     def endpoint_uri: () -> (URI::File | URI::FTP | URI::HTTP | URI::HTTPS | URI::LDAP | URI::LDAPS | URI::MailTo | URI::WS | URI::WSS | URI::Generic | nil)
     def validate_endpoint_url: () -> ActiveModel::Error?
-    def permitted_endpoint_host?: () -> untyped
+    def permitted_endpoint_host?: () -> bool
   end
 end

@@ -3,15 +3,15 @@ module ActionPack
     class PublicKeyCredential
       class Options
         CHALLENGE_LENGTH: Integer
-        USER_VERIFICATION_OPTIONS: untyped
+        USER_VERIFICATION_OPTIONS: Array[Symbol]
 
         include ActiveModel::API
         include ActiveModel::Attributes
         extend ActiveModel::Attributes::ClassMethods
         def initialize: (?Hash[untyped, untyped] attributes) -> void
-        def validate!: () -> untyped
+        def validate!: () -> true
         def inspect: () -> String
-        def challenge: () -> untyped
+        def challenge: () -> String
       end
     end
   end

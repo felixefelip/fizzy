@@ -9,5 +9,5 @@ class MagicLink < ApplicationRecord
   private
 
   def generate_code: () -> String
-  def set_expiration: () -> untyped
+  def set_expiration: () -> ActiveSupport::TimeWithZone
 end

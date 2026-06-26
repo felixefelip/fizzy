@@ -6,7 +6,7 @@ module ActionPack
 
       private
 
-      def create_passkey_challenge: () -> untyped
+      def create_passkey_challenge: () -> String
       def challenge_purpose: () -> String
       def challenge_expiration: () -> untyped
     end

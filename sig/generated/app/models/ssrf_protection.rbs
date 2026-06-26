@@ -9,5 +9,5 @@ module SsrfProtection
   private
 
   def resolve_dns: (untyped hostname) -> Array[untyped]
-  def in_disallowed_range?: (untyped ip) -> untyped
+  def in_disallowed_range?: (untyped ip) -> bool
 end

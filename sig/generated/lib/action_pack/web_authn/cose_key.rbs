@@ -27,7 +27,7 @@ module ActionPack
       attr_reader algorithm: untyped
       attr_reader parameters: untyped
       def initialize: (key_type: untyped, algorithm: untyped, parameters: untyped) -> untyped
-      def to_openssl_key: () -> untyped
+      def to_openssl_key: () -> OpenSSL::PKey::PKey
 
       private
 

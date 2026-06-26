@@ -1,5 +1,7 @@
 module My
   class AccessTokensController < ApplicationController
+    @access_tokens: Identity::AccessToken::ActiveRecord_Associations_CollectionProxy?
+    @access_token: (Identity::AccessToken & Identity::AccessToken::Validated)?
     def index: () -> void
     def show: () -> void
     def new: () -> void

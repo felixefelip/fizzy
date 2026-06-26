@@ -28,10 +28,6 @@ module ActionPack
         def backup_eligible?: () -> untyped
         def backed_up?: () -> untyped
         def public_key: () -> untyped
-
-        class AfterInitialize
-          attr_reader credential_id: Base64
-        end
       end
     end
   end

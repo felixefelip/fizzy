@@ -12,6 +12,6 @@ module Search
     private
 
     def terms: () -> Array[untyped]
-    def escape_highlight_marks: (untyped html) -> untyped
+    def escape_highlight_marks: (String html) -> untyped
   end
 end

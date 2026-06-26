@@ -55,6 +55,24 @@ postconditions:
     ivars:
       "@identity": "::Identity"
     self: "::JoinCodesController & ::JoinCodesController::AfterSetIdentity"
+- class: My::AccessTokensController
+  method: index
+  unconditional:
+    ivars:
+      "@access_tokens": "::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy"
+    self: "::My::AccessTokensController & ::My::AccessTokensController::AfterIndex"
+- class: My::AccessTokensController
+  method: new
+  unconditional:
+    ivars:
+      "@access_token": untyped
+    self: "::My::AccessTokensController & ::My::AccessTokensController::AfterNew"
+- class: My::AccessTokensController
+  method: show
+  unconditional:
+    ivars:
+      "@access_token": "(::Identity::AccessToken & ::Identity::AccessToken::Validated)"
+    self: "::My::AccessTokensController & ::My::AccessTokensController::AfterShow"
 - class: My::PasskeysController
   method: index
   unconditional:
@@ -73,6 +91,12 @@ postconditions:
     ivars:
       "@notifications": untyped
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
+- class: Prompts::CardsController
+  method: index
+  unconditional:
+    ivars:
+      "@cards": "(::Array[untyped] | ::Card::ActiveRecord_Relation)"
+    self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
 - class: SessionsController
   method: new
   unconditional:
