@@ -3,7 +3,7 @@ class Card
     extend ActiveSupport::Concern
     def publicly_accessible?: () -> untyped
     def clean_inaccessible_data: () -> untyped
-    def accessible_to?: () -> untyped
+    def accessible_to?: () -> (bool | false)
 
     private
 
