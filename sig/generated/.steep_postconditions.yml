@@ -83,13 +83,13 @@ postconditions:
   method: index
   unconditional:
     ivars:
-      "@pins": untyped
+      "@pins": "::Pin::ActiveRecord_Relation"
     self: "::My::PinsController & ::My::PinsController::AfterIndex"
 - class: Notifications::TraysController
   method: show
   unconditional:
     ivars:
-      "@notifications": untyped
+      "@notifications": "::Notification::ActiveRecord_Relation"
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
 - class: Prompts::CardsController
   method: index

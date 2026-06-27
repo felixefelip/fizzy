@@ -2,7 +2,7 @@ class MagicLink
   module Code
     CODE_SUBSTITUTIONS: Hash[String, String]
 
-    def self.generate: (CODE_LENGTH length) -> untyped
+    def self.generate: (Integer length) -> untyped
     def self.sanitize: (untyped code) -> untyped
     def self.normalize_code: (untyped code) -> String
     def self.apply_substitutions: (untyped code) -> untyped
