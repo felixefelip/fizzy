@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   include Storage::Tracked
   def to_partial_path: () -> String
   def publicly_accessible?: () -> untyped
-  def accessible_to?: () -> untyped
+  def accessible_to?: () -> (bool | false)
   def board: () -> Board?
   def watch_by: () -> untyped
 

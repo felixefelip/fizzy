@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def magic_link_from_sign_in_or_sign_up: () -> untyped
+  def magic_link_from_sign_in_or_sign_up: () -> MagicLink?
   def email_address: () -> untyped
   def rate_limit_exceeded: () -> untyped
   def sign_in: ((Identity & Identity::Validated)? identity) -> untyped
