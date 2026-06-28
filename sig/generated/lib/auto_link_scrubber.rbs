@@ -1,19 +1,19 @@
 class AutoLinkScrubber < Loofah::Scrubber
   @direction: Symbol
-  EXCLUDED_ELEMENTS: untyped
+  EXCLUDED_ELEMENTS: Array[String]
   EMAIL_AUTOLINK_REGEXP: Regexp
-  URL_REGEXP: untyped
+  URL_REGEXP: Regexp
   AUTOLINK_REGEXP: Regexp
   TRAILING_PUNCTUATION: String
   TRAILING_PUNCTUATION_REGEXP: Regexp
   MAX_TEXT_NODE_LENGTH: Integer
 
   def initialize: () -> Symbol
-  def scrub: (untyped node) -> Loofah::Scrubber::CONTINUE
+  def scrub: (untyped node) -> Object
 
   private
 
-  def autolink_text_node: (untyped node) -> untyped
-  def find_links: (untyped text) -> untyped
-  def clean_url: (untyped url) -> untyped
+  def autolink_text_node: (untyped node) -> Nokogiri::XML::NodeSet?
+  def find_links: (untyped text) -> Array[untyped]
+  def clean_url: (String? url) -> String
 end
