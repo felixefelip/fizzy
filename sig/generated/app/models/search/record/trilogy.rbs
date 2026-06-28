@@ -6,7 +6,7 @@ module Search
 
       extend ActiveSupport::Concern
       def self.name: () -> String
-      def shard_id_for_account: (untyped account_id) -> untyped
+      def shard_id_for_account: (untyped account_id) -> Integer
       def search_fields: (untyped query) -> String
       def for: (untyped account_id) -> Class
       def card_title: () -> untyped
