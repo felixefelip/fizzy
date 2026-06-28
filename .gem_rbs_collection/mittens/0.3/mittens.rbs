@@ -1,0 +1,17 @@
+module Mittens
+  VERSION: String
+
+  class Error < StandardError
+  end
+
+  # Snowball stemmer backed by a native (Rust) extension.
+  class Stemmer
+    # Returns the list of languages supported by the stemmer.
+    def self.languages: () -> Array[String]
+
+    def initialize: () -> void
+
+    # Reduces a single word to its stem.
+    def stem: (String word) -> String
+  end
+end
