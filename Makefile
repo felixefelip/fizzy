@@ -19,10 +19,14 @@ rbs_infer_rails_custom:
 rbs_infer_erb:
 	bundle exec rake rbs_infer:erb:all
 
+rbs_infer_module_self_types:
+	bundle exec rake rbs_infer:module_self_types:all
+
 rbs_generators_all:
 	make rbs_rails_generator
 	make rbs_infer_rails_custom
 	make rbs_infer_enumerize
 	make rbs_infer_carrierwave
+	make rbs_infer_module_self_types
 	make rbs_infer_erb
 	make rbs_infer_all

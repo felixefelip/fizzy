@@ -849,6 +849,15 @@ methods:
           kind: self
         method: user
     enforced: false
+  Search::Record::SQLite#card_title:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
   Search::Record::Trilogy#card_description:
     requires:
     - kind: not_nil
