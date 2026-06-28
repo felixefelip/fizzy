@@ -1,7 +1,7 @@
 module ActionPack
   module WebAuthn
     class CborDecoder
-      @max_depth: MAX_DEPTH
+      @max_depth: Integer
       @position: Integer
       @depth: Integer
       UNSIGNED_INTEGER_TYPE: Integer
@@ -30,7 +30,7 @@ module ActionPack
       NEGATIVE_BIGNUM_TAG: Integer
 
       def self.decode: (String bytes, **untyped) -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
-      def initialize: (untyped bytes, ?max_depth: MAX_DEPTH, ?max_size: untyped) -> Integer
+      def initialize: (untyped bytes, ?max_depth: Integer, ?max_size: untyped) -> Integer
       def decode: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
 
       private
