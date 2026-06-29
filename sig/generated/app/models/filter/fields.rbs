@@ -5,7 +5,7 @@ class Filter
 
     module ClassMethods
       def default_values: () -> { indexed_by: String, sorted_by: String }
-      def default_value?: (Symbol key, untyped value) -> untyped
+      def default_value?: (Symbol key, untyped value) -> bool
       def indexed_by_human_name: (untyped index) -> String
     end
     extend ActiveSupport::Concern
@@ -20,9 +20,9 @@ class Filter
     def column_ids=: (untyped value) -> untyped
     def with: (**untyped) -> untyped
     def default_indexed_by: () -> untyped
-    def default_indexed_by?: () -> untyped
+    def default_indexed_by?: () -> bool
     def default_sorted_by: () -> untyped
-    def default_sorted_by?: () -> untyped
-    def default_value?: () -> untyped
+    def default_sorted_by?: () -> bool
+    def default_value?: () -> bool
   end
 end

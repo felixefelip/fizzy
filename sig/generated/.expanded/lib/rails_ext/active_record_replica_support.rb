@@ -13,16 +13,8 @@
 module ActiveRecordReplicaSupport
   extend ActiveSupport::Concern
 
-  class_methods do
-    # Automatically configures connects_to for read/write splitting if a replica
-    # database is configured for the current environment. This is a no-op if no
-    # replica configuration exists.
-    #
-    # Example:
-    #   class ApplicationRecord < ActiveRecord::Base
-    #     configure_replica_connections
-    #   end
-    def configure_replica_connections
+  module ClassMethods
+def configure_replica_connections
       if replica_configured?
         connects_to database: { writing: :primary, reading: :replica }
       end
@@ -49,7 +41,7 @@ module ActiveRecordReplicaSupport
         yield
       end
     end
-  end
+end
 end
 
 class ActiveRecord::Base

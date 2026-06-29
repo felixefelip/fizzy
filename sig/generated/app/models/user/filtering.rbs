@@ -21,8 +21,8 @@ class User
     def show_boards?: () -> untyped
     def single_board_or_first: () -> untyped
     def cache_key: () -> untyped
-    def as_params: () -> untyped
-    def single_board: () -> untyped
+    def as_params: () -> Hash[untyped, untyped]
+    def single_board: () -> (Board & Board::Validated)?
     def only_closed?: () -> untyped
 
     private

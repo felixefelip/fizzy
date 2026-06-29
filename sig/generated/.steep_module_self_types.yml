@@ -75,6 +75,9 @@ app/models/account/multi_tenantable.rb:
   annotations:
   - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
   - "# @type instance: Account & Account::MultiTenantable"
+  blocks:
+  - call: class_methods
+    implements: "::Account::MultiTenantable::ClassMethods"
 app/models/account/searchable.rb:
   anchor: Searchable
   annotations:
@@ -128,6 +131,9 @@ app/models/board/publishable.rb:
   annotations:
   - "# @type self: singleton(Board) & singleton(Board::Publishable)"
   - "# @type instance: Board & Board::Publishable"
+  blocks:
+  - call: class_methods
+    implements: "::Board::Publishable::ClassMethods"
 app/models/board/storage.rb:
   anchor: Storage
   annotations:
@@ -181,6 +187,9 @@ app/models/card/entropic.rb:
   annotations:
   - "# @type self: singleton(Card) & singleton(Card::Entropic)"
   - "# @type instance: Card & Card::Entropic"
+  blocks:
+  - call: class_methods
+    implements: "::Card::Entropic::ClassMethods"
 app/models/card/entropy.rb:
   anchor: Entropy
   annotations:
@@ -307,6 +316,9 @@ app/models/concerns/storage/totaled.rb:
   annotations:
   - "# @type self: singleton(Storage) & singleton(Storage::Totaled)"
   - "# @type instance: Storage & Storage::Totaled"
+  blocks:
+  - call: class_methods
+    implements: "::Storage::Totaled::ClassMethods"
 app/models/concerns/storage/tracked.rb:
   anchor: Tracked
   annotations:
@@ -331,11 +343,17 @@ app/models/filter/fields.rb:
   annotations:
   - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
   - "# @type instance: Filter & Filter::Fields"
+  blocks:
+  - call: class_methods
+    implements: "::Filter::Fields::ClassMethods"
 app/models/filter/params.rb:
   anchor: Params
   annotations:
   - "# @type self: singleton(Filter) & singleton(Filter::Params)"
   - "# @type instance: Filter & Filter::Params"
+  blocks:
+  - call: class_methods
+    implements: "::Filter::Params::ClassMethods"
 app/models/filter/resources.rb:
   anchor: Resources
   annotations:
@@ -359,6 +377,9 @@ app/models/identity/transferable.rb:
   annotations:
   - "# @type self: singleton(Identity) & singleton(Identity::Transferable)"
   - "# @type instance: Identity & Identity::Transferable"
+  blocks:
+  - call: class_methods
+    implements: "::Identity::Transferable::ClassMethods"
 app/models/magic_link/code.rb:
   anchor: Code
   annotations:
@@ -392,6 +413,9 @@ app/models/notification/pushable.rb:
   annotations:
   - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
   - "# @type instance: Notification & Notification::Pushable"
+  blocks:
+  - call: class_methods
+    implements: "::Notification::Pushable::ClassMethods"
 app/models/notifier/card_event_notifier.rb:
   anchor: CardEventNotifier
   annotations:
@@ -429,6 +453,9 @@ app/models/search/record/sqlite.rb:
   annotations:
   - "# @type self: singleton(Search::Record) & singleton(Search::Record::SQLite)"
   - "# @type instance: Search::Record & Search::Record::SQLite"
+  blocks:
+  - call: class_methods
+    implements: "::Search::Record::SQLite::ClassMethods"
 app/models/search/record/sqlite/fts.rb:
   anchor: Fts
   annotations:
@@ -438,6 +465,9 @@ app/models/search/record/trilogy.rb:
   annotations:
   - "# @type self: singleton(Search::Record) & singleton(Search::Record::Trilogy)"
   - "# @type instance: Search::Record & Search::Record::Trilogy"
+  blocks:
+  - call: class_methods
+    implements: "::Search::Record::Trilogy::ClassMethods"
 app/models/search/result.rb:
   anchor: Result
   annotations:
@@ -505,6 +535,9 @@ app/models/user/day_timeline/serializable.rb:
   annotations:
   - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
   - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
+  blocks:
+  - call: class_methods
+    implements: "::User::DayTimeline::Serializable::ClassMethods"
 app/models/user/email_address_changeable.rb:
   anchor: EmailAddressChangeable
   annotations:
@@ -553,6 +586,9 @@ app/models/user/transferable.rb:
   annotations:
   - "# @type self: singleton(User) & singleton(User::Transferable)"
   - "# @type instance: User & User::Transferable"
+  blocks:
+  - call: class_methods
+    implements: "::User::Transferable::ClassMethods"
 app/models/user/watcher.rb:
   anchor: Watcher
   annotations:
@@ -708,6 +744,9 @@ app/controllers/concerns/authentication.rb:
   annotations:
   - "# @type self: singleton(ApplicationController) & singleton(Authentication)"
   - "# @type instance: ApplicationController & Authentication"
+  blocks:
+  - call: class_methods
+    implements: "::Authentication::ClassMethods"
 app/controllers/concerns/authentication/via_magic_link.rb:
   anchor: ViaMagicLink
   annotations:
@@ -718,6 +757,9 @@ app/controllers/concerns/authorization.rb:
   annotations:
   - "# @type self: singleton(ApplicationController) & singleton(Authorization)"
   - "# @type instance: ApplicationController & Authorization"
+  blocks:
+  - call: class_methods
+    implements: "::Authorization::ClassMethods"
 app/controllers/concerns/block_search_engine_indexing.rb:
   anchor: BlockSearchEngineIndexing
   annotations:

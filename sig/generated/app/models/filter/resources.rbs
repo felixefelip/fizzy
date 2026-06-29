@@ -2,7 +2,7 @@ class Filter
   module Resources
     @boards: nil
     extend ActiveSupport::Concern
-    def resource_removed: (untyped resource) -> untyped
+    def resource_removed: (untyped resource) -> Filter?
     def boards: () -> untyped
     def board_titles: () -> Array[String]
     def boards_label: () -> untyped
