@@ -47,5 +47,7 @@ target :app do
 
   configure_code_diagnostics(D::Ruby.strict) do |hash|
     # hash[D::Ruby::SetterBodyTypeMismatch] = :warning
+
+    hash[D::Ruby::UnannotatedEmptyCollection] = :information
   end
 end
