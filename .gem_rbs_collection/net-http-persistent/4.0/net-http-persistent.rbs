@@ -1,0 +1,94 @@
+# Signatures for the net-http-persistent gem, which manages persistent
+# Net::HTTP connections backed by a connection_pool. Hand-written against
+# net-http-persistent 4.0.x.
+class Net::HTTP::Persistent
+  VERSION: String
+
+  DEFAULT_POOL_SIZE: Integer
+
+  # Raised when an unexpected response is received from the server.
+  class Error < StandardError
+  end
+
+  # The connection pool used to manage keep-alive connections.
+  class Pool < ConnectionPool[untyped]
+    attr_reader available: untyped
+    attr_reader key: String
+  end
+
+  # Wraps a single Net::HTTP and tracks its keep-alive state.
+  class Connection
+    attr_accessor http: untyped
+    attr_accessor last_use: Time
+    attr_accessor requests: Integer
+    attr_accessor ssl_generation: Integer
+
+    def initialize: (untyped http_class, untyped http_args, Integer ssl_generation) -> void
+    def finish: () -> void
+    def reset: () -> void
+    def ressl: (Integer ssl_generation) -> void
+  end
+
+  def self.detect_idle_timeout: (URI::Generic | String uri, ?Integer max) -> Numeric?
+
+  def initialize: (?name: String?, ?proxy: untyped, ?pool_size: Integer) -> void
+
+  attr_reader name: String?
+  attr_reader pool: Pool
+  attr_reader generation: Integer
+  attr_reader ssl_generation: Integer
+  attr_reader proxy_uri: URI::Generic?
+
+  attr_reader headers: Hash[String, String]
+  attr_reader override_headers: Hash[String, String]
+  attr_reader http_versions: Hash[String, String]
+  attr_reader no_proxy: Array[String]
+  attr_reader socket_options: Array[untyped]
+
+  attr_accessor debug_output: untyped
+  attr_accessor idle_timeout: Numeric?
+  attr_accessor keep_alive: Numeric
+  attr_accessor max_requests: Integer?
+  attr_accessor open_timeout: Numeric?
+  attr_accessor read_timeout: Numeric?
+  attr_accessor write_timeout: Numeric?
+  attr_accessor reuse_ssl_sessions: bool
+  attr_accessor ignore_eof: bool?
+
+  attr_accessor certificate: untyped
+  attr_accessor ca_file: String?
+  attr_accessor ca_path: String?
+  attr_accessor cert_store: untyped
+  attr_accessor ciphers: untyped
+  attr_accessor extra_chain_cert: untyped
+  attr_accessor private_key: untyped
+  attr_accessor max_retries: Integer
+  attr_accessor ssl_timeout: Numeric?
+  attr_accessor ssl_version: untyped
+  attr_accessor min_version: untyped
+  attr_accessor max_version: untyped
+  attr_accessor verify_callback: untyped
+  attr_accessor verify_depth: Integer?
+  attr_accessor verify_mode: Integer?
+  attr_accessor verify_hostname: bool
+
+  def connection_for: (URI::Generic | String uri) { (Connection connection) -> untyped } -> untyped
+  def request: (URI::Generic | String uri, ?untyped req) ?{ (untyped response) -> void } -> untyped
+  def start: (untyped http) -> void
+  def finish: (Connection connection) -> void
+  def reset: (Connection connection) -> void
+  def reconnect: () -> Integer
+  def reconnect_ssl: () -> Integer
+  def reload: () -> Integer
+  def shutdown: () -> void
+  def expired?: (Connection connection) -> bool
+  def http_version: (URI::Generic | String uri) -> String?
+  def normalize_uri: (String uri) -> String
+  def pipeline: (URI::Generic | String uri, Array[untyped] requests) ?{ (untyped) -> untyped } -> untyped
+  def escape: (String? str) -> String?
+  def unescape: (String? str) -> String?
+  def proxy=: (untyped proxy) -> void
+  def proxy_from_env: () -> void
+  def proxy_bypass?: (String host, Integer port) -> bool
+  def ssl: (Connection connection) -> void
+end

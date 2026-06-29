@@ -1,6 +1,6 @@
 ---
-name: regexp_parser
-version: '2.8'
+name: net-http-persistent
+version: '4.0'
 source:
   type: git
   name: ruby/gem_rbs_collection
