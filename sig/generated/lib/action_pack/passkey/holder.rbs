@@ -3,8 +3,10 @@ module ActionPack
     module Holder
       @registration_options: Proc?
       @authentication_options: Proc?
+      module ClassMethods
+        def has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
+      end
       extend ActiveSupport::Concern
-      def has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
       attr_accessor association_name: untyped
       attr_accessor dependent: untyped
       def initialize: (**untyped) -> untyped

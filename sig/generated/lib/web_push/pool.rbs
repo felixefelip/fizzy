@@ -6,13 +6,13 @@ module WebPush
     attr_reader invalid_subscription_handler: untyped
     def initialize: (invalid_subscription_handler: untyped) -> void
     def queue: (untyped payload, untyped subscriptions) -> untyped
-    def shutdown: () -> untyped
+    def shutdown: () -> void
 
     private
 
-    def deliver_later: (untyped payload, untyped subscription) -> untyped
+    def deliver_later: (untyped payload, untyped subscription) -> bool?
     def deliver: (untyped notification, untyped id) -> untyped
-    def invalidate_subscription_later: (untyped id) -> untyped
-    def shutdown_pool: (Concurrent::ThreadPoolExecutor pool) -> untyped
+    def invalidate_subscription_later: (untyped id) -> bool
+    def shutdown_pool: (Concurrent::ThreadPoolExecutor pool) -> void
   end
 end

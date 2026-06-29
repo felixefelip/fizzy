@@ -1,6 +1,8 @@
 class Account
   module MultiTenantable
+    module ClassMethods
+      def accepting_signups?: () -> untyped
+    end
     extend ActiveSupport::Concern
-    def accepting_signups?: () -> untyped
   end
 end

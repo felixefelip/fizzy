@@ -2,8 +2,10 @@ class User
   module Transferable
     TRANSFER_LINK_EXPIRY_DURATION: ActiveSupport::Duration
 
+    module ClassMethods
+      def find_by_transfer_id: (untyped id) -> untyped
+    end
     extend ActiveSupport::Concern
-    def find_by_transfer_id: (untyped id) -> untyped
     def transfer_id: () -> untyped
   end
 end

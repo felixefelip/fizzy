@@ -704,6 +704,89 @@ methods:
           kind: self
         method: creator
     enforced: false
+  Filter#cards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Filter#empty?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Filter#single_workflow:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: boards
+        chain:
+        - first
+    enforced: false
+  Filter::Fields#default_indexed_by:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Filter::Fields#default_sorted_by:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Filter::Fields#with:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Filter::Params#params_digest:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+    enforced: false
+  Filter::Resources#board_titles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Filter::Resources#boards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
   Mentions#rich_text_associations:
     requires:
     - kind: not_nil

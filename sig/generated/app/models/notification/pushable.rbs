@@ -1,14 +1,16 @@
 class Notification
   module Pushable
+    module ClassMethods
+      def register_push_target: (untyped target) -> untyped
+      def resolve_push_target: (untyped target) -> untyped
+    end
     extend ActiveSupport::Concern
-    def register_push_target: (untyped target) -> untyped
-
-    private
-
-    def resolve_push_target: (untyped target) -> untyped
     def push_later: () -> untyped
     def push: () -> untyped
     def payload: () -> untyped
+
+    private
+
     def pushable?: () -> untyped
     def push_to: (untyped target) -> untyped
     def payload_type: () -> String

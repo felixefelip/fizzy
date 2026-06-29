@@ -1,7 +1,9 @@
 class Board
   module Publishable
+    module ClassMethods
+      def find_by_published_key: (untyped key) -> (Board & Board::Validated)
+    end
     extend ActiveSupport::Concern
-    def find_by_published_key: (untyped key) -> (Board & Board::Validated)
     def published?: () -> (true | false)
     def publish: () -> Board::Publication?
     def unpublish: () -> bool?

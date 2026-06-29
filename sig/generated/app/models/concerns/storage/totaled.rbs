@@ -1,7 +1,9 @@
 module Storage
   module Totaled
+    module ClassMethods
+      def foreign_key_for_storage: () -> String
+    end
     extend ActiveSupport::Concern
-    def foreign_key_for_storage: () -> String
     def bytes_used: () -> untyped
     def bytes_used_exact: () -> untyped
     def materialize_storage_later: () -> untyped

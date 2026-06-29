@@ -1,9 +1,11 @@
 module Search
   class Record
     module SQLite
+      module ClassMethods
+        def search_fields: (untyped query) -> Array[String]
+        def for: (untyped account_id) -> self
+      end
       extend ActiveSupport::Concern
-      def search_fields: (untyped query) -> Array[String]
-      def for: (untyped account_id) -> self
       def card_title: () -> untyped
       def card_description: () -> untyped
       def comment_body: () -> untyped
