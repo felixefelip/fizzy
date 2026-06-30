@@ -13,6 +13,6 @@ module WebPush
     def deliver_later: (untyped payload, untyped subscription) -> bool?
     def deliver: (untyped notification, untyped id) -> untyped
     def invalidate_subscription_later: (untyped id) -> bool
-    def shutdown_pool: (Concurrent::ThreadPoolExecutor pool) -> void
+    def shutdown_pool: ((Concurrent::ThreadPoolExecutor | Concurrent::FixedThreadPool) pool) -> void
   end
 end

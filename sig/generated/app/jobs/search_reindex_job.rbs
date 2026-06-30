@@ -4,6 +4,6 @@ class SearchReindexJob < ApplicationJob
 
   private
 
-  def safely_reindex: ((Card & Card::Validated) record) -> untyped
+  def safely_reindex: (((Card & Card::Validated) | (Comment & Comment::Validated)) record) -> untyped
   def log_progress: (Symbol step_name, Integer count, String cursor) -> untyped
 end

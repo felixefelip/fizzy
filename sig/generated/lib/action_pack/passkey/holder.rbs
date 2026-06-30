@@ -17,7 +17,7 @@ module ActionPack
 
       private
 
-      def extract_options_for: (ActionPack::WebAuthn::PublicKeyCredential::CreationOptions klass, untyped options) -> untyped
+      def extract_options_for: ((ActionPack::WebAuthn::PublicKeyCredential::CreationOptions | ActionPack::WebAuthn::PublicKeyCredential::RequestOptions) klass, untyped options) -> untyped
       def options_to_proc: (untyped options) -> Proc
     end
   end
