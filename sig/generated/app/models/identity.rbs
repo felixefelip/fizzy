@@ -7,5 +7,5 @@ class Identity < ApplicationRecord
 
   private
 
-  def deactivate_users: () -> untyped
+  def deactivate_users: () -> nil
 end

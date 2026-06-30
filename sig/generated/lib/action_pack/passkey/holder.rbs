@@ -10,8 +10,8 @@ module ActionPack
       attr_accessor association_name: untyped
       attr_accessor dependent: untyped
       def initialize: (**untyped) -> untyped
-      def authentication_options: () ?{ (untyped) -> untyped } -> Proc?
-      def registration_options: () ?{ (untyped) -> untyped } -> Proc?
+      def authentication_options: () ?{ (untyped) -> untyped } -> nil
+      def registration_options: () ?{ (untyped) -> untyped } -> nil
       def evaluate_authentication_options: (untyped record) -> Hash[untyped, untyped]
       def evaluate_registration_options: (untyped record) -> Hash[untyped, untyped]
 

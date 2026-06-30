@@ -8,6 +8,6 @@ class Card
 
     private
 
-    def broadcast_pin_updates: () -> untyped
+    def broadcast_pin_updates: () -> nil
   end
 end

@@ -1,8 +1,8 @@
 module Authentication
   module ClassMethods
-    def require_unauthenticated_access: (**untyped) -> untyped
+    def require_unauthenticated_access: (**untyped) -> void
     def allow_unauthenticated_access: (**untyped) -> untyped
-    def disallow_account_scope: (**untyped) -> untyped
+    def disallow_account_scope: (**untyped) -> void
   end
   extend ActiveSupport::Concern
   include ::Authentication::ViaMagicLink

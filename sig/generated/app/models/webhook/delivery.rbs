@@ -5,7 +5,7 @@ class Webhook
     ENDPOINT_TIMEOUT: ActiveSupport::Duration
     MAX_RESPONSE_SIZE: untyped
 
-    def self.cleanup: (?batch_size: untyped, ?pause: untyped) -> untyped
+    def self.cleanup: (?batch_size: untyped, ?pause: untyped) -> nil
     def deliver_later: () -> untyped
     def deliver: () -> untyped
     def sanitized_request: () -> Hash[Symbol, untyped]?

@@ -1,7 +1,7 @@
 module Authorization
   module ClassMethods
-    def allow_unauthorized_access: (**untyped) -> untyped
-    def require_access_without_a_user: (**untyped) -> untyped
+    def allow_unauthorized_access: (**untyped) -> void
+    def require_access_without_a_user: (**untyped) -> void
   end
   extend ActiveSupport::Concern
 

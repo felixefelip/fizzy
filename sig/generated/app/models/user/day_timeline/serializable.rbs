@@ -2,7 +2,7 @@ class User
   class DayTimeline
     module Serializable
       module ClassMethods
-        def find: (untyped id) -> untyped
+        def find: (untyped id) -> User::DayTimeline
         def tenanted?: () -> bool
       end
       extend ActiveSupport::Concern
