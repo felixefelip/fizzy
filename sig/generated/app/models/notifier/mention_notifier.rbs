@@ -1,5 +1,6 @@
 class Notifier
   class MentionNotifier < ::Notifier
+    alias mention source
 
     private
 
