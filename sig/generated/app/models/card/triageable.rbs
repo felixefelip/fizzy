@@ -4,6 +4,6 @@ class Card
     def triaged?: () -> bool
     def awaiting_triage?: () -> bool
     def triage_into: (untyped column) -> untyped
-    def send_back_to_triage: (?skip_event: untyped) -> untyped
+    def send_back_to_triage: (?skip_event: bool) -> untyped
   end
 end
