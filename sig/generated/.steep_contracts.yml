@@ -27,6 +27,14 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - join_code
     enforced: false
   Account::DataTransfer::ActionText::RichTextRecordSet#convert_gids_to_sgids:
     requires:
@@ -153,6 +161,14 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - users
     enforced: false
   Account::Import#add_importer_to_all_access_boards:
     requires:
@@ -162,6 +178,31 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - users
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+        - all_access
     enforced: false
   Account::Import#check:
     requires:
@@ -198,6 +239,14 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
     enforced: false
   Account::Import#reconcile_cards_count:
     requires:
@@ -207,6 +256,14 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - cards
     enforced: false
   Account::JoinCode#active?:
     requires:
@@ -234,6 +291,14 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
     enforced: false
   Account::Seeder#populate:
     requires:
@@ -243,8 +308,72 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+    enforced: false
+  ActionPack::Passkey::FormHelper#passkey_error_messages:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: tag
+    enforced: false
+  ActionPack::Passkey::FormHelper#passkey_registration_button:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: tag
+    enforced: false
+  ActionPack::Passkey::FormHelper#passkey_sign_in_button:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: tag
+    enforced: false
+  ActionPack::Passkey::Request#passkey_authentication_params:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: params
+    enforced: false
+  ActionPack::Passkey::Request#passkey_registration_params:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: params
     enforced: false
   ActionPack::WebAuthn::Authenticator::AssertionResponse#sign_count_increased?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: credential
+        chain:
+        - sign_count
+    enforced: false
+  ActionPack::WebAuthn::Authenticator::AssertionResponse#sign_count_must_increase:
     requires:
     - kind: not_nil
       expr:
@@ -265,6 +394,15 @@ methods:
         method: credential
         chain:
         - public_key
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: credential
+        chain:
+        - public_key
+        - oid
     enforced: false
   ActionPack::WebAuthn::Authenticator::AttestationResponse#attestation_must_be_valid:
     requires:
@@ -320,6 +458,178 @@ methods:
           kind: self
         method: public_key
     enforced: false
+  ActionPack::WebAuthn::PublicKeyCredential::CreationOptions#as_json:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: relying_party
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: id
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: resident_key
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user_verification
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: exclude_credentials
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: attestation
+    enforced: false
+  ActionPack::WebAuthn::PublicKeyCredential::CreationOptions#initialize:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: resident_key
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: attestation
+    enforced: false
+  ActionPack::WebAuthn::PublicKeyCredential::Options#initialize:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user_verification
+    enforced: false
+  ActionPack::WebAuthn::PublicKeyCredential::RequestOptions#as_json:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: relying_party
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: credentials
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user_verification
+    enforced: false
+  ActiveRecordReplicaSupport#replica_configured?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: configurations
+    enforced: false
+  ApplicationCable::Connection#connect:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+        chain:
+        - env
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+        chain:
+        - signed
+    enforced: false
+  ApplicationCable::Connection#find_session_by_cookie:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+        chain:
+        - signed
+    enforced: false
+  ApplicationCable::Connection#set_current_user:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: request
+        chain:
+        - env
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: cookies
+        chain:
+        - signed
+    enforced: false
   Assignment#within_limit:
     requires:
     - kind: not_nil
@@ -328,6 +638,23 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - assignments
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - assignments
+        - count
     enforced: false
   Attachments#rich_text_record:
     requires:
@@ -337,6 +664,56 @@ methods:
         receiver:
           kind: self
         method: class
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Authentication#redirect_authenticated_user:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Authentication#redirect_tenanted_request:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Authentication#require_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Authentication::ViaMagicLink#redirect_to_session_magic_link:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Board::Accessible#grant_access_to_everyone:
     requires:
@@ -351,7 +728,58 @@ methods:
         kind: send
         receiver:
           kind: self
+        method: account
+        chain:
+        - users
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
         method: accesses
+    enforced: false
+  Board::Accessible#grant_to:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: proxy_association
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: proxy_association
+        chain:
+        - owner
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: proxy_association
+        chain:
+        - owner
+        - account
+    enforced: false
+  Board::Accessible#revoke_from:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: proxy_association
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: proxy_association
+        chain:
+        - owner
     enforced: false
   Board::Entropic#entropy:
     requires:
@@ -362,6 +790,15 @@ methods:
           kind: self
         method: account
     enforced: false
+  Card#filled?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
   Card::Accessible#clean_inaccessible_data:
     requires:
     - kind: not_nil
@@ -370,6 +807,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - accesses
     enforced: false
   Card::Accessible#grant_access_to_assignees:
     requires:
@@ -379,6 +824,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - accesses
     enforced: false
   Card::Accessible#publicly_accessible?:
     requires:
@@ -424,6 +877,14 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - events
     enforced: false
   Card::ActivitySpike::Detector#multiple_people_commented?:
     requires:
@@ -433,6 +894,14 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - comments
     enforced: false
   Card::ActivitySpike::Detector#recent_period:
     requires:
@@ -442,6 +911,23 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - entropy
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - entropy
+        - auto_clean_period
     enforced: false
   Card::Exportable#export_json:
     requires:
@@ -464,6 +950,15 @@ methods:
           kind: self
         method: updated_at
     enforced: false
+  Card::Pinnable#unpin_by:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    enforced: false
   Card::Promptable#to_prompt:
     requires:
     - kind: not_nil
@@ -472,6 +967,20 @@ methods:
         receiver:
           kind: self
         method: title
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+        chain:
+        - to_plain_text
     - kind: not_nil
       expr:
         kind: send
@@ -499,6 +1008,23 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - accesses
+    enforced: false
+  Card::Searchable#search_content:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
     enforced: false
   Card::Stallable#stalled?:
     requires:
@@ -523,6 +1049,50 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - tags
+    enforced: false
+  CardScoped#render_card_replacement:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::PinsController#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::PinsController#destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::PinsController#render_pin_button_replacement:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
     enforced: false
   Column::Positioned#adjacent_columns:
     requires:
@@ -532,6 +1102,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
     enforced: false
   Column::Positioned#left_column:
     requires:
@@ -541,6 +1119,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
     enforced: false
   Column::Positioned#right_column:
     requires:
@@ -550,6 +1136,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
     enforced: false
   Column::Positioned#set_position:
     requires:
@@ -559,6 +1153,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
     enforced: false
   Comment#card_is_commentable:
     requires:
@@ -595,6 +1197,14 @@ methods:
         receiver:
           kind: self
         method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
     enforced: false
   Comment::Eventable#track_creation:
     requires:
@@ -616,6 +1226,20 @@ methods:
     enforced: false
   Comment::Promptable#to_prompt:
     requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: body
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: body
+        chain:
+        - to_plain_text
     - kind: not_nil
       expr:
         kind: send
@@ -644,6 +1268,15 @@ methods:
           kind: self
         method: card
     enforced: false
+  Comment::Searchable#search_content:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: body
+    enforced: false
   Comment::Searchable#searchable?:
     requires:
     - kind: not_nil
@@ -661,6 +1294,23 @@ methods:
         receiver:
           kind: self
         method: auto_postpone_period
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: container
+        chain:
+        - account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: container
+        chain:
+        - account
+        - entropy
     enforced: false
   Entropy#default_auto_postpone_period_in_days:
     requires:
@@ -672,6 +1322,15 @@ methods:
         method: container
         chain:
         - account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: container
+        chain:
+        - account
+        - entropy
     enforced: false
   Event::Description#creator_name:
     requires:
@@ -712,6 +1371,29 @@ methods:
         receiver:
           kind: self
         method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - accessible_cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - accessible_cards
+        - preloaded
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card_ids
     enforced: false
   Filter#empty?:
     requires:
@@ -721,6 +1403,24 @@ methods:
         receiver:
           kind: self
         method: class
+    enforced: false
+  Filter#include_closed_cards?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card_ids
+    enforced: false
+  Filter#include_not_now_cards?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card_ids
     enforced: false
   Filter#single_workflow:
     requires:
@@ -741,6 +1441,14 @@ methods:
         receiver:
           kind: self
         method: class
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+        chain:
+        - default_values
     enforced: false
   Filter::Fields#default_sorted_by:
     requires:
@@ -750,6 +1458,14 @@ methods:
         receiver:
           kind: self
         method: class
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+        chain:
+        - default_values
     enforced: false
   Filter::Fields#with:
     requires:
@@ -759,6 +1475,14 @@ methods:
         receiver:
           kind: self
         method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - filters
     enforced: false
   Filter::Params#params_digest:
     requires:
@@ -777,6 +1501,23 @@ methods:
         receiver:
           kind: self
         method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - boards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - boards
+        - first
     enforced: false
   Filter::Resources#boards:
     requires:
@@ -786,6 +1527,92 @@ methods:
         receiver:
           kind: self
         method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - boards
+    enforced: false
+  Filterable#remove_from_filters:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filters
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    enforced: false
+  LoginHelper#login_url:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  LoginHelper#logout_url:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Mailers::Unsubscribable#set_unsubscribe_headers:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: headers
+    enforced: false
+  Mentions#mentionable_content:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    enforced: false
+  Mentions#mentionable_content_changed?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    enforced: false
+  Mentions#mentionable_users:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Mentions#mentionees_from_attachments:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
     enforced: false
   Mentions#rich_text_associations:
     requires:
@@ -795,6 +1622,20 @@ methods:
         receiver:
           kind: self
         method: class
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
     enforced: false
   Notification#bundle:
     requires:
@@ -831,6 +1672,14 @@ methods:
         kind: send
         receiver:
           kind: self
+        method: user
+        chain:
+        - settings
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
         method: account
     enforced: false
   Notification::Bundle#notifications:
@@ -841,6 +1690,14 @@ methods:
         receiver:
           kind: self
         method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - notifications
     enforced: false
   Notification::Bundle#overlapping_bundles:
     requires:
@@ -850,6 +1707,23 @@ methods:
         receiver:
           kind: self
         method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - notification_bundles
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - notification_bundles
+        - where
     enforced: false
   Notification::Bundle#set_default_window:
     requires:
@@ -859,6 +1733,14 @@ methods:
         receiver:
           kind: self
         method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - settings
     - kind: not_nil
       expr:
         kind: send
@@ -883,6 +1765,14 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - title
     enforced: false
   Notification::Pushable#push:
     requires:
@@ -892,6 +1782,14 @@ methods:
         receiver:
           kind: self
         method: class
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: class
+        chain:
+        - push_targets
     enforced: false
   Notification::Pushable#pushable?:
     requires:
@@ -906,6 +1804,14 @@ methods:
         kind: send
         receiver:
           kind: self
+        method: creator
+        chain:
+        - system?
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
         method: user
     - kind: not_nil
       expr:
@@ -913,6 +1819,55 @@ methods:
         receiver:
           kind: self
         method: account
+    enforced: false
+  Notification::Pushable#register_push_target:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: push_targets
+    enforced: false
+  Notifier#notify:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: recipients
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+    enforced: false
+  Notifier#should_notify?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
     enforced: false
   Notifier::CardEventNotifier#recipients:
     requires:
@@ -922,6 +1877,14 @@ methods:
         receiver:
           kind: self
         method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - watchers
     enforced: false
   Push::Subscription#notification:
     requires:
@@ -931,6 +1894,32 @@ methods:
         receiver:
           kind: self
         method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - notifications
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - notifications
+        - unread
+    enforced: false
+  RequestForgeryProtection#allowed_api_request?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: sec_fetch_site_value
     enforced: false
   Search::Record::SQLite#card_title:
     requires:
@@ -949,6 +1938,14 @@ methods:
         receiver:
           kind: self
         method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - description
     enforced: false
   Search::Record::Trilogy#card_title:
     requires:
@@ -959,6 +1956,93 @@ methods:
           kind: self
         method: card
     enforced: false
+  Search::Result#card_description:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - description
+    enforced: false
+  Search::Result#card_title:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Search::Result#comment_body:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: comment
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: comment
+        chain:
+        - body
+    enforced: false
+  Search::Result#source:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: comment_id
+    enforced: false
+  Storage::AttachmentTracking#record_storage_attach:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: blob
+    enforced: false
+  Storage::AttachmentTracking#record_storage_detach:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: blob
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: blob
+        chain:
+        - byte_size
+    enforced: false
+  Storage::AttachmentTracking#storage_tracked_record:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: record
+    enforced: false
   Storage::Total#current_usage:
     requires:
     - kind: not_nil
@@ -967,6 +2051,42 @@ methods:
         receiver:
           kind: self
         method: bytes_stored
+    enforced: false
+  Storage::Totaled#foreign_key_for_storage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model_name
+    enforced: false
+  Storage::Totaled#materialize_storage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: storage_entries
+    enforced: false
+  Storage::Totaled#reconcile_storage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: storage_entries
+    enforced: false
+  TurboFlash#turbo_stream_flash:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
     enforced: false
   User#setup?:
     requires:
@@ -985,6 +2105,98 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+        - all_access
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - boards
+        - all_access
+        - ids
+    enforced: false
+  User::Avatar#avatar_attached?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+    enforced: false
+  User::Avatar#avatar_content_type_allowed:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: errors
+    enforced: false
+  User::Avatar#avatar_dimensions_allowed:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+        chain:
+        - blob
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+        chain:
+        - blob
+        - metadata
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: errors
+    enforced: false
+  User::Avatar#avatar_thumbnail:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
     enforced: false
   User::DataExport#exportable_cards:
     requires:
@@ -994,6 +2206,31 @@ methods:
         receiver:
           kind: self
         method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - accessible_cards
+    enforced: false
+  User::DayTimeline::Column#events_by_hour:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - created_at
     enforced: false
   User::EmailAddressChangeable#change_email_address_using_token:
     requires:
@@ -1003,6 +2240,14 @@ methods:
         receiver:
           kind: self
         method: identity
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
+        chain:
+        - email_address
     enforced: false
   User::EmailAddressChangeable#generate_email_address_change_token:
     requires:
@@ -1021,6 +2266,23 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - tags
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - tags
+        - all
     enforced: false
   User::Filtering#users:
     requires:
@@ -1030,6 +2292,23 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - users
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+        chain:
+        - users
+        - active
     enforced: false
   User::Named#familiar_name:
     requires:
@@ -1150,6 +2429,14 @@ methods:
         receiver:
           kind: self
         method: webhook
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+        chain:
+        - delinquency_tracker
     enforced: false
   Webhook::Delivery#headers:
     requires:
@@ -1159,6 +2446,23 @@ methods:
         receiver:
           kind: self
         method: event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+        chain:
+        - created_at
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+        chain:
+        - created_at
+        - utc
     enforced: false
   Webhook::Delivery#payload:
     requires:
@@ -1177,6 +2481,14 @@ methods:
         receiver:
           kind: self
         method: webhook
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+        chain:
+        - renderer
     enforced: false
   Webhook::Delivery#sanitized_request:
     requires:
