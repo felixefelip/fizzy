@@ -12,8 +12,13 @@
 rbs_infer_all:
 	bundle exec rbs_infer app/ lib/ sig/ --output
 
+## `bundle exec` não é opcional aqui. As entradas `source: rubygems` do
+## rbs_collection.lock.yaml são pinadas na VERSÃO EXATA do gem instalado, e o
+## `rbs` que roda é quem decide qual versão é essa. Rodado fora do bundle do app,
+## o lock sai pinado nas versões do outro bundle e o `steep check` morre com
+## `UnknownLibraryError: Cannot find type definitions for library: <gem> (<ver>)`.
 rbs_collection_update:
-	rbs collection update
+	bundle exec rbs collection update
 
 rbs_rails_generator:
 	bundle exec rake rbs_rails:all

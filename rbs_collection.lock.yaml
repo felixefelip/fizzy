@@ -114,7 +114,7 @@ gems:
   source:
     type: stdlib
 - name: bigdecimal
-  version: 4.1.2
+  version: 4.1.1
   source:
     type: rubygems
 - name: cgi
@@ -186,7 +186,7 @@ gems:
     remote: https://github.com/felixefelip/gem_rbs_collection.git
     repo_dir: gems
 - name: ffi
-  version: 1.17.4
+  version: 1.17.2
   source:
     type: rubygems
 - name: fileutils
@@ -241,10 +241,6 @@ gems:
     revision: 4d9d8513381f344add6de90fac339953a57d142c
     remote: https://github.com/felixefelip/gem_rbs_collection.git
     repo_dir: gems
-- name: language_server-protocol
-  version: 3.17.0.6
-  source:
-    type: rubygems
 - name: listen
   version: '3.9'
   source:
@@ -390,7 +386,7 @@ gems:
   source:
     type: stdlib
 - name: prism
-  version: 1.9.0
+  version: 1.6.0
   source:
     type: rubygems
 - name: pstore
@@ -458,7 +454,11 @@ gems:
   source:
     type: stdlib
 - name: rbs
-  version: 4.1.0
+  version: 4.0.2
+  source:
+    type: rubygems
+- name: rbs_infer
+  version: 0.1.0
   source:
     type: rubygems
 - name: rdoc
@@ -517,6 +517,10 @@ gems:
     revision: 4d9d8513381f344add6de90fac339953a57d142c
     remote: https://github.com/felixefelip/gem_rbs_collection.git
     repo_dir: gems
+- name: steep
+  version: 2.1.0.dev
+  source:
+    type: rubygems
 - name: stringio
   version: '0'
   source:

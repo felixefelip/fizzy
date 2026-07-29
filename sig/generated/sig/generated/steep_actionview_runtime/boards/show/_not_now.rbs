@@ -1,12 +1,12 @@
 class ERBPartialBoardsShowNotNow
   include ActionViewContext
 
-  def initialize: (board: untyped) -> void
+  def initialize: (board: Board?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: untyped
+  attr_reader board: Board?
 end
