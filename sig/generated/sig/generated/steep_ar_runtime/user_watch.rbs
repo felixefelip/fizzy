@@ -1,0 +1,11 @@
+module User_Watch
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(Watch) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Watch
+    def create: (*untyped) -> ::Watch
+    def create!: (*untyped) -> ::Watch
+  end
+end

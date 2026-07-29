@@ -3268,7 +3268,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Notification#run_belongs_to_default_account:
     requires:
     - kind: not_nil
@@ -3277,7 +3276,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Notification#run_belongs_to_default_callbacks:
     requires:
     - kind: not_nil
@@ -3286,7 +3284,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Notification#save:
     requires:
     - kind: not_nil
@@ -3295,7 +3292,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Notification::Bundle#deliver:
     requires:
     - kind: not_nil
@@ -3711,6 +3707,7 @@ methods:
         receiver:
           kind: self
         method: user
+    enforced: false
   Pin#run_belongs_to_default_account:
     requires:
     - kind: not_nil
@@ -3719,6 +3716,7 @@ methods:
         receiver:
           kind: self
         method: user
+    enforced: false
   Pin#run_belongs_to_default_callbacks:
     requires:
     - kind: not_nil
@@ -3727,6 +3725,7 @@ methods:
         receiver:
           kind: self
         method: user
+    enforced: false
   Pin#save:
     requires:
     - kind: not_nil
@@ -3735,6 +3734,7 @@ methods:
         receiver:
           kind: self
         method: user
+    enforced: false
   Push::Subscription#notification:
     requires:
     - kind: not_nil
@@ -3769,7 +3769,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Push::Subscription#run_belongs_to_default_account:
     requires:
     - kind: not_nil
@@ -3778,7 +3777,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Push::Subscription#run_belongs_to_default_callbacks:
     requires:
     - kind: not_nil
@@ -3787,7 +3785,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Push::Subscription#save:
     requires:
     - kind: not_nil
@@ -3796,7 +3793,6 @@ methods:
         receiver:
           kind: self
         method: user
-    enforced: false
   Push::Subscription#validate_endpoint_url:
     requires:
     - kind: not_nil
@@ -3978,7 +3974,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Step#run_belongs_to_default_account:
     requires:
     - kind: not_nil
@@ -3987,7 +3982,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Step#run_belongs_to_default_callbacks:
     requires:
     - kind: not_nil
@@ -3996,7 +3990,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Step#save:
     requires:
     - kind: not_nil
@@ -4005,7 +3998,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Storage::AttachmentTracking#record_storage_attach:
     requires:
     - kind: not_nil
@@ -4675,6 +4667,28 @@ methods:
         receiver:
           kind: self
         method: user
+    enforced: false
+  User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: owner
+        chain:
+        - settings
+    enforced: false
+  User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: owner
+        chain:
+        - settings
     enforced: false
   Watch#run_before_validation_callbacks:
     requires:

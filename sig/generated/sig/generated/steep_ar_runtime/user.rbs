@@ -1,4 +1,14 @@
 class User
+  def accesses: () -> User_Access::ActiveRecord_Associations_CollectionProxy
+  def boards: () -> User_Board::ActiveRecord_Associations_CollectionProxy
+  def assignments: () -> User_Assignment::ActiveRecord_Associations_CollectionProxy
+  def assignings: () -> User_Assignment::ActiveRecord_Associations_CollectionProxy
+  def push_subscriptions: () -> User_Push_Subscription::ActiveRecord_Associations_CollectionProxy
+  def mentions: () -> User_Mention::ActiveRecord_Associations_CollectionProxy
+  def notifications: () -> User_Notification::ActiveRecord_Associations_CollectionProxy
+  def notification_bundles: () -> User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy
+  def search_queries: () -> User_Search_Query::ActiveRecord_Associations_CollectionProxy
+  def watches: () -> User_Watch::ActiveRecord_Associations_CollectionProxy
   def comments: () -> User_Comment::ActiveRecord_Associations_CollectionProxy
   def filters: () -> User_Filter::ActiveRecord_Associations_CollectionProxy
   def closures: () -> User_Closure::ActiveRecord_Associations_CollectionProxy

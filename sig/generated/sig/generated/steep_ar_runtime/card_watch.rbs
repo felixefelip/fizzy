@@ -1,0 +1,11 @@
+module Card_Watch
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(Watch) klass, Card owner) -> void
+    def owner: () -> Card
+    def build: (*untyped) -> ::Watch
+    def create: (*untyped) -> ::Watch
+    def create!: (*untyped) -> ::Watch
+  end
+end

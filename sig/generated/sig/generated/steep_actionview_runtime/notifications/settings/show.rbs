@@ -1,7 +1,9 @@
 class ERBNotificationsSettingsShow
+  @settings: User::Settings?
+
   include ActionViewContext
 
-  def initialize: (boards: untyped, page_title: untyped, settings: untyped) -> void
+  def initialize: (boards: untyped, page_title: untyped, settings: User::Settings?) -> void
   def render: (?({ partial: String, collection: untyped, locals: { user: (User & User::Validated)? } } | String) target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

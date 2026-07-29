@@ -4,5 +4,12 @@ class Card
   def run_belongs_to_default_callbacks: () -> (User | (User & User::Validated) | nil)
   def run_belongs_to_default_account: () -> untyped
   def run_belongs_to_default_creator: () -> (User | (User & User::Validated) | nil)
+  def assignments: () -> Card_Assignment::ActiveRecord_Associations_CollectionProxy
+  def comments: () -> Card_Comment::ActiveRecord_Associations_CollectionProxy
+  def steps: () -> Card_Step::ActiveRecord_Associations_CollectionProxy
+  def pins: () -> Card_Pin::ActiveRecord_Associations_CollectionProxy
+  def taggings: () -> Card_Tagging::ActiveRecord_Associations_CollectionProxy
+  def tags: () -> Card_Tag::ActiveRecord_Associations_CollectionProxy
+  def watches: () -> Card_Watch::ActiveRecord_Associations_CollectionProxy
   def reactions: () -> Card_Reaction::ActiveRecord_Associations_CollectionProxy
 end

@@ -1,4 +1,6 @@
 class Account
+  def storage_entries: () -> Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  def search_queries: () -> Account_Search_Query::ActiveRecord_Associations_CollectionProxy
   def users: () -> Account_User::ActiveRecord_Associations_CollectionProxy
   def boards: () -> Account_Board::ActiveRecord_Associations_CollectionProxy
   def cards: () -> Account_Card::ActiveRecord_Associations_CollectionProxy

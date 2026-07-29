@@ -1,0 +1,8 @@
+module Card_Tag
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(Tag) klass, Card owner) -> void
+    def owner: () -> Card
+  end
+end

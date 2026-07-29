@@ -1,8 +1,10 @@
 class ERBFiltersDestroy
+  @filter: (Filter & Filter::Validated)
+
   include ActionViewContext
   include FiltersHelper
 
-  def initialize: (filter: untyped) -> void
+  def initialize: (filter: Filter & ::Filter::Validated) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

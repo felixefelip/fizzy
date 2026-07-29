@@ -1,0 +1,11 @@
+module User_Mention
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(Mention) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Mention
+    def create: (*untyped) -> ::Mention
+    def create!: (*untyped) -> ::Mention
+  end
+end

@@ -1,0 +1,8 @@
+module Event_Notification
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Event
+
+    def initialize: (singleton(Notification) klass, Event owner) -> void
+    def owner: () -> Event
+  end
+end

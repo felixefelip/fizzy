@@ -336,6 +336,18 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: Account_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - account
+- class: Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - account
 - class: Account_Tag::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -737,6 +749,24 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Board_Access::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - board
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - board
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - board
 - class: Board_Event::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -752,6 +782,12 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: Board_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - board
 - class: Board_Tag::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -1111,6 +1147,24 @@ postconditions:
   method: should_detect_activity_spikes?
   effects:
     returns_ivar: "@should_detect_activity_spikes"
+- class: Card_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
+- class: Card_Pin::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
 - class: Card_Reaction::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -1120,6 +1174,24 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
+- class: Card_Tagging::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
+- class: Card_Watch::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - card
 - class: Cards::AssignmentsController
   method: __rbs_infer__run_create
   effects:
@@ -1831,6 +1903,12 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+- class: Column_Card::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - column
 - class: Column_Card::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -4393,6 +4471,24 @@ postconditions:
   effects:
     may_write:
     - "@user"
+- class: User_Access::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
+- class: User_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - assignee
+- class: User_Board::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - creator
 - class: User_Closure::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -4438,6 +4534,24 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: User_Mention::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - mentioner
+- class: User_Notification::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
+- class: User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
 - class: User_Pin::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -4453,6 +4567,24 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: User_Push_Subscription::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
+- class: User_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
+- class: User_Watch::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
 - class: Users::AvatarsController
   method: __rbs_infer__run_destroy
   effects:

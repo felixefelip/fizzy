@@ -3,4 +3,5 @@ class Mention
   def run_before_validation_callbacks: () -> untyped
   def run_belongs_to_default_callbacks: () -> untyped
   def run_belongs_to_default_account: () -> untyped
+  def notifications: () -> Mention_Notification::ActiveRecord_Associations_CollectionProxy
 end

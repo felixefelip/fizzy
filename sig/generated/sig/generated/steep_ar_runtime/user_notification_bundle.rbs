@@ -1,0 +1,11 @@
+module User_Notification_Bundle
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(Notification::Bundle) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Notification::Bundle
+    def create: (*untyped) -> ::Notification::Bundle
+    def create!: (*untyped) -> ::Notification::Bundle
+  end
+end

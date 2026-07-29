@@ -1,0 +1,11 @@
+module Card_Assignment
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(Assignment) klass, Card owner) -> void
+    def owner: () -> Card
+    def build: (*untyped) -> ::Assignment
+    def create: (*untyped) -> ::Assignment
+    def create!: (*untyped) -> ::Assignment
+  end
+end

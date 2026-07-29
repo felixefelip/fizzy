@@ -1,0 +1,11 @@
+module Card_Step
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(Step) klass, Card owner) -> void
+    def owner: () -> Card
+    def build: (*untyped) -> ::Step
+    def create: (*untyped) -> ::Step
+    def create!: (*untyped) -> ::Step
+  end
+end

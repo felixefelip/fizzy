@@ -1,0 +1,11 @@
+module User_Assignment
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(Assignment) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Assignment
+    def create: (*untyped) -> ::Assignment
+    def create!: (*untyped) -> ::Assignment
+  end
+end

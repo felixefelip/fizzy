@@ -1,0 +1,11 @@
+module Board_Storage_Entry
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Board
+
+    def initialize: (singleton(Storage::Entry) klass, Board owner) -> void
+    def owner: () -> Board
+    def build: (*untyped) -> ::Storage::Entry
+    def create: (*untyped) -> ::Storage::Entry
+    def create!: (*untyped) -> ::Storage::Entry
+  end
+end

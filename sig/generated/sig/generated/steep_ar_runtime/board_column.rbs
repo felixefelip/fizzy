@@ -1,0 +1,11 @@
+module Board_Column
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Board
+
+    def initialize: (singleton(Column) klass, Board owner) -> void
+    def owner: () -> Board
+    def build: (*untyped) -> ::Column
+    def create: (*untyped) -> ::Column
+    def create!: (*untyped) -> ::Column
+  end
+end

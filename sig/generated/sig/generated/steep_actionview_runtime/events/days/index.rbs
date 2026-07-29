@@ -1,7 +1,9 @@
 class ERBEventsDaysIndex
+  @day_timeline: User::DayTimeline
+
   include ActionViewContext
 
-  def initialize: (day_timeline: untyped, filter: untyped) -> void
+  def initialize: (day_timeline: User::DayTimeline, filter: untyped) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

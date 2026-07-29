@@ -1,12 +1,12 @@
 class ERBPartialMyPinsPin
   include ActionViewContext
 
-  def initialize: (pin: untyped) -> void
+  def initialize: (pin: (Pin & Pin::Validated)) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader pin: untyped
+  attr_reader pin: (Pin & Pin::Validated)
 end

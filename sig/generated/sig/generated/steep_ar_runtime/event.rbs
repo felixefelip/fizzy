@@ -3,5 +3,6 @@ class Event
   def run_before_validation_callbacks: () -> Account?
   def run_belongs_to_default_callbacks: () -> Account?
   def run_belongs_to_default_account: () -> Account?
+  def notifications: () -> Event_Notification::ActiveRecord_Associations_CollectionProxy
   def webhook_deliveries: () -> Event_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy
 end

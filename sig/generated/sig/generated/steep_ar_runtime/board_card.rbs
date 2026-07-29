@@ -1,9 +1,9 @@
-module Column_Card
+module Board_Card
   class ActiveRecord_Associations_CollectionProxy
-    @owner: Column
+    @owner: Board
 
-    def initialize: (singleton(Card) klass, Column owner) -> void
-    def owner: () -> Column
+    def initialize: (singleton(Card) klass, Board owner) -> void
+    def owner: () -> Board
     def build: (*untyped) -> ::Card
     def create: (*untyped) -> ::Card
     def create!: (*untyped) -> ::Card
