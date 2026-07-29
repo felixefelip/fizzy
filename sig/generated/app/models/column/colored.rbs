@@ -3,6 +3,7 @@ class Column
     DEFAULT_COLOR: Color
 
     extend ActiveSupport::Concern
+
     def color: () -> untyped
   end
 end

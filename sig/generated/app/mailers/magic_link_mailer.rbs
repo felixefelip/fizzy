@@ -1,4 +1,5 @@
 class MagicLinkMailer < ApplicationMailer
   @magic_link: MagicLink?
+
   def sign_in_instructions: (MagicLink? magic_link) -> Mail::Message
 end

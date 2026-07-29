@@ -1,6 +1,7 @@
 module My
   class PinsController < ApplicationController
     @pins: Pin::ActiveRecord_Relation?
+
     def index: () -> void
 
     private

@@ -1,5 +1,6 @@
 class Mention < ApplicationRecord
   include Notifiable
+
   def self_mention?: () -> untyped
   def notifiable_target: () -> untyped?
   def card: () -> untyped

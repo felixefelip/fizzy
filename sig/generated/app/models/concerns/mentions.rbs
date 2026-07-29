@@ -1,5 +1,6 @@
 module Mentions
   extend ActiveSupport::Concern
+
   def create_mentions: (?mentioner: untyped) -> untyped
   def mentionable_content: () -> untyped
   def scan_mentionees: () -> untyped

@@ -1,5 +1,7 @@
 module Push
   class Subscription < ApplicationRecord
+    @endpoint_uri: (URI::File | URI::FTP | URI::HTTP | URI::HTTPS | URI::LDAP | URI::LDAPS | URI::MailTo | URI::WS | URI::WSS | URI::Generic)?
+
     PERMITTED_ENDPOINT_HOSTS: Array[String]
 
     def notification: (**untyped) -> WebPush::Notification

@@ -4,6 +4,7 @@ module ActionPack
     def self.register: (untyped passkey, **untyped) -> self
     def self.authentication_options: (?holder: untyped, **untyped) -> ActionPack::WebAuthn::PublicKeyCredential::RequestOptions
     def self.authenticate: (untyped passkey) -> self?
+
     def authenticate: (untyped passkey) -> self?
     def to_public_key_credential: () -> ActionPack::WebAuthn::PublicKeyCredential
   end

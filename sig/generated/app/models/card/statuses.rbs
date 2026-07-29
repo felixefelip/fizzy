@@ -1,8 +1,11 @@
 class Card
   module Statuses
     extend ActiveSupport::Concern
+
     alias was_just_published? was_just_published
-    attr_accessor was_just_published: bool
+
+    attr_accessor was_just_published: bool?
+
     def publish: () -> untyped
 
     private

@@ -1,9 +1,11 @@
 class Card
   module Stallable
     @should_detect_activity_spikes: bool?
+
     STALLED_AFTER_LAST_SPIKE_PERIOD: ActiveSupport::Duration
 
     extend ActiveSupport::Concern
+
     def stalled?: () -> untyped
     def last_activity_spike_at: () -> ActiveSupport::TimeWithZone?
     def detect_activity_spikes: () -> bool

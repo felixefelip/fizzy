@@ -1,6 +1,7 @@
 class ZipFile
   class Reader
     @io: ZipFile::RemoteIO
+
     def initialize: (RemoteIO io) -> void
     def read: (untyped file_path) -> untyped
     def glob: (untyped pattern) -> untyped

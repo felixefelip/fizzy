@@ -5,5 +5,5 @@ module DayTimelinesScoped
   private
 
   def set_day_timeline: () -> untyped
-  def day: () -> (ActiveSupport::TimeWithZone | true)
+  def day: () -> (ActiveSupport::TimeWithZone | bool)
 end

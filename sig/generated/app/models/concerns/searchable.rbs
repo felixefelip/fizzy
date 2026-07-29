@@ -2,6 +2,7 @@ module Searchable
   SEARCH_CONTENT_LIMIT: untyped
 
   extend ActiveSupport::Concern
+
   def reindex: () -> untyped
 
   private

@@ -3,7 +3,7 @@ class Webhook
     DELINQUENCY_THRESHOLD: Integer
     DELINQUENCY_DURATION: ActiveSupport::Duration
 
-    def record_delivery_of: (untyped delivery) -> untyped
+    def record_delivery_of: (Webhook::Delivery delivery) -> untyped
 
     private
 

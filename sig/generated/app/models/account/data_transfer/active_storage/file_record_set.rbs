@@ -3,6 +3,7 @@ class Account
     module ActiveStorage
       class FileRecordSet < ::Account::DataTransfer::RecordSet
         @old_key_to_blob_id: nil
+
         def initialize: (Account? account) -> void
 
         private

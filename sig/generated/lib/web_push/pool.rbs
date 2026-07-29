@@ -4,6 +4,7 @@ module WebPush
     attr_reader invalidation_pool: Concurrent::FixedThreadPool
     attr_reader connection: Net::HTTP::Persistent
     attr_reader invalid_subscription_handler: untyped
+
     def initialize: (invalid_subscription_handler: untyped) -> void
     def queue: (untyped payload, untyped subscriptions) -> untyped
     def shutdown: () -> void

@@ -3,6 +3,7 @@ module ActionPack
     class RelyingParty
       attr_reader id: untyped
       attr_reader name: untyped
+
       def initialize: (?id: untyped, ?name: untyped) -> untyped
       def as_json: (*untyped) -> { id: untyped, name: untyped }
     end

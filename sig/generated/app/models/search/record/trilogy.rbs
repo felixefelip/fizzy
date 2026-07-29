@@ -9,8 +9,11 @@ module Search
         def search_fields: (untyped query) -> String
         def for: (untyped account_id) -> Class
       end
+
       extend ActiveSupport::Concern
+
       def self.name: () -> String
+
       def card_title: () -> untyped
       def card_description: () -> untyped
       def comment_body: () -> untyped

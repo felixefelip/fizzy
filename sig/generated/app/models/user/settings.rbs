@@ -7,8 +7,8 @@ class User
     private
 
     def review_pending_bundles: () -> untyped
-    def cancel_pending_bundles: () -> nil
-    def flush_pending_bundles: () -> nil
+    def cancel_pending_bundles: () -> untyped
+    def flush_pending_bundles: () -> untyped
     def default_timezone: () -> instance?
   end
 end

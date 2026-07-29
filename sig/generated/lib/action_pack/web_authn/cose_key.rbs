@@ -23,9 +23,11 @@ module ActionPack
       UNCOMPRESSED_POINT_MARKER: Integer
 
       def self.decode: (nil bytes) -> self
+
       attr_reader key_type: untyped
       attr_reader algorithm: untyped
       attr_reader parameters: untyped
+
       def initialize: (key_type: untyped, algorithm: untyped, parameters: untyped) -> untyped
       def to_openssl_key: () -> OpenSSL::PKey::PKey
 

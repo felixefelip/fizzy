@@ -3,8 +3,10 @@ class TimeWindowParser
   VALUES: Array[String]
 
   def self.parse: (untyped string) -> untyped
-  def self.human_name_for: (untyped value) -> untyped
+  def self.human_name_for: (String value) -> untyped
+
   attr_reader now: untyped
+
   def initialize: (?now: untyped) -> untyped
   def parse: (untyped string) -> untyped
 

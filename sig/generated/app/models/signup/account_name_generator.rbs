@@ -1,10 +1,15 @@
 class Signup
   class AccountNameGenerator
+    @first_account_name_regex: Regexp?
+    @nth_account_name_regex: Regexp?
+    @prefix: String?
+
     SUFFIX: String
 
-    attr_reader identity: Identity & Identity::Validated
+    attr_reader identity: (Identity & Identity::Validated)?
     attr_reader name: untyped
-    def initialize: (identity: Identity & Identity::Validated, name: untyped) -> void
+
+    def initialize: (identity: (Identity & Identity::Validated)?, name: untyped) -> void
     def generate: () -> String
 
     private

@@ -1,16 +1,19 @@
 class Signup
   @tenant: nil
+
   include ActiveModel::Model
   include ActiveModel::Attributes
   extend ActiveModel::Attributes::ClassMethods
   include ActiveModel::Validations
   extend ActiveModel::Validations::ClassMethods
+
   attr_accessor full_name: untyped
   attr_accessor email_address: untyped
-  attr_accessor identity: Identity & Identity::Validated
+  attr_accessor identity: (Identity & Identity::Validated)?
   attr_accessor skip_account_seeding: untyped
-  attr_reader account: self
-  attr_reader user: nil
+  attr_reader account: self?
+  attr_reader user: nil?
+
   def initialize: (**untyped) -> void
   def create_identity: () -> MagicLink
   def complete: () -> bool
@@ -29,11 +32,12 @@ class Signup
     attr_reader account: singleton(Account)
   end
 
-  class AfterDestroyAccount
-    attr_reader account: nil
+  class AfterCreateIdentity
+    attr_reader identity: (Identity & Identity::Validated)
   end
 
-  class AfterInitialize
-    attr_reader email_address: String?
+  class AfterDestroyAccount
+    attr_reader account: nil
+    attr_reader user: nil
   end
 end

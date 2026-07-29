@@ -1,5 +1,6 @@
 class AutoLinkScrubber < Loofah::Scrubber
   @direction: Symbol
+
   EXCLUDED_ELEMENTS: Array[String]
   EMAIL_AUTOLINK_REGEXP: Regexp
   URL_REGEXP: Regexp

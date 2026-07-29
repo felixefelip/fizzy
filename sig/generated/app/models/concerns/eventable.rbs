@@ -1,6 +1,7 @@
 module Eventable
   extend ActiveSupport::Concern
-  def track_event: ((String | Symbol) action, ?creator: untyped, ?board: untyped, **untyped) -> untyped
+
+  def track_event: ((String | Symbol) action, ?creator: ({ particulars: { old_title: untyped, new_title: untyped } } | { particulars: { old_board: String?, new_board: String? } } | { assignee_ids: Array[untyped] } | { particulars: { column: untyped } }), ?board: untyped, **untyped) -> untyped
   def event_was_created: (untyped event) -> untyped
 
   private

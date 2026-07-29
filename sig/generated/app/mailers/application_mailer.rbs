@@ -1,5 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-
   private
 
   def default_url_options: () -> untyped

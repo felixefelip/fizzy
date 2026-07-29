@@ -12,6 +12,7 @@ class User < ApplicationRecord
   include Searcher
   include Watcher
   include Timelined
+
   def deactivate: () -> untyped
   def setup?: () -> bool
   def verified?: () -> (bool | false)

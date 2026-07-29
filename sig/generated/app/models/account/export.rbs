@@ -1,6 +1,5 @@
 class Account
   class Export < ::Export
-
     private
 
     def filename: () -> String

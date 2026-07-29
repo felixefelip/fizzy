@@ -5,6 +5,7 @@ class Comment < ApplicationRecord
   include Promptable
   include Searchable
   include Storage::Tracked
+
   def to_partial_path: () -> String
   def publicly_accessible?: () -> untyped
   def accessible_to?: () -> (bool | false)

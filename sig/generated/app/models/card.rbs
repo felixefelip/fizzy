@@ -23,6 +23,7 @@ class Card < ApplicationRecord
   include Taggable
   include Triageable
   include Watchable
+
   def card: () -> Card
   def to_param: () -> (String | "")
   def move_to: (untyped new_board) -> untyped

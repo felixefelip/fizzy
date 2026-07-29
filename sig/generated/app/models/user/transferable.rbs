@@ -5,7 +5,9 @@ class User
     module ClassMethods
       def find_by_transfer_id: (untyped id) -> untyped
     end
+
     extend ActiveSupport::Concern
+
     def transfer_id: () -> untyped
   end
 end

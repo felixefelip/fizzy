@@ -1,5 +1,6 @@
 class ExportMailer < ApplicationMailer
   @export: Export?
+
   def completed: (Export? export) -> Mail::Message
 
   private

@@ -4,9 +4,11 @@ module ActionPack
       class Response
         include ActiveModel::Validations
         extend ActiveModel::Validations::ClassMethods
+
         attr_reader client_data_json: untyped
         attr_accessor origin: untyped
         attr_accessor user_verification: untyped
+
         def initialize: (client_data_json: untyped, ?origin: untyped, ?user_verification: untyped) -> untyped
         def validate!: () -> true
         def relying_party: () -> ActionPack::WebAuthn::RelyingParty

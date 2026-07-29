@@ -1,6 +1,7 @@
 module Signups
   class CompletionsController < ApplicationController
     @signup: Signup?
+
     def new: () -> void
     def create: () -> void
 

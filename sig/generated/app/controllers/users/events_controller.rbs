@@ -1,6 +1,7 @@
 module Users
   class EventsController < ApplicationController
     include FilterScoped
+
     def show: () -> void
 
     private

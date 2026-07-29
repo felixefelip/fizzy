@@ -1,6 +1,7 @@
 class Card
   module Golden
     extend ActiveSupport::Concern
+
     def golden?: () -> (true | false)
     def gild: () -> Card::Goldness?
     def ungild: () -> bool?

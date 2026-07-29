@@ -1,7 +1,35 @@
 module ActionPack
   class Railtie < Rails::Railtie
-    include ::ActionPack::Passkey::Holder
-    include ::ActionPack::Passkey::FormHelper
-    def self.has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
+  end
+end
+
+module ActionPack
+  class Railtie
+    module ActiveRecord
+      class Base
+        include ::ActionPack::Passkey::Holder
+
+        def self.has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end
+
+module ActionPack
+  class Railtie
+    module ActionView
+      class Base
+        include ::ActionPack::Passkey::FormHelper
+      end
+    end
+  end
+end
+
+module ActionPack
+  class Railtie
+    module ActionController
+      class Base
+      end
+    end
   end
 end

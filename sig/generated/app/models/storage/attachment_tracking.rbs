@@ -1,6 +1,7 @@
 module Storage
   module AttachmentTracking
     @storage_snapshot: { account: untyped, board: untyped, recordable: untyped }?
+
     extend ActiveSupport::Concern
 
     private

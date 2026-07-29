@@ -1,6 +1,7 @@
 class User
   module Accessor
     extend ActiveSupport::Concern
+
     def draft_new_card_in: (untyped board) -> untyped
 
     private
