@@ -704,6 +704,10 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+  conditional_const_returns:
+    Current.account:
+      gate_ivar: "@__rbs_infer__performed"
+      type: "(::Account & ::Account::Validated)"
 - class: Authentication
   method: require_authentication
   effects:
@@ -743,10 +747,6 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
-  conditional_const_returns:
-    Current.user:
-      gate_ivar: "@__rbs_infer__performed"
-      type: "(::User & ::User::Validated)"
 - class: AutoLinkScrubber
   method: initialize
   effects:
@@ -754,6 +754,10 @@ postconditions:
     - "@direction"
 - class: Board::Storage
   method: calculate_real_storage_bytes
+  unconditional:
+    ivars:
+      "@card_ids": nil
+    self: "::Board::Storage & ::Board::Storage::AfterCalculateRealStorageBytes"
   effects:
     may_write:
     - "@card_ids"
@@ -767,6 +771,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: BoardScoped
+  method: set_board
+  unconditional:
+    ivars:
+      "@board": "(::Board & ::Board::Validated)"
+    self: "::BoardScoped & ::BoardScoped::AfterSetBoard"
+  effects:
+    may_write:
+    - "@board"
 - class: Board_Access::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -880,18 +893,21 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::Columns::CardsController
   method: __rbs_infer__run_index
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::Columns::ClosedsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::Columns::ClosedsController
   method: render
@@ -907,6 +923,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::Columns::NotNowsController
   method: render
@@ -922,6 +939,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::Columns::StreamsController
   method: render
@@ -937,30 +955,35 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_index
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: create
@@ -991,6 +1014,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::EntropiesController
   method: render
@@ -1011,6 +1035,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::InvolvementsController
   method: render
@@ -1031,12 +1056,14 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::PublicationsController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Boards::PublicationsController
   method: create
@@ -1349,13 +1376,24 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@boards"
     - "@disable_view_transition"
 - class: Cards::BoardsController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
+- class: Cards::BoardsController
+  method: edit
+  unconditional:
+    ivars:
+      "@boards": "::Board::ActiveRecord_Relation"
+    self: "::Cards::BoardsController & ::Cards::BoardsController::AfterEdit"
+  effects:
+    may_write:
+    - "@boards"
 - class: Cards::BoardsController
   method: render
   unconditional:
@@ -1946,6 +1984,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
@@ -2018,6 +2057,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: CardsController
+  method: set_board
+  unconditional:
+    ivars:
+      "@board": "(::Board & ::Board::Validated)"
+    self: "::CardsController & ::CardsController::AfterSetBoard"
+  effects:
+    may_write:
+    - "@board"
 - class: CardsController
   method: update
   effects:
@@ -2333,6 +2381,11 @@ postconditions:
   effects:
     may_write:
     - "@settings"
+- class: ERBNotificationsTraysShow
+  method: initialize
+  effects:
+    may_write:
+    - "@notifications"
 - class: ERBPartialAccountSettingsEntropy
   method: initialize
   effects:
@@ -3577,6 +3630,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@boards"
     - "@disable_view_transition"
     - "@filters"
 - class: My::MenusController
@@ -3592,10 +3646,12 @@ postconditions:
   method: show
   unconditional:
     ivars:
+      "@boards": "::Board::ActiveRecord_Relation"
       "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
     self: "::My::MenusController & ::My::MenusController::AfterShow"
   effects:
     may_write:
+    - "@boards"
     - "@filters"
 - class: My::PasskeysController
   method: __rbs_infer__run_create
@@ -3729,22 +3785,34 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@notification"
 - class: Notifications::ReadingsController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@notification"
 - class: Notifications::ReadingsController
   method: create
+  unconditional:
+    ivars:
+      "@notification": "(::Notification & ::Notification::Validated)"
+    self: "::Notifications::ReadingsController & ::Notifications::ReadingsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@notification"
 - class: Notifications::ReadingsController
   method: destroy
+  unconditional:
+    ivars:
+      "@notification": "(::Notification & ::Notification::Validated)"
+    self: "::Notifications::ReadingsController & ::Notifications::ReadingsController::AfterDestroy"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@notification"
 - class: Notifications::ReadingsController
   method: render
   unconditional:
@@ -3759,6 +3827,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@boards"
     - "@disable_view_transition"
     - "@settings"
 - class: Notifications::SettingsController
@@ -3782,6 +3851,15 @@ postconditions:
   effects:
     may_write:
     - "@settings"
+- class: Notifications::SettingsController
+  method: show
+  unconditional:
+    ivars:
+      "@boards": "::Board::ActiveRecord_Relation"
+    self: "::Notifications::SettingsController & ::Notifications::SettingsController::AfterShow"
+  effects:
+    may_write:
+    - "@boards"
 - class: Notifications::SettingsController
   method: update
   effects:
@@ -3855,6 +3933,16 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@unread"
+- class: NotificationsController
+  method: index
+  unconditional:
+    ivars:
+      "@unread": "::Notification::ActiveRecord_Relation"
+    self: "::NotificationsController & ::NotificationsController::AfterIndex"
+  effects:
+    may_write:
+    - "@unread"
 - class: NotificationsController
   method: render
   unconditional:
@@ -3874,6 +3962,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Prompts::Boards::UsersController
   method: index
@@ -4104,6 +4193,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@recent_search_queries"
 - class: SearchesController
   method: render
   unconditional:
@@ -4113,6 +4203,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: SearchesController
+  method: show
+  unconditional:
+    ivars:
+      "@recent_search_queries": "::User_Search_Query::ActiveRecord_Associations_CollectionProxy"
+    self: "::SearchesController & ::SearchesController::AfterShow"
+  effects:
+    may_write:
+    - "@recent_search_queries"
 - class: Sessions::MagicLinksController
   method: __rbs_infer__run_create
   effects:
@@ -5022,18 +5121,21 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@push_subscriptions"
 - class: Users::PushSubscriptionsController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@push_subscriptions"
 - class: Users::PushSubscriptionsController
   method: __rbs_infer__run_index
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@push_subscriptions"
 - class: Users::PushSubscriptionsController
   method: create
   effects:
@@ -5044,6 +5146,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Users::PushSubscriptionsController
+  method: set_push_subscriptions
+  unconditional:
+    ivars:
+      "@push_subscriptions": "::User_Push_Subscription::ActiveRecord_Associations_CollectionProxy"
+    self: "::Users::PushSubscriptionsController & ::Users::PushSubscriptionsController::AfterSetPushSubscriptions"
+  effects:
+    may_write:
+    - "@push_subscriptions"
 - class: Users::RolesController
   method: __rbs_infer__run_update
   effects:
@@ -5219,6 +5330,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Webhooks::ActivationsController
   method: create
@@ -5239,48 +5351,56 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_edit
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_index
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_new
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: WebhooksController
   method: create
@@ -5363,44 +5483,53 @@ method_entry_facts:
 - class: AccessesHelper
   method: access_involvement_advance_button
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: AccessesHelper
   method: access_toggles_for
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: AccessesHelper
   method: board_watchers_list
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: AccessesHelper
   method: involvement_button
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: AccessesHelper
   method: next_involvement
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Account::CancellationsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::CancellationsController
   method: ensure_owner
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::EntropiesController
   method: entropy_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::EntropiesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
@@ -5408,182 +5537,213 @@ method_entry_facts:
 - class: Account::EntropiesController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: ensure_admin_or_owner
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: ensure_export_limit_not_exceeded
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: set_export
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ExportsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: ensure_accessed_by_owner
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: set_import
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::ImportsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: set_join_code
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::JoinCodesController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: account_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: set_account
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ActionPack::Passkey
   method: authentication_options
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ActionPack::Passkey::Request
   method: passkey_authentication_options
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ActionPack::Passkey::Request
   method: passkey_registration_options
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ActionPack::Passkey::Request
   method: passkey_registration_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ActionPack::WebAuthn::PublicKeyCredential
   method: request_options
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ActivitiesController
   method: activities
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ActivitiesController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5594,16 +5754,19 @@ method_entry_facts:
 - class: ApplicationPlatform
   method: mac?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Authentication
   method: after_authentication_url
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication
   method: session_token
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
@@ -5611,216 +5774,283 @@ method_entry_facts:
 - class: Authentication
   method: start_new_session_for
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication
   method: terminate_session
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication::ViaMagicLink
   method: clear_pending_authentication_token
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication::ViaMagicLink
   method: redirect_to_fake_session_magic_link
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication::ViaMagicLink
   method: redirect_to_session_magic_link
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication::ViaMagicLink
   method: serve_development_magic_link
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authentication::ViaMagicLink
   method: set_pending_authentication_token
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Authorization
   method: ensure_admin
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Board::Accessible
+  method: accessible_to?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: BoardScoped
   method: ensure_permission_to_admin_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: BoardScoped
   method: set_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Boards::AccessesController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::CardsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::CardsController
   method: set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::ClosedsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::ClosedsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::NotNowsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::NotNowsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::StreamsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::StreamsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: column_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: entropy_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::InvolvementsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::InvolvementsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::PublicationsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::PublicationsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::PublicationsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: BoardsController
   method: board_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5828,6 +6058,7 @@ method_entry_facts:
 - class: BoardsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5835,6 +6066,7 @@ method_entry_facts:
 - class: BoardsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5843,6 +6075,7 @@ method_entry_facts:
 - class: BoardsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5851,6 +6084,7 @@ method_entry_facts:
 - class: BoardsController
   method: ensure_permission_to_admin_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5859,6 +6093,7 @@ method_entry_facts:
 - class: BoardsController
   method: grantee_ids
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5867,6 +6102,7 @@ method_entry_facts:
 - class: BoardsController
   method: grantees
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5875,6 +6111,7 @@ method_entry_facts:
 - class: BoardsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5882,6 +6119,7 @@ method_entry_facts:
 - class: BoardsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5889,6 +6127,7 @@ method_entry_facts:
 - class: BoardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5896,6 +6135,7 @@ method_entry_facts:
 - class: BoardsController
   method: revokees
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5904,6 +6144,7 @@ method_entry_facts:
 - class: BoardsController
   method: set_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -5911,6 +6152,7 @@ method_entry_facts:
 - class: BoardsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5919,6 +6161,7 @@ method_entry_facts:
 - class: BoardsController
   method: show_columns
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5927,6 +6170,7 @@ method_entry_facts:
 - class: BoardsController
   method: show_filtered_cards
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5935,6 +6179,7 @@ method_entry_facts:
 - class: BoardsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
@@ -5943,344 +6188,405 @@ method_entry_facts:
 - class: BoardsHelper
   method: link_back_to_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: BoardsHelper
   method: link_to_edit_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: BridgeHelper
   method: bridge_icon
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: BridgeHelper
   method: bridge_share_board_description
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@body_class": "::String"
 - class: BridgeHelper
   method: bridge_share_card_description
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
 - class: BridgeHelper
   method: bridged_button_to_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: BridgeHelper
   method: bridged_share_url_button
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: CardScoped
   method: capture_card_location
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: CardScoped
   method: refresh_stream_if_needed
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: CardScoped
   method: render_card_replacement
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: CardScoped
   method: set_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: CardScoped
   method: set_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
   method: set_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
   method: refresh_stream_after_reopen
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ColumnsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ColumnsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: set_comment
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: set_reactable
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: comment_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: ensure_card_is_commentable
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: ensure_creatorship
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: set_comment
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
   method: redirect_if_published
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::GoldnessesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::GoldnessesController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ImagesController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::NotNowsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::NotNowsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: broadcast_add_pin_to_tray
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: broadcast_remove_pin_from_tray
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: render_pin_button_replacement
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PreviewsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6288,6 +6594,7 @@ method_entry_facts:
 - class: Cards::PreviewsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6295,204 +6602,238 @@ method_entry_facts:
 - class: Cards::PublishesController
   method: add_another_param?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::PublishesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
   method: set_reactable
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
   method: record_board_access
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::SelfAssignmentsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::SelfAssignmentsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: set_step
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: step_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
   method: sanitized_tag_title_param
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TriagesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::TriagesController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: CardsController
   method: card_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6500,13 +6841,16 @@ method_entry_facts:
 - class: CardsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6514,6 +6858,7 @@ method_entry_facts:
 - class: CardsController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6521,6 +6866,7 @@ method_entry_facts:
 - class: CardsController
   method: ensure_permission_to_administer_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6528,6 +6874,7 @@ method_entry_facts:
 - class: CardsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6535,6 +6882,7 @@ method_entry_facts:
 - class: CardsController
   method: redirect_if_drafted
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6542,6 +6890,7 @@ method_entry_facts:
 - class: CardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6549,6 +6898,7 @@ method_entry_facts:
 - class: CardsController
   method: set_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6556,6 +6906,7 @@ method_entry_facts:
 - class: CardsController
   method: set_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6563,6 +6914,7 @@ method_entry_facts:
 - class: CardsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6570,6 +6922,7 @@ method_entry_facts:
 - class: CardsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6577,12 +6930,14 @@ method_entry_facts:
 - class: CardsHelper
   method: button_to_remove_card_image
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
 - class: CardsHelper
   method: card_social_tags
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
@@ -6601,92 +6956,108 @@ method_entry_facts:
 - class: ColumnScoped
   method: set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ClosuresController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ClosuresController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ColumnsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ColumnsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::StreamsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::StreamsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::LeftPositionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::LeftPositionsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::RightPositionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Columns::RightPositionsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: ColumnsHelper
   method: button_to_set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ColumnsHelper
   method: column_frame_tag
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DayTimelinesScoped
   method: day
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6694,6 +7065,7 @@ method_entry_facts:
 - class: DayTimelinesScoped
   method: set_day_timeline
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -6701,388 +7073,479 @@ method_entry_facts:
 - class: ERBAccountExportsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountImportsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountImportsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBAccountImportsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountImportsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBAccountJoinCodesEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountJoinCodesShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountSettingsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBAccountSettingsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsColumnsClosedsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsClosedsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsColumnsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsNotNowsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsNotNowsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsColumnsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsColumnsStreamsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsColumnsStreamsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsColumnsUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsEdit
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBBoardsEntropiesUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsInvolvementsUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsInvolvementsUpdate
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsPublicationsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsPublicationsDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBBoardsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@body_class": "::String"
 - class: ERBCardsAssignmentsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsAssignmentsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsAssignmentsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsBoardsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsClosuresCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsClosuresDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsColumnsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsCommentsUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsDraftsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsDraftsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
 - class: ERBCardsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsEdit
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsNotNowsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsPinsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsPinsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsPreviewsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsPreviewsIndex
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsPreviewsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsReadingsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
 - class: ERBCardsStepsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsStepsUpdate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsTaggingsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsTaggingsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsTaggingsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsUpdate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsUpdate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesDestroy
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCardsWatchesShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsCardsDropsClosuresCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsCardsDropsColumnsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsCardsDropsNotNowsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsCardsDropsStreamsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsLeftPositionsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsLeftPositionsCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsRightPositionsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBColumnsRightPositionsCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsDayTimelineColumnsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsDayTimelineColumnsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsDaysIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsDaysIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBEventsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@header_class": "::String"
@@ -7090,38 +7553,46 @@ method_entry_facts:
 - class: ERBFiltersCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBFiltersDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBFiltersSettingsRefreshesCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBJoinCodesInactive
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBJoinCodesInactive
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBJoinCodesNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBJoinCodesNew
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBJoinCodesNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
@@ -7146,480 +7617,598 @@ method_entry_facts:
 - class: ERBMyMenusShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBMyMenusShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBMyPasskeysEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBMyPasskeysIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBMyPasskeysIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBMyPinsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBMyPinsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBNotificationsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsReadingsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsReadingsDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsSettingsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsSettingsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBNotificationsTraysShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsTraysShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsUnsubscribesNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsUnsubscribesNew
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBNotificationsUnsubscribesShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsCancellation
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsEntropy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsEntropy
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsExport
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsName
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsUser
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsUsers
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialAccountSettingsUsers
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsColumnsEmptyPlaceholder
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditAutoClose
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditAutoClose
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditDelete
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditName
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditPublication
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsEditUsers
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowClosed
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowClosed
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowColumn
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowColumn
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowColumns
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowColumns
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowExpander
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowFilteredCards
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowFilteredCards
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuColumn
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuColumn
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuColumnForm
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuColumns
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuColumns
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowMenuMaximize
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowNotNow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowNotNow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowStream
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialBoardsShowStream
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsAssignmentsUser
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsBroadcasts
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsCommentsComment
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsCommentsComment
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsCommentsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsCommentsWatchers
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainer
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainer
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerClosure
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerClosure
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerClosureButtons
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerContent
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerContent
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerContentDisplay
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerFooterCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerFooterPublished
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerFooterPublished
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerGild
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerImage
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsContainerSaveButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDelete
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaAssignees
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaBackground
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaBoard
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaMeta
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaMeta
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaSteps
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaSteps
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPermaTags
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPublicPreviews
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDisplayPublicPreviews
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDraftsContainer
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsDraftsContainer
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsMessages
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsMessages
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsPinsPinButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsStepsStep
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsTaggingsTag
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsTriageColumns
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsWatchesRefresh
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsWatchesRefresh
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCardsWatchesWatchButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialColumnsRefreshAdjacentColumns
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialColumnsShowAddCardButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEntropyAutoClose
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEntropyAutoClose
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEntropyKnob
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEventsDayTimelineColumnsEvents
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEventsDayTimelineColumnsEvents
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEventsIndexAddBoardButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEventsIndexAddCardButton
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialEventsIndexFilter
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettings
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettings
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsAssignees
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsBoards
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsClosers
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsControls
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsControls
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsCreators
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsIndexedBy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsManage
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsSortedBy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsTags
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsTerms
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettingsToggle
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialLayoutsLightbox
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyAccessTokensAccessToken
   method: __rbs_infer__body
@@ -7628,304 +8217,377 @@ method_entry_facts:
 - class: ERBPartialMyMenusAccounts
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyMenusBoards
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyMenusPeople
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyMenusSettings
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyMenusShortcuts
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyMenusTags
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyPasskeysPasskey
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyPinsPin
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialMyPinsPin
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsBoard
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsBrowser
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsEmail
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsInstall
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsPushNotifications
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsPushNotifications
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialNotificationsSettingsSystem
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPromptsBoardsUsersUser
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPromptsCardsCard
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowClosed
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowClosed
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowColumn
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowColumn
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowColumns
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowColumns
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowNotNow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowNotNow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowStream
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicBoardsShowStream
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicCardsShowContent
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicCardsShowSteps
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicFooter
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPublicFooter
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialReactionsMenu
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialReactionsReaction
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialReactionsReactions
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialReactionsReactions
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialSearchesResult
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialSearchesResults
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialSearchesResults
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialUsersAccessTokens
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialUsersDataExport
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialUsersTheme
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialUsersTransfer
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialWebhooksDelivery
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialWebhooksFormActions
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialWebhooksWebhook
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsBoardsUsersIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsBoardsUsersIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsCardsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsCardsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsUsersIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPromptsUsersIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsColumnsClosedsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsColumnsClosedsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBPublicBoardsColumnsNotNowsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsColumnsNotNowsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBPublicBoardsColumnsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsColumnsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBPublicBoardsColumnsStreamsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsColumnsStreamsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBPublicBoardsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicBoardsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@body_class": "::String"
 - class: ERBPublicCardsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPublicCardsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsCreate
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsDestroy
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSearchesShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSearchesShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
@@ -7940,10 +8602,12 @@ method_entry_facts:
 - class: ERBSessionsMenusShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSessionsMenusShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
@@ -7959,140 +8623,171 @@ method_entry_facts:
 - class: ERBSessionsTransfersShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSignupsCompletionsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSignupsCompletionsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBSignupsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSignupsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBTagsIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersDataExportsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEmailAddressesConfirmationsInvalidToken
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEmailAddressesConfirmationsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEmailAddressesConfirmationsShow
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBUsersEmailAddressesCreate
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEmailAddressesCreate
   method: params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBUsersEmailAddressesNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEventsShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersEventsShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersJoinsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersJoinsNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBUsersShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBUsersVerificationsNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksEdit
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksEdit
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksEvent
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksIndex
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksIndex
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBWebhooksNew
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksNew
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@page_title": "::String"
 - class: ERBWebhooksShow
   method: __rbs_infer__body
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBWebhooksShow
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Events::DayTimeline::ColumnsController
   method: ensure_valid_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8101,6 +8796,7 @@ method_entry_facts:
 - class: Events::DayTimeline::ColumnsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8109,6 +8805,7 @@ method_entry_facts:
 - class: Events::DayTimeline::ColumnsController
   method: set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8117,6 +8814,7 @@ method_entry_facts:
 - class: Events::DayTimeline::ColumnsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8125,6 +8823,7 @@ method_entry_facts:
 - class: Events::DaysController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8133,6 +8832,7 @@ method_entry_facts:
 - class: Events::DaysController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8141,6 +8841,7 @@ method_entry_facts:
 - class: EventsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8149,6 +8850,7 @@ method_entry_facts:
 - class: EventsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -8157,30 +8859,35 @@ method_entry_facts:
 - class: FilterScoped
   method: expanded_param
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: FilterScoped
   method: filter_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: FilterScoped
   method: set_filter
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: FilterScoped
   method: set_user_filtering
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Filters::SettingsRefreshesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8188,6 +8895,7 @@ method_entry_facts:
 - class: Filters::SettingsRefreshesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8195,6 +8903,7 @@ method_entry_facts:
 - class: FiltersController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8202,6 +8911,7 @@ method_entry_facts:
 - class: FiltersController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8209,6 +8919,7 @@ method_entry_facts:
 - class: FiltersController
   method: filter_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8216,6 +8927,7 @@ method_entry_facts:
 - class: FiltersController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8223,28 +8935,34 @@ method_entry_facts:
 - class: FiltersController
   method: set_filters
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: FiltersHelper
   method: filter_place_menu_item
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FiltersHelper
   method: sorted_by_label
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FormsHelper
   method: auto_submit_form_with
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: HotkeysHelper
   method: hotkey_label
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Identity::Joinable
   method: join
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy
   method: build
@@ -8261,6 +8979,7 @@ method_entry_facts:
 - class: JoinCodesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8268,48 +8987,56 @@ method_entry_facts:
 - class: JoinCodesController
   method: ensure_join_code_is_valid
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: JoinCodesController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: JoinCodesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: JoinCodesController
   method: set_identity
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: JoinCodesController
   method: set_join_code
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: LandingsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: LoginHelper
   method: logout_url
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: LoginHelper
   method: redirect_to_logout_url
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8370,91 +9097,108 @@ method_entry_facts:
 - class: My::IdentitiesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::MenuHelper
   method: my_menu_board_item
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: My::MenuHelper
   method: my_menu_tag_item
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: My::MenuHelper
   method: my_menu_user_item
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: My::MenusController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: My::MenusController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: set_passkey
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PasskeysController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PinsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PinsController
   method: pins_limit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::PinsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8462,84 +9206,110 @@ method_entry_facts:
 - class: My::PinsController
   method: user_pins
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::TimezonesController
   method: timezone_param
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: My::TimezonesController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Notification
+  method: read
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Notification
+  method: unread
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: Notifications::BulkReadingsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::BulkReadingsController
   method: from_tray?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::ReadingsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::ReadingsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::ReadingsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@notification": "(::Notification & ::Notification::Validated)"
 - class: Notifications::SettingsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
 - class: Notifications::SettingsController
   method: set_settings
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::SettingsController
   method: settings_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::SettingsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::SettingsController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::TraysController
   method: include_read?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8547,6 +9317,7 @@ method_entry_facts:
 - class: Notifications::TraysController
   method: read_notifications
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8554,6 +9325,7 @@ method_entry_facts:
 - class: Notifications::TraysController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -8561,114 +9333,137 @@ method_entry_facts:
 - class: Notifications::TraysController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::TraysController
   method: unread_notifications
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::UnsubscribesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::UnsubscribesController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::UnsubscribesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::UnsubscribesController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Notifications::UnsubscribesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: NotificationsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: NotificationsController
   method: max_unread_notifications
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: NotificationsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@unread": "::Notification::ActiveRecord_Relation"
 - class: NotificationsHelper
   method: bundle_email_frequency_options_for
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: NotificationsHelper
   method: notifications_next_page_link
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PaginationHelper
   method: day_timeline_pagination_link
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Prompts::Boards::UsersController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Prompts::Boards::UsersController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: filter_param
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: prepending_exact_matches_by_id
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: published_cards
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@cards": "::Array[untyped]"
@@ -8676,176 +9471,208 @@ method_entry_facts:
 - class: Prompts::CardsController
   method: search_cards
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::UsersController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Prompts::UsersController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: ensure_board_accessible
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: set_board
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: set_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: set_public_cache_expiration
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::ClosedsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::ClosedsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: set_card
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: set_column
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: PwaController
   method: service_worker
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: QrCodeLink
   method: from_signed
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: QrCodeLink
   method: secret
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: QrCodeLink
   method: signed
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: QrCodeLink
   method: verifier
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: QrCodesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: QrCodesHelper
   method: qr_code_image
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ReactionsHelper
   method: reaction_path_prefix_for
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: RichTextHelper
   method: cards_prompt
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: RichTextHelper
   method: general_prompts
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: RichTextHelper
   method: mentions_prompt
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: RoutingHeaders
   method: set_target_header
@@ -8856,60 +9683,71 @@ method_entry_facts:
 - class: Searches::QueriesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SearchesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@recent_search_queries": "::User_Search_Query::ActiveRecord_Associations_CollectionProxy"
 - class: SearchesController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: after_sign_in_url
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: authenticate
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: email_address_mismatch
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: ensure_that_email_address_pending_authentication_exists
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: invalid_code
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: requires_signup_completion?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
@@ -8917,94 +9755,110 @@ method_entry_facts:
 - class: Sessions::MagicLinksController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MagicLinksController
   method: sign_in
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MenusController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::MenusController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::PasskeysController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::TransfersController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::TransfersController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Sessions::TransfersController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SessionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SessionsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SessionsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SessionsController
   method: sign_in
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SessionsController
   method: sign_up
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SetPlatform
   method: platform
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Signups::CompletionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Signups::CompletionsController
   method: invalid_signup
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9012,12 +9866,14 @@ method_entry_facts:
 - class: Signups::CompletionsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Signups::CompletionsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9025,12 +9881,14 @@ method_entry_facts:
 - class: Signups::CompletionsController
   method: signup_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Signups::CompletionsController
   method: welcome_to_account
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9038,30 +9896,35 @@ method_entry_facts:
 - class: SignupsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SignupsController
   method: enforce_tenant_limit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SignupsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SignupsController
   method: redirect_authenticated_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: SignupsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9069,68 +9932,83 @@ method_entry_facts:
 - class: SignupsController
   method: signup_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: TagsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: TagsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: User
   method: notifications
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User
   method: pins
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User
   method: push_subscriptions
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User
   method: search_queries
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User
   method: verify
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Accessor
   method: draft_new_card_in
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Role
   method: can_administer?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Role
   method: can_administer_board?
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Searcher
   method: remember_search
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Searcher
   method: search
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Timelined
   method: timeline_for
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Users::AvatarsController
   method: cache_control
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
@@ -9138,18 +10016,21 @@ method_entry_facts:
 - class: Users::AvatarsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::AvatarsController
   method: ensure_permission_to_administer_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::AvatarsController
   method: render_initials
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
@@ -9157,120 +10038,140 @@ method_entry_facts:
 - class: Users::AvatarsController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::AvatarsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: ensure_current_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: ensure_export_limit_not_exceeded
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: set_export
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::DataExportsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddresses::ConfirmationsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddresses::ConfirmationsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddresses::ConfirmationsController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddresses::ConfirmationsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: ensure_valid_email_address
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: new_email_address
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EmailAddressesController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::EventsController
   method: day_param
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9278,6 +10179,7 @@ method_entry_facts:
 - class: Users::EventsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@day_timeline": "::User::DayTimeline"
@@ -9286,6 +10188,7 @@ method_entry_facts:
 - class: Users::EventsController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9293,6 +10196,7 @@ method_entry_facts:
 - class: Users::EventsController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
@@ -9300,150 +10204,179 @@ method_entry_facts:
 - class: Users::JoinsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::JoinsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::JoinsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::JoinsController
   method: user_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::PushSubscriptionsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@push_subscriptions": "::User_Push_Subscription::ActiveRecord_Associations_CollectionProxy"
 - class: Users::PushSubscriptionsController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@push_subscriptions": "::User_Push_Subscription::ActiveRecord_Associations_CollectionProxy"
 - class: Users::PushSubscriptionsController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@push_subscriptions": "::User_Push_Subscription::ActiveRecord_Associations_CollectionProxy"
 - class: Users::PushSubscriptionsController
   method: push_subscription_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@push_subscriptions": "::User_Push_Subscription::ActiveRecord_Associations_CollectionProxy"
 - class: Users::PushSubscriptionsController
   method: set_push_subscriptions
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::RolesController
   method: ensure_permission_to_administer_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::RolesController
   method: role_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::RolesController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::RolesController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::VerificationsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::VerificationsController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: Users::VerificationsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: ensure_permission_to_change_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: set_user
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
 - class: UsersHelper
   method: role_display_name
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ViewTransitions
   method: disable_view_transitions
@@ -9452,101 +10385,132 @@ method_entry_facts:
 - class: Webhooks::ActivationsController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Webhooks::ActivationsController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@__rbs_infer__performed": 'true'
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Webhooks::DeliveriesController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Webhooks::DeliveriesController
   method: set_webhook
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: create
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: destroy
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: edit
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: index
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: new
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: render
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: set_webhook
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: show
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: update
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksController
   method: webhook_params
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: WebhooksHelper
   method: link_to_webhooks
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@body_class": "::String"
 - class: WebhooksHelper
   method: webhook_action_label
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: WebhooksHelper
   method: webhook_action_options
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 argument_entry_facts:
 - class: Account::EntropiesController
@@ -9580,59 +10544,75 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+- class: ApplicationHelper
+  method: back_link_to
+  param: action
+  pattern: '"keydown.left@document->hotkey#click keydown.esc@document->hotkey#click
+    click->turbo-navigation#backIfSamePath"'
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
 - class: Boards::Columns::ClosedsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::NotNowsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::StreamsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: render
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: render
   param: target
   pattern: ":update"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: render
   param: target
   pattern: '"boards/show"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: render
   param: target
   pattern: ":update"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::InvolvementsController
   method: render
   param: target
   pattern: ":update"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: BoardsController
   method: render
@@ -9674,6 +10654,7 @@ argument_entry_facts:
   param: target
   pattern: ":edit"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
   method: render
@@ -10315,30 +11296,35 @@ argument_entry_facts:
   param: title
   pattern: '"Added by…"'
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FiltersHelper
   method: filter_title
   param: title
   pattern: '"Assigned to…"'
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FiltersHelper
   method: filter_title
   param: title
   pattern: '"Closed by…"'
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FiltersHelper
   method: filter_title
   param: title
   pattern: '"Move this card to…"'
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: FiltersHelper
   method: filter_title
   param: title
   pattern: '"Tagged…"'
   consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: JoinCodesController
   method: render
@@ -10358,6 +11344,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: My::PasskeysController
@@ -10386,17 +11373,20 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@disable_view_transition": 'true'
+    "@notification": "(::Notification & ::Notification::Validated)"
 - class: Notifications::ReadingsController
   method: render
   param: target
   pattern: ":destroy"
   ivars:
     "@disable_view_transition": 'true'
+    "@notification": "(::Notification & ::Notification::Validated)"
 - class: Notifications::SettingsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
 - class: Notifications::TraysController
   method: render
@@ -10423,6 +11413,7 @@ argument_entry_facts:
   pattern: ":index"
   ivars:
     "@disable_view_transition": 'true'
+    "@unread": "::Notification::ActiveRecord_Relation"
 - class: Public::Boards::Columns::ClosedsController
   method: render
   param: target
@@ -10465,6 +11456,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@recent_search_queries": "::User_Search_Query::ActiveRecord_Associations_CollectionProxy"
 - class: Sessions::MenusController
   method: render
   param: target
@@ -10522,4 +11514,5 @@ argument_entry_facts:
   pattern: '"webhooks/show"'
   ivars:
     "@__rbs_infer__performed": 'true'
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
