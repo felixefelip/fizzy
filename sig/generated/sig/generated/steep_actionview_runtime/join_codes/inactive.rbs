@@ -1,0 +1,10 @@
+class ERBJoinCodesInactive
+  @join_code: (Account::JoinCode & Account::JoinCode::Validated)?
+
+  include ActionViewContext
+
+  def initialize: (join_code: (Account::JoinCode & Account::JoinCode::Validated)?, page_title: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

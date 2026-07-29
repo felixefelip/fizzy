@@ -1,0 +1,8 @@
+class ERBPublicBoardsCardPreviewsIndex
+  include ActionViewContext
+
+  def initialize: (board: untyped, page: untyped) -> untyped
+  def render: (?{ partial: String, board: untyped, as: Symbol, locals: { draggable: bool }, cached: bool } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

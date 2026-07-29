@@ -1,0 +1,7 @@
+class ERBFiltersSettingsRefreshesCreate
+  include ActionViewContext
+
+  def initialize: (filter: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

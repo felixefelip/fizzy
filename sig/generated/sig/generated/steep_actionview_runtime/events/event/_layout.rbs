@@ -1,0 +1,12 @@
+class ERBPartialEventsEventLayout
+  include ActionViewContext
+
+  def initialize: (card: untyped, event: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader card: untyped
+  attr_reader event: untyped
+end

@@ -1,0 +1,11 @@
+class ERBPartialMyPasskeysPasskey
+  include ActionViewContext
+
+  def initialize: (passkey: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader passkey: untyped
+end

@@ -1,0 +1,14 @@
+class Account
+  class JoinCodesController
+    @__rbs_infer__performed: true?
+
+    def render: (?(Symbol | { json: untyped, status: Symbol }) target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_show: () -> bool?
+    def __rbs_infer__run_edit: () -> bool?
+    def __rbs_infer__run_update: () -> void
+    def __rbs_infer__run_destroy: () -> void
+  end
+end

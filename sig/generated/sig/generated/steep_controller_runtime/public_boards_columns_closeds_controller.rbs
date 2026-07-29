@@ -1,0 +1,15 @@
+module Public
+  module Boards
+    module Columns
+      class ClosedsController
+        @__rbs_infer__performed: true?
+
+        def render: (?Symbol target, *untyped) -> bool
+
+        private
+
+        def __rbs_infer__run_show: () -> bool?
+      end
+    end
+  end
+end

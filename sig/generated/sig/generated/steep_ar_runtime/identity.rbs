@@ -1,0 +1,7 @@
+class Identity
+  def access_tokens: () -> Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy
+  def magic_links: () -> Identity_MagicLink::ActiveRecord_Associations_CollectionProxy
+  def sessions: () -> Identity_Session::ActiveRecord_Associations_CollectionProxy
+  def users: () -> Identity_User::ActiveRecord_Associations_CollectionProxy
+  def accounts: () -> Identity_Account::ActiveRecord_Associations_CollectionProxy
+end

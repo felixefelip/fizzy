@@ -1,0 +1,7 @@
+class Reaction
+  def save: (**untyped) -> bool
+  def run_before_validation_callbacks: () -> (User | (User & User::Validated) | nil)
+  def run_belongs_to_default_callbacks: () -> (User | (User & User::Validated) | nil)
+  def run_belongs_to_default_account: () -> untyped
+  def run_belongs_to_default_reacter: () -> (User | (User & User::Validated) | nil)
+end

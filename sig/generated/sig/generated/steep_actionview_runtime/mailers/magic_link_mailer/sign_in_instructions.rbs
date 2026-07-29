@@ -1,0 +1,7 @@
+class ERBMailersMagicLinkMailerSignInInstructions
+  include ActionViewContext
+
+  def initialize: (magic_link: untyped) -> untyped
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

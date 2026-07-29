@@ -1,0 +1,11 @@
+class ERBPartialAccountSettingsUser
+  include ActionViewContext
+
+  def initialize: (user: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader user: untyped
+end

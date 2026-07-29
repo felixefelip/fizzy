@@ -1,0 +1,9 @@
+class ERBUsersShow
+  include ActionViewContext
+  include UsersHelper
+
+  def initialize: (user: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

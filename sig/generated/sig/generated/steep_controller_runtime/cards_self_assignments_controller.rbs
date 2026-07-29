@@ -1,0 +1,11 @@
+module Cards
+  class SelfAssignmentsController
+    @__rbs_infer__performed: true?
+
+    def render: (?String target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_create: () -> void
+  end
+end

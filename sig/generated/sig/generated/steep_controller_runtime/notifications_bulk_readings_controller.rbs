@@ -1,0 +1,7 @@
+module Notifications
+  class BulkReadingsController
+    private
+
+    def __rbs_infer__run_create: () -> void
+  end
+end

@@ -1,0 +1,7 @@
+class Webhook
+  def save: (**untyped) -> bool
+  def run_before_validation_callbacks: () -> untyped
+  def run_belongs_to_default_callbacks: () -> untyped
+  def run_belongs_to_default_account: () -> untyped
+  def deliveries: () -> Webhook_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy
+end

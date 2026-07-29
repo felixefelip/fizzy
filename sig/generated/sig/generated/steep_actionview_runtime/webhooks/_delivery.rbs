@@ -1,0 +1,11 @@
+class ERBPartialWebhooksDelivery
+  include ActionViewContext
+
+  def initialize: (delivery: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader delivery: untyped
+end

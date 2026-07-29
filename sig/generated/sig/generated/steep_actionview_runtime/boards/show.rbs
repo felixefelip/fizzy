@@ -1,0 +1,11 @@
+class ERBBoardsShow
+  @board: Board?
+
+  include ActionViewContext
+  include BoardsHelper
+
+  def initialize: (board: Board?, filter: untyped, page: untyped, user_filtering: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

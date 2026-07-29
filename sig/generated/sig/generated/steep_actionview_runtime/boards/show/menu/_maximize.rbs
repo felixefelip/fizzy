@@ -1,0 +1,11 @@
+class ERBPartialBoardsShowMenuMaximize
+  include ActionViewContext
+
+  def initialize: (column_path: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader column_path: untyped
+end

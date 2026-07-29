@@ -1,0 +1,8 @@
+module Card_Reaction
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(Reaction) klass, Card owner) -> void
+    def owner: () -> Card
+  end
+end

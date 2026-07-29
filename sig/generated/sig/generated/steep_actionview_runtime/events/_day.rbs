@@ -1,0 +1,12 @@
+class ERBPartialEventsDay
+  include ActionViewContext
+
+  def initialize: (day_timeline: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader day_timeline: untyped
+end

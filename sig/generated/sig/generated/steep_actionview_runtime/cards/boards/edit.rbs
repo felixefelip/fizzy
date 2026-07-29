@@ -1,0 +1,7 @@
+class ERBCardsBoardsEdit
+  include ActionViewContext
+
+  def initialize: (boards: untyped, card: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

@@ -1,0 +1,8 @@
+class ERBPublicCardsShow
+  include ActionViewContext
+
+  def initialize: (card: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

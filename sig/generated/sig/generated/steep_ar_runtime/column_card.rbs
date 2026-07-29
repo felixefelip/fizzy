@@ -1,0 +1,8 @@
+module Column_Card
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Column
+
+    def initialize: (singleton(Card) klass, Column owner) -> void
+    def owner: () -> Column
+  end
+end

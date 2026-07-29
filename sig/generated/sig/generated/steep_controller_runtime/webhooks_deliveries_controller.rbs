@@ -1,0 +1,7 @@
+module Webhooks
+  class DeliveriesController
+    private
+
+    def __rbs_infer__run_index: () -> void
+  end
+end

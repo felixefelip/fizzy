@@ -1,0 +1,8 @@
+class ERBCardsTaggingsNew
+  include ActionViewContext
+
+  def initialize: (card: untyped, tagged_with: untyped, tags: untyped) -> void
+  def render: (?{ collection: untyped, partial: String, locals: { card: untyped } } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

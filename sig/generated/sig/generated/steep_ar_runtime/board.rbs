@@ -1,0 +1,10 @@
+class Board
+  def save: (**untyped) -> bool
+  def run_before_validation_callbacks: () -> untyped
+  def run_belongs_to_default_callbacks: () -> untyped
+  def run_belongs_to_default_creator: () -> (User | (User & User::Validated) | nil)
+  def run_belongs_to_default_account: () -> untyped
+  def tags: () -> Board_Tag::ActiveRecord_Associations_CollectionProxy
+  def events: () -> Board_Event::ActiveRecord_Associations_CollectionProxy
+  def webhooks: () -> Board_Webhook::ActiveRecord_Associations_CollectionProxy
+end

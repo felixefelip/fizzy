@@ -1,0 +1,6 @@
+class User
+  def comments: () -> User_Comment::ActiveRecord_Associations_CollectionProxy
+  def filters: () -> User_Filter::ActiveRecord_Associations_CollectionProxy
+  def closures: () -> User_Closure::ActiveRecord_Associations_CollectionProxy
+  def pins: () -> User_Pin::ActiveRecord_Associations_CollectionProxy
+end

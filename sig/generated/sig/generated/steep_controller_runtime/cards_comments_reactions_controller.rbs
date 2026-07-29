@@ -1,0 +1,16 @@
+module Cards
+  module Comments
+    class ReactionsController
+      @__rbs_infer__performed: true?
+
+      def render: (?String target, *untyped) -> bool
+
+      private
+
+      def __rbs_infer__run_index: () -> void
+      def __rbs_infer__run_new: () -> void
+      def __rbs_infer__run_create: () -> void
+      def __rbs_infer__run_destroy: () -> void
+    end
+  end
+end

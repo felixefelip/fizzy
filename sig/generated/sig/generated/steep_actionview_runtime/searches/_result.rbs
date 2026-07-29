@@ -1,0 +1,11 @@
+class ERBPartialSearchesResult
+  include ActionViewContext
+
+  def initialize: (result: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader result: untyped
+end

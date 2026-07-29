@@ -1,0 +1,7 @@
+module Users
+  class RolesController
+    private
+
+    def __rbs_infer__run_update: () -> void
+  end
+end

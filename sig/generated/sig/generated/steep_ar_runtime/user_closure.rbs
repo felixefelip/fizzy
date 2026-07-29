@@ -1,0 +1,11 @@
+module User_Closure
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(Closure) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Closure
+    def create: (*untyped) -> ::Closure
+    def create!: (*untyped) -> ::Closure
+  end
+end

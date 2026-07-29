@@ -1,0 +1,7 @@
+class ERBMyPasskeysEdit
+  include ActionViewContext
+
+  def initialize: (page_title: untyped, passkey: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

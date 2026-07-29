@@ -1,0 +1,11 @@
+module Account_Account_Import
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Account
+
+    def initialize: (singleton(Account::Import) klass, Account owner) -> void
+    def owner: () -> Account
+    def build: (*untyped) -> ::Account::Import
+    def create: (*untyped) -> ::Account::Import
+    def create!: (*untyped) -> ::Account::Import
+  end
+end

@@ -1,0 +1,11 @@
+class ERBPartialEventsIndexFilterBoard
+  include ActionViewContext
+
+  def initialize: (user_filtering: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader user_filtering: untyped
+end

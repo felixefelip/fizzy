@@ -1,0 +1,9 @@
+module Boards
+  module Columns
+    class CardsController
+      private
+
+      def __rbs_infer__run_index: () -> void
+    end
+  end
+end

@@ -1,0 +1,11 @@
+class ERBPartialBoardsEditDelete
+  include ActionViewContext
+
+  def initialize: (board: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader board: untyped
+end

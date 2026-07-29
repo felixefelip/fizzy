@@ -1,0 +1,10 @@
+class ERBPromptsCardsIndex
+  @cards: Array[untyped]?
+
+  include ActionViewContext
+
+  def initialize: (cards: Array[untyped]?) -> void
+  def render: (?{ partial: String, collection: Array[untyped]? } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

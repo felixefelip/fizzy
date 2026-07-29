@@ -1,0 +1,12 @@
+module Sessions
+  class MagicLinksController
+    @__rbs_infer__performed: true?
+
+    def render: (?(Symbol | { json: { message: String }, status: Symbol } | { json: { session_token: untyped, requires_signup_completion: untyped } }) target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_show: () -> bool?
+    def __rbs_infer__run_create: () -> void
+  end
+end

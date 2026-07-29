@@ -1,0 +1,7 @@
+class ERBTagsIndex
+  include ActionViewContext
+
+  def initialize: (tags: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

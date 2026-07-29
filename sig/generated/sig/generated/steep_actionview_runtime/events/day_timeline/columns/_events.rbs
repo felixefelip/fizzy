@@ -1,0 +1,12 @@
+class ERBPartialEventsDayTimelineColumnsEvents
+  include ActionViewContext
+
+  def initialize: (column: untyped) -> void
+  def render: (?{ partial: String, collection: untyped, cached: bool } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader column: untyped
+end

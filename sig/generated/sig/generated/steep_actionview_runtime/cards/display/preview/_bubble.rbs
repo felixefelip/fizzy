@@ -1,0 +1,11 @@
+class ERBPartialCardsDisplayPreviewBubble
+  include ActionViewContext
+
+  def initialize: (card: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader card: untyped
+end

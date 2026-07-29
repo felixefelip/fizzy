@@ -1,0 +1,8 @@
+module Board_Tag
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Board
+
+    def initialize: (singleton(Tag) klass, Board owner) -> void
+    def owner: () -> Board
+  end
+end

@@ -1,0 +1,7 @@
+class ERBNotificationsReadingsCreate
+  include ActionViewContext
+
+  def initialize: (notification: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

@@ -1,0 +1,11 @@
+module Identity_MagicLink
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Identity
+
+    def initialize: (singleton(MagicLink) klass, Identity owner) -> void
+    def owner: () -> Identity
+    def build: (*untyped) -> ::MagicLink
+    def create: (*untyped) -> ::MagicLink
+    def create!: (*untyped) -> ::MagicLink
+  end
+end

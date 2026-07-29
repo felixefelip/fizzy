@@ -1,0 +1,13 @@
+class ERBPartialSearchesResults
+  include ActionViewContext
+
+  def initialize: (page: untyped, query: untyped) -> void
+  def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader page: untyped
+  attr_reader query: untyped
+end

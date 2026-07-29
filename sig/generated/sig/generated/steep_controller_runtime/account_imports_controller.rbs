@@ -1,0 +1,13 @@
+class Account
+  class ImportsController
+    @__rbs_infer__performed: true?
+
+    def render: (?Symbol target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_new: () -> bool?
+    def __rbs_infer__run_create: () -> void
+    def __rbs_infer__run_show: () -> bool?
+  end
+end

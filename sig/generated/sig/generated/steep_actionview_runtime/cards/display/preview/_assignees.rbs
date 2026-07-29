@@ -1,0 +1,13 @@
+class ERBPartialCardsDisplayPreviewAssignees
+  include ActionViewContext
+
+  def initialize: (card: untyped, preview: bool) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader card: untyped
+  attr_reader preview: bool
+end

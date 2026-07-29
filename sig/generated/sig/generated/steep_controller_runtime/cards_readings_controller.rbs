@@ -1,0 +1,12 @@
+module Cards
+  class ReadingsController
+    @__rbs_infer__performed: true?
+
+    def render: (?Symbol target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_create: () -> bool?
+    def __rbs_infer__run_destroy: () -> void
+  end
+end

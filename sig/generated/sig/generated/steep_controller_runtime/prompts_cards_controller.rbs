@@ -1,0 +1,11 @@
+module Prompts
+  class CardsController
+    @__rbs_infer__performed: true?
+
+    def render: (?(Symbol | { layout: bool }) target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_index: () -> bool?
+  end
+end

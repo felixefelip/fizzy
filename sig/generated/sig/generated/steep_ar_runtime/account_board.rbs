@@ -1,0 +1,11 @@
+module Account_Board
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Account
+
+    def initialize: (singleton(Board) klass, Account owner) -> void
+    def owner: () -> Account
+    def build: (*untyped) -> ::Board
+    def create: (*untyped) -> ::Board
+    def create!: (*untyped) -> ::Board
+  end
+end

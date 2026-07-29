@@ -1,0 +1,10 @@
+class Account
+  def users: () -> Account_User::ActiveRecord_Associations_CollectionProxy
+  def boards: () -> Account_Board::ActiveRecord_Associations_CollectionProxy
+  def cards: () -> Account_Card::ActiveRecord_Associations_CollectionProxy
+  def webhooks: () -> Account_Webhook::ActiveRecord_Associations_CollectionProxy
+  def tags: () -> Account_Tag::ActiveRecord_Associations_CollectionProxy
+  def columns: () -> Account_Column::ActiveRecord_Associations_CollectionProxy
+  def entropies: () -> Account_Entropy::ActiveRecord_Associations_CollectionProxy
+  def imports: () -> Account_Account_Import::ActiveRecord_Associations_CollectionProxy
+end

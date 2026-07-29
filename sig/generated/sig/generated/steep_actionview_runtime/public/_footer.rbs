@@ -1,0 +1,7 @@
+class ERBPartialPublicFooter
+  include ActionViewContext
+
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

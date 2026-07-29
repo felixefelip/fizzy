@@ -1,0 +1,8 @@
+class Tag
+  def save: (**untyped) -> bool
+  def run_before_validation_callbacks: () -> (Account | (Account & Account::Validated) | nil)
+  def run_belongs_to_default_callbacks: () -> (Account | (Account & Account::Validated) | nil)
+  def run_belongs_to_default_account: () -> (Account | (Account & Account::Validated) | nil)
+  def taggings: () -> Tag_Tagging::ActiveRecord_Associations_CollectionProxy
+  def cards: () -> Tag_Card::ActiveRecord_Associations_CollectionProxy
+end

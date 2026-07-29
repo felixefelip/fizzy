@@ -1,0 +1,9 @@
+class ERBMyAccessTokensShow
+  @access_token: (Identity::AccessToken & Identity::AccessToken::Validated)?
+
+  include ActionViewContext
+
+  def initialize: (access_token: (Identity::AccessToken & Identity::AccessToken::Validated)?, page_title: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

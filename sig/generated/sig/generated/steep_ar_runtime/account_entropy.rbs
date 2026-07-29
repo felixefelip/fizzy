@@ -1,0 +1,11 @@
+module Account_Entropy
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Account
+
+    def initialize: (singleton(Entropy) klass, Account owner) -> void
+    def owner: () -> Account
+    def build: (*untyped) -> ::Entropy
+    def create: (*untyped) -> ::Entropy
+    def create!: (*untyped) -> ::Entropy
+  end
+end

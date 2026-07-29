@@ -1,0 +1,11 @@
+module Account_Column
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Account
+
+    def initialize: (singleton(Column) klass, Account owner) -> void
+    def owner: () -> Account
+    def build: (*untyped) -> ::Column
+    def create: (*untyped) -> ::Column
+    def create!: (*untyped) -> ::Column
+  end
+end

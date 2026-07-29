@@ -1,0 +1,8 @@
+class ERBPublicBoardsShow
+  include ActionViewContext
+
+  def initialize: (board: untyped, page: untyped, page_title: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

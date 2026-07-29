@@ -1,0 +1,5 @@
+class PwaController
+  private
+
+  def __rbs_infer__run_service_worker: () -> void
+end

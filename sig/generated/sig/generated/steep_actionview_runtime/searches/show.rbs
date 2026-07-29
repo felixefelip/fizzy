@@ -1,0 +1,8 @@
+class ERBSearchesShow
+  include ActionViewContext
+
+  def initialize: (card: untyped, page: untyped, page_title: untyped, query: untyped) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

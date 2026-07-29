@@ -1,0 +1,14 @@
+module Users
+  module EmailAddresses
+    class ConfirmationsController
+      @__rbs_infer__performed: true?
+
+      def render: (?(Symbol | { json: { error: String }, status: Symbol }) target, *untyped) -> bool
+
+      private
+
+      def __rbs_infer__run_show: () -> bool?
+      def __rbs_infer__run_create: () -> void
+    end
+  end
+end

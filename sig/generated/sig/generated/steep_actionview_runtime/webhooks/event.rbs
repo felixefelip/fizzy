@@ -1,0 +1,8 @@
+class ERBWebhooksEvent
+  include ActionViewContext
+  include WebhooksHelper
+
+  def initialize: (event: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

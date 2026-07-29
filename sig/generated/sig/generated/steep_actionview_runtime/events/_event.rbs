@@ -1,0 +1,11 @@
+class ERBPartialEventsEvent
+  include ActionViewContext
+
+  def initialize: (event: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader event: untyped
+end

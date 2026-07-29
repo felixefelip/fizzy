@@ -1,0 +1,11 @@
+module Board_Webhook
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Board
+
+    def initialize: (singleton(Webhook) klass, Board owner) -> void
+    def owner: () -> Board
+    def build: (*untyped) -> ::Webhook
+    def create: (*untyped) -> ::Webhook
+    def create!: (*untyped) -> ::Webhook
+  end
+end

@@ -1,0 +1,11 @@
+module Users
+  class EventsController
+    @__rbs_infer__performed: true?
+
+    def render: (?Symbol target, *untyped) -> bool
+
+    private
+
+    def __rbs_infer__run_show: () -> bool?
+  end
+end

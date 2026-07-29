@@ -1,0 +1,7 @@
+class ERBAccountExportsShow
+  include ActionViewContext
+
+  def initialize: (export: untyped, page_title: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

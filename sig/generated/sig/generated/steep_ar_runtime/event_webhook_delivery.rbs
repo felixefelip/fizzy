@@ -1,0 +1,11 @@
+module Event_Webhook_Delivery
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Event
+
+    def initialize: (singleton(Webhook::Delivery) klass, Event owner) -> void
+    def owner: () -> Event
+    def build: (*untyped) -> ::Webhook::Delivery
+    def create: (*untyped) -> ::Webhook::Delivery
+    def create!: (*untyped) -> ::Webhook::Delivery
+  end
+end

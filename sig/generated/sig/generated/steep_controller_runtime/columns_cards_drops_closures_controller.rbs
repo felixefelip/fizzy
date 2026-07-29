@@ -1,0 +1,15 @@
+module Columns
+  module Cards
+    module Drops
+      class ClosuresController
+        @__rbs_infer__performed: true?
+
+        def render: (?Symbol target, *untyped) -> bool
+
+        private
+
+        def __rbs_infer__run_create: () -> bool?
+      end
+    end
+  end
+end

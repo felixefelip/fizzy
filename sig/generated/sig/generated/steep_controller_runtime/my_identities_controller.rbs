@@ -1,0 +1,7 @@
+module My
+  class IdentitiesController
+    private
+
+    def __rbs_infer__run_show: () -> void
+  end
+end

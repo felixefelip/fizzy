@@ -1,0 +1,8 @@
+class ERBPromptsCommandsIndex
+  include ActionViewContext
+
+  def initialize: (commands: untyped) -> untyped
+  def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

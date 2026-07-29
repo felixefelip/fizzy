@@ -1,0 +1,7 @@
+module Cards
+  class ImagesController
+    private
+
+    def __rbs_infer__run_destroy: () -> void
+  end
+end

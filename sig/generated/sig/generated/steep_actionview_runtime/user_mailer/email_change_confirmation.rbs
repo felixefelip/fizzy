@@ -1,0 +1,7 @@
+class ERBUserMailerEmailChangeConfirmation
+  include ActionViewContext
+
+  def initialize: (token: untyped, user: untyped) -> untyped
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

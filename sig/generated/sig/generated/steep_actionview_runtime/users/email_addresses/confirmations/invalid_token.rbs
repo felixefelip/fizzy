@@ -1,0 +1,7 @@
+class ERBUsersEmailAddressesConfirmationsInvalidToken
+  include ActionViewContext
+
+  def initialize: (page_title: untyped, user: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

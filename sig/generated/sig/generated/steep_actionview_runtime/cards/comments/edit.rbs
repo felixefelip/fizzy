@@ -1,0 +1,7 @@
+class ERBCardsCommentsEdit
+  include ActionViewContext
+
+  def initialize: (card: untyped, comment: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

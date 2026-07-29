@@ -1,0 +1,12 @@
+class ERBPartialCardsMessages
+  include ActionViewContext
+
+  def initialize: (card: untyped) -> void
+  def render: (?({ partial: String, collection: untyped, cached: bool } | String) target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader card: untyped
+end
