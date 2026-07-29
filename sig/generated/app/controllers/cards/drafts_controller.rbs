@@ -1,10 +1,11 @@
 module Cards
   class DraftsController < ApplicationController
     include CardScoped
+
     def show: () -> void
 
     private
 
-    def redirect_if_published: () -> untyped
+    def redirect_if_published: () -> bool?
   end
 end

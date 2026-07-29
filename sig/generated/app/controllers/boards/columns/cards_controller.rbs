@@ -2,6 +2,7 @@ module Boards
   module Columns
     class CardsController < ApplicationController
       include BoardScoped
+
       def index: () -> void
 
       private

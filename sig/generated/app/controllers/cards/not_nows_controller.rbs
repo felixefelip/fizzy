@@ -1,6 +1,7 @@
 module Cards
   class NotNowsController < ApplicationController
     include CardScoped
+
     def create: () -> void
   end
 end

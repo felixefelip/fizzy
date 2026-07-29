@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
   include DayTimelinesScoped
+
   def index: () -> void
 end

@@ -1,12 +1,13 @@
 class Account
   class SettingsController < ApplicationController
-    @account: ((Account & Account::Validated) | singleton(Current) | Account::Seedeable | Account | Current)?
+    @account: (Account & Account::Validated)?
+
     def show: () -> void
     def update: () -> void
 
     private
 
-    def set_account: () -> ((Account & Account::Validated) | singleton(Current) | Account::Seedeable | Account | Current | nil)
+    def set_account: () -> (Account & Account::Validated)?
     def account_params: () -> untyped
   end
 end

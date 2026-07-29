@@ -1,5 +1,6 @@
 class WebhooksController < ApplicationController
   include BoardScoped
+
   def index: () -> void
   def show: () -> void
   def new: () -> void

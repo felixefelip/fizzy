@@ -2,6 +2,7 @@ module Cards
   module Comments
     class ReactionsController < ApplicationController
       include CardScoped
+
       def index: () -> void
       def new: () -> void
       def create: () -> void
@@ -12,7 +13,7 @@ module Cards
       def set_comment: () -> untyped
       def set_reactable: () -> untyped
       def set_reaction: () -> untyped
-      def ensure_permission_to_administer_reaction: () -> true?
+      def ensure_permission_to_administer_reaction: () -> bool?
     end
   end
 end

@@ -1,6 +1,7 @@
 module Cards
   class PublishesController < ApplicationController
     include CardScoped
+
     def create: () -> void
 
     private

@@ -1,6 +1,7 @@
 module Cards
   class ImagesController < ApplicationController
     include CardScoped
+
     def destroy: () -> void
   end
 end

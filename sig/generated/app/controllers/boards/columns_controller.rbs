@@ -1,6 +1,7 @@
 module Boards
   class ColumnsController < ApplicationController
     include BoardScoped
+
     def index: () -> void
     def show: () -> void
     def create: () -> void

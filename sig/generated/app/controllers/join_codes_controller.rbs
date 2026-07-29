@@ -1,5 +1,7 @@
 class JoinCodesController < ApplicationController
   @identity: Identity?
+  @join_code: (Account::JoinCode & Account::JoinCode::Validated)?
+
   def new: () -> void
   def create: () -> void
 

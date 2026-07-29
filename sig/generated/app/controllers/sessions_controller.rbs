@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   @authentication_options: ActionPack::WebAuthn::PublicKeyCredential::RequestOptions?
+
   include ActionPack::Passkey::Request
+
   def new: () -> void
   def create: () -> void
   def destroy: () -> void

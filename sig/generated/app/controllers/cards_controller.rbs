@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   include FilterScoped
+
   def index: () -> void
   def create: () -> void
   def show: () -> void
@@ -11,7 +12,7 @@ class CardsController < ApplicationController
 
   def set_board: () -> untyped
   def set_card: () -> untyped
-  def redirect_if_drafted: () -> untyped
+  def redirect_if_drafted: () -> bool?
   def ensure_permission_to_administer_card: () -> true?
   def card_params: () -> untyped
 end

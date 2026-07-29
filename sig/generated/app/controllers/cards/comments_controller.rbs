@@ -1,6 +1,7 @@
 module Cards
   class CommentsController < ApplicationController
     include CardScoped
+
     def index: () -> void
     def create: () -> void
     def show: () -> void
@@ -11,8 +12,8 @@ module Cards
     private
 
     def set_comment: () -> untyped
-    def ensure_creatorship: () -> true?
-    def ensure_card_is_commentable: () -> true?
+    def ensure_creatorship: () -> bool?
+    def ensure_card_is_commentable: () -> bool?
     def comment_params: () -> untyped
   end
 end

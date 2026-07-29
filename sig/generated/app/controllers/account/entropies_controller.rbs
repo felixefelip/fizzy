@@ -1,6 +1,7 @@
 class Account
   class EntropiesController < ApplicationController
-    @account: ((Account & Account::Validated) | singleton(Current) | Account::Seedeable | Account | Current)?
+    @account: (Account & Account::Validated)?
+
     def update: () -> void
 
     private

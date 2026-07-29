@@ -1,6 +1,7 @@
 module Cards
   class StepsController < ApplicationController
     include CardScoped
+
     def index: () -> void
     def create: () -> void
     def show: () -> void

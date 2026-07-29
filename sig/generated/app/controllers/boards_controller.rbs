@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
   @board: Board?
+
   include FilterScoped
+
   def index: () -> void
   def show: () -> void
   def new: () -> void
@@ -12,7 +14,7 @@ class BoardsController < ApplicationController
   private
 
   def set_board: () -> Board?
-  def ensure_permission_to_admin_board: () -> true?
+  def ensure_permission_to_admin_board: () -> bool?
   def grantees_changed?: () -> untyped
   def show_filtered_cards: () -> untyped
   def show_columns: () -> untyped

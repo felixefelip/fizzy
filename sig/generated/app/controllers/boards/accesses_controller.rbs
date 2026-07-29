@@ -1,6 +1,7 @@
 module Boards
   class AccessesController < ApplicationController
     include BoardScoped
+
     def index: () -> void
 
     private

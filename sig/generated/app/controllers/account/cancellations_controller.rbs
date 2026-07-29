@@ -4,6 +4,6 @@ class Account
 
     private
 
-    def ensure_owner: () -> true?
+    def ensure_owner: () -> bool?
   end
 end
