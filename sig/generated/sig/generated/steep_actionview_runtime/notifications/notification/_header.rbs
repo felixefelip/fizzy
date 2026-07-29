@@ -1,11 +1,11 @@
 class ERBPartialNotificationsNotificationHeader
   include ActionViewContext
 
-  def initialize: (notification: untyped) -> void
+  def initialize: (notification: Notification & Notification::Validated) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader notification: untyped
+  attr_reader notification: Notification & Notification::Validated
 end

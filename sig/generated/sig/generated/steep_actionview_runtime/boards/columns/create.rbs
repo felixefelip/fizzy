@@ -1,7 +1,9 @@
 class ERBBoardsColumnsCreate
+  @column: Column
+
   include ActionViewContext
 
-  def initialize: (column: untyped) -> void
+  def initialize: (column: Column) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

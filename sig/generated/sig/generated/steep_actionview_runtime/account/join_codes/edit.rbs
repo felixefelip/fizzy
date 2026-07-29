@@ -1,7 +1,9 @@
 class ERBAccountJoinCodesEdit
+  @join_code: Account::JoinCode?
+
   include ActionViewContext
 
-  def initialize: (join_code: untyped, page_title: untyped) -> void
+  def initialize: (join_code: Account::JoinCode?, page_title: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

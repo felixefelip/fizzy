@@ -1,11 +1,11 @@
 class ERBPartialMyMenusPeople
   include ActionViewContext
 
-  def initialize: (users: untyped) -> void
+  def initialize: (users: User::ActiveRecord_Relation?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader users: untyped
+  attr_reader users: User::ActiveRecord_Relation?
 end

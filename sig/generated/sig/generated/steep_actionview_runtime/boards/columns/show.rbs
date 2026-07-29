@@ -1,7 +1,9 @@
 class ERBBoardsColumnsShow
+  @column: (Column | (Column & Column::Validated))?
+
   include ActionViewContext
 
-  def initialize: (column: untyped, page: untyped, page_title: untyped) -> void
+  def initialize: (column: (Column | (Column & Column::Validated))?, page: untyped, page_title: untyped) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

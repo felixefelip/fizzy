@@ -1,5 +1,6 @@
 class Account
   class SettingsController < ApplicationController
+    @users: User::ActiveRecord_Relation?
     @account: (Account & Account::Validated)?
 
     def show: () -> void

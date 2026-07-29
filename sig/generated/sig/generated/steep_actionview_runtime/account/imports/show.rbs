@@ -1,7 +1,9 @@
 class ERBAccountImportsShow
+  @import: (Account::Import & Account::Import::Validated)
+
   include ActionViewContext
 
-  def initialize: (import: untyped) -> void
+  def initialize: (import: Account::Import & ::Account::Import::Validated) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

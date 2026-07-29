@@ -1,11 +1,11 @@
 class ERBPartialMyMenusTags
   include ActionViewContext
 
-  def initialize: (tags: untyped) -> void
+  def initialize: (tags: Tag::ActiveRecord_Relation?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader tags: untyped
+  attr_reader tags: Tag::ActiveRecord_Relation?
 end

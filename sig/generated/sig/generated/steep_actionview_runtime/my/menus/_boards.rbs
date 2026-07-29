@@ -1,11 +1,11 @@
 class ERBPartialMyMenusBoards
   include ActionViewContext
 
-  def initialize: (boards: untyped) -> void
+  def initialize: (boards: Board::ActiveRecord_Relation) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader boards: untyped
+  attr_reader boards: Board::ActiveRecord_Relation
 end

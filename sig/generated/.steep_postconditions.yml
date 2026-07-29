@@ -73,6 +73,10 @@ postconditions:
     - "@__rbs_infer__performed"
 - class: Account::EntropiesController
   method: update
+  unconditional:
+    ivars:
+      "@account": "(::Account & ::Account::Validated)"
+    self: "::Account::EntropiesController & ::Account::EntropiesController::AfterUpdate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
@@ -136,6 +140,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@import"
 - class: Account::ImportsController
   method: create
   effects:
@@ -156,6 +161,15 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 - class: Account::ImportsController
+  method: set_import
+  unconditional:
+    ivars:
+      "@import": "(::Account::Import & ::Account::Import::Validated)"
+    self: "::Account::ImportsController & ::Account::ImportsController::AfterSetImport"
+  effects:
+    may_write:
+    - "@import"
+- class: Account::ImportsController
   method: start_import
   effects:
     may_write:
@@ -166,24 +180,28 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@join_code"
 - class: Account::JoinCodesController
   method: __rbs_infer__run_edit
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@join_code"
 - class: Account::JoinCodesController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@join_code"
 - class: Account::JoinCodesController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@join_code"
 - class: Account::JoinCodesController
   method: destroy
   effects:
@@ -198,6 +216,11 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Account::JoinCodesController
+  method: set_join_code
+  effects:
+    may_write:
+    - "@join_code"
 - class: Account::JoinCodesController
   method: update
   effects:
@@ -234,6 +257,10 @@ postconditions:
     - "@__rbs_infer__performed"
 - class: Account::SettingsController
   method: set_account
+  unconditional:
+    ivars:
+      "@account": "(::Account & ::Account::Validated)"
+    self: "::Account::SettingsController & ::Account::SettingsController::AfterSetAccount"
   effects:
     may_write:
     - "@account"
@@ -901,7 +928,17 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
+- class: Boards::Columns::CardsController
+  method: set_column
+  unconditional:
+    ivars:
+      "@column": "(::Column & ::Column::Validated)"
+    self: "::Boards::Columns::CardsController & ::Boards::Columns::CardsController::AfterSetColumn"
+  effects:
+    may_write:
+    - "@column"
 - class: Boards::Columns::ClosedsController
   method: __rbs_infer__run_show
   effects:
@@ -956,6 +993,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_destroy
@@ -963,6 +1001,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_index
@@ -970,6 +1009,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@columns"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_show
@@ -977,6 +1017,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: __rbs_infer__run_update
@@ -984,17 +1025,32 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
 - class: Boards::ColumnsController
   method: create
+  unconditional:
+    ivars:
+      "@column": "::Column"
+    self: "::Boards::ColumnsController & ::Boards::ColumnsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@column"
 - class: Boards::ColumnsController
   method: destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Boards::ColumnsController
+  method: index
+  unconditional:
+    ivars:
+      "@columns": "::Column::ActiveRecord_Relation"
+    self: "::Boards::ColumnsController & ::Boards::ColumnsController::AfterIndex"
+  effects:
+    may_write:
+    - "@columns"
 - class: Boards::ColumnsController
   method: render
   unconditional:
@@ -1004,6 +1060,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Boards::ColumnsController
+  method: set_column
+  unconditional:
+    ivars:
+      "@column": "(::Column & ::Column::Validated)"
+    self: "::Boards::ColumnsController & ::Boards::ColumnsController::AfterSetColumn"
+  effects:
+    may_write:
+    - "@column"
 - class: Boards::ColumnsController
   method: update
   effects:
@@ -1906,11 +1971,21 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@tags"
 - class: Cards::TaggingsController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::TaggingsController
+  method: new
+  unconditional:
+    ivars:
+      "@tags": "::Tag::ActiveRecord_Relation"
+    self: "::Cards::TaggingsController & ::Cards::TaggingsController::AfterNew"
+  effects:
+    may_write:
+    - "@tags"
 - class: Cards::TaggingsController
   method: render
   unconditional:
@@ -1985,6 +2060,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
@@ -1993,6 +2069,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@card"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
@@ -2001,6 +2078,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@card"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
@@ -2017,6 +2095,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@card"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
@@ -2025,14 +2104,20 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@card"
     - "@disable_view_transition"
     - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: create
+  unconditional:
+    ivars:
+      "@card": "::Card"
+    self: "::CardsController & ::CardsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@card"
 - class: CardsController
   method: destroy
   effects:
@@ -2066,6 +2151,15 @@ postconditions:
   effects:
     may_write:
     - "@board"
+- class: CardsController
+  method: set_card
+  unconditional:
+    ivars:
+      "@card": untyped
+    self: "::CardsController & ::CardsController::AfterSetCard"
+  effects:
+    may_write:
+    - "@card"
 - class: CardsController
   method: update
   effects:
@@ -2299,7 +2393,32 @@ postconditions:
   effects:
     may_write:
     - "@account"
+- class: ERBBoardsColumnsClosedsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBBoardsColumnsNotNowsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBBoardsColumnsStreamsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
 - class: ERBBoardsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBBoardsEntropiesUpdate
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBBoardsInvolvementsUpdate
   method: initialize
   effects:
     may_write:
@@ -2315,6 +2434,11 @@ postconditions:
     may_write:
     - "@board"
     - "@user_filtering"
+- class: ERBCardsBoardsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@boards"
 - class: ERBCardsIndex
   method: initialize
   effects:
@@ -2366,6 +2490,13 @@ postconditions:
   effects:
     may_write:
     - "@access_token"
+- class: ERBMyMenusShow
+  method: initialize
+  effects:
+    may_write:
+    - "@boards"
+    - "@tags"
+    - "@users"
 - class: ERBMyPasskeysIndex
   method: initialize
   effects:
@@ -2376,10 +2507,21 @@ postconditions:
   effects:
     may_write:
     - "@pins"
+- class: ERBNotificationsReadingsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@notification"
+- class: ERBNotificationsReadingsDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@notification"
 - class: ERBNotificationsSettingsShow
   method: initialize
   effects:
     may_write:
+    - "@boards"
     - "@settings"
 - class: ERBNotificationsTraysShow
   method: initialize
@@ -3128,6 +3270,21 @@ postconditions:
   effects:
     may_write:
     - "@day_timeline"
+- class: ERBWebhooksEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@webhook"
+- class: ERBWebhooksNew
+  method: initialize
+  effects:
+    may_write:
+    - "@webhook"
+- class: ERBWebhooksShow
+  method: initialize
+  effects:
+    may_write:
+    - "@webhook"
 - class: Event::Description
   method: initialize
   effects:
@@ -3633,6 +3790,8 @@ postconditions:
     - "@boards"
     - "@disable_view_transition"
     - "@filters"
+    - "@tags"
+    - "@users"
 - class: My::MenusController
   method: render
   unconditional:
@@ -3648,11 +3807,15 @@ postconditions:
     ivars:
       "@boards": "::Board::ActiveRecord_Relation"
       "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
+      "@tags": "::Tag::ActiveRecord_Relation"
+      "@users": "::User::ActiveRecord_Relation"
     self: "::My::MenusController & ::My::MenusController::AfterShow"
   effects:
     may_write:
     - "@boards"
     - "@filters"
+    - "@tags"
+    - "@users"
 - class: My::PasskeysController
   method: __rbs_infer__run_create
   effects:
@@ -3964,11 +4127,17 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@users"
 - class: Prompts::Boards::UsersController
   method: index
+  unconditional:
+    ivars:
+      "@users": "::User::ActiveRecord_Relation"
+    self: "::Prompts::Boards::UsersController & ::Prompts::Boards::UsersController::AfterIndex"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@users"
 - class: Prompts::Boards::UsersController
   method: render
   unconditional:
@@ -4010,11 +4179,17 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@users"
 - class: Prompts::UsersController
   method: index
+  unconditional:
+    ivars:
+      "@users": "::User::ActiveRecord_Relation"
+    self: "::Prompts::UsersController & ::Prompts::UsersController::AfterIndex"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@users"
 - class: Prompts::UsersController
   method: render
   unconditional:
@@ -4941,12 +5116,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::AvatarsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::AvatarsController
   method: destroy
   effects:
@@ -4958,6 +5135,15 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 - class: Users::AvatarsController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::Users::AvatarsController & ::Users::AvatarsController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
+- class: Users::AvatarsController
   method: show
   effects:
     may_write:
@@ -4968,12 +5154,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::DataExportsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::DataExportsController
   method: create
   effects:
@@ -4999,6 +5187,15 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 - class: Users::DataExportsController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::Users::DataExportsController & ::Users::DataExportsController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
+- class: Users::DataExportsController
   method: show
   effects:
     may_write:
@@ -5009,12 +5206,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::EmailAddresses::ConfirmationsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::EmailAddresses::ConfirmationsController
   method: create
   effects:
@@ -5029,6 +5228,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Users::EmailAddresses::ConfirmationsController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::Users::EmailAddresses::ConfirmationsController & ::Users::EmailAddresses::ConfirmationsController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
 - class: Users::EmailAddressesController
   method: __rbs_infer__run_create
   effects:
@@ -5068,6 +5276,7 @@ postconditions:
     - "@day_timeline"
     - "@disable_view_transition"
     - "@filter"
+    - "@user"
     - "@user_filtering"
 - class: Users::EventsController
   method: render
@@ -5078,6 +5287,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Users::EventsController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::Users::EventsController & ::Users::EventsController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
 - class: Users::EventsController
   method: show
   unconditional:
@@ -5161,11 +5379,21 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: Users::RolesController
   method: ensure_permission_to_administer_user
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Users::RolesController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::Users::RolesController & ::Users::RolesController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
 - class: Users::RolesController
   method: update
   effects:
@@ -5203,12 +5431,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: UsersController
   method: __rbs_infer__run_edit
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: UsersController
   method: __rbs_infer__run_index
   effects:
@@ -5221,12 +5451,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: UsersController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@user"
 - class: UsersController
   method: destroy
   effects:
@@ -5246,6 +5478,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: UsersController
+  method: set_user
+  unconditional:
+    ivars:
+      "@user": "(::User & ::User::Validated)"
+    self: "::UsersController & ::UsersController::AfterSetUser"
+  effects:
+    may_write:
+    - "@user"
 - class: UsersController
   method: update
   effects:
@@ -5332,11 +5573,17 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: Webhooks::ActivationsController
   method: create
+  unconditional:
+    ivars:
+      "@webhook": "(::Webhook & ::Webhook::Validated)"
+    self: "::Webhooks::ActivationsController & ::Webhooks::ActivationsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@webhook"
 - class: Webhooks::ActivationsController
   method: render
   unconditional:
@@ -5353,6 +5600,16 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
+- class: Webhooks::DeliveriesController
+  method: set_webhook
+  unconditional:
+    ivars:
+      "@webhook": "(::Webhook & ::Webhook::Validated)"
+    self: "::Webhooks::DeliveriesController & ::Webhooks::DeliveriesController::AfterSetWebhook"
+  effects:
+    may_write:
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_create
   effects:
@@ -5360,6 +5617,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_destroy
   effects:
@@ -5367,6 +5625,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_edit
   effects:
@@ -5374,6 +5633,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_index
   effects:
@@ -5388,6 +5648,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_show
   effects:
@@ -5395,6 +5656,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: __rbs_infer__run_update
   effects:
@@ -5402,16 +5664,31 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@webhook"
 - class: WebhooksController
   method: create
+  unconditional:
+    ivars:
+      "@webhook": untyped
+    self: "::WebhooksController & ::WebhooksController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@webhook"
 - class: WebhooksController
   method: destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: WebhooksController
+  method: new
+  unconditional:
+    ivars:
+      "@webhook": untyped
+    self: "::WebhooksController & ::WebhooksController::AfterNew"
+  effects:
+    may_write:
+    - "@webhook"
 - class: WebhooksController
   method: render
   unconditional:
@@ -5421,6 +5698,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: WebhooksController
+  method: set_webhook
+  unconditional:
+    ivars:
+      "@webhook": "(::Webhook & ::Webhook::Validated)"
+    self: "::WebhooksController & ::WebhooksController::AfterSetWebhook"
+  effects:
+    may_write:
+    - "@webhook"
 - class: WebhooksController
   method: update
   effects:
@@ -5502,6 +5788,36 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: AccessesHelper
   method: next_involvement
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account
+  method: active?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account
+  method: importing?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account
+  method: imports
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account
+  method: tags
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account::Cancellable
+  method: cancel
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account::Cancellable
+  method: cancellable?
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -5597,6 +5913,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@import": "(::Account::Import & ::Account::Import::Validated)"
 - class: Account::ImportsController
   method: new
   consts:
@@ -5625,6 +5942,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@import": "(::Account::Import & ::Account::Import::Validated)"
 - class: Account::JoinCodesController
   method: destroy
   consts:
@@ -5673,6 +5991,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: render
@@ -5680,6 +5999,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: set_account
@@ -5694,6 +6014,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
 - class: Account::SettingsController
   method: update
@@ -5701,6 +6022,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
 - class: ActionPack::Passkey
   method: authentication_options
@@ -5827,8 +6149,28 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Board
+  method: webhooks
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: Board::Accessible
   method: accessible_to?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board::Publishable
+  method: publish
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board::Publishable
+  method: published?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board::Publishable
+  method: unpublish
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -5847,6 +6189,36 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: build
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: create
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: create!
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: build
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: create
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: create!
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: Boards::AccessesController
   method: index
   consts:
@@ -5862,6 +6234,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::Columns::CardsController
   method: set_column
@@ -5942,6 +6315,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: index
@@ -5974,6 +6348,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: update
@@ -5982,6 +6357,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: entropy_params
@@ -9125,6 +9501,8 @@ method_entry_facts:
     "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
+    "@tags": "::Tag::ActiveRecord_Relation"
+    "@users": "::User::ActiveRecord_Relation"
 - class: My::MenusController
   method: show
   consts:
@@ -9432,6 +9810,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@users": "::User::ActiveRecord_Relation"
 - class: Prompts::CardsController
   method: filter_param
   consts:
@@ -9489,6 +9868,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@users": "::User::ActiveRecord_Relation"
 - class: Public::BaseController
   method: ensure_board_accessible
   consts:
@@ -9980,6 +10360,41 @@ method_entry_facts:
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_assignees?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_boards?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_closers?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_creators?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_indexed_by?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_sorted_by?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: show_tags?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: User::Role
   method: can_administer?
   consts:
@@ -10013,6 +10428,7 @@ method_entry_facts:
   ivars:
     "@__rbs_infer__performed": 'true'
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::AvatarsController
   method: destroy
   consts:
@@ -10020,6 +10436,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::AvatarsController
   method: ensure_permission_to_administer_user
   consts:
@@ -10027,6 +10444,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::AvatarsController
   method: render_initials
   consts:
@@ -10035,6 +10453,7 @@ method_entry_facts:
   ivars:
     "@__rbs_infer__performed": 'true'
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::AvatarsController
   method: set_user
   consts:
@@ -10049,6 +10468,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: create
   consts:
@@ -10056,6 +10476,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: ensure_current_user
   consts:
@@ -10063,6 +10484,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: ensure_export_limit_not_exceeded
   consts:
@@ -10070,6 +10492,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: render
   consts:
@@ -10077,6 +10500,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: set_export
   consts:
@@ -10084,6 +10508,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::DataExportsController
   method: set_user
   consts:
@@ -10098,6 +10523,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::EmailAddresses::ConfirmationsController
   method: create
   consts:
@@ -10105,6 +10531,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::EmailAddresses::ConfirmationsController
   method: render
   consts:
@@ -10112,6 +10539,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::EmailAddresses::ConfirmationsController
   method: set_user
   consts:
@@ -10126,6 +10554,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::EmailAddressesController
   method: create
   consts:
@@ -10175,6 +10604,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
     "@user_filtering": "::User::Filtering"
 - class: Users::EventsController
   method: render
@@ -10184,6 +10614,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
     "@user_filtering": "::User::Filtering"
 - class: Users::EventsController
   method: set_user
@@ -10200,6 +10631,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
     "@user_filtering": "::User::Filtering"
 - class: Users::JoinsController
   method: create
@@ -10275,6 +10707,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::RolesController
   method: role_params
   consts:
@@ -10282,6 +10715,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::RolesController
   method: set_user
   consts:
@@ -10296,6 +10730,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::VerificationsController
   method: create
   consts:
@@ -10324,6 +10759,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersController
   method: edit
   consts:
@@ -10331,6 +10767,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersController
   method: ensure_permission_to_change_user
   consts:
@@ -10338,6 +10775,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersController
   method: index
   consts:
@@ -10352,6 +10790,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersController
   method: set_user
   consts:
@@ -10366,6 +10805,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersController
   method: update
   consts:
@@ -10373,6 +10813,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: UsersHelper
   method: role_display_name
   consts:
@@ -10381,6 +10822,11 @@ method_entry_facts:
 - class: ViewTransitions
   method: disable_view_transitions
   consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: Webhook
+  method: activate
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Webhooks::ActivationsController
   method: create
@@ -10399,6 +10845,7 @@ method_entry_facts:
     "@__rbs_infer__performed": 'true'
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: Webhooks::DeliveriesController
   method: index
   consts:
@@ -10407,6 +10854,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: Webhooks::DeliveriesController
   method: set_webhook
   consts:
@@ -10431,6 +10879,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: WebhooksController
   method: edit
   consts:
@@ -10439,6 +10888,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: WebhooksController
   method: index
   consts:
@@ -10479,6 +10929,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: WebhooksController
   method: update
   consts:
@@ -10487,6 +10938,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
 - class: WebhooksController
   method: webhook_params
   consts:
@@ -10538,11 +10990,13 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@import": "(::Account::Import & ::Account::Import::Validated)"
 - class: Account::SettingsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
 - class: ApplicationHelper
   method: back_link_to
@@ -10578,6 +11032,7 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "::Column"
     "@disable_view_transition": 'true'
 - class: Boards::ColumnsController
   method: render
@@ -10592,6 +11047,7 @@ argument_entry_facts:
   pattern: ":update"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Boards::EntropiesController
   method: render
@@ -10839,6 +11295,7 @@ argument_entry_facts:
   pattern: ":new"
   ivars:
     "@disable_view_transition": 'true'
+    "@tags": "::Tag::ActiveRecord_Relation"
 - class: Cards::WatchesController
   method: render
   param: target
@@ -11347,6 +11804,8 @@ argument_entry_facts:
     "@boards": "::Board::ActiveRecord_Relation"
     "@disable_view_transition": 'true'
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
+    "@tags": "::Tag::ActiveRecord_Relation"
+    "@users": "::User::ActiveRecord_Relation"
 - class: My::PasskeysController
   method: render
   param: target
@@ -11488,6 +11947,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
 - class: Users::EventsController
   method: render
   param: target
@@ -11495,6 +11955,7 @@ argument_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@user": "(::User & ::User::Validated)"
     "@user_filtering": "::User::Filtering"
 - class: Users::JoinsController
   method: render
@@ -11516,3 +11977,4 @@ argument_entry_facts:
     "@__rbs_infer__performed": 'true'
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@webhook": "(::Webhook & ::Webhook::Validated)"
