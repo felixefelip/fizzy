@@ -26,6 +26,34 @@ class Card
     self.creator ||= Current.user
   end
 
+  def assignments
+    Card_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
+  end
+
+  def comments
+    Card_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
+  end
+
+  def steps
+    Card_Step::ActiveRecord_Associations_CollectionProxy.new(Step, self)
+  end
+
+  def pins
+    Card_Pin::ActiveRecord_Associations_CollectionProxy.new(Pin, self)
+  end
+
+  def taggings
+    Card_Tagging::ActiveRecord_Associations_CollectionProxy.new(Tagging, self)
+  end
+
+  def tags
+    Card_Tag::ActiveRecord_Associations_CollectionProxy.new(Tag, self)
+  end
+
+  def watches
+    Card_Watch::ActiveRecord_Associations_CollectionProxy.new(Watch, self)
+  end
+
   def reactions
     Card_Reaction::ActiveRecord_Associations_CollectionProxy.new(Reaction, self)
   end

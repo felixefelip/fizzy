@@ -26,6 +26,26 @@ class Board
     self.account ||= creator.account
   end
 
+  def accesses
+    Board_Access::ActiveRecord_Associations_CollectionProxy.new(Access, self)
+  end
+
+  def users
+    Board_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
+  end
+
+  def storage_entries
+    Board_Storage_Entry::ActiveRecord_Associations_CollectionProxy.new(Storage::Entry, self)
+  end
+
+  def cards
+    Board_Card::ActiveRecord_Associations_CollectionProxy.new(Card, self)
+  end
+
+  def columns
+    Board_Column::ActiveRecord_Associations_CollectionProxy.new(Column, self)
+  end
+
   def tags
     Board_Tag::ActiveRecord_Associations_CollectionProxy.new(Tag, self)
   end

@@ -21,6 +21,10 @@ class Event
     self.account ||= board.account
   end
 
+  def notifications
+    Event_Notification::ActiveRecord_Associations_CollectionProxy.new(Notification, self)
+  end
+
   def webhook_deliveries
     Event_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy.new(Webhook::Delivery, self)
   end

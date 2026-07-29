@@ -20,4 +20,8 @@ class Mention
   def run_belongs_to_default_account
     self.account ||= source.account
   end
+
+  def notifications
+    Mention_Notification::ActiveRecord_Associations_CollectionProxy.new(Notification, self)
+  end
 end

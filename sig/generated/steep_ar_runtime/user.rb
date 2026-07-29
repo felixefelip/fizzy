@@ -4,6 +4,46 @@
 # Regenerated on every run; do not edit.
 
 class User
+  def accesses
+    User_Access::ActiveRecord_Associations_CollectionProxy.new(Access, self)
+  end
+
+  def boards
+    User_Board::ActiveRecord_Associations_CollectionProxy.new(Board, self)
+  end
+
+  def assignments
+    User_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
+  end
+
+  def assignings
+    User_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
+  end
+
+  def push_subscriptions
+    User_Push_Subscription::ActiveRecord_Associations_CollectionProxy.new(Push::Subscription, self)
+  end
+
+  def mentions
+    User_Mention::ActiveRecord_Associations_CollectionProxy.new(Mention, self)
+  end
+
+  def notifications
+    User_Notification::ActiveRecord_Associations_CollectionProxy.new(Notification, self)
+  end
+
+  def notification_bundles
+    User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy.new(Notification::Bundle, self)
+  end
+
+  def search_queries
+    User_Search_Query::ActiveRecord_Associations_CollectionProxy.new(Search::Query, self)
+  end
+
+  def watches
+    User_Watch::ActiveRecord_Associations_CollectionProxy.new(Watch, self)
+  end
+
   def comments
     User_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
   end

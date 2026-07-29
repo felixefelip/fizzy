@@ -4,6 +4,14 @@
 # Regenerated on every run; do not edit.
 
 class Account
+  def storage_entries
+    Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy.new(Storage::Entry, self)
+  end
+
+  def search_queries
+    Account_Search_Query::ActiveRecord_Associations_CollectionProxy.new(Search::Query, self)
+  end
+
   def users
     Account_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
   end
