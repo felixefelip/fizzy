@@ -965,6 +965,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_destroy
@@ -973,6 +974,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_edit
@@ -981,6 +983,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_index
@@ -988,6 +991,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_new
@@ -996,6 +1000,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_show
@@ -1004,6 +1009,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: __rbs_infer__run_update
@@ -1012,6 +1018,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: BoardsController
   method: create
@@ -1460,6 +1467,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: Cards::PreviewsController
   method: render
@@ -1741,6 +1749,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: __rbs_infer__run_destroy
@@ -1748,6 +1757,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: __rbs_infer__run_edit
@@ -1755,6 +1765,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: __rbs_infer__run_index
@@ -1762,6 +1773,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: __rbs_infer__run_show
@@ -1769,6 +1781,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: __rbs_infer__run_update
@@ -1776,6 +1789,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: CardsController
   method: create
@@ -2020,9 +2034,14 @@ postconditions:
     - "@__rbs_infer__performed"
 - class: DayTimelinesScoped
   method: set_day_timeline
+  unconditional:
+    ivars:
+      "@day_timeline": "::User::DayTimeline"
+    self: "::DayTimelinesScoped & ::DayTimelinesScoped::AfterSetDayTimeline"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@day_timeline"
 - class: ERBAccountSettingsShow
   method: initialize
   effects:
@@ -2043,6 +2062,17 @@ postconditions:
   effects:
     may_write:
     - "@board"
+    - "@user_filtering"
+- class: ERBCardsIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@user_filtering"
+- class: ERBEventsIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@user_filtering"
 - class: ERBJoinCodesInactive
   method: initialize
   effects:
@@ -2846,7 +2876,9 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@day_timeline"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: Events::DayTimeline::ColumnsController
   method: ensure_valid_column
@@ -2867,7 +2899,9 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@day_timeline"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: Events::DaysController
   method: render
@@ -2883,7 +2917,9 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@day_timeline"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: EventsController
   method: render
@@ -2946,6 +2982,15 @@ postconditions:
     - "@as_params"
     - "@boards"
 - class: FilterScoped
+  method: set_filter
+  unconditional:
+    ivars:
+      "@filter": untyped
+    self: "::FilterScoped & ::FilterScoped::AfterSetFilter"
+  effects:
+    may_write:
+    - "@filter"
+- class: FilterScoped
   method: set_user_filtering
   unconditional:
     ivars:
@@ -2960,6 +3005,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: Filters::SettingsRefreshesController
   method: render
@@ -2976,12 +3022,34 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
+    - "@filters"
 - class: FiltersController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filter"
+    - "@filters"
+- class: FiltersController
+  method: create
+  unconditional:
+    ivars:
+      "@filter": untyped
+    self: "::FiltersController & ::FiltersController::AfterCreate"
+  effects:
+    may_write:
+    - "@filter"
+- class: FiltersController
+  method: destroy
+  unconditional:
+    ivars:
+      "@filter": "(::Filter & ::Filter::Validated)"
+    self: "::FiltersController & ::FiltersController::AfterDestroy"
+  effects:
+    may_write:
+    - "@filter"
 - class: FiltersController
   method: render
   unconditional:
@@ -2991,6 +3059,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: FiltersController
+  method: set_filters
+  unconditional:
+    ivars:
+      "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
+    self: "::FiltersController & ::FiltersController::AfterSetFilters"
+  effects:
+    may_write:
+    - "@filters"
 - class: Fizzy
   method: db_adapter
   effects:
@@ -3253,6 +3330,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@filters"
 - class: My::MenusController
   method: render
   unconditional:
@@ -3262,6 +3340,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: My::MenusController
+  method: show
+  unconditional:
+    ivars:
+      "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
+    self: "::My::MenusController & ::My::MenusController::AfterShow"
+  effects:
+    may_write:
+    - "@filters"
 - class: My::PasskeysController
   method: __rbs_infer__run_create
   effects:
@@ -3425,12 +3512,14 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@settings"
 - class: Notifications::SettingsController
   method: __rbs_infer__run_update
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+    - "@settings"
 - class: Notifications::SettingsController
   method: render
   unconditional:
@@ -3440,6 +3529,11 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Notifications::SettingsController
+  method: set_settings
+  effects:
+    may_write:
+    - "@settings"
 - class: Notifications::SettingsController
   method: update
   effects:
@@ -4489,7 +4583,9 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@day_timeline"
     - "@disable_view_transition"
+    - "@filter"
     - "@user_filtering"
 - class: Users::EventsController
   method: render
@@ -4500,6 +4596,17 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Users::EventsController
+  method: show
+  unconditional:
+    ivars:
+      "@day_timeline": "::User::DayTimeline"
+      "@filter": untyped
+    self: "::Users::EventsController & ::Users::EventsController::AfterShow"
+  effects:
+    may_write:
+    - "@day_timeline"
+    - "@filter"
 - class: Users::JoinsController
   method: __rbs_infer__run_create
   effects:
@@ -7595,6 +7702,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
@@ -7602,6 +7710,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
@@ -7609,6 +7718,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
@@ -7616,6 +7726,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
@@ -7623,6 +7734,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
@@ -7630,6 +7742,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: EventsController
@@ -7637,6 +7750,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: EventsController
@@ -7644,6 +7758,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: FilterScoped
@@ -7690,24 +7805,28 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: destroy
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: filter_params
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: render
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: set_filters
   consts:
@@ -7879,6 +7998,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: My::MenusController
   method: show
   consts:
@@ -8752,6 +8872,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Users::EventsController
@@ -9739,6 +9860,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
@@ -9746,6 +9868,7 @@ argument_entry_facts:
   param: target
   pattern: ":index"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: EventsController
@@ -9753,6 +9876,7 @@ argument_entry_facts:
   param: target
   pattern: ":index"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Filters::SettingsRefreshesController
@@ -9768,12 +9892,15 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: render
   param: target
   pattern: ":destroy"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "(::Filter & ::Filter::Validated)"
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersHelper
   method: filter_title
   param: title
@@ -9823,6 +9950,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: My::PasskeysController
   method: render
   param: target
@@ -9963,6 +10091,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Users::JoinsController
