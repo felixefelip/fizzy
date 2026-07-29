@@ -74,6 +74,42 @@ postconditions:
   effects:
     may_write:
     - "@account"
+- class: ActionPack::Passkey::Holder::Config
+  method: authentication_options
+  unconditional:
+    ivars:
+      "@authentication_options": "(^(untyped) -> untyped | nil)"
+    self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterAuthenticationOptions"
+  effects:
+    may_write:
+    - "@authentication_options"
+- class: ActionPack::Passkey::Holder::Config
+  method: initialize
+  unconditional:
+    ivars:
+      "@authentication_options": "::Proc"
+      "@registration_options": "::Proc"
+    self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterInitialize"
+  effects:
+    may_write:
+    - "@association_name"
+    - "@authentication_options"
+    - "@dependent"
+    - "@registration_options"
+- class: ActionPack::Passkey::Holder::Config
+  method: registration_options
+  unconditional:
+    ivars:
+      "@registration_options": "(^(untyped) -> untyped | nil)"
+    self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterRegistrationOptions"
+  effects:
+    may_write:
+    - "@registration_options"
+- class: ActionPack::WebAuthn
+  method: attestation_verifiers
+  effects:
+    may_write:
+    - "@attestation_verifiers"
 - class: ActionPack::WebAuthn::Authenticator::AssertionResponse
   method: initialize
   effects:
@@ -88,6 +124,21 @@ postconditions:
     - "@attestation_statement"
     - "@authenticator_data"
     - "@format"
+- class: ActionPack::WebAuthn::Authenticator::AttestationResponse
+  method: attestation
+  effects:
+    may_write:
+    - "@attestation"
+- class: ActionPack::WebAuthn::Authenticator::AttestationResponse
+  method: attestation_must_be_valid
+  effects:
+    may_write:
+    - "@attestation"
+- class: ActionPack::WebAuthn::Authenticator::AttestationResponse
+  method: authenticator_data
+  effects:
+    may_write:
+    - "@attestation"
 - class: ActionPack::WebAuthn::Authenticator::AttestationResponse
   method: initialize
   effects:
@@ -233,6 +284,21 @@ postconditions:
     - "@public_key"
     - "@sign_count"
     - "@transports"
+- class: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions
+  method: as_json
+  effects:
+    may_write:
+    - "@challenge"
+- class: ActionPack::WebAuthn::PublicKeyCredential::Options
+  method: challenge
+  effects:
+    may_write:
+    - "@challenge"
+- class: ActionPack::WebAuthn::PublicKeyCredential::RequestOptions
+  method: as_json
+  effects:
+    may_write:
+    - "@challenge"
 - class: ActionPack::WebAuthn::RelyingParty
   method: initialize
   effects:
@@ -286,6 +352,15 @@ postconditions:
   effects:
     may_write:
     - "@card"
+- class: Card::Broadcastable
+  method: preview_changed?
+  effects:
+    returns_ivar: "@preview_changed"
+- class: Card::Broadcastable
+  method: remember_if_preview_changed
+  effects:
+    may_write:
+    - "@preview_changed"
 - class: Card::Entropy
   method: initialize
   effects:
@@ -311,17 +386,57 @@ postconditions:
   method: should_detect_activity_spikes?
   effects:
     returns_ivar: "@should_detect_activity_spikes"
+- class: CurrentTimezone
+  method: set_current_timezone
+  effects:
+    may_write:
+    - "@timezone_from_cookie"
+- class: CurrentTimezone
+  method: timezone_from_cookie
+  effects:
+    may_write:
+    - "@timezone_from_cookie"
 - class: Event::Description
   method: initialize
   effects:
     may_write:
     - "@event"
     - "@user"
+- class: Event::Particulars
+  method: assignees
+  effects:
+    may_write:
+    - "@assignees"
 - class: ExportMailer
   method: completed
   effects:
     may_write:
     - "@export"
+- class: Filter
+  method: empty?
+  effects:
+    may_write:
+    - "@as_params"
+- class: Filter::Fields
+  method: with
+  effects:
+    may_write:
+    - "@as_params"
+- class: Filter::Params
+  method: as_params
+  effects:
+    may_write:
+    - "@as_params"
+- class: Filter::Params
+  method: as_params_without
+  effects:
+    may_write:
+    - "@as_params"
+- class: Filter::Params
+  method: params_digest
+  effects:
+    may_write:
+    - "@as_params"
 - class: Filter::Resources
   method: board_titles
   effects:
@@ -341,6 +456,7 @@ postconditions:
   method: resource_removed
   effects:
     may_write:
+    - "@as_params"
     - "@boards"
 - class: FilterScoped
   method: set_user_filtering
@@ -351,6 +467,16 @@ postconditions:
   effects:
     may_write:
     - "@user_filtering"
+- class: Fizzy
+  method: db_adapter
+  effects:
+    may_write:
+    - "@db_adapter"
+- class: HotkeysHelper
+  method: hotkey_label
+  effects:
+    may_write:
+    - "@platform"
 - class: ImportMailer
   method: completed
   effects:
@@ -370,6 +496,11 @@ postconditions:
   effects:
     may_write:
     - "@identity"
+- class: JoinCodesController
+  method: set_join_code
+  effects:
+    may_write:
+    - "@join_code"
 - class: MagicLinkMailer
   method: sign_in_instructions
   effects:
@@ -379,7 +510,7 @@ postconditions:
   method: index
   unconditional:
     ivars:
-      "@access_tokens": "::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy"
+      "@access_tokens": "::Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy"
     self: "::My::AccessTokensController & ::My::AccessTokensController::AfterIndex"
   effects:
     may_write:
@@ -444,7 +575,7 @@ postconditions:
   method: show
   unconditional:
     ivars:
-      "@notifications": "::Notification::ActiveRecord_Relation"
+      "@notifications": untyped
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
   effects:
     may_write:
@@ -458,21 +589,61 @@ postconditions:
   method: index
   unconditional:
     ivars:
-      "@cards": "(::Array[untyped] | ::Card::ActiveRecord_Relation)"
+      "@cards": "::Array[untyped]"
     self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
   effects:
     may_write:
     - "@cards"
+- class: Push::Subscription
+  method: endpoint_uri
+  effects:
+    may_write:
+    - "@endpoint_uri"
+- class: Push::Subscription
+  method: notification
+  effects:
+    may_write:
+    - "@endpoint_uri"
+- class: Push::Subscription
+  method: permitted_endpoint_host?
+  effects:
+    may_write:
+    - "@endpoint_uri"
+- class: Push::Subscription
+  method: resolved_endpoint_ip
+  effects:
+    may_write:
+    - "@endpoint_uri"
+- class: Push::Subscription
+  method: validate_endpoint_url
+  effects:
+    may_write:
+    - "@endpoint_uri"
 - class: QrCodeLink
   method: initialize
   effects:
     may_write:
     - "@url"
 - class: Search::Highlighter
+  method: highlight
+  effects:
+    may_write:
+    - "@terms"
+- class: Search::Highlighter
   method: initialize
   effects:
     may_write:
     - "@query"
+- class: Search::Highlighter
+  method: snippet
+  effects:
+    may_write:
+    - "@terms"
+- class: Search::Highlighter
+  method: terms
+  effects:
+    may_write:
+    - "@terms"
 - class: SessionsController
   method: new
   unconditional:
@@ -482,6 +653,11 @@ postconditions:
   effects:
     may_write:
     - "@authentication_options"
+- class: SetPlatform
+  method: platform
+  effects:
+    may_write:
+    - "@platform"
 - class: Signup
   method: complete
   effects:
@@ -501,11 +677,19 @@ postconditions:
     - "@user"
 - class: Signup
   method: create_identity
+  unconditional:
+    ivars:
+      "@identity": "(::Identity & ::Identity::Validated)"
+    self: "::Signup & ::Signup::AfterCreateIdentity"
   effects:
     may_write:
     - "@identity"
 - class: Signup
   method: destroy_account
+  unconditional:
+    ivars:
+      "@account": nil
+    self: "::Signup & ::Signup::AfterDestroyAccount"
   effects:
     may_write:
     - "@account"
@@ -513,19 +697,53 @@ postconditions:
     - "@user"
 - class: Signup
   method: initialize
-  unconditional:
-    ivars:
-      "@email_address": "(::String | nil)"
-    self: "::Signup & ::Signup::AfterInitialize"
   effects:
     may_write:
     - "@email_address"
+- class: Signup::AccountNameGenerator
+  method: current_index
+  effects:
+    may_write:
+    - "@first_account_name_regex"
+    - "@nth_account_name_regex"
+    - "@prefix"
+- class: Signup::AccountNameGenerator
+  method: existing_indices
+  effects:
+    may_write:
+    - "@first_account_name_regex"
+    - "@nth_account_name_regex"
+    - "@prefix"
+- class: Signup::AccountNameGenerator
+  method: first_account_name_regex
+  effects:
+    may_write:
+    - "@first_account_name_regex"
+    - "@prefix"
+- class: Signup::AccountNameGenerator
+  method: generate
+  effects:
+    may_write:
+    - "@first_account_name_regex"
+    - "@nth_account_name_regex"
+    - "@prefix"
 - class: Signup::AccountNameGenerator
   method: initialize
   effects:
     may_write:
     - "@identity"
     - "@name"
+- class: Signup::AccountNameGenerator
+  method: nth_account_name_regex
+  effects:
+    may_write:
+    - "@nth_account_name_regex"
+    - "@prefix"
+- class: Signup::AccountNameGenerator
+  method: prefix
+  effects:
+    may_write:
+    - "@prefix"
 - class: Signups::CompletionsController
   method: create
   unconditional:
@@ -569,12 +787,80 @@ postconditions:
     may_write:
     - "@now"
 - class: User::DayTimeline
+  method: added_column
+  effects:
+    may_write:
+    - "@added_column"
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: cache_key
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: closed_column
+  effects:
+    may_write:
+    - "@closed_column"
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: earliest_time
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: events
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: filtered_events
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: has_activity?
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
   method: initialize
   effects:
     may_write:
     - "@day"
     - "@filter"
     - "@user"
+- class: User::DayTimeline
+  method: latest_event_before
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: next_day
+  effects:
+    may_write:
+    - "@filtered_events"
+- class: User::DayTimeline
+  method: updated_column
+  effects:
+    may_write:
+    - "@filtered_events"
+    - "@updated_column"
+- class: User::DayTimeline::Column
+  method: full_events_count
+  effects:
+    may_write:
+    - "@full_events_count"
+- class: User::DayTimeline::Column
+  method: has_more_events?
+  effects:
+    may_write:
+    - "@full_events_count"
+- class: User::DayTimeline::Column
+  method: hidden_events_count
+  effects:
+    may_write:
+    - "@full_events_count"
 - class: User::DayTimeline::Column
   method: initialize
   effects:
@@ -584,6 +870,11 @@ postconditions:
     - "@events"
     - "@id"
     - "@index"
+- class: User::DayTimeline::Column
+  method: title
+  effects:
+    may_write:
+    - "@full_events_count"
 - class: User::Filtering
   method: expanded?
   effects:
@@ -617,6 +908,48 @@ postconditions:
     - "@delivery_pool"
     - "@invalid_subscription_handler"
     - "@invalidation_pool"
+- class: Webhook::Delivery
+  method: deliver
+  effects:
+    may_write:
+    - "@payload"
+    - "@uri"
+- class: Webhook::Delivery
+  method: headers
+  effects:
+    may_write:
+    - "@payload"
+- class: Webhook::Delivery
+  method: http
+  effects:
+    may_write:
+    - "@uri"
+- class: Webhook::Delivery
+  method: payload
+  effects:
+    may_write:
+    - "@payload"
+- class: Webhook::Delivery
+  method: perform_request
+  effects:
+    may_write:
+    - "@payload"
+    - "@uri"
+- class: Webhook::Delivery
+  method: resolved_ip
+  effects:
+    may_write:
+    - "@uri"
+- class: Webhook::Delivery
+  method: signature
+  effects:
+    may_write:
+    - "@payload"
+- class: Webhook::Delivery
+  method: uri
+  effects:
+    may_write:
+    - "@uri"
 - class: ZipFile::Reader
   method: initialize
   effects:
@@ -644,12 +977,22 @@ postconditions:
     - "@streamer"
 - class: ZipFile::Writer
   method: initialize
+  unconditional:
+    ivars:
+      "@streamer": nil
+    self: "::ZipFile::Writer & ::ZipFile::Writer::AfterInitialize"
   effects:
     may_write:
     - "@byte_size"
     - "@digest"
     - "@entries"
+    - "@output_io"
     - "@streamer"
+- class: ZipFile::Writer
+  method: stream_to
+  effects:
+    may_write:
+    - "@output_io"
 - class: ZipFile::Writer
   method: streamer
   effects:
@@ -661,14 +1004,22 @@ postconditions:
     may_write:
     - "@byte_size"
 method_entry_facts:
-- class: Notifications::TraysController
-  method: include_read?
+- class: BridgeHelper
+  method: bridge_share_board_description
   ivars:
-    "@notifications": "::Notification::ActiveRecord_Relation"
-- class: Notifications::TraysController
-  method: read_notifications
+    "@body_class": "::String"
+- class: BridgeHelper
+  method: bridge_share_card_description
   ivars:
-    "@notifications": "::Notification::ActiveRecord_Relation"
+    "@header_class": "::String"
+- class: CardsHelper
+  method: button_to_remove_card_image
+  ivars:
+    "@header_class": "::String"
+- class: CardsHelper
+  method: card_social_tags
+  ivars:
+    "@header_class": "::String"
 - class: Signups::CompletionsController
   method: invalid_signup
   ivars:
@@ -677,3 +1028,7 @@ method_entry_facts:
   method: welcome_to_account
   ivars:
     "@signup": "::Signup"
+- class: WebhooksHelper
+  method: link_to_webhooks
+  ivars:
+    "@body_class": "::String"

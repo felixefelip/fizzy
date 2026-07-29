@@ -10,42 +10,6 @@ methods:
           kind: self
         method: user
     enforced: false
-  Account#active?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: imports
-    enforced: false
-  Account#importing?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: imports
-    enforced: false
-  Account#system_user:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-    enforced: false
-  Account::Cancellable#cancel:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: imports
-    enforced: false
   Account::Cancellable#reactivate:
     requires:
     - kind: not_nil
@@ -143,12 +107,6 @@ methods:
         receiver:
           kind: self
         method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
     enforced: false
   Account::DataTransfer::EntropyRecordSet#import_batch:
     requires:
@@ -159,22 +117,6 @@ methods:
           kind: self
         method: account
     enforced: false
-  Account::DataTransfer::RecordSet#check_associations_dont_exist:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
-  Account::DataTransfer::RecordSet#check_record:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
   Account::DataTransfer::RecordSet#export:
     requires:
     - kind: not_nil
@@ -201,21 +143,7 @@ methods:
         receiver:
           kind: self
         method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
     enforced: false
-  Account::DataTransfer::RecordSet#model_dir:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
   Account::DataTransfer::RecordSet#records:
     requires:
     - kind: not_nil
@@ -224,12 +152,6 @@ methods:
         receiver:
           kind: self
         method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model
     enforced: false
   Account::DataTransfer::UserRecordSet#import_batch:
     requires:
@@ -407,29 +329,6 @@ methods:
         receiver:
           kind: self
         method: usage_count
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: imports
-    enforced: false
-  Account::Seedeable#setup_customer_template:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-        chain:
-        - admin
     enforced: false
   Account::Seeder#delete_everything:
     requires:
@@ -486,15 +385,6 @@ methods:
         method: account
         chain:
         - boards
-    enforced: false
-  Account::Storage#calculate_real_storage_bytes:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: boards
     enforced: false
   ActionPack::Passkey::FormHelper#passkey_error_messages:
     requires:
@@ -1221,23 +1111,6 @@ methods:
         receiver:
           kind: self
         method: description
-    enforced: false
-  Card#handle_board_change:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
     enforced: false
   Card#move_to:
     requires:
@@ -2523,33 +2396,6 @@ methods:
           kind: self
         method: it
     enforced: false
-  Identity#deactivate_users:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-    enforced: false
-  Identity#send_magic_link:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: magic_links
-    enforced: false
-  Identity#users_with_active_accounts:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-    enforced: false
   LoginHelper#login_url:
     requires:
     - kind: not_nil
@@ -3121,6 +2967,23 @@ methods:
         - notifications
         - unread
     enforced: false
+  Push::Subscription#validate_endpoint_url:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: endpoint_uri
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: endpoint_uri
+        chain:
+        - scheme
+    enforced: false
   RequestForgeryProtection#allowed_api_request?:
     requires:
     - kind: not_nil
@@ -3234,6 +3097,12 @@ methods:
         receiver:
           kind: self
         method: identity
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
         chain:
         - accounts
     enforced: false
@@ -3256,6 +3125,12 @@ methods:
     enforced: false
   Signup::AccountNameGenerator#generate:
     requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: identity
     - kind: not_nil
       expr:
         kind: send
@@ -3350,23 +3225,6 @@ methods:
         receiver:
           kind: self
         method: storage_entries
-    enforced: false
-  Tag#cards_count:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-        chain:
-        - open
     enforced: false
   TurboFlash#turbo_stream_flash:
     requires:
@@ -4262,10 +4120,4 @@ methods:
         receiver:
           kind: self
         method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: deliveries
     enforced: false
