@@ -1,9 +1,9 @@
 class ERBMyPasskeysIndex
-  @registration_options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions?
+  @registration_options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions
 
   include ActionViewContext
 
-  def initialize: (page_title: untyped, passkeys: untyped, registration_options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions?) -> void
+  def initialize: (page_title: untyped, passkeys: untyped, registration_options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions) -> void
   def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

@@ -1,11 +1,13 @@
 module Notifications
   class SettingsController < ApplicationController
+    @settings: User::Settings?
+
     def show: () -> void
     def update: () -> void
 
     private
 
-    def set_settings: () -> untyped
+    def set_settings: () -> User::Settings?
     def settings_params: () -> untyped
   end
 end

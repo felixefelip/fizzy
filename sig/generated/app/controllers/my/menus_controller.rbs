@@ -1,5 +1,7 @@
 module My
   class MenusController < ApplicationController
+    @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
+
     def show: () -> void
   end
 end

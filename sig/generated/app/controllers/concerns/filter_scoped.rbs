@@ -1,11 +1,12 @@
 module FilterScoped
+  @filter: (Filter & Filter::Validated)?
   @user_filtering: User::Filtering?
 
   extend ActiveSupport::Concern
 
   private
 
-  def set_filter: () -> untyped
+  def set_filter: () -> (Filter & Filter::Validated)
   def filter_params: () -> untyped
   def set_user_filtering: () -> User::Filtering
   def expanded_param: () -> untyped

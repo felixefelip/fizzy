@@ -1,9 +1,11 @@
 module DayTimelinesScoped
+  @day_timeline: User::DayTimeline?
+
   extend ActiveSupport::Concern
   include FilterScoped
 
   private
 
-  def set_day_timeline: () -> untyped
+  def set_day_timeline: () -> User::DayTimeline
   def day: () -> (ActiveSupport::TimeWithZone | bool)
 end

@@ -4,7 +4,7 @@ class User
     attr_reader filter: untyped
     attr_reader expanded: untyped
 
-    def initialize: ((User & User::Validated)? user, untyped filter, ?expanded: untyped) -> void
+    def initialize: ((User & User::Validated)? user, (Filter & Filter::Validated)? filter, ?expanded: untyped) -> void
     def boards: () -> untyped
     def selected_board_titles: () -> untyped
     def selected_boards_label: () -> untyped

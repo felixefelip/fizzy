@@ -1,5 +1,7 @@
 module Users
   class EventsController < ApplicationController
+    @day_timeline: User::DayTimeline?
+
     include FilterScoped
 
     def show: () -> void

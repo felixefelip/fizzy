@@ -10,6 +10,42 @@ methods:
           kind: self
         method: user
     enforced: false
+  Access#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Access#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Access#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Access#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
   Account::Cancellable#reactivate:
     requires:
     - kind: not_nil
@@ -699,6 +735,42 @@ methods:
         chain:
         - signed
     enforced: false
+  Assignment#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Assignment#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Assignment#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Assignment#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
   Assignment#within_limit:
     requires:
     - kind: not_nil
@@ -895,6 +967,42 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  Board#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Board#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Board#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
+  Board#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    enforced: false
   Board::Accessible#access_for:
     requires:
     - kind: not_nil
@@ -1058,6 +1166,42 @@ methods:
           kind: self
         method: account
     enforced: false
+  Board::Publication#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Board::Publication#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Board::Publication#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Board::Publication#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
   Board::Storage#calculate_real_storage_bytes:
     requires:
     - kind: not_nil
@@ -1129,6 +1273,42 @@ methods:
         chain:
         - events
     enforced: false
+  Card#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
   Card::Accessible#clean_inaccessible_data:
     requires:
     - kind: not_nil
@@ -1199,6 +1379,42 @@ methods:
         receiver:
           kind: self
         method: board
+    enforced: false
+  Card::ActivitySpike#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::ActivitySpike#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
     enforced: false
   Card::ActivitySpike::Detector#card_was_just?:
     requires:
@@ -1516,6 +1732,78 @@ methods:
         chain:
         - chronologically
     enforced: false
+  Card::Goldness#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::Goldness#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::Goldness#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::Goldness#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::NotNow#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::NotNow#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::NotNow#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Card::NotNow#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
   Card::Pinnable#broadcast_pin_updates:
     requires:
     - kind: not_nil
@@ -1771,6 +2059,24 @@ methods:
           kind: self
         method: turbo_stream
     enforced: false
+  Cards::PinsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::PinsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
   Cards::PinsController#create:
     requires:
     - kind: not_nil
@@ -1797,6 +2103,78 @@ methods:
         receiver:
           kind: self
         method: turbo_stream
+    enforced: false
+  Closure#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Closure#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Closure#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Closure#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Column#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Column#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
     enforced: false
   Column::Positioned#adjacent_columns:
     requires:
@@ -1943,6 +2321,42 @@ methods:
           kind: self
         method: card
     enforced: false
+  Comment#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
   Comment#watch_card_by_creator:
     requires:
     - kind: not_nil
@@ -2058,6 +2472,190 @@ methods:
           kind: self
         method: card
     enforced: false
+  ERBPartialAccountSettingsEntropy#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
+    enforced: false
+  ERBPartialBoardsShowClosed#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - closed
+    enforced: false
+  ERBPartialBoardsShowColumns#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
+        - sorted
+    enforced: false
+  ERBPartialBoardsShowNotNow#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - postponed
+    enforced: false
+  ERBPartialBoardsShowStream#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - awaiting_triage
+    enforced: false
+  ERBPartialCardsColumnsColumn#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: column
+    enforced: false
+  ERBPartialEntropyAutoClose#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: model
+    enforced: false
+  ERBPartialEventsDayTimelineColumn#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: events
+    enforced: false
+  ERBPartialEventsDayTimelineColumnsEvents#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: events
+    enforced: false
+  ERBPartialEventsEventEventableCard#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+    enforced: false
+  ERBPartialEventsEventEventableCardPublished#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+    enforced: false
+  ERBPartialEventsEventEventableComment#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: event
+        chain:
+        - eventable
+    enforced: false
   Entropy#auto_postpone_period_in_days:
     requires:
     - kind: not_nil
@@ -2086,6 +2684,38 @@ methods:
         chain:
         - account
         - entropy
+  Event#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+  Event#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+  Event#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+  Event#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
   Event::Description#creator_name:
     requires:
     - kind: not_nil
@@ -2197,6 +2827,38 @@ methods:
           kind: self
         method: card_ids
     enforced: false
+  Filter#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+  Filter#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+  Filter#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+  Filter#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
   Filter#single_workflow:
     requires:
     - kind: not_nil
@@ -2598,6 +3260,42 @@ methods:
         chain:
         - settings
     enforced: false
+  Notification#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
   Notification::Bundle#deliver:
     requires:
     - kind: not_nil
@@ -2710,6 +3408,70 @@ methods:
         chain:
         - notification_bundles
         - where
+    enforced: false
+  Notification::Bundle#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - settings
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: starts_at
+    enforced: false
+  Notification::Bundle#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification::Bundle#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Notification::Bundle#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - settings
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: starts_at
     enforced: false
   Notification::Bundle#set_default_window:
     requires:
@@ -2941,6 +3703,38 @@ methods:
         chain:
         - watchers
     enforced: false
+  Pin#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+  Pin#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+  Pin#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+  Pin#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
   Push::Subscription#notification:
     requires:
     - kind: not_nil
@@ -2966,6 +3760,42 @@ methods:
         chain:
         - notifications
         - unread
+    enforced: false
+  Push::Subscription#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Push::Subscription#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Push::Subscription#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Push::Subscription#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
     enforced: false
   Push::Subscription#validate_endpoint_url:
     requires:
@@ -3140,6 +3970,42 @@ methods:
         chain:
         - accounts
     enforced: false
+  Step#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Step#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Step#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Step#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
   Storage::AttachmentTracking#record_storage_attach:
     requires:
     - kind: not_nil
@@ -3225,6 +4091,42 @@ methods:
         receiver:
           kind: self
         method: storage_entries
+    enforced: false
+  Tagging#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Tagging#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Tagging#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Tagging#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
     enforced: false
   TurboFlash#turbo_stream_flash:
     requires:
@@ -3738,6 +4640,78 @@ methods:
         - notification_bundles
         - pending
     enforced: false
+  User::Settings#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Settings#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Settings#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Settings#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Watch#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Watch#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Watch#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Watch#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
   Webhook#for_basecamp?:
     requires:
     - kind: not_nil
@@ -3774,6 +4748,42 @@ methods:
           kind: self
         method: account
     enforced: false
+  Webhook#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Webhook#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Webhook#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Webhook#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
   Webhook::DelinquencyTracker#delinquent?:
     requires:
     - kind: not_nil
@@ -3791,6 +4801,42 @@ methods:
         receiver:
           kind: self
         method: consecutive_failures_count
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::DelinquencyTracker#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::DelinquencyTracker#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::DelinquencyTracker#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::DelinquencyTracker#save:
+    requires:
     - kind: not_nil
       expr:
         kind: send
@@ -4041,6 +5087,33 @@ methods:
           kind: self
         method: webhook
     enforced: false
+  Webhook::Delivery#run_before_validation_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#run_belongs_to_default_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
+  Webhook::Delivery#run_belongs_to_default_callbacks:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
+    enforced: false
   Webhook::Delivery#sanitized_request:
     requires:
     - kind: not_nil
@@ -4049,6 +5122,15 @@ methods:
         receiver:
           kind: self
         method: request
+    enforced: false
+  Webhook::Delivery#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: webhook
     enforced: false
   Webhook::Delivery#signature:
     requires:

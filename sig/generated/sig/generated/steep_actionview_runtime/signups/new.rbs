@@ -1,9 +1,9 @@
 class ERBSignupsNew
-  @signup: Signup?
+  @signup: Signup
 
   include ActionViewContext
 
-  def initialize: (signup: Signup?) -> void
+  def initialize: (signup: Signup) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

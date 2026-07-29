@@ -1,9 +1,12 @@
 class FiltersController < ApplicationController
+  @filter: (Filter & Filter::Validated)?
+  @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
+
   def create: () -> void
   def destroy: () -> void
 
   private
 
-  def set_filters: () -> untyped
+  def set_filters: () -> User_Filter::ActiveRecord_Associations_CollectionProxy
   def filter_params: () -> untyped
 end
