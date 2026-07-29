@@ -239,6 +239,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@account"
     - "@disable_view_transition"
+    - "@users"
 - class: Account::SettingsController
   method: __rbs_infer__run_update
   effects:
@@ -264,6 +265,15 @@ postconditions:
   effects:
     may_write:
     - "@account"
+- class: Account::SettingsController
+  method: show
+  unconditional:
+    ivars:
+      "@users": "::User::ActiveRecord_Relation"
+    self: "::Account::SettingsController & ::Account::SettingsController::AfterShow"
+  effects:
+    may_write:
+    - "@users"
 - class: Account::SettingsController
   method: update
   effects:
@@ -2388,26 +2398,57 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@day_timeline"
+- class: ERBAccountImportsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@import"
+- class: ERBAccountJoinCodesEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@join_code"
+- class: ERBAccountJoinCodesShow
+  method: initialize
+  effects:
+    may_write:
+    - "@join_code"
 - class: ERBAccountSettingsShow
   method: initialize
   effects:
     may_write:
     - "@account"
+    - "@users"
 - class: ERBBoardsColumnsClosedsShow
   method: initialize
   effects:
     may_write:
     - "@board"
+- class: ERBBoardsColumnsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
 - class: ERBBoardsColumnsNotNowsShow
   method: initialize
   effects:
     may_write:
     - "@board"
+- class: ERBBoardsColumnsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
 - class: ERBBoardsColumnsStreamsShow
   method: initialize
   effects:
     may_write:
     - "@board"
+- class: ERBBoardsColumnsUpdate
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
 - class: ERBBoardsEdit
   method: initialize
   effects:
@@ -2439,11 +2480,31 @@ postconditions:
   effects:
     may_write:
     - "@boards"
+- class: ERBCardsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
 - class: ERBCardsIndex
   method: initialize
   effects:
     may_write:
     - "@user_filtering"
+- class: ERBCardsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsTaggingsNew
+  method: initialize
+  effects:
+    may_write:
+    - "@tags"
+- class: ERBCardsUpdate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
 - class: ERBEventsDaysIndex
   method: initialize
   effects:
@@ -3245,11 +3306,21 @@ postconditions:
   effects:
     may_write:
     - "@webhook"
+- class: ERBPromptsBoardsUsersIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@users"
 - class: ERBPromptsCardsIndex
   method: initialize
   effects:
     may_write:
     - "@cards"
+- class: ERBPromptsUsersIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@users"
 - class: ERBSessionsNew
   method: initialize
   effects:
@@ -3265,11 +3336,37 @@ postconditions:
   effects:
     may_write:
     - "@signup"
+- class: ERBUsersDataExportsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@user"
+- class: ERBUsersEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@user"
+- class: ERBUsersEmailAddressesConfirmationsInvalidToken
+  method: initialize
+  effects:
+    may_write:
+    - "@user"
+- class: ERBUsersEmailAddressesConfirmationsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@user"
 - class: ERBUsersEventsShow
   method: initialize
   effects:
     may_write:
     - "@day_timeline"
+    - "@user"
+- class: ERBUsersShow
+  method: initialize
+  effects:
+    may_write:
+    - "@user"
 - class: ERBWebhooksEdit
   method: initialize
   effects:
@@ -6001,6 +6098,7 @@ method_entry_facts:
   ivars:
     "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
+    "@users": "::User::ActiveRecord_Relation"
 - class: Account::SettingsController
   method: set_account
   consts:
@@ -7329,6 +7427,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Column
+  method: cards
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: ColumnScoped
   method: set_column
   consts:
@@ -10331,6 +10434,21 @@ method_entry_facts:
   ivars:
     "@disable_view_transition": 'true'
 - class: User
+  method: accesses
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: close_remote_connections
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: deactivate
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
   method: notifications
   consts:
     Current.account: "(::Account & ::Account::Validated)"
@@ -10357,6 +10475,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: User::Accessor
   method: draft_new_card_in
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Avatar
+  method: avatar_thumbnail
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -10998,6 +11121,7 @@ argument_entry_facts:
   ivars:
     "@account": "(::Account & ::Account::Validated)"
     "@disable_view_transition": 'true'
+    "@users": "::User::ActiveRecord_Relation"
 - class: ApplicationHelper
   method: back_link_to
   param: action
