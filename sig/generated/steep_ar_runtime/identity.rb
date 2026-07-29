@@ -4,6 +4,10 @@
 # Regenerated on every run; do not edit.
 
 class Identity
+  def access_tokens
+    Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy.new(Identity::AccessToken, self)
+  end
+
   def magic_links
     Identity_MagicLink::ActiveRecord_Associations_CollectionProxy.new(MagicLink, self)
   end

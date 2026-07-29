@@ -20,4 +20,8 @@ class Webhook
   def run_belongs_to_default_account
     self.account ||= board.account
   end
+
+  def deliveries
+    Webhook_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy.new(Webhook::Delivery, self)
+  end
 end
