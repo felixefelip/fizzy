@@ -1,7 +1,7 @@
 class ERBPartialEntropyAutoClose
   include ActionViewContext
 
-  def initialize: (disabled: untyped, model: untyped, url: untyped) -> void
+  def initialize: (disabled: untyped, model: (Entropy? | Board?), url: untyped) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
@@ -9,6 +9,10 @@ class ERBPartialEntropyAutoClose
   private
 
   attr_reader disabled: untyped
-  attr_reader model: untyped
+  attr_reader model: (Entropy? | Board?)
   attr_reader url: untyped
+
+  class AfterInitialize
+    attr_reader model: (Entropy | Board)?
+  end
 end

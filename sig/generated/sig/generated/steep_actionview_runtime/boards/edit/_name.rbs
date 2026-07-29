@@ -1,12 +1,12 @@
 class ERBPartialBoardsEditName
   include ActionViewContext
 
-  def initialize: (board: untyped, form: untyped) -> void
+  def initialize: (board: Board?, form: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: untyped
+  attr_reader board: Board?
   attr_reader form: untyped
 end

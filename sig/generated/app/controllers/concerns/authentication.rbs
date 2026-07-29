@@ -18,7 +18,7 @@ module Authentication
   def find_session_by_cookie: () -> untyped
   def authenticate_by_bearer_token: () -> void
   def bearer_token_authenticatable_request?: () -> untyped
-  def request_authentication: () -> untyped
+  def request_authentication: () -> bool
   def after_authentication_url: () -> untyped
   def redirect_authenticated_user: () -> bool?
   def redirect_tenanted_request: () -> bool?

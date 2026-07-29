@@ -13,6 +13,6 @@ class Notification < ApplicationRecord
   private
 
   def set_card: () -> untyped
-  def bundle: () -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle | nil)
+  def bundle: () -> untyped
   def broadcast_update: () -> untyped
 end

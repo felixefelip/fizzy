@@ -1,12 +1,12 @@
 class ERBPartialAccountSettingsEntropy
   include ActionViewContext
 
-  def initialize: (account: untyped) -> void
+  def initialize: (account: (Account & Account::Validated)?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader account: untyped
+  attr_reader account: (Account & Account::Validated)?
 end

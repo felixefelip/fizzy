@@ -12,7 +12,7 @@ class Account
         def export_record: (untyped rich_text) -> untyped
         def files: () -> untyped
         def import_batch: (untyped files) -> untyped
-        def check_record: (untyped file_path) -> untyped
+        def check_record: (untyped file_path) -> Array[untyped]
         def transform_body_for_export: (untyped content) -> untyped
         def convert_sgids_to_gids: (untyped content) -> untyped
         def relativize_urls: (untyped html) -> untyped

@@ -11,7 +11,7 @@ class Account
       def records: () -> Array[Account?]
       def export_record: (untyped account) -> untyped
       def files: () -> Array[String]
-      def import_batch: (untyped files) -> bool
+      def import_batch: (untyped files) -> untyped
       def check_record: (untyped file_path) -> untyped
     end
   end
