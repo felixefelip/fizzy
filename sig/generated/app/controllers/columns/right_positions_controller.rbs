@@ -1,6 +1,7 @@
 module Columns
   class RightPositionsController < ApplicationController
     include ColumnScoped
+
     def create: () -> void
   end
 end

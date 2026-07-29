@@ -1,4 +1,6 @@
 module CurrentTimezone
+  @timezone_from_cookie: ActiveSupport::TimeZone?
+
   extend ActiveSupport::Concern
 
   private

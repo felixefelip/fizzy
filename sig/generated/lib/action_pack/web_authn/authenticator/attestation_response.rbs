@@ -2,7 +2,10 @@ module ActionPack
   module WebAuthn
     module Authenticator
       class AttestationResponse < ::ActionPack::WebAuthn::Authenticator::Response
+        @attestation: singleton(ActionPack::WebAuthn::Authenticator::Attestation)?
+
         attr_reader attestation_object: untyped
+
         def initialize: (attestation_object: untyped, **untyped) -> void
         def attestation: () -> singleton(ActionPack::WebAuthn::Authenticator::Attestation)
         def authenticator_data: () -> untyped

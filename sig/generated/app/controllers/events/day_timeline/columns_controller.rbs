@@ -4,11 +4,12 @@ module Events
       VALID_COLUMNS: Array[String]
 
       include DayTimelinesScoped
+
       def show: () -> void
 
       private
 
-      def ensure_valid_column: () -> true?
+      def ensure_valid_column: () -> bool?
       def set_column: () -> untyped
     end
   end

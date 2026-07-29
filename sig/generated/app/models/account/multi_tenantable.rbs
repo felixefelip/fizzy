@@ -3,6 +3,7 @@ class Account
     module ClassMethods
       def accepting_signups?: () -> untyped
     end
+
     extend ActiveSupport::Concern
   end
 end

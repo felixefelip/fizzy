@@ -1,6 +1,7 @@
 class Notification
   class MentionPayload < ::Notification::DefaultPayload
     include ExcerptHelper
+
     def title: () -> String
     def body: () -> untyped
     def url: () -> untyped

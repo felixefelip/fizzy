@@ -3,13 +3,14 @@ module Authorization
     def allow_unauthorized_access: (**untyped) -> void
     def require_access_without_a_user: (**untyped) -> void
   end
+
   extend ActiveSupport::Concern
 
   private
 
-  def ensure_admin: () -> true?
-  def ensure_staff: () -> true?
+  def ensure_admin: () -> bool?
+  def ensure_staff: () -> bool?
   def authenticated_account_access?: () -> bool
   def ensure_can_access_account: () -> untyped
-  def redirect_existing_user: () -> untyped
+  def redirect_existing_user: () -> bool?
 end

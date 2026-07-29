@@ -1,8 +1,45 @@
 module ActionPack
   module WebAuthn
+    self.@attestation_verifiers: Hash[String, untyped]?
+
     def self.relying_party: () -> RelyingParty
     def self.challenge_verifier: () -> untyped
-    def self.attestation_verifiers: () -> Hash[String, ActionPack::WebAuthn::Authenticator::AttestationVerifiers::None]
+    def self.attestation_verifiers: () -> untyped
     def self.register_attestation_verifier: (untyped format, untyped verifier) -> untyped
+  end
+end
+
+module ActionPack
+  module WebAuthn
+    class InvalidResponseError < StandardError
+    end
+  end
+end
+
+module ActionPack
+  module WebAuthn
+    class InvalidCborError < StandardError
+    end
+  end
+end
+
+module ActionPack
+  module WebAuthn
+    class InvalidKeyError < StandardError
+    end
+  end
+end
+
+module ActionPack
+  module WebAuthn
+    class UnsupportedKeyTypeError < StandardError
+    end
+  end
+end
+
+module ActionPack
+  module WebAuthn
+    class InvalidOptionsError < StandardError
+    end
   end
 end

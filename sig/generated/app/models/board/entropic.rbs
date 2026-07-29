@@ -1,6 +1,7 @@
 class Board
   module Entropic
     extend ActiveSupport::Concern
+
     def entropy: () -> untyped
     def auto_postpone_period=: (untyped new_value) -> untyped
     def auto_postpone_period_in_days=: (untyped value) -> untyped

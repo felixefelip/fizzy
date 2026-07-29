@@ -3,8 +3,10 @@ class Filter < ApplicationRecord
   include Params
   include Resources
   include Summarized
+
   def self.from_params: (untyped params) -> untyped
   def self.remember: (untyped attrs) -> untyped
+
   def cards: () -> untyped
   def empty?: () -> untyped
   def single_board: () -> (Board & Board::Validated)?

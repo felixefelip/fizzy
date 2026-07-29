@@ -2,8 +2,9 @@ class ZipFile
   class Reader
     class IO
       @io: ZipFile::RemoteIO
+
       def initialize: (untyped entry, ZipFile::RemoteIO io) -> void
-      def read: (?nil length, ?nil buffer) -> untyped
+      def read: (?untyped length, ?untyped buffer) -> untyped
       def eof?: () -> untyped
       def rewind: () -> Integer
       def size: () -> untyped

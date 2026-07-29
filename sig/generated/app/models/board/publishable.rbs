@@ -3,8 +3,11 @@ class Board
     module ClassMethods
       def find_by_published_key: (untyped key) -> (Board & Board::Validated)
     end
+
     extend ActiveSupport::Concern
+
     alias publicly_accessible? published?
+
     def published?: () -> (true | false)
     def publish: () -> Board::Publication?
     def unpublish: () -> bool?

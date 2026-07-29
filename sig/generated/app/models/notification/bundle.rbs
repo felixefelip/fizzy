@@ -2,7 +2,8 @@ class Notification
   class Bundle < ApplicationRecord
     def self.deliver_all: () -> nil
     def self.deliver_all_later: () -> untyped
-    def notifications: () -> Notification::ActiveRecord_Relation
+
+    def notifications: () -> untyped
     def deliver: () -> untyped
     def deliver_later: () -> untyped
     def flush: () -> untyped

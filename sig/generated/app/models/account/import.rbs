@@ -1,6 +1,7 @@
 class Account
   class Import < ApplicationRecord
     def self.cleanup: () -> ::Account::Import::ActiveRecord_Relation
+
     def process_later: () -> untyped
     def check: (?start: untyped, ?callback: untyped) -> untyped
     def process: (?start: untyped, ?callback: untyped) -> untyped
@@ -9,7 +10,7 @@ class Account
     private
 
     def mark_completed: () -> untyped
-    def mark_as_failed: (?nil failure_reason) -> untyped
+    def mark_as_failed: (?Symbol failure_reason) -> untyped
     def reconcile_cards_count: () -> untyped
     def add_importer_to_all_access_boards: () -> nil
     def reconcile_account_storage: () -> untyped

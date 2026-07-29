@@ -4,9 +4,11 @@ module ActionPack
       class Attestation
         def self.wrap: (untyped data) -> self
         def self.decode: (String bytes) -> self
+
         attr_reader authenticator_data: untyped
         attr_reader format: untyped
         attr_reader attestation_statement: untyped
+
         def initialize: (authenticator_data: untyped, format: untyped, attestation_statement: untyped) -> untyped
         def credential_id: () -> untyped
         def public_key: () -> untyped

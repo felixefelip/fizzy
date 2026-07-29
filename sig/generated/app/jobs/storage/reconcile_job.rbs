@@ -3,3 +3,10 @@ module Storage
     def perform: (untyped owner) -> untyped
   end
 end
+
+module Storage
+  class ReconcileJob
+    class ReconcileAborted < StandardError
+    end
+  end
+end

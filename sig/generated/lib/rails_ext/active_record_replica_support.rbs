@@ -4,6 +4,7 @@ module ActiveRecordReplicaSupport
     def replica_configured?: () -> untyped
     def with_reading_role: () ?{ (untyped) -> untyped } -> untyped
   end
+
   extend ActiveSupport::Concern
 end
 

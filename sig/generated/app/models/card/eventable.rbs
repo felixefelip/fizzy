@@ -2,6 +2,7 @@ class Card
   module Eventable
     extend ActiveSupport::Concern
     include ::Eventable
+
     def event_was_created: (untyped event) -> untyped
     def touch_last_active_at: () -> self
 

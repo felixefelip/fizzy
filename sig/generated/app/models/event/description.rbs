@@ -2,8 +2,10 @@ class Event
   class Description
     include ActionView::Helpers::TagHelper
     include ERB::Util
+
     attr_reader event: Event
     attr_reader user: untyped
+
     def initialize: (Event event, untyped user) -> void
     def to_html: () -> ActiveSupport::SafeBuffer
     def to_plain_text: () -> ActiveSupport::SafeBuffer

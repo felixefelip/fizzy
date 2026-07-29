@@ -3,7 +3,9 @@ class Card
     module ClassMethods
       def auto_postpone_all_due: () -> nil
     end
+
     extend ActiveSupport::Concern
+
     def entropy: () -> self?
     def entropic?: () -> (bool | false)
     def auto_postpone_period: () -> Integer?

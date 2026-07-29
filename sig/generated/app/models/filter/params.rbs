@@ -1,5 +1,7 @@
 class Filter
   module Params
+    @as_params: Hash[untyped, untyped]?
+
     PERMITTED_PARAMS: Array[(Symbol | Hash[Symbol, Array[untyped]])]
 
     module ClassMethods
@@ -7,7 +9,9 @@ class Filter
       def digest_params: (untyped params) -> String
       def normalize_params: (untyped params) -> untyped
     end
+
     extend ActiveSupport::Concern
+
     def used?: (?ignore_boards: untyped) -> untyped
     def as_params: () -> Hash[untyped, untyped]
     def as_params_without: (untyped key, untyped value) -> Hash[untyped, untyped]

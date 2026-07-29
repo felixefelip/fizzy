@@ -8,7 +8,9 @@ class Filter
       def default_value?: (Symbol key, untyped value) -> bool
       def indexed_by_human_name: (untyped index) -> String
     end
+
     extend ActiveSupport::Concern
+
     def assignment_status: () -> untyped
     def indexed_by: () -> untyped
     def sorted_by: () -> untyped

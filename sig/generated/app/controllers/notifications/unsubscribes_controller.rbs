@@ -6,6 +6,6 @@ module Notifications
 
     private
 
-    def set_user: () -> untyped
+    def set_user: () -> bool?
   end
 end

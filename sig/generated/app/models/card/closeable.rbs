@@ -1,6 +1,7 @@
 class Card
   module Closeable
     extend ActiveSupport::Concern
+
     def closed?: () -> (true | false)
     def open?: () -> bool
     def closed_by: () -> User?

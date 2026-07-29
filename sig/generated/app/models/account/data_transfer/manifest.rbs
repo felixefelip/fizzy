@@ -2,6 +2,7 @@ class Account
   module DataTransfer
     class Manifest
       attr_reader account: Account?
+
       def initialize: (Account? account) -> void
       def each_record_set: (?start: untyped) -> untyped
 
@@ -9,7 +10,7 @@ class Account
 
       def record_sets: () -> untyped
       def record_sets_for: (*untyped) -> Array[Account::DataTransfer::RecordSet]
-      def record_set_for: ((singleton(::ActiveStorage::VariantRecord) | ActiveStorage::VariantRecord) model) -> Account::DataTransfer::RecordSet
+      def record_set_for: (singleton(::ActiveStorage::VariantRecord) model) -> Account::DataTransfer::RecordSet
       def set_importable_model_names: (untyped record_sets) -> untyped
     end
   end

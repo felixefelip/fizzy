@@ -1,14 +1,15 @@
 module Notifications
   class TraysController < ApplicationController
-    @notifications: Notification::ActiveRecord_Relation?
+    @notifications: nil
+
     MAX_ENTRIES_LIMIT: Integer
 
     def show: () -> void
 
     private
 
-    def unread_notifications: () -> Notification::ActiveRecord_Relation
-    def read_notifications: () -> Notification::ActiveRecord_Relation
+    def unread_notifications: () -> untyped
+    def read_notifications: () -> untyped
     def include_read?: () -> untyped
   end
 end

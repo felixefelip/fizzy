@@ -1,6 +1,7 @@
 class Notification
   class DefaultPayload
     attr_reader notification: untyped
+
     def initialize: (untyped notification) -> untyped
     def to_h: () -> { body: String, title: String, url: untyped }
     def title: () -> String

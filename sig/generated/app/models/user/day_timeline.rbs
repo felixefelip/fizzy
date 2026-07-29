@@ -1,11 +1,18 @@
 class User
   class DayTimeline
+    @added_column: User::DayTimeline::Column?
+    @updated_column: User::DayTimeline::Column?
+    @closed_column: User::DayTimeline::Column?
+    @filtered_events: Event::ActiveRecord_Relation?
+
     TIMELINEABLE_ACTIONS: Array[String]
 
     include Serializable
+
     attr_reader user: untyped
     attr_reader day: untyped
     attr_reader filter: untyped
+
     def initialize: (User::Timelined user, untyped day, untyped filter) -> void
     def has_activity?: () -> bool
     def events: () -> Event::ActiveRecord_Relation

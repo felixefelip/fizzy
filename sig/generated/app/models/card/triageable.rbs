@@ -1,6 +1,7 @@
 class Card
   module Triageable
     extend ActiveSupport::Concern
+
     def triaged?: () -> bool
     def awaiting_triage?: () -> bool
     def triage_into: (untyped column) -> untyped

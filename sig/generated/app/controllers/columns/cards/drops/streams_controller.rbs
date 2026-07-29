@@ -3,6 +3,7 @@ module Columns
     module Drops
       class StreamsController < ApplicationController
         include CardScoped
+
         def create: () -> void
       end
     end

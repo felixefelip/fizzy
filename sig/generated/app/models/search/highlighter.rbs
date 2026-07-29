@@ -1,10 +1,13 @@
 module Search
   class Highlighter
+    @terms: Array[untyped]?
+
     OPENING_MARK: String
     CLOSING_MARK: String
     ELIPSIS: String
 
     attr_reader query: untyped
+
     def initialize: (untyped query) -> void
     def highlight: (String text) -> untyped
     def snippet: (untyped text, ?max_words: untyped) -> untyped

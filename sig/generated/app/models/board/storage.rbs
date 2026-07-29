@@ -1,16 +1,18 @@
 class Board
   module Storage
     @card_ids: nil
+
     BATCH_SIZE: Integer
 
     extend ActiveSupport::Concern
     include ::Storage::Totaled
+
     def board_for_storage_tracking: () -> Board::Storage
 
     private
 
     def calculate_real_storage_bytes: () -> untyped
-    def card_ids: () -> Array[String]
+    def card_ids: () -> untyped
     def card_image_bytes: () -> untyped
     def card_embed_bytes: () -> untyped
     def comment_embed_bytes: () -> untyped

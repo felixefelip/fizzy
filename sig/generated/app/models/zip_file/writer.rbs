@@ -1,13 +1,16 @@
 class ZipFile
   class Writer
     @entries: Array[untyped]
+    @output_io: Tempfile
     @digest: Digest::MD5
-    @streamer: nil
+    @streamer: ZipKit::Streamer?
+
     attr_reader byte_size: Integer
-    def initialize: (?nil io) -> Digest::MD5
-    def stream_to: (untyped io) -> untyped
+
+    def initialize: (?Tempfile io) -> Digest::MD5
+    def stream_to: (Tempfile io) -> Tempfile
     def write: (untyped data) -> untyped
-    def add_file: (untyped path, ?nil content, ?compress: untyped) -> untyped
+    def add_file: (untyped path, ?untyped content, ?compress: untyped) -> untyped
     def glob: (untyped pattern) -> Array[untyped]
     def exists?: (untyped path) -> bool
     def close: () -> untyped

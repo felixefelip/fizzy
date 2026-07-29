@@ -6,6 +6,7 @@ class Webhook < ApplicationRecord
   PERMITTED_ACTIONS: Array[String]
 
   include Triggerable
+
   def activate: () -> self?
   def deactivate: () -> self
   def renderer: () -> untyped

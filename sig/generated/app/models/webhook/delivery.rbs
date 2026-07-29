@@ -1,11 +1,15 @@
 class Webhook
   class Delivery < ApplicationRecord
+    @uri: URI::Generic?
+    @payload: String?
+
     STALE_TRESHOLD: ActiveSupport::Duration
     USER_AGENT: String
     ENDPOINT_TIMEOUT: ActiveSupport::Duration
     MAX_RESPONSE_SIZE: untyped
 
     def self.cleanup: (?batch_size: untyped, ?pause: untyped) -> nil
+
     def deliver_later: () -> untyped
     def deliver: () -> untyped
     def sanitized_request: () -> Hash[Symbol, untyped]?
@@ -28,5 +32,12 @@ class Webhook
     def convert_html_to_mrkdwn: (untyped html) -> untyped
     def slack_payload: () -> String
     def base_url_options: () -> untyped
+  end
+end
+
+class Webhook
+  class Delivery
+    class ResponseTooLarge < StandardError
+    end
   end
 end

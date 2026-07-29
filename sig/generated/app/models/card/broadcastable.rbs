@@ -1,10 +1,12 @@
 class Card
   module Broadcastable
+    @preview_changed: bool?
+
     extend ActiveSupport::Concern
 
     private
 
     def remember_if_preview_changed: () -> bool
-    def preview_changed?: () -> untyped
+    def preview_changed?: () -> bool?
   end
 end

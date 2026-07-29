@@ -1,7 +1,9 @@
 module My
   class PasskeysController < ApplicationController
     @registration_options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions?
+
     include ActionPack::Passkey::Request
+
     def index: () -> void
     def create: () -> void
     def edit: () -> void

@@ -3,6 +3,7 @@ module Columns
     module Drops
       class NotNowsController < ApplicationController
         include CardScoped
+
         def create: () -> void
       end
     end

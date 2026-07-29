@@ -1,6 +1,9 @@
 class Event
   module Particulars
+    @assignees: User::ActiveRecord_Relation?
+
     extend ActiveSupport::Concern
+
     def assignees: () -> User::ActiveRecord_Relation
     def api_particulars: () -> Hash[untyped, untyped]
   end

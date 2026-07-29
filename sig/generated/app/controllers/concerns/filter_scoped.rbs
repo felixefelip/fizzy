@@ -1,5 +1,6 @@
 module FilterScoped
   @user_filtering: User::Filtering?
+
   extend ActiveSupport::Concern
 
   private

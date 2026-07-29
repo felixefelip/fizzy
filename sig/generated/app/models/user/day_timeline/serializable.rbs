@@ -5,9 +5,12 @@ class User
         def find: (untyped id) -> User::DayTimeline
         def tenanted?: () -> bool
       end
+
       extend ActiveSupport::Concern
       include GlobalID::Identification
+
       alias id to_json
+
       def as_json: (?Hash[untyped, untyped] options) -> { day: untyped, filter_params: untyped, user_id: untyped }
     end
   end

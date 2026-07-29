@@ -3,6 +3,7 @@ class Account
     INCINERATION_GRACE_PERIOD: ActiveSupport::Duration
 
     extend ActiveSupport::Concern
+
     def incinerate: () -> untyped
   end
 end

@@ -1,4 +1,6 @@
 module SetPlatform
+  @platform: ApplicationPlatform?
+
   extend ActiveSupport::Concern
 
   private

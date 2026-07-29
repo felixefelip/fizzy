@@ -5,6 +5,7 @@ class User
     AVATAR_COLORS: Array[String]
 
     extend ActiveSupport::Concern
+
     def avatar_attached?: () -> untyped
     def avatar_thumbnail: () -> untyped
     def avatar_background_color: () -> String

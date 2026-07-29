@@ -5,6 +5,7 @@ module ActionPack
         attr_reader credential: ActionPack::WebAuthn::PublicKeyCredential
         attr_reader authenticator_data: ActionPack::WebAuthn::Authenticator::Data
         attr_reader signature: String
+
         def initialize: (credential: ActionPack::WebAuthn::PublicKeyCredential, authenticator_data: ActionPack::WebAuthn::Authenticator::Data, signature: String, **untyped) -> void
 
         private

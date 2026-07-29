@@ -1,6 +1,7 @@
 class Account
   module Cancellable
     extend ActiveSupport::Concern
+
     def cancel: (?initiated_by: untyped) -> untyped
     def reactivate: () -> untyped
     def cancelled?: () -> (true | false)

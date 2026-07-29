@@ -2,8 +2,10 @@ class Card
   module Eventable
     class SystemCommenter
       include ERB::Util
+
       attr_reader card: untyped
       attr_reader event: untyped
+
       def initialize: (Card::Eventable card, untyped event) -> void
       def comment: () -> untyped
 

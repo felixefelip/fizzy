@@ -1,6 +1,5 @@
 module Public
   class BaseController < ApplicationController
-
     private
 
     def set_board: () -> untyped

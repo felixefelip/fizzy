@@ -7,3 +7,8 @@ class ZipFile
   def self.read_from_s3: (untyped blob) -> untyped
   def self.read_from_disk: (untyped blob) -> untyped
 end
+
+class ZipFile
+  class InvalidFileError < StandardError
+  end
+end

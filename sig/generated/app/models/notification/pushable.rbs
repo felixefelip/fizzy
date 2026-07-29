@@ -4,7 +4,9 @@ class Notification
       def register_push_target: (untyped target) -> untyped
       def resolve_push_target: (untyped target) -> untyped
     end
+
     extend ActiveSupport::Concern
+
     def push_later: () -> untyped
     def push: () -> untyped
     def payload: () -> untyped
