@@ -39,6 +39,7 @@ target :app do
   check 'app'
   check 'lib'
   check 'app/views/**/*.erb'
+  check 'sig/**/*.rb'
   signature 'sig'
   signature 'app'
   signature 'lib'
