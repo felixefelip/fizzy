@@ -1,138 +1,558 @@
 ---
 version: 1
 postconditions:
+- class: Account::DataTransfer::ActiveStorage::FileRecordSet
+  method: check_record
+  effects:
+    may_write:
+    - "@old_key_to_blob_id"
+- class: Account::DataTransfer::ActiveStorage::FileRecordSet
+  method: import_batch
+  effects:
+    may_write:
+    - "@old_key_to_blob_id"
+- class: Account::DataTransfer::ActiveStorage::FileRecordSet
+  method: old_key_to_blob_id
+  effects:
+    may_write:
+    - "@old_key_to_blob_id"
+- class: Account::DataTransfer::ActiveStorage::FileRecordSet
+  method: with_zip
+  effects:
+    may_write:
+    - "@old_key_to_blob_id"
+- class: Account::DataTransfer::Manifest
+  method: initialize
+  effects:
+    may_write:
+    - "@account"
+- class: Account::DataTransfer::RecordSet
+  method: initialize
+  effects:
+    may_write:
+    - "@account"
+    - "@attributes"
+    - "@importable_model_names"
+    - "@model"
+- class: Account::DataTransfer::RecordSet
+  method: with_zip
+  effects:
+    may_write:
+    - "@zip"
+- class: Account::EntropiesController
+  method: update
+  effects:
+    may_write:
+    - "@account"
+- class: Account::Seeder
+  method: initialize
+  effects:
+    may_write:
+    - "@account"
+    - "@creator"
+- class: Account::SettingsController
+  method: set_account
+  effects:
+    may_write:
+    - "@account"
+- class: AccountTenanted
+  method: initialize
+  effects:
+    may_write:
+    - "@account"
 - class: AccountTenanted
   method: resolve_account!
   unconditional:
     ivars:
       "@account": untyped
     self: "::AccountTenanted & ::AccountTenanted::AfterResolveAccount"
+  effects:
+    may_write:
+    - "@account"
+- class: AccountTenanted
+  method: with_account_context
+  effects:
+    may_write:
+    - "@account"
+- class: ActionPack::WebAuthn::Authenticator::AssertionResponse
+  method: initialize
+  effects:
+    may_write:
+    - "@authenticator_data"
+    - "@credential"
+    - "@signature"
+- class: ActionPack::WebAuthn::Authenticator::Attestation
+  method: initialize
+  effects:
+    may_write:
+    - "@attestation_statement"
+    - "@authenticator_data"
+    - "@format"
+- class: ActionPack::WebAuthn::Authenticator::AttestationResponse
+  method: initialize
+  effects:
+    may_write:
+    - "@attestation_object"
+- class: ActionPack::WebAuthn::Authenticator::Data
+  method: initialize
+  effects:
+    may_write:
+    - "@aaguid"
+    - "@bytes"
+    - "@credential_id"
+    - "@flags"
+    - "@public_key_bytes"
+    - "@relying_party_id_hash"
+    - "@sign_count"
+- class: ActionPack::WebAuthn::Authenticator::Response
+  method: initialize
+  effects:
+    may_write:
+    - "@client_data_json"
+    - "@origin"
+    - "@user_verification"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: additional_info
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: break_code?
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode
+  effects:
+    may_write:
+    - "@depth"
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_array
+  effects:
+    may_write:
+    - "@depth"
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_byte_string
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_float_or_simple
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_half_float
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_map
+  effects:
+    may_write:
+    - "@depth"
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_negative_integer
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_tag
+  effects:
+    may_write:
+    - "@depth"
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_text_string
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: decode_unsigned_integer
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: indefinite_length?
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: initialize
+  effects:
+    may_write:
+    - "@depth"
+    - "@max_depth"
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: read_argument
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: read_byte
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CborDecoder
+  method: read_bytes
+  effects:
+    may_write:
+    - "@position"
+- class: ActionPack::WebAuthn::CoseKey
+  method: initialize
+  effects:
+    may_write:
+    - "@algorithm"
+    - "@key_type"
+    - "@parameters"
 - class: ActionPack::WebAuthn::PublicKeyCredential
   method: authenticate
   unconditional:
     ivars:
       "@sign_count": untyped
     self: "::ActionPack::WebAuthn::PublicKeyCredential & ::ActionPack::WebAuthn::PublicKeyCredential::AfterAuthenticate"
+  effects:
+    may_write:
+    - "@backed_up"
+    - "@sign_count"
 - class: ActionPack::WebAuthn::PublicKeyCredential
   method: initialize
   unconditional:
     ivars:
       "@aaguid": "(::String | nil)"
     self: "::ActionPack::WebAuthn::PublicKeyCredential & ::ActionPack::WebAuthn::PublicKeyCredential::AfterInitialize"
+  effects:
+    may_write:
+    - "@aaguid"
+    - "@backed_up"
+    - "@id"
+    - "@public_key"
+    - "@sign_count"
+    - "@transports"
+- class: ActionPack::WebAuthn::RelyingParty
+  method: initialize
+  effects:
+    may_write:
+    - "@id"
+    - "@name"
+- class: AutoLinkScrubber
+  method: initialize
+  effects:
+    may_write:
+    - "@direction"
+- class: Board::Storage
+  method: calculate_real_storage_bytes
+  effects:
+    may_write:
+    - "@card_ids"
+- class: Board::Storage
+  method: card_ids
+  effects:
+    may_write:
+    - "@card_ids"
 - class: BoardsController
   method: create
   unconditional:
     ivars:
       "@board": "::Board"
     self: "::BoardsController & ::BoardsController::AfterCreate"
+  effects:
+    may_write:
+    - "@board"
 - class: BoardsController
   method: new
   unconditional:
     ivars:
       "@board": "::Board"
     self: "::BoardsController & ::BoardsController::AfterNew"
+  effects:
+    may_write:
+    - "@board"
 - class: BoardsController
   method: set_board
   unconditional:
     ivars:
       "@board": untyped
     self: "::BoardsController & ::BoardsController::AfterSetBoard"
+  effects:
+    may_write:
+    - "@board"
+- class: Card::ActivitySpike::Detector
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: Card::Entropy
+  method: initialize
+  effects:
+    may_write:
+    - "@auto_clean_period"
+    - "@card"
+- class: Card::Eventable::SystemCommenter
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@event"
 - class: Card::Stallable
   method: remember_to_detect_activity_spikes
   unconditional:
     ivars:
       "@should_detect_activity_spikes": bool
     self: "::Card::Stallable & ::Card::Stallable::AfterRememberToDetectActivitySpikes"
+  effects:
+    may_write:
+    - "@should_detect_activity_spikes"
+- class: Card::Stallable
+  method: should_detect_activity_spikes?
+  effects:
+    returns_ivar: "@should_detect_activity_spikes"
+- class: Event::Description
+  method: initialize
+  effects:
+    may_write:
+    - "@event"
+    - "@user"
+- class: ExportMailer
+  method: completed
+  effects:
+    may_write:
+    - "@export"
+- class: Filter::Resources
+  method: board_titles
+  effects:
+    may_write:
+    - "@boards"
+- class: Filter::Resources
+  method: boards
+  effects:
+    may_write:
+    - "@boards"
+- class: Filter::Resources
+  method: boards_label
+  effects:
+    may_write:
+    - "@boards"
+- class: Filter::Resources
+  method: resource_removed
+  effects:
+    may_write:
+    - "@boards"
 - class: FilterScoped
   method: set_user_filtering
   unconditional:
     ivars:
       "@user_filtering": "::User::Filtering"
     self: "::FilterScoped & ::FilterScoped::AfterSetUserFiltering"
+  effects:
+    may_write:
+    - "@user_filtering"
+- class: ImportMailer
+  method: completed
+  effects:
+    may_write:
+    - "@account"
+- class: ImportMailer
+  method: failed
+  effects:
+    may_write:
+    - "@import"
 - class: JoinCodesController
   method: set_identity
   unconditional:
     ivars:
       "@identity": "::Identity"
     self: "::JoinCodesController & ::JoinCodesController::AfterSetIdentity"
+  effects:
+    may_write:
+    - "@identity"
+- class: MagicLinkMailer
+  method: sign_in_instructions
+  effects:
+    may_write:
+    - "@magic_link"
 - class: My::AccessTokensController
   method: index
   unconditional:
     ivars:
       "@access_tokens": "::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy"
     self: "::My::AccessTokensController & ::My::AccessTokensController::AfterIndex"
+  effects:
+    may_write:
+    - "@access_tokens"
 - class: My::AccessTokensController
   method: new
   unconditional:
     ivars:
       "@access_token": untyped
     self: "::My::AccessTokensController & ::My::AccessTokensController::AfterNew"
+  effects:
+    may_write:
+    - "@access_token"
 - class: My::AccessTokensController
   method: show
   unconditional:
     ivars:
       "@access_token": "(::Identity::AccessToken & ::Identity::AccessToken::Validated)"
     self: "::My::AccessTokensController & ::My::AccessTokensController::AfterShow"
+  effects:
+    may_write:
+    - "@access_token"
+- class: My::IdentitiesController
+  method: show
+  effects:
+    may_write:
+    - "@identity"
 - class: My::PasskeysController
   method: index
   unconditional:
     ivars:
       "@registration_options": "::ActionPack::WebAuthn::PublicKeyCredential::CreationOptions"
     self: "::My::PasskeysController & ::My::PasskeysController::AfterIndex"
+  effects:
+    may_write:
+    - "@registration_options"
 - class: My::PinsController
   method: index
   unconditional:
     ivars:
       "@pins": "::Pin::ActiveRecord_Relation"
     self: "::My::PinsController & ::My::PinsController::AfterIndex"
+  effects:
+    may_write:
+    - "@pins"
+- class: Notification::BundleMailer
+  method: notification
+  effects:
+    may_write:
+    - "@bundle"
+- class: Notification::DefaultPayload
+  method: initialize
+  effects:
+    may_write:
+    - "@notification"
+- class: Notification::PushTarget
+  method: initialize
+  effects:
+    may_write:
+    - "@notification"
 - class: Notifications::TraysController
   method: show
   unconditional:
     ivars:
       "@notifications": "::Notification::ActiveRecord_Relation"
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
+  effects:
+    may_write:
+    - "@notifications"
+- class: Notifier
+  method: initialize
+  effects:
+    may_write:
+    - "@source"
 - class: Prompts::CardsController
   method: index
   unconditional:
     ivars:
       "@cards": "(::Array[untyped] | ::Card::ActiveRecord_Relation)"
     self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
+  effects:
+    may_write:
+    - "@cards"
+- class: QrCodeLink
+  method: initialize
+  effects:
+    may_write:
+    - "@url"
+- class: Search::Highlighter
+  method: initialize
+  effects:
+    may_write:
+    - "@query"
 - class: SessionsController
   method: new
   unconditional:
     ivars:
       "@authentication_options": "::ActionPack::WebAuthn::PublicKeyCredential::RequestOptions"
     self: "::SessionsController & ::SessionsController::AfterNew"
+  effects:
+    may_write:
+    - "@authentication_options"
+- class: Signup
+  method: complete
+  effects:
+    may_write:
+    - "@account"
+    - "@tenant"
+    - "@user"
 - class: Signup
   method: create_account
   unconditional:
     ivars:
       "@user": untyped
     self: "::Signup & ::Signup::AfterCreateAccount"
+  effects:
+    may_write:
+    - "@account"
+    - "@user"
+- class: Signup
+  method: create_identity
+  effects:
+    may_write:
+    - "@identity"
+- class: Signup
+  method: destroy_account
+  effects:
+    may_write:
+    - "@account"
+    - "@tenant"
+    - "@user"
 - class: Signup
   method: initialize
   unconditional:
     ivars:
       "@email_address": "(::String | nil)"
     self: "::Signup & ::Signup::AfterInitialize"
+  effects:
+    may_write:
+    - "@email_address"
+- class: Signup::AccountNameGenerator
+  method: initialize
+  effects:
+    may_write:
+    - "@identity"
+    - "@name"
 - class: Signups::CompletionsController
   method: create
   unconditional:
     ivars:
       "@signup": "::Signup"
     self: "::Signups::CompletionsController & ::Signups::CompletionsController::AfterCreate"
+  effects:
+    may_write:
+    - "@signup"
 - class: Signups::CompletionsController
   method: new
   unconditional:
     ivars:
       "@signup": "::Signup"
     self: "::Signups::CompletionsController & ::Signups::CompletionsController::AfterNew"
+  effects:
+    may_write:
+    - "@signup"
 - class: SignupsController
   method: new
   unconditional:
     ivars:
       "@signup": "::Signup"
     self: "::SignupsController & ::SignupsController::AfterNew"
+  effects:
+    may_write:
+    - "@signup"
 - class: Storage::AttachmentTracking
   method: snapshot_storage_context
   unconditional:
@@ -140,9 +560,120 @@ postconditions:
       "@storage_snapshot": "{ :account => untyped, :board => untyped, :recordable
         => untyped }"
     self: "::Storage::AttachmentTracking & ::Storage::AttachmentTracking::AfterSnapshotStorageContext"
+  effects:
+    may_write:
+    - "@storage_snapshot"
+- class: TimeWindowParser
+  method: initialize
+  effects:
+    may_write:
+    - "@now"
+- class: User::DayTimeline
+  method: initialize
+  effects:
+    may_write:
+    - "@day"
+    - "@filter"
+    - "@user"
+- class: User::DayTimeline::Column
+  method: initialize
+  effects:
+    may_write:
+    - "@base_title"
+    - "@day_timeline"
+    - "@events"
+    - "@id"
+    - "@index"
+- class: User::Filtering
+  method: expanded?
+  effects:
+    returns_ivar: "@expanded"
+- class: User::Filtering
+  method: initialize
+  effects:
+    may_write:
+    - "@expanded"
+    - "@filter"
+    - "@user"
+- class: UserMailer
+  method: email_change_confirmation
+  effects:
+    may_write:
+    - "@user"
 - class: ViewTransitions
   method: disable_view_transitions
   unconditional:
     ivars:
       "@disable_view_transition": 'true'
     self: "::ViewTransitions & ::ViewTransitions::AfterDisableViewTransitions"
+  effects:
+    may_write:
+    - "@disable_view_transition"
+- class: WebPush::Pool
+  method: initialize
+  effects:
+    may_write:
+    - "@connection"
+    - "@delivery_pool"
+    - "@invalid_subscription_handler"
+    - "@invalidation_pool"
+- class: ZipFile::Reader
+  method: initialize
+  effects:
+    may_write:
+    - "@io"
+- class: ZipFile::Reader::IO
+  method: initialize
+  effects:
+    may_write:
+    - "@io"
+- class: ZipFile::RemoteIO
+  method: initialize
+  effects:
+    may_write:
+    - "@ssl_verify_peer"
+- class: ZipFile::Writer
+  method: add_file
+  effects:
+    may_write:
+    - "@streamer"
+- class: ZipFile::Writer
+  method: close
+  effects:
+    may_write:
+    - "@streamer"
+- class: ZipFile::Writer
+  method: initialize
+  effects:
+    may_write:
+    - "@byte_size"
+    - "@digest"
+    - "@entries"
+    - "@streamer"
+- class: ZipFile::Writer
+  method: streamer
+  effects:
+    may_write:
+    - "@streamer"
+- class: ZipFile::Writer
+  method: write
+  effects:
+    may_write:
+    - "@byte_size"
+method_entry_facts:
+- class: Notifications::TraysController
+  method: include_read?
+  ivars:
+    "@notifications": "::Notification::ActiveRecord_Relation"
+- class: Notifications::TraysController
+  method: read_notifications
+  ivars:
+    "@notifications": "::Notification::ActiveRecord_Relation"
+- class: Signups::CompletionsController
+  method: invalid_signup
+  ivars:
+    "@signup": "::Signup"
+- class: Signups::CompletionsController
+  method: welcome_to_account
+  ivars:
+    "@signup": "::Signup"
