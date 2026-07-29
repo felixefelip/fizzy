@@ -80,8 +80,19 @@ rbs_generators_all:
 	make rbs_infer_actionview_runtime
 	make rbs_infer_all
 
+## `-j` NÃO fica no default (= nº de CPUs, 10 nesta máquina). Cada worker do steep
+## custa ~1 GiB neste projeto, então 10 workers levam o pico a 19,2 GiB e a máquina
+## vai para swap. Com `-j 4` o pico mediu 8,8 GiB e o run ficou MAIS RÁPIDO por não
+## trocar página (321s contra 344s). O número é limitado pela RAM, não pelos cores:
+## ~1 GiB por worker mais ~1,7 GiB do master durante a inferência.
+##
+## As variáveis de GC limitam o crescimento do heap, que é o que domina o consumo:
+## as passadas de inferência alocam ~148M de objetos e retêm 27 MB — o resto é
+## high-water mark. `HEAP_GROWTH_MAX_SLOTS` corta 16% do pico sem custo de tempo;
+## `MALLOC_ARENA_MAX` evita fragmentação entre as arenas do glibc.
 steep:
-	bundle exec steep check
+	RUBY_GC_HEAP_GROWTH_MAX_SLOTS=100000 RUBY_GC_HEAP_GROWTH_FACTOR=1.1 MALLOC_ARENA_MAX=2 \
+		bundle exec steep check -j 4
 
 ## `.steep_postconditions.yml` é SAÍDA do steep sobre o pseudo-código e ENTRADA
 ## do rbs_infer. Uma passada só mostra tipos nilable que são atraso, não
