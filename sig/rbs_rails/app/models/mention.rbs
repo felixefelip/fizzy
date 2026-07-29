@@ -369,7 +369,6 @@ class ::Mention < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Mention::GeneratedAliasAttributeMethods
-  def notifications: () -> ::Notification::ActiveRecord_Associations_CollectionProxy
   def notifications=: (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification]) -> (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification])
   def notification_ids: () -> ::Array[::Integer]
   def notification_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -435,6 +434,11 @@ class ::Mention < ::ApplicationRecord
     def mentionee: () -> (::User & ::User::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Mention_Notification
+  class ActiveRecord_Associations_CollectionProxy < ::Notification::ActiveRecord_Associations_CollectionProxy
   end
 end
 

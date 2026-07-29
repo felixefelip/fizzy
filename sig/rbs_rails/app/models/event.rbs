@@ -449,11 +449,9 @@ class ::Event < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Event::GeneratedAliasAttributeMethods
-  def notifications: () -> ::Notification::ActiveRecord_Associations_CollectionProxy
   def notifications=: (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification]) -> (::Notification::ActiveRecord_Associations_CollectionProxy | ::Array[::Notification])
   def notification_ids: () -> ::Array[::Integer]
   def notification_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def webhook_deliveries: () -> ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy
   def webhook_deliveries=: (::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook::Delivery]) -> (::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook::Delivery])
   def webhook_delivery_ids: () -> ::Array[::Integer]
   def webhook_delivery_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -534,6 +532,16 @@ class ::Event < ::ApplicationRecord
     def creator: () -> (::User & ::User::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Event_Notification
+  class ActiveRecord_Associations_CollectionProxy < ::Notification::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Event_Webhook_Delivery
+  class ActiveRecord_Associations_CollectionProxy < ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy
   end
 end
 

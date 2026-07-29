@@ -249,27 +249,21 @@ class ::Identity < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Identity::GeneratedAliasAttributeMethods
-  def passkeys: () -> ::ActionPack::Passkey::ActiveRecord_Associations_CollectionProxy
   def passkeys=: (::ActionPack::Passkey::ActiveRecord_Associations_CollectionProxy | ::Array[::ActionPack::Passkey]) -> (::ActionPack::Passkey::ActiveRecord_Associations_CollectionProxy | ::Array[::ActionPack::Passkey])
   def passkey_ids: () -> ::Array[::Integer]
   def passkey_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def access_tokens: () -> ::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy
   def access_tokens=: (::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy | ::Array[::Identity::AccessToken]) -> (::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy | ::Array[::Identity::AccessToken])
   def access_token_ids: () -> ::Array[::Integer]
   def access_token_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def magic_links: () -> ::MagicLink::ActiveRecord_Associations_CollectionProxy
   def magic_links=: (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink]) -> (::MagicLink::ActiveRecord_Associations_CollectionProxy | ::Array[::MagicLink])
   def magic_link_ids: () -> ::Array[::Integer]
   def magic_link_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def sessions: () -> ::Session::ActiveRecord_Associations_CollectionProxy
   def sessions=: (::Session::ActiveRecord_Associations_CollectionProxy | ::Array[::Session]) -> (::Session::ActiveRecord_Associations_CollectionProxy | ::Array[::Session])
   def session_ids: () -> ::Array[::Integer]
   def session_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def user_ids: () -> ::Array[::Integer]
   def user_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def accounts: () -> ::Account::ActiveRecord_Associations_CollectionProxy
   def accounts=: (::Account::ActiveRecord_Associations_CollectionProxy | ::Array[::Account]) -> (::Account::ActiveRecord_Associations_CollectionProxy | ::Array[::Account])
   def account_ids: () -> ::Array[::Integer]
   def account_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -339,6 +333,36 @@ class ::Identity < ::ApplicationRecord
 
   class ::Identity::ValidatedViaAvatarAttachment
     def avatar_blob: () -> ::ActiveStorage::Blob
+  end
+end
+
+module Identity_ActionPack_Passkey
+  class ActiveRecord_Associations_CollectionProxy < ::ActionPack::Passkey::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Identity_Identity_AccessToken
+  class ActiveRecord_Associations_CollectionProxy < ::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Identity_MagicLink
+  class ActiveRecord_Associations_CollectionProxy < ::MagicLink::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Identity_Session
+  class ActiveRecord_Associations_CollectionProxy < ::Session::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Identity_User
+  class ActiveRecord_Associations_CollectionProxy < ::User::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Identity_Account
+  class ActiveRecord_Associations_CollectionProxy < ::Account::ActiveRecord_Associations_CollectionProxy
   end
 end
 

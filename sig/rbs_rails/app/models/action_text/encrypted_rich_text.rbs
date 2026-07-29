@@ -370,11 +370,9 @@ module ::ActionText
       alias id_value_for_database id_for_database
     end
     include ::ActionText::EncryptedRichText::GeneratedAliasAttributeMethods
-    def embeds_attachments: () -> ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
     def embeds_attachments=: (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment]) -> (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment])
     def embeds_attachment_ids: () -> ::Array[::Integer]
     def embeds_attachment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-    def embeds_blobs: () -> ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy
     def embeds_blobs=: (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob]) -> (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob])
     def embeds_blob_ids: () -> ::Array[::Integer]
     def embeds_blob_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -430,6 +428,16 @@ module ::ActionText
       def created_at: () -> ::ActiveSupport::TimeWithZone
       def updated_at: () -> ::ActiveSupport::TimeWithZone
     end
+  end
+end
+
+module ActionText_EncryptedRichText_ActiveStorage_Attachment
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module ActionText_EncryptedRichText_ActiveStorage_Blob
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy
   end
 end
 

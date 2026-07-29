@@ -289,19 +289,15 @@ class ::Comment < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Comment::GeneratedAliasAttributeMethods
-  def mentions: () -> ::Mention::ActiveRecord_Associations_CollectionProxy
   def mentions=: (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention]) -> (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention])
   def mention_ids: () -> ::Array[::Integer]
   def mention_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def mentionees: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def mentionees=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def mentionee_ids: () -> ::Array[::Integer]
   def mentionee_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def events: () -> ::Event::ActiveRecord_Associations_CollectionProxy
   def events=: (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event]) -> (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event])
   def event_ids: () -> ::Array[::Integer]
   def event_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def reactions: () -> ::Reaction::ActiveRecord_Associations_CollectionProxy
   def reactions=: (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction]) -> (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction])
   def reaction_ids: () -> ::Array[::Integer]
   def reaction_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -388,6 +384,26 @@ class ::Comment < ::ApplicationRecord
     def creator: () -> (::User & ::User::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Comment_Mention
+  class ActiveRecord_Associations_CollectionProxy < ::Mention::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Comment_User
+  class ActiveRecord_Associations_CollectionProxy < ::User::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Comment_Event
+  class ActiveRecord_Associations_CollectionProxy < ::Event::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Comment_Reaction
+  class ActiveRecord_Associations_CollectionProxy < ::Reaction::ActiveRecord_Associations_CollectionProxy
   end
 end
 

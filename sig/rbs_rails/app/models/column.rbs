@@ -369,7 +369,6 @@ class ::Column < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Column::GeneratedAliasAttributeMethods
-  def cards: () -> ::Card::ActiveRecord_Associations_CollectionProxy
   def cards=: (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card]) -> (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card])
   def card_ids: () -> ::Array[::Integer]
   def card_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -428,6 +427,11 @@ class ::Column < ::ApplicationRecord
     def board: () -> (::Board & ::Board::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Column_Card
+  class ActiveRecord_Associations_CollectionProxy < ::Card::ActiveRecord_Associations_CollectionProxy
   end
 end
 

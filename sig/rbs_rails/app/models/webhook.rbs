@@ -449,7 +449,6 @@ class ::Webhook < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Webhook::GeneratedAliasAttributeMethods
-  def deliveries: () -> ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy
   def deliveries=: (::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook::Delivery]) -> (::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook::Delivery])
   def delivery_ids: () -> ::Array[::Integer]
   def delivery_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -524,6 +523,11 @@ class ::Webhook < ::ApplicationRecord
     def name: () -> ::String
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Webhook_Webhook_Delivery
+  class ActiveRecord_Associations_CollectionProxy < ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy
   end
 end
 

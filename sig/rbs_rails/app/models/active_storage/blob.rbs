@@ -450,11 +450,9 @@ module ::ActiveStorage
       alias id_value_for_database id_for_database
     end
     include ::ActiveStorage::Blob::GeneratedAliasAttributeMethods
-    def attachments: () -> ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
     def attachments=: (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment]) -> (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment])
     def attachment_ids: () -> ::Array[::Integer]
     def attachment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-    def variant_records: () -> ::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy
     def variant_records=: (::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::VariantRecord]) -> (::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::VariantRecord])
     def variant_record_ids: () -> ::Array[::Integer]
     def variant_record_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -538,6 +536,16 @@ module ::ActiveStorage
     class ::ActiveStorage::Blob::ValidatedViaPreviewImageAttachment
       def preview_image_blob: () -> ::ActiveStorage::Blob
     end
+  end
+end
+
+module ActiveStorage_Blob_ActiveStorage_Attachment
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module ActiveStorage_Blob_ActiveStorage_VariantRecord
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy
   end
 end
 

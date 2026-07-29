@@ -529,55 +529,42 @@ class ::Card < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Card::GeneratedAliasAttributeMethods
-  def watches: () -> ::Watch::ActiveRecord_Associations_CollectionProxy
   def watches=: (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch]) -> (::Watch::ActiveRecord_Associations_CollectionProxy | ::Array[::Watch])
   def watch_ids: () -> ::Array[::Integer]
   def watch_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def watchers: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def watchers=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def watcher_ids: () -> ::Array[::Integer]
   def watcher_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def taggings: () -> ::Tagging::ActiveRecord_Associations_CollectionProxy
   def taggings=: (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging]) -> (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging])
   def tagging_ids: () -> ::Array[::Integer]
   def tagging_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def tags: () -> ::Tag::ActiveRecord_Associations_CollectionProxy
   def tags=: (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag]) -> (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag])
   def tag_ids: () -> ::Array[::Integer]
   def tag_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def pins: () -> ::Pin::ActiveRecord_Associations_CollectionProxy
   def pins=: (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin]) -> (::Pin::ActiveRecord_Associations_CollectionProxy | ::Array[::Pin])
   def pin_ids: () -> ::Array[::Integer]
   def pin_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def steps: () -> ::Step::ActiveRecord_Associations_CollectionProxy
   def steps=: (::Step::ActiveRecord_Associations_CollectionProxy | ::Array[::Step]) -> (::Step::ActiveRecord_Associations_CollectionProxy | ::Array[::Step])
   def step_ids: () -> ::Array[::Integer]
   def step_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def mentions: () -> ::Mention::ActiveRecord_Associations_CollectionProxy
   def mentions=: (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention]) -> (::Mention::ActiveRecord_Associations_CollectionProxy | ::Array[::Mention])
   def mention_ids: () -> ::Array[::Integer]
   def mention_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def mentionees: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def mentionees=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def mentionee_ids: () -> ::Array[::Integer]
   def mentionee_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def events: () -> ::Event::ActiveRecord_Associations_CollectionProxy
   def events=: (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event]) -> (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event])
   def event_ids: () -> ::Array[::Integer]
   def event_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def comments: () -> ::Comment::ActiveRecord_Associations_CollectionProxy
   def comments=: (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment]) -> (::Comment::ActiveRecord_Associations_CollectionProxy | ::Array[::Comment])
   def comment_ids: () -> ::Array[::Integer]
   def comment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def assignments: () -> ::Assignment::ActiveRecord_Associations_CollectionProxy
   def assignments=: (::Assignment::ActiveRecord_Associations_CollectionProxy | ::Array[::Assignment]) -> (::Assignment::ActiveRecord_Associations_CollectionProxy | ::Array[::Assignment])
   def assignment_ids: () -> ::Array[::Integer]
   def assignment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def assignees: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def assignees=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def assignee_ids: () -> ::Array[::Integer]
   def assignee_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def reactions: () -> ::Reaction::ActiveRecord_Associations_CollectionProxy
   def reactions=: (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction]) -> (::Reaction::ActiveRecord_Associations_CollectionProxy | ::Array[::Reaction])
   def reaction_ids: () -> ::Array[::Integer]
   def reaction_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -809,6 +796,61 @@ class ::Card < ::ApplicationRecord
 
   class ::Card::ValidatedViaImageAttachment
     def image_blob: () -> ::ActiveStorage::Blob
+  end
+end
+
+module Card_Watch
+  class ActiveRecord_Associations_CollectionProxy < ::Watch::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_User
+  class ActiveRecord_Associations_CollectionProxy < ::User::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Tagging
+  class ActiveRecord_Associations_CollectionProxy < ::Tagging::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Tag
+  class ActiveRecord_Associations_CollectionProxy < ::Tag::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Pin
+  class ActiveRecord_Associations_CollectionProxy < ::Pin::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Step
+  class ActiveRecord_Associations_CollectionProxy < ::Step::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Mention
+  class ActiveRecord_Associations_CollectionProxy < ::Mention::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Event
+  class ActiveRecord_Associations_CollectionProxy < ::Event::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Comment
+  class ActiveRecord_Associations_CollectionProxy < ::Comment::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Assignment
+  class ActiveRecord_Associations_CollectionProxy < ::Assignment::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Card_Reaction
+  class ActiveRecord_Associations_CollectionProxy < ::Reaction::ActiveRecord_Associations_CollectionProxy
   end
 end
 

@@ -329,39 +329,30 @@ class ::Board < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Board::GeneratedAliasAttributeMethods
-  def columns: () -> ::Column::ActiveRecord_Associations_CollectionProxy
   def columns=: (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column]) -> (::Column::ActiveRecord_Associations_CollectionProxy | ::Array[::Column])
   def column_ids: () -> ::Array[::Integer]
   def column_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def cards: () -> ::Card::ActiveRecord_Associations_CollectionProxy
   def cards=: (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card]) -> (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card])
   def card_ids: () -> ::Array[::Integer]
   def card_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def storage_entries: () -> ::Storage::Entry::ActiveRecord_Associations_CollectionProxy
   def storage_entries=: (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry]) -> (::Storage::Entry::ActiveRecord_Associations_CollectionProxy | ::Array[::Storage::Entry])
   def storage_entry_ids: () -> ::Array[::Integer]
   def storage_entry_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def accesses: () -> ::Access::ActiveRecord_Associations_CollectionProxy
   def accesses=: (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access]) -> (::Access::ActiveRecord_Associations_CollectionProxy | ::Array[::Access])
   def access_ids: () -> ::Array[::Integer]
   def access_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def user_ids: () -> ::Array[::Integer]
   def user_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def access_only_users: () -> ::User::ActiveRecord_Associations_CollectionProxy
   def access_only_users=: (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User]) -> (::User::ActiveRecord_Associations_CollectionProxy | ::Array[::User])
   def access_only_user_ids: () -> ::Array[::Integer]
   def access_only_user_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def tags: () -> ::Tag::ActiveRecord_Associations_CollectionProxy
   def tags=: (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag]) -> (::Tag::ActiveRecord_Associations_CollectionProxy | ::Array[::Tag])
   def tag_ids: () -> ::Array[::Integer]
   def tag_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def events: () -> ::Event::ActiveRecord_Associations_CollectionProxy
   def events=: (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event]) -> (::Event::ActiveRecord_Associations_CollectionProxy | ::Array[::Event])
   def event_ids: () -> ::Array[::Integer]
   def event_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def webhooks: () -> ::Webhook::ActiveRecord_Associations_CollectionProxy
   def webhooks=: (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook]) -> (::Webhook::ActiveRecord_Associations_CollectionProxy | ::Array[::Webhook])
   def webhook_ids: () -> ::Array[::Integer]
   def webhook_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -462,6 +453,46 @@ class ::Board < ::ApplicationRecord
     def account: () -> (::Account & ::Account::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Board_Column
+  class ActiveRecord_Associations_CollectionProxy < ::Column::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Card
+  class ActiveRecord_Associations_CollectionProxy < ::Card::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Storage_Entry
+  class ActiveRecord_Associations_CollectionProxy < ::Storage::Entry::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Access
+  class ActiveRecord_Associations_CollectionProxy < ::Access::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_User
+  class ActiveRecord_Associations_CollectionProxy < ::User::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Tag
+  class ActiveRecord_Associations_CollectionProxy < ::Tag::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Event
+  class ActiveRecord_Associations_CollectionProxy < ::Event::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Board_Webhook
+  class ActiveRecord_Associations_CollectionProxy < ::Webhook::ActiveRecord_Associations_CollectionProxy
   end
 end
 

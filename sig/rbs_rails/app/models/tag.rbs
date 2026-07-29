@@ -249,11 +249,9 @@ class ::Tag < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Tag::GeneratedAliasAttributeMethods
-  def taggings: () -> ::Tagging::ActiveRecord_Associations_CollectionProxy
   def taggings=: (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging]) -> (::Tagging::ActiveRecord_Associations_CollectionProxy | ::Array[::Tagging])
   def tagging_ids: () -> ::Array[::Integer]
   def tagging_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def cards: () -> ::Card::ActiveRecord_Associations_CollectionProxy
   def cards=: (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card]) -> (::Card::ActiveRecord_Associations_CollectionProxy | ::Array[::Card])
   def card_ids: () -> ::Array[::Integer]
   def card_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -312,6 +310,16 @@ class ::Tag < ::ApplicationRecord
     def account: () -> (::Account & ::Account::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Tag_Tagging
+  class ActiveRecord_Associations_CollectionProxy < ::Tagging::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Tag_Card
+  class ActiveRecord_Associations_CollectionProxy < ::Card::ActiveRecord_Associations_CollectionProxy
   end
 end
 
