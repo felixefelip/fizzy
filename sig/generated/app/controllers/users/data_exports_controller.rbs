@@ -1,5 +1,7 @@
 module Users
   class DataExportsController < ApplicationController
+    @user: (User & User::Validated)?
+
     CURRENT_EXPORT_LIMIT: Integer
 
     def show: () -> void
@@ -7,7 +9,7 @@ module Users
 
     private
 
-    def set_user: () -> untyped
+    def set_user: () -> (User & User::Validated)
     def ensure_current_user: () -> bool?
     def ensure_export_limit_not_exceeded: () -> bool?
     def set_export: () -> untyped

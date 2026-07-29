@@ -1,12 +1,14 @@
 class Account
   class ImportsController < ApplicationController
+    @import: (Account::Import & Account::Import::Validated)?
+
     def new: () -> void
     def create: () -> void
     def show: () -> void
 
     private
 
-    def set_import: () -> untyped
+    def set_import: () -> (Account::Import & Account::Import::Validated)
     def ensure_accessed_by_owner: () -> bool?
     def start_import: (self? account) -> bool
   end

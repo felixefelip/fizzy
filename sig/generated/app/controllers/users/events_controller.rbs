@@ -1,6 +1,7 @@
 module Users
   class EventsController < ApplicationController
     @day_timeline: User::DayTimeline?
+    @user: (User & User::Validated)?
 
     include FilterScoped
 
@@ -8,7 +9,7 @@ module Users
 
     private
 
-    def set_user: () -> untyped
+    def set_user: () -> (User & User::Validated)
     def day_param: () -> ActiveSupport::TimeWithZone
   end
 end

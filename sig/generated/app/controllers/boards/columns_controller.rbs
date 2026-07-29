@@ -1,5 +1,8 @@
 module Boards
   class ColumnsController < ApplicationController
+    @columns: Column::ActiveRecord_Relation?
+    @column: (Column | (Column & Column::Validated))?
+
     include BoardScoped
 
     def index: () -> void
@@ -10,7 +13,7 @@ module Boards
 
     private
 
-    def set_column: () -> untyped
+    def set_column: () -> (Column & Column::Validated)
     def column_params: () -> untyped
   end
 end

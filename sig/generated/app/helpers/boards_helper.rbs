@@ -1,4 +1,4 @@
 module BoardsHelper
-  def link_back_to_board: (Board? board, ?prefer_referrer: untyped) -> untyped
-  def link_to_edit_board: (Board? board) -> untyped
+  def link_back_to_board: (Board & Board::Validated board, ?prefer_referrer: untyped) -> untyped
+  def link_to_edit_board: ((Board | (Board & Board::Validated))? board) -> untyped
 end

@@ -1,5 +1,7 @@
 class Account
   class JoinCodesController < ApplicationController
+    @join_code: Account::JoinCode?
+
     def show: () -> void
     def edit: () -> void
     def update: () -> void
@@ -7,7 +9,7 @@ class Account
 
     private
 
-    def set_join_code: () -> untyped
+    def set_join_code: () -> Account::JoinCode?
     def join_code_params: () -> untyped
   end
 end

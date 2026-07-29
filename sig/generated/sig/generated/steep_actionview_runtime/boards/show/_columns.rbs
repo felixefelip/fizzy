@@ -1,13 +1,13 @@
 class ERBPartialBoardsShowColumns
   include ActionViewContext
 
-  def initialize: (board: Board?, page: untyped) -> void
+  def initialize: (board: (Board | (Board & Board::Validated))?, page: untyped) -> void
   def render: (?(String | { partial: String, collection: Column::ActiveRecord_Relation, cached: untyped }) target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: Board?
+  attr_reader board: (Board | (Board & Board::Validated))?
   attr_reader page: untyped
 end

@@ -1,5 +1,7 @@
 module Cards
   class TaggingsController < ApplicationController
+    @tags: Tag::ActiveRecord_Relation?
+
     include CardScoped
 
     def new: () -> void

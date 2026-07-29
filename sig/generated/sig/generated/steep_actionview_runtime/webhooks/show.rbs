@@ -1,9 +1,11 @@
 class ERBWebhooksShow
+  @webhook: (Webhook & Webhook::Validated)?
+
   include ActionViewContext
   include WebhooksHelper
 
-  def initialize: (webhook: untyped) -> void
-  def render: (?{ partial: String, collection: untyped, as: Symbol } target, *untyped) -> nil
+  def initialize: (webhook: (Webhook & Webhook::Validated)?) -> void
+  def render: (?{ partial: String, collection: self, as: Symbol } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

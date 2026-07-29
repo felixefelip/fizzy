@@ -1,11 +1,11 @@
 class ERBPartialBoardsEditPublication
   include ActionViewContext
 
-  def initialize: (board: Board?) -> void
+  def initialize: (board: Board & Board::Validated) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: Board?
+  attr_reader board: Board & Board::Validated
 end

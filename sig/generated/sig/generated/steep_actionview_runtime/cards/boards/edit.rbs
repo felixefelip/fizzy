@@ -1,7 +1,9 @@
 class ERBCardsBoardsEdit
+  @boards: Board::ActiveRecord_Relation
+
   include ActionViewContext
 
-  def initialize: (boards: untyped, card: untyped) -> void
+  def initialize: (boards: Board::ActiveRecord_Relation, card: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

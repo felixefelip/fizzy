@@ -1,13 +1,15 @@
 module Boards
   module Columns
     class CardsController < ApplicationController
+      @column: (Column & Column::Validated)?
+
       include BoardScoped
 
       def index: () -> void
 
       private
 
-      def set_column: () -> untyped
+      def set_column: () -> (Column & Column::Validated)
     end
   end
 end

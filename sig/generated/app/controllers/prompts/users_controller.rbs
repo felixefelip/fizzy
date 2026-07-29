@@ -1,5 +1,7 @@
 module Prompts
   class UsersController < ApplicationController
+    @users: User::ActiveRecord_Relation?
+
     def index: () -> void
   end
 end

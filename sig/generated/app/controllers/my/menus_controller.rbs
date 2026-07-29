@@ -2,6 +2,8 @@ module My
   class MenusController < ApplicationController
     @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
     @boards: Board::ActiveRecord_Relation?
+    @tags: Tag::ActiveRecord_Relation?
+    @users: User::ActiveRecord_Relation?
 
     def show: () -> void
   end

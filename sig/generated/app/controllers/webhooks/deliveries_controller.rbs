@@ -1,11 +1,13 @@
 module Webhooks
   class DeliveriesController < ApplicationController
+    @webhook: (Webhook & Webhook::Validated)?
+
     include BoardScoped
 
     def index: () -> void
 
     private
 
-    def set_webhook: () -> untyped
+    def set_webhook: () -> (Webhook & Webhook::Validated)
   end
 end

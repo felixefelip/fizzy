@@ -1,7 +1,9 @@
 class ERBBoardsEntropiesUpdate
+  @board: (Board & Board::Validated)
+
   include ActionViewContext
 
-  def initialize: (board: untyped) -> void
+  def initialize: (board: Board & ::Board::Validated) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

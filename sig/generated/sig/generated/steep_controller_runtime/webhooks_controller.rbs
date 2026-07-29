@@ -1,7 +1,7 @@
 class WebhooksController
   @__rbs_infer__performed: true?
 
-  def render: (?(Symbol | { json: untyped, status: Symbol }) target, *untyped) -> bool
+  def render: (?(Symbol | { json: ActiveModel::Errors, status: Symbol }) target, *untyped) -> bool
 
   private
 

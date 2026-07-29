@@ -1,10 +1,12 @@
 module Users
   class RolesController < ApplicationController
+    @user: (User & User::Validated)?
+
     def update: () -> void
 
     private
 
-    def set_user: () -> untyped
+    def set_user: () -> (User & User::Validated)
     def ensure_permission_to_administer_user: () -> bool?
     def role_params: () -> { role: untyped }
   end

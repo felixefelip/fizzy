@@ -1,5 +1,7 @@
 module Webhooks
   class ActivationsController < ApplicationController
+    @webhook: (Webhook & Webhook::Validated)?
+
     include BoardScoped
 
     def create: () -> void

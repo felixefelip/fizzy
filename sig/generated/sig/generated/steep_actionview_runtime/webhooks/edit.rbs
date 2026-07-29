@@ -1,8 +1,10 @@
 class ERBWebhooksEdit
+  @webhook: (Webhook & Webhook::Validated)?
+
   include ActionViewContext
   include WebhooksHelper
 
-  def initialize: (page_title: untyped, webhook: untyped) -> void
+  def initialize: (page_title: untyped, webhook: (Webhook & Webhook::Validated)?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

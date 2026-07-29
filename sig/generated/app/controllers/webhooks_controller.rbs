@@ -1,4 +1,6 @@
 class WebhooksController < ApplicationController
+  @webhook: (Webhook & Webhook::Validated)?
+
   include BoardScoped
 
   def index: () -> void
@@ -11,6 +13,6 @@ class WebhooksController < ApplicationController
 
   private
 
-  def set_webhook: () -> untyped
+  def set_webhook: () -> (Webhook & Webhook::Validated)
   def webhook_params: () -> untyped
 end
