@@ -2,7 +2,7 @@ class ERBPartialBoardsShowColumns
   include ActionViewContext
 
   def initialize: (board: Board?, page: untyped) -> void
-  def render: (?(String | { partial: String, collection: untyped, cached: untyped }) target, *untyped) -> nil
+  def render: (?(String | { partial: String, collection: Column::ActiveRecord_Relation, cached: untyped }) target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

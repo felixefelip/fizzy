@@ -1,5 +1,7 @@
 module Notifications
   class ReadingsController < ApplicationController
+    @notification: (Notification & Notification::Validated)?
+
     def create: () -> void
     def destroy: () -> void
   end

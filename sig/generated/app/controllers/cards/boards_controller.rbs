@@ -1,5 +1,7 @@
 module Cards
   class BoardsController < ApplicationController
+    @boards: Board::ActiveRecord_Relation?
+
     include BoardScoped
 
     def edit: () -> void

@@ -1,6 +1,6 @@
 class Board
   module Storage
-    @card_ids: nil
+    @card_ids: Array[String]?
 
     BATCH_SIZE: Integer
 
@@ -12,7 +12,7 @@ class Board
     private
 
     def calculate_real_storage_bytes: () -> untyped
-    def card_ids: () -> untyped
+    def card_ids: () -> Array[String]
     def card_image_bytes: () -> untyped
     def card_embed_bytes: () -> untyped
     def comment_embed_bytes: () -> untyped

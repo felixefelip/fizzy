@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  @board: Board?
+  @board: (Board | (Board & Board::Validated))?
 
   include FilterScoped
 
@@ -13,13 +13,13 @@ class BoardsController < ApplicationController
 
   private
 
-  def set_board: () -> Board?
+  def set_board: () -> (Board & Board::Validated)
   def ensure_permission_to_admin_board: () -> bool?
   def grantees_changed?: () -> untyped
   def show_filtered_cards: () -> untyped
   def show_columns: () -> untyped
   def board_params: () -> untyped
-  def grantees: () -> untyped
-  def revokees: () -> untyped
+  def grantees: () -> User::ActiveRecord_Relation
+  def revokees: () -> Board_User::ActiveRecord_Associations_CollectionProxy
   def grantee_ids: () -> untyped
 end

@@ -3,6 +3,6 @@ class Card
     extend ActiveSupport::Concern
 
     def toggle_tag_with: (untyped title) -> untyped
-    def tagged_with?: (untyped tag) -> untyped
+    def tagged_with?: (untyped tag) -> bool
   end
 end

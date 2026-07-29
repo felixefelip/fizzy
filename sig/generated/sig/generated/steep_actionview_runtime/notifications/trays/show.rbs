@@ -1,8 +1,10 @@
 class ERBNotificationsTraysShow
+  @notifications: Notification::ActiveRecord_Relation
+
   include ActionViewContext
 
-  def initialize: (notifications: nil) -> void
-  def render: (?{ partial: String, collection: untyped, cached: bool } target, *untyped) -> nil
+  def initialize: (notifications: Notification::ActiveRecord_Relation) -> void
+  def render: (?{ partial: String, collection: Notification::ActiveRecord_Relation, cached: bool } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

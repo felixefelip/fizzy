@@ -1,5 +1,6 @@
 module Notifications
   class SettingsController < ApplicationController
+    @boards: Board::ActiveRecord_Relation?
     @settings: User::Settings?
 
     def show: () -> void

@@ -1,12 +1,14 @@
 module Users
   class PushSubscriptionsController < ApplicationController
+    @push_subscriptions: User_Push_Subscription::ActiveRecord_Associations_CollectionProxy?
+
     def index: () -> void
     def create: () -> void
     def destroy: () -> void
 
     private
 
-    def set_push_subscriptions: () -> untyped
+    def set_push_subscriptions: () -> User_Push_Subscription::ActiveRecord_Associations_CollectionProxy
     def push_subscription_params: () -> untyped
   end
 end

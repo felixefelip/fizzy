@@ -1,12 +1,12 @@
 class ERBPartialFiltersSettingsManage
   include ActionViewContext
 
-  def initialize: (no_filtering_url: untyped, user_filtering: untyped) -> void
+  def initialize: (no_filtering_url: untyped, user_filtering: User::Filtering) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
   attr_reader no_filtering_url: untyped
-  attr_reader user_filtering: untyped
+  attr_reader user_filtering: User::Filtering
 end

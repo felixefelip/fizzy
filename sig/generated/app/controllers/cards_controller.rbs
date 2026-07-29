@@ -1,4 +1,6 @@
 class CardsController < ApplicationController
+  @board: (Board & Board::Validated)?
+
   include FilterScoped
 
   def index: () -> void
@@ -10,7 +12,7 @@ class CardsController < ApplicationController
 
   private
 
-  def set_board: () -> untyped
+  def set_board: () -> (Board & Board::Validated)
   def set_card: () -> untyped
   def redirect_if_drafted: () -> bool?
   def ensure_permission_to_administer_card: () -> true?

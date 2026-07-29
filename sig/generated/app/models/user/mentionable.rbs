@@ -4,7 +4,7 @@ class User
 
     def to_attachable_partial_path: () -> String
     def to_editor_content_attachment_partial_path: () -> String
-    def mentioned_by: (untyped mentioner, at: untyped) -> untyped
+    def mentioned_by: (untyped mentioner, at: untyped) -> (Mention & Mention::Validated)
     def mentionable_handles: () -> Array[untyped]
     def content_type: () -> String
 

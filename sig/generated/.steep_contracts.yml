@@ -1003,59 +1003,8 @@ methods:
           kind: self
         method: creator
     enforced: false
-  Board::Accessible#access_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
-  Board::Accessible#accessed_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
-  Board::Accessible#accessible_to?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
-  Board::Accessible#clean_inaccessible_data_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
-  Board::Accessible#grant_access_to_creator:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
   Board::Accessible#grant_access_to_everyone:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
     - kind: not_nil
       expr:
         kind: send
@@ -1070,6 +1019,12 @@ methods:
         method: account
         chain:
         - users
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: accesses
     enforced: false
   Board::Accessible#grant_to:
     requires:
@@ -1140,23 +1095,6 @@ methods:
         chain:
         - owner
     enforced: false
-  Board::Accessible#watchers:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-        chain:
-        - active
-    enforced: false
   Board::Entropic#entropy:
     requires:
     - kind: not_nil
@@ -1201,51 +1139,6 @@ methods:
         receiver:
           kind: self
         method: board
-    enforced: false
-  Board::Storage#calculate_real_storage_bytes:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-    enforced: false
-  Board::Storage#card_embed_bytes:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-    enforced: false
-  Board::Storage#card_ids:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-    enforced: false
-  Board::Storage#card_image_bytes:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
-    enforced: false
-  Board::Storage#comment_embed_bytes:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: cards
     enforced: false
   Card#filled?:
     requires:
@@ -1325,34 +1218,6 @@ methods:
         method: board
         chain:
         - accesses
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-        chain:
-        - where
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-        chain:
-        - where
     enforced: false
   Card::Accessible#grant_access_to_assignees:
     requires:
@@ -1616,87 +1481,6 @@ methods:
         - entropy
         - auto_clean_period
     enforced: false
-  Card::Assignable#assign:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: assignments
-    enforced: false
-  Card::Assignable#assigned?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: assignments
-    enforced: false
-  Card::Assignable#assigned_to?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: assignments
-    enforced: false
-  Card::Assignable#toggle_assignment:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: assignments
-    enforced: false
-  Card::Assignable#unassign:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: assignments
-    enforced: false
-  Card::Commentable#storage_comment_ids_with_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-    enforced: false
-  Card::Commentable#storage_transfer_records:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-    enforced: false
-  Card::Exportable#collect_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-    enforced: false
-  Card::Exportable#export_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-    enforced: false
   Card::Exportable#export_json:
     requires:
     - kind: not_nil
@@ -1717,20 +1501,6 @@ methods:
         receiver:
           kind: self
         method: updated_at
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
-        chain:
-        - chronologically
     enforced: false
   Card::Goldness#run_before_validation_callbacks:
     requires:
@@ -1804,50 +1574,8 @@ methods:
           kind: self
         method: card
     enforced: false
-  Card::Pinnable#broadcast_pin_updates:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-    enforced: false
-  Card::Pinnable#pin_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-    enforced: false
-  Card::Pinnable#pin_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-    enforced: false
-  Card::Pinnable#pinned_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
-    enforced: false
   Card::Pinnable#unpin_by:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: pins
     - kind: not_nil
       expr:
         kind: send
@@ -1895,12 +1623,6 @@ methods:
         receiver:
           kind: self
         method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: comments
     - kind: not_nil
       expr:
         kind: send
@@ -1967,15 +1689,6 @@ methods:
           kind: self
         method: updated_at
     enforced: false
-  Card::Taggable#tagged_with?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: tags
-    enforced: false
   Card::Taggable#toggle_tag_with:
     requires:
     - kind: not_nil
@@ -1992,63 +1705,6 @@ methods:
         method: account
         chain:
         - tags
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: taggings
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: tags
-    enforced: false
-  Card::Watchable#subscribe_creator:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-    enforced: false
-  Card::Watchable#unwatch_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-    enforced: false
-  Card::Watchable#watch_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-    enforced: false
-  Card::Watchable#watch_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
-    enforced: false
-  Card::Watchable#watched_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: watches
     enforced: false
   CardScoped#render_card_replacement:
     requires:
@@ -4129,15 +3785,6 @@ methods:
           kind: self
         method: turbo_stream
     enforced: false
-  User#deactivate:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: accesses
-    enforced: false
   User#setup?:
     requires:
     - kind: not_nil
@@ -4429,15 +4076,6 @@ methods:
         - users
         - active
     enforced: false
-  User::Mentionable#mentioned_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: mentions
-    enforced: false
   User::Named#familiar_name:
     requires:
     - kind: not_nil
@@ -4473,164 +4111,6 @@ methods:
         receiver:
           kind: self
         method: name
-    enforced: false
-  User::Notifiable#bundle:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-        chain:
-        - pending
-    enforced: false
-  User::Notifiable#create_bundle_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-    enforced: false
-  User::Notifiable#expand_pending_bundle_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-        chain:
-        - pending
-    enforced: false
-  User::Notifiable#find_bundle_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-        chain:
-        - pending
-    enforced: false
-  User::Notifiable#find_or_create_bundle_for:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: notification_bundles
-        chain:
-        - pending
-    enforced: false
-  User::Searcher#remember_search:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: search_queries
-    enforced: false
-  User::Settings#cancel_pending_bundles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-        - pending
-    enforced: false
-  User::Settings#flush_pending_bundles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-        - pending
-    enforced: false
-  User::Settings#review_pending_bundles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - notification_bundles
-        - pending
     enforced: false
   User::Settings#run_before_validation_callbacks:
     requires:

@@ -1,11 +1,11 @@
 class ERBPartialNotificationsSettingsEmail
   include ActionViewContext
 
-  def initialize: (settings: untyped) -> void
+  def initialize: (settings: User::Settings?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader settings: untyped
+  attr_reader settings: User::Settings?
 end

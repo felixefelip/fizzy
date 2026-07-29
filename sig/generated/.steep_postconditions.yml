@@ -342,12 +342,30 @@ postconditions:
     returns:
       establishes:
       - account
+- class: Account_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Account_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - account
+- class: Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Account_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Account_Tag::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -755,18 +773,45 @@ postconditions:
     returns:
       establishes:
       - board
+- class: Board_Access::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Board_Access::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Board_Card::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - board
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Board_Card::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Board_Column::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - board
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Board_Column::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Board_Event::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -788,12 +833,30 @@ postconditions:
     returns:
       establishes:
       - board
+- class: Board_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Board_Storage_Entry::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Board_Tag::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
     may_write:
     - "@owner"
 - class: Board_Tag::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Board_User::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Board_User::ActiveRecord_Associations_CollectionProxy
   method: owner
   effects:
     returns_ivar: "@owner"
@@ -1098,7 +1161,7 @@ postconditions:
   method: set_board
   unconditional:
     ivars:
-      "@board": untyped
+      "@board": "(::Board & ::Board::Validated)"
     self: "::BoardsController & ::BoardsController::AfterSetBoard"
   effects:
     may_write:
@@ -1153,18 +1216,45 @@ postconditions:
     returns:
       establishes:
       - card
+- class: Card_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Comment::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - card
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Pin::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - card
+- class: Card_Pin::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Pin::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Reaction::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -1180,18 +1270,54 @@ postconditions:
     returns:
       establishes:
       - card
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Card_Tag::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Tag::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Tagging::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - card
+- class: Card_Tagging::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Tagging::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Watch::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - card
+- class: Card_Watch::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Watch::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Cards::AssignmentsController
   method: __rbs_infer__run_create
   effects:
@@ -2146,11 +2272,27 @@ postconditions:
   effects:
     may_write:
     - "@user_filtering"
+- class: ERBEventsDaysIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@day_timeline"
 - class: ERBEventsIndex
   method: initialize
   effects:
     may_write:
+    - "@day_timeline"
     - "@user_filtering"
+- class: ERBFiltersCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@filter"
+- class: ERBFiltersDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@filter"
 - class: ERBJoinCodesInactive
   method: initialize
   effects:
@@ -2186,6 +2328,11 @@ postconditions:
   effects:
     may_write:
     - "@pins"
+- class: ERBNotificationsSettingsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@settings"
 - class: ERBPartialAccountSettingsEntropy
   method: initialize
   effects:
@@ -2923,6 +3070,11 @@ postconditions:
   effects:
     may_write:
     - "@signup"
+- class: ERBUsersEventsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@day_timeline"
 - class: Event::Description
   method: initialize
   effects:
@@ -2934,6 +3086,15 @@ postconditions:
   effects:
     may_write:
     - "@assignees"
+- class: Event_Notification::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Event_Notification::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Event_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -3310,6 +3471,15 @@ postconditions:
   effects:
     may_write:
     - "@magic_link"
+- class: Mention_Notification::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Mention_Notification::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: My::AccessTokensController
   method: __rbs_infer__run_create
   effects:
@@ -3637,7 +3807,7 @@ postconditions:
   method: show
   unconditional:
     ivars:
-      "@notifications": untyped
+      "@notifications": "::Notification::ActiveRecord_Relation"
     self: "::Notifications::TraysController & ::Notifications::TraysController::AfterShow"
   effects:
     may_write:
@@ -4477,18 +4647,45 @@ postconditions:
     returns:
       establishes:
       - user
+- class: User_Access::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Access::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Assignment::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - assignee
+- class: User_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Assignment::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Board::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - creator
+- class: User_Board::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Board::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Closure::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -4540,18 +4737,45 @@ postconditions:
     returns:
       establishes:
       - mentioner
+- class: User_Mention::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Mention::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Notification::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - user
+- class: User_Notification::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Notification::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - user
+- class: User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Pin::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -4573,18 +4797,45 @@ postconditions:
     returns:
       establishes:
       - user
+- class: User_Push_Subscription::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Push_Subscription::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Search_Query::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - user
+- class: User_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Watch::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
     returns:
       establishes:
       - user
+- class: User_Watch::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Watch::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Users::AvatarsController
   method: __rbs_infer__run_destroy
   effects:
@@ -5586,6 +5837,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5593,6 +5845,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5600,6 +5853,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5607,6 +5861,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5614,6 +5869,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5642,6 +5898,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5656,6 +5913,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5663,6 +5921,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5670,6 +5929,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -5677,6 +5937,7 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsHelper
@@ -8282,18 +8543,21 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@notifications": "::Notification::ActiveRecord_Relation"
 - class: Notifications::TraysController
   method: read_notifications
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@notifications": "::Notification::ActiveRecord_Relation"
 - class: Notifications::TraysController
   method: render
   consts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@notifications": "::Notification::ActiveRecord_Relation"
 - class: Notifications::TraysController
   method: show
   consts:
@@ -8821,7 +9085,19 @@ method_entry_facts:
   ivars:
     "@disable_view_transition": 'true'
 - class: User
+  method: notifications
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: User
   method: pins
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: push_subscriptions
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: search_queries
   consts:
     Current.user: "(::User & ::User::Validated)"
 - class: User
@@ -9363,6 +9639,7 @@ argument_entry_facts:
   param: target
   pattern: ":edit"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
@@ -10127,6 +10404,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@notifications": "::Notification::ActiveRecord_Relation"
 - class: Notifications::UnsubscribesController
   method: render
   param: target

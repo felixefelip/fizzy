@@ -3,7 +3,7 @@ class Notification
     def self.deliver_all: () -> nil
     def self.deliver_all_later: () -> untyped
 
-    def notifications: () -> untyped
+    def notifications: () -> Notification::ActiveRecord_Relation
     def deliver: () -> untyped
     def deliver_later: () -> untyped
     def flush: () -> untyped

@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  @recent_search_queries: User_Search_Query::ActiveRecord_Associations_CollectionProxy?
+
   include Turbo::DriveHelper
 
   def show: () -> void
