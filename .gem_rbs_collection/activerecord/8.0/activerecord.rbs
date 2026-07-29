@@ -42,11 +42,16 @@ module ActiveRecord
     extend ::ActiveRecord::Validations::ClassMethods
     extend ::ActiveSupport::Callbacks::ClassMethods
 
-    type belongs_to_default[T] = ^(T) [self: T] -> ::ActiveRecord::Base?
+    # The `default:` block runs via `owner.instance_exec(&block)`, so its self is
+    # the record — but binding self to the concrete model type would type-check
+    # the block body (e.g. `-> { post.user }`) and flag any nilable association
+    # deref inside it. The block is framework-driven and not something the app
+    # writes to a signature, so its self and result are left untyped.
+    type belongs_to_default = ^(untyped) [self: untyped] -> untyped
 
     def self.abstract_class=: (bool) -> void
     def self.scope: (Symbol, Proc) ?{ () -> untyped } -> void
-    def self.belongs_to: (Symbol, ?untyped, **untyped, ?default: belongs_to_default[instance]) -> void
+    def self.belongs_to: (Symbol, ?untyped, **untyped, ?default: belongs_to_default) -> void
     def self.has_many: (Symbol, ?untyped, **untyped) -> void
     def self.has_one: (Symbol, ?untyped, **untyped) -> void
     def self.has_and_belongs_to_many: (untyped name, ?untyped? scope, **untyped options) ?{ () -> untyped } -> untyped
