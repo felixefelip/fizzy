@@ -34,6 +34,10 @@ class Board
     Board_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
   end
 
+  def access_only_users
+    Board_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
+  end
+
   def storage_entries
     Board_Storage_Entry::ActiveRecord_Associations_CollectionProxy.new(Storage::Entry, self)
   end

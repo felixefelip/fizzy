@@ -30,6 +30,10 @@ class Card
     Card_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
   end
 
+  def assignees
+    Card_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
+  end
+
   def comments
     Card_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
   end
@@ -52,6 +56,10 @@ class Card
 
   def watches
     Card_Watch::ActiveRecord_Associations_CollectionProxy.new(Watch, self)
+  end
+
+  def watchers
+    Card_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
   end
 
   def reactions

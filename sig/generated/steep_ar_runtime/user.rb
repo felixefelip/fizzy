@@ -12,12 +12,28 @@ class User
     User_Board::ActiveRecord_Associations_CollectionProxy.new(Board, self)
   end
 
+  def accessible_columns
+    User_Column::ActiveRecord_Associations_CollectionProxy.new(Column, self)
+  end
+
+  def accessible_cards
+    User_Card::ActiveRecord_Associations_CollectionProxy.new(Card, self)
+  end
+
+  def accessible_comments
+    User_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
+  end
+
   def assignments
     User_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
   end
 
   def assignings
     User_Assignment::ActiveRecord_Associations_CollectionProxy.new(Assignment, self)
+  end
+
+  def assigned_cards
+    User_Card::ActiveRecord_Associations_CollectionProxy.new(Card, self)
   end
 
   def push_subscriptions
@@ -44,6 +60,10 @@ class User
     User_Watch::ActiveRecord_Associations_CollectionProxy.new(Watch, self)
   end
 
+  def accessible_events
+    User_Event::ActiveRecord_Associations_CollectionProxy.new(Event, self)
+  end
+
   def comments
     User_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
   end
@@ -58,5 +78,13 @@ class User
 
   def pins
     User_Pin::ActiveRecord_Associations_CollectionProxy.new(Pin, self)
+  end
+
+  def pinned_cards
+    User_Card::ActiveRecord_Associations_CollectionProxy.new(Card, self)
+  end
+
+  def data_exports
+    User_User_DataExport::ActiveRecord_Associations_CollectionProxy.new(User::DataExport, self)
   end
 end

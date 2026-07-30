@@ -1,12 +1,12 @@
 class ERBPartialAccountSettingsUsers
   include ActionViewContext
 
-  def initialize: (users: untyped) -> void
-  def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
+  def initialize: (users: User::ActiveRecord_Relation?) -> void
+  def render: (?{ partial: String, collection: User::ActiveRecord_Relation? } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader users: untyped
+  attr_reader users: User::ActiveRecord_Relation?
 end

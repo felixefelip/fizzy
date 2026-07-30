@@ -40,6 +40,10 @@ class Account
     Account_Entropy::ActiveRecord_Associations_CollectionProxy.new(Entropy, self)
   end
 
+  def exports
+    Account_Account_Export::ActiveRecord_Associations_CollectionProxy.new(Account::Export, self)
+  end
+
   def imports
     Account_Account_Import::ActiveRecord_Associations_CollectionProxy.new(Account::Import, self)
   end

@@ -1,0 +1,8 @@
+module Account_Account_Export
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Account
+
+    def initialize: (singleton(Account::Export) klass, Account owner) -> void
+    def owner: () -> Account
+  end
+end

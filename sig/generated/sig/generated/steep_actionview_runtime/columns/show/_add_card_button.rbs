@@ -1,15 +1,11 @@
 class ERBPartialColumnsShowAddCardButton
   include ActionViewContext
 
-  def initialize: (board: (Board? | (Board | (Board & Board::Validated))?)) -> void
+  def initialize: (board: (Board | (Board & Board::Validated))?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: (Board? | (Board | (Board & Board::Validated))?)
-
-  class AfterInitialize
-    attr_reader board: (Board | (Board & Board::Validated))?
-  end
+  attr_reader board: (Board | (Board & Board::Validated))?
 end

@@ -1,8 +1,8 @@
-module User_Board
+module User_Card
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Board) klass, User owner) -> void
+    def initialize: (singleton(Card) klass, User owner) -> void
     def owner: () -> User
   end
 end

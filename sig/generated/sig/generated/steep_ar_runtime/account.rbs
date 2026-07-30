@@ -8,5 +8,6 @@ class Account
   def tags: () -> Account_Tag::ActiveRecord_Associations_CollectionProxy
   def columns: () -> Account_Column::ActiveRecord_Associations_CollectionProxy
   def entropies: () -> Account_Entropy::ActiveRecord_Associations_CollectionProxy
+  def exports: () -> Account_Account_Export::ActiveRecord_Associations_CollectionProxy
   def imports: () -> Account_Account_Import::ActiveRecord_Associations_CollectionProxy
 end

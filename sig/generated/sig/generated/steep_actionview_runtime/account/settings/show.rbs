@@ -1,10 +1,10 @@
 class ERBAccountSettingsShow
   @account: (Account & Account::Validated)?
-  @users: User::ActiveRecord_Relation?
+  @users: User::ActiveRecord_Relation
 
   include ActionViewContext
 
-  def initialize: (account: ((Account & Account::Validated)? | Account & ::Account::Validated), page_title: untyped, users: User::ActiveRecord_Relation?) -> void
+  def initialize: (account: ((Account & Account::Validated)? | Account & ::Account::Validated), page_title: untyped, users: User::ActiveRecord_Relation) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

@@ -1,11 +1,11 @@
 class ERBPartialCardsContainerClosureButtons
   include ActionViewContext
 
-  def initialize: (card: untyped) -> void
+  def initialize: (card: Card?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader card: untyped
+  attr_reader card: Card?
 end
