@@ -1,10 +1,13 @@
 {
-  // O default de `--jobs` do Steep é o número de CPUs menos um (11 nesta máquina), e
-  // cada worker custa ~1 GiB neste projeto: medimos 13,4 GiB de pico só no fork, com
-  // os workers ainda ociosos. Como o startup do langserver leva minutos e nesse
-  // intervalo ele não responde nem `shutdown`, um reload da janela deixa o servidor
-  // anterior vivo — e duas instâncias não cabem em 15 GiB. Ver felixefelip/steep#114.
-  //
-  // O número é limitado pela RAM, não pelos cores. Mesmo valor do `-j` do Makefile.
+  // Wrapper que acrescenta `--no-inference` ao langserver. Sem ele o startup do LSP
+  // reinfere os sidecars a cada abertura: 260s até responder `initialize` e 11,3 GiB de
+  // pico, e como nesse intervalo o servidor não responde nem `shutdown`, cada reload da
+  // janela deixava o anterior vivo — cheguei a ver quatro instâncias somando 19,2 GiB
+  // numa máquina de 15 GiB, que é o que fazia a extensão parecer morta.
+  // Com a flag: 1,4s e 1,0 GiB. Ver felixefelip/steep#114 e bin/steep-lsp.
+  "steep.command": "bin/steep-lsp",
+
+  // O default de `--jobs` é CPUs−1 (11 aqui) e cada worker custa ~1 GiB neste projeto.
+  // O limite é a RAM, não os cores. Mesmo valor do `-j` do Makefile.
   "steep.jobs": 4
 }

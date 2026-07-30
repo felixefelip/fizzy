@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Entrada do Steep para a extensão do VS Code (`steep.command` em .vscode/settings.json).
+#
+# Existe por dois motivos:
+#
+#   1. `--no-inference`. Por padrão o langserver reinfere os sidecars de contracts e
+#      postconditions antes de começar a atender — na fizzy isso levava 4 minutos, e
+#      nesse intervalo ele não responde nem `shutdown`, então cada reload da janela
+#      deixava o servidor anterior vivo consumindo GiBs. Com a flag, o startup medido
+#      caiu de 260s para 1,4s e o pico de 11,3 GiB para 1,0 GiB. Os sidecars vêm do
+#      disco, atualizados por `make steep` / `make rbs_converge`.
+#
+#   2. A extensão monta `<steep.command> langserver --log-level=… --steepfile=… --jobs=N`
+#      e não permite acrescentar nada depois, então a flag tem que entrar por aqui.
+#
+# Só para o editor: `make steep` continua inferindo, que é de onde os sidecars saem.
+set -euo pipefail
+
+exec bundle exec steep "$@" --no-inference
