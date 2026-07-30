@@ -1,13 +1,16 @@
 module CardScoped
   @card: (Card & Card::Validated)?
+  @board: (Board & Board::Validated)?
+  @source_column: Column?
+  @was_in_stream: bool?
 
   extend ActiveSupport::Concern
 
   private
 
   def set_card: () -> (Card & Card::Validated)
-  def set_board: () -> untyped
+  def set_board: () -> (Board & Board::Validated)
   def render_card_replacement: () -> bool
-  def capture_card_location: () -> untyped
+  def capture_card_location: () -> bool
   def refresh_stream_if_needed: () -> untyped
 end
