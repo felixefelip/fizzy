@@ -298,6 +298,15 @@ postconditions:
   effects:
     may_write:
     - "@account"
+- class: Account_Account_Export::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Account_Account_Export::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Account_Account_Import::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -1405,6 +1414,15 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: Card_User::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_User::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Card_Watch::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -2165,7 +2183,7 @@ postconditions:
   method: set_card
   unconditional:
     ivars:
-      "@card": untyped
+      "@card": "(::Card & ::Card::Validated)"
     self: "::CardsController & ::CardsController::AfterSetCard"
   effects:
     may_write:
@@ -5043,17 +5061,20 @@ postconditions:
   effects:
     returns_ivar: "@owner"
 - class: User_Board::ActiveRecord_Associations_CollectionProxy
-  method: build
-  unconditional:
-    returns:
-      establishes:
-      - creator
-- class: User_Board::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
     may_write:
     - "@owner"
 - class: User_Board::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: User_Card::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Card::ActiveRecord_Associations_CollectionProxy
   method: owner
   effects:
     returns_ivar: "@owner"
@@ -5072,6 +5093,15 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: User_Column::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Column::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: User_Comment::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -5084,6 +5114,15 @@ postconditions:
     may_write:
     - "@owner"
 - class: User_Comment::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: User_Event::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_Event::ActiveRecord_Associations_CollectionProxy
   method: owner
   effects:
     returns_ivar: "@owner"
@@ -5189,6 +5228,15 @@ postconditions:
     may_write:
     - "@owner"
 - class: User_Search_Query::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: User_User_DataExport::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: User_User_DataExport::ActiveRecord_Associations_CollectionProxy
   method: owner
   effects:
     returns_ivar: "@owner"
@@ -5890,6 +5938,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: Account
   method: active?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Account
+  method: exports
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -7327,6 +7380,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -7335,6 +7389,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -7343,6 +7398,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -7359,6 +7415,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -7391,6 +7448,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -7399,6 +7457,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsHelper
@@ -7429,6 +7488,11 @@ method_entry_facts:
     "@disable_view_transition": 'true'
 - class: Column
   method: cards
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Column::Positioned
+  method: adjacent_columns
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -10439,7 +10503,27 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User
+  method: accessible_cards
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: accessible_columns
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: accessible_events
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
   method: close_remote_connections
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: data_exports
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -11443,6 +11527,7 @@ argument_entry_facts:
   param: target
   pattern: ":edit"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: CardsController
@@ -11464,6 +11549,7 @@ argument_entry_facts:
   param: target
   pattern: ":update"
   ivars:
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@user_filtering": "::User::Filtering"
 - class: Columns::Cards::Drops::ClosuresController

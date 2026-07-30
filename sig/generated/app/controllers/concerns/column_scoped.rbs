@@ -1,7 +1,9 @@
 module ColumnScoped
+  @column: (Column & Column::Validated)?
+
   extend ActiveSupport::Concern
 
   private
 
-  def set_column: () -> untyped
+  def set_column: () -> (Column & Column::Validated)
 end

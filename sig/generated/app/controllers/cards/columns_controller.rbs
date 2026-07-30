@@ -1,5 +1,8 @@
 module Cards
   class ColumnsController < ApplicationController
+    @card: (Card & Card::Validated)?
+    @columns: Column::ActiveRecord_Relation?
+
     def edit: () -> void
   end
 end

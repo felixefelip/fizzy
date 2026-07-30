@@ -1,5 +1,7 @@
 class Account
   class ExportsController < ApplicationController
+    @export: (Account::Export | (Account::Export & Account::Export::Validated))?
+
     CURRENT_EXPORT_LIMIT: Integer
 
     def show: () -> void
@@ -9,6 +11,6 @@ class Account
 
     def ensure_admin_or_owner: () -> bool?
     def ensure_export_limit_not_exceeded: () -> bool?
-    def set_export: () -> untyped
+    def set_export: () -> (Account::Export & Account::Export::Validated)?
   end
 end

@@ -5,5 +5,5 @@ class ActivitiesController < ApplicationController
 
   private
 
-  def activities: () -> untyped
+  def activities: () -> Event::ActiveRecord_Relation
 end

@@ -1,11 +1,15 @@
 class ERBPartialCardsDisplayPreviewBubble
   include ActionViewContext
 
-  def initialize: (card: Card & Card::Validated) -> void
+  def initialize: (card: (Card? | Card & Card::Validated)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader card: Card & Card::Validated
+  attr_reader card: (Card? | Card & Card::Validated)
+
+  class AfterInitialize
+    attr_reader card: (Card | (Card & Card::Validated))?
+  end
 end

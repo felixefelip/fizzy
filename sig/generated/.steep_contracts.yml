@@ -1616,12 +1616,6 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: assignees
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: board
     - kind: not_nil
       expr:
@@ -2137,6 +2131,17 @@ methods:
           kind: self
         method: account
     enforced: false
+  ERBPartialAccountSettingsUsers#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: users
+        chain:
+        - each
+    enforced: false
   ERBPartialBoardsShowClosed#render:
     requires:
     - kind: not_nil
@@ -2249,6 +2254,42 @@ methods:
         receiver:
           kind: self
         method: column
+    enforced: false
+  ERBPartialCardsMessages#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - comments
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - comments
+        - preloaded
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - comments
+        - preloaded
+        - chronologically
     enforced: false
   ERBPartialEntropyAutoClose#render:
     requires:

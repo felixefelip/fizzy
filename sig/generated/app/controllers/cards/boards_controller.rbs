@@ -1,6 +1,7 @@
 module Cards
   class BoardsController < ApplicationController
     @boards: Board::ActiveRecord_Relation?
+    @card: (Card & Card::Validated)?
 
     include BoardScoped
 
@@ -9,6 +10,6 @@ module Cards
 
     private
 
-    def set_card: () -> untyped
+    def set_card: () -> (Card & Card::Validated)
   end
 end

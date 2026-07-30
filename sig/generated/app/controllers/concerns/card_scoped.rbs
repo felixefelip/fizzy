@@ -1,9 +1,11 @@
 module CardScoped
+  @card: (Card & Card::Validated)?
+
   extend ActiveSupport::Concern
 
   private
 
-  def set_card: () -> untyped
+  def set_card: () -> (Card & Card::Validated)
   def set_board: () -> untyped
   def render_card_replacement: () -> bool
   def capture_card_location: () -> untyped

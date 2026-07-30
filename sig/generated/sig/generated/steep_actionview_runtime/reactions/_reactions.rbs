@@ -1,12 +1,12 @@
 class ERBPartialReactionsReactions
   include ActionViewContext
 
-  def initialize: (reactable: untyped) -> void
-  def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
+  def initialize: (reactable: Card?) -> void
+  def render: (?{ partial: String, collection: Card_Reaction::ActiveRecord_Associations_CollectionProxy } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader reactable: untyped
+  attr_reader reactable: Card?
 end
