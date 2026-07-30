@@ -775,6 +775,18 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Authentication
+  method: resume_session
+  when_true:
+    consts:
+      Current.identity: "::Identity"
+      Current.session: "(::Session & ::Session::Validated)"
+- class: Authentication
+  method: set_current_session
+  unconditional:
+    consts:
+      Current.identity: "::Identity"
+      Current.session: "(::Session & ::Session::Validated)"
 - class: Authentication::ViaMagicLink
   method: redirect_to_fake_session_magic_link
   effects:
@@ -3819,11 +3831,6 @@ postconditions:
   effects:
     may_write:
     - "@filters"
-- class: Fizzy
-  method: configure_bundle
-  when_true:
-    consts:
-      ENV.[]: "::String"
 - class: Fizzy
   method: db_adapter
   effects:
