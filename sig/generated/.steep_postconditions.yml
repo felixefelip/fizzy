@@ -1338,6 +1338,25 @@ postconditions:
   effects:
     returns_ivar: "@should_detect_activity_spikes"
 - class: CardScoped
+  method: capture_card_location
+  unconditional:
+    ivars:
+      "@was_in_stream": bool
+    self: "::CardScoped & ::CardScoped::AfterCaptureCardLocation"
+  effects:
+    may_write:
+    - "@source_column"
+    - "@was_in_stream"
+- class: CardScoped
+  method: set_board
+  unconditional:
+    ivars:
+      "@board": "(::Board & ::Board::Validated)"
+    self: "::CardScoped & ::CardScoped::AfterSetBoard"
+  effects:
+    may_write:
+    - "@board"
+- class: CardScoped
   method: set_card
   unconditional:
     ivars:
@@ -1468,6 +1487,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::AssignmentsController
@@ -1475,6 +1495,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::AssignmentsController
@@ -1544,13 +1565,17 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@source_column"
+    - "@was_in_stream"
 - class: Cards::ClosuresController
   method: __rbs_infer__run_destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ClosuresController
@@ -1558,6 +1583,8 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@source_column"
+    - "@was_in_stream"
 - class: Cards::ClosuresController
   method: destroy
   effects:
@@ -1605,6 +1632,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::Comments::ReactionsController
@@ -1612,6 +1640,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::Comments::ReactionsController
@@ -1619,6 +1648,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::Comments::ReactionsController
@@ -1626,6 +1656,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::Comments::ReactionsController
@@ -1667,6 +1698,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1674,6 +1706,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1681,6 +1714,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1688,6 +1722,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1695,6 +1730,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1702,6 +1738,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::CommentsController
@@ -1743,6 +1780,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::DraftsController
@@ -1764,6 +1802,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::GoldnessesController
@@ -1771,6 +1810,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::GoldnessesController
@@ -1788,6 +1828,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ImagesController
@@ -1800,13 +1841,18 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@source_column"
+    - "@was_in_stream"
 - class: Cards::NotNowsController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@source_column"
+    - "@was_in_stream"
 - class: Cards::NotNowsController
   method: render
   unconditional:
@@ -1821,6 +1867,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::PinsController
@@ -1828,6 +1875,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::PinsController
@@ -1835,6 +1883,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::PinsController
@@ -1883,6 +1932,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::PublishesController
@@ -1895,6 +1945,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReactionsController
@@ -1902,6 +1953,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReactionsController
@@ -1909,6 +1961,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReactionsController
@@ -1916,6 +1969,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReactionsController
@@ -1957,6 +2011,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReadingsController
@@ -1964,6 +2019,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::ReadingsController
@@ -1990,6 +2046,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::SelfAssignmentsController
@@ -2011,6 +2068,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2018,6 +2076,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2025,6 +2084,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2032,6 +2092,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2039,6 +2100,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2046,6 +2108,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::StepsController
@@ -2077,6 +2140,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::TaggingsController
@@ -2084,6 +2148,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
     - "@tags"
@@ -2115,6 +2180,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::TriagesController
@@ -2122,6 +2188,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::TriagesController
@@ -2139,6 +2206,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::WatchesController
@@ -2146,6 +2214,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::WatchesController
@@ -2153,6 +2222,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Cards::WatchesController
@@ -2320,6 +2390,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Columns::Cards::Drops::ClosuresController
@@ -2336,6 +2407,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Columns::Cards::Drops::ColumnsController
@@ -2352,6 +2424,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Columns::Cards::Drops::NotNowsController
@@ -2368,6 +2441,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@card"
     - "@disable_view_transition"
 - class: Columns::Cards::Drops::StreamsController
@@ -2435,6 +2509,12 @@ postconditions:
   unconditional:
     establishes_consts:
       identity: "::Identity"
+- class: Current
+  method: session=
+  unconditional:
+    establishes_consts:
+      identity: "::Identity"
+      session: "(::Session & ::Session::Validated)"
 - class: Current
   method: __rbs_infer_instance
   effects:
@@ -6429,6 +6509,16 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Board::Accessible
+  method: access_for
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board::Accessible
+  method: accessed_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Board::Accessible
   method: accessible_to?
   consts:
     Current.account: "(::Account & ::Account::Validated)"
@@ -6874,12 +6964,98 @@ method_entry_facts:
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: Card
+  method: card
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card
+  method: move_to
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card
+  method: taggings
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Closeable
+  method: close
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Golden
+  method: gild
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Golden
+  method: ungild
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Pinnable
+  method: pin_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Pinnable
+  method: pin_for
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Pinnable
+  method: unpin_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Readable
+  method: read_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Readable
+  method: unread_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Statuses
+  method: publish
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Taggable
+  method: tagged_with?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Taggable
+  method: toggle_tag_with
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Triageable
+  method: awaiting_triage?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Triageable
+  method: triage_into
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card::Watchable
+  method: unwatch_by
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: CardScoped
   method: capture_card_location
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: CardScoped
@@ -6888,14 +7064,17 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@was_in_stream": bool
 - class: CardScoped
   method: render_card_replacement
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: CardScoped
@@ -6913,12 +7092,43 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: build
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: create
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: create!
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: build
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: create
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Card_Step::ActiveRecord_Associations_CollectionProxy
+  method: create!
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: Cards::AssignmentsController
   method: create
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
@@ -6927,6 +7137,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
@@ -6935,6 +7146,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
@@ -6976,6 +7188,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
@@ -6984,6 +7197,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
@@ -6992,6 +7206,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
@@ -7000,6 +7215,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ColumnsController
@@ -7024,6 +7240,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7032,6 +7249,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7040,6 +7258,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7048,6 +7267,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7056,6 +7276,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7064,6 +7285,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -7072,6 +7294,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7080,6 +7303,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7088,6 +7312,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7096,6 +7321,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7104,6 +7330,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7112,6 +7339,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7120,6 +7348,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7128,6 +7357,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7136,6 +7366,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7144,6 +7375,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7152,6 +7384,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -7160,6 +7393,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
@@ -7168,6 +7402,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
@@ -7176,6 +7411,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
@@ -7184,6 +7420,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::GoldnessesController
@@ -7192,6 +7429,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::GoldnessesController
@@ -7200,6 +7438,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ImagesController
@@ -7208,6 +7447,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::NotNowsController
@@ -7216,6 +7456,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::NotNowsController
@@ -7224,6 +7465,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7232,14 +7474,17 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@pin": "(::Pin & ::Pin::Validated)"
 - class: Cards::PinsController
   method: broadcast_remove_pin_from_tray
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7248,6 +7493,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7256,6 +7502,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7264,6 +7511,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7272,6 +7520,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PinsController
@@ -7280,6 +7529,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PreviewsController
@@ -7304,6 +7554,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PublishesController
@@ -7312,6 +7563,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7320,6 +7572,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7328,6 +7581,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7336,6 +7590,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7344,6 +7599,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7352,6 +7608,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -7360,6 +7617,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
@@ -7368,6 +7626,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
@@ -7376,6 +7635,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
@@ -7384,6 +7644,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
@@ -7392,6 +7653,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::SelfAssignmentsController
@@ -7400,6 +7662,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::SelfAssignmentsController
@@ -7408,6 +7671,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7416,6 +7680,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7424,6 +7689,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7432,6 +7698,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7440,6 +7707,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7448,6 +7716,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7456,6 +7725,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7464,6 +7734,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7472,6 +7743,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -7480,6 +7752,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -7488,6 +7761,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -7496,6 +7770,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -7504,6 +7779,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -7512,6 +7788,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TriagesController
@@ -7520,6 +7797,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TriagesController
@@ -7528,6 +7806,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -7536,6 +7815,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -7544,6 +7824,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -7552,6 +7833,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -7560,6 +7842,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: CardsController
@@ -7701,6 +7984,21 @@ method_entry_facts:
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: Column::Positioned
+  method: move_left
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Column::Positioned
+  method: move_right
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Column::Positioned
+  method: swap_position_with
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: ColumnScoped
   method: set_column
   consts:
@@ -7714,6 +8012,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ClosuresController
@@ -7722,6 +8021,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ColumnsController
@@ -7730,6 +8030,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ColumnsController
@@ -7738,6 +8039,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
@@ -7746,6 +8048,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
@@ -7754,6 +8057,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::StreamsController
@@ -7762,6 +8066,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::StreamsController
@@ -7770,6 +8075,7 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::LeftPositionsController
@@ -10705,6 +11011,26 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Step
+  method: run_before_validation_callbacks
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Step
+  method: run_belongs_to_default_account
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Step
+  method: run_belongs_to_default_callbacks
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Step
+  method: save
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: TagsController
   method: index
   consts:
@@ -11528,6 +11854,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::AssignmentsController
@@ -11535,6 +11862,7 @@ argument_entry_facts:
   param: target
   pattern: ":new"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::BoardsController
@@ -11550,6 +11878,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ClosuresController
@@ -11557,6 +11886,7 @@ argument_entry_facts:
   param: target
   pattern: ":destroy"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ColumnsController
@@ -11572,6 +11902,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/create"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -11579,6 +11910,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/destroy"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -11586,6 +11918,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/index"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -11593,6 +11926,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/new"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
@@ -11601,6 +11935,7 @@ argument_entry_facts:
   pattern: '"reactions/show"'
   ivars:
     "@__rbs_infer__performed": 'true'
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -11608,6 +11943,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -11615,6 +11951,7 @@ argument_entry_facts:
   param: target
   pattern: ":destroy"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -11622,6 +11959,7 @@ argument_entry_facts:
   param: target
   pattern: ":edit"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -11629,6 +11967,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
@@ -11636,6 +11975,7 @@ argument_entry_facts:
   param: target
   pattern: ":update"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
@@ -11643,6 +11983,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::NotNowsController
@@ -11650,6 +11991,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::PreviewsController
@@ -11664,6 +12006,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/create"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -11671,6 +12014,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/destroy"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -11678,6 +12022,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/index"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -11685,6 +12030,7 @@ argument_entry_facts:
   param: target
   pattern: '"reactions/new"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReactionsController
@@ -11693,6 +12039,7 @@ argument_entry_facts:
   pattern: '"reactions/show"'
   ivars:
     "@__rbs_infer__performed": 'true'
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::ReadingsController
@@ -11700,6 +12047,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::SelfAssignmentsController
@@ -11707,6 +12055,7 @@ argument_entry_facts:
   param: target
   pattern: '"cards/assignments/create"'
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -11714,6 +12063,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -11721,6 +12071,7 @@ argument_entry_facts:
   param: target
   pattern: ":destroy"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -11728,6 +12079,7 @@ argument_entry_facts:
   param: target
   pattern: ":edit"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -11735,6 +12087,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::StepsController
@@ -11742,6 +12095,7 @@ argument_entry_facts:
   param: target
   pattern: ":update"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -11749,6 +12103,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::TaggingsController
@@ -11756,6 +12111,7 @@ argument_entry_facts:
   param: target
   pattern: ":new"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@tags": "::Tag::ActiveRecord_Relation"
@@ -11764,6 +12120,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -11771,6 +12128,7 @@ argument_entry_facts:
   param: target
   pattern: ":destroy"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::WatchesController
@@ -11778,6 +12136,7 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: CardsController
@@ -11815,6 +12174,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::ColumnsController
@@ -11822,6 +12182,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
@@ -11829,6 +12190,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::StreamsController
@@ -11836,6 +12198,7 @@ argument_entry_facts:
   param: target
   pattern: ":create"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::LeftPositionsController
