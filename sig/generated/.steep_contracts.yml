@@ -2131,17 +2131,6 @@ methods:
           kind: self
         method: account
     enforced: false
-  ERBPartialAccountSettingsUsers#render:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: users
-        chain:
-        - each
-    enforced: false
   ERBPartialBoardsShowClosed#render:
     requires:
     - kind: not_nil
@@ -2255,6 +2244,23 @@ methods:
           kind: self
         method: column
     enforced: false
+  ERBPartialCardsDisplayPermaSteps#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - steps
+    enforced: false
   ERBPartialCardsMessages#render:
     requires:
     - kind: not_nil
@@ -2352,6 +2358,23 @@ methods:
         method: event
         chain:
         - eventable
+    enforced: false
+  ERBPartialReactionsReactions#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: reactable
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: reactable
+        chain:
+        - reactions
     enforced: false
   Entropy#auto_postpone_period_in_days:
     requires:

@@ -15,7 +15,7 @@ module Authentication
   def require_account: () -> bool?
   def require_authentication: () -> { httponly: bool, same_site: Symbol, value: untyped }
   def resume_session: () -> { httponly: bool, same_site: Symbol, value: untyped }?
-  def find_session_by_cookie: () -> untyped
+  def find_session_by_cookie: () -> (Session & Session::Validated)?
   def authenticate_by_bearer_token: () -> void
   def bearer_token_authenticatable_request?: () -> untyped
   def request_authentication: () -> bool
@@ -23,7 +23,7 @@ module Authentication
   def redirect_authenticated_user: () -> bool?
   def redirect_tenanted_request: () -> bool?
   def start_new_session_for: (untyped identity) -> untyped
-  def set_current_session: (untyped session) -> { value: untyped, httponly: bool, same_site: Symbol }
+  def set_current_session: ((Session & Session::Validated)? session) -> { value: untyped, httponly: bool, same_site: Symbol }
   def terminate_session: () -> untyped
   def session_token: () -> untyped
 end
