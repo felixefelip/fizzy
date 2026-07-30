@@ -457,6 +457,13 @@ module ActiveRecord
               | (Array[PrimaryKey]) -> Array[Model & ValidatedModel]
               | (*PrimaryKey) -> Array[Model & ValidatedModel]
               | () { (Model & ValidatedModel) -> boolish } -> (Model & ValidatedModel)?
+      # ActiveRecord::SignedId. Narrowed for the same reason as the finders
+      # above, because that is literally what they delegate to: `find_signed`
+      # ends in `find_by primary_key => id` and returns nil when the signature
+      # is expired, has a purpose mismatch, or was tampered with; `find_signed!`
+      # ends in `find(id)` and raises instead.
+      def find_signed: (untyped signed_id, ?purpose: untyped, ?on_rotation: untyped) -> (Model & ValidatedModel)?
+      def find_signed!: (untyped signed_id, ?purpose: untyped, ?on_rotation: untyped) -> (Model & ValidatedModel)
       # find_or_create_by family is intentionally *not* narrowed: the non-bang
       # variants can return a record whose save failed validation. The bang
       # variants raise on validation failure, so they return ValidatedModel.
@@ -606,6 +613,13 @@ module ActiveRecord
       def find: (PrimaryKey id) -> (Model & ValidatedModel)
               | (Array[PrimaryKey]) -> Array[Model & ValidatedModel]
               | (*PrimaryKey) -> Array[Model & ValidatedModel]
+      # ActiveRecord::SignedId. Narrowed for the same reason as the finders
+      # above, because that is literally what they delegate to: `find_signed`
+      # ends in `find_by primary_key => id` and returns nil when the signature
+      # is expired, has a purpose mismatch, or was tampered with; `find_signed!`
+      # ends in `find(id)` and raises instead.
+      def find_signed: (untyped signed_id, ?purpose: untyped, ?on_rotation: untyped) -> (Model & ValidatedModel)?
+      def find_signed!: (untyped signed_id, ?purpose: untyped, ?on_rotation: untyped) -> (Model & ValidatedModel)
       # find_or_create_by family is intentionally *not* narrowed: the non-bang
       # variants can return a record whose save failed validation. The bang
       # variants raise on validation failure, so they return ValidatedModel.
