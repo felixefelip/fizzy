@@ -3820,6 +3820,11 @@ postconditions:
     may_write:
     - "@filters"
 - class: Fizzy
+  method: configure_bundle
+  when_true:
+    consts:
+      ENV.[]: "::String"
+- class: Fizzy
   method: db_adapter
   effects:
     may_write:

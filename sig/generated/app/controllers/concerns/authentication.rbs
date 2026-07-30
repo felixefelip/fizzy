@@ -23,7 +23,7 @@ module Authentication
   def redirect_authenticated_user: () -> bool?
   def redirect_tenanted_request: () -> bool?
   def start_new_session_for: (untyped identity) -> untyped
-  def set_current_session: ((Session & Session::Validated)? session) -> { value: untyped, httponly: bool, same_site: Symbol }
+  def set_current_session: ((Session & Session::Validated) session) -> { value: untyped, httponly: bool, same_site: Symbol }
   def terminate_session: () -> untyped
   def session_token: () -> untyped
 end
