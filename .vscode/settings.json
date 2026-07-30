@@ -1,0 +1,10 @@
+{
+  // O default de `--jobs` do Steep é o número de CPUs menos um (11 nesta máquina), e
+  // cada worker custa ~1 GiB neste projeto: medimos 13,4 GiB de pico só no fork, com
+  // os workers ainda ociosos. Como o startup do langserver leva minutos e nesse
+  // intervalo ele não responde nem `shutdown`, um reload da janela deixa o servidor
+  // anterior vivo — e duas instâncias não cabem em 15 GiB. Ver felixefelip/steep#114.
+  //
+  // O número é limitado pela RAM, não pelos cores. Mesmo valor do `-j` do Makefile.
+  "steep.jobs": 4
+}
