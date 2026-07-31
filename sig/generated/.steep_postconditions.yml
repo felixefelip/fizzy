@@ -1507,14 +1507,27 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@assigned_to"
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@users"
 - class: Cards::AssignmentsController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::AssignmentsController
+  method: new
+  unconditional:
+    ivars:
+      "@assigned_to": "::User::ActiveRecord_Relation"
+      "@users": "::User::ActiveRecord_Relation"
+    self: "::Cards::AssignmentsController & ::Cards::AssignmentsController::AfterNew"
+  effects:
+    may_write:
+    - "@assigned_to"
+    - "@users"
 - class: Cards::AssignmentsController
   method: render
   unconditional:
@@ -1646,7 +1659,9 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::Comments::ReactionsController
   method: __rbs_infer__run_destroy
   effects:
@@ -1654,7 +1669,9 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::Comments::ReactionsController
   method: __rbs_infer__run_index
   effects:
@@ -1662,7 +1679,9 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::Comments::ReactionsController
   method: __rbs_infer__run_new
   effects:
@@ -1670,7 +1689,9 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::Comments::ReactionsController
   method: create
   effects:
@@ -1705,6 +1726,20 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::Comments::ReactionsController
+  method: set_comment
+  unconditional:
+    ivars:
+      "@comment": "(::Comment & ::Comment::Validated)"
+    self: "::Cards::Comments::ReactionsController & ::Cards::Comments::ReactionsController::AfterSetComment"
+  effects:
+    may_write:
+    - "@comment"
+- class: Cards::Comments::ReactionsController
+  method: set_reactable
+  effects:
+    may_write:
+    - "@reactable"
 - class: Cards::CommentsController
   method: __rbs_infer__run_create
   effects:
@@ -1712,6 +1747,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
 - class: Cards::CommentsController
   method: __rbs_infer__run_destroy
@@ -1720,6 +1756,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
 - class: Cards::CommentsController
   method: __rbs_infer__run_edit
@@ -1728,6 +1765,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
 - class: Cards::CommentsController
   method: __rbs_infer__run_index
@@ -1744,6 +1782,7 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
 - class: Cards::CommentsController
   method: __rbs_infer__run_update
@@ -1752,12 +1791,18 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@comment"
     - "@disable_view_transition"
 - class: Cards::CommentsController
   method: create
+  unconditional:
+    ivars:
+      "@comment": "::Comment"
+    self: "::Cards::CommentsController & ::Cards::CommentsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@comment"
 - class: Cards::CommentsController
   method: destroy
   effects:
@@ -1782,6 +1827,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::CommentsController
+  method: set_comment
+  unconditional:
+    ivars:
+      "@comment": "(::Comment & ::Comment::Validated)"
+    self: "::Cards::CommentsController & ::Cards::CommentsController::AfterSetComment"
+  effects:
+    may_write:
+    - "@comment"
 - class: Cards::CommentsController
   method: update
   effects:
@@ -1882,6 +1936,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@pin"
 - class: Cards::PinsController
   method: __rbs_infer__run_destroy
   effects:
@@ -1890,6 +1945,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@pin"
 - class: Cards::PinsController
   method: __rbs_infer__run_show
   effects:
@@ -1900,14 +1956,20 @@ postconditions:
     - "@disable_view_transition"
 - class: Cards::PinsController
   method: create
+  unconditional:
+    ivars:
+      "@pin": "(::Pin & ::Pin::Validated)"
+    self: "::Cards::PinsController & ::Cards::PinsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@pin"
 - class: Cards::PinsController
   method: destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@pin"
 - class: Cards::PinsController
   method: render
   unconditional:
@@ -1960,6 +2022,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::ReactionsController
   method: __rbs_infer__run_destroy
   effects:
@@ -1968,6 +2031,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::ReactionsController
   method: __rbs_infer__run_index
   effects:
@@ -1976,6 +2040,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::ReactionsController
   method: __rbs_infer__run_new
   effects:
@@ -1984,6 +2049,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@reactable"
 - class: Cards::ReactionsController
   method: create
   effects:
@@ -2018,6 +2084,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::ReactionsController
+  method: set_reactable
+  unconditional:
+    ivars:
+      "@reactable": "(::Card & ::Card::Validated)"
+    self: "::Cards::ReactionsController & ::Cards::ReactionsController::AfterSetReactable"
+  effects:
+    may_write:
+    - "@reactable"
 - class: Cards::ReadingsController
   method: __rbs_infer__run_create
   effects:
@@ -2083,6 +2158,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@step"
 - class: Cards::StepsController
   method: __rbs_infer__run_destroy
   effects:
@@ -2091,6 +2167,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@step"
 - class: Cards::StepsController
   method: __rbs_infer__run_edit
   effects:
@@ -2099,6 +2176,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@step"
 - class: Cards::StepsController
   method: __rbs_infer__run_index
   effects:
@@ -2115,6 +2193,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@step"
 - class: Cards::StepsController
   method: __rbs_infer__run_update
   effects:
@@ -2123,11 +2202,17 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@step"
 - class: Cards::StepsController
   method: create
+  unconditional:
+    ivars:
+      "@step": "::Step"
+    self: "::Cards::StepsController & ::Cards::StepsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@step"
 - class: Cards::StepsController
   method: destroy
   effects:
@@ -2142,6 +2227,15 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Cards::StepsController
+  method: set_step
+  unconditional:
+    ivars:
+      "@step": "(::Step & ::Step::Validated)"
+    self: "::Cards::StepsController & ::Cards::StepsController::AfterSetStep"
+  effects:
+    may_write:
+    - "@step"
 - class: Cards::StepsController
   method: update
   effects:
@@ -2163,6 +2257,7 @@ postconditions:
     - "@board"
     - "@card"
     - "@disable_view_transition"
+    - "@tagged_with"
     - "@tags"
 - class: Cards::TaggingsController
   method: create
@@ -2173,10 +2268,12 @@ postconditions:
   method: new
   unconditional:
     ivars:
+      "@tagged_with": "::Tag::ActiveRecord_Relation"
       "@tags": "::Tag::ActiveRecord_Relation"
     self: "::Cards::TaggingsController & ::Cards::TaggingsController::AfterNew"
   effects:
     may_write:
+    - "@tagged_with"
     - "@tags"
 - class: Cards::TaggingsController
   method: render
@@ -2421,7 +2518,17 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@board"
     - "@card"
+    - "@column"
     - "@disable_view_transition"
+- class: Columns::Cards::Drops::ColumnsController
+  method: create
+  unconditional:
+    ivars:
+      "@column": "(::Column & ::Column::Validated)"
+    self: "::Columns::Cards::Drops::ColumnsController & ::Columns::Cards::Drops::ColumnsController::AfterCreate"
+  effects:
+    may_write:
+    - "@column"
 - class: Columns::Cards::Drops::ColumnsController
   method: render
   unconditional:
@@ -2472,11 +2579,13 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@column"
     - "@disable_view_transition"
+    - "@left_column"
 - class: Columns::LeftPositionsController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@left_column"
 - class: Columns::LeftPositionsController
   method: render
   unconditional:
@@ -2493,11 +2602,13 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@column"
     - "@disable_view_transition"
+    - "@right_column"
 - class: Columns::RightPositionsController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@right_column"
 - class: Columns::RightPositionsController
   method: render
   unconditional:
@@ -2559,6 +2670,18 @@ postconditions:
     may_write:
     - "@identity"
 - class: Current
+  method: session
+  effects:
+    returns_ivar: "@session"
+- class: Current
+  method: session=
+  unconditional:
+    establishes_consts:
+      session: "(::Session & ::Session::Validated)"
+  effects:
+    may_write:
+    - "@session"
+- class: Current
   method: set
   unconditional:
     ivars:
@@ -2567,6 +2690,7 @@ postconditions:
     may_write:
     - "@account"
     - "@identity"
+    - "@session"
     - "@user"
 - class: Current
   method: user
@@ -2589,6 +2713,7 @@ postconditions:
     may_write:
     - "@account"
     - "@identity"
+    - "@session"
     - "@user"
 - class: CurrentTimezone
   method: set_current_timezone
@@ -2615,6 +2740,11 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@day_timeline"
+- class: ERBAccountExportsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@export"
 - class: ERBAccountImportsShow
   method: initialize
   effects:
@@ -2692,11 +2822,57 @@ postconditions:
     may_write:
     - "@board"
     - "@user_filtering"
+- class: ERBCardsAssignmentsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsAssignmentsNew
+  method: initialize
+  effects:
+    may_write:
+    - "@assigned_to"
+    - "@card"
+    - "@users"
 - class: ERBCardsBoardsEdit
   method: initialize
   effects:
     may_write:
     - "@boards"
+    - "@card"
+- class: ERBCardsClosuresCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsClosuresDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsColumnsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@columns"
+- class: ERBCardsCommentsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@comment"
+- class: ERBCardsCommentsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@comment"
+- class: ERBCardsDraftsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
 - class: ERBCardsEdit
   method: initialize
   effects:
@@ -2707,7 +2883,35 @@ postconditions:
   effects:
     may_write:
     - "@user_filtering"
+- class: ERBCardsNotNowsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
 - class: ERBCardsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsStepsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@step"
+- class: ERBCardsStepsEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@step"
+- class: ERBCardsStepsUpdate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+    - "@step"
+- class: ERBCardsTaggingsCreate
   method: initialize
   effects:
     may_write:
@@ -2716,12 +2920,56 @@ postconditions:
   method: initialize
   effects:
     may_write:
+    - "@card"
+    - "@tagged_with"
     - "@tags"
 - class: ERBCardsUpdate
   method: initialize
   effects:
     may_write:
     - "@card"
+- class: ERBCardsWatchesCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsWatchesDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsWatchesShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBColumnsCardsDropsClosuresCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBColumnsCardsDropsNotNowsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBColumnsCardsDropsStreamsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBColumnsLeftPositionsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
+    - "@left_column"
+- class: ERBColumnsRightPositionsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
+    - "@right_column"
 - class: ERBEventsDaysIndex
   method: initialize
   effects:
@@ -3538,6 +3786,21 @@ postconditions:
   effects:
     may_write:
     - "@users"
+- class: ERBReactionsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@reactable"
+- class: ERBReactionsIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@reactable"
+- class: ERBReactionsNew
+  method: initialize
+  effects:
+    may_write:
+    - "@reactable"
 - class: ERBSessionsNew
   method: initialize
   effects:
@@ -3557,6 +3820,7 @@ postconditions:
   method: initialize
   effects:
     may_write:
+    - "@export"
     - "@user"
 - class: ERBUsersEdit
   method: initialize
@@ -5185,21 +5449,6 @@ postconditions:
     - "@filtered_events"
     - "@updated_column"
 - class: User::DayTimeline::Column
-  method: full_events_count
-  effects:
-    may_write:
-    - "@full_events_count"
-- class: User::DayTimeline::Column
-  method: has_more_events?
-  effects:
-    may_write:
-    - "@full_events_count"
-- class: User::DayTimeline::Column
-  method: hidden_events_count
-  effects:
-    may_write:
-    - "@full_events_count"
-- class: User::DayTimeline::Column
   method: initialize
   effects:
     may_write:
@@ -5208,11 +5457,6 @@ postconditions:
     - "@events"
     - "@id"
     - "@index"
-- class: User::DayTimeline::Column
-  method: title
-  effects:
-    may_write:
-    - "@full_events_count"
 - class: User::Filtering
   method: expanded?
   effects:
@@ -7254,6 +7498,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: destroy
@@ -7263,6 +7508,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: index
@@ -7272,6 +7518,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: new
@@ -7281,6 +7528,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
@@ -7290,6 +7538,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: set_comment
@@ -7308,6 +7557,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: comment_params
@@ -7335,6 +7585,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: edit
@@ -7344,6 +7595,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: ensure_card_is_commentable
@@ -7362,6 +7614,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: index
@@ -7398,6 +7651,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: update
@@ -7407,6 +7661,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
   method: redirect_if_published
@@ -7587,6 +7842,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: destroy
   consts:
@@ -7596,6 +7852,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: index
   consts:
@@ -7605,6 +7862,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: new
   consts:
@@ -7614,6 +7872,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: render
   consts:
@@ -7623,6 +7882,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: set_reactable
   consts:
@@ -7704,6 +7964,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::StepsController
   method: edit
   consts:
@@ -7713,6 +7974,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::StepsController
   method: index
   consts:
@@ -7749,6 +8011,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::StepsController
   method: step_params
   consts:
@@ -7767,6 +8030,7 @@ method_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::TaggingsController
   method: create
   consts:
@@ -8053,6 +8317,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
   method: create
@@ -11874,9 +12139,11 @@ argument_entry_facts:
   param: target
   pattern: ":new"
   ivars:
+    "@assigned_to": "::User::ActiveRecord_Relation"
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@users": "::User::ActiveRecord_Relation"
 - class: Cards::BoardsController
   method: render
   param: target
@@ -11916,6 +12183,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
@@ -11924,6 +12192,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
@@ -11932,6 +12201,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
@@ -11940,6 +12210,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::Comments::ReactionsController
   method: render
@@ -11949,6 +12220,7 @@ argument_entry_facts:
     "@__rbs_infer__performed": 'true'
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: render
@@ -11957,6 +12229,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "::Comment"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: render
@@ -11965,6 +12238,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: render
@@ -11973,6 +12247,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::CommentsController
   method: render
@@ -11989,6 +12264,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
 - class: Cards::DraftsController
   method: render
@@ -12021,6 +12297,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: render
   param: target
@@ -12029,6 +12306,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: render
   param: target
@@ -12037,6 +12315,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: render
   param: target
@@ -12045,6 +12324,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReactionsController
   method: render
   param: target
@@ -12054,6 +12334,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Card & ::Card::Validated)"
 - class: Cards::ReadingsController
   method: render
   param: target
@@ -12078,6 +12359,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "::Step"
 - class: Cards::StepsController
   method: render
   param: target
@@ -12086,6 +12368,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::StepsController
   method: render
   param: target
@@ -12094,6 +12377,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::StepsController
   method: render
   param: target
@@ -12110,6 +12394,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@step": "(::Step & ::Step::Validated)"
 - class: Cards::TaggingsController
   method: render
   param: target
@@ -12126,6 +12411,7 @@ argument_entry_facts:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@tagged_with": "::Tag::ActiveRecord_Relation"
     "@tags": "::Tag::ActiveRecord_Relation"
 - class: Cards::WatchesController
   method: render
@@ -12196,6 +12482,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@card": "(::Card & ::Card::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Columns::Cards::Drops::NotNowsController
   method: render

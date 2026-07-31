@@ -2122,6 +2122,15 @@ methods:
           kind: self
         method: card
     enforced: false
+  Current#session=:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: session
+    enforced: false
   ERBPartialAccountSettingsEntropy#render:
     requires:
     - kind: not_nil
