@@ -1,7 +1,10 @@
 class ERBCardsCommentsCreate
+  @card: (Card & Card::Validated)
+  @comment: (Comment | (Comment & Comment::Validated))?
+
   include ActionViewContext
 
-  def initialize: (card: untyped, comment: untyped) -> void
+  def initialize: (card: Card & ::Card::Validated, comment: (Comment | (Comment & Comment::Validated))?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

@@ -1,7 +1,9 @@
 class ERBAccountExportsShow
+  @export: (Account::Export | (Account::Export & Account::Export::Validated))?
+
   include ActionViewContext
 
-  def initialize: (export: untyped, page_title: untyped) -> void
+  def initialize: (export: (Account::Export | (Account::Export & Account::Export::Validated))?, page_title: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

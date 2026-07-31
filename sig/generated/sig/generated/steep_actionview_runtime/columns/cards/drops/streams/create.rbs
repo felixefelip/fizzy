@@ -1,7 +1,9 @@
 class ERBColumnsCardsDropsStreamsCreate
+  @card: (Card & Card::Validated)
+
   include ActionViewContext
 
-  def initialize: (card: untyped, page: untyped) -> void
+  def initialize: (card: Card & ::Card::Validated, page: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

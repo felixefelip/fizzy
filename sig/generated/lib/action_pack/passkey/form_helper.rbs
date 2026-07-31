@@ -12,7 +12,7 @@ module ActionPack
 
       private
 
-      def partition_passkey_options: (untyped url, untyped options) -> Array[untyped]
+      def partition_passkey_options: (untyped url, Hash[Symbol, untyped] options) -> Array[untyped]
       def default_passkey_challenge_url: () -> untyped
       def passkey_error_messages: (?error: untyped, ?cancellation: untyped, ?duplicate: untyped) -> untyped
       def build_passkey_error_options: (String type, untyped options) -> Array[untyped]

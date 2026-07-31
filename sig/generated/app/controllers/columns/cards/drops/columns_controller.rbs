@@ -2,6 +2,8 @@ module Columns
   module Cards
     module Drops
       class ColumnsController < ApplicationController
+        @column: (Column & Column::Validated)?
+
         include CardScoped
 
         def create: () -> void

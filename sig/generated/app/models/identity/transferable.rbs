@@ -3,11 +3,11 @@ class Identity
     TRANSFER_LINK_EXPIRY_DURATION: ActiveSupport::Duration
 
     module ClassMethods
-      def find_by_transfer_id: (untyped id) -> untyped
+      def find_by_transfer_id: (untyped id) -> (Identity & Identity::Validated)?
     end
 
     extend ActiveSupport::Concern
 
-    def transfer_id: () -> untyped
+    def transfer_id: () -> String
   end
 end

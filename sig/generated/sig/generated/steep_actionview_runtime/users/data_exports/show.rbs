@@ -1,9 +1,10 @@
 class ERBUsersDataExportsShow
+  @export: (User::DataExport | (User::DataExport & User::DataExport::Validated))?
   @user: (User & User::Validated)
 
   include ActionViewContext
 
-  def initialize: (export: untyped, page_title: untyped, user: User & ::User::Validated) -> void
+  def initialize: (export: (User::DataExport | (User::DataExport & User::DataExport::Validated))?, page_title: untyped, user: User & ::User::Validated) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

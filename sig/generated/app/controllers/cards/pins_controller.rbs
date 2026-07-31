@@ -1,5 +1,7 @@
 module Cards
   class PinsController < ApplicationController
+    @pin: (Pin & Pin::Validated)?
+
     include CardScoped
 
     def show: () -> void

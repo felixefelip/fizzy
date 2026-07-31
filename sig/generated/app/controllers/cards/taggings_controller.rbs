@@ -1,5 +1,6 @@
 module Cards
   class TaggingsController < ApplicationController
+    @tagged_with: Tag::ActiveRecord_Relation?
     @tags: Tag::ActiveRecord_Relation?
 
     include CardScoped

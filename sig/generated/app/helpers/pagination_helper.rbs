@@ -1,7 +1,7 @@
 module PaginationHelper
   def pagination_frame_tag: (untyped namespace, untyped page, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
   def link_to_next_page: (untyped namespace, untyped page, ?activate_when_observed: bool, ?label: untyped, ?data: untyped, **untyped) -> untyped
-  def pagination_link: (untyped namespace, untyped page_number, ?activate_when_observed: untyped, ?label: untyped, ?url_params: untyped, ?data: untyped, **untyped) -> untyped
+  def pagination_link: (untyped namespace, untyped page_number, ?activate_when_observed: bool, ?label: untyped, ?url_params: untyped, ?data: untyped, **untyped) -> untyped
   def pagination_frame_id_for: (untyped namespace, untyped page_number) -> String
   def with_manual_pagination: (untyped name, untyped page, **untyped) -> untyped
   def with_automatic_pagination: (untyped name, untyped page, **untyped) -> untyped
@@ -12,5 +12,5 @@ module PaginationHelper
   private
 
   def pagination_list: (untyped name, ?tag_element: untyped, ?paginate_on_scroll: bool, **untyped) ?{ (untyped) -> untyped } -> untyped
-  def default_pagination_label: (untyped activate_when_observed) -> String
+  def default_pagination_label: (bool activate_when_observed) -> String
 end

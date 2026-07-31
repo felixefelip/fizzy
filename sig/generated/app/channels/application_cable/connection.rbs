@@ -5,6 +5,6 @@ module ApplicationCable
     private
 
     def set_current_user: () -> untyped
-    def find_session_by_cookie: () -> untyped
+    def find_session_by_cookie: () -> (Session & Session::Validated)?
   end
 end

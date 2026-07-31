@@ -1,5 +1,7 @@
 module Cards
   class StepsController < ApplicationController
+    @step: (Step | (Step & Step::Validated))?
+
     include CardScoped
 
     def index: () -> void
@@ -11,7 +13,7 @@ module Cards
 
     private
 
-    def set_step: () -> untyped
+    def set_step: () -> (Step & Step::Validated)
     def step_params: () -> untyped
   end
 end

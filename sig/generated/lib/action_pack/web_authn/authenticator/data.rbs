@@ -13,8 +13,8 @@ module ActionPack
         BACKUP_STATE_FLAG: Integer
         ATTESTED_CREDENTIAL_DATA_FLAG: Integer
 
-        def self.wrap: (self data) -> self
-        def self.decode: (String bytes) -> self
+        def self.wrap: (ActionPack::WebAuthn::Authenticator::Data data) -> self
+        def self.decode: ((ActionPack::WebAuthn::Authenticator::Data | String) bytes) -> self
 
         attr_reader bytes: untyped
         attr_reader relying_party_id_hash: untyped

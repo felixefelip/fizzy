@@ -1,6 +1,9 @@
 module Cards
   module Comments
     class ReactionsController < ApplicationController
+      @comment: (Comment & Comment::Validated)?
+      @reactable: (Comment & Comment::Validated)?
+
       include CardScoped
 
       def index: () -> void
@@ -10,8 +13,8 @@ module Cards
 
       private
 
-      def set_comment: () -> untyped
-      def set_reactable: () -> untyped
+      def set_comment: () -> (Comment & Comment::Validated)
+      def set_reactable: () -> (Comment & Comment::Validated)?
       def set_reaction: () -> untyped
       def ensure_permission_to_administer_reaction: () -> bool?
     end

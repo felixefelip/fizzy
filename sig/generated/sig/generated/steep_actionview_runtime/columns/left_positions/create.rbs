@@ -1,7 +1,10 @@
 class ERBColumnsLeftPositionsCreate
+  @column: (Column & Column::Validated)
+  @left_column: (Column & Column::Validated)
+
   include ActionViewContext
 
-  def initialize: (column: untyped, left_column: untyped) -> void
+  def initialize: (column: Column & ::Column::Validated, left_column: Column & ::Column::Validated) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

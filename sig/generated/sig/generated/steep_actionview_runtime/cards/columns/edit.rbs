@@ -1,7 +1,10 @@
 class ERBCardsColumnsEdit
+  @card: (Card & Card::Validated)
+  @columns: Column::ActiveRecord_Relation
+
   include ActionViewContext
 
-  def initialize: (card: untyped, columns: untyped) -> void
+  def initialize: (card: Card & ::Card::Validated, columns: Column::ActiveRecord_Relation) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

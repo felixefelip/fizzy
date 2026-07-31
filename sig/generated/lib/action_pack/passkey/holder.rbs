@@ -31,8 +31,8 @@ module ActionPack
 
         private
 
-        def extract_options_for: ((singleton(ActionPack::WebAuthn::PublicKeyCredential::CreationOptions) | singleton(ActionPack::WebAuthn::PublicKeyCredential::RequestOptions)) klass, untyped options) -> untyped
-        def options_to_proc: (untyped options) -> Proc
+        def extract_options_for: ((singleton(ActionPack::WebAuthn::PublicKeyCredential::CreationOptions) | singleton(ActionPack::WebAuthn::PublicKeyCredential::RequestOptions)) klass, Hash[Symbol, untyped] options) -> Hash[Symbol, untyped]?
+        def options_to_proc: (Hash[Symbol, untyped] options) -> Proc
       end
     end
   end

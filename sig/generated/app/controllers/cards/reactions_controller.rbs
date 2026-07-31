@@ -1,5 +1,7 @@
 module Cards
   class ReactionsController < ApplicationController
+    @reactable: (Card & Card::Validated)?
+
     include CardScoped
 
     def index: () -> void
@@ -9,7 +11,7 @@ module Cards
 
     private
 
-    def set_reactable: () -> untyped
+    def set_reactable: () -> (Card & Card::Validated)
     def set_reaction: () -> untyped
     def ensure_permission_to_administer_reaction: () -> bool?
   end

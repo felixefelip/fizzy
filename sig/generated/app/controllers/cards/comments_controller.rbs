@@ -1,5 +1,7 @@
 module Cards
   class CommentsController < ApplicationController
+    @comment: (Comment | (Comment & Comment::Validated))?
+
     include CardScoped
 
     def index: () -> void
@@ -11,7 +13,7 @@ module Cards
 
     private
 
-    def set_comment: () -> untyped
+    def set_comment: () -> (Comment & Comment::Validated)
     def ensure_creatorship: () -> bool?
     def ensure_card_is_commentable: () -> bool?
     def comment_params: () -> untyped

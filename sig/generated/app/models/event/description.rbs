@@ -4,9 +4,9 @@ class Event
     include ERB::Util
 
     attr_reader event: Event
-    attr_reader user: untyped
+    attr_reader user: nil
 
-    def initialize: (Event event, untyped user) -> void
+    def initialize: (Event event, nil user) -> void
     def to_html: () -> ActiveSupport::SafeBuffer
     def to_plain_text: () -> ActiveSupport::SafeBuffer
 

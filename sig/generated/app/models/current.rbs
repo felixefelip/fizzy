@@ -1,6 +1,6 @@
 class Current < ActiveSupport::CurrentAttributes
-  def session=: ((Session & Session::Validated)? value) -> untyped
-  def identity=: (Identity? identity) -> untyped
+  def session=: ((Session & Session::Validated) value) -> untyped
+  def identity=: (Identity identity) -> untyped
   def with_account: ((Current | Account?) value) ?{ (untyped) -> untyped } -> untyped
   def without_account: () ?{ (untyped) -> untyped } -> untyped
 end

@@ -1,5 +1,7 @@
 module Columns
   class RightPositionsController < ApplicationController
+    @right_column: (Column & Column::Validated)?
+
     include ColumnScoped
 
     def create: () -> void
