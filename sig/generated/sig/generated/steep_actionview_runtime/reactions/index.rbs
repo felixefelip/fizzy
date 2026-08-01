@@ -4,7 +4,7 @@ class ERBReactionsIndex
   include ActionViewContext
   include ReactionsHelper
 
-  def initialize: (reactable: ((Comment & Comment::Validated)? | (Card & Card::Validated)?)) -> void
+  def initialize: (reactable: ((Comment & Comment::Validated)? | Card & ::Card::Validated)) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

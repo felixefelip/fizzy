@@ -1,7 +1,9 @@
 class ERBCardsStepsShow
+  @step: (Step | (Step & Step::Validated))?
+
   include ActionViewContext
 
-  def initialize: (step: untyped) -> void
+  def initialize: (step: (Step | (Step & Step::Validated))?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

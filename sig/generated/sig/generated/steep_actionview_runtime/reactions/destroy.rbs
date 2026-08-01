@@ -1,8 +1,10 @@
 class ERBReactionsDestroy
+  @reaction: Reaction?
+
   include ActionViewContext
   include ReactionsHelper
 
-  def initialize: (reaction: untyped) -> void
+  def initialize: (reaction: Reaction?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

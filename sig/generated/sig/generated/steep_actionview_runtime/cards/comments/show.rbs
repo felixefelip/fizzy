@@ -1,7 +1,9 @@
 class ERBCardsCommentsShow
+  @comment: (Comment | (Comment & Comment::Validated))?
+
   include ActionViewContext
 
-  def initialize: (comment: untyped) -> void
+  def initialize: (comment: (Comment | (Comment & Comment::Validated))?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
