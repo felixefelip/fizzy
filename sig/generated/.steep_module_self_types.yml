@@ -1,841 +1,892 @@
 ---
+app/controllers/concerns/authentication/via_magic_link.rb:
+  modules:
+  - anchor: ViaMagicLink
+    annotations:
+    - "# @type self: (singleton(ApplicationController) & singleton(Authentication::ViaMagicLink))
+      | (singleton(My::PasskeyChallengesController) & singleton(Authentication::ViaMagicLink))"
+    - "# @type instance: (ApplicationController & Authentication::ViaMagicLink) |
+      (My::PasskeyChallengesController & Authentication::ViaMagicLink)"
+app/controllers/concerns/authentication.rb:
+  modules:
+  - anchor: Authentication
+    annotations:
+    - "# @type self: (singleton(ApplicationController) & singleton(Authentication))
+      | (singleton(My::PasskeyChallengesController) & singleton(Authentication))"
+    - "# @type instance: (ApplicationController & Authentication) | (My::PasskeyChallengesController
+      & Authentication)"
+  blocks:
+  - call: class_methods
+    implements: "::Authentication::ClassMethods"
+    self: "(singleton(::ApplicationController) & ::Authentication::ClassMethods) |
+      (singleton(::My::PasskeyChallengesController) & ::Authentication::ClassMethods)"
+app/controllers/concerns/authorization.rb:
+  modules:
+  - anchor: Authorization
+    annotations:
+    - "# @type self: (singleton(ApplicationController) & singleton(Authorization))
+      | (singleton(My::PasskeyChallengesController) & singleton(Authorization))"
+    - "# @type instance: (ApplicationController & Authorization) | (My::PasskeyChallengesController
+      & Authorization)"
+  blocks:
+  - call: class_methods
+    implements: "::Authorization::ClassMethods"
+    self: "(singleton(::ApplicationController) & ::Authorization::ClassMethods) |
+      (singleton(::My::PasskeyChallengesController) & ::Authorization::ClassMethods)"
+app/controllers/concerns/block_search_engine_indexing.rb:
+  modules:
+  - anchor: BlockSearchEngineIndexing
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(BlockSearchEngineIndexing)"
+    - "# @type instance: ApplicationController & BlockSearchEngineIndexing"
+app/controllers/concerns/board_scoped.rb:
+  modules:
+  - anchor: BoardScoped
+    annotations:
+    - "# @type self: (singleton(Boards::AccessesController) & singleton(BoardScoped))
+      | (singleton(Boards::Columns::CardsController) & singleton(BoardScoped)) | (singleton(Boards::Columns::ClosedsController)
+      & singleton(BoardScoped)) | (singleton(Boards::Columns::NotNowsController) &
+      singleton(BoardScoped)) | (singleton(Boards::Columns::StreamsController) & singleton(BoardScoped))
+      | (singleton(Boards::ColumnsController) & singleton(BoardScoped)) | (singleton(Boards::EntropiesController)
+      & singleton(BoardScoped)) | (singleton(Boards::InvolvementsController) & singleton(BoardScoped))
+      | (singleton(Boards::PublicationsController) & singleton(BoardScoped)) | (singleton(Cards::BoardsController)
+      & singleton(BoardScoped)) | (singleton(Prompts::Boards::UsersController) & singleton(BoardScoped))
+      | (singleton(Webhooks::ActivationsController) & singleton(BoardScoped)) | (singleton(Webhooks::DeliveriesController)
+      & singleton(BoardScoped)) | (singleton(WebhooksController) & singleton(BoardScoped))"
+    - "# @type instance: (Boards::AccessesController & BoardScoped) | (Boards::Columns::CardsController
+      & BoardScoped) | (Boards::Columns::ClosedsController & BoardScoped) | (Boards::Columns::NotNowsController
+      & BoardScoped) | (Boards::Columns::StreamsController & BoardScoped) | (Boards::ColumnsController
+      & BoardScoped) | (Boards::EntropiesController & BoardScoped) | (Boards::InvolvementsController
+      & BoardScoped) | (Boards::PublicationsController & BoardScoped) | (Cards::BoardsController
+      & BoardScoped) | (Prompts::Boards::UsersController & BoardScoped) | (Webhooks::ActivationsController
+      & BoardScoped) | (Webhooks::DeliveriesController & BoardScoped) | (WebhooksController
+      & BoardScoped)"
+app/controllers/concerns/card_scoped.rb:
+  modules:
+  - anchor: CardScoped
+    annotations:
+    - "# @type self: (singleton(Cards::AssignmentsController) & singleton(CardScoped))
+      | (singleton(Cards::ClosuresController) & singleton(CardScoped)) | (singleton(Cards::Comments::ReactionsController)
+      & singleton(CardScoped)) | (singleton(Cards::CommentsController) & singleton(CardScoped))
+      | (singleton(Cards::DraftsController) & singleton(CardScoped)) | (singleton(Cards::GoldnessesController)
+      & singleton(CardScoped)) | (singleton(Cards::ImagesController) & singleton(CardScoped))
+      | (singleton(Cards::NotNowsController) & singleton(CardScoped)) | (singleton(Cards::PinsController)
+      & singleton(CardScoped)) | (singleton(Cards::PublishesController) & singleton(CardScoped))
+      | (singleton(Cards::ReactionsController) & singleton(CardScoped)) | (singleton(Cards::ReadingsController)
+      & singleton(CardScoped)) | (singleton(Cards::SelfAssignmentsController) & singleton(CardScoped))
+      | (singleton(Cards::StepsController) & singleton(CardScoped)) | (singleton(Cards::TaggingsController)
+      & singleton(CardScoped)) | (singleton(Cards::TriagesController) & singleton(CardScoped))
+      | (singleton(Cards::WatchesController) & singleton(CardScoped)) | (singleton(Columns::Cards::Drops::ClosuresController)
+      & singleton(CardScoped)) | (singleton(Columns::Cards::Drops::ColumnsController)
+      & singleton(CardScoped)) | (singleton(Columns::Cards::Drops::NotNowsController)
+      & singleton(CardScoped)) | (singleton(Columns::Cards::Drops::StreamsController)
+      & singleton(CardScoped))"
+    - "# @type instance: (Cards::AssignmentsController & CardScoped) | (Cards::ClosuresController
+      & CardScoped) | (Cards::Comments::ReactionsController & CardScoped) | (Cards::CommentsController
+      & CardScoped) | (Cards::DraftsController & CardScoped) | (Cards::GoldnessesController
+      & CardScoped) | (Cards::ImagesController & CardScoped) | (Cards::NotNowsController
+      & CardScoped) | (Cards::PinsController & CardScoped) | (Cards::PublishesController
+      & CardScoped) | (Cards::ReactionsController & CardScoped) | (Cards::ReadingsController
+      & CardScoped) | (Cards::SelfAssignmentsController & CardScoped) | (Cards::StepsController
+      & CardScoped) | (Cards::TaggingsController & CardScoped) | (Cards::TriagesController
+      & CardScoped) | (Cards::WatchesController & CardScoped) | (Columns::Cards::Drops::ClosuresController
+      & CardScoped) | (Columns::Cards::Drops::ColumnsController & CardScoped) | (Columns::Cards::Drops::NotNowsController
+      & CardScoped) | (Columns::Cards::Drops::StreamsController & CardScoped)"
+app/controllers/concerns/column_scoped.rb:
+  modules:
+  - anchor: ColumnScoped
+    annotations:
+    - "# @type self: (singleton(Columns::LeftPositionsController) & singleton(ColumnScoped))
+      | (singleton(Columns::RightPositionsController) & singleton(ColumnScoped))"
+    - "# @type instance: (Columns::LeftPositionsController & ColumnScoped) | (Columns::RightPositionsController
+      & ColumnScoped)"
+app/controllers/concerns/current_request.rb:
+  modules:
+  - anchor: CurrentRequest
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(CurrentRequest)"
+    - "# @type instance: ApplicationController & CurrentRequest"
+app/controllers/concerns/current_timezone.rb:
+  modules:
+  - anchor: CurrentTimezone
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(CurrentTimezone)"
+    - "# @type instance: ApplicationController & CurrentTimezone"
+app/controllers/concerns/day_timelines_scoped.rb:
+  modules:
+  - anchor: DayTimelinesScoped
+    annotations:
+    - "# @type self: (singleton(Events::DayTimeline::ColumnsController) & singleton(DayTimelinesScoped))
+      | (singleton(Events::DaysController) & singleton(DayTimelinesScoped)) | (singleton(EventsController)
+      & singleton(DayTimelinesScoped))"
+    - "# @type instance: (Events::DayTimeline::ColumnsController & DayTimelinesScoped)
+      | (Events::DaysController & DayTimelinesScoped) | (EventsController & DayTimelinesScoped)"
+app/controllers/concerns/filter_scoped.rb:
+  modules:
+  - anchor: FilterScoped
+    annotations:
+    - "# @type self: (singleton(BoardsController) & singleton(FilterScoped)) | (singleton(Cards::PreviewsController)
+      & singleton(FilterScoped)) | (singleton(CardsController) & singleton(FilterScoped))
+      | (singleton(Events::DayTimeline::ColumnsController) & singleton(FilterScoped))
+      | (singleton(Events::DaysController) & singleton(FilterScoped)) | (singleton(EventsController)
+      & singleton(FilterScoped)) | (singleton(Filters::SettingsRefreshesController)
+      & singleton(FilterScoped)) | (singleton(Users::EventsController) & singleton(FilterScoped))"
+    - "# @type instance: (BoardsController & FilterScoped) | (Cards::PreviewsController
+      & FilterScoped) | (CardsController & FilterScoped) | (Events::DayTimeline::ColumnsController
+      & FilterScoped) | (Events::DaysController & FilterScoped) | (EventsController
+      & FilterScoped) | (Filters::SettingsRefreshesController & FilterScoped) | (Users::EventsController
+      & FilterScoped)"
+app/controllers/concerns/request_forgery_protection.rb:
+  modules:
+  - anchor: RequestForgeryProtection
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(RequestForgeryProtection)"
+    - "# @type instance: ApplicationController & RequestForgeryProtection"
+app/controllers/concerns/routing_headers.rb:
+  modules:
+  - anchor: RoutingHeaders
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(RoutingHeaders)"
+    - "# @type instance: ApplicationController & RoutingHeaders"
+app/controllers/concerns/set_platform.rb:
+  modules:
+  - anchor: SetPlatform
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(SetPlatform)"
+    - "# @type instance: ApplicationController & SetPlatform"
+app/controllers/concerns/turbo_flash.rb:
+  modules:
+  - anchor: TurboFlash
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(TurboFlash)"
+    - "# @type instance: ApplicationController & TurboFlash"
+app/controllers/concerns/view_transitions.rb:
+  modules:
+  - anchor: ViewTransitions
+    annotations:
+    - "# @type self: singleton(ApplicationController) & singleton(ViewTransitions)"
+    - "# @type instance: ApplicationController & ViewTransitions"
+app/helpers/accesses_helper.rb:
+  modules:
+  - anchor: AccessesHelper
+    annotations:
+    - "# @type instance: ApplicationController & AccessesHelper"
+app/helpers/application_helper.rb:
+  modules:
+  - anchor: ApplicationHelper
+    annotations:
+    - "# @type instance: ApplicationController & ApplicationHelper"
+app/helpers/avatars_helper.rb:
+  modules:
+  - anchor: AvatarsHelper
+    annotations:
+    - "# @type instance: ApplicationController & AvatarsHelper"
+app/helpers/boards_helper.rb:
+  modules:
+  - anchor: BoardsHelper
+    annotations:
+    - "# @type instance: (ERBBoardsEdit & BoardsHelper) | (ERBBoardsNew & BoardsHelper)
+      | (ERBBoardsShow & BoardsHelper)"
+app/helpers/bridge_helper.rb:
+  modules:
+  - anchor: BridgeHelper
+    annotations:
+    - "# @type instance: ApplicationController & BridgeHelper"
+app/helpers/cards_helper.rb:
+  modules:
+  - anchor: CardsHelper
+    annotations:
+    - "# @type instance: (ERBCardsEdit & CardsHelper) | (ERBCardsIndex & CardsHelper)
+      | (ERBCardsShow & CardsHelper) | (ERBCardsUpdate & CardsHelper)"
+app/helpers/clipboard_helper.rb:
+  modules:
+  - anchor: ClipboardHelper
+    annotations:
+    - "# @type instance: ApplicationController & ClipboardHelper"
+app/helpers/columns_helper.rb:
+  modules:
+  - anchor: ColumnsHelper
+    annotations:
+    - "# @type instance: ApplicationController & ColumnsHelper"
+app/helpers/comments_helper.rb:
+  modules:
+  - anchor: CommentsHelper
+    annotations:
+    - "# @type instance: ApplicationController & CommentsHelper"
+app/helpers/emoji_helper.rb:
+  modules:
+  - anchor: EmojiHelper
+    annotations:
+    - "# @type instance: ApplicationController & EmojiHelper"
+app/helpers/entropy_helper.rb:
+  modules:
+  - anchor: EntropyHelper
+    annotations:
+    - "# @type instance: ApplicationController & EntropyHelper"
+app/helpers/events_helper.rb:
+  modules:
+  - anchor: EventsHelper
+    annotations:
+    - "# @type instance: ERBEventsIndex & EventsHelper"
+app/helpers/excerpt_helper.rb:
+  modules:
+  - anchor: ExcerptHelper
+    annotations:
+    - "# @type instance: (Notification::EventPayload & ExcerptHelper) | (Notification::MentionPayload
+      & ExcerptHelper)"
+app/helpers/filters_helper.rb:
+  modules:
+  - anchor: FiltersHelper
+    annotations:
+    - "# @type instance: (ERBFiltersCreate & FiltersHelper) | (ERBFiltersDestroy &
+      FiltersHelper)"
+app/helpers/forms_helper.rb:
+  modules:
+  - anchor: FormsHelper
+    annotations:
+    - "# @type instance: ApplicationController & FormsHelper"
+app/helpers/hotkeys_helper.rb:
+  modules:
+  - anchor: HotkeysHelper
+    annotations:
+    - "# @type instance: ApplicationController & HotkeysHelper"
+app/helpers/html_helper.rb:
+  modules:
+  - anchor: HtmlHelper
+    annotations:
+    - "# @type instance: ApplicationController & HtmlHelper"
+app/helpers/login_helper.rb:
+  modules:
+  - anchor: LoginHelper
+    annotations:
+    - "# @type instance: (ApplicationController & LoginHelper) | (My::PasskeyChallengesController
+      & LoginHelper)"
+app/helpers/messages_helper.rb:
+  modules:
+  - anchor: MessagesHelper
+    annotations:
+    - "# @type instance: ApplicationController & MessagesHelper"
+app/helpers/my/menu_helper.rb:
+  modules:
+  - anchor: MenuHelper
+    annotations:
+    - "# @type instance: ApplicationController & My::MenuHelper"
+app/helpers/notifications_helper.rb:
+  modules:
+  - anchor: NotificationsHelper
+    annotations:
+    - "# @type instance: ERBNotificationsIndex & NotificationsHelper"
+app/helpers/pagination_helper.rb:
+  modules:
+  - anchor: PaginationHelper
+    annotations:
+    - "# @type instance: ApplicationController & PaginationHelper"
+app/helpers/qr_codes_helper.rb:
+  modules:
+  - anchor: QrCodesHelper
+    annotations:
+    - "# @type instance: ApplicationController & QrCodesHelper"
+app/helpers/reactions_helper.rb:
+  modules:
+  - anchor: ReactionsHelper
+    annotations:
+    - "# @type instance: (ERBReactionsCreate & ReactionsHelper) | (ERBReactionsDestroy
+      & ReactionsHelper) | (ERBReactionsIndex & ReactionsHelper) | (ERBReactionsNew
+      & ReactionsHelper)"
+app/helpers/rich_text_helper.rb:
+  modules:
+  - anchor: RichTextHelper
+    annotations:
+    - "# @type instance: ApplicationController & RichTextHelper"
+app/helpers/tenanting_helper.rb:
+  modules:
+  - anchor: TenantingHelper
+    annotations:
+    - "# @type instance: ApplicationController & TenantingHelper"
+app/helpers/time_helper.rb:
+  modules:
+  - anchor: TimeHelper
+    annotations:
+    - "# @type instance: User::DayTimeline::Column & TimeHelper"
+app/helpers/users_helper.rb:
+  modules:
+  - anchor: UsersHelper
+    annotations:
+    - "# @type instance: (ERBUsersEdit & UsersHelper) | (ERBUsersShow & UsersHelper)"
+app/helpers/webhooks_helper.rb:
+  modules:
+  - anchor: WebhooksHelper
+    annotations:
+    - "# @type instance: (ERBWebhooksEdit & WebhooksHelper) | (ERBWebhooksEvent &
+      WebhooksHelper) | (ERBWebhooksIndex & WebhooksHelper) | (ERBWebhooksNew & WebhooksHelper)
+      | (ERBWebhooksShow & WebhooksHelper)"
+app/jobs/concerns/account_tenanted.rb:
+  modules:
+  - anchor: AccountTenanted
+    annotations:
+    - "# @type self: singleton(ApplicationJob) & singleton(AccountTenanted)"
+    - "# @type instance: ApplicationJob & AccountTenanted"
+app/jobs/concerns/smtp_delivery_error_handling.rb:
+  modules:
+  - anchor: SmtpDeliveryErrorHandling
+    annotations:
+    - "# @type self: singleton(Notification::Bundle::DeliverJob) & singleton(SmtpDeliveryErrorHandling)"
+    - "# @type instance: Notification::Bundle::DeliverJob & SmtpDeliveryErrorHandling"
+app/mailers/concerns/mailers/unsubscribable.rb:
+  modules:
+  - anchor: Unsubscribable
+    annotations:
+    - "# @type self: singleton(Notification::BundleMailer) & singleton(Mailers::Unsubscribable)"
+    - "# @type instance: Notification::BundleMailer & Mailers::Unsubscribable"
 app/models/account/cancellable.rb:
-  anchor: Cancellable
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Cancellable)"
-  - "# @type instance: Account & Account::Cancellable"
-app/models/account/cancellation.rb:
-  anchor: Cancellation
-  annotations:
-  - "# @type instance: Account & Account::Cancellation"
-app/models/account/data_transfer/account_record_set.rb:
-  anchor: AccountRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer & Account::DataTransfer::AccountRecordSet"
-app/models/account/data_transfer/action_text/rich_text_record_set.rb:
-  anchor: RichTextRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer::ActionText & Account::DataTransfer::ActionText::RichTextRecordSet"
-app/models/account/data_transfer/active_storage/attachment_record_set.rb:
-  anchor: AttachmentRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer::ActiveStorage & Account::DataTransfer::ActiveStorage::AttachmentRecordSet"
-app/models/account/data_transfer/active_storage/blob_record_set.rb:
-  anchor: BlobRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer::ActiveStorage & Account::DataTransfer::ActiveStorage::BlobRecordSet"
-app/models/account/data_transfer/active_storage/file_record_set.rb:
-  anchor: FileRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer::ActiveStorage & Account::DataTransfer::ActiveStorage::FileRecordSet"
-app/models/account/data_transfer/entropy_record_set.rb:
-  anchor: EntropyRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer & Account::DataTransfer::EntropyRecordSet"
-app/models/account/data_transfer/manifest.rb:
-  anchor: Manifest
-  annotations:
-  - "# @type instance: Account::DataTransfer & Account::DataTransfer::Manifest"
-app/models/account/data_transfer/record_set.rb:
-  anchor: RecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer & Account::DataTransfer::RecordSet"
-app/models/account/data_transfer/user_record_set.rb:
-  anchor: UserRecordSet
-  annotations:
-  - "# @type instance: Account::DataTransfer & Account::DataTransfer::UserRecordSet"
+  modules:
+  - anchor: Cancellable
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Cancellable)"
+    - "# @type instance: Account & Account::Cancellable"
 app/models/account/entropic.rb:
-  anchor: Entropic
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Entropic)"
-  - "# @type instance: Account & Account::Entropic"
-app/models/account/export.rb:
-  anchor: Export
-  annotations:
-  - "# @type instance: Account & Account::Export"
-app/models/account/external_id_sequence.rb:
-  anchor: ExternalIdSequence
-  annotations:
-  - "# @type instance: Account & Account::ExternalIdSequence"
-app/models/account/import.rb:
-  anchor: Import
-  annotations:
-  - "# @type instance: Account & Account::Import"
+  modules:
+  - anchor: Entropic
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Entropic)"
+    - "# @type instance: Account & Account::Entropic"
 app/models/account/incineratable.rb:
-  anchor: Incineratable
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Incineratable)"
-  - "# @type instance: Account & Account::Incineratable"
-app/models/account/join_code.rb:
-  anchor: JoinCode
-  annotations:
-  - "# @type instance: Account & Account::JoinCode"
+  modules:
+  - anchor: Incineratable
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Incineratable)"
+    - "# @type instance: Account & Account::Incineratable"
 app/models/account/multi_tenantable.rb:
-  anchor: MultiTenantable
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
-  - "# @type instance: Account & Account::MultiTenantable"
+  modules:
+  - anchor: MultiTenantable
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
+    - "# @type instance: Account & Account::MultiTenantable"
   blocks:
   - call: class_methods
     implements: "::Account::MultiTenantable::ClassMethods"
     self: singleton(::Account) & ::Account::MultiTenantable::ClassMethods
 app/models/account/searchable.rb:
-  anchor: Searchable
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Searchable)"
-  - "# @type instance: Account & Account::Searchable"
+  modules:
+  - anchor: Searchable
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Searchable)"
+    - "# @type instance: Account & Account::Searchable"
 app/models/account/seedeable.rb:
-  anchor: Seedeable
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Seedeable)"
-  - "# @type instance: Account & Account::Seedeable"
-app/models/account/seeder.rb:
-  anchor: Seeder
-  annotations:
-  - "# @type instance: Account & Account::Seeder"
+  modules:
+  - anchor: Seedeable
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Seedeable)"
+    - "# @type instance: Account & Account::Seedeable"
 app/models/account/storage.rb:
-  anchor: Storage
-  annotations:
-  - "# @type self: singleton(Account) & singleton(Account::Storage)"
-  - "# @type instance: Account & Account::Storage"
+  modules:
+  - anchor: Storage
+    annotations:
+    - "# @type self: singleton(Account) & singleton(Account::Storage)"
+    - "# @type instance: Account & Account::Storage"
 app/models/board/accessible.rb:
-  anchor: Accessible
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Accessible)"
-  - "# @type instance: Board & Board::Accessible"
+  modules:
+  - anchor: Accessible
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Accessible)"
+    - "# @type instance: Board & Board::Accessible"
 app/models/board/auto_postponing.rb:
-  anchor: AutoPostponing
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::AutoPostponing)"
-  - "# @type instance: Board & Board::AutoPostponing"
+  modules:
+  - anchor: AutoPostponing
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::AutoPostponing)"
+    - "# @type instance: Board & Board::AutoPostponing"
 app/models/board/broadcastable.rb:
-  anchor: Broadcastable
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Broadcastable)"
-  - "# @type instance: Board & Board::Broadcastable"
+  modules:
+  - anchor: Broadcastable
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Broadcastable)"
+    - "# @type instance: Board & Board::Broadcastable"
 app/models/board/cards.rb:
-  anchor: Cards
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Cards)"
-  - "# @type instance: Board & Board::Cards"
+  modules:
+  - anchor: Cards
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Cards)"
+    - "# @type instance: Board & Board::Cards"
 app/models/board/entropic.rb:
-  anchor: Entropic
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Entropic)"
-  - "# @type instance: Board & Board::Entropic"
-app/models/board/publication.rb:
-  anchor: Publication
-  annotations:
-  - "# @type instance: Board & Board::Publication"
+  modules:
+  - anchor: Entropic
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Entropic)"
+    - "# @type instance: Board & Board::Entropic"
 app/models/board/publishable.rb:
-  anchor: Publishable
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Publishable)"
-  - "# @type instance: Board & Board::Publishable"
+  modules:
+  - anchor: Publishable
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Publishable)"
+    - "# @type instance: Board & Board::Publishable"
   blocks:
   - call: class_methods
     implements: "::Board::Publishable::ClassMethods"
     self: singleton(::Board) & ::Board::Publishable::ClassMethods
 app/models/board/storage.rb:
-  anchor: Storage
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Storage)"
-  - "# @type instance: Board & Board::Storage"
+  modules:
+  - anchor: Storage
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Storage)"
+    - "# @type instance: Board & Board::Storage"
 app/models/board/triageable.rb:
-  anchor: Triageable
-  annotations:
-  - "# @type self: singleton(Board) & singleton(Board::Triageable)"
-  - "# @type instance: Board & Board::Triageable"
+  modules:
+  - anchor: Triageable
+    annotations:
+    - "# @type self: singleton(Board) & singleton(Board::Triageable)"
+    - "# @type instance: Board & Board::Triageable"
 app/models/card/accessible.rb:
-  anchor: Accessible
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Accessible)"
-  - "# @type instance: Card & Card::Accessible"
-app/models/card/activity_spike.rb:
-  anchor: ActivitySpike
-  annotations:
-  - "# @type instance: Card & Card::ActivitySpike"
-app/models/card/activity_spike/detector.rb:
-  anchor: Detector
-  annotations:
-  - "# @type instance: Card::ActivitySpike & Card::ActivitySpike::Detector"
+  modules:
+  - anchor: Accessible
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Accessible)"
+    - "# @type instance: Card & Card::Accessible"
 app/models/card/assignable.rb:
-  anchor: Assignable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Assignable)"
-  - "# @type instance: Card & Card::Assignable"
+  modules:
+  - anchor: Assignable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Assignable)"
+    - "# @type instance: Card & Card::Assignable"
 app/models/card/broadcastable.rb:
-  anchor: Broadcastable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Broadcastable)"
-  - "# @type instance: Card & Card::Broadcastable"
+  modules:
+  - anchor: Broadcastable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Broadcastable)"
+    - "# @type instance: Card & Card::Broadcastable"
 app/models/card/closeable.rb:
-  anchor: Closeable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Closeable)"
-  - "# @type instance: Card & Card::Closeable"
+  modules:
+  - anchor: Closeable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Closeable)"
+    - "# @type instance: Card & Card::Closeable"
 app/models/card/colored.rb:
-  anchor: Colored
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Colored)"
-  - "# @type instance: Card & Card::Colored"
+  modules:
+  - anchor: Colored
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Colored)"
+    - "# @type instance: Card & Card::Colored"
 app/models/card/commentable.rb:
-  anchor: Commentable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Commentable)"
-  - "# @type instance: Card & Card::Commentable"
+  modules:
+  - anchor: Commentable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Commentable)"
+    - "# @type instance: Card & Card::Commentable"
 app/models/card/entropic.rb:
-  anchor: Entropic
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Entropic)"
-  - "# @type instance: Card & Card::Entropic"
+  modules:
+  - anchor: Entropic
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Entropic)"
+    - "# @type instance: Card & Card::Entropic"
   blocks:
   - call: class_methods
     implements: "::Card::Entropic::ClassMethods"
     self: singleton(::Card) & ::Card::Entropic::ClassMethods
-app/models/card/entropy.rb:
-  anchor: Entropy
-  annotations:
-  - "# @type instance: Card & Card::Entropy"
 app/models/card/eventable.rb:
-  anchor: Eventable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Eventable)"
-  - "# @type instance: Card & Card::Eventable"
-app/models/card/eventable/system_commenter.rb:
-  anchor: SystemCommenter
-  annotations:
-  - "# @type instance: Card::Eventable & Card::Eventable::SystemCommenter"
+  modules:
+  - anchor: Eventable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Eventable)"
+    - "# @type instance: Card & Card::Eventable"
 app/models/card/exportable.rb:
-  anchor: Exportable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Exportable)"
-  - "# @type instance: Card & Card::Exportable"
+  modules:
+  - anchor: Exportable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Exportable)"
+    - "# @type instance: Card & Card::Exportable"
 app/models/card/golden.rb:
-  anchor: Golden
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Golden)"
-  - "# @type instance: Card & Card::Golden"
-app/models/card/goldness.rb:
-  anchor: Goldness
-  annotations:
-  - "# @type instance: Card & Card::Goldness"
+  modules:
+  - anchor: Golden
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Golden)"
+    - "# @type instance: Card & Card::Golden"
 app/models/card/mentions.rb:
-  anchor: Mentions
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Mentions)"
-  - "# @type instance: Card & Card::Mentions"
+  modules:
+  - anchor: Mentions
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Mentions)"
+    - "# @type instance: Card & Card::Mentions"
 app/models/card/multistep.rb:
-  anchor: Multistep
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Multistep)"
-  - "# @type instance: Card & Card::Multistep"
-app/models/card/not_now.rb:
-  anchor: NotNow
-  annotations:
-  - "# @type instance: Card & Card::NotNow"
+  modules:
+  - anchor: Multistep
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Multistep)"
+    - "# @type instance: Card & Card::Multistep"
 app/models/card/pinnable.rb:
-  anchor: Pinnable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Pinnable)"
-  - "# @type instance: Card & Card::Pinnable"
+  modules:
+  - anchor: Pinnable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Pinnable)"
+    - "# @type instance: Card & Card::Pinnable"
 app/models/card/postponable.rb:
-  anchor: Postponable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Postponable)"
-  - "# @type instance: Card & Card::Postponable"
+  modules:
+  - anchor: Postponable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Postponable)"
+    - "# @type instance: Card & Card::Postponable"
 app/models/card/promptable.rb:
-  anchor: Promptable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Promptable)"
-  - "# @type instance: Card & Card::Promptable"
+  modules:
+  - anchor: Promptable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Promptable)"
+    - "# @type instance: Card & Card::Promptable"
 app/models/card/readable.rb:
-  anchor: Readable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Readable)"
-  - "# @type instance: Card & Card::Readable"
+  modules:
+  - anchor: Readable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Readable)"
+    - "# @type instance: Card & Card::Readable"
 app/models/card/searchable.rb:
-  anchor: Searchable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Searchable)"
-  - "# @type instance: Card & Card::Searchable"
+  modules:
+  - anchor: Searchable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Searchable)"
+    - "# @type instance: Card & Card::Searchable"
 app/models/card/stallable.rb:
-  anchor: Stallable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Stallable)"
-  - "# @type instance: Card & Card::Stallable"
+  modules:
+  - anchor: Stallable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Stallable)"
+    - "# @type instance: Card & Card::Stallable"
 app/models/card/statuses.rb:
-  anchor: Statuses
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Statuses)"
-  - "# @type instance: Card & Card::Statuses"
+  modules:
+  - anchor: Statuses
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Statuses)"
+    - "# @type instance: Card & Card::Statuses"
 app/models/card/taggable.rb:
-  anchor: Taggable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Taggable)"
-  - "# @type instance: Card & Card::Taggable"
+  modules:
+  - anchor: Taggable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Taggable)"
+    - "# @type instance: Card & Card::Taggable"
 app/models/card/triageable.rb:
-  anchor: Triageable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Triageable)"
-  - "# @type instance: Card & Card::Triageable"
+  modules:
+  - anchor: Triageable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Triageable)"
+    - "# @type instance: Card & Card::Triageable"
 app/models/card/watchable.rb:
-  anchor: Watchable
-  annotations:
-  - "# @type self: singleton(Card) & singleton(Card::Watchable)"
-  - "# @type instance: Card & Card::Watchable"
+  modules:
+  - anchor: Watchable
+    annotations:
+    - "# @type self: singleton(Card) & singleton(Card::Watchable)"
+    - "# @type instance: Card & Card::Watchable"
 app/models/column/colored.rb:
-  anchor: Colored
-  annotations:
-  - "# @type self: singleton(Column) & singleton(Column::Colored)"
-  - "# @type instance: Column & Column::Colored"
+  modules:
+  - anchor: Colored
+    annotations:
+    - "# @type self: singleton(Column) & singleton(Column::Colored)"
+    - "# @type instance: Column & Column::Colored"
 app/models/column/positioned.rb:
-  anchor: Positioned
-  annotations:
-  - "# @type self: singleton(Column) & singleton(Column::Positioned)"
-  - "# @type instance: Column & Column::Positioned"
+  modules:
+  - anchor: Positioned
+    annotations:
+    - "# @type self: singleton(Column) & singleton(Column::Positioned)"
+    - "# @type instance: Column & Column::Positioned"
 app/models/comment/eventable.rb:
-  anchor: Eventable
-  annotations:
-  - "# @type self: singleton(Comment) & singleton(Comment::Eventable)"
-  - "# @type instance: Comment & Comment::Eventable"
+  modules:
+  - anchor: Eventable
+    annotations:
+    - "# @type self: singleton(Comment) & singleton(Comment::Eventable)"
+    - "# @type instance: Comment & Comment::Eventable"
 app/models/comment/mentions.rb:
-  anchor: Mentions
-  annotations:
-  - "# @type self: singleton(Comment) & singleton(Comment::Mentions)"
-  - "# @type instance: Comment & Comment::Mentions"
+  modules:
+  - anchor: Mentions
+    annotations:
+    - "# @type self: singleton(Comment) & singleton(Comment::Mentions)"
+    - "# @type instance: Comment & Comment::Mentions"
 app/models/comment/promptable.rb:
-  anchor: Promptable
-  annotations:
-  - "# @type self: singleton(Comment) & singleton(Comment::Promptable)"
-  - "# @type instance: Comment & Comment::Promptable"
+  modules:
+  - anchor: Promptable
+    annotations:
+    - "# @type self: singleton(Comment) & singleton(Comment::Promptable)"
+    - "# @type instance: Comment & Comment::Promptable"
 app/models/comment/searchable.rb:
-  anchor: Searchable
-  annotations:
-  - "# @type self: singleton(Comment) & singleton(Comment::Searchable)"
-  - "# @type instance: Comment & Comment::Searchable"
+  modules:
+  - anchor: Searchable
+    annotations:
+    - "# @type self: singleton(Comment) & singleton(Comment::Searchable)"
+    - "# @type instance: Comment & Comment::Searchable"
+app/models/concerns/attachments.rb:
+  modules:
+  - anchor: Attachments
+    annotations:
+    - "# @type self: (singleton(Card) & singleton(Attachments)) | (singleton(Comment)
+      & singleton(Attachments))"
+    - "# @type instance: (Card & Attachments) | (Comment & Attachments)"
+app/models/concerns/eventable.rb:
+  modules:
+  - anchor: Eventable
+    annotations:
+    - "# @type self: (singleton(Card) & singleton(Eventable)) | (singleton(Comment)
+      & singleton(Eventable))"
+    - "# @type instance: (Card & Eventable) | (Comment & Eventable)"
+app/models/concerns/filterable.rb:
+  modules:
+  - anchor: Filterable
+    annotations:
+    - "# @type self: (singleton(Board) & singleton(Filterable)) | (singleton(Tag)
+      & singleton(Filterable))"
+    - "# @type instance: (Board & Filterable) | (Tag & Filterable)"
+app/models/concerns/mentions.rb:
+  modules:
+  - anchor: Mentions
+    annotations:
+    - "# @type self: (singleton(Card) & singleton(Mentions)) | (singleton(Comment)
+      & singleton(Mentions))"
+    - "# @type instance: (Card & Mentions) | (Comment & Mentions)"
+app/models/concerns/notifiable.rb:
+  modules:
+  - anchor: Notifiable
+    annotations:
+    - "# @type self: (singleton(Event) & singleton(Notifiable)) | (singleton(Mention)
+      & singleton(Notifiable)) | (singleton(User) & singleton(Notifiable))"
+    - "# @type instance: (Event & Notifiable) | (Mention & Notifiable) | (User & Notifiable)"
+app/models/concerns/searchable.rb:
+  modules:
+  - anchor: Searchable
+    annotations:
+    - "# @type self: (singleton(Account) & singleton(Searchable)) | (singleton(Card)
+      & singleton(Searchable)) | (singleton(Comment) & singleton(Searchable))"
+    - "# @type instance: (Account & Searchable) | (Card & Searchable) | (Comment &
+      Searchable)"
 app/models/concerns/storage/totaled.rb:
-  anchor: Totaled
-  annotations:
-  - "# @type self: singleton(Storage) & singleton(Storage::Totaled)"
-  - "# @type instance: Storage & Storage::Totaled"
+  modules:
+  - anchor: Totaled
+    annotations:
+    - "# @type self: (singleton(Account) & singleton(Storage::Totaled)) | (singleton(Board)
+      & singleton(Storage::Totaled))"
+    - "# @type instance: (Account & Storage::Totaled) | (Board & Storage::Totaled)"
   blocks:
   - call: class_methods
     implements: "::Storage::Totaled::ClassMethods"
-    self: singleton(::Storage) & ::Storage::Totaled::ClassMethods
+    self: "(singleton(::Account) & ::Storage::Totaled::ClassMethods) | (singleton(::Board)
+      & ::Storage::Totaled::ClassMethods)"
 app/models/concerns/storage/tracked.rb:
-  anchor: Tracked
-  annotations:
-  - "# @type self: singleton(Storage) & singleton(Storage::Tracked)"
-  - "# @type instance: Storage & Storage::Tracked"
-app/models/event/description.rb:
-  anchor: Description
-  annotations:
-  - "# @type instance: Event & Event::Description"
+  modules:
+  - anchor: Tracked
+    annotations:
+    - "# @type self: (singleton(Board) & singleton(Storage::Tracked)) | (singleton(Card)
+      & singleton(Storage::Tracked)) | (singleton(Comment) & singleton(Storage::Tracked))"
+    - "# @type instance: (Board & Storage::Tracked) | (Card & Storage::Tracked) |
+      (Comment & Storage::Tracked)"
 app/models/event/particulars.rb:
-  anchor: Particulars
-  annotations:
-  - "# @type self: singleton(Event) & singleton(Event::Particulars)"
-  - "# @type instance: Event & Event::Particulars"
+  modules:
+  - anchor: Particulars
+    annotations:
+    - "# @type self: singleton(Event) & singleton(Event::Particulars)"
+    - "# @type instance: Event & Event::Particulars"
 app/models/event/promptable.rb:
-  anchor: Promptable
-  annotations:
-  - "# @type self: singleton(Event) & singleton(Event::Promptable)"
-  - "# @type instance: Event & Event::Promptable"
+  modules:
+  - anchor: Promptable
+    annotations:
+    - "# @type self: singleton(Event) & singleton(Event::Promptable)"
+    - "# @type instance: Event & Event::Promptable"
 app/models/filter/fields.rb:
-  anchor: Fields
-  annotations:
-  - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
-  - "# @type instance: Filter & Filter::Fields"
+  modules:
+  - anchor: Fields
+    annotations:
+    - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
+    - "# @type instance: Filter & Filter::Fields"
   blocks:
   - call: class_methods
     implements: "::Filter::Fields::ClassMethods"
     self: singleton(::Filter) & ::Filter::Fields::ClassMethods
 app/models/filter/params.rb:
-  anchor: Params
-  annotations:
-  - "# @type self: singleton(Filter) & singleton(Filter::Params)"
-  - "# @type instance: Filter & Filter::Params"
+  modules:
+  - anchor: Params
+    annotations:
+    - "# @type self: singleton(Filter) & singleton(Filter::Params)"
+    - "# @type instance: Filter & Filter::Params"
   blocks:
   - call: class_methods
     implements: "::Filter::Params::ClassMethods"
     self: singleton(::Filter) & ::Filter::Params::ClassMethods
 app/models/filter/resources.rb:
-  anchor: Resources
-  annotations:
-  - "# @type self: singleton(Filter) & singleton(Filter::Resources)"
-  - "# @type instance: Filter & Filter::Resources"
+  modules:
+  - anchor: Resources
+    annotations:
+    - "# @type self: singleton(Filter) & singleton(Filter::Resources)"
+    - "# @type instance: Filter & Filter::Resources"
 app/models/filter/summarized.rb:
-  anchor: Summarized
-  annotations:
-  - "# @type instance: Filter & Filter::Summarized"
-app/models/identity/access_token.rb:
-  anchor: AccessToken
-  annotations:
-  - "# @type instance: Identity & Identity::AccessToken"
+  modules:
+  - anchor: Summarized
+    annotations:
+    - "# @type instance: Filter & Filter::Summarized"
 app/models/identity/joinable.rb:
-  anchor: Joinable
-  annotations:
-  - "# @type self: singleton(Identity) & singleton(Identity::Joinable)"
-  - "# @type instance: Identity & Identity::Joinable"
+  modules:
+  - anchor: Joinable
+    annotations:
+    - "# @type self: singleton(Identity) & singleton(Identity::Joinable)"
+    - "# @type instance: Identity & Identity::Joinable"
 app/models/identity/transferable.rb:
-  anchor: Transferable
-  annotations:
-  - "# @type self: singleton(Identity) & singleton(Identity::Transferable)"
-  - "# @type instance: Identity & Identity::Transferable"
+  modules:
+  - anchor: Transferable
+    annotations:
+    - "# @type self: singleton(Identity) & singleton(Identity::Transferable)"
+    - "# @type instance: Identity & Identity::Transferable"
   blocks:
   - call: class_methods
     implements: "::Identity::Transferable::ClassMethods"
     self: singleton(::Identity) & ::Identity::Transferable::ClassMethods
-app/models/magic_link/code.rb:
-  anchor: Code
-  annotations:
-  - "# @type instance: MagicLink & MagicLink::Code"
-app/models/notification/bundle.rb:
-  anchor: Bundle
-  annotations:
-  - "# @type instance: Notification & Notification::Bundle"
-app/models/notification/default_payload.rb:
-  anchor: DefaultPayload
-  annotations:
-  - "# @type instance: Notification & Notification::DefaultPayload"
-app/models/notification/event_payload.rb:
-  anchor: EventPayload
-  annotations:
-  - "# @type instance: Notification & Notification::EventPayload"
-app/models/notification/mention_payload.rb:
-  anchor: MentionPayload
-  annotations:
-  - "# @type instance: Notification & Notification::MentionPayload"
-app/models/notification/push_target.rb:
-  anchor: PushTarget
-  annotations:
-  - "# @type instance: Notification & Notification::PushTarget"
-app/models/notification/push_target/web.rb:
-  anchor: Web
-  annotations:
-  - "# @type instance: Notification::PushTarget & Notification::PushTarget::Web"
 app/models/notification/pushable.rb:
-  anchor: Pushable
-  annotations:
-  - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
-  - "# @type instance: Notification & Notification::Pushable"
+  modules:
+  - anchor: Pushable
+    annotations:
+    - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
+    - "# @type instance: Notification & Notification::Pushable"
   blocks:
   - call: class_methods
     implements: "::Notification::Pushable::ClassMethods"
     self: singleton(::Notification) & ::Notification::Pushable::ClassMethods
-app/models/notifier/card_event_notifier.rb:
-  anchor: CardEventNotifier
-  annotations:
-  - "# @type instance: Notifier & Notifier::CardEventNotifier"
-app/models/notifier/comment_event_notifier.rb:
-  anchor: CommentEventNotifier
-  annotations:
-  - "# @type instance: Notifier & Notifier::CommentEventNotifier"
-app/models/notifier/mention_notifier.rb:
-  anchor: MentionNotifier
-  annotations:
-  - "# @type instance: Notifier & Notifier::MentionNotifier"
-app/models/passkey/authenticator.rb:
-  anchor: Authenticator
-  annotations:
-  - "# @type instance: Passkey & Passkey::Authenticator"
-app/models/push/subscription.rb:
-  anchor: Subscription
-  annotations:
-  - "# @type instance: Push & Push::Subscription"
-app/models/search/highlighter.rb:
-  anchor: Highlighter
-  annotations:
-  - "# @type instance: Search & Search::Highlighter"
-app/models/search/query.rb:
-  anchor: Query
-  annotations:
-  - "# @type instance: Search & Search::Query"
-app/models/search/record.rb:
-  anchor: Record
-  annotations:
-  - "# @type instance: Search & Search::Record"
 app/models/search/record/sqlite.rb:
-  anchor: SQLite
-  annotations:
-  - "# @type self: singleton(Search::Record) & singleton(Search::Record::SQLite)"
-  - "# @type instance: Search::Record & Search::Record::SQLite"
   blocks:
   - call: class_methods
     implements: "::Search::Record::SQLite::ClassMethods"
-    self: singleton(::Search::Record) & ::Search::Record::SQLite::ClassMethods
-app/models/search/record/sqlite/fts.rb:
-  anchor: Fts
-  annotations:
-  - "# @type instance: Search::Record::SQLite & Search::Record::SQLite::Fts"
 app/models/search/record/trilogy.rb:
-  anchor: Trilogy
-  annotations:
-  - "# @type self: singleton(Search::Record) & singleton(Search::Record::Trilogy)"
-  - "# @type instance: Search::Record & Search::Record::Trilogy"
   blocks:
   - call: class_methods
     implements: "::Search::Record::Trilogy::ClassMethods"
-    self: singleton(::Search::Record) & ::Search::Record::Trilogy::ClassMethods
-app/models/search/result.rb:
-  anchor: Result
-  annotations:
-  - "# @type instance: Search & Search::Result"
-app/models/search/stemmer.rb:
-  anchor: Stemmer
-  annotations:
-  - "# @type instance: Search & Search::Stemmer"
-app/models/signup/account_name_generator.rb:
-  anchor: AccountNameGenerator
-  annotations:
-  - "# @type instance: Signup & Signup::AccountNameGenerator"
-app/models/storage/attachment_tracking.rb:
-  anchor: AttachmentTracking
-  annotations:
-  - "# @type self: singleton(Storage) & singleton(Storage::AttachmentTracking)"
-  - "# @type instance: Storage & Storage::AttachmentTracking"
-app/models/storage/entry.rb:
-  anchor: Entry
-  annotations:
-  - "# @type instance: Storage & Storage::Entry"
-app/models/storage/total.rb:
-  anchor: Total
-  annotations:
-  - "# @type instance: Storage & Storage::Total"
 app/models/user/accessor.rb:
-  anchor: Accessor
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Accessor)"
-  - "# @type instance: User & User::Accessor"
+  modules:
+  - anchor: Accessor
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Accessor)"
+    - "# @type instance: User & User::Accessor"
 app/models/user/assignee.rb:
-  anchor: Assignee
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Assignee)"
-  - "# @type instance: User & User::Assignee"
+  modules:
+  - anchor: Assignee
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Assignee)"
+    - "# @type instance: User & User::Assignee"
 app/models/user/attachable.rb:
-  anchor: Attachable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Attachable)"
-  - "# @type instance: User & User::Attachable"
+  modules:
+  - anchor: Attachable
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Attachable)"
+    - "# @type instance: User & User::Attachable"
 app/models/user/avatar.rb:
-  anchor: Avatar
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Avatar)"
-  - "# @type instance: User & User::Avatar"
+  modules:
+  - anchor: Avatar
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Avatar)"
+    - "# @type instance: User & User::Avatar"
 app/models/user/configurable.rb:
-  anchor: Configurable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Configurable)"
-  - "# @type instance: User & User::Configurable"
-app/models/user/data_export.rb:
-  anchor: DataExport
-  annotations:
-  - "# @type instance: User & User::DataExport"
-app/models/user/day_timeline.rb:
-  anchor: DayTimeline
-  annotations:
-  - "# @type instance: User & User::DayTimeline"
-app/models/user/day_timeline/column.rb:
-  anchor: Column
-  annotations:
-  - "# @type instance: User::DayTimeline & User::DayTimeline::Column"
+  modules:
+  - anchor: Configurable
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Configurable)"
+    - "# @type instance: User & User::Configurable"
 app/models/user/day_timeline/serializable.rb:
-  anchor: Serializable
-  annotations:
-  - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
-  - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
+  modules:
+  - anchor: Serializable
+    annotations:
+    - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
+    - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
   blocks:
   - call: class_methods
     implements: "::User::DayTimeline::Serializable::ClassMethods"
     self: singleton(::User::DayTimeline) & ::User::DayTimeline::Serializable::ClassMethods
 app/models/user/email_address_changeable.rb:
-  anchor: EmailAddressChangeable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::EmailAddressChangeable)"
-  - "# @type instance: User & User::EmailAddressChangeable"
-app/models/user/filtering.rb:
-  anchor: Filtering
-  annotations:
-  - "# @type instance: User & User::Filtering"
+  modules:
+  - anchor: EmailAddressChangeable
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::EmailAddressChangeable)"
+    - "# @type instance: User & User::EmailAddressChangeable"
 app/models/user/mentionable.rb:
-  anchor: Mentionable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Mentionable)"
-  - "# @type instance: User & User::Mentionable"
+  modules:
+  - anchor: Mentionable
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Mentionable)"
+    - "# @type instance: User & User::Mentionable"
 app/models/user/named.rb:
-  anchor: Named
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Named)"
-  - "# @type instance: User & User::Named"
+  modules:
+  - anchor: Named
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Named)"
+    - "# @type instance: User & User::Named"
 app/models/user/notifiable.rb:
-  anchor: Notifiable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Notifiable)"
-  - "# @type instance: User & User::Notifiable"
+  modules:
+  - anchor: Notifiable
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Notifiable)"
+    - "# @type instance: User & User::Notifiable"
 app/models/user/role.rb:
-  anchor: Role
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Role)"
-  - "# @type instance: User & User::Role"
+  modules:
+  - anchor: Role
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Role)"
+    - "# @type instance: User & User::Role"
 app/models/user/searcher.rb:
-  anchor: Searcher
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Searcher)"
-  - "# @type instance: User & User::Searcher"
-app/models/user/settings.rb:
-  anchor: Settings
-  annotations:
-  - "# @type instance: User & User::Settings"
+  modules:
+  - anchor: Searcher
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Searcher)"
+    - "# @type instance: User & User::Searcher"
 app/models/user/timelined.rb:
-  anchor: Timelined
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Timelined)"
-  - "# @type instance: User & User::Timelined"
+  modules:
+  - anchor: Timelined
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Timelined)"
+    - "# @type instance: User & User::Timelined"
 app/models/user/transferable.rb:
-  anchor: Transferable
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Transferable)"
-  - "# @type instance: User & User::Transferable"
   blocks:
   - call: class_methods
     implements: "::User::Transferable::ClassMethods"
-    self: singleton(::User) & ::User::Transferable::ClassMethods
 app/models/user/watcher.rb:
-  anchor: Watcher
-  annotations:
-  - "# @type self: singleton(User) & singleton(User::Watcher)"
-  - "# @type instance: User & User::Watcher"
-app/models/webhook/delinquency_tracker.rb:
-  anchor: DelinquencyTracker
-  annotations:
-  - "# @type instance: Webhook & Webhook::DelinquencyTracker"
-app/models/webhook/delivery.rb:
-  anchor: Delivery
-  annotations:
-  - "# @type instance: Webhook & Webhook::Delivery"
+  modules:
+  - anchor: Watcher
+    annotations:
+    - "# @type self: singleton(User) & singleton(User::Watcher)"
+    - "# @type instance: User & User::Watcher"
 app/models/webhook/triggerable.rb:
-  anchor: Triggerable
-  annotations:
-  - "# @type self: singleton(Webhook) & singleton(Webhook::Triggerable)"
-  - "# @type instance: Webhook & Webhook::Triggerable"
-app/models/zip_file/reader.rb:
-  anchor: Reader
-  annotations:
-  - "# @type instance: ZipFile & ZipFile::Reader"
-app/models/zip_file/reader/io.rb:
-  anchor: IO
-  annotations:
-  - "# @type instance: ZipFile::Reader & ZipFile::Reader::IO"
-app/models/zip_file/remote_io.rb:
-  anchor: RemoteIO
-  annotations:
-  - "# @type instance: ZipFile & ZipFile::RemoteIO"
-app/models/zip_file/writer.rb:
-  anchor: Writer
-  annotations:
-  - "# @type instance: ZipFile & ZipFile::Writer"
-app/helpers/accesses_helper.rb:
-  anchor: AccessesHelper
-  annotations:
-  - "# @type instance: ApplicationController & AccessesHelper"
-app/helpers/application_helper.rb:
-  anchor: ApplicationHelper
-  annotations:
-  - "# @type instance: ApplicationController & ApplicationHelper"
-app/helpers/avatars_helper.rb:
-  anchor: AvatarsHelper
-  annotations:
-  - "# @type instance: ApplicationController & AvatarsHelper"
-app/helpers/boards_helper.rb:
-  anchor: BoardsHelper
-  annotations:
-  - "# @type instance: ApplicationController & BoardsHelper"
-app/helpers/bridge_helper.rb:
-  anchor: BridgeHelper
-  annotations:
-  - "# @type instance: ApplicationController & BridgeHelper"
-app/helpers/cards_helper.rb:
-  anchor: CardsHelper
-  annotations:
-  - "# @type instance: ApplicationController & CardsHelper"
-app/helpers/clipboard_helper.rb:
-  anchor: ClipboardHelper
-  annotations:
-  - "# @type instance: ApplicationController & ClipboardHelper"
-app/helpers/columns_helper.rb:
-  anchor: ColumnsHelper
-  annotations:
-  - "# @type instance: ApplicationController & ColumnsHelper"
-app/helpers/comments_helper.rb:
-  anchor: CommentsHelper
-  annotations:
-  - "# @type instance: ApplicationController & CommentsHelper"
-app/helpers/emoji_helper.rb:
-  anchor: EmojiHelper
-  annotations:
-  - "# @type instance: ApplicationController & EmojiHelper"
-app/helpers/entropy_helper.rb:
-  anchor: EntropyHelper
-  annotations:
-  - "# @type instance: ApplicationController & EntropyHelper"
-app/helpers/events_helper.rb:
-  anchor: EventsHelper
-  annotations:
-  - "# @type instance: ApplicationController & EventsHelper"
-app/helpers/excerpt_helper.rb:
-  anchor: ExcerptHelper
-  annotations:
-  - "# @type instance: ApplicationController & ExcerptHelper"
-app/helpers/filters_helper.rb:
-  anchor: FiltersHelper
-  annotations:
-  - "# @type instance: ApplicationController & FiltersHelper"
-app/helpers/forms_helper.rb:
-  anchor: FormsHelper
-  annotations:
-  - "# @type instance: ApplicationController & FormsHelper"
-app/helpers/hotkeys_helper.rb:
-  anchor: HotkeysHelper
-  annotations:
-  - "# @type instance: ApplicationController & HotkeysHelper"
-app/helpers/html_helper.rb:
-  anchor: HtmlHelper
-  annotations:
-  - "# @type instance: ApplicationController & HtmlHelper"
-app/helpers/login_helper.rb:
-  anchor: LoginHelper
-  annotations:
-  - "# @type instance: ApplicationController & LoginHelper"
-app/helpers/messages_helper.rb:
-  anchor: MessagesHelper
-  annotations:
-  - "# @type instance: ApplicationController & MessagesHelper"
-app/helpers/my/menu_helper.rb:
-  anchor: MenuHelper
-  annotations:
-  - "# @type instance: ApplicationController & My::MenuHelper"
-app/helpers/notifications_helper.rb:
-  anchor: NotificationsHelper
-  annotations:
-  - "# @type instance: ApplicationController & NotificationsHelper"
-app/helpers/pagination_helper.rb:
-  anchor: PaginationHelper
-  annotations:
-  - "# @type instance: ApplicationController & PaginationHelper"
-app/helpers/qr_codes_helper.rb:
-  anchor: QrCodesHelper
-  annotations:
-  - "# @type instance: ApplicationController & QrCodesHelper"
-app/helpers/reactions_helper.rb:
-  anchor: ReactionsHelper
-  annotations:
-  - "# @type instance: ApplicationController & ReactionsHelper"
-app/helpers/rich_text_helper.rb:
-  anchor: RichTextHelper
-  annotations:
-  - "# @type instance: ApplicationController & RichTextHelper"
-app/helpers/tenanting_helper.rb:
-  anchor: TenantingHelper
-  annotations:
-  - "# @type instance: ApplicationController & TenantingHelper"
-app/helpers/time_helper.rb:
-  anchor: TimeHelper
-  annotations:
-  - "# @type instance: ApplicationController & TimeHelper"
-app/helpers/users_helper.rb:
-  anchor: UsersHelper
-  annotations:
-  - "# @type instance: ApplicationController & UsersHelper"
-app/helpers/webhooks_helper.rb:
-  anchor: WebhooksHelper
-  annotations:
-  - "# @type instance: ApplicationController & WebhooksHelper"
-app/controllers/concerns/authentication.rb:
-  anchor: Authentication
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(Authentication)"
-  - "# @type instance: ApplicationController & Authentication"
+  modules:
+  - anchor: Triggerable
+    annotations:
+    - "# @type self: singleton(Webhook) & singleton(Webhook::Triggerable)"
+    - "# @type instance: Webhook & Webhook::Triggerable"
+lib/action_pack/passkey/form_helper.rb:
+  modules:
+  - anchor: FormHelper
+    annotations:
+    - "# @type instance: ActionPack::Railtie & ActionPack::Passkey::FormHelper"
+lib/action_pack/passkey/holder.rb:
+  modules:
+  - anchor: Holder
+    annotations:
+    - "# @type self: singleton(ActionPack::Railtie) & singleton(ActionPack::Passkey::Holder)"
+    - "# @type instance: ActionPack::Railtie & ActionPack::Passkey::Holder"
   blocks:
   - call: class_methods
-    implements: "::Authentication::ClassMethods"
-    self: singleton(::ApplicationController) & ::Authentication::ClassMethods
-app/controllers/concerns/authentication/via_magic_link.rb:
-  anchor: ViaMagicLink
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(Authentication::ViaMagicLink)"
-  - "# @type instance: ApplicationController & Authentication::ViaMagicLink"
-app/controllers/concerns/authorization.rb:
-  anchor: Authorization
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(Authorization)"
-  - "# @type instance: ApplicationController & Authorization"
+    implements: "::ActionPack::Passkey::Holder::ClassMethods"
+    self: singleton(::ActionPack::Railtie) & ::ActionPack::Passkey::Holder::ClassMethods
+lib/action_pack/passkey/request.rb:
+  modules:
+  - anchor: Request
+    annotations:
+    - "# @type self: (singleton(ActionPack::Passkey::ChallengesController) & singleton(ActionPack::Passkey::Request))
+      | (singleton(My::PasskeysController) & singleton(ActionPack::Passkey::Request))
+      | (singleton(Sessions::PasskeysController) & singleton(ActionPack::Passkey::Request))
+      | (singleton(SessionsController) & singleton(ActionPack::Passkey::Request))"
+    - "# @type instance: (ActionPack::Passkey::ChallengesController & ActionPack::Passkey::Request)
+      | (My::PasskeysController & ActionPack::Passkey::Request) | (Sessions::PasskeysController
+      & ActionPack::Passkey::Request) | (SessionsController & ActionPack::Passkey::Request)"
+lib/rails_ext/action_pack_passkey_infer_name_from_aaguid.rb:
   blocks:
   - call: class_methods
-    implements: "::Authorization::ClassMethods"
-    self: singleton(::ApplicationController) & ::Authorization::ClassMethods
-app/controllers/concerns/block_search_engine_indexing.rb:
-  anchor: BlockSearchEngineIndexing
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(BlockSearchEngineIndexing)"
-  - "# @type instance: ApplicationController & BlockSearchEngineIndexing"
-app/controllers/concerns/board_scoped.rb:
-  anchor: BoardScoped
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(BoardScoped)"
-  - "# @type instance: ApplicationController & BoardScoped"
-app/controllers/concerns/card_scoped.rb:
-  anchor: CardScoped
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(CardScoped)"
-  - "# @type instance: ApplicationController & CardScoped"
-app/controllers/concerns/column_scoped.rb:
-  anchor: ColumnScoped
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(ColumnScoped)"
-  - "# @type instance: ApplicationController & ColumnScoped"
-app/controllers/concerns/current_request.rb:
-  anchor: CurrentRequest
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(CurrentRequest)"
-  - "# @type instance: ApplicationController & CurrentRequest"
-app/controllers/concerns/current_timezone.rb:
-  anchor: CurrentTimezone
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(CurrentTimezone)"
-  - "# @type instance: ApplicationController & CurrentTimezone"
-app/controllers/concerns/day_timelines_scoped.rb:
-  anchor: DayTimelinesScoped
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(DayTimelinesScoped)"
-  - "# @type instance: ApplicationController & DayTimelinesScoped"
-app/controllers/concerns/filter_scoped.rb:
-  anchor: FilterScoped
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(FilterScoped)"
-  - "# @type instance: ApplicationController & FilterScoped"
-app/controllers/concerns/request_forgery_protection.rb:
-  anchor: RequestForgeryProtection
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(RequestForgeryProtection)"
-  - "# @type instance: ApplicationController & RequestForgeryProtection"
-app/controllers/concerns/routing_headers.rb:
-  anchor: RoutingHeaders
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(RoutingHeaders)"
-  - "# @type instance: ApplicationController & RoutingHeaders"
-app/controllers/concerns/set_platform.rb:
-  anchor: SetPlatform
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(SetPlatform)"
-  - "# @type instance: ApplicationController & SetPlatform"
-app/controllers/concerns/turbo_flash.rb:
-  anchor: TurboFlash
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(TurboFlash)"
-  - "# @type instance: ApplicationController & TurboFlash"
-app/controllers/concerns/view_transitions.rb:
-  anchor: ViewTransitions
-  annotations:
-  - "# @type self: singleton(ApplicationController) & singleton(ViewTransitions)"
-  - "# @type instance: ApplicationController & ViewTransitions"
+    implements: "::ActionPackPasskeyInferNameFromAaguid::ClassMethods"
+lib/rails_ext/active_record_replica_support.rb:
+  blocks:
+  - call: class_methods
+    implements: "::ActiveRecordReplicaSupport::ClassMethods"
+sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:
+  modules:
+  - anchor: ControllerMethods
+    annotations:
+    - "# @type instance: ActionController::Base & ActionController::HttpAuthentication::Token::ControllerMethods"
+sig/generated/steep_current_runtime/current.rb:
+  modules:
+  - anchor: GeneratedAttributeMethods
+    annotations:
+    - "# @type instance: Current & Current::GeneratedAttributeMethods"
