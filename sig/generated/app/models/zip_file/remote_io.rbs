@@ -4,11 +4,11 @@ class ZipFile
 
     def initialize: (untyped url, ?ssl_verify_peer: bool) -> void
 
-    def request_range: (untyped range) -> untyped
-    def request_object_size: () -> untyped
+    def request_range: (untyped range) -> (String | Integer | 0)
+    def request_object_size: () -> (String | Integer | 0)
 
     private
 
-    def with_http: () -> untyped
+    def with_http: () { (Net::HTTP) -> (String | 0 | Integer) } -> (String | Integer | 0)
   end
 end

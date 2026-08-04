@@ -3,5 +3,5 @@ module Filterable
 
   private
 
-  def remove_from_filters: () -> untyped
+  def remove_from_filters: () -> Filter::ActiveRecord_Associations_CollectionProxy
 end

@@ -1,5 +1,5 @@
 class Notifier
-  def self.for: (Notifiable source) -> Notifier::MentionNotifier?
+  def self.for: ((Event & Notifiable | Mention & Notifiable | User & Notifiable) source) -> Notifier::MentionNotifier?
 
   attr_reader source: untyped
 

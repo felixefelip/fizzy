@@ -3,9 +3,9 @@ module FiltersHelper
   def filter_hidden_field_tag: (untyped key, untyped value) -> untyped
   def filter_selected_boards_title: (untyped user_filtering) -> untyped
   def filter_place_menu_item: (untyped path, untyped label, untyped icon, ?new_window: untyped, ?current: untyped, ?turbo: untyped) -> untyped
-  def filter_dialog: (untyped label) ?{ (untyped) -> untyped } -> untyped
+  def filter_dialog: (untyped label) ?{ (*untyped) -> untyped } -> untyped
   def filter_title: (untyped title) -> untyped
-  def collapsible_nav_section: (untyped title, **untyped) ?{ (untyped) -> untyped } -> untyped
+  def collapsible_nav_section: (untyped title, **untyped) { (untyped) -> untyped } -> untyped
   def filter_hotkey_link: (untyped title, untyped path, untyped key, untyped icon) -> untyped
   def sorted_by_label: (untyped sort_value) -> String
 end

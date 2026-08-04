@@ -504,6 +504,18 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: ActionController::HttpAuthentication::Token
+  method: authenticate
+  when_true:
+    block_truthy: true
+- class: ActionController::HttpAuthentication::Token::ControllerMethods
+  method: authenticate_or_request_with_http_token
+  conditional_block_truthy:
+    gate_ivar: "@__rbs_infer__performed"
+- class: ActionController::HttpAuthentication::Token::ControllerMethods
+  method: authenticate_with_http_token
+  when_true:
+    block_truthy: true
 - class: ActionPack::Passkey::ChallengesController
   method: create
   effects:
@@ -513,7 +525,7 @@ postconditions:
   method: authentication_options
   unconditional:
     ivars:
-      "@authentication_options": "(^(untyped) -> untyped | nil)"
+      "@authentication_options": "(^(*untyped) -> untyped | nil)"
     self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterAuthenticationOptions"
   effects:
     may_write:
@@ -535,7 +547,7 @@ postconditions:
   method: registration_options
   unconditional:
     ivars:
-      "@registration_options": "(^(untyped) -> untyped | nil)"
+      "@registration_options": "(^(*untyped) -> untyped | nil)"
     self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterRegistrationOptions"
   effects:
     may_write:
@@ -1662,6 +1674,7 @@ postconditions:
     - "@comment"
     - "@disable_view_transition"
     - "@reactable"
+    - "@reaction"
 - class: Cards::Comments::ReactionsController
   method: __rbs_infer__run_destroy
   effects:
@@ -1694,9 +1707,14 @@ postconditions:
     - "@reactable"
 - class: Cards::Comments::ReactionsController
   method: create
+  unconditional:
+    ivars:
+      "@reaction": "::Reaction"
+    self: "::Cards::Comments::ReactionsController & ::Cards::Comments::ReactionsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@reaction"
 - class: Cards::Comments::ReactionsController
   method: destroy
   effects:
@@ -1737,9 +1755,22 @@ postconditions:
     - "@comment"
 - class: Cards::Comments::ReactionsController
   method: set_reactable
+  unconditional:
+    ivars:
+      "@reactable": "(::Comment & ::Comment::Validated)"
+    self: "::Cards::Comments::ReactionsController & ::Cards::Comments::ReactionsController::AfterSetReactable"
   effects:
     may_write:
     - "@reactable"
+- class: Cards::Comments::ReactionsController
+  method: set_reaction
+  unconditional:
+    ivars:
+      "@reaction": untyped
+    self: "::Cards::Comments::ReactionsController & ::Cards::Comments::ReactionsController::AfterSetReaction"
+  effects:
+    may_write:
+    - "@reaction"
 - class: Cards::CommentsController
   method: __rbs_infer__run_create
   effects:
@@ -2023,6 +2054,7 @@ postconditions:
     - "@card"
     - "@disable_view_transition"
     - "@reactable"
+    - "@reaction"
 - class: Cards::ReactionsController
   method: __rbs_infer__run_destroy
   effects:
@@ -2052,9 +2084,14 @@ postconditions:
     - "@reactable"
 - class: Cards::ReactionsController
   method: create
+  unconditional:
+    ivars:
+      "@reaction": "::Reaction"
+    self: "::Cards::ReactionsController & ::Cards::ReactionsController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@reaction"
 - class: Cards::ReactionsController
   method: destroy
   effects:
@@ -2093,6 +2130,15 @@ postconditions:
   effects:
     may_write:
     - "@reactable"
+- class: Cards::ReactionsController
+  method: set_reaction
+  unconditional:
+    ivars:
+      "@reaction": untyped
+    self: "::Cards::ReactionsController & ::Cards::ReactionsController::AfterSetReaction"
+  effects:
+    may_write:
+    - "@reaction"
 - class: Cards::ReadingsController
   method: __rbs_infer__run_create
   effects:
@@ -2862,11 +2908,26 @@ postconditions:
     may_write:
     - "@card"
     - "@comment"
+- class: ERBCardsCommentsDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@comment"
 - class: ERBCardsCommentsEdit
   method: initialize
   effects:
     may_write:
     - "@card"
+    - "@comment"
+- class: ERBCardsCommentsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@comment"
+- class: ERBCardsCommentsUpdate
+  method: initialize
+  effects:
+    may_write:
     - "@comment"
 - class: ERBCardsDraftsShow
   method: initialize
@@ -2899,11 +2960,21 @@ postconditions:
     may_write:
     - "@card"
     - "@step"
+- class: ERBCardsStepsDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@step"
 - class: ERBCardsStepsEdit
   method: initialize
   effects:
     may_write:
     - "@card"
+    - "@step"
+- class: ERBCardsStepsShow
+  method: initialize
+  effects:
+    may_write:
     - "@step"
 - class: ERBCardsStepsUpdate
   method: initialize
@@ -2948,6 +3019,11 @@ postconditions:
   effects:
     may_write:
     - "@card"
+- class: ERBColumnsCardsDropsColumnsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
 - class: ERBColumnsCardsDropsNotNowsCreate
   method: initialize
   effects:
@@ -3791,6 +3867,11 @@ postconditions:
   effects:
     may_write:
     - "@reactable"
+- class: ERBReactionsDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@reaction"
 - class: ERBReactionsIndex
   method: initialize
   effects:
@@ -6316,6 +6397,10 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: ZipFile
+  method: read_from_s3
+  when_true:
+    block_truthy: true
 - class: ZipFile::Reader
   method: initialize
   effects:
@@ -7240,6 +7325,11 @@ method_entry_facts:
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: Card::Colored
+  method: color
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: Card::Golden
   method: gild
   consts:
@@ -7500,6 +7590,7 @@ method_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: destroy
   consts:
@@ -7510,6 +7601,7 @@ method_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: index
   consts:
@@ -7520,6 +7612,7 @@ method_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: new
   consts:
@@ -7530,6 +7623,7 @@ method_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: render
   consts:
@@ -7540,6 +7634,7 @@ method_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: set_comment
   consts:
@@ -8394,6 +8489,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: ColumnsHelper
   method: column_frame_tag
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Comment
+  method: reactions
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -11289,6 +11389,11 @@ method_entry_facts:
   ivars:
     "@disable_view_transition": 'true'
 - class: Step
+  method: completed?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Step
   method: run_before_validation_callbacks
   consts:
     Current.account: "(::Account & ::Account::Validated)"
@@ -11305,6 +11410,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: Step
   method: save
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Tag
+  method: hashtag
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -11339,6 +11449,11 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: User
   method: accessible_events
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: boards
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.user: "(::User & ::User::Validated)"
@@ -12185,6 +12300,8 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
+    "@reaction": "::Reaction"
 - class: Cards::Comments::ReactionsController
   method: render
   param: target
@@ -12194,6 +12311,7 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: render
   param: target
@@ -12203,6 +12321,7 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: render
   param: target
@@ -12212,6 +12331,7 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
 - class: Cards::Comments::ReactionsController
   method: render
   param: target
@@ -12222,6 +12342,8 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@comment": "(::Comment & ::Comment::Validated)"
     "@disable_view_transition": 'true'
+    "@reactable": "(::Comment & ::Comment::Validated)"
+    "@reaction": "::Reaction"
 - class: Cards::CommentsController
   method: render
   param: target
@@ -12298,6 +12420,7 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@reactable": "(::Card & ::Card::Validated)"
+    "@reaction": "::Reaction"
 - class: Cards::ReactionsController
   method: render
   param: target
@@ -12335,6 +12458,7 @@ argument_entry_facts:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
     "@reactable": "(::Card & ::Card::Validated)"
+    "@reaction": "::Reaction"
 - class: Cards::ReadingsController
   method: render
   param: target

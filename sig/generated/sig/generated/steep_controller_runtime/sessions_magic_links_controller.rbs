@@ -2,7 +2,7 @@ module Sessions
   class MagicLinksController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | { json: { message: String }, status: Symbol } | { json: { session_token: untyped, requires_signup_completion: untyped } }) target, *untyped) -> bool
+    def render: (?(Symbol | { json: { message: String }, status: Symbol } | { json: { session_token: untyped, requires_signup_completion: bool } }) target, *untyped) -> bool
 
     private
 

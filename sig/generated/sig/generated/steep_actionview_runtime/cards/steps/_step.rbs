@@ -1,11 +1,15 @@
 class ERBPartialCardsStepsStep
   include ActionViewContext
 
-  def initialize: (step: (Step | (Step & Step::Validated))?) -> void
+  def initialize: (step: (Step | (Step | (Step & Step::Validated))? | Step & Step::Validated)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader step: (Step | (Step & Step::Validated))?
+  attr_reader step: (Step | (Step | (Step & Step::Validated))? | Step & Step::Validated)
+
+  class AfterInitialize
+    attr_reader step: (Step | (Step & Step::Validated))?
+  end
 end

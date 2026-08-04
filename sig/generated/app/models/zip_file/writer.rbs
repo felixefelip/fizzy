@@ -10,7 +10,7 @@ class ZipFile
     def initialize: (?Tempfile io) -> Digest::MD5
     def stream_to: (Tempfile io) -> Tempfile
     def write: (untyped data) -> untyped
-    def add_file: (untyped path, ?untyped content, ?compress: untyped) -> untyped
+    def add_file: (untyped path, ?untyped content, ?compress: untyped) ?{ (untyped) -> untyped } -> untyped
     def glob: (untyped pattern) -> Array[untyped]
     def exists?: (untyped path) -> bool
     def close: () -> untyped

@@ -2,7 +2,7 @@ class Account
   class ExternalIdSequence < ApplicationRecord
     def self.next: () -> untyped
     def self.value: () -> ::Integer?
-    def self.with_lock: () -> untyped
+    def self.with_lock: () { (untyped) -> untyped } -> untyped
     def self.initial_value: () -> untyped
   end
 end

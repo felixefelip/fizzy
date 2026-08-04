@@ -1,6 +1,7 @@
 module Cards
   module Comments
     class ReactionsController < ApplicationController
+      @reaction: Reaction?
       @comment: (Comment & Comment::Validated)?
       @reactable: (Comment & Comment::Validated)?
 
@@ -15,7 +16,7 @@ module Cards
 
       def set_comment: () -> (Comment & Comment::Validated)
       def set_reactable: () -> (Comment & Comment::Validated)
-      def set_reaction: () -> untyped
+      def set_reaction: () -> Reaction?
       def ensure_permission_to_administer_reaction: () -> bool?
     end
   end

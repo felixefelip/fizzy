@@ -9,6 +9,6 @@ module AccountTenanted
 
   private
 
-  def with_account_context: () ?{ (untyped) -> untyped } -> untyped
+  def with_account_context: () { () -> untyped } -> untyped
   def resolve_account!: () -> untyped
 end

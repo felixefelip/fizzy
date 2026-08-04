@@ -10,15 +10,15 @@ class Account
       attr_reader attributes: untyped
 
       def initialize: (account: Account?, model: singleton(ActiveStorage::VariantRecord), ?attributes: untyped, ?importable_model_names: untyped) -> void
-      def export: (to: untyped, ?start: untyped) -> untyped
-      def import: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped
-      def check: (from: untyped, ?start: untyped, ?callback: untyped) -> untyped
+      def export: (to: untyped, ?start: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
+      def import: (from: untyped, ?start: untyped, ?callback: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
+      def check: (from: untyped, ?start: untyped, ?callback: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
 
       private
 
       attr_reader zip: untyped
 
-      def with_zip: (untyped zip) -> untyped
+      def with_zip: (untyped zip) { () -> ActiveStorage::VariantRecord::ActiveRecord_Relation? } -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
       def records: () -> ActiveStorage::VariantRecord::ActiveRecord_Relation
       def export_record: (untyped record) -> untyped
       def files: () -> untyped

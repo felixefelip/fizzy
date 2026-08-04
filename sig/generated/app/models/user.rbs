@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def deactivate: () -> untyped
   def setup?: () -> bool
-  def verified?: () -> (bool | false)
+  def verified?: () -> bool
   def verify: () -> self?
 
   private

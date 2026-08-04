@@ -1,8 +1,8 @@
 class Color
   COLORS: Array[Color]
 
-  def self.for_value: (untyped value) -> untyped
-  def self.extract_from_legacy_export: (untyped value) -> untyped
+  def self.for_value: (untyped value) -> Color?
+  def self.extract_from_legacy_export: (untyped value) -> Color?
 
   def to_s: () -> untyped
 end

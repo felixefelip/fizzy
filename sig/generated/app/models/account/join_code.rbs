@@ -3,7 +3,7 @@ class Account
     CODE_LENGTH: Integer
     USAGE_LIMIT_MAX: Integer
 
-    def redeem_if: () ?{ (untyped) -> untyped } -> untyped
+    def redeem_if: () ?{ (Account?) -> untyped } -> untyped
     def active?: () -> bool
     def reset: () -> void
 

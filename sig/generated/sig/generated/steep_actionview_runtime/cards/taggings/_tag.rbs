@@ -1,11 +1,11 @@
 class ERBPartialCardsTaggingsTag
   include ActionViewContext
 
-  def initialize: (tag: untyped) -> void
+  def initialize: (tag: (Tag & Tag::Validated)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader tag: untyped
+  attr_reader tag: (Tag & Tag::Validated)
 end

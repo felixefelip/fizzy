@@ -7,7 +7,7 @@ class Account < ApplicationRecord
   include Searchable
   include Seedeable
 
-  def self.create_with_owner: (account: { external_account_id: nil, name: untyped }, owner: { name: untyped, identity: (Identity & Identity::Validated)? }) -> self
+  def self.create_with_owner: (account: { external_account_id: nil, name: String }, owner: { name: untyped, identity: (Identity & Identity::Validated)? }) -> self
 
   def slug: () -> String
   def account: () -> Account

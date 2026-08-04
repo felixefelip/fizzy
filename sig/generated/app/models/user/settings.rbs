@@ -2,7 +2,7 @@ class User
   class Settings < ApplicationRecord
     def bundle_aggregation_period: () -> ActiveSupport::Duration
     def bundling_emails?: () -> bool
-    def timezone: () -> untyped
+    def timezone: () -> (ActiveSupport::TimeZone | User::Settings | nil)
 
     private
 

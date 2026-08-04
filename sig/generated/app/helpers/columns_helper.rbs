@@ -1,5 +1,5 @@
 module ColumnsHelper
   def button_to_set_column: (untyped card, untyped column) -> untyped
-  def column_tag: (id: untyped, name: untyped, drop_url: untyped, ?collapsed: untyped, ?selected: untyped, ?card_color: untyped, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
-  def column_frame_tag: (untyped id, ?src: untyped, ?data: untyped, **untyped) ?{ (untyped) -> untyped } -> untyped
+  def column_tag: (id: untyped, name: untyped, drop_url: untyped, ?collapsed: untyped, ?selected: untyped, ?card_color: untyped, ?data: untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def column_frame_tag: (untyped id, ?src: untyped, ?data: untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
 end

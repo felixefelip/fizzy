@@ -5,6 +5,6 @@ module CurrentTimezone
 
   private
 
-  def set_current_timezone: () ?{ (untyped) -> untyped } -> untyped
+  def set_current_timezone: () -> untyped
   def timezone_from_cookie: () -> ActiveSupport::TimeZone?
 end

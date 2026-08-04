@@ -7,8 +7,8 @@ module ActionPack
       SIGN_IN_ERROR_MESSAGE: String
       SIGN_IN_CANCELLED_MESSAGE: String
 
-      def passkey_registration_button: (?untyped name, ?untyped url, **untyped) ?{ (untyped) -> untyped } -> untyped
-      def passkey_sign_in_button: (?untyped name, ?untyped url, **untyped) ?{ (untyped) -> untyped } -> untyped
+      def passkey_registration_button: (?untyped name, ?untyped url, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def passkey_sign_in_button: (?untyped name, ?untyped url, **untyped) ?{ (*untyped) -> untyped } -> untyped
 
       private
 

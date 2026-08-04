@@ -1,9 +1,9 @@
 class Card
   class ActivitySpike
     class Detector
-      attr_reader card: Card::Stallable
+      attr_reader card: untyped
 
-      def initialize: (Card::Stallable card) -> void
+      def initialize: (untyped card) -> void
       def detect: () -> bool
 
       private

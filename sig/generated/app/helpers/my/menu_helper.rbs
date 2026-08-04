@@ -5,6 +5,6 @@ module My
     def my_menu_tag_item: (untyped the_tag) -> untyped
     def my_menu_user_item: (untyped user) -> untyped
     def my_menu_filter_item: (untyped filter) -> untyped
-    def my_menu_item: (String item, untyped record) -> untyped
+    def my_menu_item: (String item, untyped record) { () -> untyped } -> untyped
   end
 end

@@ -6,15 +6,15 @@ module Storage
 
     extend ActiveSupport::Concern
 
-    def bytes_used: () -> untyped
-    def bytes_used_exact: () -> untyped
+    def bytes_used: () -> Integer
+    def bytes_used_exact: () -> BigDecimal
     def materialize_storage_later: () -> untyped
     def materialize_storage: () -> untyped
     def reconcile_storage: () -> untyped
 
     private
 
-    def create_or_find_storage_total: () -> untyped
+    def create_or_find_storage_total: () -> (Storage::Total | (Storage::Total & Storage::Total::Validated))
     def calculate_real_storage_bytes: () -> bot
   end
 end

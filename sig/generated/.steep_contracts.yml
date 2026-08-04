@@ -449,24 +449,6 @@ methods:
           kind: self
         method: tag
     enforced: false
-  ActionPack::Passkey::Request#passkey_authentication_params:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: params
-    enforced: false
-  ActionPack::Passkey::Request#passkey_registration_params:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: params
-    enforced: false
   ActionPack::WebAuthn::Authenticator::AssertionResponse#sign_count_increased?:
     requires:
     - kind: not_nil
@@ -797,108 +779,6 @@ methods:
         - assignments
         - count
     enforced: false
-  Attachments#attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_attachments?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_remote_images?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_remote_videos?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#remote_images:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#remote_videos:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
   Attachments#rich_text_record:
     requires:
     - kind: not_nil
@@ -941,15 +821,6 @@ methods:
         method: main_app
     enforced: false
   Authentication#require_account:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: main_app
-    enforced: false
-  Authentication::ViaMagicLink#redirect_to_fake_session_magic_link:
     requires:
     - kind: not_nil
       expr:
@@ -2779,12 +2650,6 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: filters
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: it
     enforced: false
   LoginHelper#login_url:
@@ -2805,56 +2670,6 @@ methods:
           kind: self
         method: main_app
     enforced: false
-  LoginHelper#redirect_to_login_url:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: main_app
-    enforced: false
-  LoginHelper#redirect_to_logout_url:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: main_app
-    enforced: false
-  Mailers::Unsubscribable#set_unsubscribe_headers:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: headers
-    enforced: false
-  Mentions#create_mentions:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
   Mentions#mentionable_content:
     requires:
     - kind: not_nil
@@ -2863,14 +2678,6 @@ methods:
         receiver:
           kind: self
         method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
     enforced: false
   Mentions#mentionable_content_changed?:
     requires:
@@ -2880,14 +2687,6 @@ methods:
         receiver:
           kind: self
         method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
     enforced: false
   Mentions#mentionable_users:
     requires:
@@ -2906,14 +2705,6 @@ methods:
         receiver:
           kind: self
         method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
     enforced: false
   Mentions#rich_text_associations:
     requires:
@@ -2923,46 +2714,6 @@ methods:
         receiver:
           kind: self
         method: class
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#scan_mentionees:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#should_create_mentions?:
-    requires:
     - kind: not_nil
       expr:
         kind: send
@@ -3566,6 +3317,15 @@ methods:
           kind: self
         method: card
     enforced: false
+  Search::Record::SQLite#search_fields:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: connection
+    enforced: false
   Search::Record::Trilogy#card_description:
     requires:
     - kind: not_nil
@@ -3591,6 +3351,32 @@ methods:
         receiver:
           kind: self
         method: card
+    enforced: false
+  Search::Record::Trilogy#comment_body:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: comment
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: comment
+        chain:
+        - body
+    enforced: false
+  Search::Record::Trilogy#search_fields:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: connection
     enforced: false
   Search::Result#card_description:
     requires:
@@ -3785,33 +3571,6 @@ methods:
         receiver:
           kind: self
         method: bytes_stored
-    enforced: false
-  Storage::Totaled#foreign_key_for_storage:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: model_name
-    enforced: false
-  Storage::Totaled#materialize_storage:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: storage_entries
-    enforced: false
-  Storage::Totaled#reconcile_storage:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: storage_entries
     enforced: false
   Tagging#run_before_validation_callbacks:
     requires:
@@ -4053,101 +3812,6 @@ methods:
         receiver:
           kind: self
         method: identity
-    enforced: false
-  User::Filtering#cache_key:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - tags
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - tags
-        - all
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - users
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - users
-        - active
-    enforced: false
-  User::Filtering#tags:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - tags
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - tags
-        - all
-    enforced: false
-  User::Filtering#users:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - users
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - users
-        - active
     enforced: false
   User::Named#familiar_name:
     requires:

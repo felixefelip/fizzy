@@ -1,11 +1,11 @@
 class ERBPartialCardsDelete
   include ActionViewContext
 
-  def initialize: (card: Card?) -> void
+  def initialize: (card: (Card | (Card & Card::Validated))?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader card: Card?
+  attr_reader card: (Card | (Card & Card::Validated))?
 end

@@ -9,7 +9,7 @@ module ActionPack
       class Base
         include ::ActionPack::Passkey::Holder
 
-        def self.has_passkeys: (**untyped) ?{ (untyped) -> untyped } -> untyped
+        def self.has_passkeys: (**untyped) ?{ (*untyped) -> untyped } -> untyped
       end
     end
   end

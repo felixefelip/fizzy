@@ -4,7 +4,7 @@ class Account
 
     def cancel: (?initiated_by: untyped) -> untyped
     def reactivate: () -> untyped
-    def cancelled?: () -> (true | false)
+    def cancelled?: () -> true
     def cancellable?: () -> untyped
   end
 end

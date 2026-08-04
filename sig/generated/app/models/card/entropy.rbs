@@ -1,6 +1,6 @@
 class Card
   class Entropy
-    def self.for: (Card::Entropic card) -> self?
+    def self.for: ((Card & Card::Entropic) card) -> self?
 
     attr_reader card: untyped
     attr_reader auto_clean_period: untyped

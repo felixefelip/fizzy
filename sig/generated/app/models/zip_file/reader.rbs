@@ -3,7 +3,7 @@ class ZipFile
     @io: ZipFile::RemoteIO
 
     def initialize: (ZipFile::RemoteIO io) -> void
-    def read: (untyped file_path) -> untyped
+    def read: (untyped file_path) ?{ (ZipFile::Reader::IO) -> untyped } -> untyped
     def glob: (untyped pattern) -> untyped
     def exists?: (untyped file_path) -> untyped
   end
