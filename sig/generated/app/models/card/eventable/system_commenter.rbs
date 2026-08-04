@@ -6,7 +6,7 @@ class Card
       attr_reader card: untyped
       attr_reader event: untyped
 
-      def initialize: (untyped card, untyped event) -> void
+      def initialize: ((Card & Card::Eventable) card, untyped event) -> void
       def comment: () -> untyped
 
       private
