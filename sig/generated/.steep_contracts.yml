@@ -366,62 +366,6 @@ methods:
           kind: self
         method: usage_count
     enforced: false
-  Account::Seeder#delete_everything:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-    enforced: false
-  Account::Seeder#populate:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-    enforced: false
-  Account::Seeder#seed:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-    enforced: false
-  Account::Seeder#seed!:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-    enforced: false
   ActionPack::Passkey::FormHelper#passkey_error_messages:
     requires:
     - kind: not_nil
@@ -1171,12 +1115,6 @@ methods:
         receiver:
           kind: self
         method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
         chain:
         - events
     enforced: false
@@ -1188,25 +1126,11 @@ methods:
         receiver:
           kind: self
         method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
         chain:
         - events
     enforced: false
   Card::ActivitySpike::Detector#detect:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - comments
     - kind: not_nil
       expr:
         kind: send
@@ -1235,20 +1159,6 @@ methods:
     enforced: false
   Card::ActivitySpike::Detector#has_activity_spike?:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - comments
     - kind: not_nil
       expr:
         kind: send
@@ -1300,20 +1210,6 @@ methods:
         receiver:
           kind: self
         method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - comments
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
         chain:
         - entropy
     - kind: not_nil
@@ -1328,12 +1224,6 @@ methods:
     enforced: false
   Card::ActivitySpike::Detector#recent_period:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
     - kind: not_nil
       expr:
         kind: send
