@@ -6,8 +6,8 @@ class Column
     def move_right: () -> untyped
     def left_column: () -> (Column & Column::Validated)?
     def right_column: () -> (Column & Column::Validated)?
-    def leftmost?: () -> false
-    def rightmost?: () -> false
+    def leftmost?: () -> bool
+    def rightmost?: () -> bool
     def adjacent_columns: () -> Board_Column::ActiveRecord_Associations_CollectionProxy
 
     private

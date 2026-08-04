@@ -12339,6 +12339,18 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
+- class: User::EmailAddressChangeable
+  method: generate_email_address_change_token
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::EmailAddressChangeable
+  method: send_email_address_change_confirmation
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
 - class: User::Filtering
   method: show_assignees?
   consts:
