@@ -9,6 +9,6 @@ class ZipFile
 
     private
 
-    def with_http: () { (Net::HTTP) -> (String | 0 | Integer) } -> (String | Integer | 0)
+    def with_http: () { (Net::HTTP) -> (String | Integer | 0) } -> (String | Integer | 0)
   end
 end

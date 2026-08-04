@@ -2,7 +2,7 @@ class Current
   self.@session: (Session & Session::Validated)?
   self.@user: (User & User::Validated)?
   self.@identity: Identity?
-  self.@account: ((Account & Account::Validated) | self | Account::Seedeable | Account | Current)?
+  self.@account: ((Account & Account::Validated) | self | (Account & Account::Seedeable) | Account | Current)?
   self.@__rbs_infer_instance: Current?
 
   @session: (Session & Session::Validated)?
@@ -52,6 +52,6 @@ class Current
   def self.referrer: () -> untyped
   def self.referrer=: (untyped value) -> untyped
   def self.__rbs_infer_instance: () -> Current
-  def self.set: (?session: (Session & Session::Validated)?, ?user: (User & User::Validated)?, ?identity: Identity?, ?account: (self? | Account::Seedeable | Account?), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (nil) -> untyped } -> untyped
+  def self.set: (?session: (Session & Session::Validated)?, ?user: (User & User::Validated)?, ?identity: Identity?, ?account: (self? | Account & Account::Seedeable | Account?), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (nil) -> Card } -> Card?
   def self.with: (?session: (Session & Session::Validated)?, ?user: (User & User::Validated)?, ?identity: Identity?, ?account: (Current | Account | nil), ?http_method: untyped, ?request_id: untyped, ?user_agent: untyped, ?ip_address: untyped, ?referrer: untyped) ?{ (nil) -> untyped } -> untyped
 end

@@ -4,6 +4,6 @@ class Column
 
     extend ActiveSupport::Concern
 
-    def color: () -> untyped
+    def color: () -> Color
   end
 end

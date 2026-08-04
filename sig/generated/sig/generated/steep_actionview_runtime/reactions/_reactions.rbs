@@ -1,16 +1,16 @@
 class ERBPartialReactionsReactions
   include ActionViewContext
 
-  def initialize: (reactable: ((Card | (Card & Card::Validated))? | self | ((Comment & Comment::Validated) | (Card & Card::Validated))?)) -> void
+  def initialize: (reactable: ((Card | (Card & Card::Validated))? | (Comment | (Comment & Comment::Validated))? | self | Comment & Comment::Validated | Card & Card::Validated)) -> void
   def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader reactable: ((Card | (Card & Card::Validated))? | self | ((Comment & Comment::Validated) | (Card & Card::Validated))?)
+  attr_reader reactable: ((Card | (Card & Card::Validated))? | (Comment | (Comment & Comment::Validated))? | self | Comment & Comment::Validated | Card & Card::Validated)
 
   class AfterInitialize
-    attr_reader reactable: (Card | (Card & Card::Validated) | self | (Comment & Comment::Validated))?
+    attr_reader reactable: (Card | (Card & Card::Validated) | Comment | (Comment & Comment::Validated) | self)?
   end
 end

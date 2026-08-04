@@ -3,7 +3,7 @@ module ActionPack
     module Authenticator
       module AttestationVerifiers
         class None
-          def verify!: (untyped attestation, client_data_json: untyped) -> untyped
+          def verify!: (singleton(ActionPack::WebAuthn::Authenticator::Attestation) attestation, client_data_json: untyped) -> untyped
         end
       end
     end

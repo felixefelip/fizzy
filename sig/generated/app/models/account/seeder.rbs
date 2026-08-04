@@ -1,15 +1,15 @@
 class Account
   class Seeder
-    attr_reader account: untyped
+    attr_reader account: (Account & Account::Seedeable)
     attr_reader creator: untyped
 
-    def initialize: (untyped account, untyped creator) -> void
-    def seed: () -> untyped
-    def seed!: () -> untyped
+    def initialize: ((Account & Account::Seedeable) account, untyped creator) -> void
+    def seed: () -> Card
+    def seed!: () -> Card
 
     private
 
-    def populate: () -> untyped
+    def populate: () -> Card
     def delete_everything: () -> untyped
   end
 end

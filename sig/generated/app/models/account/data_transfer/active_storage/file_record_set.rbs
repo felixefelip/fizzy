@@ -15,7 +15,7 @@ class Account
         def import_batch: (untyped files) -> untyped
         def old_key_to_blob_id: () -> untyped
         def build_old_key_to_blob_id: () -> untyped
-        def with_zip: (untyped zip) -> untyped
+        def with_zip: (untyped zip) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
         def check_record: (untyped file_path) -> untyped
       end
     end

@@ -13,7 +13,7 @@ class User
     attr_reader day: untyped
     attr_reader filter: untyped
 
-    def initialize: (untyped user, untyped day, untyped filter) -> void
+    def initialize: ((User & User::Timelined) user, untyped day, untyped filter) -> void
     def has_activity?: () -> bool
     def events: () -> Event::ActiveRecord_Relation
     def next_day: () -> ActiveSupport::TimeWithZone?
