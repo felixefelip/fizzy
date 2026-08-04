@@ -1,5 +1,7 @@
 module Sessions
   class MenusController < ApplicationController
+    @accounts: Account::ActiveRecord_Relation?
+
     def show: () -> void
   end
 end

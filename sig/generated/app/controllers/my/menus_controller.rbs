@@ -4,6 +4,7 @@ module My
     @boards: Board::ActiveRecord_Relation?
     @tags: Tag::ActiveRecord_Relation?
     @users: User::ActiveRecord_Relation?
+    @accounts: Account::ActiveRecord_Relation?
 
     def show: () -> void
   end

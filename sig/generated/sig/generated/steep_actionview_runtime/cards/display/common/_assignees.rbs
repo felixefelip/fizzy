@@ -1,13 +1,13 @@
 class ERBPartialCardsDisplayCommonAssignees
   include ActionViewContext
 
-  def initialize: (card: (Card? | Card & Card::Validated), preview: bool) -> void
+  def initialize: (card: ((Card | (Card & Card::Validated))? | Card & Card::Validated), preview: bool) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader card: (Card? | Card & Card::Validated)
+  attr_reader card: ((Card | (Card & Card::Validated))? | Card & Card::Validated)
   attr_reader preview: bool
 
   class AfterInitialize
