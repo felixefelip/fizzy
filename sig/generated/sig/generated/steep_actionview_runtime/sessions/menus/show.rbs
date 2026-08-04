@@ -1,9 +1,9 @@
 class ERBSessionsMenusShow
-  @accounts: Account::ActiveRecord_Relation?
+  @accounts: Account::ActiveRecord_Relation
 
   include ActionViewContext
 
-  def initialize: (accounts: Account::ActiveRecord_Relation?) -> void
+  def initialize: (accounts: Account::ActiveRecord_Relation) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

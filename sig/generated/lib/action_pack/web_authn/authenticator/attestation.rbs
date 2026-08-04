@@ -3,7 +3,7 @@ module ActionPack
     module Authenticator
       class Attestation
         def self.wrap: (untyped data) -> self
-        def self.decode: (String bytes) -> self
+        def self.decode: (String bytes) -> ActionPack::WebAuthn::Authenticator::Attestation
 
         attr_reader authenticator_data: untyped
         attr_reader format: untyped

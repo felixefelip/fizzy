@@ -1,11 +1,11 @@
 class ERBPartialMyMenusAccounts
   include ActionViewContext
 
-  def initialize: (accounts: untyped) -> void
+  def initialize: (accounts: Account::ActiveRecord_Relation?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader accounts: untyped
+  attr_reader accounts: Account::ActiveRecord_Relation?
 end

@@ -6,8 +6,8 @@ class Card
 
     extend ActiveSupport::Concern
 
-    def entropy: () -> self?
-    def entropic?: () -> (bool | false)
+    def entropy: () -> Card::Entropy?
+    def entropic?: () -> bool
     def auto_postpone_period: () -> Integer?
   end
 end

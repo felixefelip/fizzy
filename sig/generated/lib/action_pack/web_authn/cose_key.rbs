@@ -22,7 +22,7 @@ module ActionPack
       ED25519: Integer
       UNCOMPRESSED_POINT_MARKER: Integer
 
-      def self.decode: (nil bytes) -> self
+      def self.decode: (nil bytes) -> ActionPack::WebAuthn::CoseKey
 
       attr_reader key_type: untyped
       attr_reader algorithm: untyped

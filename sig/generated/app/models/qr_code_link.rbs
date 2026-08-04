@@ -1,5 +1,5 @@
 class QrCodeLink
-  def self.from_signed: (untyped signed) -> self
+  def self.from_signed: (untyped signed) -> QrCodeLink
   def self.verifier: () -> ActiveSupport::MessageVerifier
   def self.secret: () -> untyped
 

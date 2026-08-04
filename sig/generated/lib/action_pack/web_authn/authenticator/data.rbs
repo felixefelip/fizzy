@@ -2,6 +2,8 @@ module ActionPack
   module WebAuthn
     module Authenticator
       class Data
+        @public_key: OpenSSL::PKey::PKey?
+
         RELYING_PARTY_ID_HASH_LENGTH: Integer
         FLAGS_LENGTH: Integer
         SIGN_COUNT_LENGTH: Integer
@@ -14,7 +16,7 @@ module ActionPack
         ATTESTED_CREDENTIAL_DATA_FLAG: Integer
 
         def self.wrap: (ActionPack::WebAuthn::Authenticator::Data data) -> self
-        def self.decode: ((ActionPack::WebAuthn::Authenticator::Data | String) bytes) -> self
+        def self.decode: ((ActionPack::WebAuthn::Authenticator::Data | String) bytes) -> ActionPack::WebAuthn::Authenticator::Data
 
         attr_reader bytes: untyped
         attr_reader relying_party_id_hash: untyped
@@ -29,7 +31,7 @@ module ActionPack
         def user_verified?: () -> untyped
         def backup_eligible?: () -> untyped
         def backed_up?: () -> untyped
-        def public_key: () -> untyped
+        def public_key: () -> OpenSSL::PKey::PKey?
       end
     end
   end
