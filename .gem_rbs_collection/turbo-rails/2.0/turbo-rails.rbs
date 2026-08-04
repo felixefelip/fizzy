@@ -10,4 +10,77 @@ module Turbo
     def turbo_refresh_method_tag: (?Symbol method) -> untyped
     def turbo_refresh_scroll_tag: (?Symbol scroll) -> untyped
   end
+
+  # Broadcasts Turbo Stream messages from a model. The `turbo.broadcastable`
+  # initializer includes this into `ActiveRecord::Base` on `on_load(:active_record)`
+  # whenever Active Job is defined, so every model has it.
+  module Broadcastable
+    # A stream the record broadcasts to: the name of a method on the record
+    # (`broadcasts_to :board`), or a callable receiving the record
+    # (`broadcasts_to ->(message) { [ message.board, :messages ] }`). The
+    # implementation is `stream.try(:call, self) || send(stream)`.
+    type stream[T] = Symbol | String | ^(T) -> untyped
+
+    # A dom id target: a literal, or a callable receiving the record
+    # (`target.try(:call, self) || target`).
+    type target[T] = String | Symbol | ^(T) -> untyped
+
+    module ClassMethods
+      def broadcasts_to: (stream[instance] stream, ?inserts_by: Symbol, ?target: target[instance], **untyped rendering) -> void
+      def broadcasts: (?untyped stream, ?inserts_by: Symbol, ?target: target[instance], **untyped rendering) -> void
+      def broadcasts_refreshes_to: (stream[instance] stream) -> void
+      def broadcasts_refreshes: (?untyped stream) -> void
+      def broadcast_target_default: () -> String
+      def suppressing_turbo_broadcasts: [T] () { () -> T } -> T
+      def suppressed_turbo_broadcasts?: () -> bool?
+    end
+
+    def broadcast_remove_to: (*untyped streamables, ?target: untyped, **untyped rendering) -> void
+    def broadcast_remove: (**untyped rendering) -> void
+    def broadcast_replace_to: (*untyped streamables, **untyped rendering) -> void
+    def broadcast_replace: (**untyped rendering) -> void
+    def broadcast_update_to: (*untyped streamables, **untyped rendering) -> void
+    def broadcast_update: (**untyped rendering) -> void
+    def broadcast_before_to: (*untyped streamables, ?target: untyped, ?targets: untyped, **untyped rendering) -> void
+    def broadcast_after_to: (*untyped streamables, ?target: untyped, ?targets: untyped, **untyped rendering) -> void
+    def broadcast_append_to: (*untyped streamables, ?target: untyped, **untyped rendering) -> void
+    def broadcast_append: (?target: untyped, **untyped rendering) -> void
+    def broadcast_prepend_to: (*untyped streamables, ?target: untyped, **untyped rendering) -> void
+    def broadcast_prepend: (?target: untyped, **untyped rendering) -> void
+    def broadcast_refresh_to: (*untyped streamables, **untyped attributes) -> void
+    def broadcast_refresh: () -> void
+    def broadcast_action_to: (*untyped streamables, action: Symbol | String, ?target: untyped, ?attributes: Hash[Symbol | String, untyped], **untyped rendering) -> void
+    def broadcast_action: (Symbol | String action, ?target: untyped, ?attributes: Hash[Symbol | String, untyped], **untyped rendering) -> void
+
+    def broadcast_replace_later_to: (*untyped streamables, **untyped rendering) -> void
+    def broadcast_replace_later: (**untyped rendering) -> void
+    def broadcast_update_later_to: (*untyped streamables, **untyped rendering) -> void
+    def broadcast_update_later: (**untyped rendering) -> void
+    def broadcast_append_later_to: (*untyped streamables, ?target: untyped, **untyped rendering) -> void
+    def broadcast_append_later: (?target: untyped, **untyped rendering) -> void
+    def broadcast_prepend_later_to: (*untyped streamables, ?target: untyped, **untyped rendering) -> void
+    def broadcast_prepend_later: (?target: untyped, **untyped rendering) -> void
+    def broadcast_refresh_later_to: (*untyped streamables, **untyped attributes) -> void
+    def broadcast_refresh_later: () -> void
+    def broadcast_action_later_to: (*untyped streamables, action: Symbol | String, ?target: untyped, ?attributes: Hash[Symbol | String, untyped], **untyped rendering) -> void
+    def broadcast_action_later: (action: Symbol | String, ?target: untyped, ?attributes: Hash[Symbol | String, untyped], **untyped rendering) -> void
+
+    def broadcast_render: (**untyped rendering) -> void
+    def broadcast_render_to: (*untyped streamables, **untyped rendering) -> void
+    def broadcast_render_later: (**untyped rendering) -> void
+    def broadcast_render_later_to: (*untyped streamables, **untyped rendering) -> void
+  end
+end
+
+module ActiveRecord
+  class Base
+    include Turbo::Broadcastable
+    extend Turbo::Broadcastable::ClassMethods
+
+    # From the concern's `included do`: a `thread_mattr_accessor` with
+    # `instance_accessor: false`, plus the predicate delegated to the class.
+    def self.suppressed_turbo_broadcasts: () -> bool?
+    def self.suppressed_turbo_broadcasts=: (bool?) -> bool?
+    def suppressed_turbo_broadcasts?: () -> bool?
+  end
 end
