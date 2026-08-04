@@ -4,12 +4,12 @@ class Account
     attr_reader creator: untyped
 
     def initialize: ((Account & Account::Seedeable) account, untyped creator) -> void
-    def seed: () -> Card
-    def seed!: () -> Card
+    def seed: () -> Card?
+    def seed!: () -> Card?
 
     private
 
     def populate: () -> Card
-    def delete_everything: () -> untyped
+    def delete_everything: () -> Card?
   end
 end

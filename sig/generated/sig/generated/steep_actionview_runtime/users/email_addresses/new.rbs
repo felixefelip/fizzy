@@ -1,4 +1,6 @@
 class ERBUsersEmailAddressesNew
+  @user: (User & User::Validated)?
+
   include ActionViewContext
 
   def initialize: (page_title: untyped, user: (User & User::Validated)?) -> void

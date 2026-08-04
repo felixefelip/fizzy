@@ -1,4 +1,6 @@
 class ERBUsersEmailAddressesCreate
+  @user: (User & User::Validated)?
+
   include ActionViewContext
 
   def initialize: (user: (User & User::Validated)?) -> void

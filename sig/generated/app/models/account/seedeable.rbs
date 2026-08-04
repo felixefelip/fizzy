@@ -2,6 +2,6 @@ class Account
   module Seedeable
     extend ActiveSupport::Concern
 
-    def setup_customer_template: () -> untyped
+    def setup_customer_template: () -> Card?
   end
 end

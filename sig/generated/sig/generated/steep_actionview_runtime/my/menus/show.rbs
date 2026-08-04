@@ -1,11 +1,12 @@
 class ERBMyMenusShow
+  @accounts: Account::ActiveRecord_Relation?
   @boards: Board::ActiveRecord_Relation
   @tags: Tag::ActiveRecord_Relation
   @users: User::ActiveRecord_Relation
 
   include ActionViewContext
 
-  def initialize: (accounts: untyped, boards: Board::ActiveRecord_Relation, tags: Tag::ActiveRecord_Relation, users: User::ActiveRecord_Relation) -> void
+  def initialize: (accounts: Account::ActiveRecord_Relation?, boards: Board::ActiveRecord_Relation, tags: Tag::ActiveRecord_Relation, users: User::ActiveRecord_Relation) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
