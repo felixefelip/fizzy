@@ -10,6 +10,6 @@ class Card
 
     def should_track_event?: () -> bool
     def track_title_change: () -> untyped
-    def create_system_comment_for: (untyped event) -> untyped
+    def create_system_comment_for: (untyped event) -> Comment?
   end
 end

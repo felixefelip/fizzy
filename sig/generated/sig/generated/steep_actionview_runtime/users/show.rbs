@@ -1,10 +1,10 @@
 class ERBUsersShow
-  @user: (User & User::Validated)?
+  @user: (User & User::Validated)
 
   include ActionViewContext
   include UsersHelper
 
-  def initialize: (user: (User & User::Validated)?) -> void
+  def initialize: (user: (User & User::Validated)) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

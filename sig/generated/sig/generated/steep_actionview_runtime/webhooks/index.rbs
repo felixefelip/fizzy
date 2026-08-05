@@ -1,8 +1,10 @@
 class ERBWebhooksIndex
+  @board: (Board & Board::Validated)
+
   include ActionViewContext
   include WebhooksHelper
 
-  def initialize: (board: untyped, page: untyped, page_title: untyped) -> void
+  def initialize: (board: (Board & Board::Validated), page: untyped, page_title: untyped) -> void
   def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

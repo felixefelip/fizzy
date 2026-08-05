@@ -1,5 +1,10 @@
 module WebPush
   class Notification
+    @badge: Integer
+    @endpoint: String?
+    @p256dh_key: String?
+    @auth_key: String?
+
     def initialize: (title: untyped, body: untyped, url: untyped, badge: Integer, endpoint: String?, endpoint_ip: untyped, p256dh_key: String?, auth_key: String?) -> void
     def deliver: (?connection: untyped) -> untyped
 

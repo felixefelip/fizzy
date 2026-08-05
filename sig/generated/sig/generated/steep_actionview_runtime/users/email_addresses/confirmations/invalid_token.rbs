@@ -1,9 +1,9 @@
 class ERBUsersEmailAddressesConfirmationsInvalidToken
-  @user: (User & User::Validated)?
+  @user: (User & User::Validated)
 
   include ActionViewContext
 
-  def initialize: (page_title: untyped, user: (User & User::Validated)?) -> void
+  def initialize: (page_title: untyped, user: (User & User::Validated)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

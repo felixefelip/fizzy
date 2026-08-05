@@ -12,6 +12,6 @@ module Storage
     def track_board_transfer: () -> Hash[untyped, Array[untyped]]?
     def storage_transfer_records: () -> Array[self]
     def attachments_for_storage: (?untyped recordable) -> Array[untyped]
-    def storage_attachments_for_records: ((Array[Storage::Tracked] | Array[untyped]) recordables) -> Hash[untyped, Array[untyped]]
+    def storage_attachments_for_records: ((Array[self] | Array[untyped]) recordables) -> Hash[untyped, Array[untyped]]
   end
 end

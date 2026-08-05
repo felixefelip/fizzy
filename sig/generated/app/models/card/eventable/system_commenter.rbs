@@ -3,11 +3,11 @@ class Card
     class SystemCommenter
       include ERB::Util
 
-      attr_reader card: untyped
+      attr_reader card: (Card & Card::Eventable)
       attr_reader event: untyped
 
       def initialize: ((Card & Card::Eventable) card, untyped event) -> void
-      def comment: () -> untyped
+      def comment: () -> Comment?
 
       private
 

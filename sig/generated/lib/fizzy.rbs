@@ -8,8 +8,10 @@ end
 
 module Fizzy
   class DbAdapter
-    def initialize: (untyped name) -> void
-    def to_s: () -> untyped
-    def sqlite?: () -> untyped
+    @name: String
+
+    def initialize: (String name) -> void
+    def to_s: () -> String
+    def sqlite?: () -> bool
   end
 end

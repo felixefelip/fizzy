@@ -1,12 +1,12 @@
 class ERBPartialFiltersSettingsTerms
   include ActionViewContext
 
-  def initialize: (filter: untyped, form: untyped) -> void
+  def initialize: (filter: (Filter & Filter::Validated)?, form: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader filter: untyped
+  attr_reader filter: (Filter & Filter::Validated)?
   attr_reader form: untyped
 end

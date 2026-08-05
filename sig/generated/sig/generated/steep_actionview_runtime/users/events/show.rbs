@@ -1,10 +1,11 @@
 class ERBUsersEventsShow
   @day_timeline: User::DayTimeline
+  @filter: (Filter & Filter::Validated)?
   @user: (User & User::Validated)
 
   include ActionViewContext
 
-  def initialize: (day_timeline: User::DayTimeline, filter: untyped, user: User & ::User::Validated) -> void
+  def initialize: (day_timeline: User::DayTimeline, filter: (Filter & Filter::Validated)?, user: User & ::User::Validated) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

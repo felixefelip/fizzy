@@ -1,19 +1,21 @@
 class User
   class Filtering
+    @boards: Board::ActiveRecord_Relation?
     @tags: Tag::ActiveRecord_Relation?
     @users: User::ActiveRecord_Relation?
+    @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
 
-    attr_reader user: (User & User::Validated)?
+    attr_reader user: (User & User::Validated)
     attr_reader filter: (Filter & Filter::Validated)?
     attr_reader expanded: bool
 
-    def initialize: ((User & User::Validated)? user, (Filter & Filter::Validated)? filter, ?expanded: bool) -> void
-    def boards: () -> untyped
+    def initialize: ((User & User::Validated) user, (Filter & Filter::Validated)? filter, ?expanded: bool) -> void
+    def boards: () -> Board::ActiveRecord_Relation
     def selected_board_titles: () -> Array[String]
     def selected_boards_label: () -> untyped
     def tags: () -> Tag::ActiveRecord_Relation
     def users: () -> User::ActiveRecord_Relation
-    def filters: () -> untyped
+    def filters: () -> User_Filter::ActiveRecord_Associations_CollectionProxy
     def expanded?: () -> bool
     def any?: () -> untyped
     def show_indexed_by?: () -> untyped

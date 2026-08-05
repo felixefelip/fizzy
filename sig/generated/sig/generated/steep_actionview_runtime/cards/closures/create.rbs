@@ -1,9 +1,11 @@
 class ERBCardsClosuresCreate
   @card: (Card & Card::Validated)
+  @source_column: Column?
+  @was_in_stream: bool?
 
   include ActionViewContext
 
-  def initialize: (card: Card & ::Card::Validated, page: untyped, source_column: untyped, was_in_stream: untyped) -> void
+  def initialize: (card: Card & ::Card::Validated, page: untyped, source_column: Column?, was_in_stream: bool?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end
