@@ -9,7 +9,7 @@ class User
 
     include Serializable
 
-    attr_reader user: untyped
+    attr_reader user: (User & User::Timelined)
     attr_reader day: untyped
     attr_reader filter: untyped
 

@@ -3703,6 +3703,287 @@ methods:
           kind: self
         method: identity
     enforced: false
+  User::Filtering#account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Filtering#any?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    enforced: false
+  User::Filtering#boards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - boards
+    enforced: false
+  User::Filtering#cache_key:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - boards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - filters
+    enforced: false
+  User::Filtering#filters:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - filters
+    enforced: false
+  User::Filtering#selected_board_titles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    enforced: false
+  User::Filtering#selected_boards_label:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    enforced: false
+  User::Filtering#show_assignees?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - assignees
+    enforced: false
+  User::Filtering#show_boards?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::Filtering#show_closers?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - closers
+    enforced: false
+  User::Filtering#show_creators?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    enforced: false
+  User::Filtering#show_indexed_by?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - indexed_by
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - indexed_by
+        - all?
+    enforced: false
+  User::Filtering#show_sorted_by?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - sorted_by
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - sorted_by
+        - latest?
+    enforced: false
+  User::Filtering#show_tags?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - tags
+    enforced: false
+  User::Filtering#single_board_or_first:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+        chain:
+        - boards
+    enforced: false
+  User::Filtering#tags:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  User::Filtering#users:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
   User::Named#familiar_name:
     requires:
     - kind: not_nil

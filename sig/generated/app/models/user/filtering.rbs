@@ -1,25 +1,28 @@
 class User
   class Filtering
-    attr_reader user: untyped
-    attr_reader filter: untyped
-    attr_reader expanded: untyped
+    @tags: Tag::ActiveRecord_Relation?
+    @users: User::ActiveRecord_Relation?
 
-    def initialize: ((User & User::Validated)? user, (Filter & Filter::Validated)? filter, ?expanded: untyped) -> void
+    attr_reader user: (User & User::Validated)?
+    attr_reader filter: (Filter & Filter::Validated)?
+    attr_reader expanded: bool
+
+    def initialize: ((User & User::Validated)? user, (Filter & Filter::Validated)? filter, ?expanded: bool) -> void
     def boards: () -> untyped
-    def selected_board_titles: () -> untyped
+    def selected_board_titles: () -> Array[String]
     def selected_boards_label: () -> untyped
-    def tags: () -> untyped
-    def users: () -> untyped
+    def tags: () -> Tag::ActiveRecord_Relation
+    def users: () -> User::ActiveRecord_Relation
     def filters: () -> untyped
-    def expanded?: () -> untyped
+    def expanded?: () -> bool
     def any?: () -> untyped
     def show_indexed_by?: () -> untyped
     def show_sorted_by?: () -> untyped
-    def show_tags?: () -> untyped
-    def show_assignees?: () -> untyped
-    def show_creators?: () -> untyped
-    def show_closers?: () -> untyped
-    def show_boards?: () -> untyped
+    def show_tags?: () -> bool?
+    def show_assignees?: () -> bool
+    def show_creators?: () -> bool
+    def show_closers?: () -> bool
+    def show_boards?: () -> bool
     def single_board_or_first: () -> untyped
     def cache_key: () -> untyped
     def as_params: () -> Hash[untyped, untyped]
@@ -28,6 +31,6 @@ class User
 
     private
 
-    def account: () -> untyped
+    def account: () -> (Account & Account::Validated)
   end
 end

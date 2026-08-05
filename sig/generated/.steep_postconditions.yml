@@ -602,6 +602,11 @@ postconditions:
     - "@public_key_bytes"
     - "@relying_party_id_hash"
     - "@sign_count"
+- class: ActionPack::WebAuthn::Authenticator::Data
+  method: public_key
+  effects:
+    may_write:
+    - "@public_key"
 - class: ActionPack::WebAuthn::Authenticator::Response
   method: initialize
   effects:
@@ -5578,6 +5583,12 @@ postconditions:
     - "@id"
     - "@index"
 - class: User::Filtering
+  method: cache_key
+  effects:
+    may_write:
+    - "@tags"
+    - "@users"
+- class: User::Filtering
   method: expanded?
   effects:
     returns_ivar: "@expanded"
@@ -5588,6 +5599,16 @@ postconditions:
     - "@expanded"
     - "@filter"
     - "@user"
+- class: User::Filtering
+  method: tags
+  effects:
+    may_write:
+    - "@tags"
+- class: User::Filtering
+  method: users
+  effects:
+    may_write:
+    - "@users"
 - class: UserMailer
   method: email_change_confirmation
   effects:
@@ -6555,12 +6576,6 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: Account
   method: imports
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: Account
-  method: tags
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -12274,12 +12289,6 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
 - class: User
-  method: boards
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: User
   method: close_remote_connections
   consts:
     Current.account: "(::Account & ::Account::Validated)"
@@ -12347,6 +12356,12 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: User::EmailAddressChangeable
   method: send_email_address_change_confirmation
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: selected_boards_label
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"

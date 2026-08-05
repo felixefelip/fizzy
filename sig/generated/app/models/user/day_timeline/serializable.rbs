@@ -11,7 +11,7 @@ class User
 
       alias id to_json
 
-      def as_json: (?Hash[untyped, untyped] options) -> { day: untyped, filter_params: untyped, user_id: untyped }
+      def as_json: (?Hash[untyped, untyped] options) -> { day: untyped, filter_params: untyped, user_id: String? }
     end
   end
 end
