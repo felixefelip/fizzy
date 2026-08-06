@@ -1,0 +1,7 @@
+class Webhook
+  class Delivery
+    module GeneratedRelationMethods
+      def cleanup: (?batch_size: untyped, ?pause: untyped) -> nil
+    end
+  end
+end

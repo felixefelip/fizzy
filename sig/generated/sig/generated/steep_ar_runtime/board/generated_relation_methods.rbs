@@ -1,0 +1,6 @@
+class Board
+  module GeneratedRelationMethods
+    include ::Storage::Totaled::ClassMethods
+    include ::Board::Publishable::ClassMethods
+  end
+end

@@ -1,0 +1,5 @@
+class Export
+  module GeneratedRelationMethods
+    def cleanup: () -> untyped
+  end
+end

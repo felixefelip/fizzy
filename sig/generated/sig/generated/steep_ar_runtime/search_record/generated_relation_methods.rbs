@@ -1,0 +1,8 @@
+module Search
+  class Record
+    module GeneratedRelationMethods
+      def upsert!: (untyped attributes) -> Search::Record
+      def card_join: () -> String
+    end
+  end
+end

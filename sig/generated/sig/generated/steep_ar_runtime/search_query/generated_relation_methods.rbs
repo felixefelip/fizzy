@@ -1,0 +1,7 @@
+module Search
+  class Query
+    module GeneratedRelationMethods
+      def wrap: (untyped query) -> Search::Query
+    end
+  end
+end

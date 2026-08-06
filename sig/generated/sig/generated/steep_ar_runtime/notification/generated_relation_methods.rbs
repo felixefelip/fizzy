@@ -1,0 +1,8 @@
+class Notification
+  module GeneratedRelationMethods
+    include ::Notification::Pushable::ClassMethods
+
+    def read_all: () -> Notification::ActiveRecord_Relation
+    def unread_all: () -> Notification::ActiveRecord_Relation
+  end
+end

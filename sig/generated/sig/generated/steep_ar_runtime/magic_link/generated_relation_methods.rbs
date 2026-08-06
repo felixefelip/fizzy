@@ -1,0 +1,6 @@
+class MagicLink
+  module GeneratedRelationMethods
+    def consume: (untyped code) -> MagicLink?
+    def cleanup: () -> untyped
+  end
+end

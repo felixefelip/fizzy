@@ -1,0 +1,7 @@
+class Identity
+  module GeneratedRelationMethods
+    include ::Identity::Transferable::ClassMethods
+
+    def find_by_permissable_access_token: (untyped token, method: untyped) -> Identity?
+  end
+end

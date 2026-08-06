@@ -1,0 +1,8 @@
+module Storage
+  class Entry
+    module GeneratedRelationMethods
+      def suppressing_recording: () { () -> untyped } -> untyped
+      def record: (delta: untyped, operation: untyped, account: untyped, ?board: untyped, ?recordable: untyped, ?blob: untyped) -> self?
+    end
+  end
+end

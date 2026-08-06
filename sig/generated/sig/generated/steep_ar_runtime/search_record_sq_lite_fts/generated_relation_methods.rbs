@@ -1,0 +1,11 @@
+module Search
+  class Record
+    module SQLite
+      class Fts
+        module GeneratedRelationMethods
+          def upsert: (untyped rowid, untyped title, untyped content) -> untyped
+        end
+      end
+    end
+  end
+end

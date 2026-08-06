@@ -1,0 +1,8 @@
+class Account
+  class ExternalIdSequence
+    module GeneratedRelationMethods
+      def next: () -> untyped
+      def value: () -> Integer?
+    end
+  end
+end

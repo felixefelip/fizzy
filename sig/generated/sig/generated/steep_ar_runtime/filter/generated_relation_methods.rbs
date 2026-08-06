@@ -1,0 +1,9 @@
+class Filter
+  module GeneratedRelationMethods
+    include ::Filter::Fields::ClassMethods
+    include ::Filter::Params::ClassMethods
+
+    def from_params: (untyped params) -> untyped
+    def remember: (untyped attrs) -> Filter
+  end
+end

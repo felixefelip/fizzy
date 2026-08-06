@@ -1,0 +1,8 @@
+class Account
+  module GeneratedRelationMethods
+    include ::Storage::Totaled::ClassMethods
+    include ::Account::MultiTenantable::ClassMethods
+
+    def create_with_owner: (account: untyped, owner: untyped) -> Account
+  end
+end

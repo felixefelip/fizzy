@@ -1,0 +1,7 @@
+class Account
+  class Import
+    module GeneratedRelationMethods
+      def cleanup: () -> Account::Import::ActiveRecord_Relation
+    end
+  end
+end
