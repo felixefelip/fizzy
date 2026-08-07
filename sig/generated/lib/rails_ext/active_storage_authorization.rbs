@@ -16,6 +16,7 @@ module ActiveStorage
   module Authorize
     extend ActiveSupport::Concern
     include Authentication
+    extend Authentication::ClassMethods
 
     private
 

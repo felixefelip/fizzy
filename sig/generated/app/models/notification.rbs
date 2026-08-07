@@ -1,5 +1,6 @@
 class Notification < ApplicationRecord
   include ::Notification::Pushable
+  extend ::Notification::Pushable::ClassMethods
 
   def self.read_all: () -> Notification::ActiveRecord_Relation
   def self.unread_all: () -> Notification::ActiveRecord_Relation

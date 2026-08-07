@@ -7,6 +7,7 @@ class Board < ApplicationRecord
   include Entropic
   include Filterable
   include Publishable
+  extend Publishable::ClassMethods
   include ::Storage::Tracked
   include Triageable
 end

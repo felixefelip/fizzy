@@ -8,6 +8,7 @@ class User
     TIMELINEABLE_ACTIONS: Array[String]
 
     include Serializable
+    extend Serializable::ClassMethods
 
     attr_reader user: (User & User::Timelined)
     attr_reader day: untyped

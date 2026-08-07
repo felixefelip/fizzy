@@ -6,6 +6,7 @@ class Board
 
     extend ActiveSupport::Concern
     include ::Storage::Totaled
+    extend ::Storage::Totaled::ClassMethods
 
     def board_for_storage_tracking: () -> Board::Storage
 

@@ -2,6 +2,7 @@ class Account
   module Storage
     extend ActiveSupport::Concern
     include ::Storage::Totaled
+    extend ::Storage::Totaled::ClassMethods
 
     private
 

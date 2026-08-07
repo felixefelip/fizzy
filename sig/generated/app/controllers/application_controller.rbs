@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  extend Authentication::ClassMethods
   include Authorization
+  extend Authorization::ClassMethods
   include BlockSearchEngineIndexing
   include CurrentRequest
   include CurrentTimezone
