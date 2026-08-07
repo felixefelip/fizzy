@@ -1242,6 +1242,17 @@ methods:
         - entropy
         - auto_clean_period
     enforced: false
+  Card::Eventable::SystemCommenter#comment:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+        chain:
+        - account
+    enforced: false
   Card::Exportable#export_json:
     requires:
     - kind: not_nil
@@ -3703,15 +3714,6 @@ methods:
           kind: self
         method: identity
     enforced: false
-  User::Filtering#account:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    enforced: false
   User::Filtering#any?:
     requires:
     - kind: not_nil
@@ -3720,65 +3722,6 @@ methods:
         receiver:
           kind: self
         method: filter
-    enforced: false
-  User::Filtering#boards:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - boards
-    enforced: false
-  User::Filtering#cache_key:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - boards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - filters
-    enforced: false
-  User::Filtering#filters:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - filters
     enforced: false
   User::Filtering#selected_board_titles:
     requires:
@@ -3951,38 +3894,6 @@ methods:
         method: filter
         chain:
         - boards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-        chain:
-        - boards
-    enforced: false
-  User::Filtering#tags:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    enforced: false
-  User::Filtering#users:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
     enforced: false
   User::Named#familiar_name:
     requires:

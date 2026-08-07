@@ -1,6 +1,8 @@
 class Filter < ApplicationRecord
   include Fields
+  extend Fields::ClassMethods
   include Params
+  extend Params::ClassMethods
   include Resources
   include Summarized
 

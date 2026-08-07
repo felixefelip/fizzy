@@ -3,7 +3,7 @@ module Search
     module SQLite
       module ClassMethods
         def search_fields: (untyped query) -> Array[String]
-        def for: (untyped account_id) -> self
+        def for: (untyped account_id) -> Search::Record::SQLite
       end
 
       extend ActiveSupport::Concern

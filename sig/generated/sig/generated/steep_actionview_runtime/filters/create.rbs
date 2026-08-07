@@ -1,10 +1,10 @@
 class ERBFiltersCreate
-  @filter: (Filter & Filter::Validated)?
+  @filter: Filter
 
   include ActionViewContext
   include FiltersHelper
 
-  def initialize: (filter: (Filter & Filter::Validated)?) -> void
+  def initialize: (filter: Filter) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

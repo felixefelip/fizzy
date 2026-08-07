@@ -17,6 +17,8 @@ module Notifiable
 
   private
     def notify_recipients_later
+
+      asd
       NotifyRecipientsJob.perform_later self
     end
 end

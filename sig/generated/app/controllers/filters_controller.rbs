@@ -1,5 +1,5 @@
 class FiltersController < ApplicationController
-  @filter: (Filter & Filter::Validated)?
+  @filter: (Filter | (Filter & Filter::Validated))?
   @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
 
   def create: () -> void

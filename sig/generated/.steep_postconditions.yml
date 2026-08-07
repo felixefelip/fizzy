@@ -2877,11 +2877,22 @@ postconditions:
   effects:
     may_write:
     - "@board"
+- class: ERBBoardsPublicationsCreate
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBBoardsPublicationsDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
 - class: ERBBoardsShow
   method: initialize
   effects:
     may_write:
     - "@board"
+    - "@filter"
     - "@user_filtering"
 - class: ERBCardsAssignmentsCreate
   method: initialize
@@ -2906,6 +2917,8 @@ postconditions:
   effects:
     may_write:
     - "@card"
+    - "@source_column"
+    - "@was_in_stream"
 - class: ERBCardsClosuresDestroy
   method: initialize
   effects:
@@ -2958,12 +2971,25 @@ postconditions:
   method: initialize
   effects:
     may_write:
+    - "@filter"
     - "@user_filtering"
 - class: ERBCardsNotNowsCreate
   method: initialize
   effects:
     may_write:
     - "@card"
+    - "@source_column"
+    - "@was_in_stream"
+- class: ERBCardsPinsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
+- class: ERBCardsPreviewsIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@filter"
 - class: ERBCardsShow
   method: initialize
   effects:
@@ -3066,11 +3092,13 @@ postconditions:
   effects:
     may_write:
     - "@day_timeline"
+    - "@filter"
 - class: ERBEventsIndex
   method: initialize
   effects:
     may_write:
     - "@day_timeline"
+    - "@filter"
     - "@user_filtering"
 - class: ERBFiltersCreate
   method: initialize
@@ -3078,6 +3106,11 @@ postconditions:
     may_write:
     - "@filter"
 - class: ERBFiltersDestroy
+  method: initialize
+  effects:
+    may_write:
+    - "@filter"
+- class: ERBFiltersSettingsRefreshesCreate
   method: initialize
   effects:
     may_write:
@@ -3954,6 +3987,7 @@ postconditions:
   effects:
     may_write:
     - "@day_timeline"
+    - "@filter"
     - "@user"
 - class: ERBUsersShow
   method: initialize
@@ -3965,6 +3999,11 @@ postconditions:
   effects:
     may_write:
     - "@webhook"
+- class: ERBWebhooksIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
 - class: ERBWebhooksNew
   method: initialize
   effects:
@@ -4175,7 +4214,7 @@ postconditions:
   method: create
   unconditional:
     ivars:
-      "@filter": untyped
+      "@filter": "::Filter"
     self: "::FiltersController & ::FiltersController::AfterCreate"
   effects:
     may_write:
@@ -4212,6 +4251,21 @@ postconditions:
   effects:
     may_write:
     - "@db_adapter"
+- class: Fizzy::DbAdapter
+  method: initialize
+  effects:
+    may_write:
+    - "@name"
+- class: Fizzy::DbAdapter
+  method: sqlite?
+  when_true:
+    ivars:
+      "@name": '"sqlite"'
+    self: "::Fizzy::DbAdapter & ::Fizzy::DbAdapter::AfterSqlite"
+- class: Fizzy::DbAdapter
+  method: to_s
+  effects:
+    returns_ivar: "@name"
 - class: HotkeysHelper
   method: hotkey_label
   effects:
@@ -5583,9 +5637,16 @@ postconditions:
     - "@id"
     - "@index"
 - class: User::Filtering
+  method: boards
+  effects:
+    may_write:
+    - "@boards"
+- class: User::Filtering
   method: cache_key
   effects:
     may_write:
+    - "@boards"
+    - "@filters"
     - "@tags"
     - "@users"
 - class: User::Filtering
@@ -5593,12 +5654,22 @@ postconditions:
   effects:
     returns_ivar: "@expanded"
 - class: User::Filtering
+  method: filters
+  effects:
+    may_write:
+    - "@filters"
+- class: User::Filtering
   method: initialize
   effects:
     may_write:
     - "@expanded"
     - "@filter"
     - "@user"
+- class: User::Filtering
+  method: single_board_or_first
+  effects:
+    may_write:
+    - "@boards"
 - class: User::Filtering
   method: tags
   effects:
@@ -6257,6 +6328,14 @@ postconditions:
   effects:
     may_write:
     - "@disable_view_transition"
+- class: WebPush::Notification
+  method: initialize
+  effects:
+    may_write:
+    - "@auth_key"
+    - "@badge"
+    - "@endpoint"
+    - "@p256dh_key"
 - class: WebPush::Pool
   method: initialize
   effects:
@@ -7630,24 +7709,6 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
-- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
-  method: build
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
-  method: create
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: Card_Comment::ActiveRecord_Associations_CollectionProxy
-  method: create!
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
 - class: Card_Step::ActiveRecord_Associations_CollectionProxy
   method: build
   consts:
@@ -10806,6 +10867,8 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@page_title": "::String"
 - class: ERBUsersVerificationsNew
   method: __rbs_infer__body
   consts:
@@ -10952,6 +11015,18 @@ method_entry_facts:
     "@user_filtering": "::User::Filtering"
 - class: Export
   method: build_later
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
+  method: remember
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter::GeneratedRelationMethods
+  method: remember
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -11401,7 +11476,19 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
 - class: Notification
+  method: read_all
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Notification
   method: unread
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Notification::GeneratedRelationMethods
+  method: read_all
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -13902,6 +13989,30 @@ argument_entry_facts:
   pattern: '"sessions/footer"'
   ivars:
     "@page_title": "::String"
+- class: ERBUsersShow
+  method: render
+  param: target
+  pattern: '"users/access_tokens"'
+  ivars:
+    "@page_title": "::String"
+- class: ERBUsersShow
+  method: render
+  param: target
+  pattern: '"users/data_export"'
+  ivars:
+    "@page_title": "::String"
+- class: ERBUsersShow
+  method: render
+  param: target
+  pattern: '"users/theme"'
+  ivars:
+    "@page_title": "::String"
+- class: ERBUsersShow
+  method: render
+  param: target
+  pattern: '"users/transfer"'
+  ivars:
+    "@page_title": "::String"
 - class: ERBWebhooksNew
   method: render
   param: target
@@ -13945,6 +14056,7 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "::Filter"
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: render

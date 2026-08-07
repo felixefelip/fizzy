@@ -10,5 +10,5 @@ class Export < ApplicationRecord
 
   def filename: () -> String
   def with_context: () { () -> untyped } -> Card?
-  def populate_zip: (ZipFile::Writer zip) -> untyped
+  def populate_zip: (ZipFile::Writer zip) -> bot
 end
