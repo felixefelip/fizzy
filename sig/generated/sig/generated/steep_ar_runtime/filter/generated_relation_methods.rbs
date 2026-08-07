@@ -3,7 +3,7 @@ class Filter
     include ::Filter::Fields::ClassMethods
     include ::Filter::Params::ClassMethods
 
-    def from_params: (untyped params) -> untyped
+    def from_params: (untyped params) -> ((Filter & Filter::Validated) | Array[Filter])
     def remember: (untyped attrs) -> Filter
   end
 end
