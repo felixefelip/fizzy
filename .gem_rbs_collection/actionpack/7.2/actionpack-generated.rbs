@@ -3299,6 +3299,81 @@ module ActionController
   #   params[:key]  # => "value"
   #   params["key"] # => "value"
   class Parameters
+    # `to_h` and everything built on it raise `UnfilteredParameters` unless
+    # the receiver was permitted. `Permitted` is a phantom module -- nothing
+    # includes it at runtime -- that `permit` and `permit!` intersect into
+    # their return type, so the conversions are reachable exactly where they
+    # do not raise.
+    module Permitted
+      # Returns a safe <tt>ActiveSupport::HashWithIndifferentAccess</tt>
+      # representation of the parameters with all unpermitted keys removed.
+      #
+      #   params = ActionController::Parameters.new({
+      #     name: "Senjougahara Hitagi",
+      #     oddity: "Heavy stone crab"
+      #   })
+      #   params.to_h
+      #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
+      #
+      #   safe_params = params.permit(:name)
+      #   safe_params.to_h # => {"name"=>"Senjougahara Hitagi"}
+      def to_h: () -> ::ActiveSupport::HashWithIndifferentAccess[untyped, untyped]
+
+      # Returns a safe <tt>Hash</tt> representation of the parameters
+      # with all unpermitted keys removed.
+      #
+      #   params = ActionController::Parameters.new({
+      #     name: "Senjougahara Hitagi",
+      #     oddity: "Heavy stone crab"
+      #   })
+      #   params.to_hash
+      #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
+      #
+      #   safe_params = params.permit(:name)
+      #   safe_params.to_hash # => {"name"=>"Senjougahara Hitagi"}
+      def to_hash: () -> ::Hash[untyped, untyped]
+
+      # Returns a string representation of the receiver suitable for use as a URL
+      # query string:
+      #
+      #   params = ActionController::Parameters.new({
+      #     name: "David",
+      #     nationality: "Danish"
+      #   })
+      #   params.to_query
+      #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
+      #
+      #   safe_params = params.permit(:name, :nationality)
+      #   safe_params.to_query
+      #   # => "name=David&nationality=Danish"
+      #
+      # An optional namespace can be passed to enclose key names:
+      #
+      #   params = ActionController::Parameters.new({
+      #     name: "David",
+      #     nationality: "Danish"
+      #   })
+      #   safe_params = params.permit(:name, :nationality)
+      #   safe_params.to_query("user")
+      #   # => "user%5Bname%5D=David&user%5Bnationality%5D=Danish"
+      #
+      # The string pairs "key=value" that conform the query string
+      # are sorted lexicographically in ascending order.
+      #
+      # This method is also aliased as +to_param+.
+      def to_query: (*untyped args) -> ::String
+
+      alias to_param to_query
+    end
+
+    # What `permit` accepts: scalars, and arrays/hashes of them nested to
+    # any depth. `permit_filters` flattens the arguments and only acts on
+    # `Symbol`, `String` and `Hash`; anything else is silently ignored.
+    type filter = Symbol
+                | String
+                | Array[filter]
+                | Hash[Symbol | String, filter]
+
     # Returns a new instance of <tt>ActionController::Parameters</tt>.
     # Also, sets the +permitted+ attribute to the default value of
     # <tt>ActionController::Parameters.permit_all_parameters</tt>.
@@ -3320,66 +3395,6 @@ module ActionController
     # Returns true if another +Parameters+ object contains the same content and
     # permitted flag.
     def ==: (untyped other) -> untyped
-
-    # Returns a safe <tt>ActiveSupport::HashWithIndifferentAccess</tt>
-    # representation of the parameters with all unpermitted keys removed.
-    #
-    #   params = ActionController::Parameters.new({
-    #     name: "Senjougahara Hitagi",
-    #     oddity: "Heavy stone crab"
-    #   })
-    #   params.to_h
-    #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
-    #
-    #   safe_params = params.permit(:name)
-    #   safe_params.to_h # => {"name"=>"Senjougahara Hitagi"}
-    def to_h: () -> untyped
-
-    # Returns a safe <tt>Hash</tt> representation of the parameters
-    # with all unpermitted keys removed.
-    #
-    #   params = ActionController::Parameters.new({
-    #     name: "Senjougahara Hitagi",
-    #     oddity: "Heavy stone crab"
-    #   })
-    #   params.to_hash
-    #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
-    #
-    #   safe_params = params.permit(:name)
-    #   safe_params.to_hash # => {"name"=>"Senjougahara Hitagi"}
-    def to_hash: () -> untyped
-
-    # Returns a string representation of the receiver suitable for use as a URL
-    # query string:
-    #
-    #   params = ActionController::Parameters.new({
-    #     name: "David",
-    #     nationality: "Danish"
-    #   })
-    #   params.to_query
-    #   # => ActionController::UnfilteredParameters: unable to convert unpermitted parameters to hash
-    #
-    #   safe_params = params.permit(:name, :nationality)
-    #   safe_params.to_query
-    #   # => "name=David&nationality=Danish"
-    #
-    # An optional namespace can be passed to enclose key names:
-    #
-    #   params = ActionController::Parameters.new({
-    #     name: "David",
-    #     nationality: "Danish"
-    #   })
-    #   safe_params = params.permit(:name, :nationality)
-    #   safe_params.to_query("user")
-    #   # => "user%5Bname%5D=David&user%5Bnationality%5D=Danish"
-    #
-    # The string pairs "key=value" that conform the query string
-    # are sorted lexicographically in ascending order.
-    #
-    # This method is also aliased as +to_param+.
-    def to_query: (*untyped args) -> untyped
-
-    alias to_param to_query
 
     # Returns an unsafe, unfiltered
     # <tt>ActiveSupport::HashWithIndifferentAccess</tt> representation of the
@@ -3434,7 +3449,7 @@ module ActionController
     #   params.permit!
     #   params.permitted?  # => true
     #   Person.new(params) # => #<Person id: nil, name: "Francesco">
-    def permit!: () -> untyped
+    def permit!: () -> (self & Permitted)
 
     # This method accepts both a single key and an array of keys.
     #
@@ -3569,7 +3584,7 @@ module ActionController
     #
     #   params.require(:person).permit(contact: [ :email, :phone ])
     #   # => <ActionController::Parameters {"contact"=><ActionController::Parameters {"email"=>"none@test.com", "phone"=>"555-1234"} permitted: true>} permitted: true>
-    def permit: (*untyped filters) -> untyped
+    def permit: (*filter filters) -> (instance & Permitted)
 
     # Returns a parameter for the given +key+. If not found,
     # returns +nil+.
@@ -3674,13 +3689,13 @@ module ActionController
 
     # Returns a new <tt>ActionController::Parameters</tt> with all keys from
     # current hash merged into +other_hash+.
-    def reverse_merge: (untyped other_hash) -> untyped
+    def reverse_merge: (_ToH[untyped, untyped] other_hash) -> instance
 
     alias with_defaults reverse_merge
 
     # Returns current <tt>ActionController::Parameters</tt> instance with
     # current hash merged into +other_hash+.
-    def reverse_merge!: (untyped other_hash) -> untyped
+    def reverse_merge!: (_ToH[untyped, untyped] other_hash) -> self
 
     alias with_defaults! reverse_merge!
 
@@ -3828,7 +3843,7 @@ module ActionController
   module StrongParameters
     # Returns a new ActionController::Parameters object that
     # has been instantiated with the <tt>request.parameters</tt>.
-    def params: () -> untyped
+    def params: () -> ActionController::Parameters
 
     # Assigns the given +value+ to the +params+ hash. If +value+
     # is a Hash, this will create an ActionController::Parameters
