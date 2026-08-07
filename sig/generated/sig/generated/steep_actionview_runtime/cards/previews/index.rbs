@@ -1,9 +1,9 @@
 class ERBCardsPreviewsIndex
-  @filter: (Filter & Filter::Validated)?
+  @filter: ((Filter & Filter::Validated) | Array[Filter])?
 
   include ActionViewContext
 
-  def initialize: (filter: (Filter & Filter::Validated)?, page: untyped) -> void
+  def initialize: (filter: (Filter & Filter::Validated | Array[Filter] | nil), page: untyped) -> void
   def render: (?{ partial: String, collection: untyped, as: Symbol, cached: bool } target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

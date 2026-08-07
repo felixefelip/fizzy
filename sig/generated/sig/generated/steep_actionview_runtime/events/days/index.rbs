@@ -1,10 +1,10 @@
 class ERBEventsDaysIndex
   @day_timeline: User::DayTimeline
-  @filter: (Filter & Filter::Validated)?
+  @filter: ((Filter & Filter::Validated) | Array[Filter])?
 
   include ActionViewContext
 
-  def initialize: (day_timeline: User::DayTimeline, filter: (Filter & Filter::Validated)?) -> void
+  def initialize: (day_timeline: User::DayTimeline, filter: (Filter & Filter::Validated | Array[Filter] | nil)) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

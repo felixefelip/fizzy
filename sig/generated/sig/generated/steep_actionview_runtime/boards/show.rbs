@@ -1,12 +1,12 @@
 class ERBBoardsShow
   @board: (Board | (Board & Board::Validated))?
-  @filter: (Filter & Filter::Validated)?
+  @filter: ((Filter & Filter::Validated) | Array[Filter])?
   @user_filtering: User::Filtering
 
   include ActionViewContext
   include BoardsHelper
 
-  def initialize: (board: ((Board | (Board & Board::Validated))? | Board & ::Board::Validated), filter: (Filter & Filter::Validated)?, page: untyped, user_filtering: User::Filtering) -> void
+  def initialize: (board: ((Board | (Board & Board::Validated))? | Board & ::Board::Validated), filter: (Filter & Filter::Validated | Array[Filter] | nil), page: untyped, user_filtering: User::Filtering) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
