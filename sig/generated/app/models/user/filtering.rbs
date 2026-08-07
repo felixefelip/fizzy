@@ -6,10 +6,10 @@ class User
     @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
 
     attr_reader user: (User & User::Validated)
-    attr_reader filter: (Filter & Filter::Validated)?
+    attr_reader filter: ((Filter & Filter::Validated) | Array[Filter])?
     attr_reader expanded: bool
 
-    def initialize: ((User & User::Validated) user, (Filter & Filter::Validated)? filter, ?expanded: bool) -> void
+    def initialize: ((User & User::Validated) user, ((Filter & Filter::Validated) | Array[Filter])? filter, ?expanded: bool) -> void
     def boards: () -> Board::ActiveRecord_Relation
     def selected_board_titles: () -> Array[String]
     def selected_boards_label: () -> untyped

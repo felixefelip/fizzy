@@ -1,5 +1,5 @@
 module FilterScoped
-  @filter: (Filter & Filter::Validated)?
+  @filter: ((Filter & Filter::Validated) | Array[Filter])?
   @user_filtering: User::Filtering?
 
   extend ActiveSupport::Concern

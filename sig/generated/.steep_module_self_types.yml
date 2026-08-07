@@ -641,16 +641,15 @@ app/models/concerns/notifiable.rb:
   - anchor: Notifiable
     annotations:
     - "# @type self: (singleton(Event) & singleton(Notifiable)) | (singleton(Mention)
-      & singleton(Notifiable)) | (singleton(User) & singleton(Notifiable))"
-    - "# @type instance: (Event & Notifiable) | (Mention & Notifiable) | (User & Notifiable)"
+      & singleton(Notifiable))"
+    - "# @type instance: (Event & Notifiable) | (Mention & Notifiable)"
 app/models/concerns/searchable.rb:
   modules:
   - anchor: Searchable
     annotations:
-    - "# @type self: (singleton(Account) & singleton(Searchable)) | (singleton(Card)
-      & singleton(Searchable)) | (singleton(Comment) & singleton(Searchable))"
-    - "# @type instance: (Account & Searchable) | (Card & Searchable) | (Comment &
-      Searchable)"
+    - "# @type self: (singleton(Card) & singleton(Searchable)) | (singleton(Comment)
+      & singleton(Searchable))"
+    - "# @type instance: (Card & Searchable) | (Comment & Searchable)"
 app/models/concerns/storage/totaled.rb:
   modules:
   - anchor: Totaled
