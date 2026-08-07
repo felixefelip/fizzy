@@ -2302,14 +2302,6 @@ methods:
           kind: self
         method: card_ids
     enforced: false
-  Filter#empty?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
   Filter#include_closed_cards?:
     requires:
     - kind: not_nil
