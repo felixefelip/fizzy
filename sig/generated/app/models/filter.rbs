@@ -7,7 +7,7 @@ class Filter < ApplicationRecord
   include Summarized
 
   def self.from_params: (untyped params) -> ((Filter & Filter::Validated) | Array[Filter])
-  def self.remember: (untyped attrs) -> Filter
+  def self.remember: (untyped attrs) -> (Filter | Filter::Validated | nil)
 
   def cards: () -> untyped
   def empty?: () -> untyped

@@ -16,6 +16,6 @@ class CardsController < ApplicationController
   def set_board: () -> (Board & Board::Validated)
   def set_card: () -> Card?
   def redirect_if_drafted: () -> bool?
-  def ensure_permission_to_administer_card: () -> true?
+  def ensure_permission_to_administer_card: () -> bool?
   def card_params: () -> untyped
 end

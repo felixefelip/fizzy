@@ -10,7 +10,7 @@ module CardScoped
 
   def set_card: () -> (Card & Card::Validated)
   def set_board: () -> (Board & Board::Validated)
-  def render_card_replacement: () -> bool
+  def render_card_replacement: () -> (bool | String)
   def capture_card_location: () -> bool
   def refresh_stream_if_needed: () -> untyped
 end

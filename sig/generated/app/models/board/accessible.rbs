@@ -17,7 +17,7 @@ class Board
     def grant_access_to_everyone: () -> untyped
     def mentions_for_user: (untyped user) -> untyped
     def notifications_for_user: (untyped user) -> untyped
-    def watches_for: (untyped user) -> ActiveRecord::QueryMethods::WhereChain[Watch::ActiveRecord_Relation]
-    def pins_for: (untyped user) -> ActiveRecord::QueryMethods::WhereChain[Pin::ActiveRecord_Relation]
+    def watches_for: (untyped user) -> Watch::ActiveRecord_Relation
+    def pins_for: (untyped user) -> Pin::ActiveRecord_Relation
   end
 end

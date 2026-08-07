@@ -3,7 +3,7 @@ module ActiveRecord
     class Uuid < Binary
       BASE36_LENGTH: ActiveRecord::Type::Integer
 
-      def self.generate: () -> String
+      def self.generate: () -> ActiveRecord::Type::String
       def self.hex_to_base36: (String hex) -> String
       def self.base36_to_hex: (untyped base36) -> untyped
 

@@ -10,10 +10,10 @@ class Card
 
     def remove_inaccessible_notifications_later: () -> untyped
     def event_notification_sources: () -> untyped
-    def comment_creation_events: () -> ActiveRecord::QueryMethods::WhereChain[Event::ActiveRecord_Relation]
+    def comment_creation_events: () -> Event::ActiveRecord_Relation
     def inaccessible_notifications_from: (untyped sources, untyped accessible_user_ids) -> Notification::ActiveRecord_Relation
     def notification_sources: () -> Array[untyped]
     def mention_notification_sources: () -> untyped
-    def comment_mentions: () -> ActiveRecord::QueryMethods::WhereChain[Mention::ActiveRecord_Relation]
+    def comment_mentions: () -> Mention::ActiveRecord_Relation
   end
 end

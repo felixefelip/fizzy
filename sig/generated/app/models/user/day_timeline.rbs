@@ -32,7 +32,7 @@ class User
     def timelineable_events: () -> Event::ActiveRecord_Relation
     def boards: () -> untyped
     def latest_event_before: () -> (Event & Event::Validated)?
-    def build_column: (Symbol id, String base_title, Integer index, untyped events) -> Column
+    def build_column: (Symbol id, String base_title, Integer index, untyped events) -> User::DayTimeline::Column
     def window: () -> untyped
   end
 end
