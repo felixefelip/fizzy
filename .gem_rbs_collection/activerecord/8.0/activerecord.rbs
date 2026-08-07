@@ -647,6 +647,14 @@ module ActiveRecord
                             | (*untyped) { (Model) -> void } -> (Model & ValidatedModel)
       def find_or_initialize_by: (*untyped) -> Model
                                | (*untyped) { (Model) -> void } -> Model
+      # `Model.build` (Rails 7.1+) initializes without saving, so it returns a
+      # plain Model — same as `find_or_initialize_by`. The Array overload comes
+      # first: `untyped` would otherwise swallow an Array of attribute hashes
+      # and hand back a single Model instead of one record per hash.
+      def build: (Array[untyped] attributes) -> Array[Model]
+               | (Array[untyped] attributes) { (Model) -> void } -> Array[Model]
+               | (?untyped attributes) -> Model
+               | (?untyped attributes) { (Model) -> void } -> Model
       def create_or_find_by: (*untyped) -> Model
                            | (*untyped) { (Model) -> void } -> Model
       def create_or_find_by!: (*untyped) -> (Model & ValidatedModel)
