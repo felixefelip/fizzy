@@ -4,6 +4,6 @@ class Filter
     include ::Filter::Params::ClassMethods
 
     def from_params: (untyped params) -> ((Filter & Filter::Validated) | Array[Filter])
-    def remember: (untyped attrs) -> Filter
+    def remember: (untyped attrs) -> (Filter | Filter::Validated | nil)
   end
 end

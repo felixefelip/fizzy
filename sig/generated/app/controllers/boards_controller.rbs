@@ -15,7 +15,7 @@ class BoardsController < ApplicationController
 
   def set_board: () -> (Board & Board::Validated)
   def ensure_permission_to_admin_board: () -> bool?
-  def grantees_changed?: () -> untyped
+  def grantees_changed?: () -> bool
   def show_filtered_cards: () -> untyped
   def show_columns: () -> untyped
   def board_params: () -> untyped

@@ -7,7 +7,7 @@ module FilterScoped
   private
 
   def set_filter: () -> ((Filter & Filter::Validated) | Array[Filter])
-  def filter_params: () -> untyped
+  def filter_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   def set_user_filtering: () -> User::Filtering
   def expanded_param: () -> untyped
 end
