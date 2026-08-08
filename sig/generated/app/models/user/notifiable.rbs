@@ -2,13 +2,13 @@ class User
   module Notifiable
     extend ActiveSupport::Concern
 
-    def bundle: (untyped notification) -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle)
+    def bundle: (Notification & Notification::Validated notification) -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle)
 
     private
 
-    def find_or_create_bundle_for: (untyped notification) -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle)
-    def find_bundle_for: (untyped notification) -> (Notification::Bundle & Notification::Bundle::Validated)?
-    def expand_pending_bundle_for: (untyped notification) -> Notification::Bundle?
-    def create_bundle_for: (untyped notification) -> Notification::Bundle
+    def find_or_create_bundle_for: ((Notification & Notification::Validated) notification) -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle)
+    def find_bundle_for: ((Notification & Notification::Validated) notification) -> (Notification::Bundle & Notification::Bundle::Validated)?
+    def expand_pending_bundle_for: ((Notification & Notification::Validated) notification) -> Notification::Bundle?
+    def create_bundle_for: ((Notification & Notification::Validated) notification) -> Notification::Bundle
   end
 end

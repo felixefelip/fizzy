@@ -12,9 +12,9 @@ class Filter
 
     extend ActiveSupport::Concern
 
-    def used?: (?ignore_boards: untyped) -> untyped
+    def used?: (?ignore_boards: bool) -> untyped
     def as_params: () -> Hash[untyped, untyped]
-    def as_params_without: (untyped key, untyped value) -> Hash[untyped, untyped]
+    def as_params_without: (Symbol key, untyped value) -> Hash[untyped, untyped]
     def params_digest: () -> untyped
   end
 end

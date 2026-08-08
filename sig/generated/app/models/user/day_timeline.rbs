@@ -11,10 +11,10 @@ class User
     extend Serializable::ClassMethods
 
     attr_reader user: (User & User::Timelined)
-    attr_reader day: untyped
-    attr_reader filter: untyped
+    attr_reader day: (ActiveSupport::TimeWithZone | bool)
+    attr_reader filter: (Filter & Filter::Validated | Array[Filter] | nil)
 
-    def initialize: ((User & User::Timelined) user, untyped day, untyped filter) -> void
+    def initialize: ((User & User::Timelined) user, (ActiveSupport::TimeWithZone | bool) day, (Filter & Filter::Validated | Array[Filter] | nil) filter) -> void
     def has_activity?: () -> bool
     def events: () -> Event::ActiveRecord_Relation
     def next_day: () -> ActiveSupport::TimeWithZone?
@@ -34,5 +34,9 @@ class User
     def latest_event_before: () -> (Event & Event::Validated)?
     def build_column: (Symbol id, String base_title, Integer index, untyped events) -> User::DayTimeline::Column
     def window: () -> untyped
+
+    class AfterInitialize
+      attr_reader filter: ((Filter & Filter::Validated) | Array[Filter])?
+    end
   end
 end

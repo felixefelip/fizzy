@@ -3,9 +3,9 @@ class User
     extend ActiveSupport::Concern
 
     def admin?: () -> untyped
-    def can_change?: (untyped other) -> untyped
-    def can_administer?: (untyped other) -> untyped
-    def can_administer_board?: (untyped board) -> untyped
-    def can_administer_card?: (untyped card) -> untyped
+    def can_change?: ((User & User::Validated) other) -> untyped
+    def can_administer?: (User & User::Validated other) -> untyped
+    def can_administer_board?: ((Board | (Board & Board::Validated)) board) -> untyped
+    def can_administer_card?: ((Card | (Card & Card::Validated))? card) -> untyped
   end
 end

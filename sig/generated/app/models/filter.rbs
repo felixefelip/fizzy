@@ -6,7 +6,7 @@ class Filter < ApplicationRecord
   include Resources
   include Summarized
 
-  def self.from_params: (untyped params) -> ((Filter & Filter::Validated) | Array[Filter])
+  def self.from_params: ((ActionController::Parameters & ActionController::Parameters::Permitted) params) -> ((Filter & Filter::Validated) | Filter)
   def self.remember: (untyped attrs) -> (Filter | Filter::Validated | nil)
 
   def cards: () -> untyped
