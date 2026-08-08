@@ -5,9 +5,9 @@ class Filter
     PERMITTED_PARAMS: Array[(Symbol | Hash[Symbol, Array[untyped]])]
 
     module ClassMethods
-      def find_by_params: (untyped params) -> (Filter & Filter::Validated)?
-      def digest_params: (untyped params) -> String
-      def normalize_params: (untyped params) -> untyped
+      def find_by_params: (((ActionController::Parameters & ActionController::Parameters::Permitted) | Hash[untyped, untyped]) params) -> (Filter & Filter::Validated)?
+      def digest_params: ((ActionController::Parameters & ActionController::Parameters::Permitted | Hash[untyped, untyped]) params) -> String
+      def normalize_params: ((ActionController::Parameters & ActionController::Parameters::Permitted | Hash[untyped, untyped]) params) -> Hash[untyped, untyped]
     end
 
     extend ActiveSupport::Concern

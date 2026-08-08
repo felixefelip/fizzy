@@ -8,5 +8,5 @@ class FiltersController < ApplicationController
   private
 
   def set_filters: () -> User_Filter::ActiveRecord_Associations_CollectionProxy
-  def filter_params: () -> untyped
+  def filter_params: () -> Hash[untyped, untyped]
 end

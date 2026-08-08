@@ -3,7 +3,7 @@ class Filter
     include ::Filter::Fields::ClassMethods
     include ::Filter::Params::ClassMethods
 
-    def from_params: (ActionController::Parameters & ActionController::Parameters::Permitted params) -> ((Filter & Filter::Validated) | Array[Filter])
-    def remember: (untyped attrs) -> (Filter | Filter::Validated | nil)
+    def from_params: (ActionController::Parameters & ActionController::Parameters::Permitted params) -> ((Filter & Filter::Validated) | Filter)
+    def remember: (Hash[untyped, untyped] attrs) -> (Filter | Filter::Validated | nil)
   end
 end

@@ -7,10 +7,10 @@ class Filter < ApplicationRecord
   include Summarized
 
   def self.from_params: ((ActionController::Parameters & ActionController::Parameters::Permitted) params) -> ((Filter & Filter::Validated) | Filter)
-  def self.remember: (untyped attrs) -> (Filter | Filter::Validated | nil)
+  def self.remember: (Hash[untyped, untyped] attrs) -> (Filter | Filter::Validated | nil)
 
   def cards: () -> untyped
-  def empty?: () -> untyped
+  def empty?: () -> bool
   def single_board: () -> (Board & Board::Validated)?
   def single_workflow: () -> untyped
   def cacheable?: () -> bool
