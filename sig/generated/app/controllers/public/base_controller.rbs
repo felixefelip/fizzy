@@ -1,11 +1,12 @@
 module Public
   class BaseController < ApplicationController
     @board: (Board & Board::Validated)?
+    @card: (Card & Card::Validated)?
 
     private
 
     def set_board: () -> (Board & Board::Validated)
-    def set_card: () -> untyped
+    def set_card: () -> (Card & Card::Validated)?
     def set_public_cache_expiration: () -> untyped
     def ensure_board_accessible: () -> untyped
   end

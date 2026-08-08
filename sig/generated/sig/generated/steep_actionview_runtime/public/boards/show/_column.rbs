@@ -1,12 +1,12 @@
 class ERBPartialPublicBoardsShowColumn
   include ActionViewContext
 
-  def initialize: (column: untyped) -> void
+  def initialize: (column: (Column & Column::Validated)) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader column: untyped
+  attr_reader column: (Column & Column::Validated)
 end

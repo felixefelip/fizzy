@@ -1,11 +1,11 @@
 class ERBCardsIndex
-  @filter: ((Filter & Filter::Validated) | Array[Filter])?
+  @filter: (Filter & Filter::Validated) | Filter
   @user_filtering: User::Filtering
 
   include ActionViewContext
   include CardsHelper
 
-  def initialize: (filter: (Filter & Filter::Validated | Array[Filter] | nil), page: untyped, user_filtering: User::Filtering) -> void
+  def initialize: (filter: (::Filter & ::Filter::Validated | ::Filter), page: untyped, user_filtering: User::Filtering) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

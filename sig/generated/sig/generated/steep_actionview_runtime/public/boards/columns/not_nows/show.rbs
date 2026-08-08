@@ -1,9 +1,9 @@
 class ERBPublicBoardsColumnsNotNowsShow
-  @board: (Board & Board::Validated)?
+  @board: (Board & Board::Validated)
 
   include ActionViewContext
 
-  def initialize: (board: (Board & Board::Validated)?, page: untyped, page_title: untyped) -> void
+  def initialize: (board: Board & ::Board::Validated, page: untyped, page_title: untyped) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

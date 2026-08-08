@@ -12,9 +12,9 @@ class User
 
     attr_reader user: (User & User::Timelined)
     attr_reader day: (ActiveSupport::TimeWithZone | bool)
-    attr_reader filter: (Filter & Filter::Validated | Array[Filter] | nil)
+    attr_reader filter: (Filter & Filter::Validated | Filter)
 
-    def initialize: ((User & User::Timelined) user, (ActiveSupport::TimeWithZone | bool) day, (Filter & Filter::Validated | Array[Filter] | nil) filter) -> void
+    def initialize: ((User & User::Timelined) user, (ActiveSupport::TimeWithZone | bool) day, (Filter & Filter::Validated | Filter) filter) -> void
     def has_activity?: () -> bool
     def events: () -> Event::ActiveRecord_Relation
     def next_day: () -> ActiveSupport::TimeWithZone?
@@ -30,13 +30,13 @@ class User
 
     def filtered_events: () -> Event::ActiveRecord_Relation
     def timelineable_events: () -> Event::ActiveRecord_Relation
-    def boards: () -> untyped
+    def boards: () -> (Board::ActiveRecord_Associations_CollectionProxy | User_Board::ActiveRecord_Associations_CollectionProxy)
     def latest_event_before: () -> (Event & Event::Validated)?
     def build_column: (Symbol id, String base_title, Integer index, untyped events) -> User::DayTimeline::Column
     def window: () -> untyped
 
     class AfterInitialize
-      attr_reader filter: ((Filter & Filter::Validated) | Array[Filter])?
+      attr_reader filter: (Filter & Filter::Validated) | Filter
     end
   end
 end

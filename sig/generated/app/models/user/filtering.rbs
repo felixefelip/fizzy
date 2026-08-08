@@ -6,10 +6,10 @@ class User
     @filters: User_Filter::ActiveRecord_Associations_CollectionProxy?
 
     attr_reader user: (User & User::Validated)
-    attr_reader filter: ((Filter & Filter::Validated) | Filter)?
+    attr_reader filter: (Filter & Filter::Validated | Filter)
     attr_reader expanded: bool
 
-    def initialize: ((User & User::Validated) user, ((Filter & Filter::Validated) | Filter)? filter, ?expanded: bool) -> void
+    def initialize: ((User & User::Validated) user, (Filter & Filter::Validated | Filter) filter, ?expanded: bool) -> void
     def boards: () -> Board::ActiveRecord_Relation
     def selected_board_titles: () -> Array[String]
     def selected_boards_label: () -> untyped
@@ -25,7 +25,7 @@ class User
     def show_creators?: () -> bool
     def show_closers?: () -> bool
     def show_boards?: () -> bool
-    def single_board_or_first: () -> untyped
+    def single_board_or_first: () -> (Board & Board::Validated)?
     def cache_key: () -> untyped
     def as_params: () -> Hash[untyped, untyped]
     def single_board: () -> (Board & Board::Validated)?
@@ -34,5 +34,9 @@ class User
     private
 
     def account: () -> (Account & Account::Validated)
+
+    class AfterInitialize
+      attr_reader filter: (Filter & Filter::Validated) | Filter
+    end
   end
 end

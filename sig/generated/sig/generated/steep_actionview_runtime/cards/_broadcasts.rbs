@@ -1,11 +1,15 @@
 class ERBPartialCardsBroadcasts
   include ActionViewContext
 
-  def initialize: (filter: ((Filter & Filter::Validated) | Array[Filter])?) -> void
+  def initialize: (filter: (Filter & Filter::Validated | Filter)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader filter: ((Filter & Filter::Validated) | Array[Filter])?
+  attr_reader filter: (Filter & Filter::Validated | Filter)
+
+  class AfterInitialize
+    attr_reader filter: (Filter & Filter::Validated) | Filter
+  end
 end

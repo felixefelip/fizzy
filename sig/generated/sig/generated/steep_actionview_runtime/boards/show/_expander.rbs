@@ -1,7 +1,7 @@
 class ERBPartialBoardsShowExpander
   include ActionViewContext
 
-  def initialize: (column_id: String, count: Integer, title: String) -> void
+  def initialize: (column_id: String, count: Integer, title: (String | String?)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
@@ -9,5 +9,9 @@ class ERBPartialBoardsShowExpander
 
   attr_reader column_id: String
   attr_reader count: Integer
-  attr_reader title: String
+  attr_reader title: (String | String?)
+
+  class AfterInitialize
+    attr_reader title: String?
+  end
 end

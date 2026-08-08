@@ -1,12 +1,12 @@
 class ERBEventsIndex
   @day_timeline: User::DayTimeline
-  @filter: ((Filter & Filter::Validated) | Array[Filter])?
+  @filter: (Filter & Filter::Validated) | Filter
   @user_filtering: User::Filtering
 
   include ActionViewContext
   include EventsHelper
 
-  def initialize: (day_timeline: User::DayTimeline, filter: (Filter & Filter::Validated | Array[Filter] | nil), user_filtering: User::Filtering) -> void
+  def initialize: (day_timeline: User::DayTimeline, filter: (::Filter & ::Filter::Validated | ::Filter), user_filtering: User::Filtering) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

@@ -2,6 +2,6 @@ class User
   module Timelined
     extend ActiveSupport::Concern
 
-    def timeline_for: ((ActiveSupport::TimeWithZone | bool) day, filter: (Filter & Filter::Validated | Array[Filter] | nil)) -> User::DayTimeline
+    def timeline_for: ((ActiveSupport::TimeWithZone | bool) day, filter: (Filter & Filter::Validated | Filter)) -> User::DayTimeline
   end
 end

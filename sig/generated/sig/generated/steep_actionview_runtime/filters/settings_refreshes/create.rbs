@@ -1,9 +1,9 @@
 class ERBFiltersSettingsRefreshesCreate
-  @filter: ((Filter & Filter::Validated) | Array[Filter])?
+  @filter: (Filter & Filter::Validated) | Filter
 
   include ActionViewContext
 
-  def initialize: (filter: (Filter & Filter::Validated | Array[Filter] | nil)) -> void
+  def initialize: (filter: (::Filter & ::Filter::Validated | ::Filter)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end
