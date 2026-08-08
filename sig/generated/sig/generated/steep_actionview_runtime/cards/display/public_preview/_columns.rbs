@@ -1,11 +1,11 @@
 class ERBPartialCardsDisplayPublicPreviewColumns
   include ActionViewContext
 
-  def initialize: (card: untyped) -> void
+  def initialize: (card: (Card & Card::Validated)?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader card: untyped
+  attr_reader card: (Card & Card::Validated)?
 end
