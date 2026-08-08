@@ -3,8 +3,8 @@ module ActionPack
     module Request
       extend ActiveSupport::Concern
 
-      def passkey_registration_params: (?param: untyped) -> untyped
-      def passkey_authentication_params: (?param: untyped) -> untyped
+      def passkey_registration_params: (?param: untyped) -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+      def passkey_authentication_params: (?param: untyped) -> (ActionController::Parameters & ActionController::Parameters::Permitted)
       def passkey_authentication_options: (**untyped) -> ActionPack::WebAuthn::PublicKeyCredential::RequestOptions
       def passkey_registration_options: (**untyped) -> ActionPack::WebAuthn::PublicKeyCredential::CreationOptions
     end
