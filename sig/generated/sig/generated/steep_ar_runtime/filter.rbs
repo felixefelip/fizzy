@@ -1,4 +1,6 @@
 class Filter
+  include ::Filter::GeneratedStoreAccessors
+
   def save: (**untyped) -> bool
   def run_before_validation_callbacks: () -> Account?
   def run_belongs_to_default_callbacks: () -> Account?

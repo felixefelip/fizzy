@@ -1,0 +1,6 @@
+class Event
+  module GeneratedStoreAccessors
+    def assignee_ids: () -> untyped
+    def assignee_ids=: (untyped value) -> untyped
+  end
+end

@@ -1,0 +1,20 @@
+class Filter
+  module GeneratedStoreAccessors
+    def assignment_status: () -> untyped
+    def assignment_status=: (untyped value) -> untyped
+    def indexed_by: () -> untyped
+    def indexed_by=: (untyped value) -> untyped
+    def sorted_by: () -> untyped
+    def sorted_by=: (untyped value) -> untyped
+    def terms: () -> untyped
+    def terms=: (untyped value) -> untyped
+    def card_ids: () -> untyped
+    def card_ids=: (untyped value) -> untyped
+    def creation: () -> untyped
+    def creation=: (untyped value) -> untyped
+    def closure: () -> untyped
+    def closure=: (untyped value) -> untyped
+    def column_ids: () -> untyped
+    def column_ids=: (untyped value) -> untyped
+  end
+end

@@ -4,6 +4,8 @@
 # Regenerated on every run; do not edit.
 
 class Event
+  include ::Event::GeneratedStoreAccessors
+
   def save(**)
     run_before_validation_callbacks
     true
