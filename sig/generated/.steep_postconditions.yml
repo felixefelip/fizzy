@@ -3911,6 +3911,26 @@ postconditions:
   effects:
     may_write:
     - "@users"
+- class: ERBPublicBoardsColumnsClosedsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBPublicBoardsColumnsNotNowsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBPublicBoardsColumnsStreamsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
+- class: ERBPublicBoardsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@board"
 - class: ERBReactionsCreate
   method: initialize
   effects:
@@ -4163,7 +4183,7 @@ postconditions:
   method: set_filter
   unconditional:
     ivars:
-      "@filter": untyped
+      "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     self: "::FilterScoped & ::FilterScoped::AfterSetFilter"
   effects:
     may_write:
@@ -4214,7 +4234,7 @@ postconditions:
   method: create
   unconditional:
     ivars:
-      "@filter": "::Filter"
+      "@filter": "(::Filter | ::Filter::Validated | nil)"
     self: "::FiltersController & ::FiltersController::AfterCreate"
   effects:
     may_write:
@@ -4950,11 +4970,21 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Public::BaseController
+  method: set_board
+  unconditional:
+    ivars:
+      "@board": "(::Board & ::Board::Validated)"
+    self: "::Public::BaseController & ::Public::BaseController::AfterSetBoard"
+  effects:
+    may_write:
+    - "@board"
 - class: Public::Boards::Columns::ClosedsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::ClosedsController
   method: render
@@ -4970,6 +5000,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::NotNowsController
   method: render
@@ -4985,6 +5016,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::StreamsController
   method: render
@@ -5000,6 +5032,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::Boards::ColumnsController
   method: render
@@ -5015,6 +5048,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::BoardsController
   method: render
@@ -5030,6 +5064,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@board"
     - "@disable_view_transition"
 - class: Public::CardsController
   method: render
@@ -7361,6 +7396,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: create
@@ -7370,6 +7406,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: destroy
@@ -7380,6 +7417,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: edit
@@ -7390,6 +7428,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: ensure_permission_to_admin_board
@@ -7400,6 +7439,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: grantee_ids
@@ -7410,6 +7450,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: grantees
@@ -7420,6 +7461,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: index
@@ -7429,6 +7471,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: new
@@ -7438,6 +7481,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: render
@@ -7447,6 +7491,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: revokees
@@ -7457,6 +7502,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: set_board
@@ -7466,6 +7512,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: show
@@ -7476,6 +7523,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: show_columns
@@ -7486,6 +7534,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: show_filtered_cards
@@ -7496,6 +7545,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: update
@@ -7506,6 +7556,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsHelper
   method: link_back_to_board
@@ -8207,6 +8258,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Cards::PreviewsController
   method: render
@@ -8216,6 +8268,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Cards::PublishesController
   method: add_another_param?
@@ -8564,6 +8617,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: create
@@ -8574,6 +8628,7 @@ method_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: destroy
@@ -8584,6 +8639,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: edit
@@ -8594,6 +8650,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: ensure_permission_to_administer_card
@@ -8604,6 +8661,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: index
@@ -8613,6 +8671,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: redirect_if_drafted
@@ -8623,6 +8682,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: render
@@ -8632,6 +8692,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: set_board
@@ -8641,6 +8702,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: set_card
@@ -8650,6 +8712,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: show
@@ -8660,6 +8723,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: update
@@ -8670,6 +8734,7 @@ method_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsHelper
   method: button_to_remove_card_image
@@ -8880,6 +8945,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: DayTimelinesScoped
   method: set_day_timeline
@@ -8889,6 +8955,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: ERBAccountExportsShow
   method: __rbs_infer__body
@@ -10942,6 +11009,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
   method: render
@@ -10952,6 +11020,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
   method: set_column
@@ -10962,6 +11031,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DayTimeline::ColumnsController
   method: show
@@ -10972,6 +11042,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
   method: index
@@ -10982,6 +11053,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
   method: render
@@ -10992,6 +11064,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: EventsController
   method: index
@@ -11002,6 +11075,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: EventsController
   method: render
@@ -11012,6 +11086,7 @@ method_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Export
   method: build_later
@@ -11039,6 +11114,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
 - class: FilterScoped
   method: filter_params
   consts:
@@ -11063,6 +11139,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
 - class: Filters::SettingsRefreshesController
   method: create
   consts:
@@ -11071,6 +11148,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Filters::SettingsRefreshesController
   method: render
@@ -11080,6 +11158,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: FiltersController
   method: create
@@ -11793,6 +11872,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: set_board
@@ -11809,6 +11889,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BaseController
   method: set_public_cache_expiration
@@ -11817,6 +11898,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::ClosedsController
   method: render
@@ -11825,6 +11907,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::ClosedsController
   method: show
@@ -11833,6 +11916,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: render
@@ -11841,6 +11925,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: show
@@ -11849,6 +11934,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: render
@@ -11857,6 +11943,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: show
@@ -11865,6 +11952,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: render
@@ -11873,6 +11961,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: set_card
@@ -11881,6 +11970,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: set_column
@@ -11889,6 +11979,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: show
@@ -11897,6 +11988,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: render
@@ -11905,6 +11997,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: show
@@ -11913,6 +12006,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: render
@@ -11921,6 +12015,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: show
@@ -11929,6 +12024,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: PwaController
   method: service_worker
@@ -12759,6 +12855,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Users::EventsController
   method: show
@@ -12768,6 +12865,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user": "(::User & ::User::Validated)"
     "@user_filtering": "::User::Filtering"
 - class: Users::JoinsController
@@ -13258,6 +13356,7 @@ argument_entry_facts:
   ivars:
     "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: render
@@ -13266,6 +13365,7 @@ argument_entry_facts:
   ivars:
     "@board": "::Board"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: BoardsController
   method: render
@@ -13273,6 +13373,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Cards::AssignmentsController
   method: render
@@ -13443,6 +13544,7 @@ argument_entry_facts:
   pattern: ":index"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Cards::ReactionsController
   method: render
@@ -13601,6 +13703,7 @@ argument_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: render
@@ -13608,6 +13711,7 @@ argument_entry_facts:
   pattern: ":index"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: render
@@ -13615,6 +13719,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: CardsController
   method: render
@@ -13623,6 +13728,7 @@ argument_entry_facts:
   ivars:
     "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Columns::Cards::Drops::ClosuresController
   method: render
@@ -14026,6 +14132,7 @@ argument_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Events::DaysController
   method: render
@@ -14034,6 +14141,7 @@ argument_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: EventsController
   method: render
@@ -14042,6 +14150,7 @@ argument_entry_facts:
   ivars:
     "@day_timeline": "::User::DayTimeline"
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: Filters::SettingsRefreshesController
   method: render
@@ -14049,6 +14158,7 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@disable_view_transition": 'true'
+    "@filter": "((::Filter & ::Filter::Validated) | ::Filter)"
     "@user_filtering": "::User::Filtering"
 - class: FiltersController
   method: render
@@ -14056,7 +14166,6 @@ argument_entry_facts:
   pattern: ":create"
   ivars:
     "@disable_view_transition": 'true'
-    "@filter": "::Filter"
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
 - class: FiltersController
   method: render
@@ -14202,36 +14311,42 @@ argument_entry_facts:
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: render
   param: target
   pattern: ":show"
   ivars:
+    "@board": "(::Board & ::Board::Validated)"
     "@disable_view_transition": 'true'
 - class: SearchesController
   method: render

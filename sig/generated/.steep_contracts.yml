@@ -2140,6 +2140,85 @@ methods:
         chain:
         - eventable
     enforced: false
+  ERBPartialPublicBoardsShowClosed#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - closed
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - closed
+        - published
+    enforced: false
+  ERBPartialPublicBoardsShowColumns#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - columns
+    enforced: false
+  ERBPartialPublicBoardsShowNotNow#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+        chain:
+        - cards
+        - postponed
+    enforced: false
   ERBPartialReactionsReactions#render:
     requires:
     - kind: not_nil
@@ -3654,6 +3733,327 @@ methods:
         chain:
         - accessible_cards
     enforced: false
+  User::DayTimeline#added_column:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#boards:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#cache_key:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#closed_column:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#earliest_time:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#events:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#filtered_events:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#has_activity?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#latest_event_before:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#latest_time:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
+        chain:
+        - yesterday
+    enforced: false
+  User::DayTimeline#next_day:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#timelineable_events:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#updated_column:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - creators
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
+        chain:
+        - boards
+    enforced: false
+  User::DayTimeline#window:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
   User::DayTimeline::Column#events_by_hour:
     requires:
     - kind: not_nil
@@ -3670,6 +4070,15 @@ methods:
         method: it
         chain:
         - created_at
+    enforced: false
+  User::DayTimeline::Serializable#as_json:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filter
     enforced: false
   User::EmailAddressChangeable#change_email_address_using_token:
     requires:
