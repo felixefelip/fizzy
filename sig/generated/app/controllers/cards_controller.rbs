@@ -17,5 +17,5 @@ class CardsController < ApplicationController
   def set_card: () -> Card?
   def redirect_if_drafted: () -> bool?
   def ensure_permission_to_administer_card: () -> bool?
-  def card_params: () -> untyped
+  def card_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
 end

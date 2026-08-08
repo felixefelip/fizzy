@@ -9,6 +9,6 @@ class Account
     private
 
     def set_account: () -> (Account & Account::Validated)
-    def account_params: () -> untyped
+    def account_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   end
 end

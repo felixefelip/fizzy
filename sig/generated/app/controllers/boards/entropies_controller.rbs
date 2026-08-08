@@ -6,6 +6,6 @@ module Boards
 
     private
 
-    def entropy_params: () -> untyped
+    def entropy_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   end
 end

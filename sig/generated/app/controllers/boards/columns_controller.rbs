@@ -14,6 +14,6 @@ module Boards
     private
 
     def set_column: () -> (Column & Column::Validated)
-    def column_params: () -> untyped
+    def column_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   end
 end

@@ -10,6 +10,6 @@ class Account
     private
 
     def set_join_code: () -> Account::JoinCode?
-    def join_code_params: () -> untyped
+    def join_code_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   end
 end

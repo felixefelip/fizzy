@@ -16,6 +16,6 @@ module Cards
     def set_comment: () -> (Comment & Comment::Validated)
     def ensure_creatorship: () -> bool?
     def ensure_card_is_commentable: () -> bool?
-    def comment_params: () -> untyped
+    def comment_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   end
 end

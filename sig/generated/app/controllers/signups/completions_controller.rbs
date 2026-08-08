@@ -7,7 +7,7 @@ module Signups
 
     private
 
-    def signup_params: () -> untyped
+    def signup_params: () -> ActionController::Parameters
     def welcome_to_account: () -> untyped
     def invalid_signup: () -> untyped
   end

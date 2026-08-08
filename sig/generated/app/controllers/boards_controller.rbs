@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
   def grantees_changed?: () -> bool
   def show_filtered_cards: () -> untyped
   def show_columns: () -> untyped
-  def board_params: () -> untyped
+  def board_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   def grantees: () -> User::ActiveRecord_Relation
   def revokees: () -> Board_User::ActiveRecord_Associations_CollectionProxy
   def grantee_ids: () -> untyped
