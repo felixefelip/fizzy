@@ -1,11 +1,6 @@
 module Search
   class Record
     module SQLite
-      module ClassMethods
-        def search_fields: (untyped query) -> Array[String]
-        def for: (untyped account_id) -> Search::Record::SQLite
-      end
-
       extend ActiveSupport::Concern
 
       def card_title: () -> untyped
@@ -16,6 +11,17 @@ module Search
 
       def escape_fts_highlight: (untyped html) -> untyped
       def upsert_to_fts5_table: () -> untyped
+    end
+  end
+end
+
+module Search
+  class Record
+    module SQLite
+      module ClassMethods
+        def search_fields: (untyped query) -> Array[String]
+        def for: (untyped account_id) -> Search::Record::SQLite
+      end
     end
   end
 end

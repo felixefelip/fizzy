@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  include Authentication
   extend Authentication::ClassMethods
-  include Authorization
   extend Authorization::ClassMethods
+  include Authentication
+  include Authorization
   include BlockSearchEngineIndexing
   include CurrentRequest
   include CurrentTimezone
@@ -11,4 +11,6 @@ class ApplicationController < ActionController::Base
   include TurboFlash
   include ViewTransitions
   include RoutingHeaders
+  include Authentication::ViaMagicLink
+  include LoginHelper
 end

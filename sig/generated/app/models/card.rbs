@@ -7,7 +7,6 @@ class Card < ApplicationRecord
   include Colored
   include Commentable
   include Entropic
-  extend Entropic::ClassMethods
   include Eventable
   include Exportable
   include Golden

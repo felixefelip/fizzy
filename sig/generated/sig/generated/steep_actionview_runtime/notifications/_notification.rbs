@@ -2,7 +2,7 @@ class ERBPartialNotificationsNotification
   include ActionViewContext
 
   def initialize: (notification: (Notification & Notification::Validated)) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ notification: Notification & Notification::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

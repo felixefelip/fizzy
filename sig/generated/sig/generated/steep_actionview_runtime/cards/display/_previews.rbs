@@ -2,7 +2,7 @@ class ERBPartialCardsDisplayPreviews
   include ActionViewContext
 
   def initialize: (cards: untyped, draggable: bool) -> void
-  def render: (?{ partial: String, collection: untyped, as: Symbol, locals: { draggable: untyped }, cached: bool } target, *untyped) -> nil
+  def render: (?{ partial: String, collection: untyped, as: Symbol, locals: { draggable: untyped }, cached: bool }? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

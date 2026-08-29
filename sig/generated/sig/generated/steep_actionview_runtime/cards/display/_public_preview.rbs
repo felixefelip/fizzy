@@ -2,7 +2,7 @@ class ERBPartialCardsDisplayPublicPreview
   include ActionViewContext
 
   def initialize: (draggable: bool, public_preview: untyped) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ card: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

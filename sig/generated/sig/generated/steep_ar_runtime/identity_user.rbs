@@ -2,7 +2,7 @@ module Identity_User
   class ActiveRecord_Associations_CollectionProxy
     @owner: Identity
 
-    def initialize: (singleton(User) klass, Identity owner) -> void
+    def initialize: (singleton(::User) klass, Identity owner) -> void
     def owner: () -> Identity
     def build: (*untyped) -> ::User
     def create: (*untyped) -> ::User

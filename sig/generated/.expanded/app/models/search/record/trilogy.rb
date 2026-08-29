@@ -26,8 +26,8 @@ module Search::Record::Trilogy
     end.freeze
   end
 
-  module ClassMethods
-def shard_id_for_account(account_id)
+  class_methods do
+    def shard_id_for_account(account_id)
       Zlib.crc32(account_id.to_s) % SHARD_COUNT
     end
 
@@ -38,7 +38,7 @@ def shard_id_for_account(account_id)
     def for(account_id)
       SHARD_CLASSES[shard_id_for_account(account_id)]
     end
-end
+  end
 
   def card_title
     highlight(card.title, show: :full) if card_id
@@ -70,4 +70,18 @@ end
         text
       end
     end
+end
+
+module Search::Record::Trilogy::ClassMethods
+  def shard_id_for_account(account_id)
+    Zlib.crc32(account_id.to_s) % SHARD_COUNT
+  end
+
+  def search_fields(query)
+    "#{connection.quote(query.terms)} AS query"
+  end
+
+  def for(account_id)
+    SHARD_CLASSES[shard_id_for_account(account_id)]
+  end
 end

@@ -2,7 +2,7 @@ module Account_User
   class ActiveRecord_Associations_CollectionProxy
     @owner: Account
 
-    def initialize: (singleton(User) klass, Account owner) -> void
+    def initialize: (singleton(::User) klass, Account owner) -> void
     def owner: () -> Account
     def build: (*untyped) -> ::User
     def create: (*untyped) -> ::User

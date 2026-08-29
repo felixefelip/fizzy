@@ -2,7 +2,7 @@ module User_Push_Subscription
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Push::Subscription) klass, User owner) -> void
+    def initialize: (singleton(::Push::Subscription) klass, User owner) -> void
     def owner: () -> User
     def build: (*untyped) -> ::Push::Subscription
     def create: (*untyped) -> ::Push::Subscription

@@ -10,8 +10,8 @@ module Notification::Pushable
     after_save_commit :push_later, if: :source_id_previously_changed?
   end
 
-  module ClassMethods
-def register_push_target(target)
+  class_methods do
+    def register_push_target(target)
       target = resolve_push_target(target)
       push_targets << target unless push_targets.include?(target)
     end
@@ -24,7 +24,7 @@ def register_push_target(target)
           target
         end
       end
-end
+  end
 
   def push_later
     Notification::PushJob.perform_later(self)
@@ -51,5 +51,22 @@ end
 
     def payload_type
       source_type.presence_in(%w[ Event Mention ]) || "Default"
+    end
+end
+
+module Notification::Pushable::ClassMethods
+  # @type instance: singleton(::Notification) & ::Notification::Pushable::ClassMethods
+  def register_push_target(target)
+    target = resolve_push_target(target)
+    push_targets << target unless push_targets.include?(target)
+  end
+
+  private
+    def resolve_push_target(target)
+      if target.is_a?(Symbol)
+        "Notification::PushTarget::#{target.to_s.classify}".constantize
+      else
+        target
+      end
     end
 end

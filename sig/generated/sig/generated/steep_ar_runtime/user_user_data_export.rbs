@@ -2,7 +2,7 @@ module User_User_DataExport
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(User::DataExport) klass, User owner) -> void
+    def initialize: (singleton(::User::DataExport) klass, User owner) -> void
     def owner: () -> User
   end
 end

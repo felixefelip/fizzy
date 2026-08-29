@@ -5,7 +5,7 @@ class ERBCardsStepsUpdate
   include ActionViewContext
 
   def initialize: (card: Card & ::Card::Validated, step: Step & ::Step::Validated) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ step: Step & Step::Validated } | { card: Card & Card::Validated }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

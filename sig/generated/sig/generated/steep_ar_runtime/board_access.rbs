@@ -2,7 +2,7 @@ module Board_Access
   class ActiveRecord_Associations_CollectionProxy
     @owner: Board
 
-    def initialize: (singleton(Access) klass, Board owner) -> void
+    def initialize: (singleton(::Access) klass, Board owner) -> void
     def owner: () -> Board
     def build: (*untyped) -> ::Access
     def create: (*untyped) -> ::Access

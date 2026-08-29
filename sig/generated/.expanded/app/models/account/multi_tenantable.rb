@@ -8,9 +8,16 @@ module Account::MultiTenantable
     cattr_accessor :multi_tenant, default: false
   end
 
-  module ClassMethods
-def accepting_signups?
+  class_methods do
+    def accepting_signups?
       multi_tenant || Account.none?
     end
+  end
 end
+
+module Account::MultiTenantable::ClassMethods
+  # @type instance: singleton(::Account) & ::Account::MultiTenantable::ClassMethods
+  def accepting_signups?
+    multi_tenant || Account.none?
+  end
 end

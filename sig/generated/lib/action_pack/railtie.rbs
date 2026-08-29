@@ -8,7 +8,6 @@ module ActionPack
     module ActiveRecord
       class Base
         include ::ActionPack::Passkey::Holder
-        extend ::ActionPack::Passkey::Holder::ClassMethods
 
         def self.has_passkeys: (**untyped) ?{ (*untyped) -> untyped } -> untyped
       end

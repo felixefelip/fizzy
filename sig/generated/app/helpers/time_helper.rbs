@@ -1,3 +1,3 @@
 module TimeHelper
-  def local_datetime_tag: ((ActiveSupport::TimeWithZone | bool) datetime, ?style: Symbol, **untyped) -> untyped
+  def local_datetime_tag: ((ActiveSupport::TimeWithZone | bool | ActiveSupport::TimeWithZone?) datetime, ?style: (Symbol | { class: String }), **untyped) -> untyped
 end

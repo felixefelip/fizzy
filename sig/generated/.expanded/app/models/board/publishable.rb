@@ -9,11 +9,11 @@ module Board::Publishable
     scope :published, -> { joins(:publication) }
   end
 
-  module ClassMethods
-def find_by_published_key(key)
+  class_methods do
+    def find_by_published_key(key)
       Board::Publication.find_by!(key: key).board
     end
-end
+  end
 
   def published?
     publication.present?
@@ -26,5 +26,12 @@ end
 
   def unpublish
     publication&.destroy
+  end
+end
+
+module Board::Publishable::ClassMethods
+  # @type instance: singleton(::Board) & ::Board::Publishable::ClassMethods
+  def find_by_published_key(key)
+    Board::Publication.find_by!(key: key).board
   end
 end

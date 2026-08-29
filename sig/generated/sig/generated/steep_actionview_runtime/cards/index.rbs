@@ -6,7 +6,7 @@ class ERBCardsIndex
   include CardsHelper
 
   def initialize: (filter: (::Filter & ::Filter::Validated | ::Filter), page: untyped, user_filtering: User::Filtering) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ filter: (Filter & Filter::Validated) | Filter } | { filter_url: untyped, user_filtering: User::Filtering, no_filtering_url: untyped } | { cards: untyped, draggable: bool }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

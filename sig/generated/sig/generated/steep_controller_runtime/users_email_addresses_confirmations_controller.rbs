@@ -3,7 +3,7 @@ module Users
     class ConfirmationsController
       @__rbs_infer__performed: true?
 
-      def render: (?(Symbol | { json: { error: String }, status: Symbol }) target, *untyped) -> bool
+      def render: (?(Symbol | { json: { error: String }, status: Symbol })? target, *{ status: Symbol } rest) -> bool
 
       private
 

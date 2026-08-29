@@ -2,7 +2,7 @@ module User_Column
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Column) klass, User owner) -> void
+    def initialize: (singleton(::Column) klass, User owner) -> void
     def owner: () -> User
   end
 end

@@ -2,7 +2,7 @@ class ERBLayoutsApplication
   include ActionViewContext
 
   def initialize: (body_class: untyped, header_class: untyped, hide_footer_frames: untyped, page_title: untyped) -> untyped
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

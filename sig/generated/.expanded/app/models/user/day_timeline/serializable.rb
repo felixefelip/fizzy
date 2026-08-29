@@ -9,8 +9,8 @@ module User::DayTimeline::Serializable
     alias id to_json
   end
 
-  module ClassMethods
-def find(id)
+  class_methods do
+    def find(id)
       data = JSON.parse(id).with_indifferent_access
       user = User.find(data[:user_id])
       day = Time.zone.parse(data[:day])
@@ -23,9 +23,26 @@ def find(id)
       # TODO: Check with Mike
       false
     end
-end
+  end
 
   def as_json(options = {})
     { user_id: user.id, day: day.to_s, filter_params: filter.as_params }
+  end
+end
+
+module User::DayTimeline::Serializable::ClassMethods
+  # @type instance: singleton(::User::DayTimeline) & ::User::DayTimeline::Serializable::ClassMethods
+  def find(id)
+    data = JSON.parse(id).with_indifferent_access
+    user = User.find(data[:user_id])
+    day = Time.zone.parse(data[:day])
+    filter = user.filters.from_params data[:filter_params]
+
+    new(user, day, filter)
+  end
+
+  def tenanted?
+    # TODO: Check with Mike
+    false
   end
 end

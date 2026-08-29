@@ -1,7 +1,7 @@
 class ERBPartialBarBar
   include ActionViewContext
 
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ query_terms: String, target_turbo_frame: String } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

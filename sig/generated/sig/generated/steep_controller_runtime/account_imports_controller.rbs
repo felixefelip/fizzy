@@ -2,7 +2,7 @@ class Account
   class ImportsController
     @__rbs_infer__performed: true?
 
-    def render: (?Symbol target, *untyped) -> bool
+    def render: (?Symbol? target, *{ alert: String } rest) -> bool
 
     private
 

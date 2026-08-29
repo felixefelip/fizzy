@@ -2,7 +2,7 @@ module Signups
   class CompletionsController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | { json: { errors: untyped }, status: Symbol }) target, *untyped) -> bool
+    def render: (?(Symbol | { json: { errors: untyped }, status: Symbol })? target, *{ status: Symbol } rest) -> bool
 
     private
 

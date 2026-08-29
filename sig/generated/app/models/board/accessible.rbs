@@ -2,9 +2,6 @@ class Board
   module Accessible
     extend ActiveSupport::Concern
 
-    def revise: (?granted: untyped, ?revoked: untyped) -> untyped
-    def grant_to: (untyped users) -> untyped
-    def revoke_from: (untyped users) -> untyped
     def accessed_by: (untyped user) -> untyped
     def access_for: ((User & User::Validated) user) -> (Access & Access::Validated)?
     def accessible_to?: ((User & User::Validated) user) -> bool

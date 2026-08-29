@@ -2,7 +2,7 @@ module Cards
   class ReactionsController
     @__rbs_infer__performed: true?
 
-    def render: (?String target, *untyped) -> bool
+    def render: (?String? target, *{ status: Symbol } rest) -> bool
 
     private
 

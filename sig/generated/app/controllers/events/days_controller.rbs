@@ -1,6 +1,7 @@
 module Events
   class DaysController < ApplicationController
     include DayTimelinesScoped
+    include FilterScoped
 
     def index: () -> void
   end

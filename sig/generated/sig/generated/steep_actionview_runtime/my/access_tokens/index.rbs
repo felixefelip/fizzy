@@ -4,7 +4,7 @@ class ERBMyAccessTokensIndex
   include ActionViewContext
 
   def initialize: (access_tokens: Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy?, page_title: untyped) -> void
-  def render: (?{ partial: String, collection: Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy? } target, *untyped) -> nil
+  def render: (?{ partial: String, collection: Identity_Identity_AccessToken::ActiveRecord_Associations_CollectionProxy? }? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

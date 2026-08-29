@@ -2,7 +2,7 @@ module Account_Storage_Entry
   class ActiveRecord_Associations_CollectionProxy
     @owner: Account
 
-    def initialize: (singleton(Storage::Entry) klass, Account owner) -> void
+    def initialize: (singleton(::Storage::Entry) klass, Account owner) -> void
     def owner: () -> Account
     def build: (*untyped) -> ::Storage::Entry
     def create: (*untyped) -> ::Storage::Entry

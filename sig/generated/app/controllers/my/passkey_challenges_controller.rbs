@@ -1,8 +1,10 @@
 module My
   class PasskeyChallengesController < ActionPack::Passkey::ChallengesController
-    include Authentication
     extend Authentication::ClassMethods
-    include Authorization
     extend Authorization::ClassMethods
+    include Authentication
+    include Authorization
+    include Authentication::ViaMagicLink
+    include LoginHelper
   end
 end

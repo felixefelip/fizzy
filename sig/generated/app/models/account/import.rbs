@@ -10,7 +10,7 @@ class Account
     private
 
     def mark_completed: () -> untyped
-    def mark_as_failed: (?Symbol failure_reason) -> untyped
+    def mark_as_failed: (?Symbol? failure_reason) -> untyped
     def reconcile_cards_count: () -> untyped
     def add_importer_to_all_access_boards: () -> nil
     def reconcile_account_storage: () -> untyped

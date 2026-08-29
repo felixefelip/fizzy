@@ -15,8 +15,8 @@ module Authentication
     include Authentication::ViaMagicLink, LoginHelper
   end
 
-  module ClassMethods
-def require_unauthenticated_access(**options)
+  class_methods do
+    def require_unauthenticated_access(**options)
       allow_unauthenticated_access **options
       before_action :redirect_authenticated_user, **options
     end
@@ -31,7 +31,7 @@ def require_unauthenticated_access(**options)
       skip_before_action :require_account, **options
       before_action :redirect_tenanted_request, **options
     end
-end
+  end
 
   private
     def authenticated?
@@ -115,4 +115,27 @@ end
     def session_token
       cookies[:session_token]
     end
+end
+
+module Authentication::ClassMethods
+  # @type instance: (singleton(::ApplicationController) & ::Authentication::ClassMethods) | (singleton(::My::PasskeyChallengesController) & ::Authentication::ClassMethods)
+  def require_unauthenticated_access(**options)
+    allow_unauthenticated_access **options
+    before_action :redirect_authenticated_user, **options
+  end
+
+  def allow_unauthenticated_access(**options)
+    skip_before_action :require_authentication, **options
+    before_action :resume_session, **options
+    allow_unauthorized_access **options
+  end
+
+  def disallow_account_scope(**options)
+    skip_before_action :require_account, **options
+    before_action :redirect_tenanted_request, **options
+  end
+end
+
+module Authentication
+  after_action :ensure_development_magic_link_not_leaked
 end

@@ -2,7 +2,7 @@ class ERBSearchesShow
   include ActionViewContext
 
   def initialize: (card: untyped, page: untyped, page_title: untyped, query: untyped) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ query_terms: untyped, turbo_action: String, target_turbo_frame: String } | { page: untyped, query: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

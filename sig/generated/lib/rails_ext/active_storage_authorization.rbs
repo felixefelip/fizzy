@@ -15,8 +15,10 @@ end
 module ActiveStorage
   module Authorize
     extend ActiveSupport::Concern
-    include Authentication
     extend Authentication::ClassMethods
+    include Authentication
+    include Authentication::ViaMagicLink
+    include LoginHelper
 
     private
 

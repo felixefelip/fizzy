@@ -1,6 +1,6 @@
 module ActionPack
   module WebAuthn
-    self.@attestation_verifiers: Hash[String, untyped]?
+    self.@attestation_verifiers: Hash[String, ActionPack::WebAuthn::Authenticator::AttestationVerifiers::None]?
 
     def self.relying_party: () -> ActionPack::WebAuthn::RelyingParty
     def self.challenge_verifier: () -> untyped

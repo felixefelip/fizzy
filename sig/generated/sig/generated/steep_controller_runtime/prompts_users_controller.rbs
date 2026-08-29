@@ -2,7 +2,7 @@ module Prompts
   class UsersController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | { layout: bool }) target, *untyped) -> bool
+    def render: (?(Symbol | { layout: bool })? target, *untyped rest) -> bool
 
     private
 

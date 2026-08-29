@@ -2,7 +2,7 @@ module Card_Tagging
   class ActiveRecord_Associations_CollectionProxy
     @owner: Card
 
-    def initialize: (singleton(Tagging) klass, Card owner) -> void
+    def initialize: (singleton(::Tagging) klass, Card owner) -> void
     def owner: () -> Card
     def build: (*untyped) -> ::Tagging
     def create: (*untyped) -> ::Tagging

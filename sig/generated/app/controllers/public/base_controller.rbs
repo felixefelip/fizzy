@@ -1,6 +1,5 @@
 module Public
   class BaseController < ApplicationController
-    @board: (Board & Board::Validated)?
     @card: (Card & Card::Validated)?
 
     private

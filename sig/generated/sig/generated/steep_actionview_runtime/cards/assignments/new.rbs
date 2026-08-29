@@ -6,7 +6,7 @@ class ERBCardsAssignmentsNew
   include ActionViewContext
 
   def initialize: (assigned_to: User::ActiveRecord_Relation, card: Card & ::Card::Validated, users: User::ActiveRecord_Relation) -> void
-  def render: (?(String | { collection: User::ActiveRecord_Relation, partial: String, locals: { card: Card & Card::Validated } }) target, *untyped) -> nil
+  def render: (?(String | { collection: User::ActiveRecord_Relation, partial: String, locals: { card: Card & Card::Validated } })? target, *({ card: Card & Card::Validated, user: (User & User::Validated)?, user_label: String } | { card: Card & Card::Validated, user: (User & User::Validated), data: { assignment_limit_target: String } }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

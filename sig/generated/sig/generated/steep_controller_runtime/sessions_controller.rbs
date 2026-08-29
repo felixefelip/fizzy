@@ -1,7 +1,7 @@
 class SessionsController
   @__rbs_infer__performed: true?
 
-  def render: (?(Symbol | { json: { message: String }, status: Symbol }) target, *untyped) -> bool
+  def render: (?(Symbol | { json: { message: String }, status: Symbol })? target, *untyped rest) -> bool
 
   private
 

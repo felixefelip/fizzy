@@ -1,13 +1,13 @@
 class ERBPartialEntropyKnob
   include ActionViewContext
 
-  def initialize: (current_value: Integer, disabled: bool, form: untyped, knob_options: Array[Integer], label: String, name: Symbol) -> void
+  def initialize: (current_value: untyped, disabled: bool, form: untyped, knob_options: Array[Integer], label: String, name: Symbol) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader current_value: Integer
+  attr_reader current_value: untyped
   attr_reader disabled: bool
   attr_reader form: untyped
   attr_reader knob_options: Array[Integer]

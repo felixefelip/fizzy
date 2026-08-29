@@ -2,7 +2,7 @@ module Card_Pin
   class ActiveRecord_Associations_CollectionProxy
     @owner: Card
 
-    def initialize: (singleton(Pin) klass, Card owner) -> void
+    def initialize: (singleton(::Pin) klass, Card owner) -> void
     def owner: () -> Card
     def build: (*untyped) -> ::Pin
     def create: (*untyped) -> ::Pin

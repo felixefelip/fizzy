@@ -1,9 +1,5 @@
 module Storage
   module Totaled
-    module ClassMethods
-      def foreign_key_for_storage: () -> String
-    end
-
     extend ActiveSupport::Concern
 
     def bytes_used: () -> Integer
@@ -16,5 +12,13 @@ module Storage
 
     def create_or_find_storage_total: () -> (Storage::Total | (Storage::Total & Storage::Total::Validated))
     def calculate_real_storage_bytes: () -> bot
+  end
+end
+
+module Storage
+  module Totaled
+    module ClassMethods
+      def foreign_key_for_storage: () -> String
+    end
   end
 end

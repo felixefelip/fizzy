@@ -2,7 +2,7 @@ class ERBPartialEventsDay
   include ActionViewContext
 
   def initialize: (day_timeline: User::DayTimeline) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ day_timeline: User::DayTimeline } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

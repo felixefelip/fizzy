@@ -2,7 +2,7 @@ class ERBPartialBoardsShowMenuColumn
   include ActionViewContext
 
   def initialize: (column: untyped) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ board: untyped, column: untyped, label: String } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

@@ -2,17 +2,8 @@ module Search
   class Record
     module Trilogy
       SHARD_COUNT: Integer
-      SHARD_CLASSES: Array[Class]
-
-      module ClassMethods
-        def shard_id_for_account: (untyped account_id) -> Integer
-        def search_fields: (untyped query) -> String
-        def for: (untyped account_id) -> Class
-      end
 
       extend ActiveSupport::Concern
-
-      def self.name: () -> String
 
       def card_title: () -> untyped
       def card_description: () -> untyped
@@ -23,6 +14,18 @@ module Search
       def stem_content: () -> untyped
       def set_account_key: () -> String
       def highlight: (untyped text, show: Symbol) -> untyped
+    end
+  end
+end
+
+module Search
+  class Record
+    module Trilogy
+      module ClassMethods
+        def shard_id_for_account: (untyped account_id) -> Float
+        def search_fields: (untyped query) -> String
+        def for: (untyped account_id) -> Class
+      end
     end
   end
 end

@@ -1,5 +1,6 @@
 module Fizzy
-  self.@db_adapter: DbAdapter?
+  self.@saas: bool?
+  self.@db_adapter: Fizzy::DbAdapter?
 
   def self.saas?: () -> bool
   def self.db_adapter: () -> Fizzy::DbAdapter

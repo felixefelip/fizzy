@@ -2,7 +2,7 @@ module Identity_Identity_AccessToken
   class ActiveRecord_Associations_CollectionProxy
     @owner: Identity
 
-    def initialize: (singleton(Identity::AccessToken) klass, Identity owner) -> void
+    def initialize: (singleton(::Identity::AccessToken) klass, Identity owner) -> void
     def owner: () -> Identity
     def build: (*untyped) -> ::Identity::AccessToken
     def create: (*untyped) -> ::Identity::AccessToken

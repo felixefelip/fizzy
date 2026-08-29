@@ -2,7 +2,7 @@ class ERBPartialAccountSettingsEntropy
   include ActionViewContext
 
   def initialize: (account: (Account & Account::Validated)?) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ model: Entropy?, url: untyped, disabled: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

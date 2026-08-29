@@ -2,7 +2,7 @@ class ERBPartialFiltersSettings
   include ActionViewContext
 
   def initialize: (filter_url: String, no_filtering_url: String, user_filtering: User::Filtering) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ filter: (Filter & Filter::Validated) | Filter, form: ActionView::Helpers::FormBuilder } | { user_filtering: User::Filtering, form: ActionView::Helpers::FormBuilder } | { user_filtering: User::Filtering } | { user_filtering: User::Filtering, no_filtering_url: String }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

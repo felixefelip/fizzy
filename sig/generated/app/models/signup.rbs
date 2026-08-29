@@ -40,4 +40,8 @@ class Signup
     attr_reader account: nil
     attr_reader user: nil
   end
+
+  class AfterInitialize
+    attr_reader email_address: String?
+  end
 end

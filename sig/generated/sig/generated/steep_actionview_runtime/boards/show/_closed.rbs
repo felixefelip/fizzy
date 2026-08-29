@@ -2,7 +2,7 @@ class ERBPartialBoardsShowClosed
   include ActionViewContext
 
   def initialize: (board: (Board | (Board & Board::Validated))?) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ title: String, count: Integer, column_id: String } | { column_path: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

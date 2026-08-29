@@ -26,13 +26,13 @@ module Card::Entropic
     delegate :auto_postpone_period, to: :board
   end
 
-  module ClassMethods
-def auto_postpone_all_due
+  class_methods do
+    def auto_postpone_all_due
       due_to_be_postponed.find_each do |card|
         card.auto_postpone(user: card.account.system_user)
       end
     end
-end
+  end
 
   def entropy
     Card::Entropy.for(self)
@@ -40,5 +40,14 @@ end
 
   def entropic?
     entropy.present?
+  end
+end
+
+module Card::Entropic::ClassMethods
+  # @type instance: singleton(::Card) & ::Card::Entropic::ClassMethods
+  def auto_postpone_all_due
+    due_to_be_postponed.find_each do |card|
+      card.auto_postpone(user: card.account.system_user)
+    end
   end
 end

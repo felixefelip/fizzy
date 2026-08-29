@@ -2,7 +2,7 @@ module Mention_Notification
   class ActiveRecord_Associations_CollectionProxy
     @owner: Mention
 
-    def initialize: (singleton(Notification) klass, Mention owner) -> void
+    def initialize: (singleton(::Notification) klass, Mention owner) -> void
     def owner: () -> Mention
   end
 end

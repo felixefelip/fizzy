@@ -4,6 +4,7 @@ module Events
       VALID_COLUMNS: Array[String]
 
       include DayTimelinesScoped
+      include FilterScoped
 
       def show: () -> void
 

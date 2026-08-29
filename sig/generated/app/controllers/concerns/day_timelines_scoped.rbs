@@ -2,7 +2,6 @@ module DayTimelinesScoped
   @day_timeline: User::DayTimeline?
 
   extend ActiveSupport::Concern
-  include FilterScoped
 
   private
 

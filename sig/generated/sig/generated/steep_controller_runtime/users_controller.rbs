@@ -1,7 +1,7 @@
 class UsersController
   @__rbs_infer__performed: true?
 
-  def render: (?(Symbol | { json: ActiveModel::Errors, status: Symbol }) target, *untyped) -> bool
+  def render: (?(Symbol | { json: ActiveModel::Errors, status: Symbol })? target, *{ status: Symbol } rest) -> bool
 
   private
 

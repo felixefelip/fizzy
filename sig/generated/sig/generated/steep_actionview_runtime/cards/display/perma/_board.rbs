@@ -2,7 +2,7 @@ class ERBPartialCardsDisplayPermaBoard
   include ActionViewContext
 
   def initialize: (card: ((Card | (Card & Card::Validated))? | Card & Card::Validated)) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ card: (Card | (Card & Card::Validated))? | (Card & Card::Validated) } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

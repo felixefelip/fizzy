@@ -1,13 +1,5 @@
 module Authentication
-  module ClassMethods
-    def require_unauthenticated_access: (**untyped) -> void
-    def allow_unauthenticated_access: (**untyped) -> void
-    def disallow_account_scope: (**untyped) -> void
-  end
-
   extend ActiveSupport::Concern
-  include ::Authentication::ViaMagicLink
-  include LoginHelper
 
   private
 
@@ -26,4 +18,12 @@ module Authentication
   def set_current_session: ((Session & Session::Validated) session) -> { value: String, httponly: bool, same_site: Symbol }
   def terminate_session: () -> untyped
   def session_token: () -> untyped
+end
+
+module Authentication
+  module ClassMethods
+    def require_unauthenticated_access: (**untyped) -> void
+    def allow_unauthenticated_access: (**untyped) -> void
+    def disallow_account_scope: (**untyped) -> void
+  end
 end

@@ -19,8 +19,8 @@ module Search::Record::SQLite
     }
   end
 
-  module ClassMethods
-def search_fields(query)
+  class_methods do
+    def search_fields(query)
       opening_mark = connection.quote(Search::Highlighter::OPENING_MARK)
       closing_mark = connection.quote(Search::Highlighter::CLOSING_MARK)
       ellipsis = connection.quote(Search::Highlighter::ELIPSIS)
@@ -33,7 +33,7 @@ def search_fields(query)
     def for(account_id)
       self
     end
-end
+  end
 
   def card_title
     escape_fts_highlight(result_title || card.title)
@@ -60,4 +60,20 @@ end
     def upsert_to_fts5_table
       Fts.upsert(id, title, content)
     end
+end
+
+module Search::Record::SQLite::ClassMethods
+  def search_fields(query)
+    opening_mark = connection.quote(Search::Highlighter::OPENING_MARK)
+    closing_mark = connection.quote(Search::Highlighter::CLOSING_MARK)
+    ellipsis = connection.quote(Search::Highlighter::ELIPSIS)
+
+    [ "highlight(search_records_fts, 0, #{opening_mark}, #{closing_mark}) AS result_title",
+      "snippet(search_records_fts, 1, #{opening_mark}, #{closing_mark}, #{ellipsis}, 20) AS result_content",
+      "#{connection.quote(query.terms)} AS query" ]
+  end
+
+  def for(account_id)
+    self
+  end
 end

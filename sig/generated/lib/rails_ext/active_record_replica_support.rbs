@@ -1,16 +1,18 @@
 module ActiveRecordReplicaSupport
-  module ClassMethods
-    def configure_replica_connections: () -> untyped
-    def replica_configured?: () -> untyped
-    def with_reading_role: () { () -> untyped } -> untyped
-  end
-
   extend ActiveSupport::Concern
 end
 
 module ActiveRecord
   class Base
-    include ActiveRecordReplicaSupport
     extend ActiveRecordReplicaSupport::ClassMethods
+    include ActiveRecordReplicaSupport
+  end
+end
+
+module ActiveRecordReplicaSupport
+  module ClassMethods
+    def configure_replica_connections: () -> untyped
+    def replica_configured?: () -> untyped
+    def with_reading_role: () { () -> untyped } -> untyped
   end
 end

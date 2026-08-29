@@ -8,8 +8,8 @@ module Authorization
     before_action :ensure_can_access_account, if: :authenticated_account_access?
   end
 
-  module ClassMethods
-def allow_unauthorized_access(**options)
+  class_methods do
+    def allow_unauthorized_access(**options)
       skip_before_action :ensure_can_access_account, **options
     end
 
@@ -17,7 +17,7 @@ def allow_unauthorized_access(**options)
       skip_before_action :ensure_can_access_account, **options
       before_action :redirect_existing_user, **options
     end
-end
+  end
 
   private
     def ensure_admin
@@ -44,4 +44,16 @@ end
     def redirect_existing_user
       redirect_to root_path if Current.user
     end
+end
+
+module Authorization::ClassMethods
+  # @type instance: (singleton(::ApplicationController) & ::Authorization::ClassMethods) | (singleton(::My::PasskeyChallengesController) & ::Authorization::ClassMethods)
+  def allow_unauthorized_access(**options)
+    skip_before_action :ensure_can_access_account, **options
+  end
+
+  def require_access_without_a_user(**options)
+    skip_before_action :ensure_can_access_account, **options
+    before_action :redirect_existing_user, **options
+  end
 end

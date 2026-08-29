@@ -1,10 +1,10 @@
 module NotificationsHelper
   def event_notification_title: (untyped event) -> String
   def event_notification_body: (untyped event) -> String
-  def notification_tag: (untyped notification) ?{ (*untyped) -> untyped } -> untyped
-  def notification_toggle_read_button: (untyped notification, url: untyped) -> untyped
+  def notification_tag: (Notification & Notification::Validated notification) ?{ (*untyped) -> nil } -> untyped
+  def notification_toggle_read_button: (Notification & Notification::Validated notification, url: String) -> untyped
   def notifications_next_page_link: (untyped page) -> untyped
-  def bundle_email_frequency_options_for: (untyped settings) -> untyped
+  def bundle_email_frequency_options_for: (User::Settings? settings) -> untyped
 
   private
 

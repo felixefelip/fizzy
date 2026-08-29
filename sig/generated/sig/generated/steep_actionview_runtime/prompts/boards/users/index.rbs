@@ -4,7 +4,7 @@ class ERBPromptsBoardsUsersIndex
   include ActionViewContext
 
   def initialize: (users: User::ActiveRecord_Relation) -> void
-  def render: (?{ partial: String, collection: User::ActiveRecord_Relation } target, *untyped) -> nil
+  def render: (?{ partial: String, collection: User::ActiveRecord_Relation }? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

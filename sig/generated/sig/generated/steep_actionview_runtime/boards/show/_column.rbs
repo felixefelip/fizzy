@@ -2,7 +2,7 @@ class ERBPartialBoardsShowColumn
   include ActionViewContext
 
   def initialize: (column: untyped) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ column: untyped } | { title: untyped, count: untyped, column_id: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

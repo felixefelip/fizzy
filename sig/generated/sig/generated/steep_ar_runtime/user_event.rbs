@@ -2,7 +2,7 @@ module User_Event
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Event) klass, User owner) -> void
+    def initialize: (singleton(::Event) klass, User owner) -> void
     def owner: () -> User
   end
 end

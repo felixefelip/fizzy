@@ -4,7 +4,6 @@ class Account < ApplicationRecord
   include Entropic
   include Incineratable
   include MultiTenantable
-  extend MultiTenantable::ClassMethods
   include Searchable
   include Seedeable
 

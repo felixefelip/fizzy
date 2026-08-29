@@ -1,7 +1,5 @@
 module ActiveRecordRelationPrependOrder
   extend ActiveSupport::Concern
-
-  def prepend_order: (*untyped) -> untyped
 end
 
 module ActiveRecord

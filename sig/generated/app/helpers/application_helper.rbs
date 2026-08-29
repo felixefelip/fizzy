@@ -1,5 +1,5 @@
 module ApplicationHelper
   def page_title_tag: () -> untyped
   def icon_tag: (String name, **untyped) -> untyped
-  def back_link_to: (untyped label, untyped url, untyped action, ?prefer_referrer: untyped, **untyped) -> untyped
+  def back_link_to: ((String? | String) label, ((Board & Board::Validated) | String | (Webhook & Webhook::Validated)?) url, String action, ?prefer_referrer: Array[untyped], **untyped) -> untyped
 end

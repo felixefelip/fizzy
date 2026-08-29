@@ -2,7 +2,7 @@ module Board_Event
   class ActiveRecord_Associations_CollectionProxy
     @owner: Board
 
-    def initialize: (singleton(Event) klass, Board owner) -> void
+    def initialize: (singleton(::Event) klass, Board owner) -> void
     def owner: () -> Board
     def build: (*untyped) -> ::Event
     def create: (*untyped) -> ::Event

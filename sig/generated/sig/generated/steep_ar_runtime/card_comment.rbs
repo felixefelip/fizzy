@@ -2,7 +2,7 @@ module Card_Comment
   class ActiveRecord_Associations_CollectionProxy
     @owner: Card
 
-    def initialize: (singleton(Comment) klass, Card owner) -> void
+    def initialize: (singleton(::Comment) klass, Card owner) -> void
     def owner: () -> Card
     def build: (*untyped) -> ::Comment
     def create: (*untyped) -> ::Comment

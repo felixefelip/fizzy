@@ -6,7 +6,7 @@ class ERBCardsTaggingsNew
   include ActionViewContext
 
   def initialize: (card: Card & ::Card::Validated, tagged_with: Tag::ActiveRecord_Relation, tags: Tag::ActiveRecord_Relation) -> void
-  def render: (?{ collection: Tag::ActiveRecord_Relation, partial: String, locals: { card: Card & Card::Validated } } target, *untyped) -> nil
+  def render: (?{ collection: Tag::ActiveRecord_Relation, partial: String, locals: { card: Card & Card::Validated } }? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

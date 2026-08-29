@@ -1,7 +1,7 @@
 class BoardsController
   @__rbs_infer__performed: true?
 
-  def render: (?Symbol target, *untyped) -> bool
+  def render: (?Symbol? target, *{ status: Symbol, location: untyped } rest) -> bool
 
   private
 

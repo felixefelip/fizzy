@@ -9,8 +9,8 @@ module Filter::Fields
 
   delegate :default_value?, to: :class
 
-  module ClassMethods
-def default_values
+  class_methods do
+    def default_values
       { indexed_by: "all", sorted_by: "latest" }
     end
 
@@ -30,7 +30,7 @@ def default_values
         index.humanize
       end
     end
-end
+  end
 
   included do
     store_accessor :fields, :assignment_status, :indexed_by, :sorted_by, :terms,
@@ -95,5 +95,29 @@ end
 
   def default_sorted_by?
     default_value?(:sorted_by, sorted_by)
+  end
+end
+
+module Filter::Fields::ClassMethods
+  # @type instance: singleton(::Filter) & ::Filter::Fields::ClassMethods
+  def default_values
+    { indexed_by: "all", sorted_by: "latest" }
+  end
+
+  def default_value?(key, value)
+    default_values[key.to_sym].eql?(value)
+  end
+
+  def indexed_by_human_name(index)
+    case index
+    when "postponing_soon"
+      "Closing soon"
+    when "closed"
+      "Done"
+    when "all"
+      "Open"
+    else
+      index.humanize
+    end
   end
 end

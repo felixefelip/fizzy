@@ -1,9 +1,11 @@
 module ActionPackPasskeyInferNameFromAaguid
-  module ClassMethods
-    def register: (**untyped) -> untyped
-  end
-
   extend ActiveSupport::Concern
 
   def authenticator: () -> untyped
+end
+
+module ActionPackPasskeyInferNameFromAaguid
+  module ClassMethods
+    def register: (**untyped) -> untyped
+  end
 end

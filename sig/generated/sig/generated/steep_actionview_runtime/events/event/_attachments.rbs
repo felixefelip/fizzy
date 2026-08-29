@@ -2,7 +2,7 @@ class ERBPartialEventsEventAttachments
   include ActionViewContext
 
   def initialize: (eventable: untyped) -> void
-  def render: (?{ partial: String, collection: untyped } target, *untyped) -> nil
+  def render: (?{ partial: String, collection: untyped }? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

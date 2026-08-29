@@ -2,7 +2,7 @@ module Account_Webhook
   class ActiveRecord_Associations_CollectionProxy
     @owner: Account
 
-    def initialize: (singleton(Webhook) klass, Account owner) -> void
+    def initialize: (singleton(::Webhook) klass, Account owner) -> void
     def owner: () -> Account
     def build: (*untyped) -> ::Webhook
     def create: (*untyped) -> ::Webhook

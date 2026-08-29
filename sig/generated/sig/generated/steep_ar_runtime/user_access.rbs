@@ -2,7 +2,7 @@ module User_Access
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Access) klass, User owner) -> void
+    def initialize: (singleton(::Access) klass, User owner) -> void
     def owner: () -> User
     def build: (*untyped) -> ::Access
     def create: (*untyped) -> ::Access

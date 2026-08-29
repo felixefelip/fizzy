@@ -9,11 +9,11 @@ module Storage::Totaled
     has_many :storage_entries, class_name: "Storage::Entry", foreign_key: foreign_key_for_storage
   end
 
-  module ClassMethods
-def foreign_key_for_storage
+  class_methods do
+    def foreign_key_for_storage
       "#{model_name.singular}_id"
     end
-end
+  end
 
   # Fast: materialized snapshot (may be slightly stale)
   def bytes_used
@@ -88,4 +88,11 @@ end
     def calculate_real_storage_bytes
       raise NotImplementedError, "Subclass must implement calculate_real_storage_bytes"
     end
+end
+
+module Storage::Totaled::ClassMethods
+  # @type instance: (singleton(::Account) & ::Storage::Totaled::ClassMethods) | (singleton(::Board) & ::Storage::Totaled::ClassMethods)
+  def foreign_key_for_storage
+    "#{model_name.singular}_id"
+  end
 end

@@ -40,8 +40,15 @@
 module ActionPack::Passkey::Holder
   extend ActiveSupport::Concern
 
-  module ClassMethods
-def has_passkeys(**options, &block)
+  class_methods do
+    # Declares that this model can hold passkeys. Sets up a polymorphic +has_many+ association
+    # and defines +passkey_registration_options+ and +passkey_authentication_options+ instance methods used
+    # by ActionPack::Passkey to build ceremony options.
+    #
+    # Keyword arguments matching CreationOptions or RequestOptions fields are extracted and
+    # turned into holder-scoped option procs automatically. An optional block yields a Config
+    # for more complex setup.
+    def has_passkeys(**options, &block)
       config = Config.new(**options)
       block&.call(config)
 
@@ -61,7 +68,7 @@ def has_passkeys(**options, &block)
         { credentials: public_send(config.association_name) }.merge(config.evaluate_authentication_options(self))
       end
     end
-end
+  end
 
   # Configuration object yielded by +has_passkeys+ when a block is given. Allows setting
   # custom association options and ceremony option blocks.
@@ -135,5 +142,29 @@ end
           end
         end
       end
+  end
+end
+
+module ActionPack::Passkey::Holder::ClassMethods
+  # @type instance: singleton(::ActionPack::Railtie) & ::ActionPack::Passkey::Holder::ClassMethods
+  def has_passkeys(**options, &block)
+    config = Config.new(**options)
+    block&.call(config)
+
+    has_many config.association_name,
+      as: :holder,
+      dependent: config.dependent,
+      class_name: "ActionPack::Passkey"
+
+    define_method(:passkey_registration_options) do
+      {
+        id: id,
+        exclude_credentials: public_send(config.association_name)
+      }.merge(config.evaluate_registration_options(self))
+    end
+
+    define_method(:passkey_authentication_options) do
+      { credentials: public_send(config.association_name) }.merge(config.evaluate_authentication_options(self))
+    end
   end
 end

@@ -2,7 +2,7 @@ module Boards
   class EntropiesController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | String) target, *untyped) -> bool
+    def render: (?(Symbol | String)? target, *{ status: Symbol } rest) -> bool
 
     private
 

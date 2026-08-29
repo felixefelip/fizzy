@@ -5,7 +5,7 @@ class ERBBoardsEdit
   include BoardsHelper
 
   def initialize: (board: Board & ::Board::Validated, page_title: untyped, selected_users: untyped, unselected_users: untyped) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ form: ActionView::Helpers::FormBuilder, board: Board & Board::Validated } | { board: Board & Board::Validated, selected_users: untyped, unselected_users: untyped, form: ActionView::Helpers::FormBuilder } | { board: Board & Board::Validated }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

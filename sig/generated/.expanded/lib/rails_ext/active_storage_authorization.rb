@@ -58,3 +58,18 @@ Rails.application.config.to_prepare do
   ActiveStorage::Representations::RedirectController.include ActiveStorage::Authorize
   ActiveStorage::Representations::ProxyController.include ActiveStorage::Authorize
 end
+
+module ActiveStorage::Authorize
+  before_action :require_account # Checking and setting account must happen first
+  before_action :require_authentication
+  helper_method :authenticated?
+  helper_method :email_address_pending_authentication
+
+  etag { Current.identity.id if authenticated? }
+
+  include Authentication::ViaMagicLink, LoginHelper
+end
+
+module ActiveStorage::Authorize
+  extend Authentication::ClassMethods
+end

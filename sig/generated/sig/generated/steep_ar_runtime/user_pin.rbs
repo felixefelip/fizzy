@@ -2,7 +2,7 @@ module User_Pin
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Pin) klass, User owner) -> void
+    def initialize: (singleton(::Pin) klass, User owner) -> void
     def owner: () -> User
     def build: (*untyped) -> ::Pin
     def create: (*untyped) -> ::Pin

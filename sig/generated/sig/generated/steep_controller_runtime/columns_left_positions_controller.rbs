@@ -2,7 +2,7 @@ module Columns
   class LeftPositionsController
     @__rbs_infer__performed: true?
 
-    def render: (?Symbol target, *untyped) -> bool
+    def render: (?Symbol? target, *untyped rest) -> bool
 
     private
 

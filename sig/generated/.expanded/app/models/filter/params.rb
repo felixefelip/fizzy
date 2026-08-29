@@ -20,8 +20,8 @@ module Filter::Params
     terms: []
   ]
 
-  module ClassMethods
-def find_by_params(params)
+  class_methods do
+    def find_by_params(params)
       find_by params_digest: digest_params(params)
     end
 
@@ -38,7 +38,7 @@ def find_by_params(params)
         .sort_by { |name, _| name.to_s }
         .to_h
     end
-end
+  end
 
   included do
     before_save { self.params_digest = self.class.digest_params(as_params) }
@@ -82,5 +82,26 @@ end
 
   def params_digest
     super.presence || self.class.digest_params(as_params)
+  end
+end
+
+module Filter::Params::ClassMethods
+  # @type instance: singleton(::Filter) & ::Filter::Params::ClassMethods
+  def find_by_params(params)
+    find_by params_digest: digest_params(params)
+  end
+
+  def digest_params(params)
+    Digest::MD5.hexdigest normalize_params(params).to_json
+  end
+
+  def normalize_params(params)
+    params
+      .to_h
+      .compact_blank
+      .reject(&method(:default_value?))
+      .collect { |name, value| [ name, value.is_a?(Array) ? value.collect(&:to_s) : value.to_s ] }
+      .sort_by { |name, _| name.to_s }
+      .to_h
   end
 end

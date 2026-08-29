@@ -2,7 +2,7 @@ module Comment_Reaction
   class ActiveRecord_Associations_CollectionProxy
     @owner: Comment
 
-    def initialize: (singleton(Reaction) klass, Comment owner) -> void
+    def initialize: (singleton(::Reaction) klass, Comment owner) -> void
     def owner: () -> Comment
   end
 end

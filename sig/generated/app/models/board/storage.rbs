@@ -1,12 +1,12 @@
 class Board
   module Storage
-    @card_ids: Array[String]?
+    @card_ids: nil
 
     BATCH_SIZE: Integer
 
     extend ActiveSupport::Concern
-    include ::Storage::Totaled
     extend ::Storage::Totaled::ClassMethods
+    include ::Storage::Totaled
 
     def board_for_storage_tracking: () -> Board::Storage
 

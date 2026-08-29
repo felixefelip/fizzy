@@ -2,7 +2,7 @@ module Boards
   class PublicationsController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | { partial: String, locals: { board: untyped }, status: Symbol }) target, *untyped) -> bool
+    def render: (?(Symbol | { partial: String, locals: { board: untyped }, status: Symbol })? target, *untyped rest) -> bool
 
     private
 

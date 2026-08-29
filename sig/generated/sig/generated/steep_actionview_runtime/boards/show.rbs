@@ -7,7 +7,7 @@ class ERBBoardsShow
   include BoardsHelper
 
   def initialize: (board: ((Board | (Board & Board::Validated))? | Board & ::Board::Validated), filter: (::Filter & ::Filter::Validated | ::Filter), page: untyped, user_filtering: User::Filtering) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ filter_url: untyped, user_filtering: User::Filtering, no_filtering_url: untyped } | { page: untyped } | { board: (Board | (Board & Board::Validated))? } | { page: untyped, board: (Board | (Board & Board::Validated))? }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

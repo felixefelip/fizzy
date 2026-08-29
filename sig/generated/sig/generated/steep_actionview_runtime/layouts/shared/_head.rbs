@@ -2,7 +2,7 @@ class ERBPartialLayoutsSharedHead
   include ActionViewContext
 
   def initialize: (disable_view_transition: untyped) -> untyped
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

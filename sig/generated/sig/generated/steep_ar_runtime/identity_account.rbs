@@ -2,7 +2,7 @@ module Identity_Account
   class ActiveRecord_Associations_CollectionProxy
     @owner: Identity
 
-    def initialize: (singleton(Account) klass, Identity owner) -> void
+    def initialize: (singleton(::Account) klass, Identity owner) -> void
     def owner: () -> Identity
   end
 end

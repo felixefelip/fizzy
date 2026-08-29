@@ -5,7 +5,7 @@ class ERBCardsStepsCreate
   include ActionViewContext
 
   def initialize: (card: Card & ::Card::Validated, step: Step) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *{ step: Step } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

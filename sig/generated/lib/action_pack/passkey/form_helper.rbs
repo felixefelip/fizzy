@@ -7,12 +7,12 @@ module ActionPack
       SIGN_IN_ERROR_MESSAGE: String
       SIGN_IN_CANCELLED_MESSAGE: String
 
-      def passkey_registration_button: (?untyped name, ?untyped url, **untyped) ?{ (*untyped) -> untyped } -> untyped
-      def passkey_sign_in_button: (?untyped name, ?untyped url, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def passkey_registration_button: (?untyped name, ?{ options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions, error: { class: String }, cancellation: { class: String }, duplicate: { class: String }, class: String }? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def passkey_sign_in_button: (?String? name, ?String? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
 
       private
 
-      def partition_passkey_options: (untyped url, Hash[Symbol, untyped] options) -> Array[untyped]
+      def partition_passkey_options: (String? url, Hash[Symbol, untyped] options) -> Array[untyped]
       def default_passkey_challenge_url: () -> untyped
       def passkey_error_messages: (?error: untyped, ?cancellation: untyped, ?duplicate: untyped) -> untyped
       def build_passkey_error_options: (String type, untyped options) -> Array[untyped]

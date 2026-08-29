@@ -2,9 +2,8 @@ class User
   module Role
     extend ActiveSupport::Concern
 
-    def admin?: () -> untyped
-    def can_change?: ((User & User::Validated) other) -> untyped
-    def can_administer?: (User & User::Validated other) -> untyped
+    def can_change?: ((User & User::Validated) other) -> bool
+    def can_administer?: (User & User::Validated other) -> bool
     def can_administer_board?: ((Board | (Board & Board::Validated)) board) -> untyped
     def can_administer_card?: ((Card | (Card & Card::Validated))? card) -> untyped
   end

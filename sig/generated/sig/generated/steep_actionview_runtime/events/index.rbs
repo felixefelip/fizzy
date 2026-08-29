@@ -7,7 +7,7 @@ class ERBEventsIndex
   include EventsHelper
 
   def initialize: (day_timeline: User::DayTimeline, filter: (::Filter & ::Filter::Validated | ::Filter), user_filtering: User::Filtering) -> void
-  def render: (?String target, *untyped) -> nil
+  def render: (?String? target, *({ filter: (Filter & Filter::Validated) | Filter } | { user_filtering: User::Filtering } | { day_timeline: User::DayTimeline }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

@@ -1,17 +1,20 @@
 class User
   class DayTimeline
     module Serializable
+      extend ActiveSupport::Concern
+
+      def as_json: (?Hash[untyped, untyped] options) -> { user_id: untyped, day: untyped, filter_params: untyped }
+    end
+  end
+end
+
+class User
+  class DayTimeline
+    module Serializable
       module ClassMethods
         def find: (untyped id) -> User::DayTimeline
         def tenanted?: () -> bool
       end
-
-      extend ActiveSupport::Concern
-      include GlobalID::Identification
-
-      alias id to_json
-
-      def as_json: (?Hash[untyped, untyped] options) -> { day: untyped, filter_params: Hash[untyped, untyped], user_id: String? }
     end
   end
 end

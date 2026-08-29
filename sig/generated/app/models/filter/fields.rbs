@@ -3,28 +3,23 @@ class Filter
     INDEXES: Array[String]
     SORTED_BY: Array[String]
 
-    module ClassMethods
-      def default_values: () -> { indexed_by: String, sorted_by: String }
-      def default_value?: (Symbol key, untyped value) -> bool
-      def indexed_by_human_name: (untyped index) -> String
-    end
-
     extend ActiveSupport::Concern
 
-    def assignment_status: () -> untyped
-    def indexed_by: () -> untyped
-    def sorted_by: () -> untyped
-    def creation_window: () -> untyped
-    def closure_window: () -> untyped
-    def terms: () -> [ ]
-    def terms=: (untyped value) -> untyped
-    def column_ids: () -> Array[bot]
-    def column_ids=: (untyped value) -> untyped
     def with: (**untyped) -> untyped
     def default_indexed_by: () -> untyped
     def default_indexed_by?: () -> bool
     def default_sorted_by: () -> untyped
     def default_sorted_by?: () -> bool
     def default_value?: () -> bool
+  end
+end
+
+class Filter
+  module Fields
+    module ClassMethods
+      def default_values: () -> { indexed_by: String, sorted_by: String }
+      def default_value?: (Symbol key, untyped value) -> bool
+      def indexed_by_human_name: (untyped index) -> String
+    end
   end
 end

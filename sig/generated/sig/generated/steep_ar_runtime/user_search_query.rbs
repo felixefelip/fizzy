@@ -2,7 +2,7 @@ module User_Search_Query
   class ActiveRecord_Associations_CollectionProxy
     @owner: User
 
-    def initialize: (singleton(Search::Query) klass, User owner) -> void
+    def initialize: (singleton(::Search::Query) klass, User owner) -> void
     def owner: () -> User
     def build: (*untyped) -> ::Search::Query
     def create: (*untyped) -> ::Search::Query

@@ -1,3 +1,3 @@
 module ReactionsHelper
-  def reaction_path_prefix_for: ((Comment & Comment::Validated | Card & Card::Validated) reactable) -> Array[((Card & Card::Validated) | (Comment & Comment::Validated))]
+  def reaction_path_prefix_for: (((Card | (Card & Card::Validated))? | (Comment | (Comment & Comment::Validated))? | self | Comment & Comment::Validated | Card & Card::Validated) reactable) -> Array[(Card | nil | Comment | (Comment & Comment::Validated))]
 end

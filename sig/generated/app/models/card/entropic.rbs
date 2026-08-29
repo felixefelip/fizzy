@@ -1,13 +1,16 @@
 class Card
   module Entropic
-    module ClassMethods
-      def auto_postpone_all_due: () -> nil
-    end
-
     extend ActiveSupport::Concern
 
     def entropy: () -> Card::Entropy?
     def entropic?: () -> bool
-    def auto_postpone_period: () -> Integer?
+  end
+end
+
+class Card
+  module Entropic
+    module ClassMethods
+      def auto_postpone_all_due: () -> nil
+    end
   end
 end

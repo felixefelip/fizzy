@@ -1,9 +1,4 @@
 module Authorization
-  module ClassMethods
-    def allow_unauthorized_access: (**untyped) -> void
-    def require_access_without_a_user: (**untyped) -> void
-  end
-
   extend ActiveSupport::Concern
 
   private
@@ -13,4 +8,11 @@ module Authorization
   def authenticated_account_access?: () -> bool
   def ensure_can_access_account: () -> untyped
   def redirect_existing_user: () -> bool?
+end
+
+module Authorization
+  module ClassMethods
+    def allow_unauthorized_access: (**untyped) -> void
+    def require_access_without_a_user: (**untyped) -> void
+  end
 end

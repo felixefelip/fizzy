@@ -4,17 +4,21 @@ class Filter
 
     PERMITTED_PARAMS: Array[(Symbol | Hash[Symbol, Array[untyped]])]
 
-    module ClassMethods
-      def find_by_params: (((ActionController::Parameters & ActionController::Parameters::Permitted) | Hash[untyped, untyped]) params) -> (Filter & Filter::Validated)?
-      def digest_params: ((ActionController::Parameters & ActionController::Parameters::Permitted | Hash[untyped, untyped]) params) -> String
-      def normalize_params: ((ActionController::Parameters & ActionController::Parameters::Permitted | Hash[untyped, untyped]) params) -> Hash[untyped, untyped]
-    end
-
     extend ActiveSupport::Concern
 
     def used?: (?ignore_boards: bool) -> untyped
     def as_params: () -> Hash[untyped, untyped]
     def as_params_without: (Symbol key, untyped value) -> Hash[untyped, untyped]
     def params_digest: () -> untyped
+  end
+end
+
+class Filter
+  module Params
+    module ClassMethods
+      def find_by_params: (untyped params) -> (Filter & Filter::Validated)?
+      def digest_params: (untyped params) -> String
+      def normalize_params: (untyped params) -> Hash[untyped, untyped]
+    end
   end
 end

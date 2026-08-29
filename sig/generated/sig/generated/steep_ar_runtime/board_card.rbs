@@ -2,7 +2,7 @@ module Board_Card
   class ActiveRecord_Associations_CollectionProxy
     @owner: Board
 
-    def initialize: (singleton(Card) klass, Board owner) -> void
+    def initialize: (singleton(::Card) klass, Board owner) -> void
     def owner: () -> Board
     def build: (*untyped) -> ::Card
     def create: (*untyped) -> ::Card

@@ -6,10 +6,10 @@ class Account
 
       attr_accessor importable_model_names: untyped
       attr_reader account: Account?
-      attr_reader model: singleton(ActiveStorage::VariantRecord)
+      attr_reader model: (singleton(ActiveStorage::VariantRecord) | singleton(User::Settings) | singleton(Tag) | singleton(Board) | singleton(Column) | singleton(Board::Publication) | singleton(Webhook) | singleton(Access) | singleton(Card) | singleton(Comment) | singleton(Step) | singleton(Assignment) | singleton(Tagging) | singleton(Closure) | singleton(Card::Goldness) | singleton(Card::NotNow) | singleton(Card::ActivitySpike) | singleton(Watch) | singleton(Pin) | singleton(Reaction) | singleton(Mention) | singleton(Filter) | singleton(Webhook::DelinquencyTracker) | singleton(Event) | singleton(Notification) | singleton(Notification::Bundle) | singleton(Webhook::Delivery))
       attr_reader attributes: untyped
 
-      def initialize: (account: Account?, model: singleton(ActiveStorage::VariantRecord), ?attributes: untyped, ?importable_model_names: untyped) -> void
+      def initialize: (account: Account?, model: (singleton(ActiveStorage::VariantRecord) | singleton(User::Settings) | singleton(Tag) | singleton(Board) | singleton(Column) | singleton(Board::Publication) | singleton(Webhook) | singleton(Access) | singleton(Card) | singleton(Comment) | singleton(Step) | singleton(Assignment) | singleton(Tagging) | singleton(Closure) | singleton(Card::Goldness) | singleton(Card::NotNow) | singleton(Card::ActivitySpike) | singleton(Watch) | singleton(Pin) | singleton(Reaction) | singleton(Mention) | singleton(Filter) | singleton(Webhook::DelinquencyTracker) | singleton(Event) | singleton(Notification) | singleton(Notification::Bundle) | singleton(Webhook::Delivery)), ?attributes: untyped, ?importable_model_names: untyped) -> void
       def export: (to: untyped, ?start: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
       def import: (from: untyped, ?start: untyped, ?callback: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
       def check: (from: untyped, ?start: untyped, ?callback: untyped) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
@@ -30,6 +30,10 @@ class Account
       def skip_to: (untyped file_list, untyped last_id) -> untyped
       def load: (untyped file_path) -> untyped
       def model_dir: () -> untyped
+
+      class AfterInitialize
+        attr_reader model: singleton(ActiveStorage::VariantRecord)
+      end
     end
   end
 end
