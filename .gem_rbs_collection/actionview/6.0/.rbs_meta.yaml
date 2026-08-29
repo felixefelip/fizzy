@@ -4,6 +4,6 @@ version: '6.0'
 source:
   type: git
   name: ruby/gem_rbs_collection
-  revision: 9892521a694a4cab3c179ae603b0111b87792919
+  revision: 1c5e96b6c43ba1518821d860b0bc804d6265d32b
   remote: https://github.com/felixefelip/gem_rbs_collection.git
   repo_dir: gems
