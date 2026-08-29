@@ -15,11 +15,6 @@ app/controllers/concerns/authentication.rb:
       | (singleton(My::PasskeyChallengesController) & singleton(Authentication))"
     - "# @type instance: (ApplicationController & Authentication) | (My::PasskeyChallengesController
       & Authentication)"
-  blocks:
-  - call: class_methods
-    implements: "::Authentication::ClassMethods"
-    self: "(singleton(::ApplicationController) & ::Authentication::ClassMethods) |
-      (singleton(::My::PasskeyChallengesController) & ::Authentication::ClassMethods)"
 app/controllers/concerns/authorization.rb:
   modules:
   - anchor: Authorization
@@ -28,11 +23,6 @@ app/controllers/concerns/authorization.rb:
       | (singleton(My::PasskeyChallengesController) & singleton(Authorization))"
     - "# @type instance: (ApplicationController & Authorization) | (My::PasskeyChallengesController
       & Authorization)"
-  blocks:
-  - call: class_methods
-    implements: "::Authorization::ClassMethods"
-    self: "(singleton(::ApplicationController) & ::Authorization::ClassMethods) |
-      (singleton(::My::PasskeyChallengesController) & ::Authorization::ClassMethods)"
 app/controllers/concerns/block_search_engine_indexing.rb:
   modules:
   - anchor: BlockSearchEngineIndexing
@@ -362,10 +352,6 @@ app/models/account/multi_tenantable.rb:
     annotations:
     - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
     - "# @type instance: Account & Account::MultiTenantable"
-  blocks:
-  - call: class_methods
-    implements: "::Account::MultiTenantable::ClassMethods"
-    self: singleton(::Account) & ::Account::MultiTenantable::ClassMethods
 app/models/account/searchable.rb:
   modules:
   - anchor: Searchable
@@ -420,10 +406,6 @@ app/models/board/publishable.rb:
     annotations:
     - "# @type self: singleton(Board) & singleton(Board::Publishable)"
     - "# @type instance: Board & Board::Publishable"
-  blocks:
-  - call: class_methods
-    implements: "::Board::Publishable::ClassMethods"
-    self: singleton(::Board) & ::Board::Publishable::ClassMethods
 app/models/board/storage.rb:
   modules:
   - anchor: Storage
@@ -478,10 +460,6 @@ app/models/card/entropic.rb:
     annotations:
     - "# @type self: singleton(Card) & singleton(Card::Entropic)"
     - "# @type instance: Card & Card::Entropic"
-  blocks:
-  - call: class_methods
-    implements: "::Card::Entropic::ClassMethods"
-    self: singleton(::Card) & ::Card::Entropic::ClassMethods
 app/models/card/eventable.rb:
   modules:
   - anchor: Eventable
@@ -657,11 +635,6 @@ app/models/concerns/storage/totaled.rb:
     - "# @type self: (singleton(Account) & singleton(Storage::Totaled)) | (singleton(Board)
       & singleton(Storage::Totaled))"
     - "# @type instance: (Account & Storage::Totaled) | (Board & Storage::Totaled)"
-  blocks:
-  - call: class_methods
-    implements: "::Storage::Totaled::ClassMethods"
-    self: "(singleton(::Account) & ::Storage::Totaled::ClassMethods) | (singleton(::Board)
-      & ::Storage::Totaled::ClassMethods)"
 app/models/concerns/storage/tracked.rb:
   modules:
   - anchor: Tracked
@@ -688,20 +661,12 @@ app/models/filter/fields.rb:
     annotations:
     - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
     - "# @type instance: Filter & Filter::Fields"
-  blocks:
-  - call: class_methods
-    implements: "::Filter::Fields::ClassMethods"
-    self: singleton(::Filter) & ::Filter::Fields::ClassMethods
 app/models/filter/params.rb:
   modules:
   - anchor: Params
     annotations:
     - "# @type self: singleton(Filter) & singleton(Filter::Params)"
     - "# @type instance: Filter & Filter::Params"
-  blocks:
-  - call: class_methods
-    implements: "::Filter::Params::ClassMethods"
-    self: singleton(::Filter) & ::Filter::Params::ClassMethods
 app/models/filter/resources.rb:
   modules:
   - anchor: Resources
@@ -725,28 +690,12 @@ app/models/identity/transferable.rb:
     annotations:
     - "# @type self: singleton(Identity) & singleton(Identity::Transferable)"
     - "# @type instance: Identity & Identity::Transferable"
-  blocks:
-  - call: class_methods
-    implements: "::Identity::Transferable::ClassMethods"
-    self: singleton(::Identity) & ::Identity::Transferable::ClassMethods
 app/models/notification/pushable.rb:
   modules:
   - anchor: Pushable
     annotations:
     - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
     - "# @type instance: Notification & Notification::Pushable"
-  blocks:
-  - call: class_methods
-    implements: "::Notification::Pushable::ClassMethods"
-    self: singleton(::Notification) & ::Notification::Pushable::ClassMethods
-app/models/search/record/sqlite.rb:
-  blocks:
-  - call: class_methods
-    implements: "::Search::Record::SQLite::ClassMethods"
-app/models/search/record/trilogy.rb:
-  blocks:
-  - call: class_methods
-    implements: "::Search::Record::Trilogy::ClassMethods"
 app/models/user/accessor.rb:
   modules:
   - anchor: Accessor
@@ -783,10 +732,6 @@ app/models/user/day_timeline/serializable.rb:
     annotations:
     - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
     - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
-  blocks:
-  - call: class_methods
-    implements: "::User::DayTimeline::Serializable::ClassMethods"
-    self: singleton(::User::DayTimeline) & ::User::DayTimeline::Serializable::ClassMethods
 app/models/user/email_address_changeable.rb:
   modules:
   - anchor: EmailAddressChangeable
@@ -829,10 +774,6 @@ app/models/user/timelined.rb:
     annotations:
     - "# @type self: singleton(User) & singleton(User::Timelined)"
     - "# @type instance: User & User::Timelined"
-app/models/user/transferable.rb:
-  blocks:
-  - call: class_methods
-    implements: "::User::Transferable::ClassMethods"
 app/models/user/watcher.rb:
   modules:
   - anchor: Watcher
@@ -856,10 +797,6 @@ lib/action_pack/passkey/holder.rb:
     annotations:
     - "# @type self: singleton(ActionPack::Railtie) & singleton(ActionPack::Passkey::Holder)"
     - "# @type instance: ActionPack::Railtie & ActionPack::Passkey::Holder"
-  blocks:
-  - call: class_methods
-    implements: "::ActionPack::Passkey::Holder::ClassMethods"
-    self: singleton(::ActionPack::Railtie) & ::ActionPack::Passkey::Holder::ClassMethods
 lib/action_pack/passkey/request.rb:
   modules:
   - anchor: Request
@@ -871,14 +808,6 @@ lib/action_pack/passkey/request.rb:
     - "# @type instance: (ActionPack::Passkey::ChallengesController & ActionPack::Passkey::Request)
       | (My::PasskeysController & ActionPack::Passkey::Request) | (Sessions::PasskeysController
       & ActionPack::Passkey::Request) | (SessionsController & ActionPack::Passkey::Request)"
-lib/rails_ext/action_pack_passkey_infer_name_from_aaguid.rb:
-  blocks:
-  - call: class_methods
-    implements: "::ActionPackPasskeyInferNameFromAaguid::ClassMethods"
-lib/rails_ext/active_record_replica_support.rb:
-  blocks:
-  - call: class_methods
-    implements: "::ActiveRecordReplicaSupport::ClassMethods"
 sig/generated/steep_ar_runtime/event/generated_store_accessors.rb:
   modules:
   - anchor: GeneratedStoreAccessors
