@@ -32,6 +32,18 @@ rbs_infer_module_self_types:
 rbs_infer_ar_runtime:
 	bundle exec rake rbs_infer:ar_runtime:all
 
+## Pseudo-código do que a LINGUAGEM roda numa declaração, irmão dos
+## `steep_*_runtime` que modelam o runtime de um FRAMEWORK. `include M` chama
+## `M.included(self)`, e essa chamada é a única coisa que diz qual classe é o
+## `base` de um hook — `Module#include` é escrito em C, então nenhuma fonte do
+## projeto diz isso.
+##
+## Sem rake task de propósito: o gerador é CORE (`include` é Ruby puro, não
+## Rails), então o railtie não o registra e a chamada é direta. Escreve em
+## `sig/generated/steep_ruby_runtime/`, cujo RBS sai do `rbs_infer_all`.
+rbs_infer_ruby_runtime:
+	bundle exec ruby -e "require 'rbs_infer'; require 'rbs_infer/project/ruby_runtime_generator'; RbsInfer::Project::RubyRuntimeGenerator.new(app_dir: '.').generate"
+
 rbs_infer_controller_runtime:
 	bundle exec rake rbs_infer:controller_runtime:all
 
@@ -75,6 +87,7 @@ rbs_generators_all:
 	make rbs_infer_rails_custom
 	make rbs_infer_module_self_types
 	make rbs_infer_ar_runtime
+	make rbs_infer_ruby_runtime
 	make rbs_infer_controller_runtime
 	make rbs_infer_current_runtime
 	make rbs_infer_actionview_runtime
