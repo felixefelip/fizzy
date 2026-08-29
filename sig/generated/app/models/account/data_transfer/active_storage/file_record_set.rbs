@@ -15,7 +15,7 @@ class Account
         def import_batch: (untyped files) -> untyped
         def old_key_to_blob_id: () -> untyped
         def build_old_key_to_blob_id: () -> untyped
-        def with_zip: (untyped zip) -> ActiveStorage::VariantRecord::ActiveRecord_Relation?
+        def with_zip: (untyped zip) -> (nil | ActiveStorage::VariantRecord::ActiveRecord_Relation | User::Settings::ActiveRecord_Relation | Tag::ActiveRecord_Relation | Board::ActiveRecord_Relation | Column::ActiveRecord_Relation | Board::Publication::ActiveRecord_Relation | Webhook::ActiveRecord_Relation | Access::ActiveRecord_Relation | Card::ActiveRecord_Relation | Comment::ActiveRecord_Relation | Step::ActiveRecord_Relation | Assignment::ActiveRecord_Relation | Tagging::ActiveRecord_Relation | Closure::ActiveRecord_Relation | Card::Goldness::ActiveRecord_Relation | Card::NotNow::ActiveRecord_Relation | Card::ActivitySpike::ActiveRecord_Relation | Watch::ActiveRecord_Relation | Pin::ActiveRecord_Relation | Reaction::ActiveRecord_Relation | Mention::ActiveRecord_Relation | Filter::ActiveRecord_Relation | Webhook::DelinquencyTracker::ActiveRecord_Relation | Event::ActiveRecord_Relation | Notification::ActiveRecord_Relation | Notification::Bundle::ActiveRecord_Relation | Webhook::Delivery::ActiveRecord_Relation)
         def check_record: (untyped file_path) -> untyped
       end
     end
