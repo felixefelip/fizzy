@@ -15,6 +15,12 @@ app/controllers/concerns/authentication.rb:
       | (singleton(My::PasskeyChallengesController) & singleton(Authentication))"
     - "# @type instance: (ApplicationController & Authentication) | (My::PasskeyChallengesController
       & Authentication)"
+  blocks:
+  - call: class_methods
+    in: "::Authentication"
+    implements: "::Authentication::ClassMethods"
+    self: "(singleton(::ApplicationController) & ::Authentication::ClassMethods) |
+      (singleton(::My::PasskeyChallengesController) & ::Authentication::ClassMethods)"
 app/controllers/concerns/authorization.rb:
   modules:
   - anchor: Authorization
@@ -23,6 +29,12 @@ app/controllers/concerns/authorization.rb:
       | (singleton(My::PasskeyChallengesController) & singleton(Authorization))"
     - "# @type instance: (ApplicationController & Authorization) | (My::PasskeyChallengesController
       & Authorization)"
+  blocks:
+  - call: class_methods
+    in: "::Authorization"
+    implements: "::Authorization::ClassMethods"
+    self: "(singleton(::ApplicationController) & ::Authorization::ClassMethods) |
+      (singleton(::My::PasskeyChallengesController) & ::Authorization::ClassMethods)"
 app/controllers/concerns/block_search_engine_indexing.rb:
   modules:
   - anchor: BlockSearchEngineIndexing
@@ -352,6 +364,11 @@ app/models/account/multi_tenantable.rb:
     annotations:
     - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
     - "# @type instance: Account & Account::MultiTenantable"
+  blocks:
+  - call: class_methods
+    in: "::Account::MultiTenantable"
+    implements: "::Account::MultiTenantable::ClassMethods"
+    self: singleton(::Account) & ::Account::MultiTenantable::ClassMethods
 app/models/account/searchable.rb:
   modules:
   - anchor: Searchable
@@ -406,6 +423,11 @@ app/models/board/publishable.rb:
     annotations:
     - "# @type self: singleton(Board) & singleton(Board::Publishable)"
     - "# @type instance: Board & Board::Publishable"
+  blocks:
+  - call: class_methods
+    in: "::Board::Publishable"
+    implements: "::Board::Publishable::ClassMethods"
+    self: singleton(::Board) & ::Board::Publishable::ClassMethods
 app/models/board/storage.rb:
   modules:
   - anchor: Storage
@@ -460,12 +482,21 @@ app/models/card/entropic.rb:
     annotations:
     - "# @type self: singleton(Card) & singleton(Card::Entropic)"
     - "# @type instance: Card & Card::Entropic"
+  blocks:
+  - call: class_methods
+    in: "::Card::Entropic"
+    implements: "::Card::Entropic::ClassMethods"
+    self: singleton(::Card) & ::Card::Entropic::ClassMethods
 app/models/card/eventable.rb:
   modules:
   - anchor: Eventable
     annotations:
     - "# @type self: singleton(Card) & singleton(Card::Eventable)"
     - "# @type instance: Card & Card::Eventable"
+  blocks:
+  - call: included
+    in: "::Card::Eventable"
+    implements: "::Card::Eventable"
 app/models/card/exportable.rb:
   modules:
   - anchor: Exportable
@@ -484,6 +515,10 @@ app/models/card/mentions.rb:
     annotations:
     - "# @type self: singleton(Card) & singleton(Card::Mentions)"
     - "# @type instance: Card & Card::Mentions"
+  blocks:
+  - call: included
+    in: "::Card::Mentions"
+    implements: "::Card::Mentions"
 app/models/card/multistep.rb:
   modules:
   - anchor: Multistep
@@ -520,6 +555,10 @@ app/models/card/searchable.rb:
     annotations:
     - "# @type self: singleton(Card) & singleton(Card::Searchable)"
     - "# @type instance: Card & Card::Searchable"
+  blocks:
+  - call: included
+    in: "::Card::Searchable"
+    implements: "::Card::Searchable"
 app/models/card/stallable.rb:
   modules:
   - anchor: Stallable
@@ -568,12 +607,20 @@ app/models/comment/eventable.rb:
     annotations:
     - "# @type self: singleton(Comment) & singleton(Comment::Eventable)"
     - "# @type instance: Comment & Comment::Eventable"
+  blocks:
+  - call: included
+    in: "::Comment::Eventable"
+    implements: "::Comment::Eventable"
 app/models/comment/mentions.rb:
   modules:
   - anchor: Mentions
     annotations:
     - "# @type self: singleton(Comment) & singleton(Comment::Mentions)"
     - "# @type instance: Comment & Comment::Mentions"
+  blocks:
+  - call: included
+    in: "::Comment::Mentions"
+    implements: "::Comment::Mentions"
 app/models/comment/promptable.rb:
   modules:
   - anchor: Promptable
@@ -586,6 +633,10 @@ app/models/comment/searchable.rb:
     annotations:
     - "# @type self: singleton(Comment) & singleton(Comment::Searchable)"
     - "# @type instance: Comment & Comment::Searchable"
+  blocks:
+  - call: included
+    in: "::Comment::Searchable"
+    implements: "::Comment::Searchable"
 app/models/concerns/attachments.rb:
   modules:
   - anchor: Attachments
@@ -635,6 +686,12 @@ app/models/concerns/storage/totaled.rb:
     - "# @type self: (singleton(Account) & singleton(Storage::Totaled)) | (singleton(Board)
       & singleton(Storage::Totaled))"
     - "# @type instance: (Account & Storage::Totaled) | (Board & Storage::Totaled)"
+  blocks:
+  - call: class_methods
+    in: "::Storage::Totaled"
+    implements: "::Storage::Totaled::ClassMethods"
+    self: "(singleton(::Account) & ::Storage::Totaled::ClassMethods) | (singleton(::Board)
+      & ::Storage::Totaled::ClassMethods)"
 app/models/concerns/storage/tracked.rb:
   modules:
   - anchor: Tracked
@@ -661,12 +718,22 @@ app/models/filter/fields.rb:
     annotations:
     - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
     - "# @type instance: Filter & Filter::Fields"
+  blocks:
+  - call: class_methods
+    in: "::Filter::Fields"
+    implements: "::Filter::Fields::ClassMethods"
+    self: singleton(::Filter) & ::Filter::Fields::ClassMethods
 app/models/filter/params.rb:
   modules:
   - anchor: Params
     annotations:
     - "# @type self: singleton(Filter) & singleton(Filter::Params)"
     - "# @type instance: Filter & Filter::Params"
+  blocks:
+  - call: class_methods
+    in: "::Filter::Params"
+    implements: "::Filter::Params::ClassMethods"
+    self: singleton(::Filter) & ::Filter::Params::ClassMethods
 app/models/filter/resources.rb:
   modules:
   - anchor: Resources
@@ -690,12 +757,32 @@ app/models/identity/transferable.rb:
     annotations:
     - "# @type self: singleton(Identity) & singleton(Identity::Transferable)"
     - "# @type instance: Identity & Identity::Transferable"
+  blocks:
+  - call: class_methods
+    in: "::Identity::Transferable"
+    implements: "::Identity::Transferable::ClassMethods"
+    self: singleton(::Identity) & ::Identity::Transferable::ClassMethods
 app/models/notification/pushable.rb:
   modules:
   - anchor: Pushable
     annotations:
     - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
     - "# @type instance: Notification & Notification::Pushable"
+  blocks:
+  - call: class_methods
+    in: "::Notification::Pushable"
+    implements: "::Notification::Pushable::ClassMethods"
+    self: singleton(::Notification) & ::Notification::Pushable::ClassMethods
+app/models/search/record/sqlite.rb:
+  blocks:
+  - call: class_methods
+    in: "::Search::Record::SQLite"
+    implements: "::Search::Record::SQLite::ClassMethods"
+app/models/search/record/trilogy.rb:
+  blocks:
+  - call: class_methods
+    in: "::Search::Record::Trilogy"
+    implements: "::Search::Record::Trilogy::ClassMethods"
 app/models/user/accessor.rb:
   modules:
   - anchor: Accessor
@@ -732,6 +819,11 @@ app/models/user/day_timeline/serializable.rb:
     annotations:
     - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
     - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
+  blocks:
+  - call: class_methods
+    in: "::User::DayTimeline::Serializable"
+    implements: "::User::DayTimeline::Serializable::ClassMethods"
+    self: singleton(::User::DayTimeline) & ::User::DayTimeline::Serializable::ClassMethods
 app/models/user/email_address_changeable.rb:
   modules:
   - anchor: EmailAddressChangeable
@@ -774,6 +866,11 @@ app/models/user/timelined.rb:
     annotations:
     - "# @type self: singleton(User) & singleton(User::Timelined)"
     - "# @type instance: User & User::Timelined"
+app/models/user/transferable.rb:
+  blocks:
+  - call: class_methods
+    in: "::User::Transferable"
+    implements: "::User::Transferable::ClassMethods"
 app/models/user/watcher.rb:
   modules:
   - anchor: Watcher
@@ -797,6 +894,11 @@ lib/action_pack/passkey/holder.rb:
     annotations:
     - "# @type self: singleton(ActionPack::Railtie) & singleton(ActionPack::Passkey::Holder)"
     - "# @type instance: ActionPack::Railtie & ActionPack::Passkey::Holder"
+  blocks:
+  - call: class_methods
+    in: "::ActionPack::Passkey::Holder"
+    implements: "::ActionPack::Passkey::Holder::ClassMethods"
+    self: singleton(::ActionPack::Railtie) & ::ActionPack::Passkey::Holder::ClassMethods
 lib/action_pack/passkey/request.rb:
   modules:
   - anchor: Request
@@ -808,6 +910,95 @@ lib/action_pack/passkey/request.rb:
     - "# @type instance: (ActionPack::Passkey::ChallengesController & ActionPack::Passkey::Request)
       | (My::PasskeysController & ActionPack::Passkey::Request) | (Sessions::PasskeysController
       & ActionPack::Passkey::Request) | (SessionsController & ActionPack::Passkey::Request)"
+lib/rails_ext/action_pack_passkey_infer_name_from_aaguid.rb:
+  blocks:
+  - call: class_methods
+    in: "::ActionPackPasskeyInferNameFromAaguid"
+    implements: "::ActionPackPasskeyInferNameFromAaguid::ClassMethods"
+lib/rails_ext/active_record_replica_support.rb:
+  blocks:
+  - call: class_methods
+    in: "::ActiveRecordReplicaSupport"
+    implements: "::ActiveRecordReplicaSupport::ClassMethods"
+sig/generated/steep_ar_runtime/active_support/concern.rb:
+  modules:
+  - anchor: Concern
+    annotations:
+    - "# @type instance: (singleton(Account::Cancellable)) | (singleton(Account::Entropic))
+      | (singleton(Account::Incineratable)) | (singleton(Account::MultiTenantable))
+      | (singleton(Account::Searchable)) | (singleton(Account::Seedeable)) | (singleton(Account::Storage))
+      | (singleton(AccountTenanted)) | (singleton(ActionPack::Passkey::Holder)) |
+      (singleton(ActionPack::Passkey::Request)) | (singleton(ActionPackPasskeyInferNameFromAaguid))
+      | (singleton(ActiveRecordRelationPrependOrder)) | (singleton(ActiveRecordReplicaSupport))
+      | (singleton(ActiveStorage::Authorize)) | (singleton(Attachments)) | (singleton(Authentication))
+      | (singleton(Authentication::ViaMagicLink)) | (singleton(Authorization)) | (singleton(BlockSearchEngineIndexing))
+      | (singleton(Board::Accessible)) | (singleton(Board::AutoPostponing)) | (singleton(Board::Broadcastable))
+      | (singleton(Board::Cards)) | (singleton(Board::Entropic)) | (singleton(Board::Publishable))
+      | (singleton(Board::Storage)) | (singleton(Board::Triageable)) | (singleton(BoardScoped))
+      | (singleton(Card::Accessible)) | (singleton(Card::Assignable)) | (singleton(Card::Broadcastable))
+      | (singleton(Card::Closeable)) | (singleton(Card::Colored)) | (singleton(Card::Commentable))
+      | (singleton(Card::Entropic)) | (singleton(Card::Eventable)) | (singleton(Card::Exportable))
+      | (singleton(Card::Golden)) | (singleton(Card::Mentions)) | (singleton(Card::Multistep))
+      | (singleton(Card::Pinnable)) | (singleton(Card::Postponable)) | (singleton(Card::Promptable))
+      | (singleton(Card::Readable)) | (singleton(Card::Searchable)) | (singleton(Card::Stallable))
+      | (singleton(Card::Statuses)) | (singleton(Card::Taggable)) | (singleton(Card::Triageable))
+      | (singleton(Card::Watchable)) | (singleton(CardScoped)) | (singleton(Column::Colored))
+      | (singleton(Column::Positioned)) | (singleton(ColumnScoped)) | (singleton(Comment::Eventable))
+      | (singleton(Comment::Mentions)) | (singleton(Comment::Promptable)) | (singleton(Comment::Searchable))
+      | (singleton(CurrentRequest)) | (singleton(CurrentTimezone)) | (singleton(DayTimelinesScoped))
+      | (singleton(Event::Particulars)) | (singleton(Event::Promptable)) | (singleton(Eventable))
+      | (singleton(Filter::Fields)) | (singleton(Filter::Params)) | (singleton(Filter::Resources))
+      | (singleton(FilterScoped)) | (singleton(Filterable)) | (singleton(Identity::Joinable))
+      | (singleton(Identity::Transferable)) | (singleton(Mailers::Unsubscribable))
+      | (singleton(Mentions)) | (singleton(Notifiable)) | (singleton(Notification::Pushable))
+      | (singleton(RequestForgeryProtection)) | (singleton(RoutingHeaders)) | (singleton(Search::Record::SQLite))
+      | (singleton(Search::Record::Trilogy)) | (singleton(Searchable)) | (singleton(SetPlatform))
+      | (singleton(SmtpDeliveryErrorHandling)) | (singleton(Storage::AttachmentTracking))
+      | (singleton(Storage::Totaled)) | (singleton(Storage::Tracked)) | (singleton(TurboFlash))
+      | (singleton(User::Accessor)) | (singleton(User::Assignee)) | (singleton(User::Attachable))
+      | (singleton(User::Avatar)) | (singleton(User::Configurable)) | (singleton(User::DayTimeline::Serializable))
+      | (singleton(User::EmailAddressChangeable)) | (singleton(User::Mentionable))
+      | (singleton(User::Named)) | (singleton(User::Notifiable)) | (singleton(User::Role))
+      | (singleton(User::Searcher)) | (singleton(User::Timelined)) | (singleton(User::Transferable))
+      | (singleton(User::Watcher)) | (singleton(ViewTransitions)) | (singleton(Webhook::Triggerable))"
+    defs:
+      class_methods: singleton(Account::MultiTenantable) | singleton(ActionPack::Passkey::Holder)
+        | singleton(ActionPackPasskeyInferNameFromAaguid) | singleton(ActiveRecordReplicaSupport)
+        | singleton(Authentication) | singleton(Authorization) | singleton(Board::Publishable)
+        | singleton(Card::Entropic) | singleton(Filter::Fields) | singleton(Filter::Params)
+        | singleton(Identity::Transferable) | singleton(Notification::Pushable) |
+        singleton(Search::Record::SQLite) | singleton(Search::Record::Trilogy) | singleton(Storage::Totaled)
+        | singleton(User::DayTimeline::Serializable) | singleton(User::Transferable)
+      included: singleton(Account::Cancellable) | singleton(Account::Entropic) | singleton(Account::Incineratable)
+        | singleton(Account::MultiTenantable) | singleton(Account::Searchable) | singleton(Account::Storage)
+        | singleton(ActionPack::Passkey::Request) | singleton(ActiveRecordRelationPrependOrder)
+        | singleton(ActiveStorage::Authorize) | singleton(Authentication) | singleton(Authentication::ViaMagicLink)
+        | singleton(Authorization) | singleton(BlockSearchEngineIndexing) | singleton(Board::Accessible)
+        | singleton(Board::AutoPostponing) | singleton(Board::Broadcastable) | singleton(Board::Cards)
+        | singleton(Board::Entropic) | singleton(Board::Publishable) | singleton(Board::Triageable)
+        | singleton(BoardScoped) | singleton(Card::Accessible) | singleton(Card::Assignable)
+        | singleton(Card::Broadcastable) | singleton(Card::Closeable) | singleton(Card::Commentable)
+        | singleton(Card::Entropic) | singleton(Card::Eventable) | singleton(Card::Golden)
+        | singleton(Card::Mentions) | singleton(Card::Multistep) | singleton(Card::Pinnable)
+        | singleton(Card::Postponable) | singleton(Card::Promptable) | singleton(Card::Searchable)
+        | singleton(Card::Stallable) | singleton(Card::Statuses) | singleton(Card::Taggable)
+        | singleton(Card::Triageable) | singleton(Card::Watchable) | singleton(CardScoped)
+        | singleton(Column::Colored) | singleton(Column::Positioned) | singleton(ColumnScoped)
+        | singleton(Comment::Eventable) | singleton(Comment::Mentions) | singleton(Comment::Promptable)
+        | singleton(Comment::Searchable) | singleton(CurrentRequest) | singleton(CurrentTimezone)
+        | singleton(DayTimelinesScoped) | singleton(Event::Particulars) | singleton(Eventable)
+        | singleton(Filter::Fields) | singleton(Filter::Params) | singleton(Filter::Resources)
+        | singleton(FilterScoped) | singleton(Filterable) | singleton(Mailers::Unsubscribable)
+        | singleton(Mentions) | singleton(Notifiable) | singleton(Notification::Pushable)
+        | singleton(RequestForgeryProtection) | singleton(RoutingHeaders) | singleton(Search::Record::SQLite)
+        | singleton(Search::Record::Trilogy) | singleton(Searchable) | singleton(SetPlatform)
+        | singleton(SmtpDeliveryErrorHandling) | singleton(Storage::AttachmentTracking)
+        | singleton(Storage::Totaled) | singleton(Storage::Tracked) | singleton(TurboFlash)
+        | singleton(User::Accessor) | singleton(User::Assignee) | singleton(User::Attachable)
+        | singleton(User::Avatar) | singleton(User::Configurable) | singleton(User::DayTimeline::Serializable)
+        | singleton(User::Mentionable) | singleton(User::Named) | singleton(User::Notifiable)
+        | singleton(User::Role) | singleton(User::Searcher) | singleton(User::Timelined)
+        | singleton(User::Watcher) | singleton(ViewTransitions) | singleton(Webhook::Triggerable)
 sig/generated/steep_ar_runtime/event/generated_store_accessors.rb:
   modules:
   - anchor: GeneratedStoreAccessors
