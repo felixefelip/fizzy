@@ -21,9 +21,9 @@ class Filter < ApplicationRecord
   def sorted_by: () -> untyped
   def creation_window: () -> untyped
   def closure_window: () -> untyped
-  def terms: () -> [ ]
+  def terms: () -> Array[untyped]
   def terms=: (untyped value) -> untyped
-  def column_ids: () -> Array[bot]
+  def column_ids: () -> Array[untyped]
   def column_ids=: (untyped value) -> untyped
 
   private
