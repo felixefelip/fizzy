@@ -38,6 +38,18 @@ class Card
     Card_Comment::ActiveRecord_Associations_CollectionProxy.new(Comment, self)
   end
 
+  def events
+    Card_Event::ActiveRecord_Associations_CollectionProxy.new(Event, self)
+  end
+
+  def mentions
+    Card_Mention::ActiveRecord_Associations_CollectionProxy.new(Mention, self)
+  end
+
+  def mentionees
+    Card_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
+  end
+
   def steps
     Card_Step::ActiveRecord_Associations_CollectionProxy.new(Step, self)
   end

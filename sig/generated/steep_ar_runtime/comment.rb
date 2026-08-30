@@ -26,6 +26,18 @@ class Comment
     self.creator ||= Current.user
   end
 
+  def events
+    Comment_Event::ActiveRecord_Associations_CollectionProxy.new(Event, self)
+  end
+
+  def mentions
+    Comment_Mention::ActiveRecord_Associations_CollectionProxy.new(Mention, self)
+  end
+
+  def mentionees
+    Comment_User::ActiveRecord_Associations_CollectionProxy.new(User, self)
+  end
+
   def reactions
     Comment_Reaction::ActiveRecord_Associations_CollectionProxy.new(Reaction, self)
   end
