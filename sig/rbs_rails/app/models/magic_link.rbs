@@ -340,10 +340,17 @@ class ::MagicLink < ::ApplicationRecord
   end
   include ::MagicLink::GeneratedAssociationMethods
 
-  def for_sign_in!: () -> bool
-  def for_sign_in?: () -> bool
-  def for_sign_up!: () -> bool
-  def for_sign_up?: () -> bool
+  module ::MagicLink::GeneratedEnumMethods
+    def for_sign_in!: () -> bool
+
+    def for_sign_in?: () -> bool
+
+    def for_sign_up!: () -> bool
+
+    def for_sign_up?: () -> bool
+  end
+  include ::MagicLink::GeneratedEnumMethods
+
   def self.purposes: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
   def self.for_sign_in: () -> ::MagicLink::ActiveRecord_Relation
   def self.not_for_sign_in: () -> ::MagicLink::ActiveRecord_Relation

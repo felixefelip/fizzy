@@ -433,14 +433,25 @@ class ::Webhook < ::ApplicationRecord
     end
     include ::Webhook::Delivery::GeneratedAssociationMethods
 
-    def pending!: () -> bool
-    def pending?: () -> bool
-    def in_progress!: () -> bool
-    def in_progress?: () -> bool
-    def completed!: () -> bool
-    def completed?: () -> bool
-    def errored!: () -> bool
-    def errored?: () -> bool
+    module ::Webhook::Delivery::GeneratedEnumMethods
+      def pending!: () -> bool
+
+      def pending?: () -> bool
+
+      def in_progress!: () -> bool
+
+      def in_progress?: () -> bool
+
+      def completed!: () -> bool
+
+      def completed?: () -> bool
+
+      def errored!: () -> bool
+
+      def errored?: () -> bool
+    end
+    include ::Webhook::Delivery::GeneratedEnumMethods
+
     def self.states: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
     def self.pending: () -> ::Webhook::Delivery::ActiveRecord_Relation
     def self.not_pending: () -> ::Webhook::Delivery::ActiveRecord_Relation

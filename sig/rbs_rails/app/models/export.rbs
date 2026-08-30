@@ -406,14 +406,25 @@ class ::Export < ::ApplicationRecord
   end
   include ::Export::GeneratedAssociationMethods
 
-  def pending!: () -> bool
-  def pending?: () -> bool
-  def processing!: () -> bool
-  def processing?: () -> bool
-  def completed!: () -> bool
-  def completed?: () -> bool
-  def failed!: () -> bool
-  def failed?: () -> bool
+  module ::Export::GeneratedEnumMethods
+    def pending!: () -> bool
+
+    def pending?: () -> bool
+
+    def processing!: () -> bool
+
+    def processing?: () -> bool
+
+    def completed!: () -> bool
+
+    def completed?: () -> bool
+
+    def failed!: () -> bool
+
+    def failed?: () -> bool
+  end
+  include ::Export::GeneratedEnumMethods
+
   def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
   def self.pending: () -> ::Export::ActiveRecord_Relation
   def self.not_pending: () -> ::Export::ActiveRecord_Relation

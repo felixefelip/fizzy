@@ -387,12 +387,21 @@ class ::Notification < ::ApplicationRecord
     end
     include ::Notification::Bundle::GeneratedAssociationMethods
 
-    def pending!: () -> bool
-    def pending?: () -> bool
-    def processing!: () -> bool
-    def processing?: () -> bool
-    def delivered!: () -> bool
-    def delivered?: () -> bool
+    module ::Notification::Bundle::GeneratedEnumMethods
+      def pending!: () -> bool
+
+      def pending?: () -> bool
+
+      def processing!: () -> bool
+
+      def processing?: () -> bool
+
+      def delivered!: () -> bool
+
+      def delivered?: () -> bool
+    end
+    include ::Notification::Bundle::GeneratedEnumMethods
+
     def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
     def self.pending: () -> ::Notification::Bundle::ActiveRecord_Relation
     def self.not_pending: () -> ::Notification::Bundle::ActiveRecord_Relation

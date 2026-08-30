@@ -347,14 +347,25 @@ class ::User < ::ApplicationRecord
     end
     include ::User::Settings::GeneratedAssociationMethods
 
-    def bundle_email_never!: () -> bool
-    def bundle_email_never?: () -> bool
-    def bundle_email_every_few_hours!: () -> bool
-    def bundle_email_every_few_hours?: () -> bool
-    def bundle_email_daily!: () -> bool
-    def bundle_email_daily?: () -> bool
-    def bundle_email_weekly!: () -> bool
-    def bundle_email_weekly?: () -> bool
+    module ::User::Settings::GeneratedEnumMethods
+      def bundle_email_never!: () -> bool
+
+      def bundle_email_never?: () -> bool
+
+      def bundle_email_every_few_hours!: () -> bool
+
+      def bundle_email_every_few_hours?: () -> bool
+
+      def bundle_email_daily!: () -> bool
+
+      def bundle_email_daily?: () -> bool
+
+      def bundle_email_weekly!: () -> bool
+
+      def bundle_email_weekly?: () -> bool
+    end
+    include ::User::Settings::GeneratedEnumMethods
+
     def self.bundle_email_frequencies: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::Integer]
     def self.bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation
     def self.not_bundle_email_never: () -> ::User::Settings::ActiveRecord_Relation

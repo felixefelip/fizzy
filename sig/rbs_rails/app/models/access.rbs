@@ -392,10 +392,17 @@ class ::Access < ::ApplicationRecord
   end
   include ::Access::GeneratedAssociationMethods
 
-  def access_only!: () -> bool
-  def access_only?: () -> bool
-  def watching!: () -> bool
-  def watching?: () -> bool
+  module ::Access::GeneratedEnumMethods
+    def access_only!: () -> bool
+
+    def access_only?: () -> bool
+
+    def watching!: () -> bool
+
+    def watching?: () -> bool
+  end
+  include ::Access::GeneratedEnumMethods
+
   def self.involvements: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
   def self.access_only: () -> ::Access::ActiveRecord_Relation
   def self.not_access_only: () -> ::Access::ActiveRecord_Relation

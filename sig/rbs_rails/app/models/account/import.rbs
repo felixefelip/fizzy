@@ -407,18 +407,33 @@ class ::Account < ::ApplicationRecord
     end
     include ::Account::Import::GeneratedAssociationMethods
 
-    def pending!: () -> bool
-    def pending?: () -> bool
-    def processing!: () -> bool
-    def processing?: () -> bool
-    def completed!: () -> bool
-    def completed?: () -> bool
-    def failed!: () -> bool
-    def failed?: () -> bool
-    def failed_due_to_conflict!: () -> bool
-    def failed_due_to_conflict?: () -> bool
-    def failed_due_to_invalid_export!: () -> bool
-    def failed_due_to_invalid_export?: () -> bool
+    module ::Account::Import::GeneratedEnumMethods
+      def pending!: () -> bool
+
+      def pending?: () -> bool
+
+      def processing!: () -> bool
+
+      def processing?: () -> bool
+
+      def completed!: () -> bool
+
+      def completed?: () -> bool
+
+      def failed!: () -> bool
+
+      def failed?: () -> bool
+
+      def failed_due_to_conflict!: () -> bool
+
+      def failed_due_to_conflict?: () -> bool
+
+      def failed_due_to_invalid_export!: () -> bool
+
+      def failed_due_to_invalid_export?: () -> bool
+    end
+    include ::Account::Import::GeneratedEnumMethods
+
     def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
     def self.failure_reasons: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
     def self.pending: () -> ::Account::Import::ActiveRecord_Relation

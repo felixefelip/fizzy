@@ -515,14 +515,25 @@ class ::User < ::ApplicationRecord
   end
   include ::User::GeneratedAssociationMethods
 
-  def owner!: () -> bool
-  def owner?: () -> bool
-  def admin!: () -> bool
-  def admin?: () -> bool
-  def member!: () -> bool
-  def member?: () -> bool
-  def system!: () -> bool
-  def system?: () -> bool
+  module ::User::GeneratedEnumMethods
+    def owner!: () -> bool
+
+    def owner?: () -> bool
+
+    def admin!: () -> bool
+
+    def admin?: () -> bool
+
+    def member!: () -> bool
+
+    def member?: () -> bool
+
+    def system!: () -> bool
+
+    def system?: () -> bool
+  end
+  include ::User::GeneratedEnumMethods
+
   def self.roles: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
   def self.owner: () -> ::User::ActiveRecord_Relation
   def self.admin: () -> ::User::ActiveRecord_Relation

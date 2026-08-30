@@ -647,10 +647,17 @@ class ::Card < ::ApplicationRecord
   end
   include ::Card::GeneratedAssociationMethods
 
-  def drafted!: () -> bool
-  def drafted?: () -> bool
-  def published!: () -> bool
-  def published?: () -> bool
+  module ::Card::GeneratedEnumMethods
+    def drafted!: () -> bool
+
+    def drafted?: () -> bool
+
+    def published!: () -> bool
+
+    def published?: () -> bool
+  end
+  include ::Card::GeneratedEnumMethods
+
   def self.statuses: () -> ::ActiveSupport::HashWithIndifferentAccess[::String, ::String]
   def self.drafted: () -> ::Card::ActiveRecord_Relation
   def self.not_drafted: () -> ::Card::ActiveRecord_Relation
