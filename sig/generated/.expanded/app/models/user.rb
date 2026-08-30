@@ -46,7 +46,93 @@ class User < ApplicationRecord
 end
 
 class User
-  has_many :notifications, as: :source, dependent: :destroy
+  has_many :accesses, dependent: :destroy
+  has_many :boards, through: :accesses
+  has_many :accessible_columns, through: :boards, source: :columns
+  has_many :accessible_cards, through: :boards, source: :cards
+  has_many :accessible_comments, through: :accessible_cards, source: :comments
 
-  after_create_commit :notify_recipients_later
+  after_create_commit :grant_access_to_boards, unless: :system?
+end
+
+class User
+  has_many :assignments, foreign_key: :assignee_id, dependent: :destroy
+  has_many :assignings, foreign_key: :assigner_id, class_name: "Assignment"
+  has_many :assigned_cards, through: :assignments, source: :card
+end
+
+class User
+  include ActionText::Attachable
+
+  def attachable_plain_text_representation(...)
+    "@#{first_name.downcase}"
+  end
+end
+
+class User
+  has_one_attached :avatar, dependent: :purge_later do |attachable|
+    attachable.variant :thumb, resize_to_fill: [ 256, 256 ], process: :immediately
+  end
+
+  scope :with_avatars, -> { preload(:account, :avatar_attachment) }
+
+  validate :avatar_content_type_allowed, :avatar_dimensions_allowed, if: :avatar_attached?
+end
+
+class User
+  has_one :settings, class_name: "User::Settings", dependent: :destroy
+  has_many :push_subscriptions, class_name: "Push::Subscription", dependent: :delete_all
+
+  after_create :create_settings, unless: :system?
+
+  delegate :timezone, to: :settings, allow_nil: true
+end
+
+class User
+  has_many :mentions, dependent: :destroy, inverse_of: :mentionee
+
+  # Need to set in the included block so that it overrides Action Text's
+  def to_attachable_partial_path
+    "users/attachable"
+  end
+
+  def to_editor_content_attachment_partial_path
+    to_attachable_partial_path
+  end
+end
+
+class User
+  scope :alphabetically, -> { order("lower(name)") }
+end
+
+class User
+  has_many :notifications, dependent: :destroy
+  has_many :notification_bundles, class_name: "Notification::Bundle", dependent: :destroy
+
+  generates_token_for :unsubscribe, expires_in: 1.month
+end
+
+class User
+  enum :role, %i[ owner admin member system ].index_by(&:itself), scopes: false
+
+  scope :owner, -> { where(active: true, role: :owner) }
+  scope :admin, -> { where(active: true, role: %i[ owner admin ]) }
+  scope :member, -> { where(active: true, role: :member) }
+  scope :active, -> { where(active: true, role: %i[ owner admin member ]) }
+
+  def admin?
+    super || owner?
+  end
+end
+
+class User
+  has_many :search_queries, class_name: "Search::Query", dependent: :destroy
+end
+
+class User
+  has_many :watches, dependent: :destroy
+end
+
+class User
+  has_many :accessible_events, through: :boards, source: :events
 end

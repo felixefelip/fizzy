@@ -54,3 +54,7 @@ class Event
 
   after_create_commit :notify_recipients_later
 end
+
+class Event
+  store_accessor :particulars, :assignee_ids
+end

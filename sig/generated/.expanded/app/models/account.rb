@@ -63,7 +63,33 @@ class Account
 end
 
 class Account
-  after_create_commit :create_in_search_index
-  after_update_commit :update_in_search_index
-  after_destroy_commit :remove_from_search_index
+  has_one :cancellation, dependent: :destroy
+
+  define_callbacks :cancel
+  define_callbacks :reactivate
+end
+
+class Account
+  has_one :entropy, as: :container, dependent: :destroy
+  after_create -> { create_entropy!(auto_postpone_period: DEFAULT_ENTROPY_PERIOD, account: self) }
+end
+
+class Account
+  scope :due_for_incineration, -> { joins(:cancellation).where(account_cancellations: { created_at: ...INCINERATION_GRACE_PERIOD.ago }) }
+
+  define_callbacks :incinerate
+end
+
+class Account
+  cattr_accessor :multi_tenant, default: false
+end
+
+class Account
+  has_many :search_queries, class_name: "Search::Query", dependent: :delete_all
+
+  before_destroy :clear_search_records
+end
+
+class Account
+  extend Account::MultiTenantable::ClassMethods
 end

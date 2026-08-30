@@ -12,11 +12,18 @@ class User < ApplicationRecord
   include Searcher
   include Watcher
   include Timelined
+  include ActionText::Attachable
+  extend ActionText::Attachable::ClassMethods
 
   def deactivate: () -> untyped
   def setup?: () -> bool
   def verified?: () -> bool
   def verify: () -> self?
+  def attachable_plain_text_representation: (**untyped) -> String
+  def to_attachable_partial_path: () -> String
+  def to_editor_content_attachment_partial_path: () -> String
+  def admin?: () -> bool
+  def timezone: () -> untyped?
 
   private
 

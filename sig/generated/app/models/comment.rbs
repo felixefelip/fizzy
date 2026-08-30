@@ -5,8 +5,11 @@ class Comment < ApplicationRecord
   include Promptable
   include Searchable
   include Storage::Tracked
+  include ::Mentions
+  include ::Searchable
 
   def to_partial_path: () -> String
+  def mentionable?: () -> bool
   def publicly_accessible?: () -> untyped
   def accessible_to?: () -> bool
   def board: () -> Board?

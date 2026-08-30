@@ -1,4 +1,6 @@
 class Filter < ApplicationRecord
+  extend ::Filter::Fields::ClassMethods
+  extend ::Filter::Params::ClassMethods
   include Fields
   include Params
   include Resources
@@ -14,6 +16,15 @@ class Filter < ApplicationRecord
   def cacheable?: () -> bool
   def cache_key: () -> untyped
   def only_closed?: () -> untyped
+  def assignment_status: () -> untyped
+  def indexed_by: () -> untyped
+  def sorted_by: () -> untyped
+  def creation_window: () -> untyped
+  def closure_window: () -> untyped
+  def terms: () -> [ ]
+  def terms=: (untyped value) -> untyped
+  def column_ids: () -> Array[bot]
+  def column_ids=: (untyped value) -> untyped
 
   private
 

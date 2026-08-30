@@ -2,7 +2,7 @@ class ERBPartialEntropyAutoClose
   include ActionViewContext
 
   def initialize: (disabled: bool, model: (Entropy? | Board & Board::Validated), url: String) -> void
-  def render: (?String? target, *{ form: ActionView::Helpers::FormBuilder, name: Symbol, current_value: untyped, knob_options: Array[Integer], label: String, disabled: untyped } rest) -> nil
+  def render: (?String? target, *{ form: ActionView::Helpers::FormBuilder, name: Symbol, current_value: Integer, knob_options: Array[Integer], label: String, disabled: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

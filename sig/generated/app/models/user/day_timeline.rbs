@@ -7,7 +7,11 @@ class User
 
     TIMELINEABLE_ACTIONS: Array[String]
 
+    extend ::User::DayTimeline::Serializable::ClassMethods
     include Serializable
+    include GlobalID::Identification
+
+    alias id to_json
 
     attr_reader user: (User & User::Timelined)
     attr_reader day: (ActiveSupport::TimeWithZone | bool)

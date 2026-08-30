@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  extend ::Account::MultiTenantable::ClassMethods
   include ::Account::Storage
   include Cancellable
   include Entropic

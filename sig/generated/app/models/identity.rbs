@@ -1,4 +1,5 @@
 class Identity < ApplicationRecord
+  extend ::Identity::Transferable::ClassMethods
   include Joinable
   include Transferable
 

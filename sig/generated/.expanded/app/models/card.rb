@@ -98,21 +98,158 @@ class Card < ApplicationRecord
 end
 
 class Card
-  has_many :events, as: :eventable, dependent: :destroy
+  delegate :accessible_to?, to: :board
 end
 
 class Card
-  has_many :mentions, as: :source, dependent: :destroy
-  has_many :mentionees, through: :mentions
-  after_save_commit :create_mentions_later, if: :should_create_mentions?
+  has_many :assignments, dependent: :delete_all
+  has_many :assignees, through: :assignments
+
+  scope :unassigned, -> { where.missing :assignments }
+  scope :assigned_to, ->(users) { joins(:assignments).where(assignments: { assignee: users }).distinct }
+  scope :assigned_by, ->(users) { joins(:assignments).where(assignments: { assigner: users }).distinct }
 end
 
 class Card
-  after_create_commit :create_in_search_index
-  after_update_commit :update_in_search_index
-  after_destroy_commit :remove_from_search_index
+  broadcasts_refreshes
+
+  before_update :remember_if_preview_changed
+end
+
+class Card
+  has_one :closure, dependent: :destroy
+
+  scope :closed, -> { joins(:closure) }
+  scope :open, -> { where.missing(:closure) }
+
+  scope :recently_closed_first, -> { closed.order(closures: { created_at: :desc }) }
+  scope :closed_at_window, ->(window) { closed.where(closures: { created_at: window }) }
+  scope :closed_by, ->(users) { closed.where(closures: { user_id: Array(users) }) }
+end
+
+class Card
+  has_many :comments, dependent: :destroy
+end
+
+class Card
+  scope :due_to_be_postponed, -> do
+    active
+      .joins(board: :account)
+      .left_outer_joins(board: :entropy)
+      .joins("LEFT OUTER JOIN entropies AS account_entropies ON account_entropies.account_id = accounts.id AND account_entropies.container_type = 'Account' AND account_entropies.container_id = accounts.id")
+      .where("last_active_at <= #{connection.date_subtract('?', 'COALESCE(entropies.auto_postpone_period, account_entropies.auto_postpone_period)')}", Time.now)
+  end
+
+  scope :postponing_soon, -> do
+    now = Time.now
+    active
+      .joins(board: :account)
+      .left_outer_joins(board: :entropy)
+      .joins("LEFT OUTER JOIN entropies AS account_entropies ON account_entropies.account_id = accounts.id AND account_entropies.container_type = 'Account' AND account_entropies.container_id = accounts.id")
+      .where("last_active_at > #{connection.date_subtract('?', 'COALESCE(entropies.auto_postpone_period, account_entropies.auto_postpone_period)')}", now)
+      .where("last_active_at <= #{connection.date_subtract('?', 'COALESCE(entropies.auto_postpone_period, account_entropies.auto_postpone_period) * 0.75')}", now)
+  end
+
+  delegate :auto_postpone_period, to: :board
+end
+
+class Card
+  before_create { self.last_active_at ||= created_at || Time.current }
+
+  after_save :track_title_change, if: :saved_change_to_title?
+end
+
+class Card
+  has_one :goldness, dependent: :destroy, class_name: "Card::Goldness"
+
+  scope :golden, -> { joins(:goldness) }
+  scope :with_golden_first, -> { left_outer_joins(:goldness).prepend_order("card_goldnesses.id IS NULL").preload(:goldness) }
+end
+
+class Card
+  include ::Mentions
+
+  def mentionable?
+    published?
+  end
+
+  def should_check_mentions?
+    was_just_published?
+  end
+end
+
+class Card
+  has_many :steps, dependent: :destroy
+end
+
+class Card
+  has_many :pins, dependent: :destroy
+
+  after_update_commit :broadcast_pin_updates, if: :preview_changed?
+end
+
+class Card
+  has_one :not_now, dependent: :destroy, class_name: "Card::NotNow"
+
+  scope :postponed, -> { open.published.joins(:not_now) }
+  scope :active, -> { open.published.where.missing(:not_now) }
+end
+
+class Card
+  include Rails.application.routes.url_helpers
+end
+
+class Card
+  include ::Searchable
+
+  scope :mentioning, ->(query, user:) do
+    search_record_class = Search::Record.for(user.account_id)
+    joins(search_record_class.card_join).merge(search_record_class.for_query(query, user: user))
+  end
+end
+
+class Card
+  has_one :activity_spike, class_name: "Card::ActivitySpike", dependent: :destroy
+
+  scope :with_activity_spikes, -> { joins(:activity_spike) }
+  scope :stalled, -> { open.active.with_activity_spikes.where(card_activity_spikes: { updated_at: ..STALLED_AFTER_LAST_SPIKE_PERIOD.ago }, updated_at: ..STALLED_AFTER_LAST_SPIKE_PERIOD.ago) }
+
+  before_update :remember_to_detect_activity_spikes
+  after_update_commit :detect_activity_spikes_later, if: :should_detect_activity_spikes?
+end
+
+class Card
+  enum :status, %w[ drafted published ].index_by(&:itself)
+
+  before_save :mark_if_just_published
+  after_create -> { track_event :published }, if: :published?
 end
 
 class Card
   before_update :track_board_transfer, if: :board_transfer?
+end
+
+class Card
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  scope :tagged_with, ->(tags) { joins(:taggings).where(taggings: { tag: tags }) }
+end
+
+class Card
+  belongs_to :column, optional: true, touch: true
+
+  scope :awaiting_triage, -> { active.where.missing(:column) }
+  scope :triaged, -> { active.joins(:column) }
+end
+
+class Card
+  has_many :watches, dependent: :destroy
+  has_many :watchers, -> { active.merge(Watch.watching) }, through: :watches, source: :user
+
+  after_create :subscribe_creator
+end
+
+class Card
+  extend Card::Entropic::ClassMethods
 end

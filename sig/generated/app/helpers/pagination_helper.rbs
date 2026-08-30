@@ -6,7 +6,7 @@ module PaginationHelper
   def with_manual_pagination: (untyped name, untyped page, **untyped) { () -> untyped } -> untyped
   def with_automatic_pagination: ((Symbol | String) name, untyped page, **untyped) { () -> nil } -> untyped
   def day_timeline_pagination_frame_tag: (User::DayTimeline day_timeline) ?{ (*untyped) -> nil } -> untyped
-  def day_timeline_pagination_frame_id_for: ((ActiveSupport::TimeWithZone | bool | ActiveSupport::TimeWithZone?) day) -> String
+  def day_timeline_pagination_frame_id_for: ((ActiveSupport::TimeWithZone? | ActiveSupport::TimeWithZone) day) -> String
   def day_timeline_pagination_link: (User::DayTimeline day_timeline, (Filter & Filter::Validated | Filter) filter) -> untyped
 
   private

@@ -1,4 +1,5 @@
 class Card < ApplicationRecord
+  extend ::Card::Entropic::ClassMethods
   include Accessible
   include Assignable
   include Attachments
@@ -23,11 +24,17 @@ class Card < ApplicationRecord
   include Taggable
   include Triageable
   include Watchable
+  include ::Mentions
+  include ::Searchable
 
   def card: () -> Card
   def to_param: () -> String
   def move_to: ((Board & Board::Validated) new_board) -> untyped
   def filled?: () -> untyped
+  def mentionable?: () -> bool
+  def should_check_mentions?: () -> bool
+  def accessible_to?: () -> bool
+  def auto_postpone_period: () -> Integer?
 
   private
 

@@ -1,4 +1,5 @@
 class Board < ApplicationRecord
+  extend ::Board::Publishable::ClassMethods
   include Accessible
   include AutoPostponing
   include ::Board::Storage
@@ -9,4 +10,7 @@ class Board < ApplicationRecord
   include Publishable
   include ::Storage::Tracked
   include Triageable
+
+  def auto_postpone_period: () -> Integer?
+  def auto_postpone_period_in_days: () -> Integer
 end

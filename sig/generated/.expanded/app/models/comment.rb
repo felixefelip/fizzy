@@ -37,19 +37,23 @@ class Comment < ApplicationRecord
 end
 
 class Comment
-  has_many :events, as: :eventable, dependent: :destroy
+  after_create_commit :track_creation
 end
 
 class Comment
-  has_many :mentions, as: :source, dependent: :destroy
-  has_many :mentionees, through: :mentions
-  after_save_commit :create_mentions_later, if: :should_create_mentions?
+  include ::Mentions
+
+  def mentionable?
+    card.published?
+  end
 end
 
 class Comment
-  after_create_commit :create_in_search_index
-  after_update_commit :update_in_search_index
-  after_destroy_commit :remove_from_search_index
+  include Rails.application.routes.url_helpers
+end
+
+class Comment
+  include ::Searchable
 end
 
 class Comment

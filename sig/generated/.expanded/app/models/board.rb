@@ -18,6 +18,53 @@ class Board < ApplicationRecord
 end
 
 class Board
+  has_many :accesses, dependent: :delete_all do
+    def revise(granted: [], revoked: [])
+      transaction do
+        grant_to granted
+        revoke_from revoked
+      end
+    end
+
+    def grant_to(users)
+      Access.insert_all Array(users).collect { |user| { id: ActiveRecord::Type::Uuid.generate, board_id: proxy_association.owner.id, user_id: user.id, account_id: proxy_association.owner.account.id } }
+    end
+
+    def revoke_from(users)
+      destroy_by user: users unless proxy_association.owner.all_access?
+    end
+  end
+
+  has_many :users, through: :accesses
+  has_many :access_only_users, -> { merge(Access.access_only) }, through: :accesses, source: :user
+
+  scope :all_access, -> { where(all_access: true) }
+
+  after_create :grant_access_to_creator
+  after_save_commit :grant_access_to_everyone
+end
+
+class Board
+  before_create :set_default_auto_postpone_period
+end
+
+class Board
+  broadcasts_refreshes
+  broadcasts_refreshes_to ->(board) { [ board.account, :all_boards ] }
+end
+
+class Board
+  has_many :cards, dependent: :destroy
+
+  after_update_commit -> { cards.touch_all }, if: :saved_change_to_name?
+end
+
+class Board
+  delegate :auto_postpone_period, :auto_postpone_period_in_days, to: :entropy
+  has_one :entropy, as: :container, dependent: :destroy
+end
+
+class Board
   has_and_belongs_to_many :filters
 
   after_update { filters.touch_all }
@@ -25,5 +72,18 @@ class Board
 end
 
 class Board
+  has_one :publication, class_name: "Board::Publication", dependent: :destroy
+  scope :published, -> { joins(:publication) }
+end
+
+class Board
   before_update :track_board_transfer, if: :board_transfer?
+end
+
+class Board
+  has_many :columns, dependent: :destroy
+end
+
+class Board
+  extend Board::Publishable::ClassMethods
 end
