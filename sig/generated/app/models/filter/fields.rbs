@@ -19,7 +19,7 @@ class Filter
     module ClassMethods
       def default_values: () -> { indexed_by: String, sorted_by: String }
       def default_value?: (Symbol key, untyped value) -> bool
-      def indexed_by_human_name: (untyped index) -> String
+      def indexed_by_human_name: (String index) -> String
     end
   end
 end

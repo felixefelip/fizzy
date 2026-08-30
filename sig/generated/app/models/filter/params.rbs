@@ -18,7 +18,7 @@ class Filter
     module ClassMethods
       def find_by_params: (untyped params) -> (Filter & Filter::Validated)?
       def digest_params: (untyped params) -> String
-      def normalize_params: (untyped params) -> Hash[untyped, untyped]
+      def normalize_params: ((ActionController::Parameters & ActionController::Parameters::Permitted) params) -> Hash[untyped, untyped]
     end
   end
 end
