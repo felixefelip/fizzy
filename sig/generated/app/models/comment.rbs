@@ -11,9 +11,9 @@ class Comment < ApplicationRecord
   def to_partial_path: () -> String
   def mentionable?: () -> bool
   def publicly_accessible?: () -> untyped
-  def accessible_to?: () -> bool
+  def accessible_to?: (User & User::Validated user) -> bool
   def board: () -> Board?
-  def watch_by: () -> untyped
+  def watch_by: (User? user) -> untyped
 
   private
 
