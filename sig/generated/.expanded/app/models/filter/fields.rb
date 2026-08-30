@@ -73,6 +73,7 @@ module Filter::Fields
     end
   end
 
+  # Dead code
   def with(**fields)
     creator.filters.from_params(as_params).tap do |filter|
       fields.each do |key, value|

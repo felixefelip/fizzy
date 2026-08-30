@@ -1,0 +1,8 @@
+module Comment_Mention
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Comment
+
+    def initialize: (singleton(::Mention) klass, Comment owner) -> void
+    def owner: () -> Comment
+  end
+end

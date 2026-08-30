@@ -1,0 +1,8 @@
+module Comment_Event
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Comment
+
+    def initialize: (singleton(::Event) klass, Comment owner) -> void
+    def owner: () -> Comment
+  end
+end

@@ -15,7 +15,7 @@ class Card
       def card_was_just_assigned?: () -> untyped
       def card_was_just_reopened?: () -> untyped
       def card_was_just?: (Symbol action) -> untyped
-      def last_event: () -> untyped
+      def last_event: () -> (Event & Event::Validated)?
     end
   end
 end

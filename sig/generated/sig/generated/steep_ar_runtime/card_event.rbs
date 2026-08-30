@@ -1,0 +1,8 @@
+module Card_Event
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Card
+
+    def initialize: (singleton(::Event) klass, Card owner) -> void
+    def owner: () -> Card
+  end
+end

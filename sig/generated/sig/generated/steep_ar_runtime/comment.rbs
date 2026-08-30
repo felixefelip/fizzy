@@ -4,5 +4,8 @@ class Comment
   def run_belongs_to_default_callbacks: () -> (User | (User & User::Validated) | nil)
   def run_belongs_to_default_account: () -> untyped
   def run_belongs_to_default_creator: () -> (User | (User & User::Validated) | nil)
+  def events: () -> Comment_Event::ActiveRecord_Associations_CollectionProxy
+  def mentions: () -> Comment_Mention::ActiveRecord_Associations_CollectionProxy
+  def mentionees: () -> Comment_User::ActiveRecord_Associations_CollectionProxy
   def reactions: () -> Comment_Reaction::ActiveRecord_Associations_CollectionProxy
 end
