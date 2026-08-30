@@ -4,7 +4,7 @@ class Board
 
     alias publicly_accessible? published?
 
-    def published?: () -> (true | false)
+    def published?: () -> bool
     def publish: () -> Board::Publication?
     def unpublish: () -> bool?
   end

@@ -1,16 +1,4 @@
 ---
-app/controllers/concerns/authentication/via_magic_link.rb:
-  modules:
-  - anchor: ViaMagicLink
-    annotations:
-    - "# @type self: (singleton(ApplicationController) & singleton(Authentication::ViaMagicLink))
-      | (singleton(My::PasskeyChallengesController) & singleton(Authentication::ViaMagicLink))"
-    - "# @type instance: (ApplicationController & Authentication::ViaMagicLink) |
-      (My::PasskeyChallengesController & Authentication::ViaMagicLink)"
-  blocks:
-  - call: included
-    in: "::Authentication::ViaMagicLink"
-    implements: "::Authentication"
 app/controllers/concerns/authentication.rb:
   modules:
   - anchor: Authentication
@@ -31,6 +19,18 @@ app/controllers/concerns/authentication.rb:
     implements: "::Authentication::ClassMethods"
     self: "(singleton(::ApplicationController) & ::Authentication::ClassMethods) |
       (singleton(::My::PasskeyChallengesController) & ::Authentication::ClassMethods)"
+app/controllers/concerns/authentication/via_magic_link.rb:
+  modules:
+  - anchor: ViaMagicLink
+    annotations:
+    - "# @type self: (singleton(ApplicationController) & singleton(Authentication::ViaMagicLink))
+      | (singleton(My::PasskeyChallengesController) & singleton(Authentication::ViaMagicLink))"
+    - "# @type instance: (ApplicationController & Authentication::ViaMagicLink) |
+      (My::PasskeyChallengesController & Authentication::ViaMagicLink)"
+  blocks:
+  - call: included
+    in: "::Authentication::ViaMagicLink"
+    implements: "::Authentication"
 app/controllers/concerns/authorization.rb:
   modules:
   - anchor: Authorization
@@ -498,13 +498,13 @@ app/models/account/multi_tenantable.rb:
     - "# @type self: singleton(Account) & singleton(Account::MultiTenantable)"
     - "# @type instance: Account & Account::MultiTenantable"
   blocks:
+  - call: included
+    in: "::Account::MultiTenantable"
+    implements: "::Account"
   - call: class_methods
     in: "::Account::MultiTenantable"
     implements: "::Account::MultiTenantable::ClassMethods"
     self: singleton(::Account) & ::Account::MultiTenantable::ClassMethods
-  - call: included
-    in: "::Account::MultiTenantable"
-    implements: "::Account"
 app/models/account/searchable.rb:
   modules:
   - anchor: Searchable
@@ -588,13 +588,13 @@ app/models/board/publishable.rb:
     - "# @type self: singleton(Board) & singleton(Board::Publishable)"
     - "# @type instance: Board & Board::Publishable"
   blocks:
+  - call: included
+    in: "::Board::Publishable"
+    implements: "::Board"
   - call: class_methods
     in: "::Board::Publishable"
     implements: "::Board::Publishable::ClassMethods"
     self: singleton(::Board) & ::Board::Publishable::ClassMethods
-  - call: included
-    in: "::Board::Publishable"
-    implements: "::Board"
 app/models/board/storage.rb:
   modules:
   - anchor: Storage
@@ -674,13 +674,13 @@ app/models/card/entropic.rb:
     - "# @type self: singleton(Card) & singleton(Card::Entropic)"
     - "# @type instance: Card & Card::Entropic"
   blocks:
+  - call: included
+    in: "::Card::Entropic"
+    implements: "::Card"
   - call: class_methods
     in: "::Card::Entropic"
     implements: "::Card::Entropic::ClassMethods"
     self: singleton(::Card) & ::Card::Entropic::ClassMethods
-  - call: included
-    in: "::Card::Entropic"
-    implements: "::Card"
 app/models/card/eventable.rb:
   modules:
   - anchor: Eventable
@@ -691,8 +691,8 @@ app/models/card/eventable.rb:
   - call: included
     in: "::Card::Eventable"
     implements:
-    - "::Card::Eventable"
     - "::Card"
+    - "::Card::Eventable"
 app/models/card/exportable.rb:
   modules:
   - anchor: Exportable
@@ -719,8 +719,8 @@ app/models/card/mentions.rb:
   - call: included
     in: "::Card::Mentions"
     implements:
-    - "::Card::Mentions"
     - "::Card"
+    - "::Card::Mentions"
 app/models/card/multistep.rb:
   modules:
   - anchor: Multistep
@@ -777,8 +777,8 @@ app/models/card/searchable.rb:
   - call: included
     in: "::Card::Searchable"
     implements:
-    - "::Card::Searchable"
     - "::Card"
+    - "::Card::Searchable"
 app/models/card/stallable.rb:
   modules:
   - anchor: Stallable
@@ -859,8 +859,8 @@ app/models/comment/eventable.rb:
   - call: included
     in: "::Comment::Eventable"
     implements:
-    - "::Comment::Eventable"
     - "::Comment"
+    - "::Comment::Eventable"
 app/models/comment/mentions.rb:
   modules:
   - anchor: Mentions
@@ -871,8 +871,8 @@ app/models/comment/mentions.rb:
   - call: included
     in: "::Comment::Mentions"
     implements:
-    - "::Comment::Mentions"
     - "::Comment"
+    - "::Comment::Mentions"
 app/models/comment/promptable.rb:
   modules:
   - anchor: Promptable
@@ -893,8 +893,8 @@ app/models/comment/searchable.rb:
   - call: included
     in: "::Comment::Searchable"
     implements:
-    - "::Comment::Searchable"
     - "::Comment"
+    - "::Comment::Searchable"
 app/models/concerns/attachments.rb:
   modules:
   - anchor: Attachments
@@ -1005,13 +1005,13 @@ app/models/filter/fields.rb:
     - "# @type self: singleton(Filter) & singleton(Filter::Fields)"
     - "# @type instance: Filter & Filter::Fields"
   blocks:
+  - call: included
+    in: "::Filter::Fields"
+    implements: "::Filter"
   - call: class_methods
     in: "::Filter::Fields"
     implements: "::Filter::Fields::ClassMethods"
     self: singleton(::Filter) & ::Filter::Fields::ClassMethods
-  - call: included
-    in: "::Filter::Fields"
-    implements: "::Filter"
 app/models/filter/params.rb:
   modules:
   - anchor: Params
@@ -1019,13 +1019,13 @@ app/models/filter/params.rb:
     - "# @type self: singleton(Filter) & singleton(Filter::Params)"
     - "# @type instance: Filter & Filter::Params"
   blocks:
+  - call: included
+    in: "::Filter::Params"
+    implements: "::Filter"
   - call: class_methods
     in: "::Filter::Params"
     implements: "::Filter::Params::ClassMethods"
     self: singleton(::Filter) & ::Filter::Params::ClassMethods
-  - call: included
-    in: "::Filter::Params"
-    implements: "::Filter"
 app/models/filter/resources.rb:
   modules:
   - anchor: Resources
@@ -1065,13 +1065,13 @@ app/models/notification/pushable.rb:
     - "# @type self: singleton(Notification) & singleton(Notification::Pushable)"
     - "# @type instance: Notification & Notification::Pushable"
   blocks:
+  - call: included
+    in: "::Notification::Pushable"
+    implements: "::Notification"
   - call: class_methods
     in: "::Notification::Pushable"
     implements: "::Notification::Pushable::ClassMethods"
     self: singleton(::Notification) & ::Notification::Pushable::ClassMethods
-  - call: included
-    in: "::Notification::Pushable"
-    implements: "::Notification"
 app/models/search/record/sqlite.rb:
   blocks:
   - call: class_methods
@@ -1139,13 +1139,13 @@ app/models/user/day_timeline/serializable.rb:
     - "# @type self: singleton(User::DayTimeline) & singleton(User::DayTimeline::Serializable)"
     - "# @type instance: User::DayTimeline & User::DayTimeline::Serializable"
   blocks:
+  - call: included
+    in: "::User::DayTimeline::Serializable"
+    implements: "::User::DayTimeline"
   - call: class_methods
     in: "::User::DayTimeline::Serializable"
     implements: "::User::DayTimeline::Serializable::ClassMethods"
     self: singleton(::User::DayTimeline) & ::User::DayTimeline::Serializable::ClassMethods
-  - call: included
-    in: "::User::DayTimeline::Serializable"
-    implements: "::User::DayTimeline"
 app/models/user/email_address_changeable.rb:
   modules:
   - anchor: EmailAddressChangeable

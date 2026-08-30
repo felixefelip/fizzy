@@ -6,7 +6,7 @@ module Storage
     def bytes_used_exact: () -> BigDecimal
     def materialize_storage_later: () -> untyped
     def materialize_storage: () -> untyped
-    def reconcile_storage: () -> untyped
+    def reconcile_storage: () -> bool
 
     private
 

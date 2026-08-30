@@ -1,6 +1,6 @@
 class Board
   module Storage
-    @card_ids: nil
+    @card_ids: Array[String]?
 
     BATCH_SIZE: Integer
 

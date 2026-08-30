@@ -7,13 +7,13 @@ class User
     extend ActiveSupport::Concern
 
     def avatar_attached?: () -> bool
-    def avatar_thumbnail: () -> untyped
+    def avatar_thumbnail: () -> ActiveStorage::Attached::One
     def avatar_background_color: () -> String
     def publicly_accessible?: () -> bool
 
     private
 
-    def avatar_content_type_allowed: () -> untyped
-    def avatar_dimensions_allowed: () -> untyped
+    def avatar_content_type_allowed: () -> ActiveModel::Error?
+    def avatar_dimensions_allowed: () -> ActiveModel::Error?
   end
 end

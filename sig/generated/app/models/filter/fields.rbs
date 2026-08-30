@@ -5,10 +5,10 @@ class Filter
 
     extend ActiveSupport::Concern
 
-    def with: (**untyped) -> untyped
-    def default_indexed_by: () -> untyped
+    def with: (**untyped) -> ((Filter & Filter::Validated) | Filter)
+    def default_indexed_by: () -> String
     def default_indexed_by?: () -> bool
-    def default_sorted_by: () -> untyped
+    def default_sorted_by: () -> String
     def default_sorted_by?: () -> bool
     def default_value?: () -> bool
   end

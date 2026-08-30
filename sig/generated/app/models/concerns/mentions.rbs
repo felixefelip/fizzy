@@ -1,17 +1,17 @@
 module Mentions
   extend ActiveSupport::Concern
 
-  def create_mentions: (?mentioner: untyped) -> untyped
-  def mentionable_content: () -> untyped
-  def scan_mentionees: () -> untyped
+  def create_mentions: (?mentioner: untyped) -> Array[untyped]
+  def mentionable_content: () -> String
+  def scan_mentionees: () -> Array[untyped]
 
   private
 
-  def mentionees_from_attachments: () -> untyped
+  def mentionees_from_attachments: () -> Array[untyped]
   def mentionable_users: () -> untyped
-  def rich_text_associations: () -> untyped
+  def rich_text_associations: () -> Array[untyped]
   def should_create_mentions?: () -> bool
-  def mentionable_content_changed?: () -> untyped
+  def mentionable_content_changed?: () -> bool
   def create_mentions_later: () -> untyped
   def mentionable?: () -> bool
   def should_check_mentions?: () -> bool
