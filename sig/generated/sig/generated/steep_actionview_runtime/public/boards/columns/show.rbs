@@ -1,9 +1,9 @@
 class ERBPublicBoardsColumnsShow
-  @column: (Column & Column::Validated)?
+  @column: (Column & Column::Validated)
 
   include ActionViewContext
 
-  def initialize: (column: (Column & Column::Validated)?, page: untyped, page_title: untyped) -> void
+  def initialize: (column: Column & ::Column::Validated, page: untyped, page_title: untyped) -> void
   def render: (?String? target, *{ cards: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

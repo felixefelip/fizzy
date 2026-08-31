@@ -349,14 +349,6 @@ methods:
           kind: self
         method: usage_count
     enforced: false
-  Account::JoinCode#generate_code:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
   Account::JoinCode#redeem_if:
     requires:
     - kind: not_nil
@@ -365,6 +357,15 @@ methods:
         receiver:
           kind: self
         method: usage_count
+    enforced: false
+  AccountTenanted#with_account_context:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: account
     enforced: false
   ActionPack::Passkey::FormHelper#passkey_error_messages:
     requires:
@@ -730,12 +731,6 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: class
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: it
     - kind: not_nil
       expr:
@@ -867,32 +862,6 @@ methods:
         - owner
         - account
     enforced: false
-  Board::Accessible#revise:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: proxy_association
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: proxy_association
-        chain:
-        - owner
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: proxy_association
-        chain:
-        - owner
-        - account
-    enforced: false
   Board::Accessible#revoke_from:
     requires:
     - kind: not_nil
@@ -963,23 +932,6 @@ methods:
         receiver:
           kind: self
         method: description
-    enforced: false
-  Card#move_to:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - events
     enforced: false
   Card#run_before_validation_callbacks:
     requires:
@@ -1103,9 +1055,15 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
+        method: last_event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: last_event
         chain:
-        - events
+        - created_at
     enforced: false
   Card::ActivitySpike::Detector#card_was_just_assigned?:
     requires:
@@ -1114,9 +1072,15 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
+        method: last_event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: last_event
         chain:
-        - events
+        - created_at
     enforced: false
   Card::ActivitySpike::Detector#card_was_just_reopened?:
     requires:
@@ -1125,9 +1089,15 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
+        method: last_event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: last_event
         chain:
-        - events
+        - created_at
     enforced: false
   Card::ActivitySpike::Detector#detect:
     requires:
@@ -1153,9 +1123,15 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
+        method: last_event
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: last_event
         chain:
-        - events
+        - created_at
     enforced: false
   Card::ActivitySpike::Detector#has_activity_spike?:
     requires:
@@ -1181,26 +1157,15 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
-        chain:
-        - events
-    enforced: false
-  Card::ActivitySpike::Detector#last_event:
-    requires:
+        method: last_event
     - kind: not_nil
       expr:
         kind: send
         receiver:
           kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
+        method: last_event
         chain:
-        - events
+        - created_at
     enforced: false
   Card::ActivitySpike::Detector#multiple_people_commented?:
     requires:
@@ -1252,27 +1217,6 @@ methods:
         method: card
         chain:
         - account
-    enforced: false
-  Card::Exportable#export_json:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: created_at
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: updated_at
     enforced: false
   Card::Goldness#run_before_validation_callbacks:
     requires:
@@ -1395,24 +1339,6 @@ methods:
         receiver:
           kind: self
         method: account
-    enforced: false
-  Card::Readable#event_notification_sources:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: events
-    enforced: false
-  Card::Readable#mention_notification_sources:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: mentions
     enforced: false
   Card::Readable#remove_inaccessible_notifications:
     requires:
@@ -2140,85 +2066,6 @@ methods:
         chain:
         - eventable
     enforced: false
-  ERBPartialPublicBoardsShowClosed#render:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - cards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - cards
-        - closed
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - cards
-        - closed
-        - published
-    enforced: false
-  ERBPartialPublicBoardsShowColumns#render:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - columns
-    enforced: false
-  ERBPartialPublicBoardsShowNotNow#render:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - cards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - cards
-        - postponed
-    enforced: false
   ERBPartialReactionsReactions#render:
     requires:
     - kind: not_nil
@@ -2374,30 +2221,6 @@ methods:
         chain:
         - accessible_cards
         - preloaded
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card_ids
-    enforced: false
-  Filter#include_closed_cards?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card_ids
-    enforced: false
-  Filter#include_not_now_cards?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card_ids
     enforced: false
   Filter#run_before_validation_callbacks:
     requires:
@@ -2442,84 +2265,6 @@ methods:
         chain:
         - first
     enforced: false
-  Filter::Fields#default_indexed_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
-  Filter::Fields#default_indexed_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
-  Filter::Fields#default_sorted_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
-  Filter::Fields#default_sorted_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
-  Filter::Fields#indexed_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
-  Filter::Fields#sorted_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
-        chain:
-        - default_values
-    enforced: false
   Filter::Fields#with:
     requires:
     - kind: not_nil
@@ -2536,15 +2281,6 @@ methods:
         method: creator
         chain:
         - filters
-    enforced: false
-  Filter::Params#params_digest:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
     enforced: false
   Filter::Resources#board_titles:
     requires:
@@ -2680,12 +2416,6 @@ methods:
     enforced: false
   Mentions#rich_text_associations:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: class
     - kind: not_nil
       expr:
         kind: send
@@ -3634,15 +3364,6 @@ methods:
         - all_access
         - ids
     enforced: false
-  User::Avatar#avatar_attached?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: avatar
-    enforced: false
   User::Avatar#avatar_content_type_allowed:
     requires:
     - kind: not_nil
@@ -3651,12 +3372,6 @@ methods:
         receiver:
           kind: self
         method: avatar
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: errors
     enforced: false
   User::Avatar#avatar_dimensions_allowed:
     requires:
@@ -3683,12 +3398,6 @@ methods:
         chain:
         - blob
         - metadata
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: errors
     enforced: false
   User::Avatar#avatar_thumbnail:
     requires:
@@ -3733,48 +3442,6 @@ methods:
         chain:
         - accessible_cards
     enforced: false
-  User::DayTimeline#added_column:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#boards:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
   User::DayTimeline#cache_key:
     requires:
     - kind: not_nil
@@ -3783,153 +3450,6 @@ methods:
         receiver:
           kind: self
         method: day
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#closed_column:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#earliest_time:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#events:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#filtered_events:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#has_activity?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
     enforced: false
   User::DayTimeline#latest_event_before:
     requires:
@@ -3939,29 +3459,6 @@ methods:
         receiver:
           kind: self
         method: day
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
   User::DayTimeline#latest_time:
     requires:
     - kind: not_nil
@@ -3978,73 +3475,6 @@ methods:
         method: day
         chain:
         - yesterday
-    enforced: false
-  User::DayTimeline#next_day:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#timelineable_events:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::DayTimeline#updated_column:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
     enforced: false
   User::DayTimeline#window:
     requires:
@@ -4070,15 +3500,6 @@ methods:
         method: it
         chain:
         - created_at
-    enforced: false
-  User::DayTimeline::Serializable#as_json:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
     enforced: false
   User::EmailAddressChangeable#change_email_address_using_token:
     requires:
@@ -4114,187 +3535,6 @@ methods:
         receiver:
           kind: self
         method: identity
-    enforced: false
-  User::Filtering#any?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    enforced: false
-  User::Filtering#selected_board_titles:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    enforced: false
-  User::Filtering#selected_boards_label:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    enforced: false
-  User::Filtering#show_assignees?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - assignees
-    enforced: false
-  User::Filtering#show_boards?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
-    enforced: false
-  User::Filtering#show_closers?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - closers
-    enforced: false
-  User::Filtering#show_creators?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - creators
-    enforced: false
-  User::Filtering#show_indexed_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - indexed_by
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - indexed_by
-        - all?
-    enforced: false
-  User::Filtering#show_sorted_by?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - sorted_by
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - sorted_by
-        - latest?
-    enforced: false
-  User::Filtering#show_tags?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - tags
-    enforced: false
-  User::Filtering#single_board_or_first:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: filter
-        chain:
-        - boards
     enforced: false
   User::Named#familiar_name:
     requires:

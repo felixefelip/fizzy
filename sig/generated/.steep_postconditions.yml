@@ -516,16 +516,12 @@ postconditions:
   method: authenticate_with_http_token
   when_true:
     block_truthy: true
-- class: ActionPack::Passkey::ChallengesController
-  method: create
-  effects:
-    may_write:
-    - "@__rbs_infer__performed"
 - class: ActionPack::Passkey::Holder::Config
   method: authentication_options
   unconditional:
     ivars:
-      "@authentication_options": "(^(*untyped) -> untyped | nil)"
+      "@authentication_options": "(^(*untyped) [self: (::ActionPack::Railtie & ::ActionPack::Passkey::Holder)]
+        -> untyped | nil)"
     self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterAuthenticationOptions"
   effects:
     may_write:
@@ -547,7 +543,8 @@ postconditions:
   method: registration_options
   unconditional:
     ivars:
-      "@registration_options": "(^(*untyped) -> untyped | nil)"
+      "@registration_options": "(^(*untyped) [self: (::ActionPack::Railtie & ::ActionPack::Passkey::Holder)]
+        -> untyped | nil)"
     self: "::ActionPack::Passkey::Holder::Config & ::ActionPack::Passkey::Holder::Config::AfterRegistrationOptions"
   effects:
     may_write:
@@ -757,6 +754,11 @@ postconditions:
     may_write:
     - "@id"
     - "@name"
+- class: ActiveSupport::Concern
+  method: included
+  effects:
+    may_write:
+    - "@_included_block"
 - class: ActivitiesController
   method: __rbs_infer__run_index
   effects:
@@ -1431,6 +1433,24 @@ postconditions:
     may_write:
     - "@owner"
 - class: Card_Comment::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Card_Event::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Event::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Card_Mention::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Card_Mention::ActiveRecord_Associations_CollectionProxy
   method: owner
   effects:
     returns_ivar: "@owner"
@@ -2679,6 +2699,24 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Comment_Event::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Comment_Event::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Comment_Mention::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Comment_Mention::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Comment_Reaction::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -2688,17 +2726,32 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: Comment_User::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Comment_User::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Current
   method: identity=
   unconditional:
     establishes_consts:
       identity: "::Identity"
+  effects:
+    may_write:
+    - "@user"
 - class: Current
   method: session=
   unconditional:
     establishes_consts:
       identity: "::Identity"
       session: "(::Session & ::Session::Validated)"
+  effects:
+    may_write:
+    - "@user"
 - class: Current
   method: __rbs_infer_instance
   effects:
@@ -2719,6 +2772,18 @@ postconditions:
     may_write:
     - "@account"
 - class: Current
+  method: http_method
+  effects:
+    returns_ivar: "@http_method"
+- class: Current
+  method: http_method=
+  unconditional:
+    ivars:
+      "@http_method": untyped
+  effects:
+    may_write:
+    - "@http_method"
+- class: Current
   method: identity
   effects:
     returns_ivar: "@identity"
@@ -2730,6 +2795,42 @@ postconditions:
   effects:
     may_write:
     - "@identity"
+- class: Current
+  method: ip_address
+  effects:
+    returns_ivar: "@ip_address"
+- class: Current
+  method: ip_address=
+  unconditional:
+    ivars:
+      "@ip_address": untyped
+  effects:
+    may_write:
+    - "@ip_address"
+- class: Current
+  method: referrer
+  effects:
+    returns_ivar: "@referrer"
+- class: Current
+  method: referrer=
+  unconditional:
+    ivars:
+      "@referrer": untyped
+  effects:
+    may_write:
+    - "@referrer"
+- class: Current
+  method: request_id
+  effects:
+    returns_ivar: "@request_id"
+- class: Current
+  method: request_id=
+  unconditional:
+    ivars:
+      "@request_id": untyped
+  effects:
+    may_write:
+    - "@request_id"
 - class: Current
   method: session
   effects:
@@ -2747,12 +2848,22 @@ postconditions:
   unconditional:
     ivars:
       "@account": "(self | nil | (::Account & ::Account::Seedeable) | ::Account)"
+      "@http_method": untyped
+      "@ip_address": untyped
+      "@referrer": untyped
+      "@request_id": untyped
+      "@user_agent": untyped
   effects:
     may_write:
     - "@account"
+    - "@http_method"
     - "@identity"
+    - "@ip_address"
+    - "@referrer"
+    - "@request_id"
     - "@session"
     - "@user"
+    - "@user_agent"
 - class: Current
   method: user
   effects:
@@ -2766,15 +2877,73 @@ postconditions:
     may_write:
     - "@user"
 - class: Current
+  method: user_agent
+  effects:
+    returns_ivar: "@user_agent"
+- class: Current
+  method: user_agent=
+  unconditional:
+    ivars:
+      "@user_agent": untyped
+  effects:
+    may_write:
+    - "@user_agent"
+- class: Current
   method: with
   unconditional:
     ivars:
-      "@account": "(::Current | ::Account | nil)"
+      "@account": "(::Account | nil)"
+      "@http_method": untyped
+      "@ip_address": untyped
+      "@referrer": untyped
+      "@request_id": untyped
+      "@user_agent": untyped
   effects:
     may_write:
     - "@account"
+    - "@http_method"
     - "@identity"
+    - "@ip_address"
+    - "@referrer"
+    - "@request_id"
     - "@session"
+    - "@user"
+    - "@user_agent"
+- class: Current::GeneratedAttributeMethods
+  method: account
+  effects:
+    returns_ivar: "@account"
+- class: Current::GeneratedAttributeMethods
+  method: account=
+  effects:
+    may_write:
+    - "@account"
+- class: Current::GeneratedAttributeMethods
+  method: identity
+  effects:
+    returns_ivar: "@identity"
+- class: Current::GeneratedAttributeMethods
+  method: identity=
+  effects:
+    may_write:
+    - "@identity"
+- class: Current::GeneratedAttributeMethods
+  method: session
+  effects:
+    returns_ivar: "@session"
+- class: Current::GeneratedAttributeMethods
+  method: session=
+  effects:
+    may_write:
+    - "@session"
+- class: Current::GeneratedAttributeMethods
+  method: user
+  effects:
+    returns_ivar: "@user"
+- class: Current::GeneratedAttributeMethods
+  method: user=
+  effects:
+    may_write:
     - "@user"
 - class: CurrentTimezone
   method: set_current_timezone
@@ -3921,6 +4090,11 @@ postconditions:
   effects:
     may_write:
     - "@board"
+- class: ERBPublicBoardsColumnsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@column"
 - class: ERBPublicBoardsColumnsStreamsShow
   method: initialize
   effects:
@@ -3931,6 +4105,11 @@ postconditions:
   effects:
     may_write:
     - "@board"
+- class: ERBPublicCardsShow
+  method: initialize
+  effects:
+    may_write:
+    - "@card"
 - class: ERBReactionsCreate
   method: initialize
   effects:
@@ -4134,6 +4313,11 @@ postconditions:
     may_write:
     - "@export"
 - class: Filter
+  method: cache_key
+  effects:
+    may_write:
+    - "@as_params"
+- class: Filter
   method: empty?
   effects:
     may_write:
@@ -4271,6 +4455,14 @@ postconditions:
   effects:
     may_write:
     - "@db_adapter"
+- class: Fizzy
+  method: saas?
+  unconditional:
+    ivars:
+      "@saas": "<% Steep::AST::Types::Logic::Not %>"
+  effects:
+    may_write:
+    - "@saas"
 - class: Fizzy::DbAdapter
   method: initialize
   effects:
@@ -4891,6 +5083,11 @@ postconditions:
   effects:
     may_write:
     - "@source"
+- class: Passkey::Authenticator
+  method: registry
+  effects:
+    may_write:
+    - "@registry"
 - class: Prompts::Boards::UsersController
   method: __rbs_infer__run_index
   effects:
@@ -4979,12 +5176,22 @@ postconditions:
   effects:
     may_write:
     - "@board"
+- class: Public::BaseController
+  method: set_card
+  unconditional:
+    ivars:
+      "@card": "(::Card & ::Card::Validated)"
+    self: "::Public::BaseController & ::Public::BaseController::AfterSetCard"
+  effects:
+    may_write:
+    - "@card"
 - class: Public::Boards::Columns::ClosedsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::ClosedsController
   method: render
@@ -5001,6 +5208,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::NotNowsController
   method: render
@@ -5017,6 +5225,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
 - class: Public::Boards::Columns::StreamsController
   method: render
@@ -5033,6 +5242,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@column"
     - "@disable_view_transition"
 - class: Public::Boards::ColumnsController
   method: render
@@ -5043,12 +5253,22 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Public::Boards::ColumnsController
+  method: set_column
+  unconditional:
+    ivars:
+      "@column": "(::Column & ::Column::Validated)"
+    self: "::Public::Boards::ColumnsController & ::Public::Boards::ColumnsController::AfterSetColumn"
+  effects:
+    may_write:
+    - "@column"
 - class: Public::BoardsController
   method: __rbs_infer__run_show
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
 - class: Public::BoardsController
   method: render
@@ -5065,6 +5285,7 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@board"
+    - "@card"
     - "@disable_view_transition"
 - class: Public::CardsController
   method: render
@@ -5403,6 +5624,10 @@ postconditions:
     - "@user"
 - class: Signup
   method: initialize
+  unconditional:
+    ivars:
+      "@email_address": "(::String | nil)"
+    self: "::Signup & ::Signup::AfterInitialize"
   effects:
     may_write:
     - "@email_address"
@@ -5558,6 +5783,11 @@ postconditions:
   effects:
     may_write:
     - "@storage_snapshot"
+- class: Storage::Totaled
+  method: reconcile_storage
+  effects:
+    may_write:
+    - "@card_ids"
 - class: Tag_Card::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
@@ -7622,14 +7852,14 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
-- class: Card::Closeable
-  method: close
+- class: Card
+  method: tags
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
-- class: Card::Colored
-  method: color
+- class: Card::Closeable
+  method: close
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -8764,8 +8994,26 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@disable_view_transition": 'true'
+- class: Color
+  method: extract_from_legacy_export
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Color
+  method: for_value
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
 - class: Column
   method: cards
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Column::Colored
+  method: color
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -10521,24 +10769,6 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
-- class: ERBPartialReactionsReaction
-  method: __rbs_infer__body
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: ERBPartialReactionsReactions
-  method: __rbs_infer__body
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: ERBPartialReactionsReactions
-  method: render
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialSearchesResult
   method: __rbs_infer__body
   consts:
@@ -10719,12 +10949,6 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBReactionsCreate
   method: __rbs_infer__body
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: ERBReactionsCreate
-  method: render
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -11095,13 +11319,49 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
 - class: Filter
+  method: cards
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
+  method: include_closed_cards?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
+  method: include_not_now_cards?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
+  method: only_closed?
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
   method: remember
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter
+  method: single_board
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
 - class: Filter::GeneratedRelationMethods
   method: remember
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: Filter::Params
+  method: as_params_without
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -11908,6 +12168,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::ClosedsController
   method: show
@@ -11917,6 +12178,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: render
@@ -11926,6 +12188,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: show
@@ -11935,6 +12198,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: render
@@ -11944,6 +12208,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: show
@@ -11953,6 +12218,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: render
@@ -11962,6 +12228,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: set_card
@@ -11989,6 +12256,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: render
@@ -11998,6 +12266,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: show
@@ -12007,6 +12276,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: render
@@ -12016,6 +12286,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: show
@@ -12025,6 +12296,7 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: PwaController
   method: service_worker
@@ -12068,12 +12340,6 @@ method_entry_facts:
     "@disable_view_transition": 'true'
 - class: QrCodesHelper
   method: qr_code_image
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: ReactionsHelper
-  method: reaction_path_prefix_for
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -12539,12 +12805,6 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: User::EmailAddressChangeable
   method: send_email_address_change_confirmation
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: User::Filtering
-  method: selected_boards_label
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -14312,6 +14572,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::NotNowsController
   method: render
@@ -14319,6 +14580,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::Columns::StreamsController
   method: render
@@ -14326,6 +14588,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::Boards::ColumnsController
   method: render
@@ -14333,6 +14596,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@column": "(::Column & ::Column::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::BoardsController
   method: render
@@ -14340,6 +14604,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: Public::CardsController
   method: render
@@ -14347,6 +14612,7 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@board": "(::Board & ::Board::Validated)"
+    "@card": "(::Card & ::Card::Validated)"
     "@disable_view_transition": 'true'
 - class: SearchesController
   method: render
