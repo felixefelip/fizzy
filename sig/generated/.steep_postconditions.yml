@@ -7852,12 +7852,6 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
-- class: Card
-  method: tags
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
 - class: Card::Closeable
   method: close
   consts:
@@ -11366,6 +11360,12 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
+- class: Filter::Resources
+  method: boards_label
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
 - class: FilterScoped
   method: expanded_param
   consts:
@@ -12805,6 +12805,12 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: User::EmailAddressChangeable
   method: send_email_address_change_confirmation
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Filtering
+  method: selected_boards_label
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"

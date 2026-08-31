@@ -55,6 +55,15 @@ methods:
           kind: self
         method: cancellation
     enforced: false
+  Account::CancellationsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Account::DataTransfer::AccountRecordSet#import_batch:
     requires:
     - kind: not_nil
@@ -206,6 +215,33 @@ methods:
         chain:
         - users
     enforced: false
+  Account::EntropiesController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::ExportsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::ExportsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Account::Import#add_importer_to_all_access_boards:
     requires:
     - kind: not_nil
@@ -340,6 +376,33 @@ methods:
         chain:
         - cards
     enforced: false
+  Account::ImportsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::ImportsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::ImportsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Account::JoinCode#active?:
     requires:
     - kind: not_nil
@@ -357,6 +420,60 @@ methods:
         receiver:
           kind: self
         method: usage_count
+    enforced: false
+  Account::JoinCodesController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::JoinCodesController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::JoinCodesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::JoinCodesController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::SettingsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Account::SettingsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   AccountTenanted#with_account_context:
     requires:
@@ -583,6 +700,15 @@ methods:
           kind: self
         method: configurations
     enforced: false
+  ActivitiesController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   ApplicationCable::Connection#connect:
     requires:
     - kind: not_nil
@@ -724,6 +850,108 @@ methods:
         - assignments
         - count
     enforced: false
+  Attachments#attachments:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Attachments#has_attachments?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Attachments#has_remote_images?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Attachments#has_remote_videos?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Attachments#remote_images:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Attachments#remote_videos:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
   Attachments#rich_text_record:
     requires:
     - kind: not_nil
@@ -759,7 +987,34 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  Authentication#request_authentication:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Authentication#require_account:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Authentication#require_authentication:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Authentication::ViaMagicLink#redirect_to_fake_session_magic_link:
     requires:
     - kind: not_nil
       expr:
@@ -924,6 +1179,195 @@ methods:
           kind: self
         method: board
     enforced: false
+  Boards::AccessesController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::Columns::CardsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::Columns::ClosedsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::Columns::NotNowsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::Columns::StreamsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::ColumnsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::ColumnsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::ColumnsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::ColumnsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::ColumnsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::EntropiesController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::InvolvementsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::PublicationsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Boards::PublicationsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  BoardsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Card#filled?:
     requires:
     - kind: not_nil
@@ -1002,7 +1446,6 @@ methods:
         method: board
         chain:
         - accesses
-    enforced: false
   Card::Accessible#publicly_accessible?:
     requires:
     - kind: not_nil
@@ -1207,6 +1650,103 @@ methods:
         - entropy
         - auto_clean_period
     enforced: false
+  Card::Assignable#assign:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Assignable#toggle_assignment:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Assignable#unassign:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Closeable#close:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Closeable#reopen:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Eventable#track_title_change:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+    enforced: false
   Card::Eventable::SystemCommenter#comment:
     requires:
     - kind: not_nil
@@ -1218,6 +1758,60 @@ methods:
         chain:
         - account
     enforced: false
+  Card::Exportable#collect_attachments:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Card::Exportable#export_attachments:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Card::Exportable#export_json:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: created_at
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: updated_at
   Card::Goldness#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -1299,6 +1893,54 @@ methods:
           kind: self
         method: it
     enforced: false
+  Card::Postponable#auto_postpone:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Postponable#postpone:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Postponable#resume:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
   Card::Promptable#to_prompt:
     requires:
     - kind: not_nil
@@ -1381,6 +2023,22 @@ methods:
           kind: self
         method: updated_at
     enforced: false
+  Card::Statuses#publish:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
   Card::Taggable#toggle_tag_with:
     requires:
     - kind: not_nil
@@ -1397,7 +2055,38 @@ methods:
         method: account
         chain:
         - tags
-    enforced: false
+  Card::Triageable#send_back_to_triage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+  Card::Triageable#triage_into:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
   CardScoped#render_card_replacement:
     requires:
     - kind: not_nil
@@ -1407,8 +2096,242 @@ methods:
           kind: self
         method: turbo_stream
     enforced: false
+  Cards::AssignmentsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::AssignmentsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::BoardsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::BoardsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ClosuresController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ClosuresController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ColumnsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::Comments::ReactionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::Comments::ReactionsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::Comments::ReactionsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::Comments::ReactionsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::CommentsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::DraftsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::GoldnessesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::GoldnessesController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::GoldnessesController#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::GoldnessesController#destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: turbo_stream
+    enforced: false
+  Cards::ImagesController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::NotNowsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Cards::PinsController#__rbs_infer__run_create:
     requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     - kind: not_nil
       expr:
         kind: send
@@ -1423,7 +2346,22 @@ methods:
         kind: send
         receiver:
           kind: self
+        method: main_app
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
         method: turbo_stream
+    enforced: false
+  Cards::PinsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Cards::PinsController#create:
     requires:
@@ -1451,6 +2389,258 @@ methods:
         receiver:
           kind: self
         method: turbo_stream
+    enforced: false
+  Cards::PreviewsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::PublishesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReactionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReactionsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReactionsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReactionsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReadingsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::ReadingsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::SelfAssignmentsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::StepsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::TaggingsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::TaggingsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::TriagesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::TriagesController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::WatchesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::WatchesController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Cards::WatchesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  CardsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Closure#run_before_validation_callbacks:
     requires:
@@ -1591,7 +2781,6 @@ methods:
         method: board
         chain:
         - columns
-    enforced: false
   Column::Positioned#move_right:
     requires:
     - kind: not_nil
@@ -1608,7 +2797,6 @@ methods:
         method: board
         chain:
         - columns
-    enforced: false
   Column::Positioned#right_column:
     requires:
     - kind: not_nil
@@ -1659,6 +2847,60 @@ methods:
         method: board
         chain:
         - columns
+    enforced: false
+  Columns::Cards::Drops::ClosuresController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Columns::Cards::Drops::ColumnsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Columns::Cards::Drops::NotNowsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Columns::Cards::Drops::StreamsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Columns::LeftPositionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Columns::RightPositionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Comment#card_is_commentable:
     requires:
@@ -2196,6 +3438,50 @@ methods:
           kind: self
         method: creator
     enforced: false
+  Eventable#track_event:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: creator
+        chain:
+        - system?
+    enforced: false
+  Events::DayTimeline::ColumnsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Events::DaysController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  EventsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Filter#cards:
     requires:
     - kind: not_nil
@@ -2360,6 +3646,69 @@ methods:
           kind: self
         method: it
     enforced: false
+  Filters::SettingsRefreshesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  FiltersController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  FiltersController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  JoinCodesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  JoinCodesController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  JoinCodesController#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  LandingsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   LoginHelper#login_url:
     requires:
     - kind: not_nil
@@ -2378,6 +3727,47 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  LoginHelper#redirect_to_login_url:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  LoginHelper#redirect_to_logout_url:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Mentions#create_mentions:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
   Mentions#mentionable_content:
     requires:
     - kind: not_nil
@@ -2386,6 +3776,14 @@ methods:
         receiver:
           kind: self
         method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
     enforced: false
   Mentions#mentionable_content_changed?:
     requires:
@@ -2395,6 +3793,14 @@ methods:
         receiver:
           kind: self
         method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
     enforced: false
   Mentions#mentionable_users:
     requires:
@@ -2413,6 +3819,14 @@ methods:
         receiver:
           kind: self
         method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
     enforced: false
   Mentions#rich_text_associations:
     requires:
@@ -2430,6 +3844,172 @@ methods:
         method: it
         chain:
         - klass
+    enforced: false
+  Mentions#scan_mentionees:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  Mentions#should_create_mentions?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: it
+        chain:
+        - klass
+    enforced: false
+  My::AccessTokensController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::AccessTokensController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::AccessTokensController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::AccessTokensController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::AccessTokensController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::IdentitiesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::MenusController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PasskeysController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PasskeysController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PasskeysController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PasskeysController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PasskeysController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::PinsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  My::TimezonesController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Notification#bundle:
     requires:
@@ -2824,6 +4404,96 @@ methods:
           kind: self
         method: push_targets
     enforced: false
+  Notifications::BulkReadingsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::ReadingsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::ReadingsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::SettingsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::SettingsController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::TraysController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::UnsubscribesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::UnsubscribesController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Notifications::UnsubscribesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  NotificationsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Notifier#notify:
     requires:
     - kind: not_nil
@@ -2917,6 +4587,87 @@ methods:
           kind: self
         method: user
     enforced: false
+  Prompts::Boards::UsersController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Prompts::CardsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Prompts::UsersController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::Boards::Columns::ClosedsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::Boards::Columns::NotNowsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::Boards::Columns::StreamsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::Boards::ColumnsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::BoardsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Public::CardsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Push::Subscription#notification:
     requires:
     - kind: not_nil
@@ -2991,6 +4742,24 @@ methods:
         method: endpoint_uri
         chain:
         - scheme
+    enforced: false
+  PwaController#__rbs_infer__run_service_worker:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  QrCodesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   RequestForgeryProtection#allowed_api_request?:
     requires:
@@ -3132,6 +4901,210 @@ methods:
           kind: self
         method: comment_id
     enforced: false
+  Searchable#create_in_search_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
+  Searchable#reindex:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
+  Searchable#search_record_attributes:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
+  Searchable#search_record_content:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
+  Searchable#update_in_search_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: description
+    enforced: false
+  Searches::QueriesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SearchesController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::MagicLinksController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::MagicLinksController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::MenusController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::PasskeysController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::TransfersController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Sessions::TransfersController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#sign_in:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SessionsController#sign_up:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   Signup::AccountNameGenerator#current_index:
     requires:
     - kind: not_nil
@@ -3182,6 +5155,51 @@ methods:
         method: identity
         chain:
         - accounts
+    enforced: false
+  Signups::CompletionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Signups::CompletionsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SignupsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SignupsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  SignupsController#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Step#run_before_validation_callbacks:
     requires:
@@ -3310,6 +5328,15 @@ methods:
           kind: self
         method: card
     enforced: false
+  TagsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
   TurboFlash#turbo_stream_flash:
     requires:
     - kind: not_nil
@@ -3318,6 +5345,15 @@ methods:
         receiver:
           kind: self
         method: turbo_stream
+    enforced: false
+  User#attachable_plain_text_representation:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
     enforced: false
   User#setup?:
     requires:
@@ -3407,7 +5443,6 @@ methods:
         receiver:
           kind: self
         method: avatar
-    enforced: false
   User::DataExport#exportable_cards:
     requires:
     - kind: not_nil
@@ -3536,6 +5571,24 @@ methods:
           kind: self
         method: identity
     enforced: false
+  User::Mentionable#first_name_with_last_name_initial:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
+  User::Mentionable#mentionable_handles:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: name
+    enforced: false
   User::Named#familiar_name:
     requires:
     - kind: not_nil
@@ -3629,6 +5682,204 @@ methods:
         method: owner
         chain:
         - settings
+    enforced: false
+  Users::AvatarsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::AvatarsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::DataExportsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::DataExportsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::EmailAddresses::ConfirmationsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::EmailAddresses::ConfirmationsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::EmailAddressesController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::EmailAddressesController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::EventsController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::JoinsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::JoinsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::PushSubscriptionsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::PushSubscriptionsController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::PushSubscriptionsController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::RolesController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::VerificationsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Users::VerificationsController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  UsersController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  UsersController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  UsersController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  UsersController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  UsersController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
   Watch#run_before_validation_callbacks:
     requires:
@@ -4156,4 +6407,84 @@ methods:
         receiver:
           kind: self
         method: account
+  Webhooks::ActivationsController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  Webhooks::DeliveriesController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_destroy:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_edit:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_index:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_new:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_show:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
+    enforced: false
+  WebhooksController#__rbs_infer__run_update:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: main_app
     enforced: false
