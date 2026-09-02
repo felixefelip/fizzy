@@ -492,6 +492,8 @@ methods:
         receiver:
           kind: self
         method: tag
+    - kind: self_type
+      type: "(::ActionPack::Railtie & ::ActionPack::Passkey::FormHelper)"
     enforced: false
   ActionPack::Passkey::FormHelper#passkey_registration_button:
     requires:
@@ -1179,6 +1181,10 @@ methods:
           kind: self
         method: board
     enforced: false
+  Board::Storage#card_image_bytes:
+    requires:
+    - kind: self_type
+      type: "(::Board & ::Board::Storage)"
   Boards::AccessesController#__rbs_infer__run_index:
     requires:
     - kind: not_nil
@@ -1446,6 +1452,8 @@ methods:
         method: board
         chain:
         - accesses
+    - kind: self_type
+      type: "(Card & Card::Validated)"
   Card::Accessible#publicly_accessible?:
     requires:
     - kind: not_nil
@@ -1666,6 +1674,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Assignable#toggle_assignment:
     requires:
     - kind: not_nil
@@ -1682,6 +1692,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Assignable#unassign:
     requires:
     - kind: not_nil
@@ -1698,6 +1710,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Closeable#close:
     requires:
     - kind: not_nil
@@ -1714,6 +1728,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Closeable#reopen:
     requires:
     - kind: not_nil
@@ -1730,6 +1746,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Eventable#track_title_change:
     requires:
     - kind: not_nil
@@ -1774,6 +1792,8 @@ methods:
         method: it
         chain:
         - klass
+    - kind: self_type
+      type: "(::Card & ::Card::Exportable)"
     enforced: false
   Card::Exportable#export_attachments:
     requires:
@@ -1791,6 +1811,8 @@ methods:
         method: it
         chain:
         - klass
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
     enforced: false
   Card::Exportable#export_json:
     requires:
@@ -1812,6 +1834,8 @@ methods:
         receiver:
           kind: self
         method: updated_at
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Goldness#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -1892,6 +1916,8 @@ methods:
         receiver:
           kind: self
         method: it
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
     enforced: false
   Card::Postponable#auto_postpone:
     requires:
@@ -1909,6 +1935,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Postponable#postpone:
     requires:
     - kind: not_nil
@@ -1925,6 +1953,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Postponable#resume:
     requires:
     - kind: not_nil
@@ -1941,6 +1971,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Promptable#to_prompt:
     requires:
     - kind: not_nil
@@ -2039,6 +2071,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Taggable#toggle_tag_with:
     requires:
     - kind: not_nil
@@ -2055,6 +2089,8 @@ methods:
         method: account
         chain:
         - tags
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Triageable#send_back_to_triage:
     requires:
     - kind: not_nil
@@ -2071,6 +2107,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Triageable#triage_into:
     requires:
     - kind: not_nil
@@ -2087,6 +2125,8 @@ methods:
         method: creator
         chain:
         - system?
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   CardScoped#render_card_replacement:
     requires:
     - kind: not_nil
@@ -2781,6 +2821,8 @@ methods:
         method: board
         chain:
         - columns
+    - kind: self_type
+      type: "(::Column & ::Column::Validated)"
   Column::Positioned#move_right:
     requires:
     - kind: not_nil
@@ -2797,6 +2839,8 @@ methods:
         method: board
         chain:
         - columns
+    - kind: self_type
+      type: "(::Column & ::Column::Validated)"
   Column::Positioned#right_column:
     requires:
     - kind: not_nil
@@ -3610,6 +3654,8 @@ methods:
         method: creator
         chain:
         - boards
+    - kind: self_type
+      type: "(::Filter & ::Filter::Resources)"
     enforced: false
   Filter::Resources#boards_label:
     requires:
@@ -4394,6 +4440,8 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: self_type
+      type: "(::Notification & ::Notification::Pushable)"
     enforced: false
   Notification::Pushable#register_push_target:
     requires:
@@ -4769,6 +4817,8 @@ methods:
         receiver:
           kind: self
         method: sec_fetch_site_value
+    - kind: self_type
+      type: "(::ApplicationController & ::RequestForgeryProtection)"
     enforced: false
   RequestForgeryProtection#verified_via_header_only?:
     requires:
@@ -5282,6 +5332,8 @@ methods:
         receiver:
           kind: self
         method: record
+    - kind: self_type
+      type: "(::Object & ::Storage::AttachmentTracking)"
     enforced: false
   Storage::Total#current_usage:
     requires:
@@ -5363,6 +5415,8 @@ methods:
         receiver:
           kind: self
         method: identity
+    - kind: self_type
+      type: "(::User & ::User::Validated)"
     enforced: false
   User::Accessor#grant_access_to_boards:
     requires:
@@ -5443,6 +5497,8 @@ methods:
         receiver:
           kind: self
         method: avatar
+    - kind: self_type
+      type: "(::User & ::User::Validated)"
   User::DataExport#exportable_cards:
     requires:
     - kind: not_nil
@@ -5552,6 +5608,8 @@ methods:
         method: identity
         chain:
         - email_address
+    - kind: self_type
+      type: "(::User & ::User::Validated)"
     enforced: false
   User::EmailAddressChangeable#generate_email_address_change_token:
     requires:
@@ -5561,6 +5619,8 @@ methods:
         receiver:
           kind: self
         method: identity
+    - kind: self_type
+      type: "(::User & ::User::EmailAddressChangeable)"
     enforced: false
   User::EmailAddressChangeable#send_email_address_change_confirmation:
     requires:
@@ -5570,6 +5630,8 @@ methods:
         receiver:
           kind: self
         method: identity
+    - kind: self_type
+      type: "(::User & ::User::Validated)"
     enforced: false
   User::Mentionable#first_name_with_last_name_initial:
     requires:
@@ -5579,6 +5641,8 @@ methods:
         receiver:
           kind: self
         method: name
+    - kind: self_type
+      type: "(::User & ::User::Mentionable)"
     enforced: false
   User::Mentionable#mentionable_handles:
     requires:
@@ -5615,6 +5679,8 @@ methods:
         receiver:
           kind: self
         method: name
+    - kind: self_type
+      type: "(::User & ::User::Mentionable)"
     enforced: false
   User::Named#last_name:
     requires:
@@ -5624,6 +5690,8 @@ methods:
         receiver:
           kind: self
         method: name
+    - kind: self_type
+      type: "(::User & ::User::Mentionable)"
     enforced: false
   User::Settings#run_before_validation_callbacks:
     requires:
@@ -6407,6 +6475,8 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: self_type
+      type: "(::Webhook & ::Webhook::Validated)"
   Webhooks::ActivationsController#__rbs_infer__run_create:
     requires:
     - kind: not_nil

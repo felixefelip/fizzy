@@ -7,7 +7,7 @@ module Search
     private
 
     def sanitize_terms: () -> String?
-    def sanitize: (untyped terms) -> String?
+    def sanitize: (String? terms) -> String?
     def remove_invalid_search_characters: (untyped terms) -> String
     def remove_unbalanced_quotes: (String terms) -> String
   end

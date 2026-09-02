@@ -12,19 +12,19 @@ class Event
 
     private
 
-    def to_sentence: (untyped creator, untyped card_title) -> String?
+    def to_sentence: (String creator, String card_title) -> String?
     def creator_tag: () -> untyped
     def card_title_tag: () -> untyped
     def creator_name: () -> String
     def quoted: (untyped text) -> String
     def card: () -> untyped
-    def comment_sentence: (untyped creator, untyped card_title) -> String
-    def action_sentence: (untyped creator, untyped card_title) -> String?
-    def assigned_sentence: (untyped creator, untyped card_title) -> String
-    def unassigned_sentence: (untyped creator, untyped card_title) -> String
-    def renamed_sentence: (untyped creator, untyped card_title) -> String
-    def moved_sentence: (untyped creator, untyped card_title) -> String
-    def triaged_sentence: (untyped creator, untyped card_title) -> String
+    def comment_sentence: (String creator, String card_title) -> String
+    def action_sentence: (String creator, String card_title) -> String?
+    def assigned_sentence: (String creator, String card_title) -> String
+    def unassigned_sentence: (String creator, String card_title) -> String
+    def renamed_sentence: (String creator, String card_title) -> String
+    def moved_sentence: (String creator, String card_title) -> String
+    def triaged_sentence: (String creator, String card_title) -> String
     def assignee_names: () -> String
     def unassigned_names: () -> String
     def old_title: () -> String

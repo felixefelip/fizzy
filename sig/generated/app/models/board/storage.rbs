@@ -18,7 +18,7 @@ class Board
     def card_embed_bytes: () -> untyped
     def comment_embed_bytes: () -> untyped
     def board_embed_bytes: () -> untyped
-    def sum_embed_bytes_for: (String record_type, (Array[untyped] | Array[String]) record_ids) -> untyped
-    def sum_blob_bytes_in_batches: (ActiveRecord::QueryMethods::WhereChain[ActiveStorage::Attachment::ActiveRecord_Relation] base_scope, Array[String] record_ids) -> untyped
+    def sum_embed_bytes_for: (String record_type, (Array[Integer] | Array[untyped] | Array[String]) record_ids) -> untyped
+    def sum_blob_bytes_in_batches: (ActiveRecord::QueryMethods::WhereChain[ActiveStorage::Attachment::ActiveRecord_Relation] base_scope, (Array[Integer] | Array[String]) record_ids) -> untyped
   end
 end

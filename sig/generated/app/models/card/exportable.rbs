@@ -10,7 +10,7 @@ class Card
 
     def export_html: (untyped rich_text) -> untyped
     def attachment_representation: (untyped attachment) -> untyped
-    def export_user: (User & User::Validated user) -> { email: String?, id: String, name: String }
+    def export_user: ((User & User::Validated) user) -> { email: String?, id: String, name: String }
     def export_attachment_path: (ActiveStorage::Blob blob) -> String
     def collect_attachments: () -> untyped
     def export_status: () -> String?

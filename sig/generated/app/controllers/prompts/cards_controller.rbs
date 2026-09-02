@@ -1,6 +1,6 @@
 module Prompts
   class CardsController < ApplicationController
-    @cards: (Array[untyped] | Card::ActiveRecord_Relation)?
+    @cards: (Array[Card & Card::Validated] | Card::ActiveRecord_Relation)?
 
     MAX_RESULTS: Integer
 
@@ -11,6 +11,6 @@ module Prompts
     def filter_param: () -> untyped
     def search_cards: () -> Card::ActiveRecord_Relation
     def published_cards: () -> Card::ActiveRecord_Relation
-    def prepending_exact_matches_by_id: (untyped cards) -> Array[untyped]
+    def prepending_exact_matches_by_id: (Card::ActiveRecord_Relation cards) -> (Array[Card & Card::Validated] | Card::ActiveRecord_Relation)
   end
 end

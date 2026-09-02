@@ -13,6 +13,6 @@ class Column
     private
 
     def set_position: () -> untyped
-    def swap_position_with: (untyped other_column) -> untyped
+    def swap_position_with: ((Column & Column::Validated)? other_column) -> untyped
   end
 end
