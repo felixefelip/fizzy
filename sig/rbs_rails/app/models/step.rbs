@@ -353,13 +353,13 @@ class ::Step < ::ApplicationRecord
   end
 
   class ::Step::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Step]
+    include ::Enumerable[::Step & ::Step::Validated]
     include ::Step::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Step, ::String, ::Step::Validated]
   end
 
   class ::Step::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Step]
+    include ::Enumerable[::Step & ::Step::Validated]
     include ::Step::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Step, ::String, ::Step::Validated]
 

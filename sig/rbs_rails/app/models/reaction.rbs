@@ -396,13 +396,13 @@ class ::Reaction < ::ApplicationRecord
   end
 
   class ::Reaction::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Reaction]
+    include ::Enumerable[::Reaction & ::Reaction::Validated]
     include ::Reaction::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Reaction, ::String, ::Reaction::Validated]
   end
 
   class ::Reaction::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Reaction]
+    include ::Enumerable[::Reaction & ::Reaction::Validated]
     include ::Reaction::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Reaction, ::String, ::Reaction::Validated]
 

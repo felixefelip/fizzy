@@ -265,13 +265,13 @@ module ::SolidCable
     end
 
     class ::SolidCable::Message::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::SolidCable::Message]
+      include ::Enumerable[::SolidCable::Message & ::SolidCable::Message::Validated]
       include ::SolidCable::Message::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::SolidCable::Message, ::Integer, ::SolidCable::Message::Validated]
     end
 
     class ::SolidCable::Message::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::SolidCable::Message]
+      include ::Enumerable[::SolidCable::Message & ::SolidCable::Message::Validated]
       include ::SolidCable::Message::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::SolidCable::Message, ::Integer, ::SolidCable::Message::Validated]
 

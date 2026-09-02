@@ -500,13 +500,13 @@ class ::Event < ::ApplicationRecord
   end
 
   class ::Event::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Event]
+    include ::Enumerable[::Event & ::Event::Validated]
     include ::Event::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Event, ::String, ::Event::Validated]
   end
 
   class ::Event::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Event]
+    include ::Enumerable[::Event & ::Event::Validated]
     include ::Event::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Event, ::String, ::Event::Validated]
 

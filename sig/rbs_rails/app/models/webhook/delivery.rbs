@@ -489,13 +489,13 @@ class ::Webhook < ::ApplicationRecord
     end
 
     class ::Webhook::Delivery::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Webhook::Delivery]
+      include ::Enumerable[::Webhook::Delivery & ::Webhook::Delivery::Validated]
       include ::Webhook::Delivery::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Webhook::Delivery, ::String, ::Webhook::Delivery::Validated]
     end
 
     class ::Webhook::Delivery::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Webhook::Delivery]
+      include ::Enumerable[::Webhook::Delivery & ::Webhook::Delivery::Validated]
       include ::Webhook::Delivery::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Webhook::Delivery, ::String, ::Webhook::Delivery::Validated]
 

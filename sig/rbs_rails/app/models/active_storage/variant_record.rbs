@@ -254,13 +254,13 @@ module ::ActiveStorage
     end
 
     class ::ActiveStorage::VariantRecord::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActiveStorage::VariantRecord]
+      include ::Enumerable[::ActiveStorage::VariantRecord & ::ActiveStorage::VariantRecord::Validated]
       include ::ActiveStorage::VariantRecord::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::VariantRecord, ::String, ::ActiveStorage::VariantRecord::Validated]
     end
 
     class ::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActiveStorage::VariantRecord]
+      include ::Enumerable[::ActiveStorage::VariantRecord & ::ActiveStorage::VariantRecord::Validated]
       include ::ActiveStorage::VariantRecord::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::VariantRecord, ::String, ::ActiveStorage::VariantRecord::Validated]
 

@@ -304,13 +304,13 @@ class ::Session < ::ApplicationRecord
   end
 
   class ::Session::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Session]
+    include ::Enumerable[::Session & ::Session::Validated]
     include ::Session::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Session, ::String, ::Session::Validated]
   end
 
   class ::Session::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Session]
+    include ::Enumerable[::Session & ::Session::Validated]
     include ::Session::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Session, ::String, ::Session::Validated]
 

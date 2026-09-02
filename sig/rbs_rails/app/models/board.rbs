@@ -422,13 +422,13 @@ class ::Board < ::ApplicationRecord
   end
 
   class ::Board::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Board]
+    include ::Enumerable[::Board & ::Board::Validated]
     include ::Board::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Board, ::String, ::Board::Validated]
   end
 
   class ::Board::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Board]
+    include ::Enumerable[::Board & ::Board::Validated]
     include ::Board::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Board, ::String, ::Board::Validated]
 

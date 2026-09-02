@@ -411,13 +411,13 @@ class ::Account < ::ApplicationRecord
     end
 
     class ::Account::Export::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::Export]
+      include ::Enumerable[::Account::Export & ::Account::Export::Validated]
       include ::Account::Export::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Export, ::String, ::Account::Export::Validated]
     end
 
     class ::Account::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::Export]
+      include ::Enumerable[::Account::Export & ::Account::Export::Validated]
       include ::Account::Export::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Export, ::String, ::Account::Export::Validated]
 

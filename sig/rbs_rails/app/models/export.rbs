@@ -465,13 +465,13 @@ class ::Export < ::ApplicationRecord
   end
 
   class ::Export::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Export]
+    include ::Enumerable[::Export & ::Export::Validated]
     include ::Export::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Export, ::String, ::Export::Validated]
   end
 
   class ::Export::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Export]
+    include ::Enumerable[::Export & ::Export::Validated]
     include ::Export::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Export, ::String, ::Export::Validated]
 

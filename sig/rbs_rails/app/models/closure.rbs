@@ -316,13 +316,13 @@ class ::Closure < ::ApplicationRecord
   end
 
   class ::Closure::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Closure]
+    include ::Enumerable[::Closure & ::Closure::Validated]
     include ::Closure::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Closure, ::String, ::Closure::Validated]
   end
 
   class ::Closure::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Closure]
+    include ::Enumerable[::Closure & ::Closure::Validated]
     include ::Closure::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Closure, ::String, ::Closure::Validated]
 

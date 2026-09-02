@@ -352,13 +352,13 @@ class ::Comment < ::ApplicationRecord
   end
 
   class ::Comment::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Comment]
+    include ::Enumerable[::Comment & ::Comment::Validated]
     include ::Comment::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Comment, ::String, ::Comment::Validated]
   end
 
   class ::Comment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Comment]
+    include ::Enumerable[::Comment & ::Comment::Validated]
     include ::Comment::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Comment, ::String, ::Comment::Validated]
 

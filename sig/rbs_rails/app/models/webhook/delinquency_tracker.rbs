@@ -351,13 +351,13 @@ class ::Webhook < ::ApplicationRecord
     end
 
     class ::Webhook::DelinquencyTracker::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Webhook::DelinquencyTracker]
+      include ::Enumerable[::Webhook::DelinquencyTracker & ::Webhook::DelinquencyTracker::Validated]
       include ::Webhook::DelinquencyTracker::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Webhook::DelinquencyTracker, ::String, ::Webhook::DelinquencyTracker::Validated]
     end
 
     class ::Webhook::DelinquencyTracker::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Webhook::DelinquencyTracker]
+      include ::Enumerable[::Webhook::DelinquencyTracker & ::Webhook::DelinquencyTracker::Validated]
       include ::Webhook::DelinquencyTracker::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Webhook::DelinquencyTracker, ::String, ::Webhook::DelinquencyTracker::Validated]
 

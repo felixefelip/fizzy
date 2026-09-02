@@ -317,13 +317,13 @@ class ::Card < ::ApplicationRecord
     end
 
     class ::Card::NotNow::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Card::NotNow]
+      include ::Enumerable[::Card::NotNow & ::Card::NotNow::Validated]
       include ::Card::NotNow::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::NotNow, ::String, ::Card::NotNow::Validated]
     end
 
     class ::Card::NotNow::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Card::NotNow]
+      include ::Enumerable[::Card::NotNow & ::Card::NotNow::Validated]
       include ::Card::NotNow::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::NotNow, ::String, ::Card::NotNow::Validated]
 

@@ -371,13 +371,13 @@ class ::Identity < ::ApplicationRecord
     end
 
     class ::Identity::AccessToken::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Identity::AccessToken]
+      include ::Enumerable[::Identity::AccessToken & ::Identity::AccessToken::Validated]
       include ::Identity::AccessToken::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Identity::AccessToken, ::String, ::Identity::AccessToken::Validated]
     end
 
     class ::Identity::AccessToken::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Identity::AccessToken]
+      include ::Enumerable[::Identity::AccessToken & ::Identity::AccessToken::Validated]
       include ::Identity::AccessToken::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Identity::AccessToken, ::String, ::Identity::AccessToken::Validated]
 

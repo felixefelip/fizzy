@@ -139,13 +139,13 @@ class ::Account < ::ApplicationRecord
     end
 
     class ::Account::ExternalIdSequence::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::ExternalIdSequence]
+      include ::Enumerable[::Account::ExternalIdSequence & ::Account::ExternalIdSequence::Validated]
       include ::Account::ExternalIdSequence::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::ExternalIdSequence, ::String, ::Account::ExternalIdSequence::Validated]
     end
 
     class ::Account::ExternalIdSequence::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::ExternalIdSequence]
+      include ::Enumerable[::Account::ExternalIdSequence & ::Account::ExternalIdSequence::Validated]
       include ::Account::ExternalIdSequence::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::ExternalIdSequence, ::String, ::Account::ExternalIdSequence::Validated]
 

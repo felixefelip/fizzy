@@ -411,13 +411,13 @@ class ::User < ::ApplicationRecord
     end
 
     class ::User::DataExport::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::User::DataExport]
+      include ::Enumerable[::User::DataExport & ::User::DataExport::Validated]
       include ::User::DataExport::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::User::DataExport, ::String, ::User::DataExport::Validated]
     end
 
     class ::User::DataExport::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::User::DataExport]
+      include ::Enumerable[::User::DataExport & ::User::DataExport::Validated]
       include ::User::DataExport::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::User::DataExport, ::String, ::User::DataExport::Validated]
 

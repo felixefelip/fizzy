@@ -348,13 +348,13 @@ class ::Account < ::ApplicationRecord
     end
 
     class ::Account::JoinCode::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::JoinCode]
+      include ::Enumerable[::Account::JoinCode & ::Account::JoinCode::Validated]
       include ::Account::JoinCode::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::JoinCode, ::String, ::Account::JoinCode::Validated]
     end
 
     class ::Account::JoinCode::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::JoinCode]
+      include ::Enumerable[::Account::JoinCode & ::Account::JoinCode::Validated]
       include ::Account::JoinCode::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::JoinCode, ::String, ::Account::JoinCode::Validated]
 

@@ -767,13 +767,13 @@ class ::Card < ::ApplicationRecord
   end
 
   class ::Card::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Card]
+    include ::Enumerable[::Card & ::Card::Validated]
     include ::Card::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Card, ::String, ::Card::Validated]
   end
 
   class ::Card::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Card]
+    include ::Enumerable[::Card & ::Card::Validated]
     include ::Card::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Card, ::String, ::Card::Validated]
 

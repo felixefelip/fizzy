@@ -497,13 +497,13 @@ module ::ActiveStorage
     end
 
     class ::ActiveStorage::Blob::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActiveStorage::Blob]
+      include ::Enumerable[::ActiveStorage::Blob & ::ActiveStorage::Blob::Validated]
       include ::ActiveStorage::Blob::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::Blob, ::String, ::ActiveStorage::Blob::Validated]
     end
 
     class ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActiveStorage::Blob]
+      include ::Enumerable[::ActiveStorage::Blob & ::ActiveStorage::Blob::Validated]
       include ::ActiveStorage::Blob::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::Blob, ::String, ::ActiveStorage::Blob::Validated]
 

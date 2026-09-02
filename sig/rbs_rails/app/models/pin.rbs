@@ -319,13 +319,13 @@ class ::Pin < ::ApplicationRecord
   end
 
   class ::Pin::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Pin]
+    include ::Enumerable[::Pin & ::Pin::Validated]
     include ::Pin::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Pin, ::String, ::Pin::Validated]
   end
 
   class ::Pin::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Pin]
+    include ::Enumerable[::Pin & ::Pin::Validated]
     include ::Pin::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Pin, ::String, ::Pin::Validated]
 

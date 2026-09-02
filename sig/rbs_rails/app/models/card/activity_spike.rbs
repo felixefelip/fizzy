@@ -271,13 +271,13 @@ class ::Card < ::ApplicationRecord
     end
 
     class ::Card::ActivitySpike::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Card::ActivitySpike]
+      include ::Enumerable[::Card::ActivitySpike & ::Card::ActivitySpike::Validated]
       include ::Card::ActivitySpike::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::ActivitySpike, ::String, ::Card::ActivitySpike::Validated]
     end
 
     class ::Card::ActivitySpike::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Card::ActivitySpike]
+      include ::Enumerable[::Card::ActivitySpike & ::Card::ActivitySpike::Validated]
       include ::Card::ActivitySpike::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::ActivitySpike, ::String, ::Card::ActivitySpike::Validated]
 

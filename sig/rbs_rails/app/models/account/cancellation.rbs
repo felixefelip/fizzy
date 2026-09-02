@@ -271,13 +271,13 @@ class ::Account < ::ApplicationRecord
     end
 
     class ::Account::Cancellation::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::Cancellation]
+      include ::Enumerable[::Account::Cancellation & ::Account::Cancellation::Validated]
       include ::Account::Cancellation::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Cancellation, ::String, ::Account::Cancellation::Validated]
     end
 
     class ::Account::Cancellation::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::Cancellation]
+      include ::Enumerable[::Account::Cancellation & ::Account::Cancellation::Validated]
       include ::Account::Cancellation::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Cancellation, ::String, ::Account::Cancellation::Validated]
 

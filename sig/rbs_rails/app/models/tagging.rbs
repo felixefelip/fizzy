@@ -316,13 +316,13 @@ class ::Tagging < ::ApplicationRecord
   end
 
   class ::Tagging::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Tagging]
+    include ::Enumerable[::Tagging & ::Tagging::Validated]
     include ::Tagging::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Tagging, ::String, ::Tagging::Validated]
   end
 
   class ::Tagging::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Tagging]
+    include ::Enumerable[::Tagging & ::Tagging::Validated]
     include ::Tagging::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Tagging, ::String, ::Tagging::Validated]
 

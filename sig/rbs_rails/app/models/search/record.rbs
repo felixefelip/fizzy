@@ -443,13 +443,13 @@ module ::Search
     end
 
     class ::Search::Record::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Search::Record]
+      include ::Enumerable[::Search::Record & ::Search::Record::Validated]
       include ::Search::Record::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Search::Record, ::Integer, ::Search::Record::Validated]
     end
 
     class ::Search::Record::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Search::Record]
+      include ::Enumerable[::Search::Record & ::Search::Record::Validated]
       include ::Search::Record::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Search::Record, ::Integer, ::Search::Record::Validated]
 

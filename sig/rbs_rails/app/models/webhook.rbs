@@ -491,13 +491,13 @@ class ::Webhook < ::ApplicationRecord
   end
 
   class ::Webhook::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Webhook]
+    include ::Enumerable[::Webhook & ::Webhook::Validated]
     include ::Webhook::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Webhook, ::String, ::Webhook::Validated]
   end
 
   class ::Webhook::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Webhook]
+    include ::Enumerable[::Webhook & ::Webhook::Validated]
     include ::Webhook::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Webhook, ::String, ::Webhook::Validated]
 

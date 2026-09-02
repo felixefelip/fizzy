@@ -397,13 +397,13 @@ class ::User < ::ApplicationRecord
     end
 
     class ::User::Settings::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::User::Settings]
+      include ::Enumerable[::User::Settings & ::User::Settings::Validated]
       include ::User::Settings::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::User::Settings, ::String, ::User::Settings::Validated]
     end
 
     class ::User::Settings::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::User::Settings]
+      include ::Enumerable[::User::Settings & ::User::Settings::Validated]
       include ::User::Settings::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::User::Settings, ::String, ::User::Settings::Validated]
 

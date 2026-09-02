@@ -402,13 +402,13 @@ class ::Mention < ::ApplicationRecord
   end
 
   class ::Mention::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Mention]
+    include ::Enumerable[::Mention & ::Mention::Validated]
     include ::Mention::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Mention, ::String, ::Mention::Validated]
   end
 
   class ::Mention::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Mention]
+    include ::Enumerable[::Mention & ::Mention::Validated]
     include ::Mention::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Mention, ::String, ::Mention::Validated]
 

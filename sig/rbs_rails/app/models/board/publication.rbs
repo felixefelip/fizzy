@@ -311,13 +311,13 @@ class ::Board < ::ApplicationRecord
     end
 
     class ::Board::Publication::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Board::Publication]
+      include ::Enumerable[::Board::Publication & ::Board::Publication::Validated]
       include ::Board::Publication::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Board::Publication, ::String, ::Board::Publication::Validated]
     end
 
     class ::Board::Publication::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Board::Publication]
+      include ::Enumerable[::Board::Publication & ::Board::Publication::Validated]
       include ::Board::Publication::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Board::Publication, ::String, ::Board::Publication::Validated]
 

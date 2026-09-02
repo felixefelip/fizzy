@@ -300,13 +300,13 @@ class ::Identity < ::ApplicationRecord
   end
 
   class ::Identity::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Identity]
+    include ::Enumerable[::Identity & ::Identity::Validated]
     include ::Identity::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Identity, ::String, ::Identity::Validated]
   end
 
   class ::Identity::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Identity]
+    include ::Enumerable[::Identity & ::Identity::Validated]
     include ::Identity::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Identity, ::String, ::Identity::Validated]
 

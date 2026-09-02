@@ -425,13 +425,13 @@ class ::Access < ::ApplicationRecord
   end
 
   class ::Access::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Access]
+    include ::Enumerable[::Access & ::Access::Validated]
     include ::Access::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Access, ::String, ::Access::Validated]
   end
 
   class ::Access::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Access]
+    include ::Enumerable[::Access & ::Access::Validated]
     include ::Access::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Access, ::String, ::Access::Validated]
 

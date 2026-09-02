@@ -396,13 +396,13 @@ class ::Column < ::ApplicationRecord
   end
 
   class ::Column::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Column]
+    include ::Enumerable[::Column & ::Column::Validated]
     include ::Column::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Column, ::String, ::Column::Validated]
   end
 
   class ::Column::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Column]
+    include ::Enumerable[::Column & ::Column::Validated]
     include ::Column::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Column, ::String, ::Column::Validated]
 

@@ -517,13 +517,13 @@ module ::Storage
     end
 
     class ::Storage::Entry::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Storage::Entry]
+      include ::Enumerable[::Storage::Entry & ::Storage::Entry::Validated]
       include ::Storage::Entry::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Storage::Entry, ::String, ::Storage::Entry::Validated]
     end
 
     class ::Storage::Entry::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Storage::Entry]
+      include ::Enumerable[::Storage::Entry & ::Storage::Entry::Validated]
       include ::Storage::Entry::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Storage::Entry, ::String, ::Storage::Entry::Validated]
 

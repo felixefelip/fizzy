@@ -371,13 +371,13 @@ class ::Filter < ::ApplicationRecord
   end
 
   class ::Filter::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Filter]
+    include ::Enumerable[::Filter & ::Filter::Validated]
     include ::Filter::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Filter, ::String, ::Filter::Validated]
   end
 
   class ::Filter::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Filter]
+    include ::Enumerable[::Filter & ::Filter::Validated]
     include ::Filter::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Filter, ::String, ::Filter::Validated]
 

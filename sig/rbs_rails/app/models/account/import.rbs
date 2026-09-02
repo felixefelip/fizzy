@@ -474,13 +474,13 @@ class ::Account < ::ApplicationRecord
     end
 
     class ::Account::Import::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Account::Import]
+      include ::Enumerable[::Account::Import & ::Account::Import::Validated]
       include ::Account::Import::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Import, ::String, ::Account::Import::Validated]
     end
 
     class ::Account::Import::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Account::Import]
+      include ::Enumerable[::Account::Import & ::Account::Import::Validated]
       include ::Account::Import::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Account::Import, ::String, ::Account::Import::Validated]
 

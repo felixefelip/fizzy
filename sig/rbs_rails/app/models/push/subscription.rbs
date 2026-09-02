@@ -431,13 +431,13 @@ module ::Push
     end
 
     class ::Push::Subscription::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Push::Subscription]
+      include ::Enumerable[::Push::Subscription & ::Push::Subscription::Validated]
       include ::Push::Subscription::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Push::Subscription, ::String, ::Push::Subscription::Validated]
     end
 
     class ::Push::Subscription::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Push::Subscription]
+      include ::Enumerable[::Push::Subscription & ::Push::Subscription::Validated]
       include ::Push::Subscription::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Push::Subscription, ::String, ::Push::Subscription::Validated]
 

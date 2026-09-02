@@ -311,13 +311,13 @@ module ::Search
     end
 
     class ::Search::Query::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Search::Query]
+      include ::Enumerable[::Search::Query & ::Search::Query::Validated]
       include ::Search::Query::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Search::Query, ::String, ::Search::Query::Validated]
     end
 
     class ::Search::Query::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Search::Query]
+      include ::Enumerable[::Search::Query & ::Search::Query::Validated]
       include ::Search::Query::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Search::Query, ::String, ::Search::Query::Validated]
 

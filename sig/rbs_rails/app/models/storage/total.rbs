@@ -342,13 +342,13 @@ module ::Storage
     end
 
     class ::Storage::Total::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Storage::Total]
+      include ::Enumerable[::Storage::Total & ::Storage::Total::Validated]
       include ::Storage::Total::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Storage::Total, ::String, ::Storage::Total::Validated]
     end
 
     class ::Storage::Total::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Storage::Total]
+      include ::Enumerable[::Storage::Total & ::Storage::Total::Validated]
       include ::Storage::Total::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Storage::Total, ::String, ::Storage::Total::Validated]
 

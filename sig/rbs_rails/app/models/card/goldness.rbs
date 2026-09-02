@@ -271,13 +271,13 @@ class ::Card < ::ApplicationRecord
     end
 
     class ::Card::Goldness::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Card::Goldness]
+      include ::Enumerable[::Card::Goldness & ::Card::Goldness::Validated]
       include ::Card::Goldness::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::Goldness, ::String, ::Card::Goldness::Validated]
     end
 
     class ::Card::Goldness::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Card::Goldness]
+      include ::Enumerable[::Card::Goldness & ::Card::Goldness::Validated]
       include ::Card::Goldness::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Card::Goldness, ::String, ::Card::Goldness::Validated]
 

@@ -542,13 +542,13 @@ module ::ActionPack
     end
 
     class ::ActionPack::Passkey::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActionPack::Passkey]
+      include ::Enumerable[::ActionPack::Passkey & ::ActionPack::Passkey::Validated]
       include ::ActionPack::Passkey::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionPack::Passkey, ::String, ::ActionPack::Passkey::Validated]
     end
 
     class ::ActionPack::Passkey::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActionPack::Passkey]
+      include ::Enumerable[::ActionPack::Passkey & ::ActionPack::Passkey::Validated]
       include ::ActionPack::Passkey::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionPack::Passkey, ::String, ::ActionPack::Passkey::Validated]
 

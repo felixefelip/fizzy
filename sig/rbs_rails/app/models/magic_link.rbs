@@ -376,13 +376,13 @@ class ::MagicLink < ::ApplicationRecord
   end
 
   class ::MagicLink::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::MagicLink]
+    include ::Enumerable[::MagicLink & ::MagicLink::Validated]
     include ::MagicLink::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::MagicLink, ::String, ::MagicLink::Validated]
   end
 
   class ::MagicLink::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::MagicLink]
+    include ::Enumerable[::MagicLink & ::MagicLink::Validated]
     include ::MagicLink::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::MagicLink, ::String, ::MagicLink::Validated]
 

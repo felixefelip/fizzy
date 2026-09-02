@@ -397,13 +397,13 @@ module ::ActionText
     end
 
     class ::ActionText::EncryptedRichText::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActionText::EncryptedRichText]
+      include ::Enumerable[::ActionText::EncryptedRichText & ::ActionText::EncryptedRichText::Validated]
       include ::ActionText::EncryptedRichText::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionText::EncryptedRichText, ::String, ::ActionText::EncryptedRichText::Validated]
     end
 
     class ::ActionText::EncryptedRichText::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActionText::EncryptedRichText]
+      include ::Enumerable[::ActionText::EncryptedRichText & ::ActionText::EncryptedRichText::Validated]
       include ::ActionText::EncryptedRichText::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionText::EncryptedRichText, ::String, ::ActionText::EncryptedRichText::Validated]
 

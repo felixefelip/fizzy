@@ -362,13 +362,13 @@ class ::Watch < ::ApplicationRecord
   end
 
   class ::Watch::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Watch]
+    include ::Enumerable[::Watch & ::Watch::Validated]
     include ::Watch::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Watch, ::String, ::Watch::Validated]
   end
 
   class ::Watch::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Watch]
+    include ::Enumerable[::Watch & ::Watch::Validated]
     include ::Watch::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Watch, ::String, ::Watch::Validated]
 

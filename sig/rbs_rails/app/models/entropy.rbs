@@ -347,13 +347,13 @@ class ::Entropy < ::ApplicationRecord
   end
 
   class ::Entropy::ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Enumerable[::Entropy]
+    include ::Enumerable[::Entropy & ::Entropy::Validated]
     include ::Entropy::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Entropy, ::String, ::Entropy::Validated]
   end
 
   class ::Entropy::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-    include ::Enumerable[::Entropy]
+    include ::Enumerable[::Entropy & ::Entropy::Validated]
     include ::Entropy::GeneratedRelationMethods
     include ::ActiveRecord::Relation::Methods[::Entropy, ::String, ::Entropy::Validated]
 

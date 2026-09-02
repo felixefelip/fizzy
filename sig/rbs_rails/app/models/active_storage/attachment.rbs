@@ -357,13 +357,13 @@ module ::ActiveStorage
     end
 
     class ::ActiveStorage::Attachment::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActiveStorage::Attachment]
+      include ::Enumerable[::ActiveStorage::Attachment & ::ActiveStorage::Attachment::Validated]
       include ::ActiveStorage::Attachment::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::Attachment, ::String, ::ActiveStorage::Attachment::Validated]
     end
 
     class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActiveStorage::Attachment]
+      include ::Enumerable[::ActiveStorage::Attachment & ::ActiveStorage::Attachment::Validated]
       include ::ActiveStorage::Attachment::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActiveStorage::Attachment, ::String, ::ActiveStorage::Attachment::Validated]
 

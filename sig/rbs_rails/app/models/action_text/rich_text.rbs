@@ -400,13 +400,13 @@ module ::ActionText
     end
 
     class ::ActionText::RichText::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::ActionText::RichText]
+      include ::Enumerable[::ActionText::RichText & ::ActionText::RichText::Validated]
       include ::ActionText::RichText::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionText::RichText, ::String, ::ActionText::RichText::Validated]
     end
 
     class ::ActionText::RichText::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::ActionText::RichText]
+      include ::Enumerable[::ActionText::RichText & ::ActionText::RichText::Validated]
       include ::ActionText::RichText::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::ActionText::RichText, ::String, ::ActionText::RichText::Validated]
 

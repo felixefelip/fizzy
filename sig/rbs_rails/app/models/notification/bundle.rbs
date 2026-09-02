@@ -436,13 +436,13 @@ class ::Notification < ::ApplicationRecord
     end
 
     class ::Notification::Bundle::ActiveRecord_Relation < ::ActiveRecord::Relation
-      include ::Enumerable[::Notification::Bundle]
+      include ::Enumerable[::Notification::Bundle & ::Notification::Bundle::Validated]
       include ::Notification::Bundle::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Notification::Bundle, ::String, ::Notification::Bundle::Validated]
     end
 
     class ::Notification::Bundle::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
-      include ::Enumerable[::Notification::Bundle]
+      include ::Enumerable[::Notification::Bundle & ::Notification::Bundle::Validated]
       include ::Notification::Bundle::GeneratedRelationMethods
       include ::ActiveRecord::Relation::Methods[::Notification::Bundle, ::String, ::Notification::Bundle::Validated]
 
