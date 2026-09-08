@@ -33,13 +33,13 @@ class Card < ApplicationRecord
   def filled?: () -> untyped
   def mentionable?: () -> bool
   def should_check_mentions?: () -> bool
-  def accessible_to?: (User & User::Validated user) -> bool
+  def accessible_to?: (User? | (User & User::Validated) user) -> bool
   def auto_postpone_period: () -> Integer?
 
   private
 
   def set_default_title: () -> String?
-  def handle_board_change: () -> untyped
+  def handle_board_change: () -> ActiveJob::Base
   def track_board_change_event: (String? old_board_name) -> Event?
   def assign_number: () -> untyped
 end

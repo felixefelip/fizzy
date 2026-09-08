@@ -2,7 +2,7 @@ class Notification
   module Pushable
     extend ActiveSupport::Concern
 
-    def push_later: () -> untyped
+    def push_later: () -> ActiveJob::Base
     def push: () -> untyped
     def payload: () -> untyped
 

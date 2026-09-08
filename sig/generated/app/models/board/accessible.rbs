@@ -3,18 +3,18 @@ class Board
     extend ActiveSupport::Concern
 
     def accessed_by: (untyped user) -> untyped
-    def access_for: ((User & User::Validated) user) -> (Access & Access::Validated)?
-    def accessible_to?: ((User & User::Validated) user) -> bool
-    def clean_inaccessible_data_for: (untyped user) -> untyped
+    def access_for: ((User | nil | User & User::Validated) user) -> (Access & Access::Validated)?
+    def accessible_to?: ((User? | (User & User::Validated)) user) -> bool
+    def clean_inaccessible_data_for: (User? user) -> untyped
     def watchers: () -> User::ActiveRecord_Relation
 
     private
 
     def grant_access_to_creator: () -> Access
     def grant_access_to_everyone: () -> untyped
-    def mentions_for_user: (untyped user) -> untyped
-    def notifications_for_user: (untyped user) -> untyped
-    def watches_for: (untyped user) -> Watch::ActiveRecord_Relation
-    def pins_for: (untyped user) -> Pin::ActiveRecord_Relation
+    def mentions_for_user: (User? user) -> User_Mention::ActiveRecord_Associations_CollectionProxy
+    def notifications_for_user: (User? user) -> User_Notification::ActiveRecord_Associations_CollectionProxy
+    def watches_for: (User? user) -> Watch::ActiveRecord_Relation
+    def pins_for: (User? user) -> Pin::ActiveRecord_Relation
   end
 end

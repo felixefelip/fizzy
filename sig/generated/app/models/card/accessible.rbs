@@ -8,6 +8,6 @@ class Card
     private
 
     def grant_access_to_assignees: () -> untyped
-    def clean_inaccessible_data_later: () -> untyped
+    def clean_inaccessible_data_later: () -> ActiveJob::Base
   end
 end

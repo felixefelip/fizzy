@@ -2,6 +2,6 @@ class Account
   class DataImportJob < ApplicationJob
     include ActiveJob::Continuable
 
-    def perform: (untyped import) -> void
+    def perform: (Account::Import import) -> void
   end
 end

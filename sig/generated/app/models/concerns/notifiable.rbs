@@ -6,5 +6,5 @@ module Notifiable
 
   private
 
-  def notify_recipients_later: () -> untyped
+  def notify_recipients_later: () -> ActiveJob::Base
 end

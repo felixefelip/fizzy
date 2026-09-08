@@ -50,6 +50,15 @@ rbs_infer_controller_runtime:
 rbs_infer_current_runtime:
 	bundle exec rake rbs_infer:current_runtime:all
 
+## Pseudo-código do round trip que o ActiveJob faz entre `perform_later` e
+## `perform`: um reopen só de `ActiveJob::Base`, encaminhando os argumentos do
+## enqueue para uma instância nova. Como o forward é herdado por todo job, é o
+## RECEPTOR do call site que diz de quem são os argumentos — daí cada
+## `perform` deste app ser tipado pelos `Job.perform_later(...)` que ele tem,
+## e não pela união de todos (rbs_infer#331).
+rbs_infer_job_runtime:
+	bundle exec rake rbs_infer:job_runtime:all
+
 rbs_infer_actionview_runtime:
 	bundle exec rake rbs_infer:actionview_runtime:all
 
@@ -90,6 +99,7 @@ rbs_generators_all:
 	make rbs_infer_ruby_runtime
 	make rbs_infer_controller_runtime
 	make rbs_infer_current_runtime
+	make rbs_infer_job_runtime
 	make rbs_infer_actionview_runtime
 	make rbs_infer_all
 

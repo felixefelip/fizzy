@@ -1,7 +1,7 @@
 module Mentions
   extend ActiveSupport::Concern
 
-  def create_mentions: (?mentioner: untyped) -> Array[untyped]
+  def create_mentions: (?mentioner: (User & User::Validated)?) -> Array[untyped]
   def mentionable_content: () -> String
   def scan_mentionees: () -> Array[untyped]
 
@@ -12,7 +12,7 @@ module Mentions
   def rich_text_associations: () -> Array[untyped]
   def should_create_mentions?: () -> bool
   def mentionable_content_changed?: () -> bool
-  def create_mentions_later: () -> untyped
+  def create_mentions_later: () -> ActiveJob::Base
   def mentionable?: () -> bool
   def should_check_mentions?: () -> bool
 end

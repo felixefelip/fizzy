@@ -10,5 +10,5 @@ class Event < ApplicationRecord
 
   private
 
-  def dispatch_webhooks: () -> untyped
+  def dispatch_webhooks: () -> ActiveJob::Base
 end

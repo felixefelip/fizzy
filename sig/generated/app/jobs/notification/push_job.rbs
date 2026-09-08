@@ -1,5 +1,5 @@
 class Notification
   class PushJob < ApplicationJob
-    def perform: (untyped notification) -> untyped
+    def perform: (Notification & Notification::Validated notification) -> untyped
   end
 end

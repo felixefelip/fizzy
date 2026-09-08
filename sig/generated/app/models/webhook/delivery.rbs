@@ -10,7 +10,7 @@ class Webhook
 
     def self.cleanup: (?batch_size: untyped, ?pause: untyped) -> nil
 
-    def deliver_later: () -> untyped
+    def deliver_later: () -> ActiveJob::Base
     def deliver: () -> untyped
     def sanitized_request: () -> Hash[Symbol, untyped]?
     def response_summary: () -> Hash[Symbol, untyped]?

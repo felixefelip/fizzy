@@ -1,0 +1,5 @@
+module ActiveJob
+  class Base
+    def self.perform_later: (*(::User? | ::Board? | Account::Import | (Card & Card::Accessible) | (Card & Card::Readable) | Card & Card::Validated | Comment & Comment::Validated | { mentioner: (User & User::Validated)? } | Event & Event::Validated | Mention & Mention::Validated | Account & Storage::Totaled | Board & Storage::Totaled | Export | Notification & Notification::Validated | Webhook::Delivery & Webhook::Delivery::Validated) args, **untyped) -> ActiveJob::Base
+  end
+end

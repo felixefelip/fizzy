@@ -1,5 +1,5 @@
 class Mention
   class CreateJob < ApplicationJob
-    def perform: (untyped record, mentioner: untyped) -> untyped
+    def perform: ((Card & Card::Validated | Comment & Comment::Validated) record, mentioner: (User & User::Validated)?) -> Array[untyped]
   end
 end

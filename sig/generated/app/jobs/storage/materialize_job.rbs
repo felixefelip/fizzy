@@ -1,5 +1,5 @@
 module Storage
   class MaterializeJob < ApplicationJob
-    def perform: (untyped owner) -> untyped
+    def perform: ((Account & Storage::Totaled | Board & Storage::Totaled) owner) -> untyped
   end
 end

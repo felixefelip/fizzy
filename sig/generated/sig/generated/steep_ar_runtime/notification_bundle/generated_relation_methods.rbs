@@ -2,7 +2,7 @@ class Notification
   class Bundle
     module GeneratedRelationMethods
       def deliver_all: () -> nil
-      def deliver_all_later: () -> untyped
+      def deliver_all_later: () -> ActiveJob::Base
     end
   end
 end

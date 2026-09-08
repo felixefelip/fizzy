@@ -1,5 +1,5 @@
 class Board
   class CleanInaccessibleDataJob < ApplicationJob
-    def perform: (untyped user, untyped board) -> untyped
+    def perform: (User? user, Board? board) -> untyped
   end
 end

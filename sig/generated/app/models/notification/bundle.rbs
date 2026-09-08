@@ -1,12 +1,12 @@
 class Notification
   class Bundle < ApplicationRecord
     def self.deliver_all: () -> nil
-    def self.deliver_all_later: () -> untyped
+    def self.deliver_all_later: () -> ActiveJob::Base
 
     def notifications: () -> Notification::ActiveRecord_Relation
     def deliver: () -> untyped
-    def deliver_later: () -> untyped
-    def flush: () -> untyped
+    def deliver_later: () -> ActiveJob::Base
+    def flush: () -> ActiveJob::Base
     def set_default_window: () -> untyped
 
     private

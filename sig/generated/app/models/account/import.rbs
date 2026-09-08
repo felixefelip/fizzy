@@ -2,9 +2,9 @@ class Account
   class Import < ApplicationRecord
     def self.cleanup: () -> ::Account::Import::ActiveRecord_Relation
 
-    def process_later: () -> untyped
-    def check: (?start: untyped, ?callback: untyped) -> untyped
-    def process: (?start: untyped, ?callback: untyped) -> untyped
+    def process_later: () -> ActiveJob::Base
+    def check: (?start: untyped, ?callback: (^() -> void)?) -> untyped
+    def process: (?start: untyped, ?callback: (^() -> void)?) -> untyped
     def cleanup: () -> untyped
 
     private

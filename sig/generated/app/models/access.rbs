@@ -4,5 +4,5 @@ class Access < ApplicationRecord
   private
 
   def recently_accessed?: () -> bool?
-  def clean_inaccessible_data_later: () -> untyped
+  def clean_inaccessible_data_later: () -> ActiveJob::Base?
 end

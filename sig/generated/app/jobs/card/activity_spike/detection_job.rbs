@@ -1,7 +1,7 @@
 class Card
   class ActivitySpike
     class DetectionJob < ApplicationJob
-      def perform: (untyped card) -> untyped
+      def perform: (Card & Card::Validated card) -> bool
     end
   end
 end
