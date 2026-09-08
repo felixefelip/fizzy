@@ -8,6 +8,6 @@ class Comment
     private
 
     def should_track_event?: () -> untyped
-    def track_creation: () -> untyped
+    def track_creation: () -> Event?
   end
 end

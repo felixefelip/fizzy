@@ -4,7 +4,7 @@ class Card
 
     def watched_by?: ((User & User::Validated) user) -> bool?
     def watch_for: ((User & User::Validated) user) -> (Watch & Watch::Validated)?
-    def watch_by: (User? user) -> untyped
+    def watch_by: ((User & User::Validated) user) -> untyped
     def unwatch_by: (untyped user) -> untyped
 
     private

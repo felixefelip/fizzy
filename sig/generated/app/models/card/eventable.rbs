@@ -9,7 +9,7 @@ class Card
     private
 
     def should_track_event?: () -> bool
-    def track_title_change: () -> untyped
+    def track_title_change: () -> Event?
     def create_system_comment_for: (untyped event) -> Comment?
   end
 end

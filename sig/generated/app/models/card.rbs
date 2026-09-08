@@ -40,6 +40,6 @@ class Card < ApplicationRecord
 
   def set_default_title: () -> String?
   def handle_board_change: () -> untyped
-  def track_board_change_event: (String? old_board_name) -> untyped
+  def track_board_change_event: (String? old_board_name) -> Event?
   def assign_number: () -> untyped
 end

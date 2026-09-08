@@ -2,7 +2,7 @@ module Search
   class Record
     module SQLite
       class Fts < ApplicationRecord
-        def self.upsert: (untyped rowid, untyped title, untyped content) -> untyped
+        def self.upsert: (Integer rowid, String? title, String? content) -> untyped
       end
     end
   end

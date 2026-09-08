@@ -10,10 +10,29 @@ callbacks:
   applies_self: Account::JoinCode & Account::JoinCode::Validated
   runs_before:
   - generate_code
+- class: ActiveStorage::Attachment
+  applies_self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+  runs_before:
+  - run_upload_callbacks
 - class: ActiveStorage::Blob
   applies_self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
   runs_before:
   - touch_attachments
+  - update_service_metadata
+  - service_metadata
+  - service
+  - key
+  - filename
+  - custom_metadata
+- class: Board::Accessible
+  applies_self: Board & Board::Validated
+  runs_before:
+  - grant_access_to_creator
+  - grant_access_to_everyone
+- class: Board::AutoPostponing
+  applies_self: Board & Board::Validated
+  runs_before:
+  - set_default_auto_postpone_period
 - class: Card
   applies_self: Card & Card::Validated
   runs_before:
@@ -21,14 +40,105 @@ callbacks:
   - assign_number
   - handle_board_change
   - track_board_change_event
+- class: Card::Broadcastable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - remember_if_preview_changed
+- class: Card::Eventable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - track_title_change
+- class: Card::Pinnable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - broadcast_pin_updates
+- class: Card::Stallable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - remember_to_detect_activity_spikes
+  - detect_activity_spikes_later
+- class: Card::Statuses
+  applies_self: Card & Card::Validated
+  runs_before:
+  - mark_if_just_published
+- class: Card::Watchable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - subscribe_creator
+  - watch_by
+- class: Column::Positioned
+  applies_self: Column & Column::Validated
+  runs_before:
+  - set_position
+- class: Comment
+  applies_self: Comment & Comment::Validated
+  runs_before:
+  - watch_card_by_creator
+- class: Comment::Eventable
+  applies_self: Comment & Comment::Validated
+  runs_before:
+  - track_creation
+- class: Event
+  applies_self: Event & Event::Validated
+  runs_before:
+  - dispatch_webhooks
+- class: Mention
+  applies_self: Mention & Mention::Validated
+  runs_before:
+  - watch_source_by_mentionee
+- class: Mentions
+  applies_self: "(Card & Card::Validated) | (Comment & Comment::Validated)"
+  runs_before:
+  - create_mentions_later
+- class: Notifiable
+  applies_self: "(Event & Event::Validated) | (Mention & Mention::Validated)"
+  runs_before:
+  - notify_recipients_later
 - class: Notification
   applies_self: Notification & Notification::Validated
   runs_before:
   - bundle
+- class: Notification::Pushable
+  applies_self: Notification & Notification::Validated
+  runs_before:
+  - push_later
 - class: Reaction
   applies_self: Reaction & Reaction::Validated
   runs_before:
   - register_card_activity
+- class: Search::Record::SQLite
+  applies_self: Search::Record & Search::Record::Validated
+  runs_before:
+  - upsert_to_fts5_table
+- class: Searchable
+  applies_self: "(Card & Card::Validated) | (Comment & Comment::Validated)"
+  runs_before:
+  - create_in_search_index
+  - update_in_search_index
+  - search_record_class
+  - search_record_attributes
+  - remove_from_search_index
+  - search_record_content
+- class: Storage::AttachmentTracking
+  applies_self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
+  runs_before:
+  - record_storage_attach
+  - storage_tracked_record
+- class: Storage::Tracked
+  applies_self: "(Board & Board::Validated) | (Card & Card::Validated) | (Comment
+    & Comment::Validated)"
+  runs_before:
+  - track_board_transfer
+  - storage_transfer_records
+  - storage_attachments_for_records
+- class: User::Accessor
+  applies_self: User & User::Validated
+  runs_before:
+  - grant_access_to_boards
+- class: User::Configurable
+  applies_self: User & User::Validated
+  runs_before:
+  - create_settings
 - class: User::Settings
   applies_self: User::Settings & User::Settings::Validated
   runs_before:
@@ -40,3 +150,7 @@ callbacks:
   applies_self: Webhook & Webhook::Validated
   runs_before:
   - create_delinquency_tracker!
+- class: Webhook::Delivery
+  applies_self: Webhook::Delivery & Webhook::Delivery::Validated
+  runs_before:
+  - deliver_later

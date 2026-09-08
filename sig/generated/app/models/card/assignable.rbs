@@ -2,13 +2,13 @@ class Card
   module Assignable
     extend ActiveSupport::Concern
 
-    def toggle_assignment: (untyped user) -> untyped
+    def toggle_assignment: (untyped user) -> Event?
     def assigned_to?: (untyped user) -> bool
     def assigned?: () -> bool
 
     private
 
-    def assign: (untyped user) -> untyped
-    def unassign: (untyped user) -> untyped
+    def assign: (untyped user) -> Event?
+    def unassign: (untyped user) -> Event?
   end
 end

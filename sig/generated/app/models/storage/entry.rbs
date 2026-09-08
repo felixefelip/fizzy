@@ -1,6 +1,6 @@
 module Storage
   class Entry < ApplicationRecord
     def self.suppressing_recording: () { () -> untyped } -> untyped
-    def self.record: (delta: untyped, operation: String, account: untyped, ?board: (self? | (Board & Board::Validated))?, ?recordable: nil?, ?blob: untyped) -> self?
+    def self.record: (delta: Integer?, operation: String, account: Account & Account::Validated, ?board: (self? | (Board & Board::Validated))?, ?recordable: nil?, ?blob: (ActiveStorage::Blob & ActiveStorage::Blob::Validated)?) -> self?
   end
 end
