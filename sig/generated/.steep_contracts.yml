@@ -852,125 +852,6 @@ methods:
         - assignments
         - count
     enforced: false
-  Attachments#attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_attachments?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_remote_images?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#has_remote_videos?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#remote_images:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#remote_videos:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Attachments#rich_text_record:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
   Authentication#redirect_authenticated_user:
     requires:
     - kind: not_nil
@@ -1072,20 +953,6 @@ methods:
     enforced: false
   Board::Accessible#grant_access_to_everyone:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - users
     - kind: not_nil
       expr:
         kind: send
@@ -1744,23 +1611,6 @@ methods:
         - system?
     - kind: self_type
       type: "(::Card & ::Card::Validated)"
-  Card::Eventable#track_title_change:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    enforced: false
   Card::Eventable::SystemCommenter#comment:
     requires:
     - kind: not_nil
@@ -1771,44 +1621,6 @@ methods:
         method: card
         chain:
         - account
-    enforced: false
-  Card::Exportable#collect_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    - kind: self_type
-      type: "(::Card & ::Card::Exportable)"
-    enforced: false
-  Card::Exportable#export_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
     enforced: false
   Card::Exportable#export_json:
     requires:
@@ -1903,17 +1715,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
-  Card::Pinnable#unpin_by:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
     enforced: false
   Card::Postponable#auto_postpone:
     requires:
@@ -2871,23 +2672,6 @@ methods:
         chain:
         - columns
     enforced: false
-  Column::Positioned#set_position:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - columns
-    enforced: false
   Columns::Cards::Drops::ClosuresController#__rbs_infer__run_create:
     requires:
     - kind: not_nil
@@ -2987,15 +2771,6 @@ methods:
           kind: self
         method: card
     enforced: false
-  Comment#watch_card_by_creator:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    enforced: false
   Comment::Eventable#event_was_created:
     requires:
     - kind: not_nil
@@ -3021,15 +2796,6 @@ methods:
         method: creator
         chain:
         - system?
-    enforced: false
-  Comment::Eventable#track_creation:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
     enforced: false
   Comment::Mentions#mentionable?:
     requires:
@@ -3083,7 +2849,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Comment::Searchable#search_content:
     requires:
     - kind: not_nil
@@ -3101,7 +2866,6 @@ methods:
         receiver:
           kind: self
         method: card
-    enforced: false
   Current#session=:
     requires:
     - kind: not_nil
@@ -3679,15 +3443,6 @@ methods:
         - boards
         - first
     enforced: false
-  Filterable#remove_from_filters:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    enforced: false
   Filters::SettingsRefreshesController#__rbs_infer__run_create:
     requires:
     - kind: not_nil
@@ -3794,55 +3549,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#mentionable_content:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#mentionable_content_changed?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
     enforced: false
   Mentions#mentionable_users:
     requires:
@@ -3853,40 +3560,6 @@ methods:
           kind: self
         method: board
     enforced: false
-  Mentions#mentionees_from_attachments:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#rich_text_associations:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
   Mentions#scan_mentionees:
     requires:
     - kind: not_nil
@@ -3894,38 +3567,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
-    enforced: false
-  Mentions#should_create_mentions?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - klass
     enforced: false
   My::AccessTokensController#__rbs_infer__run_create:
     requires:
@@ -4954,12 +4596,6 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: description
     enforced: false
   Searchable#reindex:
@@ -4969,22 +4605,10 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: description
     enforced: false
   Searchable#search_record_attributes:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
     - kind: not_nil
       expr:
         kind: send
@@ -5003,12 +4627,6 @@ methods:
     enforced: false
   Searchable#update_in_search_index:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
     - kind: not_nil
       expr:
         kind: send
@@ -5286,13 +4904,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: blob
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: record
+        method: storage_tracked_record
     enforced: false
   Storage::AttachmentTracking#record_storage_detach:
     requires:
@@ -5310,26 +4922,6 @@ methods:
         method: blob
         chain:
         - byte_size
-    enforced: false
-  Storage::AttachmentTracking#snapshot_storage_context:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: record
-    enforced: false
-  Storage::AttachmentTracking#storage_tracked_record:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: record
-    - kind: self_type
-      type: "(::Object & ::Storage::AttachmentTracking)"
     enforced: false
   Storage::Total#current_usage:
     requires:
@@ -5413,42 +5005,6 @@ methods:
         method: identity
     - kind: self_type
       type: "(::User & ::User::Validated)"
-    enforced: false
-  User::Accessor#grant_access_to_boards:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-        - all_access
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: account
-        chain:
-        - boards
-        - all_access
-        - ids
     enforced: false
   User::Avatar#avatar_content_type_allowed:
     requires:
@@ -5571,23 +5127,6 @@ methods:
         receiver:
           kind: self
         method: day
-  User::DayTimeline::Column#events_by_hour:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: it
-        chain:
-        - created_at
-    enforced: false
   User::EmailAddressChangeable#change_email_address_using_token:
     requires:
     - kind: not_nil
