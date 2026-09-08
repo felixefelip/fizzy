@@ -160,6 +160,10 @@ class Card
 end
 
 class Card
+  has_many :events, as: :eventable, dependent: :destroy
+end
+
+class Card
   has_one :goldness, dependent: :destroy, class_name: "Card::Goldness"
 
   scope :golden, -> { joins(:goldness) }
@@ -176,6 +180,12 @@ class Card
   def should_check_mentions?
     was_just_published?
   end
+end
+
+class Card
+  has_many :mentions, as: :source, dependent: :destroy
+  has_many :mentionees, through: :mentions
+  after_save_commit :create_mentions_later, if: :should_create_mentions?
 end
 
 class Card
@@ -206,6 +216,12 @@ class Card
     search_record_class = Search::Record.for(user.account_id)
     joins(search_record_class.card_join).merge(search_record_class.for_query(query, user: user))
   end
+end
+
+class Card
+  after_create_commit :create_in_search_index
+  after_update_commit :update_in_search_index
+  after_destroy_commit :remove_from_search_index
 end
 
 class Card
@@ -251,5 +267,5 @@ class Card
 end
 
 class Card
-  extend Card::Entropic::ClassMethods
+  extend ::Card::Entropic::ClassMethods
 end

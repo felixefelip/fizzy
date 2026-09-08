@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  extend ::Storage::Totaled::ClassMethods
   extend ::Account::MultiTenantable::ClassMethods
   include ::Account::Storage
   include Cancellable
@@ -11,7 +12,7 @@ class Account < ApplicationRecord
   def self.create_with_owner: (account: { external_account_id: nil, name: String }, owner: { name: untyped, identity: (Identity & Identity::Validated)? }) -> self
 
   def slug: () -> String
-  def account: () -> Account
+  def account: () -> self
   def system_user: () -> (User & User::Validated)
   def active?: () -> bool
   def importing?: () -> bool

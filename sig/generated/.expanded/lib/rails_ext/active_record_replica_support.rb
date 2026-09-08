@@ -87,5 +87,5 @@ module ActiveRecordReplicaSupport::ClassMethods
 end
 
 class ActiveRecord::Base
-  extend ActiveRecordReplicaSupport::ClassMethods
+  extend ::ActiveRecordReplicaSupport::ClassMethods
 end

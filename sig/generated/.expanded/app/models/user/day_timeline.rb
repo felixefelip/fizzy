@@ -102,5 +102,5 @@ class User::DayTimeline
 end
 
 class User::DayTimeline
-  extend User::DayTimeline::Serializable::ClassMethods
+  extend ::User::DayTimeline::Serializable::ClassMethods
 end

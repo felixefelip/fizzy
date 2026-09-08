@@ -5,10 +5,9 @@ class Board
     BATCH_SIZE: Integer
 
     extend ActiveSupport::Concern
-    extend ::Storage::Totaled::ClassMethods
     include ::Storage::Totaled
 
-    def board_for_storage_tracking: () -> Board::Storage
+    def board_for_storage_tracking: () -> self
 
     private
 

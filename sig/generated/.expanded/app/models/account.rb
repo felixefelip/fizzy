@@ -63,6 +63,11 @@ class Account
 end
 
 class Account
+  has_one :storage_total, as: :owner, class_name: "Storage::Total", dependent: :destroy
+  has_many :storage_entries, class_name: "Storage::Entry", foreign_key: foreign_key_for_storage
+end
+
+class Account
   has_one :cancellation, dependent: :destroy
 
   define_callbacks :cancel
@@ -91,5 +96,9 @@ class Account
 end
 
 class Account
-  extend Account::MultiTenantable::ClassMethods
+  extend ::Storage::Totaled::ClassMethods
+end
+
+class Account
+  extend ::Account::MultiTenantable::ClassMethods
 end

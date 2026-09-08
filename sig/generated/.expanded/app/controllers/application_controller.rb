@@ -27,6 +27,10 @@ class ApplicationController
 end
 
 class ApplicationController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class ApplicationController
   before_action :ensure_can_access_account, if: :authenticated_account_access?
 end
 
@@ -73,9 +77,9 @@ class ApplicationController
 end
 
 class ApplicationController
-  extend Authentication::ClassMethods
+  extend ::Authentication::ClassMethods
 end
 
 class ApplicationController
-  extend Authorization::ClassMethods
+  extend ::Authorization::ClassMethods
 end

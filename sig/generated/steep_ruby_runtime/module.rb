@@ -24,6 +24,18 @@ class Module
     self
   end
 
+  # @rbs_infer |...
+  def prepend(*modules)
+    raise ArgumentError, "wrong number of arguments (given 0, expected 1+)" if modules.empty?
+
+    modules.reverse_each do |mod|
+      mod.send(:prepend_features, self)
+      mod.send(:prepended, self)
+    end
+
+    self
+  end
+
   private
 
   # What `include` delegates the actual work to — `rb_mod_append_features` in eval.c:
@@ -40,9 +52,25 @@ class Module
   def append_features(mod)
     raise TypeError, "wrong argument type (expected Class or Module)" unless mod.is_a?(Module)
 
-    # rb_include_module(mod, self): the ancestors of `mod` gain `self`. Not expressible
-    # here, and not needed — RBS states ancestry, this file only models dispatch.
+    mod.send(:__rbs_infer__include_module, self)
     self
+  end
+
+  def __rbs_infer__include_module(mod)
+    nil
+  end
+
+  # @rbs_infer |...
+  def prepend_features(mod)
+    raise TypeError, "wrong argument type (expected Class or Module)" unless mod.is_a?(Module)
+
+    mod.send(:__rbs_infer__include_module, self)
+    self
+  end
+
+  # @rbs_infer |...
+  def prepended(base)
+    nil
   end
 
   # The notification, and on `Module` it does nothing at all: `rb_obj_dummy1`, one
@@ -51,6 +79,32 @@ class Module
   # is why `include` above has to reach this one with `send`.
   # @rbs_infer |...
   def included(base)
+    nil
+  end
+
+  # What `extend` delegates the singleton splice to — `rb_mod_extend_object`
+  # in eval.c:
+  #
+  #   rb_extend_object(obj, mod);   /* rb_include_module(rb_singleton_class(obj), mod) */
+  #   return obj;
+  #
+  # Same shape as `append_features` and unstatable for the same reason — the
+  # splice is C — so the body says the one thing it can: the answer is the
+  # OBJECT, not the module. That asymmetry is the difference between the two,
+  # and a module that overrides this now has a `super` to resolve against.
+  # @rbs_infer |...
+  def extend_object(obj)
+    obj.singleton_class.include(self)
+    obj
+  end
+
+  # The notification, and on `Module` it does nothing at all: `rb_obj_dummy1`,
+  # one argument, returns nil — the same stub as `included`. A module that
+  # wants to know overrides it with `def self.extended(base)`, which shadows
+  # this and is PUBLIC in the process, which is why `extend` reaches this one
+  # with `send`.
+  # @rbs_infer |...
+  def extended(base)
     nil
   end
 end

@@ -1,7 +1,6 @@
 class Comment
   module Searchable
     extend ActiveSupport::Concern
-    include ::Searchable
 
     def search_title: () -> nil
     def search_content: () -> untyped

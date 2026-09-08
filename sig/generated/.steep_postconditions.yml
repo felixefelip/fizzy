@@ -5126,7 +5126,7 @@ postconditions:
   method: index
   unconditional:
     ivars:
-      "@cards": "(::Array[untyped] | ::Card::ActiveRecord_Relation)"
+      "@cards": "(::Array[(::Card & ::Card::Validated)] | ::Card::ActiveRecord_Relation)"
     self: "::Prompts::CardsController & ::Prompts::CardsController::AfterIndex"
   effects:
     may_write:
@@ -12098,7 +12098,7 @@ method_entry_facts:
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
   ivars:
-    "@cards": "(::Array[untyped] | ::Card::ActiveRecord_Relation)"
+    "@cards": "(::Array[(::Card & ::Card::Validated)] | ::Card::ActiveRecord_Relation)"
     "@disable_view_transition": 'true'
 - class: Prompts::CardsController
   method: search_cards

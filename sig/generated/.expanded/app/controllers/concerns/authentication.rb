@@ -135,7 +135,3 @@ module Authentication::ClassMethods
     before_action :redirect_tenanted_request, **options
   end
 end
-
-module Authentication
-  after_action :ensure_development_magic_link_not_leaked
-end

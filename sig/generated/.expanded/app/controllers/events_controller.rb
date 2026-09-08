@@ -14,3 +14,8 @@ class EventsController
 
   before_action :set_day_timeline
 end
+
+class EventsController
+  before_action :set_filter
+  before_action :set_user_filtering
+end

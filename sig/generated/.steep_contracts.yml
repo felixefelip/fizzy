@@ -1181,10 +1181,6 @@ methods:
           kind: self
         method: board
     enforced: false
-  Board::Storage#card_image_bytes:
-    requires:
-    - kind: self_type
-      type: "(::Board & ::Board::Storage)"
   Boards::AccessesController#__rbs_infer__run_index:
     requires:
     - kind: not_nil

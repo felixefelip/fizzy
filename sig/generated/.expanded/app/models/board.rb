@@ -49,6 +49,11 @@ class Board
 end
 
 class Board
+  has_one :storage_total, as: :owner, class_name: "Storage::Total", dependent: :destroy
+  has_many :storage_entries, class_name: "Storage::Entry", foreign_key: foreign_key_for_storage
+end
+
+class Board
   broadcasts_refreshes
   broadcasts_refreshes_to ->(board) { [ board.account, :all_boards ] }
 end
@@ -85,5 +90,9 @@ class Board
 end
 
 class Board
-  extend Board::Publishable::ClassMethods
+  extend ::Storage::Totaled::ClassMethods
+end
+
+class Board
+  extend ::Board::Publishable::ClassMethods
 end

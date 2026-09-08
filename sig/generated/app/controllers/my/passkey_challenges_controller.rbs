@@ -1,7 +1,7 @@
 module My
   class PasskeyChallengesController < ActionPack::Passkey::ChallengesController
-    extend Authentication::ClassMethods
-    extend Authorization::ClassMethods
+    extend ::Authentication::ClassMethods
+    extend ::Authorization::ClassMethods
     include Authentication
     include Authorization
     include Authentication::ViaMagicLink

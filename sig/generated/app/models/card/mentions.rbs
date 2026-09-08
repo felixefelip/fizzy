@@ -1,9 +1,5 @@
 class Card
   module Mentions
     extend ActiveSupport::Concern
-    include ::Mentions
-
-    def mentionable?: () -> bool
-    def should_check_mentions?: () -> bool?
   end
 end

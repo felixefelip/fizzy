@@ -21,13 +21,17 @@ class My::PasskeyChallengesController
 end
 
 class My::PasskeyChallengesController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class My::PasskeyChallengesController
   before_action :ensure_can_access_account, if: :authenticated_account_access?
 end
 
 class My::PasskeyChallengesController
-  extend Authentication::ClassMethods
+  extend ::Authentication::ClassMethods
 end
 
 class My::PasskeyChallengesController
-  extend Authorization::ClassMethods
+  extend ::Authorization::ClassMethods
 end

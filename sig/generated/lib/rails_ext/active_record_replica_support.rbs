@@ -4,7 +4,7 @@ end
 
 module ActiveRecord
   class Base
-    extend ActiveRecordReplicaSupport::ClassMethods
+    extend ::ActiveRecordReplicaSupport::ClassMethods
     include ActiveRecordReplicaSupport
   end
 end

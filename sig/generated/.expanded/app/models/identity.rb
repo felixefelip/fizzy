@@ -44,5 +44,5 @@ class Identity < ApplicationRecord
 end
 
 class Identity
-  extend Identity::Transferable::ClassMethods
+  extend ::Identity::Transferable::ClassMethods
 end

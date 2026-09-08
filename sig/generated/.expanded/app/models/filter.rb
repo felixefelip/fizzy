@@ -132,9 +132,9 @@ class Filter
 end
 
 class Filter
-  extend Filter::Fields::ClassMethods
+  extend ::Filter::Fields::ClassMethods
 end
 
 class Filter
-  extend Filter::Params::ClassMethods
+  extend ::Filter::Params::ClassMethods
 end

@@ -27,7 +27,7 @@ class Card < ApplicationRecord
   include ::Mentions
   include ::Searchable
 
-  def card: () -> Card
+  def card: () -> self
   def to_param: () -> String
   def move_to: ((Board & Board::Validated) new_board) -> untyped
   def filled?: () -> untyped

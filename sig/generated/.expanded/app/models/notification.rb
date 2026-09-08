@@ -79,5 +79,5 @@ class Notification
 end
 
 class Notification
-  extend Notification::Pushable::ClassMethods
+  extend ::Notification::Pushable::ClassMethods
 end

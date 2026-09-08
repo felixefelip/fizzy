@@ -1,4 +1,5 @@
 class Board < ApplicationRecord
+  extend ::Storage::Totaled::ClassMethods
   extend ::Board::Publishable::ClassMethods
   include Accessible
   include AutoPostponing

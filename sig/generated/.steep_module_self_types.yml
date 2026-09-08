@@ -13,7 +13,6 @@ app/controllers/concerns/authentication.rb:
     implements:
     - "::ApplicationController"
     - "::My::PasskeyChallengesController"
-    - "::ActiveStorage::Authorize"
   - call: class_methods
     in: "::Authentication"
     implements: "::Authentication::ClassMethods"
@@ -30,7 +29,9 @@ app/controllers/concerns/authentication/via_magic_link.rb:
   blocks:
   - call: included
     in: "::Authentication::ViaMagicLink"
-    implements: "::Authentication"
+    implements:
+    - "::ApplicationController"
+    - "::My::PasskeyChallengesController"
 app/controllers/concerns/authorization.rb:
   modules:
   - anchor: Authorization
@@ -228,7 +229,9 @@ app/controllers/concerns/filter_scoped.rb:
     - "::BoardsController"
     - "::Cards::PreviewsController"
     - "::CardsController"
-    - "::DayTimelinesScoped"
+    - "::Events::DayTimeline::ColumnsController"
+    - "::Events::DaysController"
+    - "::EventsController"
     - "::Filters::SettingsRefreshesController"
     - "::Users::EventsController"
 app/controllers/concerns/request_forgery_protection.rb:
@@ -690,9 +693,7 @@ app/models/card/eventable.rb:
   blocks:
   - call: included
     in: "::Card::Eventable"
-    implements:
-    - "::Card"
-    - "::Card::Eventable"
+    implements: "::Card"
 app/models/card/exportable.rb:
   modules:
   - anchor: Exportable
@@ -718,9 +719,7 @@ app/models/card/mentions.rb:
   blocks:
   - call: included
     in: "::Card::Mentions"
-    implements:
-    - "::Card"
-    - "::Card::Mentions"
+    implements: "::Card"
 app/models/card/multistep.rb:
   modules:
   - anchor: Multistep
@@ -776,9 +775,7 @@ app/models/card/searchable.rb:
   blocks:
   - call: included
     in: "::Card::Searchable"
-    implements:
-    - "::Card"
-    - "::Card::Searchable"
+    implements: "::Card"
 app/models/card/stallable.rb:
   modules:
   - anchor: Stallable
@@ -858,9 +855,7 @@ app/models/comment/eventable.rb:
   blocks:
   - call: included
     in: "::Comment::Eventable"
-    implements:
-    - "::Comment"
-    - "::Comment::Eventable"
+    implements: "::Comment"
 app/models/comment/mentions.rb:
   modules:
   - anchor: Mentions
@@ -870,9 +865,7 @@ app/models/comment/mentions.rb:
   blocks:
   - call: included
     in: "::Comment::Mentions"
-    implements:
-    - "::Comment"
-    - "::Comment::Mentions"
+    implements: "::Comment"
 app/models/comment/promptable.rb:
   modules:
   - anchor: Promptable
@@ -892,9 +885,7 @@ app/models/comment/searchable.rb:
   blocks:
   - call: included
     in: "::Comment::Searchable"
-    implements:
-    - "::Comment"
-    - "::Comment::Searchable"
+    implements: "::Comment"
 app/models/concerns/attachments.rb:
   modules:
   - anchor: Attachments
@@ -909,6 +900,12 @@ app/models/concerns/eventable.rb:
     - "# @type self: (singleton(Card) & singleton(Eventable)) | (singleton(Comment)
       & singleton(Eventable))"
     - "# @type instance: (Card & Eventable) | (Comment & Eventable)"
+  blocks:
+  - call: included
+    in: "::Eventable"
+    implements:
+    - "::Card"
+    - "::Comment"
 app/models/concerns/filterable.rb:
   modules:
   - anchor: Filterable
@@ -929,6 +926,12 @@ app/models/concerns/mentions.rb:
     - "# @type self: (singleton(Card) & singleton(Mentions)) | (singleton(Comment)
       & singleton(Mentions))"
     - "# @type instance: (Card & Mentions) | (Comment & Mentions)"
+  blocks:
+  - call: included
+    in: "::Mentions"
+    implements:
+    - "::Card"
+    - "::Comment"
 app/models/concerns/notifiable.rb:
   modules:
   - anchor: Notifiable
@@ -949,6 +952,12 @@ app/models/concerns/searchable.rb:
     - "# @type self: (singleton(Card) & singleton(Searchable)) | (singleton(Comment)
       & singleton(Searchable))"
     - "# @type instance: (Card & Searchable) | (Comment & Searchable)"
+  blocks:
+  - call: included
+    in: "::Searchable"
+    implements:
+    - "::Card"
+    - "::Comment"
 app/models/concerns/storage/totaled.rb:
   modules:
   - anchor: Totaled
@@ -960,8 +969,8 @@ app/models/concerns/storage/totaled.rb:
   - call: included
     in: "::Storage::Totaled"
     implements:
-    - "::Account::Storage"
-    - "::Board::Storage"
+    - "::Account"
+    - "::Board"
   - call: class_methods
     in: "::Storage::Totaled"
     implements: "::Storage::Totaled::ClassMethods"
