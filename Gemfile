@@ -47,7 +47,7 @@ gem "benchmark" # indirect dependency, being removed from Ruby 3.5 stdlib so her
 gem 'steep', path: '../steep', require: false
 # gem "steep", branch: "master", git: "https://github.com/soutaro/steep.git", require: false
 
-gem 'rbs', '~> 4.0.0.dev.5', require: false
+gem 'rbs', '~> 4.2', require: false
 gem 'rbs_infer', path: '../rbs_infer'
 gem 'rbs-inline', require: false
 gem 'rbs_rails', require: false, path: '../rbs_rails'

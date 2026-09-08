@@ -16,5 +16,5 @@ class AutoLinkScrubber < Loofah::Scrubber
 
   def autolink_text_node: (untyped node) -> Nokogiri::XML::NodeSet?
   def find_links: (untyped text) -> Array[untyped]
-  def clean_url: (String? url) -> String
+  def clean_url: (String url) -> String
 end
