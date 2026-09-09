@@ -32,7 +32,7 @@ class Card < ApplicationRecord
   def move_to: ((Board & Board::Validated) new_board) -> untyped
   def filled?: () -> untyped
   def mentionable?: () -> bool
-  def should_check_mentions?: () -> bool
+  def should_check_mentions?: () -> bool?
   def accessible_to?: (User? | (User & User::Validated) user) -> bool
   def auto_postpone_period: () -> Integer?
 
