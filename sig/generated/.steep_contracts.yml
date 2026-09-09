@@ -284,7 +284,6 @@ methods:
         receiver:
           kind: self
         method: file
-    enforced: false
   Account::Import#cleanup:
     requires:
     - kind: not_nil
@@ -1298,15 +1297,10 @@ methods:
         method: board
         chain:
         - accesses
-    enforced: false
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Accessible#grant_access_to_assignees:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
     - kind: not_nil
       expr:
         kind: send
@@ -1521,96 +1515,6 @@ methods:
         - entropy
         - auto_clean_period
     enforced: false
-  Card::Assignable#assign:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Assignable#toggle_assignment:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Assignable#unassign:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Closeable#close:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Closeable#reopen:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
   Card::Eventable::SystemCommenter#comment:
     requires:
     - kind: not_nil
@@ -1716,60 +1620,6 @@ methods:
           kind: self
         method: card
     enforced: false
-  Card::Postponable#auto_postpone:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Postponable#postpone:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Postponable#resume:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
   Card::Promptable#to_prompt:
     requires:
     - kind: not_nil
@@ -1827,7 +1677,8 @@ methods:
         method: board
         chain:
         - accesses
-    enforced: false
+    - kind: self_type
+      type: "(::Card & ::Card::Validated)"
   Card::Searchable#search_content:
     requires:
     - kind: not_nil
@@ -1852,24 +1703,6 @@ methods:
           kind: self
         method: updated_at
     enforced: false
-  Card::Statuses#publish:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
   Card::Taggable#toggle_tag_with:
     requires:
     - kind: not_nil
@@ -1886,42 +1719,6 @@ methods:
         method: account
         chain:
         - tags
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Triageable#send_back_to_triage:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    - kind: self_type
-      type: "(::Card & ::Card::Validated)"
-  Card::Triageable#triage_into:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
     - kind: self_type
       type: "(::Card & ::Card::Validated)"
   CardScoped#render_card_replacement:
@@ -2780,23 +2577,6 @@ methods:
           kind: self
         method: card
     enforced: false
-  Comment::Eventable#should_track_event?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
-    enforced: false
   Comment::Mentions#mentionable?:
     requires:
     - kind: not_nil
@@ -2841,14 +2621,6 @@ methods:
           kind: self
         method: account
     enforced: false
-  Comment::Searchable#search_board_id:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
   Comment::Searchable#search_content:
     requires:
     - kind: not_nil
@@ -2858,14 +2630,6 @@ methods:
           kind: self
         method: body
     enforced: false
-  Comment::Searchable#searchable?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
   Current#session=:
     requires:
     - kind: not_nil
@@ -3241,23 +3005,6 @@ methods:
         receiver:
           kind: self
         method: creator
-    enforced: false
-  Eventable#track_event:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: creator
-        chain:
-        - system?
     enforced: false
   Events::DayTimeline::ColumnsController#__rbs_infer__run_show:
     requires:
@@ -4049,6 +3796,8 @@ methods:
         receiver:
           kind: self
         method: account
+    - kind: self_type
+      type: "(::Notification & ::Notification::Validated)"
     enforced: false
   Notification::Pushable#pushable?:
     requires:
@@ -5715,6 +5464,8 @@ methods:
         chain:
         - created_at
         - utc
+    - kind: self_type
+      type: "(::Webhook::Delivery & ::Webhook::Delivery::Validated)"
     - kind: not_nil
       expr:
         kind: send

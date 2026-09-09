@@ -40,18 +40,41 @@ callbacks:
   - assign_number
   - handle_board_change
   - track_board_change_event
+- class: Card::Accessible
+  applies_self: Card & Card::Validated
+  runs_before:
+  - grant_access_to_assignees
+  - clean_inaccessible_data_later
 - class: Card::Broadcastable
   applies_self: Card & Card::Validated
   runs_before:
   - remember_if_preview_changed
+- class: Card::Commentable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - storage_transfer_records
+  - storage_comment_ids_with_attachments
 - class: Card::Eventable
   applies_self: Card & Card::Validated
   runs_before:
   - track_title_change
+  - should_track_event?
 - class: Card::Pinnable
   applies_self: Card & Card::Validated
   runs_before:
   - broadcast_pin_updates
+- class: Card::Readable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - remove_inaccessible_notifications_later
+- class: Card::Searchable
+  applies_self: Card & Card::Validated
+  runs_before:
+  - searchable?
+  - search_card_id
+  - search_board_id
+  - search_title
+  - search_content
 - class: Card::Stallable
   applies_self: Card & Card::Validated
   runs_before:
@@ -78,10 +101,24 @@ callbacks:
   applies_self: Comment & Comment::Validated
   runs_before:
   - track_creation
+  - should_track_event?
+- class: Comment::Searchable
+  applies_self: Comment & Comment::Validated
+  runs_before:
+  - searchable?
+  - search_card_id
+  - search_board_id
+  - search_title
+  - search_content
 - class: Event
   applies_self: Event & Event::Validated
   runs_before:
   - dispatch_webhooks
+- class: Eventable
+  applies_self: "(Card & Card::Validated) | (Comment & Comment::Validated)"
+  runs_before:
+  - track_event
+  - eventable_prefix
 - class: Mention
   applies_self: Mention & Mention::Validated
   runs_before:
@@ -129,8 +166,11 @@ callbacks:
     & Comment::Validated)"
   runs_before:
   - track_board_transfer
-  - storage_transfer_records
   - storage_attachments_for_records
+- class: Storage::Tracked
+  applies_self: "(Board & Board::Validated) | (Comment & Comment::Validated)"
+  runs_before:
+  - storage_transfer_records
 - class: User::Accessor
   applies_self: User & User::Validated
   runs_before:

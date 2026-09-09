@@ -1,5 +1,5 @@
 class Card
   class RemoveInaccessibleNotificationsJob < ApplicationJob
-    def perform: ((Card & Card::Readable) card) -> Array[(Card_Event::ActiveRecord_Associations_CollectionProxy | Event::ActiveRecord_Relation | Card_Mention::ActiveRecord_Associations_CollectionProxy | Mention::ActiveRecord_Relation)]
+    def perform: (Card & Card::Validated card) -> Array[(Card_Event::ActiveRecord_Associations_CollectionProxy | Event::ActiveRecord_Relation | Card_Mention::ActiveRecord_Associations_CollectionProxy | Mention::ActiveRecord_Relation)]
   end
 end

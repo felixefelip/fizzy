@@ -7,7 +7,7 @@ class Comment
 
     private
 
-    def should_track_event?: () -> untyped
+    def should_track_event?: () -> bool
     def track_creation: () -> Event?
   end
 end
