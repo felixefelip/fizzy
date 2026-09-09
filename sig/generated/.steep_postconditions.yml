@@ -1346,6 +1346,12 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 - class: Card::ActivitySpike::Detector
+  method: has_activity_spike?
+  when_true:
+    methods:
+      card: "(::Card & ::Card::Stallable & ::Card::Entropic & ::Card::Entropic::AfterEntropic)"
+    self: "::Card::ActivitySpike::Detector & ::Card::ActivitySpike::Detector::AfterHasActivitySpike"
+- class: Card::ActivitySpike::Detector
   method: initialize
   effects:
     may_write:

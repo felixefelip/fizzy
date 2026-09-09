@@ -1414,23 +1414,6 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: card
-        chain:
-        - entropy
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - entropy
-        - auto_clean_period
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
         method: last_event
     - kind: not_nil
       expr:
@@ -1443,23 +1426,6 @@ methods:
     enforced: false
   Card::ActivitySpike::Detector#has_activity_spike?:
     requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - entropy
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - entropy
-        - auto_clean_period
     - kind: not_nil
       expr:
         kind: send
@@ -1494,7 +1460,6 @@ methods:
         chain:
         - entropy
         - auto_clean_period
-    enforced: false
   Card::ActivitySpike::Detector#recent_period:
     requires:
     - kind: not_nil
@@ -1514,7 +1479,6 @@ methods:
         chain:
         - entropy
         - auto_clean_period
-    enforced: false
   Card::Eventable::SystemCommenter#comment:
     requires:
     - kind: not_nil
