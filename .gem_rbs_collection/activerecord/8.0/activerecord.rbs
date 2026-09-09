@@ -525,7 +525,9 @@ module ActiveRecord
       def find_each: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Model & ValidatedModel) -> void } -> nil
                    | (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) -> Enumerator[Model & ValidatedModel, nil]
       def find_in_batches: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Array[Model & ValidatedModel]) -> void } -> nil
+                         | (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) -> Enumerator[Array[Model & ValidatedModel], nil]
       def in_batches: (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) { (self) -> void } -> nil
+                    | (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) -> ActiveRecord::Batches::BatchEnumerator[Model & ValidatedModel, self]
       def sum: (?untyped? column_name) -> untyped
              | [T] (?T initial_value) { (Model & ValidatedModel) -> T } -> T
       def destroy_all: () -> untyped
@@ -688,7 +690,9 @@ module ActiveRecord
       def find_each: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Model & ValidatedModel) -> void } -> nil
                    | (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) -> Enumerator[Model & ValidatedModel, nil]
       def find_in_batches: (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) { (Array[Model & ValidatedModel]) -> void } -> nil
+                         | (?batch_size: Integer, ?start: Integer, ?finish: Integer, ?error_on_ignore: bool) -> Enumerator[Array[Model & ValidatedModel], nil]
       def in_batches: (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) { (Relation) -> void } -> nil
+                    | (?of: Integer, ?start: Integer, ?finish: Integer, ?load: bool, ?error_on_ignore: bool, ?order: untyped) -> ActiveRecord::Batches::BatchEnumerator[Model & ValidatedModel, Relation]
       def sum: (?untyped? column_name) -> untyped
              | [T] (?T initial_value) { (Model & ValidatedModel) -> T } -> T
       def destroy_all: () -> untyped

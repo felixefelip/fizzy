@@ -17250,10 +17250,50 @@ end
 
 module ActiveRecord
   module Batches
-    class BatchEnumerator
-      include Enumerable[untyped]
+    class BatchEnumerator[Model, Relation]
+      include Enumerable[Relation]
 
-      def initialize: (relation: untyped relation, ?finish: untyped? finish, ?start: untyped? start, ?of: ::Integer of) -> untyped
+      def initialize: (relation: Relation relation, ?finish: untyped? finish, ?start: untyped? start, ?of: ::Integer of) -> untyped
+
+      # The primary key value from which the BatchEnumerator starts, inclusive of the value.
+      def start: () -> untyped
+
+      # The primary key value at which the BatchEnumerator ends, inclusive of the value.
+      def finish: () -> untyped
+
+      # The relation from which the BatchEnumerator yields batches.
+      def relation: () -> Relation
+
+      # The size of the batches yielded by the BatchEnumerator.
+      def batch_size: () -> ::Integer
+
+      # Deletes records in batches. Returns the total number of rows affected.
+      #
+      #   Person.in_batches.delete_all
+      #
+      # See Relation#delete_all for details of how each batch is deleted.
+      def delete_all: () -> ::Integer
+
+      # Updates records in batches. Returns the total number of rows affected.
+      #
+      #   Person.in_batches.update_all("age = age + 1")
+      #
+      # See Relation#update_all for details of how each batch is updated.
+      def update_all: (untyped updates) -> ::Integer
+
+      # Touches records in batches. Returns the total number of rows affected.
+      #
+      #   Person.in_batches.touch_all
+      #
+      # See Relation#touch_all for details of how each batch is touched.
+      def touch_all: (*untyped, ?time: untyped) -> ::Integer
+
+      # Destroys records in batches. Returns the total number of rows affected.
+      #
+      #   Person.where("age < 10").in_batches.destroy_all
+      #
+      # See Relation#destroy_all for details of how each batch is destroyed.
+      def destroy_all: () -> ::Integer
 
       # Looping through a collection of records from the database (using the
       # +all+ method, for example) is very inefficient since it will try to
@@ -17276,14 +17316,16 @@ module ActiveRecord
       #   Person.in_batches.each_record.with_index do |person, index|
       #     person.award_trophy(index + 1)
       #   end
-      def each_record: () { (untyped) -> untyped } -> untyped
+      def each_record: () { (Model) -> void } -> void
+                     | () -> ::Enumerator[Model, void]
 
       # Yields an ActiveRecord::Relation object for each batch of records.
       #
       #   Person.in_batches.each do |relation|
       #     relation.update_all(awesome: true)
       #   end
-      def each: () { (untyped) -> untyped } -> untyped
+      def each: () { (Relation) -> void } -> void
+              | () -> ::Enumerator[Relation, void]
     end
   end
 end
@@ -17338,7 +17380,7 @@ module ActiveRecord
     #
     # NOTE: By its nature, batch processing is subject to race conditions if
     # other processes are modifying the database.
-    def find_in_batches: (?error_on_ignore: untyped? error_on_ignore, ?batch_size: ::Integer batch_size, ?finish: untyped? finish, ?start: untyped? start) { (untyped) -> untyped } -> untyped
+    def find_in_batches: (?error_on_ignore: untyped? error_on_ignore, ?batch_size: ::Integer batch_size, ?finish: untyped? finish, ?start: untyped? start) ?{ (untyped) -> untyped } -> untyped
 
     # Yields ActiveRecord::Relation objects to work with a batch of records.
     #
@@ -17401,7 +17443,7 @@ module ActiveRecord
     #
     # NOTE: By its nature, batch processing is subject to race conditions if
     # other processes are modifying the database.
-    def in_batches: (?error_on_ignore: untyped? error_on_ignore, ?load: bool load, ?finish: untyped? finish, ?start: untyped? start, ?of: ::Integer of) { (untyped) -> untyped } -> (BatchEnumerator | untyped)
+    def in_batches: (?error_on_ignore: untyped? error_on_ignore, ?load: bool load, ?finish: untyped? finish, ?start: untyped? start, ?of: ::Integer of) ?{ (untyped) -> untyped } -> (BatchEnumerator[untyped, untyped] | untyped)
 
     private
 
