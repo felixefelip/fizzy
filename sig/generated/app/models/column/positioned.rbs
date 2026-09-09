@@ -14,5 +14,13 @@ class Column
 
     def set_position: () -> untyped
     def swap_position_with: ((Column & Column::Validated)? other_column) -> untyped
+
+    class AfterLeftmost
+      def left_column: () -> nil
+    end
+
+    class AfterRightmost
+      def right_column: () -> nil
+    end
   end
 end

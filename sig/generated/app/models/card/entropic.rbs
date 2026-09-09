@@ -4,6 +4,10 @@ class Card
 
     def entropy: () -> Card::Entropy?
     def entropic?: () -> bool
+
+    class AfterEntropic
+      def entropy: () -> ::Card::Entropy
+    end
   end
 end
 

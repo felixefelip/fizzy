@@ -16,4 +16,8 @@ class Notification < ApplicationRecord
   def set_card: () -> untyped
   def bundle: () -> ((Notification::Bundle & Notification::Bundle::Validated) | Notification::Bundle | nil)
   def broadcast_update: () -> void
+
+  class AfterRead
+    def read_at: () -> ::ActiveSupport::TimeWithZone
+  end
 end

@@ -28,4 +28,8 @@ class User < ApplicationRecord
   private
 
   def close_remote_connections: () -> untyped
+
+  class AfterVerified
+    def verified_at: () -> ::ActiveSupport::TimeWithZone
+  end
 end

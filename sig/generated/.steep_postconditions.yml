@@ -765,6 +765,12 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+- class: ApplicationPlatform
+  method: windows?
+  when_true:
+    methods:
+      operating_system: '"Windows"'
+    self: "::ApplicationPlatform & ::ApplicationPlatform::AfterWindows"
 - class: Authentication
   method: authenticate_by_bearer_token
   conditional_const_returns:
@@ -1353,6 +1359,12 @@ postconditions:
   effects:
     may_write:
     - "@preview_changed"
+- class: Card::Entropic
+  method: entropic?
+  when_true:
+    methods:
+      entropy: "::Card::Entropy"
+    self: "::Card::Entropic & ::Card::Entropic::AfterEntropic"
 - class: Card::Entropy
   method: initialize
   effects:
@@ -2551,6 +2563,18 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
     - "@disable_view_transition"
+- class: Column::Positioned
+  method: leftmost?
+  when_true:
+    methods:
+      left_column: nil
+    self: "::Column::Positioned & ::Column::Positioned::AfterLeftmost"
+- class: Column::Positioned
+  method: rightmost?
+  when_true:
+    methods:
+      right_column: nil
+    self: "::Column::Positioned & ::Column::Positioned::AfterRightmost"
 - class: ColumnScoped
   method: set_column
   unconditional:
@@ -4879,6 +4903,12 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Notification
+  method: read?
+  when_true:
+    methods:
+      read_at: "::ActiveSupport::TimeWithZone"
+    self: "::Notification & ::Notification::AfterRead"
 - class: Notification::BundleMailer
   method: notification
   effects:
@@ -5832,6 +5862,12 @@ postconditions:
   effects:
     may_write:
     - "@now"
+- class: User
+  method: verified?
+  when_true:
+    methods:
+      verified_at: "::ActiveSupport::TimeWithZone"
+    self: "::User & ::User::AfterVerified"
 - class: User::DayTimeline
   method: added_column
   effects:
@@ -5945,6 +5981,12 @@ postconditions:
   effects:
     may_write:
     - "@users"
+- class: User::Settings
+  method: bundling_emails?
+  when_true:
+    methods:
+      user: "(::User & ::User::Validated)"
+    self: "::User::Settings & ::User::Settings::AfterBundlingEmails"
 - class: UserMailer
   method: email_change_confirmation
   effects:
