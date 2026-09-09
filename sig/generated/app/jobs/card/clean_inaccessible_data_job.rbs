@@ -1,5 +1,5 @@
 class Card
   class CleanInaccessibleDataJob < ApplicationJob
-    def perform: (Card & Card::Validated card) -> untyped
+    def perform: (Card & Card::Validated card) -> Integer
   end
 end
