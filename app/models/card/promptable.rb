@@ -5,6 +5,7 @@ module Card::Promptable
     include Rails.application.routes.url_helpers
   end
 
+  # Looks deadcode: https://github.com/basecamp/fizzy/commit/8bb77832153354a8eb9c000c09239b7519d6bc9c
   def to_prompt
     <<~PROMPT
       BEGIN OF CARD #{id}

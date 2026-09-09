@@ -19,6 +19,7 @@ module Card::Pinnable
     pins.find_or_create_by!(user: user)
   end
 
+  # Maybe is correct the type system show error, because the correct should be use `find_by!`
   def unpin_by(user)
     pins.find_by(user: user).tap { it.destroy }
   end
