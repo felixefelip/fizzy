@@ -5987,12 +5987,6 @@ postconditions:
   effects:
     may_write:
     - "@users"
-- class: User::Settings
-  method: bundling_emails?
-  when_true:
-    methods:
-      user: "(::User & ::User::Validated)"
-    self: "::User::Settings & ::User::Settings::AfterBundlingEmails"
 - class: UserMailer
   method: email_change_confirmation
   effects:

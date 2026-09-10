@@ -10,9 +10,5 @@ class User
     def cancel_pending_bundles: () -> nil
     def flush_pending_bundles: () -> nil
     def default_timezone: () -> instance?
-
-    class AfterBundlingEmails
-      def user: () -> (::User & ::User::Validated)
-    end
   end
 end

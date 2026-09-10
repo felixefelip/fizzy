@@ -13,6 +13,7 @@ module Card::Stallable
     after_update_commit :detect_activity_spikes_later, if: :should_detect_activity_spikes?
   end
 
+  # Looks deadcode
   # Keep in sync with #isStalled in app/javascript/controllers/bubble_controller.js
   def stalled?
     if activity_spike.present?

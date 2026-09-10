@@ -16,6 +16,10 @@ class Card
       def card_was_just_reopened?: () -> untyped
       def card_was_just?: (Symbol action) -> untyped
       def last_event: () -> (Event & Event::Validated)?
+
+      class AfterHasActivitySpike
+        def card: () -> (::Card & ::Card::Stallable & ::Card::Entropic & ::Card::Entropic::AfterEntropic)
+      end
     end
   end
 end
