@@ -4,6 +4,18 @@ end
 
 module ActiveRecord
   class Relation
+    def prepend_order: (*untyped args) -> untyped
+  end
+end
+
+module ActiveRecord
+  class AssociationRelation
+    def prepend_order: (*untyped args) -> untyped
+  end
+end
+
+module ActiveRecord
+  class Relation
     include ActiveRecordRelationPrependOrder
   end
 end

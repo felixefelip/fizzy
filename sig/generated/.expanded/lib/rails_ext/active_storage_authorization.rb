@@ -58,3 +58,99 @@ Rails.application.config.to_prepare do
   ActiveStorage::Representations::RedirectController.include ActiveStorage::Authorize
   ActiveStorage::Representations::ProxyController.include ActiveStorage::Authorize
 end
+
+class ActiveStorage::Blobs::RedirectController
+  skip_before_action :require_authentication
+  before_action :require_authentication, :ensure_accessible, unless: :publicly_accessible_blob?
+end
+
+class ActiveStorage::Blobs::RedirectController
+  before_action :require_account # Checking and setting account must happen first
+  before_action :require_authentication
+  helper_method :authenticated?
+  helper_method :email_address_pending_authentication
+
+  etag { Current.identity.id if authenticated? }
+
+  include Authentication::ViaMagicLink, LoginHelper
+end
+
+class ActiveStorage::Blobs::RedirectController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class ActiveStorage::Blobs::ProxyController
+  skip_before_action :require_authentication
+  before_action :require_authentication, :ensure_accessible, unless: :publicly_accessible_blob?
+end
+
+class ActiveStorage::Blobs::ProxyController
+  before_action :require_account # Checking and setting account must happen first
+  before_action :require_authentication
+  helper_method :authenticated?
+  helper_method :email_address_pending_authentication
+
+  etag { Current.identity.id if authenticated? }
+
+  include Authentication::ViaMagicLink, LoginHelper
+end
+
+class ActiveStorage::Blobs::ProxyController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class ActiveStorage::Representations::RedirectController
+  skip_before_action :require_authentication
+  before_action :require_authentication, :ensure_accessible, unless: :publicly_accessible_blob?
+end
+
+class ActiveStorage::Representations::RedirectController
+  before_action :require_account # Checking and setting account must happen first
+  before_action :require_authentication
+  helper_method :authenticated?
+  helper_method :email_address_pending_authentication
+
+  etag { Current.identity.id if authenticated? }
+
+  include Authentication::ViaMagicLink, LoginHelper
+end
+
+class ActiveStorage::Representations::RedirectController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class ActiveStorage::Representations::ProxyController
+  skip_before_action :require_authentication
+  before_action :require_authentication, :ensure_accessible, unless: :publicly_accessible_blob?
+end
+
+class ActiveStorage::Representations::ProxyController
+  before_action :require_account # Checking and setting account must happen first
+  before_action :require_authentication
+  helper_method :authenticated?
+  helper_method :email_address_pending_authentication
+
+  etag { Current.identity.id if authenticated? }
+
+  include Authentication::ViaMagicLink, LoginHelper
+end
+
+class ActiveStorage::Representations::ProxyController
+  after_action :ensure_development_magic_link_not_leaked
+end
+
+class ActiveStorage::Blobs::RedirectController
+  extend ::Authentication::ClassMethods
+end
+
+class ActiveStorage::Blobs::ProxyController
+  extend ::Authentication::ClassMethods
+end
+
+class ActiveStorage::Representations::RedirectController
+  extend ::Authentication::ClassMethods
+end
+
+class ActiveStorage::Representations::ProxyController
+  extend ::Authentication::ClassMethods
+end

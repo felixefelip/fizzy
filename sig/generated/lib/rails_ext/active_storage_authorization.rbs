@@ -29,6 +29,46 @@ end
 module ActiveStorage
   module Blobs
     class RedirectController
+      extend ::Authentication::ClassMethods
+      include Authentication::ViaMagicLink
+      include LoginHelper
+    end
+  end
+end
+
+module ActiveStorage
+  module Blobs
+    class ProxyController
+      extend ::Authentication::ClassMethods
+      include Authentication::ViaMagicLink
+      include LoginHelper
+    end
+  end
+end
+
+module ActiveStorage
+  module Representations
+    class RedirectController
+      extend ::Authentication::ClassMethods
+      include Authentication::ViaMagicLink
+      include LoginHelper
+    end
+  end
+end
+
+module ActiveStorage
+  module Representations
+    class ProxyController
+      extend ::Authentication::ClassMethods
+      include Authentication::ViaMagicLink
+      include LoginHelper
+    end
+  end
+end
+
+module ActiveStorage
+  module Blobs
+    class RedirectController
       include ::ActiveStorage::Authorize
     end
   end

@@ -13,6 +13,10 @@ app/controllers/concerns/authentication.rb:
     implements:
     - "::ApplicationController"
     - "::My::PasskeyChallengesController"
+    - "::ActiveStorage::Blobs::RedirectController"
+    - "::ActiveStorage::Blobs::ProxyController"
+    - "::ActiveStorage::Representations::RedirectController"
+    - "::ActiveStorage::Representations::ProxyController"
   - call: class_methods
     in: "::Authentication"
     implements: "::Authentication::ClassMethods"
@@ -32,6 +36,10 @@ app/controllers/concerns/authentication/via_magic_link.rb:
     implements:
     - "::ApplicationController"
     - "::My::PasskeyChallengesController"
+    - "::ActiveStorage::Blobs::RedirectController"
+    - "::ActiveStorage::Blobs::ProxyController"
+    - "::ActiveStorage::Representations::RedirectController"
+    - "::ActiveStorage::Representations::ProxyController"
 app/controllers/concerns/authorization.rb:
   modules:
   - anchor: Authorization
@@ -453,7 +461,9 @@ app/jobs/concerns/smtp_delivery_error_handling.rb:
   blocks:
   - call: included
     in: "::SmtpDeliveryErrorHandling"
-    implements: "::Notification::Bundle::DeliverJob"
+    implements:
+    - "::Notification::Bundle::DeliverJob"
+    - "::ActionMailer::MailDeliveryJob"
 app/mailers/concerns/mailers/unsubscribable.rb:
   modules:
   - anchor: Unsubscribable
@@ -1291,6 +1301,22 @@ lib/rails_ext/active_record_replica_support.rb:
   - call: class_methods
     in: "::ActiveRecordReplicaSupport"
     implements: "::ActiveRecordReplicaSupport::ClassMethods"
+lib/rails_ext/active_storage_authorization.rb:
+  blocks:
+  - call: included
+    in: "::ActiveStorage::Authorize"
+    implements:
+    - "::ActiveStorage::Blobs::RedirectController"
+    - "::ActiveStorage::Blobs::ProxyController"
+    - "::ActiveStorage::Representations::RedirectController"
+    - "::ActiveStorage::Representations::ProxyController"
+lib/rails_ext/prepend_order.rb:
+  blocks:
+  - call: included
+    in: "::ActiveRecordRelationPrependOrder"
+    implements:
+    - "::ActiveRecord::Relation"
+    - "::ActiveRecord::AssociationRelation"
 sig/generated/steep_ar_runtime/active_support/concern.rb:
   modules:
   - anchor: Concern

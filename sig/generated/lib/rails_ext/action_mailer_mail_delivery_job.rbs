@@ -1,5 +1,10 @@
 module ActionMailer
   class MailDeliveryJob
+  end
+end
+
+module ActionMailer
+  class MailDeliveryJob
     include SmtpDeliveryErrorHandling
   end
 end
