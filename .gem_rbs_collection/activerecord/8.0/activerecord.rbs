@@ -458,7 +458,7 @@ module ActiveRecord
                | (*untyped) -> self
       def exists?: (*untyped) -> bool
       def order: (*untyped) -> self
-      def group: (*Symbol | String) -> untyped
+      def group: (*Symbol | String) -> ::ActiveRecord::Relation::Grouped[Model, PrimaryKey, ValidatedModel]
       def in_order_of: (Symbol, Array[untyped]) -> self
       def distinct: () -> self
       def or: (::ActiveRecord::Relation) -> self
@@ -587,6 +587,54 @@ module ActiveRecord
       def as_json: (?untyped options) -> untyped
       def encode_with: (untyped coder) -> void
     end
+
+    # `group` returns an `ActiveRecord::Relation` at runtime — there is no
+    # `Grouped` class. It exists here because grouping changes what the
+    # relation *means* to the type checker: `Calculations#count` answers with
+    # an `Integer` on an ungrouped relation and with a `Hash` keyed by the
+    # grouped columns once `group` has been called (`execute_grouped_calculation`
+    # in active_record/lib/active_record/relation/calculations.rb), and
+    # `having` is only meaningful after a `group`. RBS can't make one method's
+    # return type depend on a call made earlier in the chain, so the grouped
+    # relation gets a static type of its own: everything `Relation::Methods`
+    # gives any relation, with the calculations re-typed and `having` added.
+    #
+    # This is what lets `.group(:card_id).having("COUNT(*) >= ?", 3).exists?`
+    # type as `bool` instead of collapsing to `untyped` at the `group`.
+    #
+    # Known gap: a model's own scopes (`Model::GeneratedRelationMethods`, which
+    # rbs_rails mixes into `Model::ActiveRecord_Relation`) are not reachable
+    # here, because this class is written once for every model rather than
+    # generated per model. Chain scopes before `group`.
+    class Grouped[Model, PrimaryKey, ValidatedModel = Model] < ::ActiveRecord::Relation
+      include ::Enumerable[Model & ValidatedModel]
+      include ::ActiveRecord::Relation::Methods[Model, PrimaryKey, ValidatedModel]
+
+      # Grouping is sticky: every relation method that spawns a new relation
+      # carries the group values over, and `Methods` already types those as
+      # `self`. Only the two that would otherwise widen need restating.
+      def group: (*Symbol | String) -> self
+      def having: (*untyped) -> self
+      def having!: (*untyped) -> self
+
+      # Grouped calculations answer with a hash keyed by the grouped column
+      # (an `Array` of them when more than one column was grouped). The block
+      # form of `count`/`sum` is not a calculation at all — it falls through
+      # to `Enumerable` over the loaded records — so it keeps its scalar.
+      def count: () { (Model & ValidatedModel) -> boolish } -> ::Integer
+               | (?(Symbol | String)? column_name) -> ::Hash[untyped, ::Integer]
+      def sum: [T] (?T initial_value) { (Model & ValidatedModel) -> T } -> T
+             | (?untyped? column_name) -> ::Hash[untyped, untyped]
+      def average: (Symbol | String column_name) -> ::Hash[untyped, untyped]
+      def minimum: (Symbol | String column_name) -> ::Hash[untyped, untyped]
+      def maximum: (Symbol | String column_name) -> ::Hash[untyped, untyped]
+      def calculate: (Symbol operation, ?(Symbol | String)? column_name) -> ::Hash[untyped, untyped]
+
+      # `Relation#size` is `loaded? ? records.length : count(:all)`, so on a
+      # grouped relation it is an `Integer` only once the records are loaded
+      # and the grouped `count` hash otherwise.
+      def size: () -> (::Integer | ::Hash[untyped, ::Integer])
+    end
   end
 
   class Base
@@ -617,7 +665,7 @@ module ActiveRecord
       def one?: () -> bool
               | () { (Model) -> boolish } -> bool
       def order: (*untyped) -> Relation
-      def group: (*Symbol | String) -> untyped
+      def group: (*Symbol | String) -> ::ActiveRecord::Relation::Grouped[Model, PrimaryKey, ValidatedModel]
       def in_order_of: (Symbol, Array[untyped]) -> Relation
       def distinct: () -> Relation
       def or: (::ActiveRecord::Relation) -> Relation
