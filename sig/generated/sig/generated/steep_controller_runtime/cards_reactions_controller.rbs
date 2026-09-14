@@ -2,7 +2,7 @@ module Cards
   class ReactionsController
     @__rbs_infer__performed: true?
 
-    def render: (?String? target, *{ status: Symbol } rest) -> bool
+    def render: (?("reactions/index" | "reactions/new" | "reactions/create" | "reactions/show" | "reactions/destroy")? target, *{ status: :created } rest) -> true
 
     private
 

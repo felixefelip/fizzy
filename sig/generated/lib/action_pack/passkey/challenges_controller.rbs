@@ -8,7 +8,7 @@ module ActionPack
       private
 
       def create_passkey_challenge: () -> String
-      def challenge_purpose: () -> String
+      def challenge_purpose: () -> ("registration" | "authentication")
       def challenge_expiration: () -> untyped
     end
   end

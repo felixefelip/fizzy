@@ -1,12 +1,12 @@
 class NotificationsController < ApplicationController
   @unread: Notification::ActiveRecord_Relation?
 
-  MAX_UNREAD_NOTIFICATIONS: Integer
-  MAX_UNREAD_NOTIFICATIONS_VIA_API: Integer
+  MAX_UNREAD_NOTIFICATIONS: 500
+  MAX_UNREAD_NOTIFICATIONS_VIA_API: 100
 
   def index: () -> void
 
   private
 
-  def max_unread_notifications: () -> Integer
+  def max_unread_notifications: () -> (100 | 500)
 end

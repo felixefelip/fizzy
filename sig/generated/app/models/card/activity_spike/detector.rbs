@@ -14,7 +14,7 @@ class Card
       def recent_period: () -> untyped
       def card_was_just_assigned?: () -> untyped
       def card_was_just_reopened?: () -> untyped
-      def card_was_just?: (Symbol action) -> untyped
+      def card_was_just?: ((:assigned | :reopened) action) -> untyped
       def last_event: () -> (Event & Event::Validated)?
 
       class AfterHasActivitySpike

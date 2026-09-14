@@ -14,6 +14,7 @@ class Notification::Bundle::DeliverJob < ApplicationJob
 end
 
 class Notification::Bundle::DeliverJob
+  # Retry delivery to possibly-unavailable remote mailservers.
   retry_on Net::OpenTimeout, Net::ReadTimeout, Socket::ResolutionError, wait: :polynomially_longer
 
   # Net::SMTPServerBusy is SMTP error code 4xx, a temporary error.

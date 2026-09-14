@@ -1,0 +1,19 @@
+module ActionText
+  module Attribute
+    extend ActiveSupport::Concern
+  end
+end
+
+module ActiveRecord
+  class Base
+    extend ::ActionText::Attribute::ClassMethods
+    include ActionText::Attribute
+  end
+end
+
+module ActionText
+  module Attribute
+    module ClassMethods
+    end
+  end
+end

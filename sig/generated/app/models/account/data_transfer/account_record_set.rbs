@@ -1,8 +1,8 @@
 class Account
   module DataTransfer
     class AccountRecordSet < ::Account::DataTransfer::RecordSet
-      ACCOUNT_ATTRIBUTES: Array[String]
-      JOIN_CODE_ATTRIBUTES: Array[String]
+      ACCOUNT_ATTRIBUTES: Array[("join_code" | "name")]
+      JOIN_CODE_ATTRIBUTES: Array[("code" | "usage_count" | "usage_limit")]
 
       def initialize: (Account? account) -> void
 
@@ -10,7 +10,7 @@ class Account
 
       def records: () -> Array[Account?]
       def export_record: (untyped account) -> untyped
-      def files: () -> Array[String]
+      def files: () -> Array["data/account.json"]
       def import_batch: (untyped files) -> bool
       def check_record: (untyped file_path) -> untyped
     end

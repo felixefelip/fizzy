@@ -1317,6 +1317,17 @@ lib/rails_ext/prepend_order.rb:
     implements:
     - "::ActiveRecord::Relation"
     - "::ActiveRecord::AssociationRelation"
+sig/generated/steep_actiontext_runtime/attribute.rb:
+  modules:
+  - anchor: Attribute
+    annotations:
+    - "# @type self: singleton(ActiveRecord::Base) & singleton(ActionText::Attribute)"
+    - "# @type instance: ActiveRecord::Base & ActionText::Attribute"
+  blocks:
+  - call: class_methods
+    in: "::ActionText::Attribute"
+    implements: "::ActionText::Attribute::ClassMethods"
+    self: singleton(::ActiveRecord::Base) & ::ActionText::Attribute::ClassMethods
 sig/generated/steep_ar_runtime/active_support/concern.rb:
   modules:
   - anchor: Concern
@@ -1326,46 +1337,48 @@ sig/generated/steep_ar_runtime/active_support/concern.rb:
       | (singleton(Account::Searchable)) | (singleton(Account::Seedeable)) | (singleton(Account::Storage))
       | (singleton(AccountTenanted)) | (singleton(ActionPack::Passkey::Holder)) |
       (singleton(ActionPack::Passkey::Request)) | (singleton(ActionPackPasskeyInferNameFromAaguid))
-      | (singleton(ActiveRecordRelationPrependOrder)) | (singleton(ActiveRecordReplicaSupport))
-      | (singleton(ActiveStorage::Authorize)) | (singleton(Attachments)) | (singleton(Authentication))
-      | (singleton(Authentication::ViaMagicLink)) | (singleton(Authorization)) | (singleton(BlockSearchEngineIndexing))
-      | (singleton(Board::Accessible)) | (singleton(Board::AutoPostponing)) | (singleton(Board::Broadcastable))
-      | (singleton(Board::Cards)) | (singleton(Board::Entropic)) | (singleton(Board::Publishable))
-      | (singleton(Board::Storage)) | (singleton(Board::Triageable)) | (singleton(BoardScoped))
-      | (singleton(Card::Accessible)) | (singleton(Card::Assignable)) | (singleton(Card::Broadcastable))
-      | (singleton(Card::Closeable)) | (singleton(Card::Colored)) | (singleton(Card::Commentable))
-      | (singleton(Card::Entropic)) | (singleton(Card::Eventable)) | (singleton(Card::Exportable))
-      | (singleton(Card::Golden)) | (singleton(Card::Mentions)) | (singleton(Card::Multistep))
-      | (singleton(Card::Pinnable)) | (singleton(Card::Postponable)) | (singleton(Card::Promptable))
-      | (singleton(Card::Readable)) | (singleton(Card::Searchable)) | (singleton(Card::Stallable))
-      | (singleton(Card::Statuses)) | (singleton(Card::Taggable)) | (singleton(Card::Triageable))
-      | (singleton(Card::Watchable)) | (singleton(CardScoped)) | (singleton(Column::Colored))
-      | (singleton(Column::Positioned)) | (singleton(ColumnScoped)) | (singleton(Comment::Eventable))
-      | (singleton(Comment::Mentions)) | (singleton(Comment::Promptable)) | (singleton(Comment::Searchable))
-      | (singleton(CurrentRequest)) | (singleton(CurrentTimezone)) | (singleton(DayTimelinesScoped))
-      | (singleton(Event::Particulars)) | (singleton(Event::Promptable)) | (singleton(Eventable))
-      | (singleton(Filter::Fields)) | (singleton(Filter::Params)) | (singleton(Filter::Resources))
-      | (singleton(FilterScoped)) | (singleton(Filterable)) | (singleton(Identity::Joinable))
-      | (singleton(Identity::Transferable)) | (singleton(Mailers::Unsubscribable))
-      | (singleton(Mentions)) | (singleton(Notifiable)) | (singleton(Notification::Pushable))
-      | (singleton(RequestForgeryProtection)) | (singleton(RoutingHeaders)) | (singleton(Search::Record::SQLite))
-      | (singleton(Search::Record::Trilogy)) | (singleton(Searchable)) | (singleton(SetPlatform))
-      | (singleton(SmtpDeliveryErrorHandling)) | (singleton(Storage::AttachmentTracking))
-      | (singleton(Storage::Totaled)) | (singleton(Storage::Tracked)) | (singleton(TurboFlash))
-      | (singleton(User::Accessor)) | (singleton(User::Assignee)) | (singleton(User::Attachable))
-      | (singleton(User::Avatar)) | (singleton(User::Configurable)) | (singleton(User::DayTimeline::Serializable))
+      | (singleton(ActionText::Attribute)) | (singleton(ActiveRecordRelationPrependOrder))
+      | (singleton(ActiveRecordReplicaSupport)) | (singleton(ActiveStorage::Authorize))
+      | (singleton(Attachments)) | (singleton(Authentication)) | (singleton(Authentication::ViaMagicLink))
+      | (singleton(Authorization)) | (singleton(BlockSearchEngineIndexing)) | (singleton(Board::Accessible))
+      | (singleton(Board::AutoPostponing)) | (singleton(Board::Broadcastable)) | (singleton(Board::Cards))
+      | (singleton(Board::Entropic)) | (singleton(Board::Publishable)) | (singleton(Board::Storage))
+      | (singleton(Board::Triageable)) | (singleton(BoardScoped)) | (singleton(Card::Accessible))
+      | (singleton(Card::Assignable)) | (singleton(Card::Broadcastable)) | (singleton(Card::Closeable))
+      | (singleton(Card::Colored)) | (singleton(Card::Commentable)) | (singleton(Card::Entropic))
+      | (singleton(Card::Eventable)) | (singleton(Card::Exportable)) | (singleton(Card::Golden))
+      | (singleton(Card::Mentions)) | (singleton(Card::Multistep)) | (singleton(Card::Pinnable))
+      | (singleton(Card::Postponable)) | (singleton(Card::Promptable)) | (singleton(Card::Readable))
+      | (singleton(Card::Searchable)) | (singleton(Card::Stallable)) | (singleton(Card::Statuses))
+      | (singleton(Card::Taggable)) | (singleton(Card::Triageable)) | (singleton(Card::Watchable))
+      | (singleton(CardScoped)) | (singleton(Column::Colored)) | (singleton(Column::Positioned))
+      | (singleton(ColumnScoped)) | (singleton(Comment::Eventable)) | (singleton(Comment::Mentions))
+      | (singleton(Comment::Promptable)) | (singleton(Comment::Searchable)) | (singleton(CurrentRequest))
+      | (singleton(CurrentTimezone)) | (singleton(DayTimelinesScoped)) | (singleton(Event::Particulars))
+      | (singleton(Event::Promptable)) | (singleton(Eventable)) | (singleton(Filter::Fields))
+      | (singleton(Filter::Params)) | (singleton(Filter::Resources)) | (singleton(FilterScoped))
+      | (singleton(Filterable)) | (singleton(Identity::Joinable)) | (singleton(Identity::Transferable))
+      | (singleton(Mailers::Unsubscribable)) | (singleton(Mentions)) | (singleton(Notifiable))
+      | (singleton(Notification::Pushable)) | (singleton(RequestForgeryProtection))
+      | (singleton(RoutingHeaders)) | (singleton(Search::Record::SQLite)) | (singleton(Search::Record::Trilogy))
+      | (singleton(Searchable)) | (singleton(SetPlatform)) | (singleton(SmtpDeliveryErrorHandling))
+      | (singleton(Storage::AttachmentTracking)) | (singleton(Storage::Totaled)) |
+      (singleton(Storage::Tracked)) | (singleton(TurboFlash)) | (singleton(User::Accessor))
+      | (singleton(User::Assignee)) | (singleton(User::Attachable)) | (singleton(User::Avatar))
+      | (singleton(User::Configurable)) | (singleton(User::DayTimeline::Serializable))
       | (singleton(User::EmailAddressChangeable)) | (singleton(User::Mentionable))
       | (singleton(User::Named)) | (singleton(User::Notifiable)) | (singleton(User::Role))
       | (singleton(User::Searcher)) | (singleton(User::Timelined)) | (singleton(User::Transferable))
       | (singleton(User::Watcher)) | (singleton(ViewTransitions)) | (singleton(Webhook::Triggerable))"
     defs:
       class_methods: singleton(Account::MultiTenantable) | singleton(ActionPack::Passkey::Holder)
-        | singleton(ActionPackPasskeyInferNameFromAaguid) | singleton(ActiveRecordReplicaSupport)
-        | singleton(Authentication) | singleton(Authorization) | singleton(Board::Publishable)
-        | singleton(Card::Entropic) | singleton(Filter::Fields) | singleton(Filter::Params)
-        | singleton(Identity::Transferable) | singleton(Notification::Pushable) |
-        singleton(Search::Record::SQLite) | singleton(Search::Record::Trilogy) | singleton(Storage::Totaled)
-        | singleton(User::DayTimeline::Serializable) | singleton(User::Transferable)
+        | singleton(ActionPackPasskeyInferNameFromAaguid) | singleton(ActionText::Attribute)
+        | singleton(ActiveRecordReplicaSupport) | singleton(Authentication) | singleton(Authorization)
+        | singleton(Board::Publishable) | singleton(Card::Entropic) | singleton(Filter::Fields)
+        | singleton(Filter::Params) | singleton(Identity::Transferable) | singleton(Notification::Pushable)
+        | singleton(Search::Record::SQLite) | singleton(Search::Record::Trilogy) |
+        singleton(Storage::Totaled) | singleton(User::DayTimeline::Serializable) |
+        singleton(User::Transferable)
       included: singleton(Account::Cancellable) | singleton(Account::Entropic) | singleton(Account::Incineratable)
         | singleton(Account::MultiTenantable) | singleton(Account::Searchable) | singleton(Account::Storage)
         | singleton(ActionPack::Passkey::Request) | singleton(ActiveRecordRelationPrependOrder)

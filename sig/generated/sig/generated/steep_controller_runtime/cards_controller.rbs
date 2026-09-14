@@ -1,14 +1,14 @@
 class CardsController
   @__rbs_infer__performed: true?
 
-  def render: (?Symbol? target, *{ status: Symbol, location: untyped } rest) -> bool
+  def render: (?(:index | :show | :edit | :update)? target, *{ status: :created, location: untyped } rest) -> true
 
   private
 
-  def __rbs_infer__run_index: () -> bool?
+  def __rbs_infer__run_index: () -> true?
   def __rbs_infer__run_create: () -> void
-  def __rbs_infer__run_show: () -> bool?
-  def __rbs_infer__run_edit: () -> bool?
-  def __rbs_infer__run_update: () -> bool?
+  def __rbs_infer__run_show: () -> true?
+  def __rbs_infer__run_edit: () -> true?
+  def __rbs_infer__run_update: () -> true?
   def __rbs_infer__run_destroy: () -> void
 end

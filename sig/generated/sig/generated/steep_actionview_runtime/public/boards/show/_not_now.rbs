@@ -2,7 +2,7 @@ class ERBPartialPublicBoardsShowNotNow
   include ActionViewContext
 
   def initialize: (board: Board & Board::Validated) -> void
-  def render: (?String? target, *{ title: String, count: Integer, column_id: String } rest) -> nil
+  def render: (?"boards/show/expander"? target, *{ title: "Not Now", count: Integer, column_id: "not-now" } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

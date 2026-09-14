@@ -147,6 +147,13 @@ end
 
 module ActionPack::Passkey::Holder::ClassMethods
   # @type instance: singleton(::ActionPack::Railtie) & ::ActionPack::Passkey::Holder::ClassMethods
+  # Declares that this model can hold passkeys. Sets up a polymorphic +has_many+ association
+  # and defines +passkey_registration_options+ and +passkey_authentication_options+ instance methods used
+  # by ActionPack::Passkey to build ceremony options.
+  #
+  # Keyword arguments matching CreationOptions or RequestOptions fields are extracted and
+  # turned into holder-scoped option procs automatically. An optional block yields a Config
+  # for more complex setup.
   def has_passkeys(**options, &block)
     config = Config.new(**options)
     block&.call(config)

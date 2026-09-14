@@ -1,4 +1,4 @@
 class MagicLink
-  def save: (**untyped) -> bool
+  def save: (**untyped) -> true
   def run_before_validation_callbacks: () -> ActiveSupport::TimeWithZone
 end

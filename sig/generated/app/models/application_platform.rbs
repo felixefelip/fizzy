@@ -10,14 +10,14 @@ class ApplicationPlatform < PlatformAgent
   def desktop?: () -> bool
   def native?: () -> bool
   def windows?: () -> bool
-  def bridge_name: () -> Symbol?
-  def bridge_components: () -> String
-  def type: () -> String
-  def operating_system: () -> String
+  def bridge_name: () -> (:android | :ios | nil)
+  def bridge_components: () -> ""
+  def type: () -> ("native android" | "native ios" | "mobile web" | "desktop web")
+  def operating_system: () -> ("Android" | "iPad" | "iPhone" | "macOS" | "Windows" | "ChromeOS" | "Linux")
 
   private
 
-  def extract_list_from_native_user_agent: (String prefix) -> String
+  def extract_list_from_native_user_agent: ("bridge-components" prefix) -> ""
 
   class AfterWindows
     def operating_system: () -> "Windows"

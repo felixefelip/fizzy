@@ -1,10 +1,10 @@
 class SignupsController
   @__rbs_infer__performed: true?
 
-  def render: (?Symbol? target, *untyped rest) -> bool
+  def render: (?(:new)? target, *untyped rest) -> true
 
   private
 
-  def __rbs_infer__run_new: () -> bool?
+  def __rbs_infer__run_new: () -> true?
   def __rbs_infer__run_create: () -> void
 end

@@ -4,10 +4,10 @@ module Search
     def card_description: () -> untyped
     def comment_body: () -> untyped
     def source: () -> untyped
-    def readonly?: () -> bool
+    def readonly?: () -> true
 
     private
 
-    def highlight: (untyped text, show: Symbol) -> untyped
+    def highlight: (untyped text, show: (:full | :snippet)) -> untyped
   end
 end

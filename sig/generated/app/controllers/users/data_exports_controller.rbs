@@ -3,7 +3,7 @@ module Users
     @export: (User::DataExport | (User::DataExport & User::DataExport::Validated))?
     @user: (User & User::Validated)?
 
-    CURRENT_EXPORT_LIMIT: Integer
+    CURRENT_EXPORT_LIMIT: 10
 
     def show: () -> void
     def create: () -> void

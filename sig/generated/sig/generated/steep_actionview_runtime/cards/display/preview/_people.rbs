@@ -1,7 +1,7 @@
 class ERBPartialCardsDisplayPreviewPeople
   include ActionViewContext
 
-  def render: (?String? target, *({ card: untyped } | { card: untyped, preview: bool }) rest) -> nil
+  def render: (?("cards/display/common/people" | "cards/display/preview/assignees")? target, *({ card: untyped } | { card: untyped, preview: true }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

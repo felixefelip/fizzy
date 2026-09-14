@@ -1,7 +1,7 @@
 class Account
   module DataTransfer
     class UserRecordSet < ::Account::DataTransfer::RecordSet
-      ATTRIBUTES: Array[String]
+      ATTRIBUTES: Array[("id" | "email_address" | "name" | "role" | "active" | "verified_at" | "created_at" | "updated_at")]
 
       def initialize: (Account? account) -> void
 

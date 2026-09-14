@@ -1,7 +1,7 @@
 class Account
   class JoinCode < ApplicationRecord
-    CODE_LENGTH: Integer
-    USAGE_LIMIT_MAX: Integer
+    CODE_LENGTH: 12
+    USAGE_LIMIT_MAX: 10000000000
 
     def redeem_if: () ?{ (Account?) -> untyped } -> untyped
     def active?: () -> bool

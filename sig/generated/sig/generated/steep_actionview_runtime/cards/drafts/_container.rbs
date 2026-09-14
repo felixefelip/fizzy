@@ -2,7 +2,7 @@ class ERBPartialCardsDraftsContainer
   include ActionViewContext
 
   def initialize: (card: Card & Card::Validated) -> void
-  def render: (?String? target, *{ card: Card & Card::Validated } rest) -> nil
+  def render: (?("cards/container/image" | "cards/display/perma/board" | "cards/display/perma/tags" | "cards/container/content" | "cards/display/perma/steps" | "cards/display/perma/meta" | "cards/display/perma/background" | "cards/container/footer/saas/create" | "cards/container/footer/create")? target, *{ card: Card & Card::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

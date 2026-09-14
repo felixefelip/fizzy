@@ -1,9 +1,9 @@
 class TimeWindowParser
-  HUMAN_NAMES_BY_VALUE: Hash[String, String]
-  VALUES: Array[String]
+  HUMAN_NAMES_BY_VALUE: Hash[("today" | "yesterday" | "thisweek" | "thismonth" | "thisyear" | "lastweek" | "lastmonth" | "lastyear"), ("Today" | "Yesterday" | "This week" | "This month" | "This year" | "Last week" | "Last month" | "Last year")]
+  VALUES: Array[("today" | "yesterday" | "thisweek" | "thismonth" | "thisyear" | "lastweek" | "lastmonth" | "lastyear")]
 
   def self.parse: (untyped string) -> untyped
-  def self.human_name_for: (String value) -> String
+  def self.human_name_for: (("today" | "yesterday" | "thisweek" | "thismonth" | "thisyear" | "lastweek" | "lastmonth" | "lastyear") value) -> ("Today" | "Yesterday" | "This week" | "This month" | "This year" | "Last week" | "Last month" | "Last year")
 
   attr_reader now: untyped
 

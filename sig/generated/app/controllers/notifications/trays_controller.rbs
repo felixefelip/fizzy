@@ -2,7 +2,7 @@ module Notifications
   class TraysController < ApplicationController
     @notifications: Notification::ActiveRecord_Relation?
 
-    MAX_ENTRIES_LIMIT: Integer
+    MAX_ENTRIES_LIMIT: 100
 
     def show: () -> void
 

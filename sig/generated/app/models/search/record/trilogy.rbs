@@ -1,7 +1,7 @@
 module Search
   class Record
     module Trilogy
-      SHARD_COUNT: Integer
+      SHARD_COUNT: 16
 
       extend ActiveSupport::Concern
 
@@ -13,7 +13,7 @@ module Search
 
       def stem_content: () -> untyped
       def set_account_key: () -> String
-      def highlight: (untyped text, show: Symbol) -> untyped
+      def highlight: (untyped text, show: (:full | :snippet)) -> untyped
     end
   end
 end

@@ -1,13 +1,13 @@
 class ERBPartialSearchesForm
   include ActionViewContext
 
-  def initialize: (query_terms: String, target_turbo_frame: String, turbo_action: String) -> void
+  def initialize: (query_terms: "", target_turbo_frame: "bar_content", turbo_action: "advance") -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader query_terms: String
-  attr_reader target_turbo_frame: String
-  attr_reader turbo_action: String
+  attr_reader query_terms: ""
+  attr_reader target_turbo_frame: "bar_content"
+  attr_reader turbo_action: "advance"
 end

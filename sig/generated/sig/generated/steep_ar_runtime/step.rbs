@@ -1,5 +1,5 @@
 class Step
-  def save: (**untyped) -> bool
+  def save: (**untyped) -> true
   def run_before_validation_callbacks: () -> Account?
   def run_belongs_to_default_callbacks: () -> Account?
   def run_belongs_to_default_account: () -> Account?

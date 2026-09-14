@@ -4,7 +4,7 @@ module Fizzy
 
   def self.saas?: () -> bool
   def self.db_adapter: () -> Fizzy::DbAdapter
-  def self.configure_bundle: () -> String?
+  def self.configure_bundle: () -> "Gemfile.saas"?
 end
 
 module Fizzy

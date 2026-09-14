@@ -4,12 +4,11 @@ module ActionPack
       class Options
         @challenge: String?
 
-        CHALLENGE_LENGTH: Integer
+        CHALLENGE_LENGTH: 32
         USER_VERIFICATION_OPTIONS: Array[Symbol]
 
         include ActiveModel::API
         include ActiveModel::Attributes
-        extend ActiveModel::Attributes::ClassMethods
 
         def initialize: (?Hash[untyped, untyped] attributes) -> void
         def validate!: () -> true

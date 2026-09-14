@@ -5,7 +5,7 @@ class ZipFile
     @digest: Digest::MD5
     @streamer: ZipKit::Streamer?
 
-    attr_reader byte_size: Integer
+    attr_reader byte_size: 0
 
     def initialize: (?Tempfile io) -> Digest::MD5
     def stream_to: (Tempfile io) -> Tempfile
@@ -19,5 +19,9 @@ class ZipFile
     private
 
     def streamer: () -> untyped
+
+    class AfterInitialize
+      attr_reader byte_size: Integer
+    end
   end
 end

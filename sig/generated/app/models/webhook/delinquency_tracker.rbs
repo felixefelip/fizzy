@@ -1,6 +1,6 @@
 class Webhook
   class DelinquencyTracker < ApplicationRecord
-    DELINQUENCY_THRESHOLD: Integer
+    DELINQUENCY_THRESHOLD: 10
     DELINQUENCY_DURATION: ActiveSupport::Duration
 
     def record_delivery_of: (Webhook::Delivery delivery) -> untyped

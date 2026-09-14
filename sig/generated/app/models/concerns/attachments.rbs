@@ -1,5 +1,5 @@
 module Attachments
-  VARIANTS: { large: { loader: { n: Integer }, resize_to_limit: Array[Integer] }, small: { loader: { n: Integer }, resize_to_limit: Array[Integer] } }
+  VARIANTS: { large: { loader: { n: -1 }, resize_to_limit: Array[(1024 | 768)] }, small: { loader: { n: -1 }, resize_to_limit: Array[(800 | 600)] } }
 
   extend ActiveSupport::Concern
 

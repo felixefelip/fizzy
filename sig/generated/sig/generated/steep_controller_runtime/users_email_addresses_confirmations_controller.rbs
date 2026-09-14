@@ -3,11 +3,11 @@ module Users
     class ConfirmationsController
       @__rbs_infer__performed: true?
 
-      def render: (?(Symbol | { json: { error: String }, status: Symbol })? target, *{ status: Symbol } rest) -> bool
+      def render: (?(:show | :invalid_token | { json: { error: "Token is invalid or has expired" }, status: :unprocessable_entity })? target, *{ status: :unprocessable_entity } rest) -> true
 
       private
 
-      def __rbs_infer__run_show: () -> bool?
+      def __rbs_infer__run_show: () -> true?
       def __rbs_infer__run_create: () -> void
     end
   end

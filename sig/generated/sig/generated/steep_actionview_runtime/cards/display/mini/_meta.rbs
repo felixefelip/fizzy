@@ -1,7 +1,7 @@
 class ERBPartialCardsDisplayMiniMeta
   include ActionViewContext
 
-  def render: (?String? target, *{ card: untyped } rest) -> nil
+  def render: (?("cards/display/common/meta" | "cards/display/mini/assignees")? target, *{ card: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

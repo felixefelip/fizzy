@@ -2,13 +2,13 @@ class Filter
   module Params
     @as_params: Hash[untyped, untyped]?
 
-    PERMITTED_PARAMS: Array[(Symbol | Hash[Symbol, Array[untyped]])]
+    PERMITTED_PARAMS: Array[(:assignment_status | :indexed_by | :sorted_by | :creation | :closure | Hash[(:card_ids | :column_ids | :assignee_ids | :creator_ids | :closer_ids | :board_ids | :tag_ids | :terms), Array[untyped]])]
 
     extend ActiveSupport::Concern
 
-    def used?: (?ignore_boards: bool) -> untyped
+    def used?: (?ignore_boards: true) -> untyped
     def as_params: () -> Hash[untyped, untyped]
-    def as_params_without: (Symbol key, untyped value) -> Hash[untyped, untyped]
+    def as_params_without: (:terms key, untyped value) -> Hash[untyped, untyped]
     def params_digest: () -> untyped
   end
 end

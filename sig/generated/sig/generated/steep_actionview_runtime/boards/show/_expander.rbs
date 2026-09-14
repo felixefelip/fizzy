@@ -1,17 +1,17 @@
 class ERBPartialBoardsShowExpander
   include ActionViewContext
 
-  def initialize: (column_id: String, count: Integer, title: (String | String?)) -> void
+  def initialize: (column_id: ("closed-cards" | "not-now" | "maybe"), count: Integer, title: ("Done" | "Not Now" | "Maybe?" | String?)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader column_id: String
+  attr_reader column_id: ("closed-cards" | "not-now" | "maybe")
   attr_reader count: Integer
-  attr_reader title: (String | String?)
+  attr_reader title: ("Done" | "Not Now" | "Maybe?" | String?)
 
   class AfterInitialize
-    attr_reader title: String?
+    attr_reader title: ("Done" | "Not Now" | "Maybe?" | String)?
   end
 end

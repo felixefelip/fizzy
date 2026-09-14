@@ -1,7 +1,7 @@
 class ERBPartialEntropyKnob
   include ActionViewContext
 
-  def initialize: (current_value: Integer, disabled: bool, form: untyped, knob_options: Array[Integer], label: String, name: Symbol) -> void
+  def initialize: (current_value: Integer, disabled: bool, form: untyped, knob_options: Array[Integer], label: "Days until auto-close", name: :auto_postpone_period_in_days) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
@@ -11,6 +11,6 @@ class ERBPartialEntropyKnob
   attr_reader disabled: bool
   attr_reader form: untyped
   attr_reader knob_options: Array[Integer]
-  attr_reader label: String
-  attr_reader name: Symbol
+  attr_reader label: "Days until auto-close"
+  attr_reader name: :auto_postpone_period_in_days
 end

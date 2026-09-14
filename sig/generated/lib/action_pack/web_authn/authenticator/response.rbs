@@ -3,7 +3,6 @@ module ActionPack
     module Authenticator
       class Response
         include ActiveModel::Validations
-        extend ActiveModel::Validations::ClassMethods
 
         attr_reader client_data_json: untyped
         attr_accessor origin: untyped
@@ -24,7 +23,7 @@ module ActionPack
         def must_not_be_cross_origin: () -> ActiveModel::Error?
         def must_not_have_token_binding: () -> ActiveModel::Error?
         def relying_party_id_must_match: () -> ActiveModel::Error?
-        def user_must_be_present: () -> ActiveModel::Error?
+        def user_must_be_present: () -> ActiveModel::Error
         def user_must_be_verified_when_required: () -> ActiveModel::Error?
       end
     end

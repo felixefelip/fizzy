@@ -2,10 +2,10 @@ module Columns
   class RightPositionsController
     @__rbs_infer__performed: true?
 
-    def render: (?Symbol? target, *untyped rest) -> bool
+    def render: (?(:create)? target, *untyped rest) -> true
 
     private
 
-    def __rbs_infer__run_create: () -> bool?
+    def __rbs_infer__run_create: () -> true?
   end
 end

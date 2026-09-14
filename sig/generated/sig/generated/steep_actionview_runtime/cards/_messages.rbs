@@ -2,7 +2,7 @@ class ERBPartialCardsMessages
   include ActionViewContext
 
   def initialize: (card: (Card | (Card & Card::Validated))?) -> void
-  def render: (?({ partial: String, collection: Comment::ActiveRecord_Relation, cached: bool } | String)? target, *{ card: (Card | (Card & Card::Validated))? } rest) -> nil
+  def render: (?({ partial: "cards/comments/comment", collection: Comment::ActiveRecord_Relation, cached: true } | "cards/comments/saas/new" | "cards/comments/new" | "cards/comments/watchers" | "cards/delete")? target, *{ card: (Card | (Card & Card::Validated))? } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

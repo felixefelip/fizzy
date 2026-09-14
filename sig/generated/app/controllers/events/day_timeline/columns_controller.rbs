@@ -1,7 +1,7 @@
 module Events
   module DayTimeline
     class ColumnsController < ApplicationController
-      VALID_COLUMNS: Array[String]
+      VALID_COLUMNS: Array[("added" | "updated" | "closed")]
 
       include DayTimelinesScoped
       include FilterScoped

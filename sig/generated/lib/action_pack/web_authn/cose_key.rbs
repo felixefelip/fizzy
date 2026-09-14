@@ -1,26 +1,26 @@
 module ActionPack
   module WebAuthn
     class CoseKey
-      P256_COORDINATE_LENGTH: Integer
-      MINIMUM_RSA_KEY_BITS: Integer
-      KEY_TYPE_LABEL: Integer
-      ALGORITHM_LABEL: Integer
-      EC2_CURVE_LABEL: Integer
-      EC2_X_LABEL: Integer
-      EC2_Y_LABEL: Integer
-      RSA_N_LABEL: Integer
-      RSA_E_LABEL: Integer
-      OKP_CURVE_LABEL: Integer
-      OKP_X_LABEL: Integer
-      OKP: Integer
-      EC2: Integer
-      RSA: Integer
-      ES256: Integer
-      EDDSA: Integer
-      RS256: Integer
-      P256: Integer
-      ED25519: Integer
-      UNCOMPRESSED_POINT_MARKER: Integer
+      P256_COORDINATE_LENGTH: 32
+      MINIMUM_RSA_KEY_BITS: 2048
+      KEY_TYPE_LABEL: 1
+      ALGORITHM_LABEL: 3
+      EC2_CURVE_LABEL: -1
+      EC2_X_LABEL: -2
+      EC2_Y_LABEL: -3
+      RSA_N_LABEL: -1
+      RSA_E_LABEL: -2
+      OKP_CURVE_LABEL: -1
+      OKP_X_LABEL: -2
+      OKP: 1
+      EC2: 2
+      RSA: 3
+      ES256: -7
+      EDDSA: -8
+      RS256: -257
+      P256: 1
+      ED25519: 6
+      UNCOMPRESSED_POINT_MARKER: 4
 
       def self.decode: (nil bytes) -> ActionPack::WebAuthn::CoseKey
 

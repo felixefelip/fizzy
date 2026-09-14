@@ -1,25 +1,25 @@
 class Filter
   module Fields
-    INDEXES: Array[String]
-    SORTED_BY: Array[String]
+    INDEXES: Array[("all" | "closed" | "not_now" | "stalled" | "postponing_soon" | "golden")]
+    SORTED_BY: Array[("newest" | "oldest" | "latest")]
 
     extend ActiveSupport::Concern
 
     def with: (**untyped) -> ((Filter & Filter::Validated) | Filter)
-    def default_indexed_by: () -> String
+    def default_indexed_by: () -> "all"
     def default_indexed_by?: () -> bool
-    def default_sorted_by: () -> String
+    def default_sorted_by: () -> "latest"
     def default_sorted_by?: () -> bool
-    def default_value?: (Symbol key, untyped value) -> bool
+    def default_value?: (:indexed_by | :sorted_by key, untyped value) -> bool
   end
 end
 
 class Filter
   module Fields
     module ClassMethods
-      def default_values: () -> { indexed_by: String, sorted_by: String }
-      def default_value?: (Symbol key, untyped value) -> bool
-      def indexed_by_human_name: (String index) -> String
+      def default_values: () -> { indexed_by: "all", sorted_by: "latest" }
+      def default_value?: ((:indexed_by | :sorted_by) key, untyped value) -> bool
+      def indexed_by_human_name: (("all" | "closed" | "not_now" | "stalled" | "postponing_soon" | "golden") index) -> String
     end
   end
 end

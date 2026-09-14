@@ -2,7 +2,7 @@ module Prompts
   class CardsController < ApplicationController
     @cards: (Array[Card & Card::Validated] | Card::ActiveRecord_Relation)?
 
-    MAX_RESULTS: Integer
+    MAX_RESULTS: 10
 
     def index: () -> void
 

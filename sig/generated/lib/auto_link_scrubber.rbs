@@ -5,11 +5,11 @@ class AutoLinkScrubber < Loofah::Scrubber
   EMAIL_AUTOLINK_REGEXP: Regexp
   URL_REGEXP: Regexp
   AUTOLINK_REGEXP: Regexp
-  TRAILING_PUNCTUATION: String
+  TRAILING_PUNCTUATION: ".?,:!;\"'<>"
   TRAILING_PUNCTUATION_REGEXP: Regexp
-  MAX_TEXT_NODE_LENGTH: Integer
+  MAX_TEXT_NODE_LENGTH: 10000
 
-  def initialize: () -> Symbol
+  def initialize: () -> :top_down
   def scrub: (untyped node) -> Object
 
   private

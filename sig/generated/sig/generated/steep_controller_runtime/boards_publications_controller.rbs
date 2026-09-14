@@ -2,11 +2,11 @@ module Boards
   class PublicationsController
     @__rbs_infer__performed: true?
 
-    def render: (?(Symbol | { partial: String, locals: { board: untyped }, status: Symbol })? target, *untyped rest) -> bool
+    def render: (?(:create | :destroy | { partial: "boards/board", locals: { board: untyped }, status: :created })? target, *untyped rest) -> true
 
     private
 
-    def __rbs_infer__run_create: () -> bool?
-    def __rbs_infer__run_destroy: () -> bool?
+    def __rbs_infer__run_create: () -> true?
+    def __rbs_infer__run_destroy: () -> true?
   end
 end

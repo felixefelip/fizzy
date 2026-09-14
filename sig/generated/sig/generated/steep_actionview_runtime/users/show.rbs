@@ -5,7 +5,7 @@ class ERBUsersShow
   include UsersHelper
 
   def initialize: (user: (User & User::Validated)) -> void
-  def render: (?String? target, *{ user: User & User::Validated } rest) -> nil
+  def render: (?("users/theme" | "users/transfer" | "users/access_tokens" | "users/data_export")? target, *{ user: User & User::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

@@ -1,38 +1,38 @@
 module ActionPack
   module WebAuthn
     class CborDecoder
-      @max_depth: Integer
+      @max_depth: 16
       @position: Integer
       @depth: Integer
 
-      UNSIGNED_INTEGER_TYPE: Integer
-      NEGATIVE_INTEGER_TYPE: Integer
-      BYTE_STRING_TYPE: Integer
-      TEXT_STRING_TYPE: Integer
-      ARRAY_TYPE: Integer
-      MAP_TYPE: Integer
-      TAG_TYPE: Integer
-      FLOAT_OR_SIMPLE_TYPE: Integer
+      UNSIGNED_INTEGER_TYPE: 0
+      NEGATIVE_INTEGER_TYPE: 1
+      BYTE_STRING_TYPE: 2
+      TEXT_STRING_TYPE: 3
+      ARRAY_TYPE: 4
+      MAP_TYPE: 5
+      TAG_TYPE: 6
+      FLOAT_OR_SIMPLE_TYPE: 7
       SIMPLE_VALUE_RANGE: Range[Integer]
-      SINGLE_BYTE_VALUE_FOLLOWS: Integer
-      TWO_BYTE_VALUE_FOLLOWS: Integer
-      FOUR_BYTE_VALUE_FOLLOWS: Integer
-      EIGHT_BYTE_VALUE_FOLLOWS: Integer
+      SINGLE_BYTE_VALUE_FOLLOWS: 24
+      TWO_BYTE_VALUE_FOLLOWS: 25
+      FOUR_BYTE_VALUE_FOLLOWS: 26
+      EIGHT_BYTE_VALUE_FOLLOWS: 27
       RESERVED_VALUE_RANGE: Range[Integer]
-      INDEFINITE_LENGTH_MAJOR_TYPE: Integer
-      SIMPLE_FALSE_VALUE: Integer
-      SIMPLE_TRUE_VALUE: Integer
-      SIMPLE_NULL_VALUE: Integer
-      SIMPLE_UNDEFINED_VALUE: Integer
-      BREAK_CODE: Integer
-      MAX_DEPTH: Integer
+      INDEFINITE_LENGTH_MAJOR_TYPE: 31
+      SIMPLE_FALSE_VALUE: 20
+      SIMPLE_TRUE_VALUE: 21
+      SIMPLE_NULL_VALUE: 22
+      SIMPLE_UNDEFINED_VALUE: 23
+      BREAK_CODE: 255
+      MAX_DEPTH: 16
       MAX_SIZE: untyped
-      POSITIVE_BIGNUM_TAG: Integer
-      NEGATIVE_BIGNUM_TAG: Integer
+      POSITIVE_BIGNUM_TAG: 2
+      NEGATIVE_BIGNUM_TAG: 3
 
       def self.decode: ((String | nil) bytes, **untyped) -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
 
-      def initialize: (untyped bytes, ?max_depth: Integer, ?max_size: untyped) -> Integer
+      def initialize: (untyped bytes, ?max_depth: 16, ?max_size: untyped) -> 0
       def decode: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
 
       private
@@ -49,10 +49,10 @@ module ActionPack
       def decode_tag: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
       def decode_half_float: () -> Float
       def read_argument: () -> untyped
-      def additional_info: (?consume: bool) -> untyped
+      def additional_info: (?consume: false) -> untyped
       def indefinite_length?: () -> untyped
       def break_code?: () -> untyped
-      def read_bytes: (Integer length) -> untyped
+      def read_bytes: ((4 | 8 | 2) length) -> untyped
       def read_byte: () -> untyped
     end
   end

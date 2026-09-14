@@ -6,7 +6,7 @@ class ZipFile
       def initialize: (untyped entry, ZipFile::RemoteIO io) -> void
       def read: (?untyped length, ?untyped buffer) -> untyped
       def eof?: () -> untyped
-      def rewind: () -> Integer
+      def rewind: () -> 0
       def size: () -> untyped
     end
   end

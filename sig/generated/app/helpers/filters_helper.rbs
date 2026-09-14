@@ -1,11 +1,11 @@
 module FiltersHelper
   def filter_chip_tag: (String text, Hash[untyped, untyped] params) -> untyped
-  def filter_hidden_field_tag: (untyped key, String value) -> untyped
+  def filter_hidden_field_tag: (untyped key, ("today" | "yesterday" | "thisweek" | "thismonth" | "thisyear" | "lastweek" | "lastmonth" | "lastyear") value) -> untyped
   def filter_selected_boards_title: (untyped user_filtering) -> untyped
-  def filter_place_menu_item: (String path, String label, String icon, ?new_window: untyped, ?current: bool, ?turbo: bool) -> untyped
-  def filter_dialog: (String label) ?{ (*untyped) -> (User::ActiveRecord_Relation | Board::ActiveRecord_Relation | Array[String] | Tag::ActiveRecord_Relation) } -> untyped
-  def filter_title: (String title) -> untyped
-  def collapsible_nav_section: (String title, **untyped) { (untyped) -> (Account::ActiveRecord_Relation | Board::ActiveRecord_Relation | String | User::ActiveRecord_Relation | Tag::ActiveRecord_Relation) } -> untyped
-  def filter_hotkey_link: (String title, String path, Integer key, String icon) -> untyped
-  def sorted_by_label: (String sort_value) -> String
+  def filter_place_menu_item: (String path, String label, ("marker" | "settings" | "person" | "bell" | "filter") icon, ?new_window: untyped, ?current: bool, ?turbo: false) -> untyped
+  def filter_dialog: (("Board…" | "Person…" | "Assigned to…" | "Closed by…" | "Added by…" | "Filter by…" | "Sort by…" | "Tagged…") label) ?{ (*untyped) -> (User::ActiveRecord_Relation | Board::ActiveRecord_Relation | Array[("all" | "closed" | "not_now" | "stalled" | "postponing_soon" | "golden")] | Array[("newest" | "oldest" | "latest")] | Tag::ActiveRecord_Relation) } -> untyped
+  def filter_title: (("Move this card to…" | "Board…" | "Person…" | "Assigned to…" | "Closed by…" | "Added by…" | "Tagged…") title) -> untyped
+  def collapsible_nav_section: (("Accounts" | "Boards" | "Custom views" | "People" | "Settings" | "Shortcuts" | "Tags") title, **untyped) { (untyped) -> (Account::ActiveRecord_Relation | Board::ActiveRecord_Relation | String | User::ActiveRecord_Relation | Tag::ActiveRecord_Relation) } -> untyped
+  def filter_hotkey_link: (("Home" | "Assigned to me" | "Added by me") title, String path, (1 | 2 | 3) key, ("home" | "clipboard" | "person-add") icon) -> untyped
+  def sorted_by_label: (("newest" | "oldest" | "latest") sort_value) -> ("Newest to oldest" | "Oldest to newest" | "Recently updated")
 end

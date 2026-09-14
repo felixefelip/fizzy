@@ -2,7 +2,7 @@ class ERBPartialCardsDisplayPreviewBoard
   include ActionViewContext
 
   def initialize: (card: Card & Card::Validated) -> void
-  def render: (?String? target, *{ card: Card & Card::Validated } rest) -> nil
+  def render: (?"cards/display/common/board"? target, *{ card: Card & Card::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

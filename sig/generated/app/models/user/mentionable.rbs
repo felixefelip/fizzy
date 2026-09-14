@@ -4,7 +4,7 @@ class User
 
     def mentioned_by: (untyped mentioner, at: untyped) -> (Mention & Mention::Validated)
     def mentionable_handles: () -> Array[untyped]
-    def content_type: () -> String
+    def content_type: () -> "application/vnd.actiontext.mention"
 
     private
 

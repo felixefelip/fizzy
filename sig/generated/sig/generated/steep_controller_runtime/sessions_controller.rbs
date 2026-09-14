@@ -1,11 +1,11 @@
 class SessionsController
   @__rbs_infer__performed: true?
 
-  def render: (?(Symbol | { json: { message: String }, status: Symbol })? target, *untyped rest) -> bool
+  def render: (?(:new | { json: { message: String }, status: :too_many_requests } | { json: { message: "Something went wrong" }, status: :unprocessable_entity })? target, *untyped rest) -> true
 
   private
 
-  def __rbs_infer__run_new: () -> bool?
+  def __rbs_infer__run_new: () -> true?
   def __rbs_infer__run_create: () -> void
   def __rbs_infer__run_destroy: () -> void
 end

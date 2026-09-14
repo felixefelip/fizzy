@@ -1,9 +1,9 @@
 module AccessesHelper
   def access_menu_tag: (Board & Board::Validated board, **untyped) ?{ (*untyped) -> String } -> untyped
   def access_toggles_for: (untyped users, selected: bool, ?disabled: untyped) -> String
-  def access_involvement_advance_button: ((Board & Board::Validated | (Board | (Board & Board::Validated))?) board, (User & User::Validated) user, ?show_watchers: bool, ?icon_only: bool) -> untyped
+  def access_involvement_advance_button: ((Board & Board::Validated | (Board | (Board & Board::Validated))?) board, (User & User::Validated) user, ?show_watchers: bool, ?icon_only: true) -> untyped
   def board_watchers_list: ((Board & Board::Validated | Board | nil) board) -> untyped
-  def involvement_button: ((Board & Board::Validated | Board | nil) board, untyped access, bool show_watchers, bool icon_only) -> untyped
+  def involvement_button: ((Board & Board::Validated | Board | nil) board, untyped access, bool show_watchers, true icon_only) -> untyped
 
   private
 

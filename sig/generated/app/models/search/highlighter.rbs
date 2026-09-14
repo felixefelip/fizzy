@@ -2,9 +2,9 @@ module Search
   class Highlighter
     @terms: Array[untyped]?
 
-    OPENING_MARK: String
-    CLOSING_MARK: String
-    ELIPSIS: String
+    OPENING_MARK: "<mark class=\"circled-text\"><span></span>"
+    CLOSING_MARK: "</mark>"
+    ELIPSIS: "..."
 
     attr_reader query: untyped
 

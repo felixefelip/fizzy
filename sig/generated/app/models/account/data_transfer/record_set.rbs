@@ -1,7 +1,7 @@
 class Account
   module DataTransfer
     class RecordSet
-      IMPORT_BATCH_SIZE: Integer
+      IMPORT_BATCH_SIZE: 100
       INTERNAL_RECORD_TYPES: Array[String]
 
       attr_accessor importable_model_names: untyped

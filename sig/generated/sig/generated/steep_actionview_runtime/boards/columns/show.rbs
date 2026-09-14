@@ -4,7 +4,7 @@ class ERBBoardsColumnsShow
   include ActionViewContext
 
   def initialize: (column: (Column | (Column & Column::Validated))?, page: untyped, page_title: untyped) -> void
-  def render: (?String? target, *{ cards: untyped, draggable: bool } rest) -> nil
+  def render: (?("cards/display/previews" | "boards/columns/empty_placeholder")? target, *{ cards: untyped, draggable: true } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

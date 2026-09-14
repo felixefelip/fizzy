@@ -10,7 +10,7 @@ module ActionPack
 
         private
 
-        def challenge_purpose: () -> String
+        def challenge_purpose: () -> "authentication"
         def client_data_type_must_be_get: () -> ActiveModel::Error?
         def signature_must_be_valid: () -> ActiveModel::Error?
         def sign_count_must_increase: () -> ActiveModel::Error?

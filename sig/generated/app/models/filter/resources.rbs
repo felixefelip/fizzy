@@ -6,7 +6,7 @@ class Filter
 
     def resource_removed: (untyped resource) -> Filter?
     def boards: () -> untyped
-    def board_titles: () -> Array[String]
+    def board_titles: () -> Array["all boards"]
     def boards_label: () -> untyped
   end
 end

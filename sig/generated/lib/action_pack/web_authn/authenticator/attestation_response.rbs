@@ -12,7 +12,7 @@ module ActionPack
 
         private
 
-        def challenge_purpose: () -> String
+        def challenge_purpose: () -> "registration"
         def client_data_type_must_be_create: () -> ActiveModel::Error?
         def attestation_must_be_valid: () -> ActiveModel::Error
       end

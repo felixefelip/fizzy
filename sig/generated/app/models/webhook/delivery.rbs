@@ -4,7 +4,7 @@ class Webhook
     @payload: String?
 
     STALE_TRESHOLD: ActiveSupport::Duration
-    USER_AGENT: String
+    USER_AGENT: "fizzy/1.0.0 Webhook"
     ENDPOINT_TIMEOUT: ActiveSupport::Duration
     MAX_RESPONSE_SIZE: untyped
 
@@ -12,21 +12,21 @@ class Webhook
 
     def deliver_later: () -> ActiveJob::Base
     def deliver: () -> untyped
-    def sanitized_request: () -> Hash[Symbol, untyped]?
-    def response_summary: () -> Hash[Symbol, untyped]?
+    def sanitized_request: () -> Hash[:headers, untyped]?
+    def response_summary: () -> (Hash[:code | :error, untyped] | nil)
     def failed?: () -> untyped
     def succeeded?: () -> untyped
 
     private
 
-    def perform_request: () -> (Hash[Symbol, Symbol] | Hash[Symbol, Integer])
+    def perform_request: () -> (Hash[:error, :private_uri] | Hash[:code, Integer] | Hash[:error, :response_too_large] | Hash[:error, :dns_lookup_failed] | Hash[:error, :connection_timeout] | Hash[:error, :destination_unreachable] | Hash[:error, :failed_tls])
     def stream_body_with_limit: (Net::HTTPResponse response) -> String
     def resolved_ip: () -> untyped
     def uri: () -> URI::Generic
     def http: () -> Net::HTTP
-    def headers: () -> Hash[String, untyped]
+    def headers: () -> Hash[("User-Agent" | "Content-Type" | "X-Webhook-Signature" | "X-Webhook-Timestamp"), ("fizzy/1.0.0 Webhook" | "text/html" | "application/x-www-form-urlencoded" | "application/json" | String)]
     def signature: () -> String
-    def content_type: () -> String
+    def content_type: () -> ("text/html" | "application/x-www-form-urlencoded" | "application/json")
     def payload: () -> String
     def render_payload: (**untyped) -> untyped
     def convert_html_to_mrkdwn: (untyped html) -> untyped

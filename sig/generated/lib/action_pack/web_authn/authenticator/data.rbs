@@ -4,16 +4,16 @@ module ActionPack
       class Data
         @public_key: OpenSSL::PKey::PKey?
 
-        RELYING_PARTY_ID_HASH_LENGTH: Integer
-        FLAGS_LENGTH: Integer
-        SIGN_COUNT_LENGTH: Integer
-        AAGUID_LENGTH: Integer
-        CREDENTIAL_ID_LENGTH_BYTES: Integer
-        USER_PRESENT_FLAG: Integer
-        USER_VERIFIED_FLAG: Integer
-        BACKUP_ELIGIBLE_FLAG: Integer
-        BACKUP_STATE_FLAG: Integer
-        ATTESTED_CREDENTIAL_DATA_FLAG: Integer
+        RELYING_PARTY_ID_HASH_LENGTH: 32
+        FLAGS_LENGTH: 1
+        SIGN_COUNT_LENGTH: 4
+        AAGUID_LENGTH: 16
+        CREDENTIAL_ID_LENGTH_BYTES: 2
+        USER_PRESENT_FLAG: 1
+        USER_VERIFIED_FLAG: 4
+        BACKUP_ELIGIBLE_FLAG: 8
+        BACKUP_STATE_FLAG: 16
+        ATTESTED_CREDENTIAL_DATA_FLAG: 64
 
         def self.wrap: (ActionPack::WebAuthn::Authenticator::Data data) -> self
         def self.decode: ((ActionPack::WebAuthn::Authenticator::Data | String) bytes) -> ActionPack::WebAuthn::Authenticator::Data

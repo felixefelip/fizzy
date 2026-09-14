@@ -1,11 +1,11 @@
 module Eventable
   extend ActiveSupport::Concern
 
-  def track_event: ((String | Symbol) action, ?creator: ({ particulars: { old_title: String?, new_title: String? } } | { particulars: { old_board: String?, new_board: String? } } | User & User::Validated | { assignee_ids: Array[untyped] } | { particulars: { column: untyped } }), ?board: Board & Board::Validated, **untyped) -> Event?
+  def track_event: (("title_changed" | "board_changed" | "created" | :assigned | :unassigned | :closed | :reopened | :auto_postponed | :published | "triaged" | "sent_back_to_triage") action, ?creator: ({ particulars: { old_title: String?, new_title: String? } } | { particulars: { old_board: String?, new_board: String? } } | User & User::Validated | { assignee_ids: Array[untyped] } | { particulars: { column: untyped } }), ?board: Board & Board::Validated, **untyped) -> Event?
   def event_was_created: (untyped event) -> untyped
 
   private
 
-  def should_track_event?: () -> bool
+  def should_track_event?: () -> true
   def eventable_prefix: () -> String
 end

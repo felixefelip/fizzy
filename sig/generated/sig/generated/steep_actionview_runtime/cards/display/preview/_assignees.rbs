@@ -1,13 +1,13 @@
 class ERBPartialCardsDisplayPreviewAssignees
   include ActionViewContext
 
-  def initialize: (card: Card & Card::Validated, preview: bool) -> void
-  def render: (?String? target, *{ card: Card & Card::Validated, preview: bool } rest) -> nil
+  def initialize: (card: Card & Card::Validated, preview: true) -> void
+  def render: (?"cards/display/common/assignees"? target, *{ card: Card & Card::Validated, preview: true } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
   attr_reader card: Card & Card::Validated
-  attr_reader preview: bool
+  attr_reader preview: true
 end

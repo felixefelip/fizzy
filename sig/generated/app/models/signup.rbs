@@ -3,9 +3,7 @@ class Signup
 
   include ActiveModel::Model
   include ActiveModel::Attributes
-  extend ActiveModel::Attributes::ClassMethods
   include ActiveModel::Validations
-  extend ActiveModel::Validations::ClassMethods
 
   attr_accessor full_name: untyped
   attr_accessor email_address: untyped

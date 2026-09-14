@@ -5,6 +5,6 @@ module ViewTransitions
 
   private
 
-  def disable_view_transitions: () -> bool
+  def disable_view_transitions: () -> true
   def page_refresh?: () -> untyped
 end

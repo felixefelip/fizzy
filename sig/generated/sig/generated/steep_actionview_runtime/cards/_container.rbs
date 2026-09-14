@@ -2,7 +2,7 @@ class ERBPartialCardsContainer
   include ActionViewContext
 
   def initialize: (card: (Card | (Card & Card::Validated))?) -> void
-  def render: (?String? target, *({ card: (Card | (Card & Card::Validated))? } | { reactable: (Card | (Card & Card::Validated))? }) rest) -> nil
+  def render: (?("cards/container/gild" | "cards/container/image" | "cards/display/perma/board" | "cards/display/perma/tags" | "cards/container/content" | "cards/display/perma/steps" | "cards/triage/columns" | "cards/display/common/stamp" | "cards/display/perma/meta" | "cards/display/perma/background" | "reactions/reactions" | "cards/display/preview/bubble" | "cards/container/footer/published")? target, *({ card: (Card | (Card & Card::Validated))? } | { reactable: (Card | (Card & Card::Validated))? }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

@@ -1,21 +1,21 @@
 module ActionPack
   class Passkey
     module FormHelper
-      REGISTRATION_ERROR_MESSAGE: String
-      REGISTRATION_CANCELLED_MESSAGE: String
-      REGISTRATION_DUPLICATE_MESSAGE: String
-      SIGN_IN_ERROR_MESSAGE: String
-      SIGN_IN_CANCELLED_MESSAGE: String
+      REGISTRATION_ERROR_MESSAGE: "Something went wrong while registering your passkey."
+      REGISTRATION_CANCELLED_MESSAGE: "Passkey registration was cancelled. Try again when you are ready."
+      REGISTRATION_DUPLICATE_MESSAGE: "You already have a passkey registered on this device. Remove the existing one first and try again."
+      SIGN_IN_ERROR_MESSAGE: "Something went wrong while signing in with your passkey."
+      SIGN_IN_CANCELLED_MESSAGE: "Passkey sign in was cancelled. Try again when you are ready."
 
-      def passkey_registration_button: (?untyped name, ?{ options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions, error: { class: String }, cancellation: { class: String }, duplicate: { class: String }, class: String }? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
-      def passkey_sign_in_button: (?String? name, ?String? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def passkey_registration_button: (?untyped name, ?{ options: ActionPack::WebAuthn::PublicKeyCredential::CreationOptions, error: { class: "txt-negative margin-block-half" }, cancellation: { class: "txt-subtle margin-block-half" }, duplicate: { class: "txt-negative margin-block-half" }, class: "btn btn--link center txt-medium" }? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def passkey_sign_in_button: (?"Sign in with a passkey"? name, ?String? url, **untyped) ?{ (*untyped) -> untyped } -> untyped
 
       private
 
-      def partition_passkey_options: (String? url, Hash[Symbol, untyped] options) -> Array[untyped]
+      def partition_passkey_options: ((nil | String) url, Hash[Symbol, untyped] options) -> Array[untyped]
       def default_passkey_challenge_url: () -> untyped
       def passkey_error_messages: (?error: untyped, ?cancellation: untyped, ?duplicate: untyped) -> untyped
-      def build_passkey_error_options: (String type, untyped options) -> Array[untyped]
+      def build_passkey_error_options: (("error" | "cancelled" | "duplicate") type, untyped options) -> Array[untyped]
     end
   end
 end

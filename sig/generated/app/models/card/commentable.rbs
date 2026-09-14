@@ -1,6 +1,6 @@
 class Card
   module Commentable
-    STORAGE_BATCH_SIZE: Integer
+    STORAGE_BATCH_SIZE: 1000
 
     extend ActiveSupport::Concern
 

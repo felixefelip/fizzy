@@ -1,7 +1,7 @@
 class ERBPartialNotificationsSettingsPushNotifications
   include ActionViewContext
 
-  def render: (?{ partial: String }? target, *untyped rest) -> nil
+  def render: (?({ partial: "notifications/settings/browser" } | { partial: "notifications/settings/system" } | { partial: "notifications/settings/install" })? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

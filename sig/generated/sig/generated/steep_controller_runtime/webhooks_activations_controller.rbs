@@ -2,7 +2,7 @@ module Webhooks
   class ActivationsController
     @__rbs_infer__performed: true?
 
-    def render: (?String? target, *{ status: Symbol } rest) -> bool
+    def render: (?"webhooks/show"? target, *{ status: :created } rest) -> true
 
     private
 

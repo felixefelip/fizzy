@@ -13,6 +13,6 @@ module Mentions
   def should_create_mentions?: () -> bool
   def mentionable_content_changed?: () -> bool
   def create_mentions_later: () -> ActiveJob::Base
-  def mentionable?: () -> bool
-  def should_check_mentions?: () -> bool
+  def mentionable?: () -> true
+  def should_check_mentions?: () -> false
 end

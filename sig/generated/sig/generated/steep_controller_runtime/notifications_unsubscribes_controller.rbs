@@ -2,12 +2,12 @@ module Notifications
   class UnsubscribesController
     @__rbs_infer__performed: true?
 
-    def render: (?Symbol? target, *untyped rest) -> bool
+    def render: (?(:new | :show)? target, *untyped rest) -> true
 
     private
 
-    def __rbs_infer__run_new: () -> bool?
+    def __rbs_infer__run_new: () -> true?
     def __rbs_infer__run_create: () -> void
-    def __rbs_infer__run_show: () -> bool?
+    def __rbs_infer__run_show: () -> true?
   end
 end

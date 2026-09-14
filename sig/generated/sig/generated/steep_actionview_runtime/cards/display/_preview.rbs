@@ -2,7 +2,7 @@ class ERBPartialCardsDisplayPreview
   include ActionViewContext
 
   def initialize: (card: Card & Card::Validated, preview: untyped) -> void
-  def render: (?String? target, *({ card: Card & Card::Validated } | { card: Card & Card::Validated, preview: bool }) rest) -> nil
+  def render: (?("cards/display/preview/board" | "cards/display/preview/tags" | "cards/display/preview/steps" | "cards/display/preview/columns" | "cards/display/common/stamp" | "cards/display/preview/meta" | "cards/display/preview/boosts" | "cards/display/preview/comments" | "cards/display/common/background" | "cards/display/preview/bubble")? target, *({ card: Card & Card::Validated } | { card: Card & Card::Validated, preview: true }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

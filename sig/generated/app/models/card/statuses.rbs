@@ -4,7 +4,7 @@ class Card
 
     alias was_just_published? was_just_published
 
-    attr_accessor was_just_published: bool?
+    attr_accessor was_just_published: true?
 
     def publish: () -> untyped
 

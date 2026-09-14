@@ -1,7 +1,7 @@
 class ERBPartialCardsAssignmentsUser
   include ActionViewContext
 
-  def initialize: (card: Card & Card::Validated, data: untyped, user: (User & User::Validated), user_label: String) -> void
+  def initialize: (card: Card & Card::Validated, data: untyped, user: (User & User::Validated), user_label: "Me") -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
@@ -10,5 +10,5 @@ class ERBPartialCardsAssignmentsUser
   attr_reader card: Card & Card::Validated
   attr_reader data: untyped
   attr_reader user: (User & User::Validated)
-  attr_reader user_label: String
+  attr_reader user_label: "Me"
 end

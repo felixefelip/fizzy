@@ -11,7 +11,7 @@ class User
 
     def initialize: ((User & User::Validated) user, (Filter & Filter::Validated | Filter) filter, ?expanded: bool) -> void
     def boards: () -> Board::ActiveRecord_Relation
-    def selected_board_titles: () -> Array[String]
+    def selected_board_titles: () -> Array["all boards"]
     def selected_boards_label: () -> untyped
     def tags: () -> Tag::ActiveRecord_Relation
     def users: () -> User::ActiveRecord_Relation

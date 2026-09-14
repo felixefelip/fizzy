@@ -1,5 +1,5 @@
 class MagicLink < ApplicationRecord
-  CODE_LENGTH: Integer
+  CODE_LENGTH: 6
   EXPIRATION_TIME: ActiveSupport::Duration
 
   def self.consume: (untyped code) -> MagicLink?

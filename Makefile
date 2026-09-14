@@ -62,6 +62,26 @@ rbs_infer_job_runtime:
 rbs_infer_actionview_runtime:
 	bundle exec rake rbs_infer:actionview_runtime:all
 
+## O `has_rich_text` do próprio ActionText, fatiado do gem instalado. O macro
+## define três métodos por `class_eval` de uma STRING, e leitor estático nenhum
+## entra numa string: `record.content` não é `untyped` hoje, é `NoMethodError` —
+## o método não existe para o checker. Faltava só a FONTE, e ela vem no gem.
+##
+## Com o macro no ar, o que ele escreve em cada call site vira pergunta sobre um
+## VALOR: o `:content` do call site chega ao corpo, o heredoc dobra para um
+## literal, o `steep check` grava esse literal por call site em
+## `sig/generated/.steep_string_evals.yml` e o `StringEvalMacroExpander` o coloca
+## na classe que chamou. Os acessores por modelo são portanto INFERIDOS, não
+## gerados — saem no RBS do próprio modelo, e só depois de uma volta de
+## `rbs_converge`, porque o .yml é saída do steep e entrada do rbs_infer.
+##
+## Descreve o FRAMEWORK, não o app: é escrito mesmo sem nenhum modelo declarando
+## o macro, e fica vazio quando o ActionText não está instalado. Depois do
+## rbs_rails, que é quem dá o reader nilable e o builder cuja união tipa o
+## acessor.
+rbs_infer_actiontext_runtime:
+	bundle exec rake rbs_infer:actiontext_runtime:all
+
 ## Diretórios órfãos, de geradores que não existem mais. Precisam sair ANTES da
 ## primeira execução dos geradores novos, senão declaram as mesmas classes duas
 ## vezes e envenenam o ambiente RBS inteiro:
@@ -101,6 +121,7 @@ rbs_generators_all:
 	make rbs_infer_current_runtime
 	make rbs_infer_job_runtime
 	make rbs_infer_actionview_runtime
+	make rbs_infer_actiontext_runtime
 	make rbs_infer_all
 
 ## `-j` NÃO fica no default (= nº de CPUs, 10 nesta máquina). Cada worker do steep

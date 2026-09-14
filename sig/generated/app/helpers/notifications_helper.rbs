@@ -8,7 +8,7 @@ module NotificationsHelper
 
   private
 
-  def event_notification_action: (untyped event) -> String
+  def event_notification_action: (untyped event) -> "card_assigned"
   def comment_notification_body: (untyped event) -> untyped
   def card_notification_title: (untyped card) -> untyped
 end

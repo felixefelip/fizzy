@@ -5,6 +5,6 @@ module My
     def my_menu_tag_item: ((Tag & Tag::Validated) the_tag) -> untyped
     def my_menu_user_item: ((User & User::Validated) user) -> untyped
     def my_menu_filter_item: (untyped filter) -> untyped
-    def my_menu_item: (String item, ((Board & Board::Validated) | (User & User::Validated)) record) { () -> untyped } -> untyped
+    def my_menu_item: (("board" | "tag" | "person" | "bookmark") item, ((Board & Board::Validated) | (User & User::Validated)) record) { () -> untyped } -> untyped
   end
 end

@@ -1,9 +1,9 @@
 class EventsController
   @__rbs_infer__performed: true?
 
-  def render: (?Symbol? target, *untyped rest) -> bool
+  def render: (?(:index)? target, *untyped rest) -> true
 
   private
 
-  def __rbs_infer__run_index: () -> bool?
+  def __rbs_infer__run_index: () -> true?
 end

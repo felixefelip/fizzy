@@ -5,18 +5,18 @@ class User
       include ActionView::Helpers::OutputSafetyHelper
       include TimeHelper
 
-      attr_reader index: Integer
-      attr_reader id: Symbol
-      attr_reader base_title: String
+      attr_reader index: (1 | 2 | 3)
+      attr_reader id: (:added | :updated | :closed)
+      attr_reader base_title: ("Added" | "Updated" | "Done")
       attr_reader day_timeline: User::DayTimeline
       attr_reader events: untyped
 
-      def initialize: (User::DayTimeline day_timeline, Symbol id, String base_title, Integer index, untyped events) -> void
+      def initialize: (User::DayTimeline day_timeline, (:added | :updated | :closed) id, ("Added" | "Updated" | "Done") base_title, (1 | 2 | 3) index, untyped events) -> void
       def title: () -> untyped
       def events_by_hour: () -> untyped
       def has_more_events?: () -> untyped
       def hidden_events_count: () -> untyped
-      def to_param: () -> Symbol
+      def to_param: () -> (:added | :updated | :closed)
 
       private
 

@@ -5,7 +5,7 @@ class Notification
     def title: () -> String
     def body: () -> String
     def url: () -> untyped
-    def category: () -> String
+    def category: () -> ("assignment" | "comment" | "card")
     def high_priority?: () -> untyped
 
     private

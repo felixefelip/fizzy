@@ -1,5 +1,5 @@
 class Tag
-  def save: (**untyped) -> bool
+  def save: (**untyped) -> true
   def run_before_validation_callbacks: () -> (Account | (Account & Account::Validated) | nil)
   def run_belongs_to_default_callbacks: () -> (Account | (Account & Account::Validated) | nil)
   def run_belongs_to_default_account: () -> (Account | (Account & Account::Validated) | nil)

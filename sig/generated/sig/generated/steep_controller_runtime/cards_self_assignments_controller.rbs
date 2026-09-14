@@ -2,7 +2,7 @@ module Cards
   class SelfAssignmentsController
     @__rbs_infer__performed: true?
 
-    def render: (?String? target, *untyped rest) -> bool
+    def render: (?"cards/assignments/create"? target, *untyped rest) -> true
 
     private
 

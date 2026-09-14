@@ -12,6 +12,6 @@ module WebPush
 
     def vapid_identification: () -> Hash[untyped, untyped]
     def encoded_message: () -> String
-    def icon_path: () -> String
+    def icon_path: () -> "/apple-touch-icon.png"
   end
 end

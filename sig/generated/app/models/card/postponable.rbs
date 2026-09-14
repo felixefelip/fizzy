@@ -7,7 +7,7 @@ class Card
     def postponed_by: () -> User?
     def active?: () -> bool
     def auto_postpone: (**untyped) -> untyped
-    def postpone: (?user: untyped, ?event_name: Symbol) -> untyped
+    def postpone: (?user: untyped, ?event_name: :auto_postponed) -> untyped
     def resume: () -> untyped
   end
 end

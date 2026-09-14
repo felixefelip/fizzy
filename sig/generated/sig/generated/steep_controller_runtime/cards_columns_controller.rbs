@@ -2,10 +2,10 @@ module Cards
   class ColumnsController
     @__rbs_infer__performed: true?
 
-    def render: (?Symbol? target, *untyped rest) -> bool
+    def render: (?(:edit)? target, *untyped rest) -> true
 
     private
 
-    def __rbs_infer__run_edit: () -> bool?
+    def __rbs_infer__run_edit: () -> true?
   end
 end

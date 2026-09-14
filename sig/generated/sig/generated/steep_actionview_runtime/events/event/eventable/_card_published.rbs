@@ -1,7 +1,7 @@
 class ERBPartialEventsEventEventableCardPublished
   include ActionViewContext
 
-  def render: (?String? target, *({ card: untyped, event: untyped } | { eventable: untyped }) rest) -> nil
+  def render: (?("events/event/layout" | "events/event/attachments")? target, *({ card: untyped, event: untyped } | { eventable: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

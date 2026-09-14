@@ -3,5 +3,5 @@ module BlockSearchEngineIndexing
 
   private
 
-  def block_search_engine_indexing: () -> String
+  def block_search_engine_indexing: () -> "none"
 end

@@ -1,6 +1,6 @@
 module SsrfProtection
-  DNS_RESOLUTION_TIMEOUT: Integer
-  DNS_NAMESERVERS: Array[String]
+  DNS_RESOLUTION_TIMEOUT: 2
+  DNS_NAMESERVERS: Array[("1.1.1.1" | "8.8.8.8")]
   DISALLOWED_IP_RANGES: Array[untyped]
 
   def resolve_public_ip: (String? hostname) -> untyped
