@@ -1,0 +1,36 @@
+---
+version: 1
+call_sites:
+  app/models/board.rb:7:2:
+  - |2
+              def public_description
+                rich_text_public_description || build_rich_text_public_description
+              end
+
+              def public_description?
+                rich_text_public_description.present?
+              end
+  -
+  -
+  app/models/card.rb:13:2:
+  - |2
+              def description
+                rich_text_description || build_rich_text_description
+              end
+
+              def description?
+                rich_text_description.present?
+              end
+  -
+  -
+  app/models/comment.rb:9:2:
+  - |2
+              def body
+                rich_text_body || build_rich_text_body
+              end
+
+              def body?
+                rich_text_body.present?
+              end
+  -
+  -
