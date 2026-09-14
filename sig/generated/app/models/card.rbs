@@ -30,7 +30,10 @@ class Card < ApplicationRecord
   def card: () -> self
   def to_param: () -> String
   def move_to: ((Board & Board::Validated) new_board) -> untyped
-  def filled?: () -> untyped
+  def filled?: () -> bool
+  def description: () -> ActionText::RichText
+  def description?: () -> bool
+  def description=: (untyped body) -> untyped
   def mentionable?: () -> bool
   def should_check_mentions?: () -> bool?
   def accessible_to?: (User? | (User & User::Validated) user) -> bool
@@ -42,4 +45,8 @@ class Card < ApplicationRecord
   def handle_board_change: () -> ActiveJob::Base
   def track_board_change_event: (String? old_board_name) -> Event?
   def assign_number: () -> untyped
+
+  class AfterDescription
+    def rich_text_description: () -> ::ActionText::RichText
+  end
 end

@@ -18,6 +18,20 @@ class Board < ApplicationRecord
 end
 
 class Board
+  def public_description
+    rich_text_public_description || build_rich_text_public_description
+  end
+
+  def public_description?
+    rich_text_public_description.present?
+  end
+
+  def public_description=(body)
+    self.public_description.body = body
+  end
+end
+
+class Board
   has_many :accesses, dependent: :delete_all do
     def revise(granted: [], revoked: [])
       transaction do

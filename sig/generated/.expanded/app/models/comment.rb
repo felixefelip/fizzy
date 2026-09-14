@@ -37,6 +37,20 @@ class Comment < ApplicationRecord
 end
 
 class Comment
+  def body
+    rich_text_body || build_rich_text_body
+  end
+
+  def body?
+    rich_text_body.present?
+  end
+
+  def body=(body)
+    self.body.body = body
+  end
+end
+
+class Comment
   after_create_commit :track_creation
 end
 

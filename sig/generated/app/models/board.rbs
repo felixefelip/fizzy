@@ -12,6 +12,13 @@ class Board < ApplicationRecord
   include ::Storage::Tracked
   include Triageable
 
+  def public_description: () -> ActionText::RichText
+  def public_description?: () -> bool
+  def public_description=: (untyped body) -> untyped
   def auto_postpone_period: () -> Integer?
   def auto_postpone_period_in_days: () -> Integer
+
+  class AfterPublicDescription
+    def rich_text_public_description: () -> ::ActionText::RichText
+  end
 end

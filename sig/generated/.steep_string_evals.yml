@@ -10,8 +10,10 @@ call_sites:
               def public_description?
                 rich_text_public_description.present?
               end
-  -
-  -
+  - |2
+                def public_description=(body)
+                  self.public_description.body = body
+                end
   app/models/card.rb:13:2:
   - |2
               def description
@@ -21,8 +23,10 @@ call_sites:
               def description?
                 rich_text_description.present?
               end
-  -
-  -
+  - |2
+                def description=(body)
+                  self.description.body = body
+                end
   app/models/comment.rb:9:2:
   - |2
               def body
@@ -32,5 +36,7 @@ call_sites:
               def body?
                 rich_text_body.present?
               end
-  -
-  -
+  - |2
+                def body=(body)
+                  self.body.body = body
+                end

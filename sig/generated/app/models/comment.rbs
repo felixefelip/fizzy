@@ -9,6 +9,9 @@ class Comment < ApplicationRecord
   include ::Searchable
 
   def to_partial_path: () -> String
+  def body: () -> ActionText::RichText
+  def body?: () -> bool
+  def body=: (untyped body) -> ActionText::RichText
   def mentionable?: () -> bool
   def publicly_accessible?: () -> untyped
   def accessible_to?: (User? | (User & User::Validated) user) -> bool
@@ -19,4 +22,8 @@ class Comment < ApplicationRecord
 
   def card_is_commentable: () -> ActiveModel::Error?
   def watch_card_by_creator: () -> untyped
+
+  class AfterBody
+    def rich_text_body: () -> ::ActionText::RichText
+  end
 end
