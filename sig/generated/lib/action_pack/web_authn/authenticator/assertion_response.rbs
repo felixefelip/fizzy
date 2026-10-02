@@ -14,7 +14,7 @@ module ActionPack
         def client_data_type_must_be_get: () -> ActiveModel::Error?
         def signature_must_be_valid: () -> ActiveModel::Error?
         def sign_count_must_increase: () -> ActiveModel::Error?
-        def sign_count_increased?: () -> bool
+        def sign_count_increased?: () -> true
 
         class AfterInitialize
           attr_reader authenticator_data: singleton(ActionPack::WebAuthn::Authenticator::Data)

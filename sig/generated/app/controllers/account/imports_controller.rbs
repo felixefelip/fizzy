@@ -9,7 +9,7 @@ class Account
     private
 
     def set_import: () -> (Account::Import & Account::Import::Validated)
-    def ensure_accessed_by_owner: () -> bool?
+    def ensure_accessed_by_owner: () -> true?
     def start_import: (self? account) -> true
   end
 end

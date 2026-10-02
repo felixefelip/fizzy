@@ -7,7 +7,7 @@ module Users
     private
 
     def set_user: () -> (User & User::Validated)
-    def ensure_permission_to_administer_user: () -> bool?
+    def ensure_permission_to_administer_user: () -> true?
     def role_params: () -> { role: untyped }
   end
 end

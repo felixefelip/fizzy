@@ -3,11 +3,11 @@ module Authorization
 
   private
 
-  def ensure_admin: () -> bool?
-  def ensure_staff: () -> bool?
+  def ensure_admin: () -> true?
+  def ensure_staff: () -> true?
   def authenticated_account_access?: () -> bool
   def ensure_can_access_account: () -> untyped
-  def redirect_existing_user: () -> bool?
+  def redirect_existing_user: () -> true?
 end
 
 module Authorization

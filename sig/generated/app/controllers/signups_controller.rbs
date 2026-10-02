@@ -6,7 +6,7 @@ class SignupsController < ApplicationController
 
   private
 
-  def redirect_authenticated_user: () -> bool?
-  def enforce_tenant_limit: () -> bool?
+  def redirect_authenticated_user: () -> true?
+  def enforce_tenant_limit: () -> true?
   def signup_params: () -> untyped
 end

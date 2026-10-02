@@ -6,5 +6,5 @@ module BoardScoped
   private
 
   def set_board: () -> (Board & Board::Validated)
-  def ensure_permission_to_admin_board: () -> bool?
+  def ensure_permission_to_admin_board: () -> true?
 end

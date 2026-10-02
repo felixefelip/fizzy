@@ -14,6 +14,6 @@ module Cards
 
     def set_reactable: () -> (Card & Card::Validated)
     def set_reaction: () -> Reaction?
-    def ensure_permission_to_administer_reaction: () -> bool?
+    def ensure_permission_to_administer_reaction: () -> true?
   end
 end

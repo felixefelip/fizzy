@@ -19,7 +19,7 @@ class Signup
   private
 
   def create_tenant: () -> nil
-  def handle_account_creation_error: (untyped error) -> untyped
+  def handle_account_creation_error: (untyped error) -> nil
   def create_account: () -> untyped
   def generate_account_name: () -> String
   def destroy_account: () -> nil

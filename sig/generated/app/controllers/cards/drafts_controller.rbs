@@ -6,6 +6,6 @@ module Cards
 
     private
 
-    def redirect_if_published: () -> bool?
+    def redirect_if_published: () -> true?
   end
 end

@@ -10,7 +10,7 @@ class Card
 
     private
 
-    def mark_if_just_published: () -> bool?
+    def mark_if_just_published: () -> true?
 
     class AfterMarkIfJustPublished
       attr_reader was_just_published: true

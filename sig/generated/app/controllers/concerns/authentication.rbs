@@ -4,16 +4,16 @@ module Authentication
   private
 
   def authenticated?: () -> bool
-  def require_account: () -> bool?
-  def require_authentication: () -> { httponly: bool, same_site: Symbol, value: String }
-  def resume_session: () -> { httponly: bool, same_site: Symbol, value: String }?
+  def require_account: () -> true?
+  def require_authentication: () -> { httponly: true, same_site: :lax, value: String }
+  def resume_session: () -> { httponly: true, same_site: :lax, value: String }?
   def find_session_by_cookie: () -> (Session & Session::Validated)?
   def authenticate_by_bearer_token: () -> void
   def bearer_token_authenticatable_request?: () -> untyped
-  def request_authentication: () -> bool
+  def request_authentication: () -> true
   def after_authentication_url: () -> untyped
-  def redirect_authenticated_user: () -> bool?
-  def redirect_tenanted_request: () -> bool?
+  def redirect_authenticated_user: () -> true?
+  def redirect_tenanted_request: () -> true?
   def start_new_session_for: (untyped identity) -> untyped
   def set_current_session: ((Session & Session::Validated) session) -> { value: String, httponly: true, same_site: :lax }
   def terminate_session: () -> untyped

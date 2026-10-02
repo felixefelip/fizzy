@@ -35,7 +35,7 @@ class Card < ApplicationRecord
   def description?: () -> bool
   def description=: (untyped body) -> untyped
   def mentionable?: () -> bool
-  def should_check_mentions?: () -> bool?
+  def should_check_mentions?: () -> true?
   def accessible_to?: (User? | (User & User::Validated) user) -> bool
   def auto_postpone_period: () -> Integer?
 

@@ -6,6 +6,6 @@ module Notifications
 
     private
 
-    def set_user: () -> bool?
+    def set_user: () -> true?
   end
 end

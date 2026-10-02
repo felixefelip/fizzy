@@ -10,7 +10,7 @@ class Account
 
       def records: () -> Array[Account?]
       def export_record: (untyped account) -> untyped
-      def files: () -> Array["data/account.json"]
+      def files: () -> [ "data/account.json" ]
       def import_batch: (untyped files) -> bool
       def check_record: (untyped file_path) -> untyped
     end

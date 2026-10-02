@@ -7,7 +7,7 @@ module Public
 
       private
 
-      def set_card: () -> untyped
+      def set_card: () -> nil
       def set_column: () -> (Column & Column::Validated)
     end
   end

@@ -14,10 +14,10 @@ class User
     alias id to_json
 
     attr_reader user: (User & User::Timelined)
-    attr_reader day: (ActiveSupport::TimeWithZone | bool)
+    attr_reader day: (ActiveSupport::TimeWithZone | true)
     attr_reader filter: (Filter & Filter::Validated | Filter)
 
-    def initialize: ((User & User::Timelined) user, (ActiveSupport::TimeWithZone | bool) day, (Filter & Filter::Validated | Filter) filter) -> void
+    def initialize: ((User & User::Timelined) user, (ActiveSupport::TimeWithZone | true) day, (Filter & Filter::Validated | Filter) filter) -> void
     def has_activity?: () -> bool
     def events: () -> Event::ActiveRecord_Relation
     def next_day: () -> ActiveSupport::TimeWithZone?

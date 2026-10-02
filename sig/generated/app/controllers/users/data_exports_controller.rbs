@@ -11,8 +11,8 @@ module Users
     private
 
     def set_user: () -> (User & User::Validated)
-    def ensure_current_user: () -> bool?
-    def ensure_export_limit_not_exceeded: () -> bool?
+    def ensure_current_user: () -> true?
+    def ensure_export_limit_not_exceeded: () -> true?
     def set_export: () -> (User::DataExport & User::DataExport::Validated)?
   end
 end

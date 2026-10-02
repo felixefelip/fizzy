@@ -17,7 +17,7 @@ module Cards
       def set_comment: () -> (Comment & Comment::Validated)
       def set_reactable: () -> (Comment & Comment::Validated)
       def set_reaction: () -> Reaction?
-      def ensure_permission_to_administer_reaction: () -> bool?
+      def ensure_permission_to_administer_reaction: () -> true?
     end
   end
 end
