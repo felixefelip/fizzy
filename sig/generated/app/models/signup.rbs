@@ -12,7 +12,7 @@ class Signup
   attr_reader account: self?
   attr_reader user: nil?
 
-  def initialize: (**untyped) -> void
+  def initialize: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> void
   def create_identity: () -> MagicLink
   def complete: () -> bool
 

@@ -1,7 +1,5 @@
 class Notifier
   class CommentEventNotifier < ::Notifier
-    def creator: () -> untyped
-
     private
 
     def recipients: () -> untyped

@@ -98,20 +98,6 @@ class Card < ApplicationRecord
 end
 
 class Card
-  def description
-    rich_text_description || build_rich_text_description
-  end
-
-  def description?
-    rich_text_description.present?
-  end
-
-  def description=(body)
-    self.description.body = body
-  end
-end
-
-class Card
   delegate :accessible_to?, to: :board
 end
 

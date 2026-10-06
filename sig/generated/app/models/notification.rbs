@@ -8,8 +8,6 @@ class Notification < ApplicationRecord
   def read: () -> self
   def unread: () -> self
   def read?: () -> bool
-  def notifiable_target: () -> untyped
-  def identity: () -> Identity?
 
   private
 

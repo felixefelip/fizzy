@@ -27,7 +27,6 @@ class User
     def updated_column: () -> User::DayTimeline::Column
     def closed_column: () -> User::DayTimeline::Column
     def cache_key: () -> untyped
-    def today?: () -> untyped
 
     private
 

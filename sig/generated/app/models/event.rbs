@@ -6,7 +6,6 @@ class Event < ApplicationRecord
   def action: () -> untyped
   def notifiable_target: () -> untyped?
   def description_for: (nil user) -> Event::Description
-  def card: () -> untyped
 
   private
 

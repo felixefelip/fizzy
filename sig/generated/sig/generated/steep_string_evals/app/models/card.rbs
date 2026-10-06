@@ -1,0 +1,9 @@
+class Card
+  def description: () -> ActionText::RichText
+  def description?: () -> bool
+  def description=: (untyped body) -> untyped
+
+  class AfterDescription
+    def rich_text_description: () -> ::ActionText::RichText
+  end
+end

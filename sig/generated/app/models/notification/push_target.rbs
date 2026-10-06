@@ -6,6 +6,5 @@ class Notification
 
     def initialize: (untyped notification) -> untyped
     def process: () -> bot
-    def card: () -> Card?
   end
 end

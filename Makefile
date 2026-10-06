@@ -82,6 +82,16 @@ rbs_infer_actionview_runtime:
 rbs_infer_actiontext_runtime:
 	bundle exec rake rbs_infer:actiontext_runtime:all
 
+## O `Module#delegate` e o `delegate_missing_to` do próprio ActiveSupport,
+## fatiados do gem instalado (rbs_infer#355). O core não lê mais `delegate`:
+## o método delegado é definido por `module_eval` de uma STRING, e segue o mesmo
+## caminho do `has_rich_text` acima — o `steep check` dobra a string por call
+## site em `sig/generated/.steep_string_evals.yml` e o `StringEvalMacroExpander`
+## a coloca na classe que chamou. Sem este alvo, todo `delegate` do app some do
+## RBS gerado (`Event#card`, `User::Filtering#as_params`, ...).
+rbs_infer_activesupport_runtime:
+	bundle exec rake rbs_infer:activesupport_runtime:all
+
 ## Diretórios órfãos, de geradores que não existem mais. Precisam sair ANTES da
 ## primeira execução dos geradores novos, senão declaram as mesmas classes duas
 ## vezes e envenenam o ambiente RBS inteiro:
@@ -122,6 +132,7 @@ rbs_generators_all:
 	make rbs_infer_job_runtime
 	make rbs_infer_actionview_runtime
 	make rbs_infer_actiontext_runtime
+	make rbs_infer_activesupport_runtime
 	make rbs_infer_all
 
 ## `-j` NÃO fica no default (= nº de CPUs, 10 nesta máquina). Cada worker do steep

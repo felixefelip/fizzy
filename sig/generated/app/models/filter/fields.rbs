@@ -10,7 +10,6 @@ class Filter
     def default_indexed_by?: () -> bool
     def default_sorted_by: () -> "latest"
     def default_sorted_by?: () -> bool
-    def default_value?: (:indexed_by | :sorted_by key, untyped value) -> bool
   end
 end
 

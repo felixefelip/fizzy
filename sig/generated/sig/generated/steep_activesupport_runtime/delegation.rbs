@@ -1,0 +1,28 @@
+class Module
+  def delegate: (*(:auto_postpone_period | :auto_postpone_period_in_days | :accessible_to? | :publicly_accessible? | :board | :watch_by | :card | :default_value? | :notifiable_target | :identity | :creator | :all_emoji? | :to_s | :timezone | :today? | :as_params | :single_board | :only_closed? | :credential_id | :public_key | :public_key_bytes | :sign_count | :aaguid | :backed_up?) methods, ?to: (:entropy | :board | :card | :eventable | :class | :source | :notification | :user | :content | :terms | :settings | :day | :filter | :authenticator_data)?, ?prefix: untyped, ?allow_nil: true?, ?private: untyped) -> Array[untyped] | ...
+  def delegate_missing_to: (untyped target, ?allow_nil: untyped) -> untyped | ...
+end
+
+module ActiveSupport
+  module Delegation
+    RUBY_RESERVED_KEYWORDS: Array[("__ENCODING__" | "__LINE__" | "__FILE__" | "alias" | "and" | "BEGIN" | "begin" | "break" | "case" | "class" | "def" | "defined?" | "do" | "else" | "elsif" | "END" | "end" | "ensure" | "false" | "for" | "if" | "in" | "module" | "next" | "nil" | "not" | "or" | "redo" | "rescue" | "retry" | "return" | "self" | "super" | "then" | "true" | "undef" | "unless" | "until" | "when" | "while" | "yield")]
+    RESERVED_METHOD_NAMES: Set[("__ENCODING__" | "__LINE__" | "__FILE__" | "alias" | "and" | "BEGIN" | "begin" | "break" | "case" | "class" | "def" | "defined?" | "do" | "else" | "elsif" | "END" | "end" | "ensure" | "false" | "for" | "if" | "in" | "module" | "next" | "nil" | "not" | "or" | "redo" | "rescue" | "retry" | "return" | "self" | "super" | "then" | "true" | "undef" | "unless" | "until" | "when" | "while" | "yield" | String)]
+
+    def self.generate: (Module owner, Array[untyped] methods, ?location: untyped, ?to: untyped, ?prefix: untyped, ?allow_nil: untyped, ?nilable: untyped, ?private: untyped, ?as: untyped, ?signature: untyped) -> Array[untyped]
+    def self.generate_method_missing: (Module owner, untyped target, ?allow_nil: untyped) -> untyped
+    def self.DelegateClass: (untyped superclass) ?{ (*untyped) -> untyped } -> Class
+  end
+end
+
+module ActiveSupport
+  module Delegation
+    class ClassDelegator < ::Delegator
+      alias __getobj__ delegate_dc_obj
+
+      attr_reader delegate_dc_obj: untyped
+
+      def initialize: (untyped delegated_obj) -> untyped
+      def __setobj__: (untyped obj) -> untyped
+    end
+  end
+end

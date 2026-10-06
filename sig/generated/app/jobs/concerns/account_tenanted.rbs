@@ -3,7 +3,7 @@ module AccountTenanted
 
   extend ActiveSupport::Concern
 
-  def initialize: (**untyped) -> void
+  def initialize: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> void
   def serialize: () -> Hash[String, untyped]
   def deserialize: (untyped job_data) -> untyped
 

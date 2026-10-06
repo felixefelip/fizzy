@@ -2,8 +2,6 @@ module Search
   class Query < ApplicationRecord
     def self.wrap: (untyped query) -> self
 
-    def to_s: () -> untyped
-
     private
 
     def sanitize_terms: () -> String?

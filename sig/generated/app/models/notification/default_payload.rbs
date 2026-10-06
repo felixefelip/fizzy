@@ -11,7 +11,6 @@ class Notification
     def high_priority?: () -> false
     def base_url: () -> untyped
     def avatar_url: () -> untyped
-    def card: () -> Card?
 
     private
 

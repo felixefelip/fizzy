@@ -483,6 +483,94 @@ methods:
           kind: self
         method: account
     enforced: false
+  Account_Board::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - creator
+    enforced: false
+  Account_Board::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - creator
+    enforced: false
+  Account_Card::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Account_Card::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Account_Column::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Account_Column::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Account_Webhook::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Account_Webhook::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
   ActionPack::Passkey::FormHelper#passkey_error_messages:
     requires:
     - kind: not_nil
@@ -598,6 +686,74 @@ methods:
         receiver:
           kind: self
         method: authenticator_data
+    enforced: false
+  ActionPack::WebAuthn::CborDecoder#decode:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+        chain:
+        - bytes
+    enforced: false
+  ActionPack::WebAuthn::CborDecoder#decode_array:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+        chain:
+        - bytes
+    enforced: false
+  ActionPack::WebAuthn::CborDecoder#decode_map:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+        chain:
+        - bytes
+    enforced: false
+  ActionPack::WebAuthn::CborDecoder#decode_tag:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: decode
+        chain:
+        - bytes
     enforced: false
   ActionPack::WebAuthn::PublicKeyCredential#to_h:
     requires:
@@ -1047,6 +1203,28 @@ methods:
           kind: self
         method: board
     enforced: false
+  Board_Access::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
+    enforced: false
+  Board_Access::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
+    enforced: false
   Boards::AccessesController#__rbs_infer__run_index:
     requires:
     - kind: not_nil
@@ -1235,15 +1413,6 @@ methods:
         receiver:
           kind: self
         method: main_app
-    enforced: false
-  Card#filled?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: description
     enforced: false
   Card#run_before_validation_callbacks:
     requires:
@@ -1608,6 +1777,50 @@ methods:
         receiver:
           kind: self
         method: turbo_stream
+    enforced: false
+  Card_Pin::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
+    enforced: false
+  Card_Pin::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
+    enforced: false
+  Card_Watch::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
+    enforced: false
+  Card_Watch::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - user
     enforced: false
   Cards::AssignmentsController#__rbs_infer__run_create:
     requires:
@@ -2348,6 +2561,28 @@ methods:
         chain:
         - columns
     enforced: false
+  Column_Card::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
+  Column_Card::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - board
+    enforced: false
   Columns::Cards::Drops::ClosuresController#__rbs_infer__run_create:
     requires:
     - kind: not_nil
@@ -2884,6 +3119,28 @@ methods:
         receiver:
           kind: self
         method: creator
+    enforced: false
+  Event_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - webhook
+    enforced: false
+  Event_Webhook_Delivery::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - webhook
     enforced: false
   Events::DayTimeline::ColumnsController#__rbs_infer__run_show:
     requires:
@@ -4560,6 +4817,39 @@ methods:
           kind: self
         method: bytes_stored
     enforced: false
+  Storage::Totaled#materialize_storage:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: create_or_find_storage_total
+        chain:
+        - bytes_stored
+    enforced: false
+  Tag_Tagging::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  Tag_Tagging::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
   Tagging#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -4892,6 +5182,72 @@ methods:
           kind: self
         method: user
     enforced: false
+  User_Assignment::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  User_Assignment::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  User_Closure::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  User_Closure::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  User_Comment::ActiveRecord_Associations_CollectionProxy#create:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
+  User_Comment::ActiveRecord_Associations_CollectionProxy#create!:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - card
+    enforced: false
   User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy#create:
     requires:
     - kind: not_nil
@@ -4902,6 +5258,14 @@ methods:
         method: owner
         chain:
         - settings
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - starts_at
     enforced: false
   User_Notification_Bundle::ActiveRecord_Associations_CollectionProxy#create!:
     requires:
@@ -4913,6 +5277,14 @@ methods:
         method: owner
         chain:
         - settings
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: build
+        chain:
+        - starts_at
     enforced: false
   Users::AvatarsController#__rbs_infer__run_destroy:
     requires:

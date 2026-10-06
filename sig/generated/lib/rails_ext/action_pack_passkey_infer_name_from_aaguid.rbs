@@ -6,6 +6,6 @@ end
 
 module ActionPackPasskeyInferNameFromAaguid
   module ClassMethods
-    def register: (**untyped) -> untyped
+    def register: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
   end
 end
