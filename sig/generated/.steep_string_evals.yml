@@ -14,6 +14,8 @@ call_sites:
                 def public_description=(body)
                   self.public_description.body = body
                 end
+  app/models/board/entropic.rb:5:4:
+  -
   app/models/card.rb:13:2:
   - |2
               def description
@@ -27,6 +29,12 @@ call_sites:
                 def description=(body)
                   self.description.body = body
                 end
+  app/models/card/accessible.rb:5:4:
+  -
+  app/models/card/entropic.rb:23:4:
+  -
+  app/models/comment.rb:20:2:
+  -
   app/models/comment.rb:9:2:
   - |2
               def body
@@ -40,3 +48,37 @@ call_sites:
                 def body=(body)
                   self.body.body = body
                 end
+  app/models/event.rb:29:2:
+  -
+  app/models/filter/fields.rb:7:2:
+  -
+  app/models/mention.rb:11:2:
+  -
+  app/models/notification.rb:29:2:
+  -
+  app/models/notification.rb:30:2:
+  -
+  app/models/notification/default_payload.rb:4:2:
+  -
+  app/models/notification/push_target.rb:4:2:
+  -
+  app/models/notifier/card_event_notifier.rb:2:2:
+  -
+  app/models/notifier/card_event_notifier.rb:3:2:
+  -
+  app/models/notifier/comment_event_notifier.rb:2:2:
+  -
+  app/models/reaction.rb:10:2:
+  -
+  app/models/search/query.rb:8:2:
+  -
+  app/models/user/configurable.rb:10:4:
+  -
+  app/models/user/day_timeline.rb:6:2:
+  -
+  app/models/user/filtering.rb:4:2:
+  -
+  app/models/user/filtering.rb:5:2:
+  -
+  lib/action_pack/web_authn/authenticator/attestation.rb:41:2:
+  -

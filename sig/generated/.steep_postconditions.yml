@@ -759,6 +759,16 @@ postconditions:
   effects:
     may_write:
     - "@_included_block"
+- class: ActiveSupport::Delegation::ClassDelegator
+  method: __setobj__
+  effects:
+    may_write:
+    - "@delegate_dc_obj"
+- class: ActiveSupport::Delegation::ClassDelegator
+  method: initialize
+  effects:
+    may_write:
+    - "@delegate_dc_obj"
 - class: ActivitiesController
   method: __rbs_infer__run_index
   effects:
@@ -861,6 +871,12 @@ postconditions:
   effects:
     may_write:
     - "@direction"
+- class: Board
+  method: public_description?
+  when_true:
+    methods:
+      rich_text_public_description: "::ActionText::RichText"
+    self: "::Board & ::Board::AfterPublicDescription"
 - class: Board::Storage
   method: calculate_real_storage_bytes
   unconditional:
@@ -1345,6 +1361,12 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Card
+  method: description?
+  when_true:
+    methods:
+      rich_text_description: "::ActionText::RichText"
+    self: "::Card & ::Card::AfterDescription"
 - class: Card::ActivitySpike::Detector
   method: has_activity_spike?
   when_true:
@@ -2729,6 +2751,12 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Comment
+  method: body?
+  when_true:
+    methods:
+      rich_text_body: "::ActionText::RichText"
+    self: "::Comment & ::Comment::AfterBody"
 - class: Comment_Event::ActiveRecord_Associations_CollectionProxy
   method: initialize
   effects:
