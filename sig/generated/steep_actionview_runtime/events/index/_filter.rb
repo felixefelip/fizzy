@@ -13,8 +13,8 @@ class ERBPartialEventsIndexFilter
   def render(target = nil, *rest)
     name = target.is_a?(::Hash) ? target[:partial] : target
     case name
-    when "events/index/filter/board" then ERBPartialEventsIndexFilterBoard.new(user_filtering: user_filtering:).__rbs_infer__body
-    when "events/index/filter/user" then ERBPartialEventsIndexFilterUser.new(user_filtering: user_filtering:).__rbs_infer__body
+    when "events/index/filter/board" then ERBPartialEventsIndexFilterBoard.new(user_filtering: user_filtering).__rbs_infer__body
+    when "events/index/filter/user" then ERBPartialEventsIndexFilterUser.new(user_filtering: user_filtering).__rbs_infer__body
     end
     nil
   end
@@ -24,7 +24,6 @@ class ERBPartialEventsIndexFilter
   end
 
   def __rbs_infer__body
-    nil
   end
 
   private

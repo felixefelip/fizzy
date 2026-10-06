@@ -30,7 +30,6 @@ class ERBPartialCardsDraftsContainer
   end
 
   def __rbs_infer__body
-    nil
   end
 
   private
