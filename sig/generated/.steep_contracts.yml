@@ -1070,6 +1070,26 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  Board#auto_postpone_period:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: entropy
+    - kind: self_type
+      type: "(Board & Board::Validated)"
+    enforced: false
+  Board#auto_postpone_period_in_days:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: entropy
+    enforced: false
   Board#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -1157,6 +1177,15 @@ methods:
         method: proxy_association
         chain:
         - owner
+    enforced: false
+  Board::AutoPostponing#set_default_auto_postpone_period:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: entropy
     enforced: false
   Board::Entropic#entropy:
     requires:
@@ -2657,7 +2686,33 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  Comment#accessible_to?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#board:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
   Comment#card_is_commentable:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#publicly_accessible?:
     requires:
     - kind: not_nil
       expr:
@@ -2694,6 +2749,15 @@ methods:
         method: card
     enforced: false
   Comment#save:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: card
+    enforced: false
+  Comment#watch_by:
     requires:
     - kind: not_nil
       expr:
@@ -3009,15 +3073,6 @@ methods:
         method: event
         chain:
         - eventable
-    enforced: false
-  ERBPartialFiltersSettings#render:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user_filtering
     enforced: false
   ERBPartialReactionsReactions#render:
     requires:
@@ -3461,8 +3516,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: board
-    enforced: false
+        method: card
   Mentions#mentionable_users:
     requires:
     - kind: not_nil
@@ -3470,8 +3524,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: board
-    enforced: false
+        method: card
   Mentions#scan_mentionees:
     requires:
     - kind: not_nil
@@ -3479,8 +3532,7 @@ methods:
         kind: send
         receiver:
           kind: self
-        method: board
-    enforced: false
+        method: card
   My::AccessTokensController#__rbs_infer__run_create:
     requires:
     - kind: not_nil
