@@ -1,0 +1,5 @@
+class Notification
+  class DefaultPayload
+    def card: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

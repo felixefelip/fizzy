@@ -1,0 +1,4 @@
+class Notification
+  def notifiable_target: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def identity: () -> untyped
+end

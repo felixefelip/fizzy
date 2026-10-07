@@ -1,0 +1,7 @@
+class User
+  class Filtering
+    def as_params: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> Hash[untyped, untyped]
+    def as_params: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> Hash[untyped, untyped]
+    def only_closed?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

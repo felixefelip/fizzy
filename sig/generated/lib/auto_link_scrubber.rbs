@@ -1,7 +1,7 @@
 class AutoLinkScrubber < Loofah::Scrubber
   @direction: Symbol
 
-  EXCLUDED_ELEMENTS: Array[String]
+  EXCLUDED_ELEMENTS: [ "a", "figcaption", "pre", "code" ]
   EMAIL_AUTOLINK_REGEXP: Regexp
   URL_REGEXP: Regexp
   AUTOLINK_REGEXP: Regexp

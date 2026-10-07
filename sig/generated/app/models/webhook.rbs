@@ -2,8 +2,8 @@ class Webhook < ApplicationRecord
   SLACK_WEBHOOK_URL_REGEX: Regexp
   CAMPFIRE_WEBHOOK_URL_REGEX: Regexp
   BASECAMP_CAMPFIRE_WEBHOOK_URL_REGEX: Regexp
-  PERMITTED_SCHEMES: Array[String]
-  PERMITTED_ACTIONS: Array[String]
+  PERMITTED_SCHEMES: [ "http", "https" ]
+  PERMITTED_ACTIONS: [ "card_assigned", "card_closed", "card_postponed", "card_auto_postponed", "card_board_changed", "card_published", "card_reopened", "card_sent_back_to_triage", "card_triaged", "card_unassigned", "comment_created" ]
 
   include Triggerable
 

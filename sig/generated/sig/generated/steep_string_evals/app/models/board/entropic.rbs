@@ -1,0 +1,4 @@
+class Board
+  def auto_postpone_period: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def auto_postpone_period: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+end

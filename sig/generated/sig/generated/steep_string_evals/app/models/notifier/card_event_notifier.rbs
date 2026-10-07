@@ -1,0 +1,6 @@
+class Notifier
+  class CardEventNotifier
+    def creator: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+    def board: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

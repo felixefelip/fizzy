@@ -2,7 +2,7 @@ class Account
   module DataTransfer
     module ActionText
       class RichTextRecordSet < ::Account::DataTransfer::RecordSet
-        ATTRIBUTES: Array[String]
+        ATTRIBUTES: [ "account_id", "body", "created_at", "id", "name", "record_id", "record_type", "updated_at" ]
 
         def initialize: (Account? account) -> void
 

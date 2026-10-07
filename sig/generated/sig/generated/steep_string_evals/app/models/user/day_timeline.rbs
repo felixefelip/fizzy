@@ -1,0 +1,5 @@
+class User
+  class DayTimeline
+    def today?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

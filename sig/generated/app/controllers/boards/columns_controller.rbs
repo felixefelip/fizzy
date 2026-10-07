@@ -1,8 +1,5 @@
 module Boards
   class ColumnsController < ApplicationController
-    @columns: Column::ActiveRecord_Relation?
-    @column: (Column | (Column & Column::Validated))?
-
     include BoardScoped
 
     def index: () -> void

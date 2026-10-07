@@ -18,4 +18,6 @@ class Comment
   def body=(body)
     self.body.body = body
   end
+
+  def publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?, :'card');  else;    ::Kernel.raise;  end;end;def publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?, :'card');  else;    ::Kernel.raise;  end;end;def publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?, :'card');  else;    ::Kernel.raise;  end;end;def publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?, :'card');  else;    ::Kernel.raise;  end;end
 end

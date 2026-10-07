@@ -1,0 +1,3 @@
+class User
+  def timezone: () -> (ActiveSupport::TimeZone | User::Settings | nil)
+end

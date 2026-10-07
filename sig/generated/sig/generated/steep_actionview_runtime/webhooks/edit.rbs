@@ -1,10 +1,8 @@
 class ERBWebhooksEdit
-  @webhook: (Webhook & Webhook::Validated)?
-
   include ActionViewContext
   include WebhooksHelper
 
-  def initialize: (page_title: untyped, webhook: (Webhook & Webhook::Validated)?) -> void
+  def initialize: (page_title: untyped, webhook: untyped) -> void
   def render: (?"webhooks/form/actions"? target, *{ form: ActionView::Helpers::FormBuilder } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil

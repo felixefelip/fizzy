@@ -5,7 +5,7 @@ module ActionPack
         @challenge: String?
 
         CHALLENGE_LENGTH: 32
-        USER_VERIFICATION_OPTIONS: Array[Symbol]
+        USER_VERIFICATION_OPTIONS: [ :required, :preferred, :discouraged ]
 
         include ActiveModel::API
         include ActiveModel::Attributes

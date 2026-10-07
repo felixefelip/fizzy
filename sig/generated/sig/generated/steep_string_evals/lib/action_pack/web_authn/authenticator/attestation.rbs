@@ -1,0 +1,14 @@
+module ActionPack
+  module WebAuthn
+    module Authenticator
+      class Attestation
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      end
+    end
+  end
+end

@@ -1,7 +1,7 @@
 module Mentions
   extend ActiveSupport::Concern
 
-  def create_mentions: (?mentioner: (User & User::Validated)?) -> Array[untyped]
+  def create_mentions: (?mentioner: untyped) -> Array[untyped]
   def mentionable_content: () -> String
   def scan_mentionees: () -> Array[untyped]
 

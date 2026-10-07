@@ -2,7 +2,7 @@ class ERBPartialEntropyAutoClose
   include ActionViewContext
 
   def initialize: (disabled: bool, model: (Entropy? | Board & Board::Validated), url: String) -> void
-  def render: (?"entropy/knob"? target, *{ form: ActionView::Helpers::FormBuilder, name: :auto_postpone_period_in_days, current_value: untyped, knob_options: Array[Integer], label: "Days until auto-close", disabled: untyped } rest) -> nil
+  def render: (?"entropy/knob"? target, *{ form: ActionView::Helpers::FormBuilder, name: :auto_postpone_period_in_days, current_value: untyped, knob_options: [ 3, 7, 30, 90, 365, 11 ], label: "Days until auto-close", disabled: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 

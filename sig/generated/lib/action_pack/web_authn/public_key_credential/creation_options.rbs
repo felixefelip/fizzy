@@ -5,8 +5,8 @@ module ActionPack
         ES256: Hash[Symbol, (String | Integer)]
         EDDSA: Hash[Symbol, (String | Integer)]
         RS256: Hash[Symbol, (String | Integer)]
-        RESIDENT_KEY_OPTIONS: Array[Symbol]
-        ATTESTATION_PREFERENCES: Array[Symbol]
+        RESIDENT_KEY_OPTIONS: [ :preferred, :required, :discouraged ]
+        ATTESTATION_PREFERENCES: [ :none, :indirect, :direct, :enterprise ]
 
         def initialize: (?Hash[untyped, untyped] attributes) -> untyped
         def as_json: (?Hash[untyped, untyped] options) -> untyped

@@ -1,0 +1,5 @@
+class Notification
+  class PushTarget
+    def card: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

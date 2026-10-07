@@ -1,6 +1,6 @@
 class Entropy < ApplicationRecord
   DEFAULT_AUTO_POSTPONE_PERIOD_IN_DAYS: 30
-  AUTO_POSTPONE_PERIODS_IN_DAYS: Array[Integer]
+  AUTO_POSTPONE_PERIODS_IN_DAYS: [ 3, 7, 30, 90, 365, 11 ]
   AUTO_POSTPONE_PERIODS_IN_SECONDS: Array[untyped]
 
   def auto_postpone_period_in_days: () -> Integer

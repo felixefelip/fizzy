@@ -1,0 +1,5 @@
+class Notifier
+  class CommentEventNotifier
+    def creator: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  end
+end

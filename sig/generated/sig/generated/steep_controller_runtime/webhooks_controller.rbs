@@ -1,7 +1,7 @@
 class WebhooksController
   @__rbs_infer__performed: true?
 
-  def render: (?(:index | :show | :new | :edit | { json: ActiveModel::Errors, status: :unprocessable_entity })? target, *({ status: :created, location: untyped } | { status: :unprocessable_entity }) rest) -> true
+  def render: (?(:index | :show | :new | :edit | { json: untyped, status: :unprocessable_entity })? target, *({ status: :created, location: untyped } | { status: :unprocessable_entity }) rest) -> true
 
   private
 

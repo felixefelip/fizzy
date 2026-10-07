@@ -1,7 +1,6 @@
 module Cards
   class AssignmentsController < ApplicationController
     @assigned_to: User::ActiveRecord_Relation?
-    @users: User::ActiveRecord_Relation?
 
     include CardScoped
 

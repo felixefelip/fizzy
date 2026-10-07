@@ -1,6 +1,4 @@
 class WebhooksController < ApplicationController
-  @webhook: (Webhook & Webhook::Validated)?
-
   include BoardScoped
 
   def index: () -> void

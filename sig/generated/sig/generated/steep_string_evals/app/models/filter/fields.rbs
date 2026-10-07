@@ -1,0 +1,5 @@
+class Filter
+  module Fields
+    def default_value?: (:indexed_by | :sorted_by key, untyped value) -> bool
+  end
+end

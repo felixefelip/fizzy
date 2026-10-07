@@ -1,14 +1,14 @@
 class User
   module Avatar
-    ALLOWED_AVATAR_CONTENT_TYPES: Array[String]
+    ALLOWED_AVATAR_CONTENT_TYPES: [ "image/jpeg", "image/png", "image/gif", "image/webp" ]
     MAX_AVATAR_DIMENSIONS: Hash[Symbol, Integer]
-    AVATAR_COLORS: Array[String]
+    AVATAR_COLORS: [ "#AF2E1B", "#CC6324", "#3B4B59", "#BFA07A", "#ED8008", "#ED3F1C", "#BF1B1B", "#736B1E", "#D07B53", "#736356", "#AD1D1D", "#BF7C2A", "#C09C6F", "#698F9C", "#7C956B", "#5D618F", "#3B3633", "#67695E" ]
 
     extend ActiveSupport::Concern
 
     def avatar_attached?: () -> bool
     def avatar_thumbnail: () -> ActiveStorage::Attached::One
-    def avatar_background_color: () -> String
+    def avatar_background_color: () -> ("#AF2E1B" | "#CC6324" | "#3B4B59" | "#BFA07A" | "#ED8008" | "#ED3F1C" | "#BF1B1B" | "#736B1E" | "#D07B53" | "#736356" | "#AD1D1D" | "#BF7C2A" | "#C09C6F" | "#698F9C" | "#7C956B" | "#5D618F" | "#3B3633" | "#67695E")
     def publicly_accessible?: () -> true
 
     private

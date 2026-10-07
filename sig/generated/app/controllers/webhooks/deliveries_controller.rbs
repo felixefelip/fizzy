@@ -1,7 +1,5 @@
 module Webhooks
   class DeliveriesController < ApplicationController
-    @webhook: (Webhook & Webhook::Validated)?
-
     include BoardScoped
 
     def index: () -> void

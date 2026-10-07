@@ -3878,6 +3878,11 @@ postconditions:
   effects:
     may_write:
     - "@user_filtering"
+- class: ERBPartialEventsIndexFilter
+  method: initialize
+  effects:
+    may_write:
+    - "@user_filtering"
 - class: ERBPartialEventsIndexFilterBoard
   method: initialize
   effects:
@@ -10540,6 +10545,24 @@ method_entry_facts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
     Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialEventsIndexFilter
+  method: render
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialEventsIndexFilterBoard
+  method: __rbs_infer__body
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialEventsIndexFilterUser
+  method: __rbs_infer__body
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialFiltersSettings
   method: __rbs_infer__body
   consts:
@@ -11536,6 +11559,12 @@ method_entry_facts:
     "@disable_view_transition": 'true'
 - class: FiltersHelper
   method: filter_place_menu_item
+  consts:
+    Current.account: "(::Account & ::Account::Validated)"
+    Current.identity: "::Identity"
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltersHelper
+  method: filter_title
   consts:
     Current.account: "(::Account & ::Account::Validated)"
     Current.identity: "::Identity"
@@ -14511,46 +14540,6 @@ argument_entry_facts:
     "@disable_view_transition": 'true'
     "@filter": "(::Filter & ::Filter::Validated)"
     "@filters": "::User_Filter::ActiveRecord_Associations_CollectionProxy"
-- class: FiltersHelper
-  method: filter_title
-  param: title
-  pattern: '"Added by…"'
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: FiltersHelper
-  method: filter_title
-  param: title
-  pattern: '"Assigned to…"'
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: FiltersHelper
-  method: filter_title
-  param: title
-  pattern: '"Closed by…"'
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: FiltersHelper
-  method: filter_title
-  param: title
-  pattern: '"Move this card to…"'
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
-- class: FiltersHelper
-  method: filter_title
-  param: title
-  pattern: '"Tagged…"'
-  consts:
-    Current.account: "(::Account & ::Account::Validated)"
-    Current.identity: "::Identity"
-    Current.user: "(::User & ::User::Validated)"
 - class: JoinCodesController
   method: render
   param: target

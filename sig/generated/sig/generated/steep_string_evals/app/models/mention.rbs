@@ -1,0 +1,3 @@
+class Mention
+  def card: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+end

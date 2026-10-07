@@ -1,0 +1,3 @@
+class Reaction
+  def all_emoji?: () -> untyped
+end

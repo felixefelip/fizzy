@@ -1429,3 +1429,8 @@ sig/generated/steep_current_runtime/current.rb:
   - anchor: GeneratedAttributeMethods
     annotations:
     - "# @type instance: Current & Current::GeneratedAttributeMethods"
+sig/generated/steep_string_evals/app/models/filter/fields.rb:
+  modules:
+  - anchor: Fields
+    annotations:
+    - "# @type instance: Filter & Filter::Fields"

@@ -1,12 +1,12 @@
 class ERBPartialBoardsShowNotNow
   include ActionViewContext
 
-  def initialize: (board: (Board | (Board & Board::Validated))?) -> void
+  def initialize: (board: (Board & Board::Validated)?) -> void
   def render: (?("boards/show/expander" | "boards/show/menu/maximize")? target, *({ title: "Not Now", count: Integer, column_id: "not-now" } | { column_path: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: (Board | (Board & Board::Validated))?
+  attr_reader board: (Board & Board::Validated)?
 end

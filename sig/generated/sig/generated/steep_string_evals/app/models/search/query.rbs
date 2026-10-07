@@ -1,0 +1,5 @@
+module Search
+  class Query
+    def to_s: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> String
+  end
+end

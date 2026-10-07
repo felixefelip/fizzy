@@ -30,7 +30,7 @@ module ActionPack
       POSITIVE_BIGNUM_TAG: 2
       NEGATIVE_BIGNUM_TAG: 3
 
-      def self.decode: ((String | nil) bytes, **untyped) -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
+      def self.decode: (nil bytes, **untyped) -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)
 
       def initialize: (untyped bytes, ?max_depth: 16, ?max_size: untyped) -> 0
       def decode: () -> (BigDecimal | String | Array[untyped] | Hash[untyped, untyped] | bool | nil | Float)

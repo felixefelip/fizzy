@@ -1,13 +1,13 @@
 class ERBPartialBoardsShowStream
   include ActionViewContext
 
-  def initialize: (board: (Board | (Board & Board::Validated))?, page: untyped) -> void
-  def render: (?("boards/show/expander" | "boards/show/menu/maximize" | "columns/show/add_card_button" | "cards/display/previews")? target, *({ title: "Maybe?", count: Integer, column_id: "maybe" } | { column_path: untyped } | { board: (Board | (Board & Board::Validated))? } | { cards: untyped, draggable: true }) rest) -> nil
+  def initialize: (board: (Board & Board::Validated)?, page: untyped) -> void
+  def render: (?("boards/show/expander" | "boards/show/menu/maximize" | "columns/show/add_card_button" | "cards/display/previews")? target, *({ title: "Maybe?", count: Integer, column_id: "maybe" } | { column_path: untyped } | { board: (Board & Board::Validated)? } | { cards: untyped, draggable: true }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: (Board | (Board & Board::Validated))?
+  attr_reader board: (Board & Board::Validated)?
   attr_reader page: untyped
 end

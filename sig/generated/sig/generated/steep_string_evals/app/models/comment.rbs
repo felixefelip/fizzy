@@ -2,8 +2,8 @@ class Comment
   def body: () -> ActionText::RichText
   def body?: () -> bool
   def body=: (untyped body) -> ActionText::RichText
-
-  class AfterBody
-    def rich_text_body: () -> ::ActionText::RichText
-  end
+  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
 end

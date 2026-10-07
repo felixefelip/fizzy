@@ -2,8 +2,4 @@ class Board
   def public_description: () -> ActionText::RichText
   def public_description?: () -> bool
   def public_description=: (untyped body) -> untyped
-
-  class AfterPublicDescription
-    def rich_text_public_description: () -> ::ActionText::RichText
-  end
 end

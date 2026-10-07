@@ -1,8 +1,6 @@
 module Prompts
   module Boards
     class UsersController < ApplicationController
-      @users: User::ActiveRecord_Relation?
-
       include BoardScoped
 
       def index: () -> void
