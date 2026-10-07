@@ -1,7 +1,7 @@
 module BridgeHelper
   def bridge_icon: (("board" | "check" | "add" | "funnel") name) -> untyped
-  def bridged_button_to_board: (Board & Board::Validated board) -> untyped
+  def bridged_button_to_board: (untyped board) -> untyped
   def bridged_share_url_button: (?String? description) -> untyped
-  def bridge_share_card_description: ((Card & Card::Validated)? card) -> String
+  def bridge_share_card_description: ((Card | (Card & Card::Validated))? card) -> String
   def bridge_share_board_description: ((Board | (Board & Board::Validated))? board) -> String
 end

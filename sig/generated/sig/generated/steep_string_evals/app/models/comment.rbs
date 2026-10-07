@@ -4,7 +4,7 @@ class Comment
   def body=: (untyped body) -> ActionText::RichText
   def publicly_accessible?: () -> untyped
   def accessible_to?: (User? | (User & User::Validated) user) -> untyped
-  def board: () -> untyped
+  def board: () -> Board?
   def watch_by: (User & User::Validated user) -> untyped
 
   class AfterBody

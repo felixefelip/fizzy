@@ -1,10 +1,10 @@
 class ERBPublicCardsShow
-  @card: (Card & Card::Validated)?
+  @card: (Card & Card::Validated)
 
   include ActionViewContext
 
-  def initialize: (card: (Card & Card::Validated)?) -> void
-  def render: (?("cards/display/preview/board" | "cards/display/preview/tags" | "public/cards/show/content" | "cards/display/public_preview/columns" | "cards/display/common/stamp" | "public/cards/show/steps" | "cards/display/public_preview/meta" | "cards/display/perma/background" | "layouts/lightbox" | "public/footer")? target, *{ card: (Card & Card::Validated)? } rest) -> nil
+  def initialize: (card: Card & ::Card::Validated) -> void
+  def render: (?("cards/display/preview/board" | "cards/display/preview/tags" | "public/cards/show/content" | "cards/display/public_preview/columns" | "cards/display/common/stamp" | "public/cards/show/steps" | "cards/display/public_preview/meta" | "cards/display/perma/background" | "layouts/lightbox" | "public/footer")? target, *{ card: Card & Card::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end
