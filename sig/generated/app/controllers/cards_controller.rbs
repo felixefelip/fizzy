@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  @card: (Card & Card::Validated)?
+  @card: (Card | (Card & Card::Validated))?
   @board: (Board & Board::Validated)?
 
   include FilterScoped

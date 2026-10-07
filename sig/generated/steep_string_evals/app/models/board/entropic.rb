@@ -7,5 +7,5 @@
 # placed in the class that made the call, so the checker reads the bodies.
 
 class Board
-  def auto_postpone_period(...);  _ = entropy;  _.auto_postpone_period(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period, :'entropy');  else;    ::Kernel.raise;  end;end;def auto_postpone_period(...);  _ = entropy;  _.auto_postpone_period(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period, :'entropy');  else;    ::Kernel.raise;  end;end
+  def auto_postpone_period(...);  _ = entropy;  _.auto_postpone_period(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period, :'entropy');  else;    ::Kernel.raise;  end;end;def auto_postpone_period_in_days(...);  _ = entropy;  _.auto_postpone_period_in_days(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period_in_days;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period_in_days, :'entropy');  else;    ::Kernel.raise;  end;end
 end

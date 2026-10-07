@@ -18,9 +18,9 @@ call_sites:
   - source: def auto_postpone_period(...);  _ = entropy;  _.auto_postpone_period(...);rescue
       ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period;    ::Kernel.raise
       ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period, :'entropy');  else;    ::Kernel.raise;  end;end;def
-      auto_postpone_period(...);  _ = entropy;  _.auto_postpone_period(...);rescue
-      ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period;    ::Kernel.raise
-      ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period, :'entropy');  else;    ::Kernel.raise;  end;end
+      auto_postpone_period_in_days(...);  _ = entropy;  _.auto_postpone_period_in_days(...);rescue
+      ::NoMethodError => e;  if _.nil? && e.name == :auto_postpone_period_in_days;    ::Kernel.raise
+      ::ActiveSupport::DelegationError.nil_target(:auto_postpone_period_in_days, :'entropy');  else;    ::Kernel.raise;  end;end
     target: "::Board"
   app/models/card.rb:13:2:
   - |2
@@ -49,14 +49,12 @@ call_sites:
   - source: def publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue
       ::NoMethodError => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise
       ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?, :'card');  else;    ::Kernel.raise;  end;end;def
-      publicly_accessible?(...);  _ = card;  _.publicly_accessible?(...);rescue ::NoMethodError
-      => e;  if _.nil? && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?,
-      :'card');  else;    ::Kernel.raise;  end;end;def publicly_accessible?(...);  _
-      = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil?
-      && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?,
-      :'card');  else;    ::Kernel.raise;  end;end;def publicly_accessible?(...);  _
-      = card;  _.publicly_accessible?(...);rescue ::NoMethodError => e;  if _.nil?
-      && e.name == :publicly_accessible?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:publicly_accessible?,
+      accessible_to?(...);  _ = card;  _.accessible_to?(...);rescue ::NoMethodError
+      => e;  if _.nil? && e.name == :accessible_to?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:accessible_to?,
+      :'card');  else;    ::Kernel.raise;  end;end;def board(...);  _ = card;  _.board(...);rescue
+      ::NoMethodError => e;  if _.nil? && e.name == :board;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:board,
+      :'card');  else;    ::Kernel.raise;  end;end;def watch_by(...);  _ = card;  _.watch_by(...);rescue
+      ::NoMethodError => e;  if _.nil? && e.name == :watch_by;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:watch_by,
       :'card');  else;    ::Kernel.raise;  end;end
     target: "::Comment"
   app/models/comment.rb:9:2:
@@ -141,9 +139,9 @@ call_sites:
   app/models/user/filtering.rb:4:2:
   - source: def as_params(...);  _ = filter;  _.as_params(...);rescue ::NoMethodError
       => e;  if _.nil? && e.name == :as_params;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:as_params,
-      :'filter');  else;    ::Kernel.raise;  end;end;def as_params(...);  _ = filter;  _.as_params(...);rescue
-      ::NoMethodError => e;  if _.nil? && e.name == :as_params;    ::Kernel.raise
-      ::ActiveSupport::DelegationError.nil_target(:as_params, :'filter');  else;    ::Kernel.raise;  end;end
+      :'filter');  else;    ::Kernel.raise;  end;end;def single_board(...);  _ = filter;  _.single_board(...);rescue
+      ::NoMethodError => e;  if _.nil? && e.name == :single_board;    ::Kernel.raise
+      ::ActiveSupport::DelegationError.nil_target(:single_board, :'filter');  else;    ::Kernel.raise;  end;end
     target: "::User::Filtering"
   app/models/user/filtering.rb:5:2:
   - source: def only_closed?(...);  _ = filter;  _.only_closed?(...);rescue ::NoMethodError
@@ -154,19 +152,19 @@ call_sites:
   - source: def credential_id(...);  _ = authenticator_data;  _.credential_id(...);rescue
       ::NoMethodError => e;  if _.nil? && e.name == :credential_id;    ::Kernel.raise
       ::ActiveSupport::DelegationError.nil_target(:credential_id, :'authenticator_data');  else;    ::Kernel.raise;  end;end;def
-      credential_id(...);  _ = authenticator_data;  _.credential_id(...);rescue ::NoMethodError
-      => e;  if _.nil? && e.name == :credential_id;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:credential_id,
-      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def credential_id(...);  _
-      = authenticator_data;  _.credential_id(...);rescue ::NoMethodError => e;  if
-      _.nil? && e.name == :credential_id;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:credential_id,
-      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def credential_id(...);  _
-      = authenticator_data;  _.credential_id(...);rescue ::NoMethodError => e;  if
-      _.nil? && e.name == :credential_id;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:credential_id,
-      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def credential_id(...);  _
-      = authenticator_data;  _.credential_id(...);rescue ::NoMethodError => e;  if
-      _.nil? && e.name == :credential_id;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:credential_id,
-      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def credential_id(...);  _
-      = authenticator_data;  _.credential_id(...);rescue ::NoMethodError => e;  if
-      _.nil? && e.name == :credential_id;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:credential_id,
+      public_key(...);  _ = authenticator_data;  _.public_key(...);rescue ::NoMethodError
+      => e;  if _.nil? && e.name == :public_key;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:public_key,
+      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def public_key_bytes(...);  _
+      = authenticator_data;  _.public_key_bytes(...);rescue ::NoMethodError => e;  if
+      _.nil? && e.name == :public_key_bytes;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:public_key_bytes,
+      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def sign_count(...);  _
+      = authenticator_data;  _.sign_count(...);rescue ::NoMethodError => e;  if _.nil?
+      && e.name == :sign_count;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:sign_count,
+      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def aaguid(...);  _
+      = authenticator_data;  _.aaguid(...);rescue ::NoMethodError => e;  if _.nil?
+      && e.name == :aaguid;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:aaguid,
+      :'authenticator_data');  else;    ::Kernel.raise;  end;end;def backed_up?(...);  _
+      = authenticator_data;  _.backed_up?(...);rescue ::NoMethodError => e;  if _.nil?
+      && e.name == :backed_up?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:backed_up?,
       :'authenticator_data');  else;    ::Kernel.raise;  end;end
     target: "::ActionPack::WebAuthn::Authenticator::Attestation"

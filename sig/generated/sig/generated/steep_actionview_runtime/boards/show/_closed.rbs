@@ -1,12 +1,12 @@
 class ERBPartialBoardsShowClosed
   include ActionViewContext
 
-  def initialize: (board: (Board & Board::Validated)?) -> void
+  def initialize: (board: (Board | (Board & Board::Validated))?) -> void
   def render: (?("boards/show/expander" | "boards/show/menu/maximize")? target, *({ title: "Done", count: Integer, column_id: "closed-cards" } | { column_path: untyped }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: (Board & Board::Validated)?
+  attr_reader board: (Board | (Board & Board::Validated))?
 end

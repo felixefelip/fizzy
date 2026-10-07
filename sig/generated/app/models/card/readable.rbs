@@ -11,7 +11,7 @@ class Card
     def remove_inaccessible_notifications_later: () -> ActiveJob::Base
     def event_notification_sources: () -> Card_Event::ActiveRecord_Associations_CollectionProxy
     def comment_creation_events: () -> Event::ActiveRecord_Relation
-    def inaccessible_notifications_from: ((Card_Event::ActiveRecord_Associations_CollectionProxy | Event::ActiveRecord_Relation | Card_Mention::ActiveRecord_Associations_CollectionProxy | Mention::ActiveRecord_Relation) sources, untyped accessible_user_ids) -> Notification::ActiveRecord_Relation
+    def inaccessible_notifications_from: ((Card_Event::ActiveRecord_Associations_CollectionProxy | Event::ActiveRecord_Relation | Card_Mention::ActiveRecord_Associations_CollectionProxy | Mention::ActiveRecord_Relation) sources, Array[untyped] accessible_user_ids) -> Notification::ActiveRecord_Relation
     def notification_sources: () -> Array[(Card_Event::ActiveRecord_Associations_CollectionProxy | Event::ActiveRecord_Relation | Card_Mention::ActiveRecord_Associations_CollectionProxy | Mention::ActiveRecord_Relation)]
     def mention_notification_sources: () -> Card_Mention::ActiveRecord_Associations_CollectionProxy
     def comment_mentions: () -> Mention::ActiveRecord_Relation

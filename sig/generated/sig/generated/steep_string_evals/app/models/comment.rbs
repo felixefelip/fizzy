@@ -2,8 +2,12 @@ class Comment
   def body: () -> ActionText::RichText
   def body?: () -> bool
   def body=: (untyped body) -> ActionText::RichText
-  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-  def publicly_accessible?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+  def publicly_accessible?: () -> untyped
+  def accessible_to?: (User? | (User & User::Validated) user) -> untyped
+  def board: () -> untyped
+  def watch_by: (User & User::Validated user) -> untyped
+
+  class AfterBody
+    def rich_text_body: () -> ::ActionText::RichText
+  end
 end

@@ -3,10 +3,10 @@ class Entropy < ApplicationRecord
   AUTO_POSTPONE_PERIODS_IN_DAYS: [ 3, 7, 30, 90, 365, 11 ]
   AUTO_POSTPONE_PERIODS_IN_SECONDS: Array[untyped]
 
-  def auto_postpone_period_in_days: () -> Integer
+  def auto_postpone_period_in_days: () -> 30
   def auto_postpone_period_in_days=: (untyped new_value) -> untyped
 
   private
 
-  def default_auto_postpone_period_in_days: () -> Integer
+  def default_auto_postpone_period_in_days: () -> 30
 end

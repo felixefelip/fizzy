@@ -1,13 +1,13 @@
 class ERBPartialBoardsShowMenuColumnForm
   include ActionViewContext
 
-  def initialize: (board: (Board & Board::Validated)?, column: Column, label: ("Save changes" | "Add column")) -> void
+  def initialize: (board: (Board | (Board & Board::Validated))?, column: Column, label: ("Save changes" | "Add column")) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader board: (Board & Board::Validated)?
+  attr_reader board: (Board | (Board & Board::Validated))?
   attr_reader column: Column
   attr_reader label: ("Save changes" | "Add column")
 end

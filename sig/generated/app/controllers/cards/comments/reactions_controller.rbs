@@ -1,6 +1,7 @@
 module Cards
   module Comments
     class ReactionsController < ApplicationController
+      @reaction: Reaction?
       @comment: (Comment & Comment::Validated)?
       @reactable: (Comment & Comment::Validated)?
 

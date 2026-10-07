@@ -7,6 +7,6 @@
 # placed in the class that made the call, so the checker reads the bodies.
 
 class User::Filtering
-  def as_params(...);  _ = filter;  _.as_params(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :as_params;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:as_params, :'filter');  else;    ::Kernel.raise;  end;end;def as_params(...);  _ = filter;  _.as_params(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :as_params;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:as_params, :'filter');  else;    ::Kernel.raise;  end;end
+  def as_params(...);  _ = filter;  _.as_params(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :as_params;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:as_params, :'filter');  else;    ::Kernel.raise;  end;end;def single_board(...);  _ = filter;  _.single_board(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :single_board;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:single_board, :'filter');  else;    ::Kernel.raise;  end;end
   def only_closed?(...);  _ = filter;  _.only_closed?(...);rescue ::NoMethodError => e;  if _.nil? && e.name == :only_closed?;    ::Kernel.raise ::ActiveSupport::DelegationError.nil_target(:only_closed?, :'filter');  else;    ::Kernel.raise;  end;end
 end

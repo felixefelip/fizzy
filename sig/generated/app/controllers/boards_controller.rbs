@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  @board: (Board & Board::Validated)?
+  @board: (Board | (Board & Board::Validated))?
 
   include FilterScoped
 

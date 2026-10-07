@@ -1414,6 +1414,26 @@ methods:
           kind: self
         method: main_app
     enforced: false
+  Card#accessible_to?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    enforced: false
+  Card#auto_postpone_period:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: board
+    - kind: self_type
+      type: "(::Card & ::Card::Entropic)"
+    enforced: false
   Card#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -2990,6 +3010,15 @@ methods:
         chain:
         - eventable
     enforced: false
+  ERBPartialFiltersSettings#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user_filtering
+    enforced: false
   ERBPartialReactionsReactions#render:
     requires:
     - kind: not_nil
@@ -3589,6 +3618,15 @@ methods:
         chain:
         - settings
     enforced: false
+  Notification#identity:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
   Notification#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -3847,49 +3885,6 @@ methods:
         - notification_bundles
         - where
     enforced: false
-  Notification::EventPayload#body:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    enforced: false
-  Notification::EventPayload#card_title:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - title
-    enforced: false
-  Notification::EventPayload#title:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: card
-        chain:
-        - title
-    enforced: false
   Notification::Pushable#push:
     requires:
     - kind: not_nil
@@ -4105,23 +4100,6 @@ methods:
         chain:
         - system?
     enforced: false
-  Notifier::CardEventNotifier#recipients:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
-        chain:
-        - watchers
-    enforced: false
   Pin#run_before_validation_callbacks:
     requires:
     - kind: not_nil
@@ -4331,6 +4309,15 @@ methods:
         receiver:
           kind: self
         method: main_app
+    enforced: false
+  Reaction#all_emoji?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: content
     enforced: false
   RequestForgeryProtection#allowed_api_request?:
     requires:
@@ -5036,6 +5023,15 @@ methods:
         method: day
         chain:
         - yesterday
+    enforced: false
+  User::DayTimeline#today?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: day
     enforced: false
   User::DayTimeline#window:
     requires:

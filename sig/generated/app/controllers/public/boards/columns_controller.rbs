@@ -1,6 +1,8 @@
 module Public
   module Boards
     class ColumnsController < ::Public::BaseController
+      @column: (Column & Column::Validated)?
+
       def show: () -> untyped
 
       private

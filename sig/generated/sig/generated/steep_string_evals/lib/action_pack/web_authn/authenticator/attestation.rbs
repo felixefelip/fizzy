@@ -3,11 +3,11 @@ module ActionPack
     module Authenticator
       class Attestation
         def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
-        def credential_id: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def public_key: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def public_key_bytes: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def sign_count: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def aaguid: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+        def backed_up?: (*untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
       end
     end
   end
